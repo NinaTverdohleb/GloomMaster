@@ -14,7 +14,6 @@ class CharacterRepository @Inject constructor(
     private val characterDao: CharacterDao,
     private val classDao: CharacterClassDao
 ) {
-
     fun getCharacterByTeamId(teamId: Int): Flow<List<CharacterInfo>> =
         characterDao.findByTeamIdFlow(teamId).map { list ->
             list.map {
@@ -23,8 +22,8 @@ class CharacterRepository @Inject constructor(
             }
         }
 
-    suspend fun addCharacter(character: CharacterForSave, teamId: Int) {
-            characterDao.insert(character.toBd(teamId))
+    suspend fun addCharacter(character: CharacterForSave, teamId: Int? = null) {
+        characterDao.insert(character.toBd(teamId))
     }
 
     suspend fun deleteCharacter(id: Int) {
@@ -40,6 +39,13 @@ class CharacterRepository @Inject constructor(
     suspend fun leaveCharacter(id: Int) {
         characterDao.getCharacterById(id).let {
             characterDao.update(it.copy(isAlive = false))
+        }
+    }
+
+    fun getAllCharacters(): Flow<List<CharacterInfo>> = characterDao.getAllCharacters().map { list ->
+        list.map {
+            val classBd = classDao.findById(it.classId)
+            it.toDomain(classBd)
         }
     }
 }

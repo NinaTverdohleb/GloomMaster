@@ -19,7 +19,8 @@ data class CharacterInfo(
     val level: Int,
     val characterClass: CharacterClass,
     val isAlive: Boolean,
-    val id: Int
+    val id: Int,
+    val team: ShortTeamInfo?
 )
 
 fun List<Int>.toLevel(): Int {

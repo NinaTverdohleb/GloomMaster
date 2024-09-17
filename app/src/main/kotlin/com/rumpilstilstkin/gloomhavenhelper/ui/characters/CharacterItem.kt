@@ -12,7 +12,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -26,8 +25,49 @@ import androidx.compose.ui.unit.dp
 import com.rumpilstilstkin.gloomhavenhelper.R
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
 
+
 @Composable
 fun CharacterItem(
+    characterId: Int,
+    @DrawableRes
+    imageRes: Int,
+    name: String,
+    level: Int,
+    modifier: Modifier = Modifier,
+    isAlive: Boolean = true,
+    onClick: (Int) -> Unit
+) {
+    Row(
+        modifier = modifier
+            .fillMaxWidth()
+            .padding(8.dp)
+            .clickable(
+                enabled = isAlive,
+            ) {
+                onClick.invoke(characterId)
+            },
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Image(
+            painter = painterResource(id = imageRes),
+            contentDescription = "",
+            colorFilter = tint(MaterialTheme.colorScheme.onBackground),
+        )
+        Spacer(modifier = Modifier.width(16.dp))
+        Text(
+            text = name,
+            modifier = Modifier.weight(1f)
+        )
+        Spacer(modifier = Modifier.width(16.dp))
+        Text(
+            text = level.toString(),
+            textAlign = TextAlign.End,
+        )
+    }
+}
+
+@Composable
+fun CharacterItemWithDialog(
     characterId: Int,
     @DrawableRes
     imageRes: Int,
@@ -63,32 +103,15 @@ fun CharacterItem(
         }
     )
 
-    Row(
+    CharacterItem(
+        characterId = characterId,
+        imageRes = imageRes,
+        name = name,
+        level = level,
+        isAlive = isAlive,
         modifier = modifier
-            .fillMaxWidth()
-            .padding(8.dp)
-            .clickable(
-                enabled = isAlive,
-            ) {
-                    showDialog = true
-            },
-        verticalAlignment = Alignment.CenterVertically
     ) {
-        Image(
-            painter = painterResource(id = imageRes),
-            contentDescription = "",
-            colorFilter = tint(MaterialTheme.colorScheme.onBackground),
-        )
-        Spacer(modifier = Modifier.width(16.dp))
-        Text(
-            text = name,
-            modifier = Modifier.weight(1f)
-        )
-        Spacer(modifier = Modifier.width(16.dp))
-        Text(
-            text = level.toString(),
-            textAlign = TextAlign.End,
-        )
+        showDialog = true
     }
 }
 
@@ -96,7 +119,7 @@ fun CharacterItem(
 @Composable
 private fun Sample() {
     GloomhavenHalperTheme {
-        CharacterItem(
+        CharacterItemWithDialog(
             imageRes = R.drawable.br,
             name = "Супер мега длинное имя пипец какое невыносимо огромное",
             level = 6,

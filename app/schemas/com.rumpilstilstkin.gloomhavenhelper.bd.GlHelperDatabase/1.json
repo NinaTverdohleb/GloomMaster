@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "0fc570ca1c7c91e7cba7f1ad6e34f22f",
+    "identityHash": "f1a79d8872b28eeeba67d473fa4417fd",
     "entities": [
       {
         "tableName": "TeamBd",
@@ -88,7 +88,7 @@
       },
       {
         "tableName": "CharacterBd",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`characterId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL, `level` INTEGER NOT NULL, `classId` INTEGER NOT NULL, `teamId` INTEGER NOT NULL, `isAlive` INTEGER NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`characterId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL, `level` INTEGER NOT NULL, `classId` INTEGER NOT NULL, `teamId` INTEGER, `isAlive` INTEGER NOT NULL)",
         "fields": [
           {
             "fieldPath": "characterId",
@@ -118,7 +118,7 @@
             "fieldPath": "teamId",
             "columnName": "teamId",
             "affinity": "INTEGER",
-            "notNull": true
+            "notNull": false
           },
           {
             "fieldPath": "isAlive",
@@ -326,7 +326,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '0fc570ca1c7c91e7cba7f1ad6e34f22f')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'f1a79d8872b28eeeba67d473fa4417fd')"
     ]
   }
 }

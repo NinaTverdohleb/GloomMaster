@@ -1,7 +1,7 @@
 package com.rumpilstilstkin.gloomhavenhelper.screens.main
 
 import androidx.compose.runtime.Composable
-import com.rumpilstilstkin.gloomhavenhelper.ui.characters.AddCharacterDialog
+import com.rumpilstilstkin.gloomhavenhelper.ui.characters.add.AddCharacterDialog
 import com.rumpilstilstkin.gloomhavenhelper.ui.scenario.ScenarioLevelInfoDialog
 import com.rumpilstilstkin.gloomhavenhelper.ui.team.ProsperityDialog
 import com.rumpilstilstkin.gloomhavenhelper.ui.team.ReputationDialog
@@ -38,7 +38,6 @@ fun MainDialogs(
 
     AddCharacterDialog(
         showDialog = effectState.showAddCharacterDialog,
-        classes = effectState.classes,
         onDismiss = { onAction(MainScreenAction.HideAddCharacterDialog) },
         onAdd = { name, level, classId ->
             onAction(MainScreenAction.AddCharacter(

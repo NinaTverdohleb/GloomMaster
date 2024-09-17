@@ -12,6 +12,9 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface CharacterDao {
 
+    @Query("SELECT * FROM CharacterBd")
+    fun getAllCharacters(): Flow<List<CharacterBd>>
+
     @Query("SELECT * FROM CharacterBd WHERE teamId LIKE :teamId")
     suspend fun findByTeamId(teamId: Int): List<CharacterBd>
 

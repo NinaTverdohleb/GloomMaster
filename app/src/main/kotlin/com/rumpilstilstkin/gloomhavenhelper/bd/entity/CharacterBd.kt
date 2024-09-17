@@ -9,6 +9,6 @@ data class CharacterBd(
     val name: String,
     val level: Int,
     val classId: Int,
-    val teamId: Int,
+    val teamId: Int?,
     val isAlive: Boolean = true,
 )

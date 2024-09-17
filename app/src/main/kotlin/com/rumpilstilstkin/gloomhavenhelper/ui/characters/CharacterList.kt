@@ -14,6 +14,28 @@ import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
 fun CharacterList(
     characters: List<CharacterUI>,
     modifier: Modifier = Modifier,
+    onClick: (Int) -> Unit
+) {
+    Column(
+        modifier = modifier.fillMaxWidth()
+    ) {
+        characters.forEach() { character ->
+            CharacterItem(
+                characterId = character.id,
+                imageRes = character.characterClass.imageRes,
+                name = character.name,
+                level = character.level,
+                isAlive = character.isAlive,
+                onClick = onClick
+            )
+        }
+    }
+}
+
+@Composable
+fun CharacterWithDialogList(
+    characters: List<CharacterUI>,
+    modifier: Modifier = Modifier,
     onSave: (Int, Int) -> Unit,
     onDelete: (Int) -> Unit,
     onLeave: (Int) -> Unit
@@ -22,7 +44,7 @@ fun CharacterList(
         modifier = modifier.fillMaxWidth()
     ) {
         characters.forEach() { character ->
-            CharacterItem(
+            CharacterItemWithDialog(
                 characterId = character.id,
                 imageRes = character.characterClass.imageRes,
                 name = character.name,
@@ -40,7 +62,7 @@ fun CharacterList(
 @Composable
 private fun Sample() {
     GloomhavenHalperTheme {
-        CharacterList(
+        CharacterWithDialogList(
             characters = listOf(
                 CharacterUI(
                     name = "Name",

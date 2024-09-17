@@ -4,8 +4,9 @@ import com.rumpilstilstkin.gloomhavenhelper.bd.entity.CharacterBd
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.CharacterClassBd
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.CharacterForSave
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.CharacterInfo
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.ShortTeamInfo
 
-fun CharacterForSave.toBd(teamId: Int) = CharacterBd(
+fun CharacterForSave.toBd(teamId: Int? = null) = CharacterBd(
     name = this.name,
     level = this.level,
     classId = this.classId,
@@ -13,11 +14,13 @@ fun CharacterForSave.toBd(teamId: Int) = CharacterBd(
 )
 
 fun CharacterBd.toDomain(
-    characterClassBd: CharacterClassBd
+    characterClassBd: CharacterClassBd,
+    team: ShortTeamInfo? = null
 ) = CharacterInfo(
     name = this.name,
     level = this.level,
     isAlive = this.isAlive,
     characterClass = characterClassBd.toDomain(),
-    id = this.characterId
+    id = this.characterId,
+    team = team
 )

@@ -144,7 +144,7 @@ class MainViewModel @Inject constructor(
 
             is MainScreenAction.AddCharacter -> {
                 viewModelScope.launch {
-                    teamRepository.addCharacter(
+                    teamRepository.addCharacterForCurrentTeam(
                         CharacterForSave(
                             name = action.name,
                             level = action.level,

@@ -11,7 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.CharacterUI
-import com.rumpilstilstkin.gloomhavenhelper.ui.characters.CharacterList
+import com.rumpilstilstkin.gloomhavenhelper.ui.characters.CharacterWithDialogList
 
 @Composable
 fun CharactersBlock(
@@ -27,7 +27,7 @@ fun CharactersBlock(
             text = "Игроки",
             style = MaterialTheme.typography.titleMedium,
         )
-        CharacterList(
+        CharacterWithDialogList(
             characters = characters,
             onSave = { characterId, newLevel ->
                 onAction.invoke(

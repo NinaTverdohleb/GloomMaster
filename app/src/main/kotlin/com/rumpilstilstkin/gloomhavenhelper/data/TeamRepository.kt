@@ -71,7 +71,7 @@ class TeamRepository @Inject constructor(
         teamDao.update(team.toBd())
     }
 
-    suspend fun addCharacter(character: CharacterForSave) {
+    suspend fun addCharacterForCurrentTeam(character: CharacterForSave) {
         _currentTeam.value.onSuccess {
             characterRepository.addCharacter(character, it)
         }

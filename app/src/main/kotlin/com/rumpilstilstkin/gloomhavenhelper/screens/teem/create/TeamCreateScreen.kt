@@ -14,7 +14,6 @@ import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -25,8 +24,8 @@ import androidx.navigation.NavHostController
 import com.rumpilstilstkin.gloomhavenhelper.R
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.CharacterClassUI
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.CharacterUI
-import com.rumpilstilstkin.gloomhavenhelper.ui.characters.AddCharacterDialog
-import com.rumpilstilstkin.gloomhavenhelper.ui.characters.CharacterList
+import com.rumpilstilstkin.gloomhavenhelper.ui.characters.add.AddCharacterDialog
+import com.rumpilstilstkin.gloomhavenhelper.ui.characters.CharacterWithDialogList
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
 
 @Composable
@@ -53,7 +52,6 @@ fun TeamCreateScreen(
 
     AddCharacterDialog(
         showDialog = uiState.showCharacterDialog,
-        classes = uiState.classes,
         onDismiss = { viewModel.action(TeamCreateAction.HideCharacterDialog) }
     ) { name, level, classId ->
         viewModel.action(
@@ -143,7 +141,7 @@ fun CharacterPart(
             fontSize = 18.sp,
         )
 
-        CharacterList(
+        CharacterWithDialogList(
             characters = characters,
             onSave = { characterId, newLevel ->
                 action.invoke(

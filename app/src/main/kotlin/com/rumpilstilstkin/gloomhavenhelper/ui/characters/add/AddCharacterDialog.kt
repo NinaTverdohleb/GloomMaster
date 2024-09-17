@@ -1,4 +1,4 @@
-package com.rumpilstilstkin.gloomhavenhelper.ui.characters
+package com.rumpilstilstkin.gloomhavenhelper.ui.characters.add
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -18,7 +18,6 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MonotonicFrameClock
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
@@ -28,11 +27,10 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.rumpilstilstkin.gloomhavenhelper.R
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.CharacterClassUI
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
 import com.rumpilstilstkin.gloomhavenhelper.ui.view.NumberPicker
@@ -40,14 +38,16 @@ import com.rumpilstilstkin.gloomhavenhelper.ui.view.NumberPicker
 @Composable
 fun AddCharacterDialog(
     showDialog: Boolean,
-    classes: List<CharacterClassUI>,
+    viewModel: AddCharactersDialogViewModel = hiltViewModel(),
     onDismiss: () -> Unit,
     onAdd: (String, Int, Int) -> Unit
 ) {
+    val classes = viewModel.classes
     if (showDialog) {
         var newCharacterName by rememberSaveable { mutableStateOf("") }
         var selectedIndex by remember { mutableIntStateOf(0) }
         var level by remember { mutableIntStateOf(0) }
+
         AlertDialog(
             onDismissRequest = { onDismiss.invoke() },
             title = {
@@ -158,13 +158,6 @@ private fun Sample() {
     GloomhavenHalperTheme {
         AddCharacterDialog(
             showDialog = true,
-            classes = listOf(
-                CharacterClassUI(
-                    id = 1,
-                    name = "Воин",
-                    imageRes = R.drawable.br
-                )
-            ),
             onDismiss = {},
             onAdd = { _, _, _ -> }
         )
