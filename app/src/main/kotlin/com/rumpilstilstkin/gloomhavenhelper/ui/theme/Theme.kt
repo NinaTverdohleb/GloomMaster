@@ -2,29 +2,36 @@ package com.rumpilstilstkin.gloomhavenhelper.ui.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.darkColorScheme
-import androidx.compose.material3.dynamicDarkColorScheme
-import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.platform.LocalContext
 
-private val DarkColorScheme = darkColorScheme(
-    primary = PrimaryColor,
-    secondary = SecondaryColor,
-    background = SurfaceColor,
-    surface = BackgroundColor,
-    tertiary = PrimaryVariant,
-    error = Error
-)
 
-private val LightColorScheme = lightColorScheme(
-    primary = PrimaryColor,
-    secondary = SecondaryColor,
-    background = SurfaceColor,
-    surface = BackgroundColor,
-    tertiary = PrimaryVariant,
-    error = Error
+private val ColorScheme = lightColorScheme(
+    primary = Primary,
+    onPrimary = onPrimary,
+    primaryContainer = Purple30,
+    onPrimaryContainer = Purple90,
+    secondary = Secondary,
+    onSecondary = onSecondary,
+    secondaryContainer = Orange30,
+    onSecondaryContainer = Orange90,
+    tertiary = Blue80,
+    onTertiary = Blue20,
+    tertiaryContainer = Blue30,
+    onTertiaryContainer = Blue90,
+    error = Red80,
+    onError = Red20,
+    errorContainer = Red30,
+    onErrorContainer = Red90,
+    background = Background,
+    onBackground = onBackground,
+    surface = Background,
+    onSurface = onBackground,
+    surfaceVariant = PurpleGray30,
+    onSurfaceVariant = PurpleGray80,
+    inverseSurface = onBackground,
+    inverseOnSurface = Background,
+    outline = PurpleGray60,
 )
 
 @Composable
@@ -34,7 +41,7 @@ fun GloomhavenHalperTheme(
     dynamicColor: Boolean = true,
     content: @Composable () -> Unit
 ) {
-    val colorScheme = when {
+    /*val colorScheme = when {
         dynamicColor -> {
             val context = LocalContext.current
             if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
@@ -42,10 +49,10 @@ fun GloomhavenHalperTheme(
 
         darkTheme -> DarkColorScheme
         else -> LightColorScheme
-    }
+    }*/
 
     MaterialTheme(
-        colorScheme = colorScheme,
+        colorScheme = ColorScheme,
         typography = Typography,
         content = content
     )

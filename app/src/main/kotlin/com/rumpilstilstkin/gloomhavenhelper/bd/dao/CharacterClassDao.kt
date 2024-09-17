@@ -10,8 +10,7 @@ interface CharacterClassDao {
     @Query("SELECT * FROM CharacterClassBd")
     suspend fun getAll(): List<CharacterClassBd>
 
-
-    @Query("SELECT * FROM CharacterClassBd WHERE id LIKE :id LIMIT 1")
+    @Query("SELECT * FROM CharacterClassBd WHERE characterClassId LIKE :id LIMIT 1")
     suspend fun findById(id: Int): CharacterClassBd
 
     @Insert

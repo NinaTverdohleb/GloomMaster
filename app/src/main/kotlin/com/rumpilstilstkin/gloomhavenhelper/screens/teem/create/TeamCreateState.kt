@@ -2,7 +2,8 @@ package com.rumpilstilstkin.gloomhavenhelper.screens.teem.create
 
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.CharacterForSave
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.TeamInfoForSave
-
+import com.rumpilstilstkin.gloomhavenhelper.screens.models.CharacterClassUI
+import com.rumpilstilstkin.gloomhavenhelper.screens.models.CharacterUI
 
 data class TeamCreateUiState(
     val name: String,
@@ -17,17 +18,6 @@ data class TeamCreateUiState(
     }
 }
 
-data class CharacterUI(
-    val name: String,
-    val level: Int,
-    val characterClass: CharacterClassUI
-)
-
-data class CharacterClassUI(
-    val name: String,
-    val id: Int,
-    val imageRes: Int,
-)
 fun TeamCreateUiState.toTeamForSave(): TeamInfoForSave =
     TeamInfoForSave(
         name = name,

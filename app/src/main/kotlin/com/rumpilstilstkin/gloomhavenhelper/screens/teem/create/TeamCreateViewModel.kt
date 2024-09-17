@@ -3,7 +3,9 @@ package com.rumpilstilstkin.gloomhavenhelper.screens.teem.create
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.rumpilstilstkin.gloomhavenhelper.data.ClassRepository
-import com.rumpilstilstkin.gloomhavenhelper.data.TeamRepository
+import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.SaveTeamUsecase
+import com.rumpilstilstkin.gloomhavenhelper.screens.models.CharacterClassUI
+import com.rumpilstilstkin.gloomhavenhelper.screens.models.CharacterUI
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -13,8 +15,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class TeamCreateViewModel@Inject constructor(
-    private val teamRepository: TeamRepository,
     private val classRepository: ClassRepository,
+    private val saveTeamUsecase: SaveTeamUsecase
 ) : ViewModel() {
     private val team = MutableStateFlow(TeamCreateUiState.Empty)
 
@@ -43,24 +45,27 @@ class TeamCreateViewModel@Inject constructor(
 
                 is TeamCreateAction.AddCharacter -> {
                     classRepository.getClassById(action.classId).let { classModel ->
-                        val newValue = currentValue.copy(
-                            characters = currentValue.characters + CharacterUI(
-                                name = action.name,
-                                level = action.level,
-                                characterClass = CharacterClassUI(
-                                    id = classModel.id,
-                                    name = classModel.name,
-                                    imageRes = classModel.image
-                                )
+                        val newCharacterList = currentValue.characters + CharacterUI(
+                            id = currentValue.characters.size + 1,
+                            name = action.name,
+                            level = action.level,
+                            characterClass = CharacterClassUI(
+                                id = classModel.id,
+                                name = classModel.name,
+                                imageRes = classModel.image,
                             ),
-                            showCharacterDialog = false
+                        )
+                        val newValue = currentValue.copy(
+                            characters = newCharacterList,
+                            showCharacterDialog = false,
+                            canAdd = newCharacterList.size < 5
                         )
                         team.emit(newValue)
                     }
                 }
 
                 is TeamCreateAction.Save -> {
-                    teamRepository.saveTeam(currentValue.toTeamForSave())
+                    saveTeamUsecase.execute(currentValue.toTeamForSave())
                     team.emit(currentValue.copy(done = true))
                 }
 
@@ -70,6 +75,39 @@ class TeamCreateViewModel@Inject constructor(
 
                 TeamCreateAction.HideCharacterDialog -> {
                     team.emit(currentValue.copy(showCharacterDialog = false))
+                }
+
+                is TeamCreateAction.DeleteCharacter -> {
+                    val newCharacterList = currentValue.characters.filter { it.id != action.id }
+                    val newValue = currentValue.copy(
+                        characters = newCharacterList,
+                        canAdd = newCharacterList.size < 5
+                    )
+                    team.emit(newValue)
+                }
+                is TeamCreateAction.LeaveCharacter -> {
+                    val newCharacterList = currentValue.characters.map {
+                        if (it.id == action.id) {
+                            it.copy(isAlive = false)
+                        } else {
+                            it
+                        }
+                    }
+                    val newValue = currentValue.copy(
+                        characters = newCharacterList,
+                        canAdd = newCharacterList.size < 5
+                    )
+                    team.emit(newValue)
+                }
+                is TeamCreateAction.UpdateCharacter -> {
+                    val newCharacterList = currentValue.characters.map {
+                        if (it.id == action.id) {
+                            it.copy(level = action.level)
+                        } else {
+                            it
+                        }
+                    }
+                    team.emit(currentValue.copy(characters = newCharacterList))
                 }
             }
         }

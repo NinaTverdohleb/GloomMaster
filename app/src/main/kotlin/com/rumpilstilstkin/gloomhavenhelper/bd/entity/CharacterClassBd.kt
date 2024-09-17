@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 
 @Entity
 data class CharacterClassBd(
-    @PrimaryKey(autoGenerate = true) val id: Int = 0,
+    @PrimaryKey(autoGenerate = true) val characterClassId: Int = 0,
     @ColumnInfo(name = "name") val name: String,
     @ColumnInfo(name = "image") val image: Int
 )

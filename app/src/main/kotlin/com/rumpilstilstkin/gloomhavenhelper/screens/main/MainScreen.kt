@@ -1,25 +1,27 @@
 package com.rumpilstilstkin.gloomhavenhelper.screens.main
 
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.material3.Button
-import androidx.compose.material3.Text
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import com.rumpilstilstkin.gloomhavenhelper.R
 import com.rumpilstilstkin.gloomhavenhelper.navigation.GlHelperScreens
+import com.rumpilstilstkin.gloomhavenhelper.screens.models.CharacterClassUI
+import com.rumpilstilstkin.gloomhavenhelper.screens.models.CharacterUI
+import com.rumpilstilstkin.gloomhavenhelper.screens.models.ShortScenarioUI
+import com.rumpilstilstkin.gloomhavenhelper.screens.models.TeamUI
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
 
 @Composable
@@ -29,56 +31,131 @@ fun MainScreen(
     viewModel: MainViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+    val effectState by viewModel.effects.collectAsStateWithLifecycle()
+
+    MainDialogs(
+        reputation = effectState.reputation,
+        prosperity = effectState.prosperity,
+        effectState = effectState
+    ) {
+        viewModel.action(it)
+    }
 
     when (uiState) {
-        is MainScreenUiState.Empty -> EmptyScreen(modifier = modifier) {
+        is MainScreenUiState.Empty -> MainEmptyScreen(modifier = modifier) {
             navController.navigate(GlHelperScreens.TeamCreate)
         }
-        is MainScreenUiState.Team -> TeamPreview(
-            team = uiState as MainScreenUiState.Team, modifier = modifier
-        )
-    }
-}
 
-@Composable
-fun EmptyScreen(
-    modifier: Modifier = Modifier,
-    createTeam: () -> Unit,
-) {
-    Column(
-        modifier = modifier,
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
-    ) {
-        Image(painter = painterResource(id = R.drawable.logo), contentDescription = "logo")
-        Spacer(modifier = Modifier.height(24.dp))
-        Button(onClick = {
-            createTeam.invoke()
-        }) {
-            Text(text = "Начать игру", fontSize = 20.sp)
+        is MainScreenUiState.Team -> {
+            val state = uiState as MainScreenUiState.Team
+            Team(
+                team = state.team,
+                modifier = modifier,
+                onAction = { viewModel.action(it) }
+            )
         }
-
     }
 }
 
 @Composable
-fun TeamPreview(
-    team: MainScreenUiState.Team,
-    modifier: Modifier = Modifier
+fun Team(
+    team: TeamUI,
+    modifier: Modifier = Modifier,
+    onAction: (MainScreenAction) -> Unit,
 ) {
     Column(
-        modifier = modifier,
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
+        modifier = modifier
+            .padding(16.dp)
+            .fillMaxWidth(),
     ) {
-        Text(text = team.teamName, fontSize = 20.sp)
+        TitleTeamRow(
+            teamName = team.teamName,
+            teamLevel = team.teamLevel,
+            modifier = Modifier.fillMaxWidth(),
+            onLevelClick = {
+                onAction.invoke(MainScreenAction.ShowLevelInfoDialog)
+            }
+        )
+        Spacer(modifier = Modifier.height(16.dp))
+        HorizontalDivider()
+        Spacer(modifier = Modifier.height(16.dp))
+
+        StatTeamRow(
+            reputation = team.teamReputation,
+            prosperity = team.prosperity,
+            onReputationClick = {
+                onAction.invoke(MainScreenAction.ShowReputationDialog)
+            },
+            onProsperityClick = {
+                onAction.invoke(MainScreenAction.ShowProsperityDialog)
+            }
+        )
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        HorizontalDivider()
+
+        Column(
+            modifier = Modifier
+                .verticalScroll(rememberScrollState())
+                .weight(weight = 1f, fill = false)
+        ) {
+            AchievementBlock(
+                globalAchievements = team.globalAchievements,
+                teamAchievements = team.teamAchievements
+            )
+
+            Spacer(modifier = Modifier.height(32.dp))
+
+            CharactersBlock(
+                characters = team.characters,
+                canAdd = team.canAddCharacter,
+                onAction = onAction
+            )
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+            ScenarioBlock(
+                scenrios = team.teamScenario,
+                onAction = onAction
+            )
+        }
     }
 }
 
 @Preview
 @Composable
-private fun Empty() {
+private fun TeamPreview() {
     GloomhavenHalperTheme {
-        EmptyScreen {}
+        Team(
+            team = TeamUI(
+                teamId = 1,
+                teamLevel = 3,
+                teamName = "Team 1",
+                teamReputation = 1,
+                prosperity = 5,
+                teamAchievements = "Первые шаги",
+                globalAchievements = "Сбежавшая торговка",
+                teamScenario = listOf(
+                    ShortScenarioUI(
+                        scenarioNumber = 1,
+                        scenarioName = "Scenario 1",
+                        scenarioRequirements = "Requirements 1"
+                    )
+                ),
+                characters = listOf(
+                    CharacterUI(
+                        name = "Character 1",
+                        level = 1,
+                        characterClass = CharacterClassUI(
+                            id = 1,
+                            name = "Class 1",
+                            imageRes = R.drawable.br
+                        )
+                    )
+                ),
+            ),
+            onAction = {}
+        )
     }
 }

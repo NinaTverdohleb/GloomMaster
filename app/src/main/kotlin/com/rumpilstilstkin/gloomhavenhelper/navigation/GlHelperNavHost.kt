@@ -13,6 +13,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.rumpilstilstkin.gloomhavenhelper.screens.main.MainScreen
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.ScenarioScreen
+import com.rumpilstilstkin.gloomhavenhelper.screens.start.StartScreen
 import com.rumpilstilstkin.gloomhavenhelper.screens.teem.create.TeamCreateScreen
 import com.rumpilstilstkin.gloomhavenhelper.screens.teem.edit.TeamDetailsScreen
 
@@ -26,11 +27,10 @@ fun GlHelperNavHost(
         startDestination = GlHelperScreens.Start,
         modifier = Modifier
             .fillMaxSize()
-            .verticalScroll(rememberScrollState())
             .padding(innerPadding)
     ) {
         composable<GlHelperScreens.Start> {
-            MainScreen(
+            StartScreen(
                 navController = navController
             )
         }

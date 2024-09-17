@@ -2,15 +2,15 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "e22448e84231a47f5218d1c19970b0cf",
+    "identityHash": "0fc570ca1c7c91e7cba7f1ad6e34f22f",
     "entities": [
       {
         "tableName": "TeamBd",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL, `teamAchievement` TEXT NOT NULL, `globalAchievement` TEXT NOT NULL, `reputation` INTEGER NOT NULL, `prosperity` INTEGER NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`teamId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL, `teamAchievement` TEXT NOT NULL, `globalAchievement` TEXT NOT NULL, `reputation` INTEGER NOT NULL, `prosperity` INTEGER NOT NULL)",
         "fields": [
           {
-            "fieldPath": "id",
-            "columnName": "id",
+            "fieldPath": "teamId",
+            "columnName": "teamId",
             "affinity": "INTEGER",
             "notNull": true
           },
@@ -48,7 +48,7 @@
         "primaryKey": {
           "autoGenerate": true,
           "columnNames": [
-            "id"
+            "teamId"
           ]
         },
         "indices": [],
@@ -56,11 +56,11 @@
       },
       {
         "tableName": "CharacterClassBd",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL, `image` INTEGER NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`characterClassId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL, `image` INTEGER NOT NULL)",
         "fields": [
           {
-            "fieldPath": "id",
-            "columnName": "id",
+            "fieldPath": "characterClassId",
+            "columnName": "characterClassId",
             "affinity": "INTEGER",
             "notNull": true
           },
@@ -80,7 +80,7 @@
         "primaryKey": {
           "autoGenerate": true,
           "columnNames": [
-            "id"
+            "characterClassId"
           ]
         },
         "indices": [],
@@ -88,11 +88,11 @@
       },
       {
         "tableName": "CharacterBd",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL, `level` INTEGER NOT NULL, `classId` INTEGER NOT NULL, `teamId` INTEGER NOT NULL, `isAlive` INTEGER NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`characterId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL, `level` INTEGER NOT NULL, `classId` INTEGER NOT NULL, `teamId` INTEGER NOT NULL, `isAlive` INTEGER NOT NULL)",
         "fields": [
           {
-            "fieldPath": "id",
-            "columnName": "id",
+            "fieldPath": "characterId",
+            "columnName": "characterId",
             "affinity": "INTEGER",
             "notNull": true
           },
@@ -130,17 +130,203 @@
         "primaryKey": {
           "autoGenerate": true,
           "columnNames": [
-            "id"
+            "characterId"
           ]
         },
         "indices": [],
         "foreignKeys": []
+      },
+      {
+        "tableName": "GameLevelInfoBd",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`level` INTEGER NOT NULL, `monsterLevel` INTEGER NOT NULL, `goldCount` INTEGER NOT NULL, `trapDamage` INTEGER NOT NULL, `experience` INTEGER NOT NULL, PRIMARY KEY(`level`))",
+        "fields": [
+          {
+            "fieldPath": "level",
+            "columnName": "level",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "monsterLevel",
+            "columnName": "monsterLevel",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "goldCount",
+            "columnName": "goldCount",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "trapDamage",
+            "columnName": "trapDamage",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "experience",
+            "columnName": "experience",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "level"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "ScenarioBd",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`scenarioNumber` INTEGER NOT NULL, `name` TEXT NOT NULL, `newScenarios` TEXT NOT NULL, `teamAchievement` TEXT NOT NULL, `globalAchievement` TEXT NOT NULL, `requirements` TEXT NOT NULL, PRIMARY KEY(`scenarioNumber`))",
+        "fields": [
+          {
+            "fieldPath": "scenarioNumber",
+            "columnName": "scenarioNumber",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "newScenarios",
+            "columnName": "newScenarios",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "teamAchievement",
+            "columnName": "teamAchievement",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "globalAchievement",
+            "columnName": "globalAchievement",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "requirements",
+            "columnName": "requirements",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "scenarioNumber"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "TeamScenarioBd",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `teamId` INTEGER NOT NULL, `scenarioNumber` INTEGER NOT NULL, `scenarioName` TEXT NOT NULL, `scenarioRequirements` TEXT NOT NULL, `completed` INTEGER NOT NULL, FOREIGN KEY(`teamId`) REFERENCES `TeamBd`(`teamId`) ON UPDATE NO ACTION ON DELETE CASCADE , FOREIGN KEY(`scenarioNumber`) REFERENCES `ScenarioBd`(`scenarioNumber`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "teamId",
+            "columnName": "teamId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "scenarioNumber",
+            "columnName": "scenarioNumber",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "scenarioName",
+            "columnName": "scenarioName",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "scenarioRequirements",
+            "columnName": "scenarioRequirements",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "completed",
+            "columnName": "completed",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_TeamScenarioBd_teamId",
+            "unique": false,
+            "columnNames": [
+              "teamId"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_TeamScenarioBd_teamId` ON `${TABLE_NAME}` (`teamId`)"
+          },
+          {
+            "name": "index_TeamScenarioBd_scenarioNumber",
+            "unique": false,
+            "columnNames": [
+              "scenarioNumber"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_TeamScenarioBd_scenarioNumber` ON `${TABLE_NAME}` (`scenarioNumber`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "TeamBd",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "teamId"
+            ],
+            "referencedColumns": [
+              "teamId"
+            ]
+          },
+          {
+            "table": "ScenarioBd",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "scenarioNumber"
+            ],
+            "referencedColumns": [
+              "scenarioNumber"
+            ]
+          }
+        ]
       }
     ],
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'e22448e84231a47f5218d1c19970b0cf')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '0fc570ca1c7c91e7cba7f1ad6e34f22f')"
     ]
   }
 }

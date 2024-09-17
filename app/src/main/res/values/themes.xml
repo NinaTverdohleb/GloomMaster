@@ -2,6 +2,6 @@
 <resources>
 
     <style name="Theme.GloomhavenHalper" parent="android:Theme.Material.Light.NoActionBar" >
-        <item name="android:windowSplashScreenBackground">@color/background</item>
+        <item name="android:windowSplashScreenBackground">@color/splash_background</item>
     </style>
 </resources>

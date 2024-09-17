@@ -6,4 +6,7 @@ sealed interface TeamCreateAction {
     data object HideCharacterDialog : TeamCreateAction
     data class AddCharacter(val name: String, val level: Int, val classId: Int) : TeamCreateAction
     data object Save : TeamCreateAction
+    data class DeleteCharacter(val id: Int) : TeamCreateAction
+    data class LeaveCharacter(val id: Int) : TeamCreateAction
+    data class UpdateCharacter(val id: Int, val level: Int) : TeamCreateAction
 }
