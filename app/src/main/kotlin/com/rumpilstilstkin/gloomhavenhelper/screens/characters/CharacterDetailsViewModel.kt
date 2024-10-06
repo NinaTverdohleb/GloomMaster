@@ -36,7 +36,8 @@ class CharacterDetailsViewModel @AssistedInject constructor(
                 imageRes = R.drawable.br
             ),
             id = id,
-            isAlive = false
+            isAlive = false,
+            teamName = null
         ),
         started = SharingStarted.WhileSubscribed(100),
     )

@@ -2,12 +2,15 @@ package com.rumpilstilstkin.gloomhavenhelper.ui.view
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
@@ -32,8 +35,9 @@ fun NumberPicker(
         )
         Text(
             style = MaterialTheme.typography.headlineMedium,
-            modifier = Modifier.padding(horizontal = 16.dp).align(CenterVertically),
-            text = value.toString()
+            modifier = Modifier.padding(horizontal = 16.dp).align(CenterVertically).defaultMinSize(minWidth = 48.dp),
+            text = value.toString(),
+            textAlign = TextAlign.Center
         )
         PickerButton(
             value = value,
@@ -58,8 +62,8 @@ private fun checkRange(value: Int, range: IntRange): Int {
 private fun Sample() {
     GloomhavenHalperTheme {
         NumberPicker(
-            value = 0,
-            intRange = IntRange(0, 10),
+            value = 127,
+            intRange = IntRange(12, 15),
             onValueChange = {}
         )
     }

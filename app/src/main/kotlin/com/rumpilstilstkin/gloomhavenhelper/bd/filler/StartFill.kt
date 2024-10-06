@@ -2250,11 +2250,15 @@ object StartFill {
                 characterType = CharacterClassType.Brute.name
             ),
             PerkBd(
-                text = "Добавьте 3 карты с эффектом \"#07 ПРОБОЙ #09 1\"" ,
+                text = "Добавьте 3 карты с эффектом \"#07 ОТТОЛКНУТЬ #08 1\"" ,
                 characterType = CharacterClassType.Brute.name
             ),
             PerkBd(
-                text = "Добавьте 3 карты с эффектом \"#07 ПРОБОЙ #09 1\"" ,
+                text = "Добавьте 3 карты с эффектом \"#07 ОТТОЛКНУТЬ #08 1\"" ,
+                characterType = CharacterClassType.Brute.name
+            ),
+            PerkBd(
+                text = "Добавьте 2 карты с эффектом \"#07 ПРОБОЙ #09 3\"" ,
                 characterType = CharacterClassType.Brute.name
             ),
             PerkBd(

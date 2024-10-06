@@ -2,15 +2,22 @@ package com.rumpilstilstkin.gloomhavenhelper.screens.characters
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AccountCircle
+import androidx.compose.material.icons.filled.Check
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Tab
@@ -43,25 +50,24 @@ fun CharacterDetailsScreen(
     modifier: Modifier = Modifier,
     navController: NavHostController
 ) {
-    val viewModel = hiltViewModel<CharacterDetailsViewModel, CharacterDetailsViewModel.Factory> { factory ->
-        factory.create(characterId)
-    }
+    val viewModel =
+        hiltViewModel<CharacterDetailsViewModel, CharacterDetailsViewModel.Factory> { factory ->
+            factory.create(characterId)
+        }
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
-    Column(
-        modifier = modifier
-    ) {
-        CharacterHeader(
-            classImg = uiState.characterClass.imageRes,
-            name = uiState.name,
-            level = uiState.level
-        )
 
-        CharactersTabs(
-            showFirstTab = { CharacterGeneralTab(characterId) },
-            showSecondTab = { CharacterItemsTab(characterId, navController) },
-            showThirdTab = { CharacterPerksTab(characterId) }
-        )
-    }
+    CharacterDetailsMain(
+        classImg = uiState.characterClass.imageRes,
+        name = uiState.name,
+        teamName = uiState.teamName ?: "Укажите команду...",
+        level = uiState.level,
+        modifier = modifier,
+        showFirstTab = { CharacterGeneralTab(characterId) },
+        showSecondTab = { CharacterItemsTab(characterId, navController) },
+        showThirdTab = { CharacterPerksTab(characterId) },
+        onNameClick = { /*viewModel.onAction(CharacterDetailsActions.EditName)*/ },
+        onTeamClick = { /*viewModel.onAction(CharacterDetailsActions.EditTeam)*/ }
+    )
 
 }
 
@@ -69,11 +75,14 @@ fun CharacterDetailsScreen(
 fun CharacterDetailsMain(
     classImg: Int,
     name: String,
+    teamName: String?,
     level: Int,
     modifier: Modifier = Modifier,
     showFirstTab: @Composable () -> Unit,
     showSecondTab: @Composable () -> Unit,
-    showThirdTab: @Composable () -> Unit
+    showThirdTab: @Composable () -> Unit,
+    onNameClick: () -> Unit,
+    onTeamClick: () -> Unit
 ) {
     Column(
         modifier = modifier
@@ -81,7 +90,10 @@ fun CharacterDetailsMain(
         CharacterHeader(
             classImg = classImg,
             name = name,
-            level = level
+            level = level,
+            teamName = teamName ?: "Укажите команду...",
+            onNameClick = onNameClick,
+            onTeamClick = onTeamClick
         )
 
         CharactersTabs(
@@ -97,35 +109,64 @@ fun CharacterDetailsMain(
 fun CharacterHeader(
     classImg: Int,
     name: String,
+    teamName: String,
     level: Int,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onNameClick: () -> Unit,
+    onTeamClick: () -> Unit
 ) {
-    Row(
+    Column(
         modifier = modifier
             .background(MaterialTheme.colorScheme.primary)
             .fillMaxWidth()
-            .padding(top = 32.dp, bottom = 16.dp, ),
-        horizontalArrangement = Arrangement.Center,
-        verticalAlignment = Alignment.CenterVertically
+            .padding(16.dp),
     ) {
-        Image(
-            painter = painterResource(id = classImg),
-            contentDescription = null,
-            colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.secondary),
-            modifier = Modifier.size(48.dp)
-        )
-        Spacer(modifier = Modifier.width(16.dp))
-        Text(
-            text = name, style = MaterialTheme.typography.headlineLarge,
-            color = MaterialTheme.colorScheme.onPrimary
-        )
-        Spacer(modifier = Modifier.width(16.dp))
-        Bage(
-            text = level.toString(),
-            color = MaterialTheme.colorScheme.background,
-            modifier = Modifier.size(44.dp)
-        )
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.Start,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
 
+            Image(
+                painter = painterResource(id = classImg),
+                contentDescription = null,
+                colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.background),
+                modifier = Modifier.size(48.dp)
+            )
+
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .weight(1f, fill = false)
+                    .padding(horizontal = 16.dp)
+                    .clickable { onNameClick() },
+            ) {
+                Text(
+                    text = name,
+                    style = MaterialTheme.typography.headlineSmall,
+                    color = MaterialTheme.colorScheme.onPrimary
+                )
+            }
+
+            Bage(
+                text = level.toString(),
+                color = MaterialTheme.colorScheme.background,
+                modifier = Modifier.size(42.dp)
+            )
+
+        }
+        Spacer(modifier = Modifier.height(16.dp))
+        Row(
+            modifier = Modifier.clickable { onTeamClick() }.padding(4.dp)
+        ) {
+            Icon(
+                imageVector = Icons.Default.AccountCircle,
+                contentDescription = "",
+                tint = MaterialTheme.colorScheme.background
+            )
+            Spacer(modifier = Modifier.width(8.dp))
+            Text(text = teamName, color = MaterialTheme.colorScheme.onPrimary)
+        }
     }
 }
 
@@ -170,10 +211,13 @@ private fun CharacterDetailsExample() {
         CharacterDetailsMain(
             classImg = R.drawable.be,
             name = "Warrior",
+            teamName = null,
             level = 10,
             showFirstTab = { },
             showSecondTab = { },
-            showThirdTab = { }
+            showThirdTab = { },
+            onNameClick = { },
+            onTeamClick = { }
         )
     }
 }

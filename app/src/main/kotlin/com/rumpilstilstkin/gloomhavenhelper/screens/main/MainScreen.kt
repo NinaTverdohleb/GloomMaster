@@ -151,8 +151,9 @@ private fun TeamPreview() {
                         characterClass = CharacterClassUI(
                             classType = CharacterClassType.Brute,
                             name = "Class 1",
-                            imageRes = R.drawable.br
-                        )
+                            imageRes = R.drawable.br,
+                        ),
+                        teamName = null
                     )
                 ),
             ),

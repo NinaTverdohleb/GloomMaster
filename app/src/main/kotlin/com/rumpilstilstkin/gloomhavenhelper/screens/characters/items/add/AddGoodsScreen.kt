@@ -16,6 +16,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.BasicAlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.Checkbox
+import androidx.compose.material3.CheckboxDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
@@ -180,7 +181,7 @@ fun FilterButton(
             },
         imageVector = type.toImage(),
         contentDescription = null,
-        tint = if (isChecked) MaterialTheme.colorScheme.secondary else Color.Black
+        tint = if (isChecked) MaterialTheme.colorScheme.secondary else MaterialTheme.colorScheme.primary
     )
 
 }
@@ -218,7 +219,10 @@ fun AddGoodsItem(
                     onCheckedChange = {
                         isChecked = !isChecked
                         onSelectedChanged(good.id)
-                    }
+                    },
+                    colors = CheckboxDefaults.colors().copy(
+                        uncheckedBorderColor = MaterialTheme.colorScheme.primary,
+                    )
                 )
             }
             Spacer(modifier = Modifier.width(8.dp))
@@ -226,6 +230,7 @@ fun AddGoodsItem(
                 modifier = Modifier.size(34.dp),
                 imageVector = good.typeImage,
                 contentDescription = null,
+                tint = MaterialTheme.colorScheme.primary
             )
 
             Spacer(modifier = Modifier.width(8.dp))

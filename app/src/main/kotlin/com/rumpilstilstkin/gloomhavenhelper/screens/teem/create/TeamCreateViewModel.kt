@@ -44,6 +44,7 @@ class TeamCreateViewModel@Inject constructor(
                             name = action.name,
                             level = action.level,
                             characterClass = classModel.toUi(),
+                            teamName = team.value.name
                         )
                         val newValue = currentValue.copy(
                             characters = newCharacterList,

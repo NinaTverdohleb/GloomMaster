@@ -8,7 +8,8 @@ data class CharacterUI(
     val level: Int,
     val characterClass: CharacterClassUI,
     val id: Int = 0,
-    val isAlive: Boolean = true,
+    val teamName: String?,
+    val isAlive: Boolean = true
 )
 
 fun CharacterInfo.toUi() = CharacterUI(
@@ -16,5 +17,7 @@ fun CharacterInfo.toUi() = CharacterUI(
     level = this.level,
     id = this.id,
     characterClass = this.characterClass.toUi(),
-    isAlive = this.isAlive
+    isAlive = this.isAlive,
+    teamName = this.team?.name
+
 )

@@ -200,7 +200,8 @@ private fun DataExample() {
                         imageRes = R.drawable.br,
                         name = "Name",
                         classType = CharacterClassType.Brute
-                    )
+                    ),teamName = null
+
                 ),
                 CharacterUI(
                     name = "Name2",
@@ -209,7 +210,7 @@ private fun DataExample() {
                         imageRes = R.drawable.br,
                         name = "Name",
                         classType = CharacterClassType.Brute
-                    )
+                    ), teamName = null
                 )
             ),
             switchAlive = {},

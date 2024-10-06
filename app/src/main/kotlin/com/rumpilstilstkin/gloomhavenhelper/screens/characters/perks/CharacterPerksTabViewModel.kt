@@ -23,16 +23,15 @@ import kotlinx.coroutines.launch
 @HiltViewModel(assistedFactory = CharacterPerksTabViewModel.Factory::class)
 class CharacterPerksTabViewModel @AssistedInject constructor(
     @Assisted val id: Int,
-    private val getCharacterPerksUseCase: GetCharacterPerksUseCase,
+    getCharacterPerksUseCase: GetCharacterPerksUseCase,
     private val getAvaliableCharacterPerksUseCase: GetAvaliableCharacterPerksUseCase,
     private val deleteCharacterPerksUseCase: DeleteCharacterPerkUseCase,
     private val addCharacterPerksUseCase: AddPerksForCharacterUseCase
 ) : ViewModel() {
 
     val uiState: StateFlow<CharacterPerksScreenState> = getCharacterPerksUseCase(id).map {
-        Log.d("Dto", "new data = ${it.map{it.id}}")
         CharacterPerksScreenState(
-            characterPerks = it.map { perk -> perk.toUi() },
+            characterPerks = it.sortedBy { id }.map { perk -> perk.toUi() },
             avaliablePerks = getAvaliableCharacterPerksUseCase(id, it).map { perk -> perk.toUi() }
         )
     }.stateIn(
@@ -45,7 +44,6 @@ class CharacterPerksTabViewModel @AssistedInject constructor(
         viewModelScope.launch {
             when (action) {
                 is CharacterPerksTabActions.DeletePerk -> {
-                    Log.d("Dto", "DeletePerk = ${action.characterPerkId}")
                     deleteCharacterPerksUseCase(action.characterPerkId)
                 }
 

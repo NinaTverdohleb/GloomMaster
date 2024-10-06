@@ -20,6 +20,8 @@ import androidx.compose.material.icons.filled.Check
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.Checkbox
+import androidx.compose.material3.CheckboxColors
+import androidx.compose.material3.CheckboxDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.LocalMinimumInteractiveComponentEnforcement
@@ -246,14 +248,13 @@ fun CheckMarkRow(
         Icon(
             imageVector = Icons.Default.Check,
             contentDescription = null,
-            tint = MaterialTheme.colorScheme.onPrimary
+            tint = MaterialTheme.colorScheme.onBackground
         )
 
         Text(
             text = ":",
             textAlign = TextAlign.Center,
             style = MaterialTheme.typography.headlineMedium,
-            color = MaterialTheme.colorScheme.onPrimary
         )
 
         Spacer(modifier = Modifier.width(6.dp))
@@ -262,7 +263,10 @@ fun CheckMarkRow(
                 Checkbox(
                     modifier = Modifier,
                     checked = i < fillCount,
-                    onCheckedChange = { onCheckedChange(it) }
+                    onCheckedChange = { onCheckedChange(it) },
+                    colors = CheckboxDefaults.colors().copy(
+                        uncheckedBorderColor = MaterialTheme.colorScheme.primary,
+                    )
                 )
                 Spacer(modifier = Modifier.width(6.dp))
             }

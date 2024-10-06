@@ -181,7 +181,7 @@ private fun Sample() {
                         imageRes = R.drawable.br,
                         name = "Name",
                         classType = CharacterClassType.Brute
-                    )
+                    ), teamName = null
                 ),
                 CharacterUI(
                     name = "Name2",
@@ -190,7 +190,7 @@ private fun Sample() {
                         imageRes = R.drawable.br,
                         name = "Name",
                         classType = CharacterClassType.Brute
-                    )
+                    ), teamName = null
                 )
             ),
             canAdd = true

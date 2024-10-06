@@ -1,21 +1,29 @@
 package com.rumpilstilstkin.gloomhavenhelper.screens.dialogs.character.add
 
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.offset
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -26,11 +34,14 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.rumpilstilstkin.gloomhavenhelper.R
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.CharacterClassType
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.CharacterClassUI
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
@@ -61,30 +72,32 @@ fun AddCharacterDialog(
                 )
             },
             text = {
-                Column(
-                    verticalArrangement = Arrangement.spacedBy(16.dp),
-                    horizontalAlignment = Alignment.CenterHorizontally
-                ) {
-                    DropdownWithIconAndText(
-                        modifier = Modifier,
-                        items = classes,
-                        selectedIndex = selectedIndex
+                Surface {
+
+                    Column(
+                        verticalArrangement = Arrangement.spacedBy(16.dp),
+                        horizontalAlignment = Alignment.CenterHorizontally
                     ) {
-                        selectedIndex = classes.indexOf(it)
-                    }
-                    OutlinedTextField(
-                        value = newCharacterName,
-                        onValueChange = { newCharacterName = it },
-                        label = { Text("Имя") }
-                    )
-                    Spacer(modifier = Modifier.height(8.dp))
-                    Text("Уровень персонажа")
-                    NumberPicker(
-                        modifier = Modifier.fillMaxWidth(),
-                        value = level,
-                        intRange = IntRange(1, 9)
-                    ) {
-                        level = it
+                        DropdownWithIconAndText(
+                            modifier = Modifier,
+                            items = classes,
+                            selectedIndex = selectedIndex
+                        ) {
+                            selectedIndex = classes.indexOf(it)
+                        }
+                        OutlinedTextField(
+                            value = newCharacterName,
+                            onValueChange = { newCharacterName = it },
+                            label = { Text("Имя") }
+                        )
+                        Text("Уровень персонажа")
+                        NumberPicker(
+                            modifier = Modifier.fillMaxWidth(),
+                            value = level,
+                            intRange = IntRange(1, 9)
+                        ) {
+                            level = it
+                        }
                     }
                 }
             },
@@ -116,22 +129,35 @@ fun DropdownWithIconAndText(
     var expanded by remember { mutableStateOf(false) }
 
     Box(
-        modifier = modifier,
+        modifier = modifier
+            .wrapContentSize(Alignment.Center),
         contentAlignment = Alignment.Center
     ) {
         // Кнопка, которая открывает выпадающее меню
-        IconButton(onClick = { expanded = !expanded }) {
+        IconButton(
+            modifier = Modifier
+                .border(
+                    width = 1.dp,
+                    color = MaterialTheme.colorScheme.primary,
+                    shape = RectangleShape
+                )
+                .padding(6.dp),
+            onClick = { expanded = !expanded }
+        ) {
             Icon(
+                modifier = Modifier
+                    .size(72.dp),
                 painter = painterResource(id = items[selectedIndex].imageRes),
                 contentDescription = null,
-                modifier = Modifier.size(48.dp)
-            )
+                tint = MaterialTheme.colorScheme.secondary,
+
+                )
         }
 
         // Выпадающее меню
         DropdownMenu(
             expanded = expanded,
-            onDismissRequest = { expanded = false }
+            onDismissRequest = { expanded = false },
         ) {
             items.forEachIndexed { index, item ->
                 DropdownMenuItem(
@@ -159,10 +185,21 @@ fun DropdownWithIconAndText(
 @Composable
 private fun Sample() {
     GloomhavenHalperTheme {
-        AddCharacterDialog(
-            showDialog = true,
-            onDismiss = {},
-            onAdd = { _, _, _ -> }
+        DropdownWithIconAndText(
+            items = listOf(
+                CharacterClassUI(
+                    name = "Allan Ball",
+                    classType = CharacterClassType.Plagueherald,
+                    imageRes = R.drawable.ph
+                ),
+                CharacterClassUI(
+                    name = "Allan Ball2",
+                    classType = CharacterClassType.Brute,
+                    imageRes = R.drawable.br
+                )
+            ),
+            selectedIndex = 0,
+            onItemSelected = {}
         )
     }
 
