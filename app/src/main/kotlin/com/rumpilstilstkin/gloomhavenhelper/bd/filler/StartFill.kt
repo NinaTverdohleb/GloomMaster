@@ -2223,6 +2223,7 @@ object StartFill {
         perksDao: PerksDao
     ) {
         addBrutePerks(perksDao)
+        addMindthiefPerks(perksDao)
     }
 
     private suspend fun addBrutePerks(
@@ -2291,4 +2292,73 @@ object StartFill {
             )
         )
     }
+
+    private suspend fun addMindthiefPerks(
+        perksDao: PerksDao
+    ){
+            perksDao.insertAll(
+                PerkBd(
+                    text = "Уберите 2 карты #01",
+                    characterType = CharacterClassType.Mindthief.name
+                ),
+                PerkBd(
+                    text = "Уберите 2 карты #01",
+                    characterType = CharacterClassType.Mindthief.name
+                ),
+                PerkBd(
+                    text = "Уберите 4 карты #15",
+                    characterType = CharacterClassType.Mindthief.name
+                ),
+                PerkBd(
+                    text = "Поменяйте 2 карты #03 на 2 карты #04",
+                    characterType = CharacterClassType.Mindthief.name
+                ),
+                PerkBd(
+                    text = "Поменяйте 1 карту #02 на 1 карту #15",
+                    characterType = CharacterClassType.Mindthief.name
+                ),
+                PerkBd(
+                    text = "Добавьте 1 карту #04 #16",
+                    characterType = CharacterClassType.Mindthief.name
+                ),
+                PerkBd(
+                    text = "Добавьте 1 карту #04 #16",
+                    characterType = CharacterClassType.Mindthief.name
+                ),
+                PerkBd(
+                    text = "Добавьте 2 карты #07 #03",
+                    characterType = CharacterClassType.Mindthief.name
+                ),
+                PerkBd(
+                    text = "Добавьте 2 карты #07 #03",
+                    characterType = CharacterClassType.Mindthief.name
+                ),
+                PerkBd(
+                    text = "Добавьте 3 карты c эффектом \"#07 ПРИТЯНУТЬ #17 1\"",
+                    characterType = CharacterClassType.Mindthief.name
+                ),
+                PerkBd(
+                    text = "Добавьте 3 карты c эффектом \"#07 СМЯТЕНИЕ #12\"",
+                    characterType = CharacterClassType.Mindthief.name
+                ),
+                PerkBd(
+                    text = "Добавьте 2 карты c эффектом \"#07 ПАРАЛИЧ #18\"",
+                    characterType = CharacterClassType.Mindthief.name
+                ),
+                PerkBd(
+                    text = "Добавьте 1 карту c эффектом \"#07 ОГЛУШЕНИЕ #10\"",
+                    characterType = CharacterClassType.Mindthief.name
+                ),
+                PerkBd(
+                    text = "Добавьте 1 карту c эффектом \"#07 РАЗОРУЖЕНИЕ #11\" и 1 карту c эффектом \"#07 СМЯТЕНИЕ #12\"",
+                    characterType = CharacterClassType.Mindthief.name
+                ),
+                PerkBd(
+                    text = "Игнорируйте отрицательные эффекты сценариев",
+                    characterType = CharacterClassType.Mindthief.name
+                ),
+
+            )
+    }
+
 }

@@ -9,7 +9,8 @@ import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.sp
-import com.rumpilstilstkin.gloomhavenhelper.domain.entity.EffectType
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.IconResCode
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.IconVectorCode
 
 fun replacePerkTextWithIcons(text: String): AnnotatedString {
     val pattern =
@@ -30,7 +31,17 @@ fun replacePerkTextWithIcons(text: String): AnnotatedString {
 }
 
 val perkEffectsInlineContentMap: Map<String, InlineTextContent> =
-    EffectType.entries.associate { effectType ->
+    IconVectorCode.entries.associate { effectType ->
+        effectType.id to InlineTextContent(
+            Placeholder(
+                width = 28.sp,
+                height = 28.sp,
+                placeholderVerticalAlign = PlaceholderVerticalAlign.Center
+            )
+        ) {
+            PerkEffectIcon(effectType)
+        }
+    } + IconResCode.entries.associate { effectType ->
         effectType.id to InlineTextContent(
             Placeholder(
                 width = 28.sp,

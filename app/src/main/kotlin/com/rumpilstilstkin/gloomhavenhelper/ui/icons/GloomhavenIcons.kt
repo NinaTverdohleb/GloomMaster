@@ -5,4 +5,6 @@ object GloomhavenIcons {
     object GoodTypes
 
     object Effect
+
+    object Magic
 }

@@ -13,58 +13,55 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.rumpilstilstkin.gloomhavenhelper.domain.entity.EffectType
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.IconResCode
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.IconVectorCode
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
-import com.rumpilstilstkin.gloomhavenhelper.ui.toImageResource
-import com.rumpilstilstkin.gloomhavenhelper.ui.toImageVector
+import com.rumpilstilstkin.gloomhavenhelper.ui.toImage
 
 @Composable
 fun PerkEffectIcon(
-    effectType: EffectType,
+    iconType: IconResCode,
     modifier: Modifier = Modifier
 ) {
-    when (effectType) {
-        EffectType.MINUS1,
-        EffectType.MINUS2,
-        EffectType.PLUS1,
-        EffectType.PLUS2,
-        EffectType.PLUS3,
-        EffectType.PLUS4 -> {
-            Image(
-                painter = painterResource(id = effectType.toImageResource()),
-                contentDescription = "Icon",
-                modifier = modifier.size(64.dp).padding(2.dp)
-            )
-        }
-        else -> {
-            Icon(
-                imageVector = effectType.toImageVector(),
-                contentDescription = "Icon",
-                tint = Color.Unspecified,
-                modifier = modifier
-                    .size(64.dp)
-                    .padding(2.dp)
-                    .background(
-                        color = Color.White, // Background color of the circle
-                        shape = CircleShape
-                    )
-                    .border(
-                        width = 1.dp, // Border width
-                        color = Color.Black, // Border color
-                        shape = CircleShape
-                    )
-                    .padding(2.dp) // Optional padding to create space between the icon and the border
-            )
-        }
-    }
+    Image(
+        painter = painterResource(id = iconType.toImage()),
+        contentDescription = "Icon",
+        modifier = modifier
+            .size(64.dp)
+            .padding(2.dp)
+    )
+}
 
+@Composable
+fun PerkEffectIcon(
+    iconType: IconVectorCode,
+    modifier: Modifier = Modifier
+) {
+    Icon(
+        imageVector = iconType.toImage(),
+        contentDescription = "Icon",
+        tint = Color.Unspecified,
+        modifier = modifier
+            .size(64.dp)
+            .padding(2.dp)
+            .background(
+                color = Color.White, // Background color of the circle
+                shape = CircleShape
+            )
+            .border(
+                width = 1.dp, // Border width
+                color = Color.Black, // Border color
+                shape = CircleShape
+            )
+            .padding(2.dp) // Optional padding to create space between the icon and the border
+    )
 }
 
 @Preview
 @Composable
 private fun Sample() {
     GloomhavenHalperTheme {
-        PerkEffectIcon(effectType = EffectType.MINUS1)
+        PerkEffectIcon(iconType = IconResCode.FROST)
     }
 
 }
@@ -73,7 +70,7 @@ private fun Sample() {
 @Composable
 private fun Sample2() {
     GloomhavenHalperTheme {
-        PerkEffectIcon(effectType = EffectType.NEXT)
+        PerkEffectIcon(iconType = IconVectorCode.NEXT)
     }
 
 }
