@@ -1,57 +1,61 @@
 package com.rumpilstilstkin.gloomhavenhelper.domain.entity
 
-private enum class IconCode(val id: String) {
-    MINUS1("01"),
-    MINUS2("02"),
-    PLUS1("03"),
-    PLUS2("04"),
-    PLUS3("05"),
-    PLUS4("06"),
-    NEXT("07"),
-    PUSH("08"),
-    PROBOY("09"),
-    STUN("10"),
-    DISARM("11"),
-    CONFUSE("12"),
-    TARGET("13"),
-    WOUND("14"),
-    ZERO("15"),
-    FROST("16"),
-    PULL("17"),
-    PARALYZE("18"),
-    SUN("19"),
-    MOON("20"),
-    AIR("21"),
-    FIRE("22"),
-    EARTH("23"),
+private object IconCode {
+    const val MINUS1 = "01"
+    const val MINUS2 = "02"
+    const val PLUS1 = "03"
+    const val PLUS2 = "04"
+    const val PLUS3 = "05"
+    const val PLUS4 = "06"
+    const val NEXT = "07"
+    const val PUSH = "08"
+    const val PROBOY = "09"
+    const val STUN = "10"
+    const val DISARM = "11"
+    const val CONFUSE = "12"
+    const val TARGET = "13"
+    const val WOUND = "14"
+    const val ZERO = "15"
+    const val FROST = "16"
+    const val PULL = "17"
+    const val PARALYZE = "18"
+    const val SUN = "19"
+    const val MOON = "20"
+    const val AIR = "21"
+    const val FIRE = "22"
+    const val EARTH = "23"
+    const val INVISIBILITY = "24"
+    const val POISON = "25"
 }
 
 
-enum class IconVectorCode(val id: String){
-    NEXT(IconCode.NEXT.id),
-    PUSH(IconCode.PUSH.id),
-    PROBOY(IconCode.PROBOY.id),
-    STUN(IconCode.STUN.id),
-    DISARM(IconCode.DISARM.id),
-    CONFUSE(IconCode.CONFUSE.id),
-    TARGET(IconCode.TARGET.id),
-    WOUND(IconCode.WOUND.id),
-    PULL(IconCode.PULL.id),
-    PARALYZE(IconCode.PARALYZE.id),
+enum class IconVectorCode(val id: String) {
+    NEXT(IconCode.NEXT),
+    PUSH(IconCode.PUSH),
+    PROBOY(IconCode.PROBOY),
+    STUN(IconCode.STUN),
+    DISARM(IconCode.DISARM),
+    CONFUSE(IconCode.CONFUSE),
+    TARGET(IconCode.TARGET),
+    WOUND(IconCode.WOUND),
+    PULL(IconCode.PULL),
+    PARALYZE(IconCode.PARALYZE),
+    INVISIBILITY(IconCode.INVISIBILITY),
+    POISON(IconCode.POISON),
 }
 
 enum class IconResCode(val id: String) {
-    MINUS1(IconCode.MINUS1.id),
-    MINUS2(IconCode.MINUS2.id),
-    PLUS1(IconCode.PLUS1.id),
-    PLUS2(IconCode.PLUS2.id),
-    PLUS3(IconCode.PLUS3.id),
-    PLUS4(IconCode.PLUS4.id),
-    ZERO(IconCode.ZERO.id),
-    FROST(IconCode.FROST.id),
-    SUN(IconCode.SUN.id),
-    MOON(IconCode.MOON.id),
-    AIR(IconCode.AIR.id),
-    FIRE(IconCode.FIRE.id),
-    EARTH(IconCode.EARTH.id),
+    MINUS1(IconCode.MINUS1),
+    MINUS2(IconCode.MINUS2),
+    PLUS1(IconCode.PLUS1),
+    PLUS2(IconCode.PLUS2),
+    PLUS3(IconCode.PLUS3),
+    PLUS4(IconCode.PLUS4),
+    ZERO(IconCode.ZERO),
+    FROST(IconCode.FROST),
+    SUN(IconCode.SUN),
+    MOON(IconCode.MOON),
+    AIR(IconCode.AIR),
+    FIRE(IconCode.FIRE),
+    EARTH(IconCode.EARTH),
 }

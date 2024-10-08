@@ -621,61 +621,70 @@ object StartFill {
         characterClassDao: CharacterClassDao
     ) {
         characterClassDao.insertAll(
-            CharacterClassBd(name = "Инокс, дикарь", characterType =  CharacterClassType.Brute.name),
+            CharacterClassBd(name = "Инокс, дикарь", characterType = CharacterClassType.Brute.name),
             CharacterClassBd(
                 name = "Вермлинг, повелитель зверей",
-                characterType =  CharacterClassType.BeastTyrant.name
+                characterType = CharacterClassType.BeastTyrant.name
             ),
             CharacterClassBd(
                 name = "Саввас, пустотелый ",
-                characterType =  CharacterClassType.Cragheart.name
+                characterType = CharacterClassType.Cragheart.name
             ),
             CharacterClassBd(
                 name = "Орхид, обрекающий",
-                characterType =  CharacterClassType.Doomstalker.name
+                characterType = CharacterClassType.Doomstalker.name
             ),
             CharacterClassBd(
                 name = "Саввас, элементалист",
-                characterType =  CharacterClassType.Elementalist.name
+                characterType = CharacterClassType.Elementalist.name
             ),
             CharacterClassBd(
                 name = "Куатрил,воспевающая",
-                characterType =  CharacterClassType.Soothsinger.name
+                characterType = CharacterClassType.Soothsinger.name
             ),
-            CharacterClassBd(name = "Человек, костоправ", characterType =  CharacterClassType.Sawbones.name),
+            CharacterClassBd(
+                name = "Человек, костоправ",
+                characterType = CharacterClassType.Sawbones.name
+            ),
             CharacterClassBd(
                 name = "Жнец, предвестник чумы",
-                characterType =  CharacterClassType.Plagueherald.name
+                characterType = CharacterClassType.Plagueherald.name
             ),
             CharacterClassBd(
                 name = "Куатрил, изобретатель",
-                characterType =  CharacterClassType.Tinkerer.name
+                characterType = CharacterClassType.Tinkerer.name
             ),
             CharacterClassBd(
                 name = "Эстер, покров ночи",
-                characterType =  CharacterClassType.Nightshroud.name
+                characterType = CharacterClassType.Nightshroud.name
             ),
             CharacterClassBd(
                 name = "Орхид, плетущая чары",
-                characterType =  CharacterClassType.Spellweaver.name
+                characterType = CharacterClassType.Spellweaver.name
             ),
-            CharacterClassBd(name = "Эстер, призывающая", characterType =  CharacterClassType.Summoner.name),
+            CharacterClassBd(
+                name = "Эстер, призывающая",
+                characterType = CharacterClassType.Summoner.name
+            ),
             CharacterClassBd(
                 name = "Валрат, хранящая солнце",
-                characterType =  CharacterClassType.Sunkeeper.name
+                characterType = CharacterClassType.Sunkeeper.name
             ),
             CharacterClassBd(
                 name = "Вермлинг, крадущая разум",
-                characterType =  CharacterClassType.Mindthief.name
+                characterType = CharacterClassType.Mindthief.name
             ),
-            CharacterClassBd(name = "Человек, плутовка", characterType =  CharacterClassType.Scoundrel.name),
+            CharacterClassBd(
+                name = "Человек, плутовка",
+                characterType = CharacterClassType.Scoundrel.name
+            ),
             CharacterClassBd(
                 name = "Валрат, интендант",
-                characterType =  CharacterClassType.Quartermaster.name
+                characterType = CharacterClassType.Quartermaster.name
             ),
             CharacterClassBd(
                 name = "Эстрер, прорицательница",
-                characterType =  CharacterClassType.Diviner.name
+                characterType = CharacterClassType.Diviner.name
             ),
         )
     }
@@ -719,8 +728,7 @@ object StartFill {
                 name = "Броня из шкур",
                 type = GoodType.Body.name,
                 cost = 10
-            )
-            ,
+            ),
             GoodBd(
                 number = 4,
                 name = "Кожаная броня",
@@ -2224,6 +2232,8 @@ object StartFill {
     ) {
         addBrutePerks(perksDao)
         addMindthiefPerks(perksDao)
+        addCragheartPerks(perksDao)
+        addScoundrelPerks(perksDao)
     }
 
     private suspend fun addBrutePerks(
@@ -2251,39 +2261,39 @@ object StartFill {
                 characterType = CharacterClassType.Brute.name
             ),
             PerkBd(
-                text = "Добавьте 3 карты с эффектом \"#07 ОТТОЛКНУТЬ #08 1\"" ,
+                text = "Добавьте 3 карты с эффектом \"#07 ОТТОЛКНУТЬ #08 1\"",
                 characterType = CharacterClassType.Brute.name
             ),
             PerkBd(
-                text = "Добавьте 3 карты с эффектом \"#07 ОТТОЛКНУТЬ #08 1\"" ,
+                text = "Добавьте 3 карты с эффектом \"#07 ОТТОЛКНУТЬ #08 1\"",
                 characterType = CharacterClassType.Brute.name
             ),
             PerkBd(
-                text = "Добавьте 2 карты с эффектом \"#07 ПРОБОЙ #09 3\"" ,
+                text = "Добавьте 2 карты с эффектом \"#07 ПРОБОЙ #09 3\"",
                 characterType = CharacterClassType.Brute.name
             ),
             PerkBd(
-                text = "Добавьте 1 карту с эффектом \"#07 ОГЛУШЕНИЕ #10\"" ,
+                text = "Добавьте 1 карту с эффектом \"#07 ОГЛУШЕНИЕ #10\"",
                 characterType = CharacterClassType.Brute.name
             ),
             PerkBd(
-                text = "Добавьте 1 карту с эффектом \"#07 ОГЛУШЕНИЕ #10\"" ,
+                text = "Добавьте 1 карту с эффектом \"#07 ОГЛУШЕНИЕ #10\"",
                 characterType = CharacterClassType.Brute.name
             ),
             PerkBd(
-                text = "Добавьте 1 карту с эффектом \"#07 РАЗОРУЖЕНИЕ #11\" и 1 карту с эффектом \"#07 СМЯТЕНИЕ #12\"" ,
+                text = "Добавьте 1 карту с эффектом \"#07 РАЗОРУЖЕНИЕ #11\" и 1 карту с эффектом \"#07 СМЯТЕНИЕ #12\"",
                 characterType = CharacterClassType.Brute.name
             ),
             PerkBd(
-                text = "Добавьте 1 карту с эффектом \"#07 ДОБАВИТЬ ЦЕЛЬ #13\"" ,
+                text = "Добавьте 1 карту с эффектом \"#07 ДОБАВИТЬ ЦЕЛЬ #13\"",
                 characterType = CharacterClassType.Brute.name
             ),
             PerkBd(
-                text = "Добавьте 1 карту с эффектом \"#07 ДОБАВИТЬ ЦЕЛЬ #13\"" ,
+                text = "Добавьте 1 карту с эффектом \"#07 ДОБАВИТЬ ЦЕЛЬ #13\"",
                 characterType = CharacterClassType.Brute.name
             ),
             PerkBd(
-                text = "Добавьте 1 карту #03 с эффектом \"Щит 1 (на себя)\"" ,
+                text = "Добавьте 1 карту #03 с эффектом \"Щит 1 (на себя)\"",
                 characterType = CharacterClassType.Brute.name
             ),
             PerkBd(
@@ -2293,72 +2303,205 @@ object StartFill {
         )
     }
 
+    private suspend fun addCragheartPerks(
+        perksDao: PerksDao
+    ) {
+        perksDao.insertAll(
+            PerkBd(
+                text = "Уберите 4 карты #15",
+                characterType = CharacterClassType.Cragheart.name
+            ),
+            PerkBd(
+                text = "Поменяйте 1 карту #01 на 1 карту #03",
+                characterType = CharacterClassType.Cragheart.name
+            ),
+            PerkBd(
+                text = "Поменяйте 1 карту #01 на 1 карту #03",
+                characterType = CharacterClassType.Cragheart.name
+            ),
+            PerkBd(
+                text = "Поменяйте 1 карту #01 на 1 карту #03",
+                characterType = CharacterClassType.Cragheart.name
+            ),
+            PerkBd(
+                text = "Добавьте 1 карту #02 и 2 карты #04",
+                characterType = CharacterClassType.Cragheart.name
+            ),
+            PerkBd(
+                text = "Добавьте 1 карту #03 с эффектом \"ПАРАЛИЧ #18\"",
+                characterType = CharacterClassType.Cragheart.name
+            ),
+            PerkBd(
+                text = "Добавьте 1 карту #03 с эффектом \"ПАРАЛИЧ #18\"",
+                characterType = CharacterClassType.Cragheart.name
+            ),
+            PerkBd(
+                text = "Добавьте 1 карту #04 с эффектом \"СМЯТЕНИЕ #12\"",
+                characterType = CharacterClassType.Cragheart.name
+            ),
+            PerkBd(
+                text = "Добавьте 1 карту #04 с эффектом \"СМЯТЕНИЕ #12\"",
+                characterType = CharacterClassType.Cragheart.name
+            ),
+            PerkBd(
+                text = "Добавьте 2 карты эффектом \"#07 ОТТОЛКНУТЬ #08 2\"",
+                characterType = CharacterClassType.Cragheart.name
+            ),
+            PerkBd(
+                text = "Добавьте 2 карты #07 #23",
+                characterType = CharacterClassType.Cragheart.name
+            ),
+            PerkBd(
+                text = "Добавьте 2 карты #07 #23",
+                characterType = CharacterClassType.Cragheart.name
+            ),
+            PerkBd(
+                text = "Добавьте 2 карты #07 #21",
+                characterType = CharacterClassType.Cragheart.name
+            ),
+            PerkBd(
+                text = "Игнорируйте отрицательные эффекты предметов",
+                characterType = CharacterClassType.Cragheart.name
+            ),
+            PerkBd(
+                text = "Игнорируйте отрицательные эффекты сценариев",
+                characterType = CharacterClassType.Cragheart.name
+            )
+        )
+    }
+
+    private suspend fun addScoundrelPerks(
+        perksDao: PerksDao
+    ) {
+        perksDao.insertAll(
+            PerkBd(
+                text = "Уберите 2 карты #01",
+                characterType = CharacterClassType.Scoundrel.name
+            ),
+            PerkBd(
+                text = "Уберите 2 карты #01",
+                characterType = CharacterClassType.Scoundrel.name
+            ),
+            PerkBd(
+                text = "Уберите 4 карты #15",
+                characterType = CharacterClassType.Scoundrel.name
+            ),
+            PerkBd(
+                text = "Поменяйте 1 карту #02 на 1 карту #15",
+                characterType = CharacterClassType.Scoundrel.name
+            ),
+            PerkBd(
+                text = "Поменяйте 1 карту #01 на 1 карту #03",
+                characterType = CharacterClassType.Scoundrel.name
+            ),
+            PerkBd(
+                text = "Поменяйте 1 карту #15 на 1 карту #04",
+                characterType = CharacterClassType.Scoundrel.name
+            ),
+            PerkBd(
+                text = "Поменяйте 1 карту #15 на 1 карту #04",
+                characterType = CharacterClassType.Scoundrel.name
+            ),
+            PerkBd(
+                text = "Добавьте 2 карты #07 #03",
+                characterType = CharacterClassType.Scoundrel.name
+            ),
+            PerkBd(
+                text = "Добавьте 2 карты #07 #03",
+                characterType = CharacterClassType.Scoundrel.name
+            ),
+            PerkBd(
+                text = "Добавьте 2 карты с эффектом \"#07 ПРОБОЙ #09 3\"",
+                characterType = CharacterClassType.Scoundrel.name
+            ),
+            PerkBd(
+                text = "Добавьте 2 карты с эффектом \"#07 ОТРАВЛЕНИЕ #25\"",
+                characterType = CharacterClassType.Scoundrel.name
+            ),
+            PerkBd(
+                text = "Добавьте 2 карты с эффектом \"#07 ОТРАВЛЕНИЕ #25\"",
+                characterType = CharacterClassType.Scoundrel.name
+            ),
+            PerkBd(
+                text = "Добавьте 2 карты с эффектом \"#07 СМЯТЕНИЕ #12\"",
+                characterType = CharacterClassType.Scoundrel.name
+            ),
+            PerkBd(
+                text = "Добавьте 1 карту с эффектом \"#07 НЕВИДИМОСТЬ #24\"",
+                characterType = CharacterClassType.Scoundrel.name
+            ),
+            PerkBd(
+                text = "Игнорируйте отрицательные эффекты сценариев",
+                characterType = CharacterClassType.Scoundrel.name
+            )
+        )
+    }
+
     private suspend fun addMindthiefPerks(
         perksDao: PerksDao
-    ){
-            perksDao.insertAll(
-                PerkBd(
-                    text = "Уберите 2 карты #01",
-                    characterType = CharacterClassType.Mindthief.name
-                ),
-                PerkBd(
-                    text = "Уберите 2 карты #01",
-                    characterType = CharacterClassType.Mindthief.name
-                ),
-                PerkBd(
-                    text = "Уберите 4 карты #15",
-                    characterType = CharacterClassType.Mindthief.name
-                ),
-                PerkBd(
-                    text = "Поменяйте 2 карты #03 на 2 карты #04",
-                    characterType = CharacterClassType.Mindthief.name
-                ),
-                PerkBd(
-                    text = "Поменяйте 1 карту #02 на 1 карту #15",
-                    characterType = CharacterClassType.Mindthief.name
-                ),
-                PerkBd(
-                    text = "Добавьте 1 карту #04 #16",
-                    characterType = CharacterClassType.Mindthief.name
-                ),
-                PerkBd(
-                    text = "Добавьте 1 карту #04 #16",
-                    characterType = CharacterClassType.Mindthief.name
-                ),
-                PerkBd(
-                    text = "Добавьте 2 карты #07 #03",
-                    characterType = CharacterClassType.Mindthief.name
-                ),
-                PerkBd(
-                    text = "Добавьте 2 карты #07 #03",
-                    characterType = CharacterClassType.Mindthief.name
-                ),
-                PerkBd(
-                    text = "Добавьте 3 карты c эффектом \"#07 ПРИТЯНУТЬ #17 1\"",
-                    characterType = CharacterClassType.Mindthief.name
-                ),
-                PerkBd(
-                    text = "Добавьте 3 карты c эффектом \"#07 СМЯТЕНИЕ #12\"",
-                    characterType = CharacterClassType.Mindthief.name
-                ),
-                PerkBd(
-                    text = "Добавьте 2 карты c эффектом \"#07 ПАРАЛИЧ #18\"",
-                    characterType = CharacterClassType.Mindthief.name
-                ),
-                PerkBd(
-                    text = "Добавьте 1 карту c эффектом \"#07 ОГЛУШЕНИЕ #10\"",
-                    characterType = CharacterClassType.Mindthief.name
-                ),
-                PerkBd(
-                    text = "Добавьте 1 карту c эффектом \"#07 РАЗОРУЖЕНИЕ #11\" и 1 карту c эффектом \"#07 СМЯТЕНИЕ #12\"",
-                    characterType = CharacterClassType.Mindthief.name
-                ),
-                PerkBd(
-                    text = "Игнорируйте отрицательные эффекты сценариев",
-                    characterType = CharacterClassType.Mindthief.name
-                ),
-
-            )
+    ) {
+        perksDao.insertAll(
+            PerkBd(
+                text = "Уберите 2 карты #01",
+                characterType = CharacterClassType.Mindthief.name
+            ),
+            PerkBd(
+                text = "Уберите 2 карты #01",
+                characterType = CharacterClassType.Mindthief.name
+            ),
+            PerkBd(
+                text = "Уберите 4 карты #15",
+                characterType = CharacterClassType.Mindthief.name
+            ),
+            PerkBd(
+                text = "Поменяйте 2 карты #03 на 2 карты #04",
+                characterType = CharacterClassType.Mindthief.name
+            ),
+            PerkBd(
+                text = "Поменяйте 1 карту #02 на 1 карту #15",
+                characterType = CharacterClassType.Mindthief.name
+            ),
+            PerkBd(
+                text = "Добавьте 1 карту #04 #16",
+                characterType = CharacterClassType.Mindthief.name
+            ),
+            PerkBd(
+                text = "Добавьте 1 карту #04 #16",
+                characterType = CharacterClassType.Mindthief.name
+            ),
+            PerkBd(
+                text = "Добавьте 2 карты #07 #03",
+                characterType = CharacterClassType.Mindthief.name
+            ),
+            PerkBd(
+                text = "Добавьте 2 карты #07 #03",
+                characterType = CharacterClassType.Mindthief.name
+            ),
+            PerkBd(
+                text = "Добавьте 3 карты c эффектом \"#07 ПРИТЯНУТЬ #17 1\"",
+                characterType = CharacterClassType.Mindthief.name
+            ),
+            PerkBd(
+                text = "Добавьте 3 карты c эффектом \"#07 СМЯТЕНИЕ #12\"",
+                characterType = CharacterClassType.Mindthief.name
+            ),
+            PerkBd(
+                text = "Добавьте 2 карты c эффектом \"#07 ПАРАЛИЧ #18\"",
+                characterType = CharacterClassType.Mindthief.name
+            ),
+            PerkBd(
+                text = "Добавьте 1 карту c эффектом \"#07 ОГЛУШЕНИЕ #10\"",
+                characterType = CharacterClassType.Mindthief.name
+            ),
+            PerkBd(
+                text = "Добавьте 1 карту c эффектом \"#07 РАЗОРУЖЕНИЕ #11\" и 1 карту c эффектом \"#07 СМЯТЕНИЕ #12\"",
+                characterType = CharacterClassType.Mindthief.name
+            ),
+            PerkBd(
+                text = "Игнорируйте отрицательные эффекты сценариев",
+                characterType = CharacterClassType.Mindthief.name
+            ),
+        )
     }
 
 }
