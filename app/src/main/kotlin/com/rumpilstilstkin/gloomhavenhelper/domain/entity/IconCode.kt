@@ -26,6 +26,7 @@ private object IconCode {
     const val EARTH = "23"
     const val INVISIBILITY = "24"
     const val POISON = "25"
+    const val CURSE = "26"
 }
 
 
@@ -42,6 +43,7 @@ enum class IconVectorCode(val id: String) {
     PARALYZE(IconCode.PARALYZE),
     INVISIBILITY(IconCode.INVISIBILITY),
     POISON(IconCode.POISON),
+    CURSE(IconCode.CURSE),
 }
 
 enum class IconResCode(val id: String) {

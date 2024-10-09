@@ -2234,6 +2234,8 @@ object StartFill {
         addMindthiefPerks(perksDao)
         addCragheartPerks(perksDao)
         addScoundrelPerks(perksDao)
+        addSpellweaverPerks(perksDao)
+        addTinkererPerks(perksDao)
     }
 
     private suspend fun addBrutePerks(
@@ -2504,4 +2506,137 @@ object StartFill {
         )
     }
 
+    private suspend fun addSpellweaverPerks(
+        perksDao: PerksDao
+    ) {
+        perksDao.insertAll(
+            PerkBd(
+                text = "Уберите 4 карты #15",
+                characterType = CharacterClassType.Spellweaver.name
+            ),
+            PerkBd(
+                text = "Поменяйте 1 карту #01 на 1 карту #03",
+                characterType = CharacterClassType.Spellweaver.name
+            ),
+            PerkBd(
+                text = "Поменяйте 1 карту #01 на 1 карту #03",
+                characterType = CharacterClassType.Spellweaver.name
+            ),
+            PerkBd(
+                text = "Добавьте 2 карты #03",
+                characterType = CharacterClassType.Spellweaver.name
+            ),
+            PerkBd(
+                text = "Добавьте 2 карты #03",
+                characterType = CharacterClassType.Spellweaver.name
+            ),
+            PerkBd(
+                text = "Добавьте 1 карту #15 с эффектом \"ОГЛУШЕНИЕ #10\"",
+                characterType = CharacterClassType.Spellweaver.name
+            ),
+            PerkBd(
+                text = "Добавьте 1 карту #03 с эффектом \"РАНА #14\"",
+                characterType = CharacterClassType.Spellweaver.name
+            ),
+            PerkBd(
+                text = "Добавьте 1 карту #03 с эффектом \"ПАРАЛИЧ #18\"",
+                characterType = CharacterClassType.Spellweaver.name
+            ),
+            PerkBd(
+                text = "Добавьте 1 карту #03 с эффектом \"ПРОКЛЯТЬЕ #26\"",
+                characterType = CharacterClassType.Spellweaver.name
+            ),
+            PerkBd(
+                text = "Добавьте 1 карту #04 #22",
+                characterType = CharacterClassType.Spellweaver.name
+            ),
+            PerkBd(
+                text = "Добавьте 1 карту #04 #22",
+                characterType = CharacterClassType.Spellweaver.name
+            ),
+            PerkBd(
+                text = "Добавьте 1 карту #04 #16",
+                characterType = CharacterClassType.Spellweaver.name
+            ),
+            PerkBd(
+                text = "Добавьте 1 карту #04 #16",
+                characterType = CharacterClassType.Spellweaver.name
+            ),
+            PerkBd(
+                text = "Добавьте 1 карту #07 #23 и 1 карту #07 #21",
+                characterType = CharacterClassType.Spellweaver.name
+            ),
+            PerkBd(
+                text = "Добавьте 1 карту #07 #19 и 1 карту #07 #20",
+                characterType = CharacterClassType.Spellweaver.name
+            )
+        )
+    }
+
+    private suspend fun addTinkererPerks(
+        perksDao: PerksDao
+    ) {
+        perksDao.insertAll(
+            PerkBd(
+                text = "Уберите 2 карты #01",
+                characterType = CharacterClassType.Tinkerer.name
+            ),
+            PerkBd(
+                text = "Уберите 2 карты #01",
+                characterType = CharacterClassType.Tinkerer.name
+            ),
+            PerkBd(
+                text = "Поменяйте 1 карту #02 на 1 карту #15",
+                characterType = CharacterClassType.Tinkerer.name
+            ),
+            PerkBd(
+                text = "Добавьте 2 карты #03",
+                characterType = CharacterClassType.Tinkerer.name
+            ),
+            PerkBd(
+                text = "Добавьте 1 карту #05",
+                characterType = CharacterClassType.Tinkerer.name
+            ),
+            PerkBd(
+                text = "Добавьте 2 карты #07 #22",
+                characterType = CharacterClassType.Tinkerer.name
+            ),
+            PerkBd(
+                text = "Добавьте 3 карты с эффектом \"#07 СМЯТЕНИЕ #12\"",
+                characterType = CharacterClassType.Tinkerer.name
+            ),
+            PerkBd(
+                text = "Добавьте 1 карту #03 с эффектом \"РАНА #14\"",
+                characterType = CharacterClassType.Tinkerer.name
+            ),
+            PerkBd(
+                text = "Добавьте 1 карту #03 с эффектом \"РАНА #14\"",
+                characterType = CharacterClassType.Tinkerer.name
+            ),
+            PerkBd(
+                text = "Добавьте 1 карту #03 с эффектом \"ПАРАЛИЧ #18\"",
+                characterType = CharacterClassType.Tinkerer.name
+            ),
+            PerkBd(
+                text = "Добавьте 1 карту #03 с эффектом \"ПАРАЛИЧ #18\"",
+                characterType = CharacterClassType.Tinkerer.name
+            ),
+            PerkBd(
+                text = "Добавьте 1 карту #03 с эффектом \"Лечение 2\"",
+                characterType = CharacterClassType.Tinkerer.name
+            ),
+            PerkBd(
+                text = "Добавьте 1 карту #03 с эффектом \"Лечение 2\"",
+                characterType = CharacterClassType.Tinkerer.name
+            ),
+            PerkBd(
+                text = "Добавьте 1 карту #15 с эффектом \"ДОБАВИТЬ ЦЕЛЬ #13\"",
+                characterType = CharacterClassType.Tinkerer.name
+            ),
+            PerkBd(
+                text = "Игнорируйте отрицательные эффекты сценариев",
+                characterType = CharacterClassType.Tinkerer.name
+            ),
+        )
+    }
 }

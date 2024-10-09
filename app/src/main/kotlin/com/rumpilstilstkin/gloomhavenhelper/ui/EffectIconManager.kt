@@ -6,6 +6,7 @@ import com.rumpilstilstkin.gloomhavenhelper.domain.entity.IconResCode
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.IconVectorCode
 import com.rumpilstilstkin.gloomhavenhelper.ui.icons.GloomhavenIcons
 import com.rumpilstilstkin.gloomhavenhelper.ui.icons.effects.Confuse
+import com.rumpilstilstkin.gloomhavenhelper.ui.icons.effects.Curse
 import com.rumpilstilstkin.gloomhavenhelper.ui.icons.effects.Disarm
 import com.rumpilstilstkin.gloomhavenhelper.ui.icons.effects.Invisibility
 import com.rumpilstilstkin.gloomhavenhelper.ui.icons.effects.Next
@@ -31,6 +32,7 @@ fun IconVectorCode.toImage(): ImageVector = when(this) {
     IconVectorCode.PARALYZE -> GloomhavenIcons.Effect.Paraliysis
     IconVectorCode.INVISIBILITY -> GloomhavenIcons.Effect.Invisibility
     IconVectorCode.POISON -> GloomhavenIcons.Effect.Poison
+    IconVectorCode.CURSE -> GloomhavenIcons.Effect.Curse
 }
 
 fun IconResCode.toImage(): Int = when(this) {
