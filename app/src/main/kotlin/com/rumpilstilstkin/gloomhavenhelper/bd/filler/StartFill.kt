@@ -2236,6 +2236,8 @@ object StartFill {
         addScoundrelPerks(perksDao)
         addSpellweaverPerks(perksDao)
         addTinkererPerks(perksDao)
+        addBeastTyrantPerks(perksDao)
+        addElementalistPerks(perksDao)
     }
 
     private suspend fun addBrutePerks(
@@ -2636,6 +2638,141 @@ object StartFill {
             PerkBd(
                 text = "Игнорируйте отрицательные эффекты сценариев",
                 characterType = CharacterClassType.Tinkerer.name
+            ),
+        )
+    }
+
+    private suspend fun addBeastTyrantPerks(
+        perksDao: PerksDao
+    ) {
+        perksDao.insertAll(
+            PerkBd(
+                text = "Уберите 2 карты #01",
+                characterType = CharacterClassType.BeastTyrant.name
+            ),
+            PerkBd(
+                text = "Поменяйте 1 карту #01 на 1 карту #03",
+                characterType = CharacterClassType.BeastTyrant.name
+            ),
+            PerkBd(
+                text = "Поменяйте 1 карту #01 на 1 карту #03",
+                characterType = CharacterClassType.BeastTyrant.name
+            ),
+            PerkBd(
+                text = "Поменяйте 1 карту #01 на 1 карту #03",
+                characterType = CharacterClassType.BeastTyrant.name
+            ),
+            PerkBd(
+                text = "Поменяйте 1 карту #15 на 1 карту #04",
+                characterType = CharacterClassType.BeastTyrant.name
+            ),
+            PerkBd(
+                text = "Поменяйте 1 карту #15 на 1 карту #04",
+                characterType = CharacterClassType.BeastTyrant.name
+            ),
+            PerkBd(
+                text = "Добавьте 1 карту #03 с эффектом \"РАНА #14\"",
+                characterType = CharacterClassType.BeastTyrant.name
+            ),
+            PerkBd(
+                text = "Добавьте 1 карту #03 с эффектом \"РАНА #14\"",
+                characterType = CharacterClassType.BeastTyrant.name
+            ),
+            PerkBd(
+                text = "Добавьте 1 карту #03 с эффектом \"ПАРАЛИЧ #18\"",
+                characterType = CharacterClassType.BeastTyrant.name
+            ),
+            PerkBd(
+                text = "Добавьте 1 карту #03 с эффектом \"ПАРАЛИЧ #18\"",
+                characterType = CharacterClassType.BeastTyrant.name
+            ),
+            PerkBd(
+                text = "Добавьте 2 карты с эффектом \"#07 Лечение 1\"",
+                characterType = CharacterClassType.BeastTyrant.name
+            ),
+            PerkBd(
+                text = "Добавьте 2 карты с эффектом \"#07 Лечение 1\"",
+                characterType = CharacterClassType.BeastTyrant.name
+            ),
+            PerkBd(
+                text = "Добавьте 2 карты с эффектом \"#07 Лечение 1\"",
+                characterType = CharacterClassType.BeastTyrant.name
+            ),
+            PerkBd(
+                text = "Добавьте 2 карты #07 #23",
+                characterType = CharacterClassType.BeastTyrant.name
+            ),
+            PerkBd(
+                text = "Игнорируйте отрицательные эффекты сценариев",
+                characterType = CharacterClassType.BeastTyrant.name
+            ),
+        )
+    }
+
+    private suspend fun addElementalistPerks(
+        perksDao: PerksDao
+    ) {
+        perksDao.insertAll(
+            PerkBd(
+                text = "Уберите 2 карты #01",
+                characterType = CharacterClassType.Elementalist.name
+            ),
+            PerkBd(
+                text = "Уберите 2 карты #01",
+                characterType = CharacterClassType.Elementalist.name
+            ),
+            PerkBd(
+                text = "Поменяйте 1 карту #01 на 1 карту #03",
+                characterType = CharacterClassType.Elementalist.name
+            ),
+            PerkBd(
+                text = "Поменяйте 1 карту #15 на 1 карту #04",
+                characterType = CharacterClassType.Elementalist.name
+            ),
+            PerkBd(
+                text = "Поменяйте 1 карту #15 на 1 карту #04",
+                characterType = CharacterClassType.Elementalist.name
+            ),
+            PerkBd(
+                text = "Добавьте 3 карты #15 #22",
+                characterType = CharacterClassType.Elementalist.name
+            ),
+            PerkBd(
+                text = "Добавьте 3 карты #15 #16",
+                characterType = CharacterClassType.Elementalist.name
+            ),
+            PerkBd(
+                text = "Добавьте 3 карты #15 #21",
+                characterType = CharacterClassType.Elementalist.name
+            ),
+            PerkBd(
+                text = "Добавьте 3 карты #15 #23",
+                characterType = CharacterClassType.Elementalist.name
+            ),
+            PerkBd(
+                text = "Поменяйте 2 карты #15 на 1 карту #15 #22 и 1 карту #15 #23",
+                characterType = CharacterClassType.Elementalist.name
+            )
+            ,
+            PerkBd(
+                text = "Поменяйте 2 карты #15 на 1 карту #15 #16 и 1 карту #15 #21",
+                characterType = CharacterClassType.Elementalist.name
+            ),
+            PerkBd(
+                text = "Добавьте 2 карты #03 с эффектом \"ОТТОЛКНУТЬ #08 1\"",
+                characterType = CharacterClassType.Elementalist.name
+            ),
+            PerkBd(
+                text = "Добавьте 1 карту #03 с эффектом \"РАНА #14\"",
+                characterType = CharacterClassType.Elementalist.name
+            ),
+            PerkBd(
+                text = "Добавьте 1 карту #15 с эффектом \"ОГЛУШЕНИЕ #10\"",
+                characterType = CharacterClassType.Elementalist.name
+            ),
+            PerkBd(
+                text = "Добавьте 1 карту #15 с эффектом \"ДОБАВИТЬ ЦЕЛЬ #13\"",
+                characterType = CharacterClassType.Elementalist.name
             ),
         )
     }
