@@ -22,5 +22,6 @@ enum class CharacterClassType {
     Mindthief,
     Scoundrel,
     Quartermaster,
-    Diviner
+    Diviner,
+    Berserker,
 }

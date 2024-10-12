@@ -686,6 +686,10 @@ object StartFill {
                 name = "Эстрер, прорицательница",
                 characterType = CharacterClassType.Diviner.name
             ),
+            CharacterClassBd(
+                name = "Инокс, берсерк",
+                characterType = CharacterClassType.Berserker.name
+            ),
         )
     }
 
@@ -2242,6 +2246,12 @@ object StartFill {
         addSunkeeperPerks(perksDao)
         addDoomstalkerPerks(perksDao)
         addSoothsingerPerks(perksDao)
+        addSawbonesPerks(perksDao)
+        addPlagueheraldPerks(perksDao)
+        addNightshroudPerks(perksDao)
+        addQuartermasterPerks(perksDao)
+        addDivinerPerks(perksDao)
+        addBerserkerPerks(perksDao)
     }
 
     private suspend fun addBrutePerks(
@@ -3045,6 +3055,408 @@ object StartFill {
                 text = "Добавтье 2 карты с эффектом \"#07 ПРОКЛЯТЬЕ #26\"",
                 characterType = CharacterClassType.Soothsinger.name
             )
+        )
+    }
+
+    private suspend fun addSawbonesPerks(
+        perksDao: PerksDao
+    ) {
+        perksDao.insertAll(
+            PerkBd(
+                text = "Уберите 2 карты #01",
+                characterType = CharacterClassType.Sawbones.name
+            ),
+            PerkBd(
+                text = "Уберите 2 карты #01",
+                characterType = CharacterClassType.Sawbones.name
+            ),
+            PerkBd(
+                text = "Уберите 4 карты #15",
+                characterType = CharacterClassType.Sawbones.name
+            ),
+            PerkBd(
+                text = "Поменяйте 1 карту #15 на 1 карту #04",
+                characterType = CharacterClassType.Sawbones.name
+            ),
+            PerkBd(
+                text = "Поменяйте 1 карту #15 на 1 карту #04",
+                characterType = CharacterClassType.Sawbones.name
+            ),
+            PerkBd(
+                text = "Добавьте 1 карту #07 #04",
+                characterType = CharacterClassType.Sawbones.name
+            ),
+            PerkBd(
+                text = "Добавьте 1 карту #07 #04",
+                characterType = CharacterClassType.Sawbones.name
+            ),
+            PerkBd(
+                text = "Добавьте 1 карту #03 с эффектом \"ПАРАЛИЧ #18\"",
+                characterType = CharacterClassType.Sawbones.name
+            ),
+            PerkBd(
+                text = "Добавьте 1 карту #03 с эффектом \"ПАРАЛИЧ #18\"",
+                characterType = CharacterClassType.Sawbones.name
+            ),
+            PerkBd(
+                text = "Добавьте 2 карты с эффектом \"#07 РАНА #14\"",
+                characterType = CharacterClassType.Sawbones.name
+            ),
+            PerkBd(
+                text = "Добавьте 2 карты с эффектом \"#07 РАНА #14\"",
+                characterType = CharacterClassType.Sawbones.name
+            ),
+            PerkBd(
+                text = "Добавьте 1 карту с эффектом \"#07 ОГЛУШЕНИЕ #10\"",
+                characterType = CharacterClassType.Sawbones.name
+            ),
+            PerkBd(
+                text = "Добавьте 1 карту с эффектом \"#07 Лечение 3\"",
+                characterType = CharacterClassType.Sawbones.name
+            ),
+            PerkBd(
+                text = "Добавьте 1 карту с эффектом \"#07 Лечение 3\"",
+                characterType = CharacterClassType.Sawbones.name
+            ),
+            PerkBd(
+                text = "Добавьте 1 карту #15 с эффектом \"Разверните 1 повернутую или потраченную карту предмета\"",
+                characterType = CharacterClassType.Sawbones.name
+            )
+        )
+    }
+
+    private suspend fun addPlagueheraldPerks(
+        perksDao: PerksDao
+    ) {
+        perksDao.insertAll(
+            PerkBd(
+                text = "Поменяйте 1 карту #02 на 1 карту #15",
+                characterType = CharacterClassType.Plagueherald.name
+            ),
+            PerkBd(
+                text = "Поменяйте 1 карту #01 на 1 карту #03",
+                characterType = CharacterClassType.Plagueherald.name
+            ),
+            PerkBd(
+                text = "Поменяйте 1 карту #01 на 1 карту #03",
+                characterType = CharacterClassType.Plagueherald.name
+            ),
+            PerkBd(
+                text = "Поменяйте 1 карту #15 на 1 карту #04",
+                characterType = CharacterClassType.Plagueherald.name
+            ),
+            PerkBd(
+                text = "Поменяйте 1 карту #15 на 1 карту #04",
+                characterType = CharacterClassType.Plagueherald.name
+            ),
+            PerkBd(
+                text = "Добавьте 2 карты #03",
+                characterType = CharacterClassType.Plagueherald.name
+            ),
+            PerkBd(
+                text = "Добавьте 1 карту #03 #21",
+                characterType = CharacterClassType.Plagueherald.name
+            ),
+            PerkBd(
+                text = "Добавьте 1 карту #03 #21",
+                characterType = CharacterClassType.Plagueherald.name
+            ),
+            PerkBd(
+                text = "Добавьте 1 карту #03 #21",
+                characterType = CharacterClassType.Plagueherald.name
+            ),
+            PerkBd(
+                text = "Добавьте 3 карты с эффектом \"#07 ОТРАВЛЕНИЕ #25\"",
+                characterType = CharacterClassType.Plagueherald.name
+            ),
+            PerkBd(
+                text = "Добавьте 2 карты с эффектом \"#07 ПРОКЛЯТЬЕ #26\"",
+                characterType = CharacterClassType.Plagueherald.name
+            ),
+            PerkBd(
+                text = "Добавьте 2 карты с эффектом \"#07 ПАРАЛИЧ #18\"",
+                characterType = CharacterClassType.Plagueherald.name
+            ),
+            PerkBd(
+                text = "Добавьте 1 карту с эффектом \"#07 ОГЛУШЕНИЕ #10\"",
+                characterType = CharacterClassType.Plagueherald.name
+            ),
+            PerkBd(
+                text = "Добавьте 1 карту с эффектом \"#07 ОГЛУШЕНИЕ #10\"",
+                characterType = CharacterClassType.Plagueherald.name
+            ),
+            PerkBd(
+                text = "Игнорируйте отрицательные эффекты сценариев и добавьте 1 карту #03",
+                characterType = CharacterClassType.Plagueherald.name
+            )
+        )
+    }
+
+    private suspend fun addNightshroudPerks(
+        perksDao: PerksDao
+    ) {
+        perksDao.insertAll(
+            PerkBd(
+                text = "Уберите 2 карты #01",
+                characterType = CharacterClassType.Nightshroud.name
+            ),
+            PerkBd(
+                text = "Уберите 2 карты #01",
+                characterType = CharacterClassType.Nightshroud.name
+            ),
+            PerkBd(
+                text = "Уберите 4 карты #15",
+                characterType = CharacterClassType.Nightshroud.name
+            ),
+            PerkBd(
+                text = "Добавьте 1 карту #01 #20",
+                characterType = CharacterClassType.Nightshroud.name
+            ),
+            PerkBd(
+                text = "Добавьте 1 карту #01 #20",
+                characterType = CharacterClassType.Nightshroud.name
+            ),
+            PerkBd(
+                text = "Поменяйте 1 карту #01 #20 на 1 карту #03 #20",
+                characterType = CharacterClassType.Nightshroud.name
+            ),
+            PerkBd(
+                text = "Поменяйте 1 карту #01 #20 на 1 карту #03 #20",
+                characterType = CharacterClassType.Nightshroud.name
+            ),
+            PerkBd(
+                text = "Добавьте 1 карту #03 с эффектом \"НЕВИДИМОСТЬ #24\"",
+                characterType = CharacterClassType.Nightshroud.name
+            ),
+            PerkBd(
+                text = "Добавьте 1 карту #03 с эффектом \"НЕВИДИМОСТЬ #24\"",
+                characterType = CharacterClassType.Nightshroud.name
+            ),
+            PerkBd(
+                text = "Добавьте 3 карты с эффектом \"#07 СМЯТЕНИЕ #12\"",
+                characterType = CharacterClassType.Nightshroud.name
+            ),
+            PerkBd(
+                text = "Добавьте 3 карты с эффектом \"#07 СМЯТЕНИЕ #12\"",
+                characterType = CharacterClassType.Nightshroud.name
+            ),
+            PerkBd(
+                text = "Добавьте 2 карты с эффектом \"#07 Лечение 1\"",
+                characterType = CharacterClassType.Nightshroud.name
+            ),
+            PerkBd(
+                text = "Добавьте 2 карты с эффектом \"#07 ПРОКЛЯТЬЕ #26\"",
+                characterType = CharacterClassType.Nightshroud.name
+            ),
+            PerkBd(
+                text = "Добавьте 1 карту с эффектом \"#07 ДОБАВИТЬ ЦЕЛЬ #13\"",
+                characterType = CharacterClassType.Nightshroud.name
+            ),
+            PerkBd(
+                text = "Игнорируйте отрицательные эффекты сценариев и добавьте 2 карты #03",
+                characterType = CharacterClassType.Nightshroud.name
+            )
+        )
+    }
+
+    private suspend fun addQuartermasterPerks(
+        perksDao: PerksDao
+    ) {
+        perksDao.insertAll(
+            PerkBd(
+                text = "Уберите 2 карты #01",
+                characterType = CharacterClassType.Quartermaster.name
+            ),
+            PerkBd(
+                text = "Уберите 2 карты #01",
+                characterType = CharacterClassType.Quartermaster.name
+            ),
+            PerkBd(
+                text = "Уберите 4 карты #15",
+                characterType = CharacterClassType.Quartermaster.name
+            ),
+            PerkBd(
+                text = "Поменяйте 1 карту #15 на 1 карту #04",
+                characterType = CharacterClassType.Quartermaster.name
+            ),
+            PerkBd(
+                text = "Поменяйте 1 карту #15 на 1 карту #04",
+                characterType = CharacterClassType.Quartermaster.name
+            ),
+            PerkBd(
+                text = "Добавьте 2 карты #07 #03",
+                characterType = CharacterClassType.Quartermaster.name
+            ),
+            PerkBd(
+                text = "Добавьте 2 карты #07 #03",
+                characterType = CharacterClassType.Quartermaster.name
+            ),
+            PerkBd(
+                text = "Добавьте 3 карты с эффектом \"#07 СМЯТЕНИЕ #12\"",
+                characterType = CharacterClassType.Quartermaster.name
+            ),
+            PerkBd(
+                text = "Добавьте 2 карты с эффектом \"#07 ПРОБОЙ #09 3\"",
+                characterType = CharacterClassType.Quartermaster.name
+            ),
+            PerkBd(
+                text = "Добавьте 1 карту с эффектом \"#07 ОГЛУШЕНИЕ #10\"",
+                characterType = CharacterClassType.Quartermaster.name
+            ),
+            PerkBd(
+                text = "Добавьте 1 карту с эффектом \"#07 ДОБАВИТЬ ЦЕЛЬ #13\"",
+                characterType = CharacterClassType.Quartermaster.name
+            ),
+            PerkBd(
+                text = "Добавьте 1 карту #15 с эффектом \"Разверните 1 повернутую или потраченную карту предмета\"",
+                characterType = CharacterClassType.Quartermaster.name
+            ),
+            PerkBd(
+                text = "Добавьте 1 карту #15 с эффектом \"Разверните 1 повернутую или потраченную карту предмета\"",
+                characterType = CharacterClassType.Quartermaster.name
+            ),
+            PerkBd(
+                text = "Добавьте 1 карту #15 с эффектом \"Разверните 1 повернутую или потраченную карту предмета\"",
+                characterType = CharacterClassType.Quartermaster.name
+            ),
+            PerkBd(
+                text = "Игнорируйте отрицательные эффекты сценариев и добавьте 2 карты #03",
+                characterType = CharacterClassType.Quartermaster.name
+            )
+        )
+    }
+
+    private suspend fun addDivinerPerks(
+        perksDao: PerksDao
+    ) {
+        perksDao.insertAll(
+            PerkBd(
+                text = "Уберите 2 карты #01",
+                characterType = CharacterClassType.Diviner.name
+            ),
+            PerkBd(
+                text = "Уберите 2 карты #01",
+                characterType = CharacterClassType.Diviner.name
+            ),
+            PerkBd(
+                text = "Уберите 1 карту #02",
+                characterType = CharacterClassType.Diviner.name
+            ),
+            PerkBd(
+                text = "Поменяйте 2 карты #03 на 1 карту #05 с эффектом \"Щит 1 (на себя)\"",
+                characterType = CharacterClassType.Diviner.name
+            ),
+            PerkBd(
+                text = "Поменяйте 2 карты #03 на 1 карту #05 с эффектом \"Щит 1 (на себя)\"",
+                characterType = CharacterClassType.Diviner.name
+            ),
+            PerkBd(
+                text = "Поменяйте 1 карту #15 на 1 карту #03 с эффектом \"Щит 1 (на любого союзника)\"",
+                characterType = CharacterClassType.Diviner.name
+            ),
+            PerkBd(
+                text = "Поменяйте 1 карту #15 на 1 карту #04 #20",
+                characterType = CharacterClassType.Diviner.name
+            ),
+            PerkBd(
+                text = "Поменяйте 1 карту #15 на 1 карту #04 #19",
+                characterType = CharacterClassType.Diviner.name
+            ),
+            PerkBd(
+                text = "Поменяйте 1 карту #15 на 1 карту #05 с эффектом \"СМЯТЕНИЕ #12\"",
+                characterType = CharacterClassType.Diviner.name
+            ),
+            PerkBd(
+                text = "Поменяйте 1 карту #15 на 1 карту #04 с эффектом \"ПРОКЛЯТЬЕ #26\"",
+                characterType = CharacterClassType.Diviner.name
+            ),
+            PerkBd(
+                text = "Поменяйте 1 карту #15 на 1 карту #04 с эффектом \"РЕГЕНИРАЦИЯ (на себя)\"",
+                characterType = CharacterClassType.Diviner.name
+            ),
+            PerkBd(
+                text = "Поменяйте 1 карту #01 на 1 карту #03 с эффектом \"Лечение 2 (на любого союзника)\"",
+                characterType = CharacterClassType.Diviner.name
+            ),
+            PerkBd(
+                text = "Добавьте 2 карты с эффектом \"#07 Лечение 1 (на себя)\"",
+                characterType = CharacterClassType.Diviner.name
+            ),
+            PerkBd(
+                text = "Добавьте 2 карты с эффектом \"#07 ПРОКЛЯТЬЕ #26\"",
+                characterType = CharacterClassType.Diviner.name
+            ),
+            PerkBd(
+                text = "Игнорируйте отрицательные эффекты сценариев и добавьте 2 карты #03",
+                characterType = CharacterClassType.Diviner.name
+            )
+        )
+    }
+
+    private suspend fun addBerserkerPerks(
+        perksDao: PerksDao
+    ) {
+        perksDao.insertAll(
+            PerkBd(
+                text = "Уберите 2 карты #01",
+                characterType = CharacterClassType.Berserker.name
+            ),
+            PerkBd(
+                text = "Уберите 4 карты #15",
+                characterType = CharacterClassType.Berserker.name
+            ),
+            PerkBd(
+                text = "Поменяйте 1 карту #01 на 1 карту #03",
+                characterType = CharacterClassType.Berserker.name
+            ),
+            PerkBd(
+                text = "Поменяйте 1 карту #01 на 1 карту #03",
+                characterType = CharacterClassType.Berserker.name
+            ),
+            PerkBd(
+                text = "Поменяйте 1 карту #15 на 1 карту #07 #04",
+                characterType = CharacterClassType.Berserker.name
+            ),
+            PerkBd(
+                text = "Поменяйте 1 карту #15 на 1 карту #07 #04",
+                characterType = CharacterClassType.Berserker.name
+            ),
+            PerkBd(
+                text = "Добавьте 2 карты с эффектом \"#07 РАНА #14\"",
+                characterType = CharacterClassType.Berserker.name
+            ),
+            PerkBd(
+                text = "Добавьте 2 карты с эффектом \"#07 РАНА #14\"",
+                characterType = CharacterClassType.Berserker.name
+            ),
+            PerkBd(
+                text = "Добавьте 1 карту с эффектом \"#07 ОГЛУШЕНИЕ #10\"",
+                characterType = CharacterClassType.Berserker.name
+            ),
+            PerkBd(
+                text = "Добавьте 1 карту с эффектом \"#07 ОГЛУШЕНИЕ #10\"",
+                characterType = CharacterClassType.Berserker.name
+            ),
+            PerkBd(
+                text = "Добавьте 1 карту #03 с эффектом \"#07 ОРАЗОРУЖЕНИЕ #11\"",
+                characterType = CharacterClassType.Berserker.name
+            ),
+            PerkBd(
+                text = "Добавьте 2 карты с эффектом \"#07 Лечение 1 (на себя)\"",
+                characterType = CharacterClassType.Berserker.name
+            ),
+            PerkBd(
+                text = "Добавьте 1 карту #04 #22",
+                characterType = CharacterClassType.Berserker.name
+            ),
+            PerkBd(
+                text = "Добавьте 1 карту #04 #22",
+                characterType = CharacterClassType.Berserker.name
+            ),
+            PerkBd(
+                text = "Игнорируйте негативные эффекты предметов",
+                characterType = CharacterClassType.Berserker.name
+            ),
         )
     }
 }

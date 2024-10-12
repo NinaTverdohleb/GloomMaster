@@ -35,4 +35,5 @@ fun CharacterClassType.toImage() = when(this) {
     CharacterClassType.Scoundrel -> R.drawable.sc
     CharacterClassType.Quartermaster -> R.drawable.qm
     CharacterClassType.Diviner -> R.drawable.dr
+    CharacterClassType.Berserker -> R.drawable.be
 }
