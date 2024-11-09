@@ -111,6 +111,7 @@ private fun GoodItem(
     GoodDetailsDialog(
         goodNumber = good.number,
         showDialog = showDetailsDialog,
+        isAction = false, //TODO продать
         onDismiss = { showDetailsDialog = false }
     )
     Row(

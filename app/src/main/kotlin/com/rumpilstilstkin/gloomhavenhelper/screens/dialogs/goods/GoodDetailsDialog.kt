@@ -36,10 +36,11 @@ import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
 fun GoodDetailsDialog(
     goodNumber: Int,
     showDialog: Boolean,
-    canAdd: Boolean = false,
     onAdd: (Int) -> Unit = {},
     modifier: Modifier = Modifier,
     onDismiss: () -> Unit = {},
+    buttonText: String = "Добавть",
+    isAction: Boolean = true,
 ) {
     if (!showDialog) return
 
@@ -54,7 +55,9 @@ fun GoodDetailsDialog(
 
             ) {
                 Column(
-                    modifier = Modifier.padding(16.dp).align(Alignment.CenterHorizontally),
+                    modifier = Modifier
+                        .padding(16.dp)
+                        .align(Alignment.CenterHorizontally),
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     Image(
@@ -66,14 +69,14 @@ fun GoodDetailsDialog(
                         painter = painterResource(id = goodNumber.toGoodImage()),
                         contentDescription = null
                     )
-                    if (canAdd) {
+                    if(isAction) {
                         Button(
                             modifier = Modifier
                                 .padding(top = 16.dp)
                                 .width(240.dp),
                             onClick = { onAdd(goodNumber) }
                         ) {
-                            Text("Добавить")
+                            Text(buttonText)
                         }
                     }
                 }
@@ -240,18 +243,6 @@ private fun GoodDetailsDialogPreview() {
         GoodDetailsDialog(
             goodNumber = 19,
             showDialog = true
-        )
-    }
-}
-
-@Preview
-@Composable
-private fun GoodDetailsDialogWithButtonPreview() {
-    GloomhavenHalperTheme {
-        GoodDetailsDialog(
-            goodNumber = 1,
-            showDialog = true,
-            canAdd = true
         )
     }
 }

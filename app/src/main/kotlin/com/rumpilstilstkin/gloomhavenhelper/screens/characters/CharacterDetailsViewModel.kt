@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.rumpilstilstkin.gloomhavenhelper.R
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.CharacterClassType
-import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.characters.GetCharacterGeneralInfoUseCase
+import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.characters.GetCharacterGeneralInfoFlowUseCase
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.CharacterClassUI
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.CharacterUI
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.toUi
@@ -20,7 +20,7 @@ import kotlinx.coroutines.flow.stateIn
 @HiltViewModel(assistedFactory = CharacterDetailsViewModel.Factory::class)
 class CharacterDetailsViewModel @AssistedInject constructor(
     @Assisted val id: Int,
-    getCharacterUseCase: GetCharacterGeneralInfoUseCase,
+    getCharacterUseCase: GetCharacterGeneralInfoFlowUseCase,
 ) : ViewModel() {
 
     val uiState: StateFlow<CharacterUI> = getCharacterUseCase(id).map {
