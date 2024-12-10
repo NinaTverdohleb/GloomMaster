@@ -1,10 +1,9 @@
-package com.rumpilstilstkin.gloomhavenhelper.screens.characters.items.add
+package com.rumpilstilstkin.gloomhavenhelper.screens.characters.goods.add
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.Good
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.GoodType
-import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.characters.GetCharacterGeneralInfoFlowUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.characters.GetCharacterGeneralInfoUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.characters.goods.AddGoodForCharacterUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.characters.goods.BuyGoodForCharacterUseCase
@@ -21,7 +20,6 @@ import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
@@ -32,7 +30,7 @@ class AddGoodsScreenViewModel @AssistedInject constructor(
     private val addCharacterGoodsUseCase: AddGoodForCharacterUseCase,
     private val buyGoodForCharacterUseCase: BuyGoodForCharacterUseCase,
     private val getGodsForCharacterUseCase: GetAvaliableCharacterGoodsUseCase,
-    private val getCharacterGeneralInfoUseCase: GetCharacterGeneralInfoUseCase
+    private val getCharacterGeneralInfoUseCase: GetCharacterGeneralInfoUseCase,
 ) : ViewModel() {
 
     private val logicState: MutableStateFlow<AddGoodsScreenLogicState> = MutableStateFlow(

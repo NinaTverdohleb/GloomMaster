@@ -11,7 +11,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
 import com.rumpilstilstkin.gloomhavenhelper.screens.characters.CharacterDetailsScreen
-import com.rumpilstilstkin.gloomhavenhelper.screens.characters.items.add.AddGoodsScreen
+import com.rumpilstilstkin.gloomhavenhelper.screens.characters.goods.add.AddGoodsScreen
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.ScenarioScreen
 import com.rumpilstilstkin.gloomhavenhelper.screens.start.StartScreen
 import com.rumpilstilstkin.gloomhavenhelper.screens.teem.create.TeamCreateScreen

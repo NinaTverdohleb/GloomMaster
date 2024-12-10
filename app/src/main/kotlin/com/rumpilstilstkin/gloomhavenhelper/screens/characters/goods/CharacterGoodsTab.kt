@@ -1,4 +1,4 @@
-package com.rumpilstilstkin.gloomhavenhelper.screens.characters.items
+package com.rumpilstilstkin.gloomhavenhelper.screens.characters.goods
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -33,7 +33,6 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import com.rumpilstilstkin.gloomhavenhelper.navigation.GlHelperScreens
-import com.rumpilstilstkin.gloomhavenhelper.screens.characters.items.add.AddGoodsScreen
 import com.rumpilstilstkin.gloomhavenhelper.screens.dialogs.goods.GoodDetailsDialog
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.GoodUi
 import com.rumpilstilstkin.gloomhavenhelper.ui.icons.GloomhavenIcons
@@ -61,6 +60,9 @@ fun CharacterItemsTab(
         },
         addGoods = {
             navController.navigate(GlHelperScreens.AddGoodsForCharacter(characterId))
+        },
+        onSell = {
+            viewModel.onAction(CharacterItemsTabActions.SellGood(it))
         }
     )
 }
@@ -70,7 +72,8 @@ fun CharacterGoods(
     goods: List<GoodUi>,
     modifier: Modifier = Modifier,
     onGoodDelete: (Int) -> Unit,
-    addGoods: () -> Unit
+    addGoods: () -> Unit,
+    onSell: (Int) -> Unit
 ) {
     Scaffold(
         floatingActionButton = {
@@ -88,7 +91,8 @@ fun CharacterGoods(
                 items(goods) { good ->
                     GoodItem(
                         good = good,
-                        onDelete = onGoodDelete
+                        onDelete = onGoodDelete,
+                        onSell = onSell
                     )
                     HorizontalDivider(
                         modifier = Modifier.padding(horizontal = 12.dp),
@@ -106,13 +110,16 @@ private fun GoodItem(
     good: GoodUi,
     modifier: Modifier = Modifier,
     onDelete: (Int) -> Unit,
+    onSell: (Int) -> Unit
 ) {
     var showDetailsDialog by remember { mutableStateOf(false) }
     GoodDetailsDialog(
         goodNumber = good.number,
         showDialog = showDetailsDialog,
-        isAction = false, //TODO продать
-        onDismiss = { showDetailsDialog = false }
+        isAction = true,
+        buttonText = "Продать",
+        onDismiss = { showDetailsDialog = false },
+        onAction = { onSell(good.id) }
     )
     Row(
         modifier = modifier
@@ -180,7 +187,8 @@ private fun CharacterItemsTabExample() {
                 )
             ),
             onGoodDelete = {},
-            addGoods = {}
+            addGoods = {},
+            onSell = {},
         )
     }
 }

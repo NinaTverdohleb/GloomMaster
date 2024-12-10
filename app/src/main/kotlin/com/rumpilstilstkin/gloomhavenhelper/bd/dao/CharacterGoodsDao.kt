@@ -19,6 +19,10 @@ interface CharacterGoodsDao {
     @Query("SELECT * FROM CharacterGoodBd WHERE characterId LIKE :characterId")
     suspend fun getCharacterGoods(characterId: Int): List<CharacterGoodDetailsBd>
 
+    @Transaction
+    @Query("SELECT * FROM CharacterGoodBd WHERE id LIKE :characterGoodId")
+    suspend fun getCharacterGoodById(characterGoodId: Int): CharacterGoodDetailsBd
+
     @Insert
     suspend fun insert(characterGood: CharacterGoodBd)
 

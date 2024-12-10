@@ -8,7 +8,7 @@ class DeleteCharacterGoodsUseCase @Inject constructor(
 ) {
 
     suspend operator fun invoke(characterGoodId: Int) {
-        characterRepository.deleteCharacterGood(characterGoodId)
+        characterRepository.deleteCharacterGood( characterGoodId = characterGoodId)
     }
 
 }

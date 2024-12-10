@@ -36,8 +36,6 @@ class CharacterRepository @Inject constructor(
         perks.map { it.toDomain() }
     }
 
-    suspend fun getCharacterPerks(characterId: Int) = characterPerksDao.getCharacterPerks(characterId).map { it.toDomain() }
-
     suspend fun addCharacterGood(characterId: Int, goodId: Int) {
         characterGoodsDao.insert(CharacterGoodBd(characterId = characterId, goodId = goodId))
 
@@ -52,6 +50,8 @@ class CharacterRepository @Inject constructor(
     }
 
     suspend fun getCharacterGoods(characterId: Int) = characterGoodsDao.getCharacterGoods(characterId).map { it.toDomain() }
+
+    suspend fun getCharacterGood(characterGoodId: Int) = characterGoodsDao.getCharacterGoodById(characterGoodId = characterGoodId).toDomain()
 
     fun getCharacterByTeamId(teamId: Int): Flow<List<CharacterInfo>> =
         characterDao.findByTeamIdFlow(teamId).map { list ->

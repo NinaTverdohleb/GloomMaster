@@ -1,4 +1,4 @@
-package com.rumpilstilstkin.gloomhavenhelper.screens.characters.items.add.components
+package com.rumpilstilstkin.gloomhavenhelper.screens.characters.goods.add.components
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -38,7 +38,7 @@ fun GoodItem(
         goodNumber = good.number,
         showDialog = showDetailsDialog,
         onDismiss = { showDetailsDialog = false },
-        onAdd = {
+        onAction = {
             onActionClick(good)
             showDetailsDialog = false
         },

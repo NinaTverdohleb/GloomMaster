@@ -1,9 +1,10 @@
-package com.rumpilstilstkin.gloomhavenhelper.screens.characters.items
+package com.rumpilstilstkin.gloomhavenhelper.screens.characters.goods
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.characters.goods.DeleteCharacterGoodsUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.characters.goods.GetCharacterGoodsUseCase
+import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.characters.goods.SellGoodCharacterUseCase
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.GoodUi
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.toUi
 import dagger.assisted.Assisted
@@ -20,7 +21,8 @@ import kotlinx.coroutines.launch
 class CharacterItemsTabViewModel @AssistedInject constructor(
     @Assisted val id: Int,
     getCharacterGoodsUseCase: GetCharacterGoodsUseCase,
-    private val deleteCharacterGoodsUseCase: DeleteCharacterGoodsUseCase
+    private val deleteCharacterGoodsUseCase: DeleteCharacterGoodsUseCase,
+    private val sellGoodCharacterUseCase: SellGoodCharacterUseCase,
 ) : ViewModel() {
 
     val uiState: StateFlow<List<GoodUi>> = getCharacterGoodsUseCase(id).map { item ->
@@ -35,7 +37,13 @@ class CharacterItemsTabViewModel @AssistedInject constructor(
         viewModelScope.launch {
             when (action) {
                 is CharacterItemsTabActions.DeleteGood -> {
-                    deleteCharacterGoodsUseCase(action.characterGoodId)
+                    deleteCharacterGoodsUseCase(
+                        characterGoodId = action.characterGoodId
+                    )
+                }
+
+                is CharacterItemsTabActions.SellGood -> {
+                    sellGoodCharacterUseCase(characterId = id, characterGoodId = action.characterGoodId)
                 }
             }
         }
@@ -49,4 +57,5 @@ class CharacterItemsTabViewModel @AssistedInject constructor(
 
 sealed interface CharacterItemsTabActions {
     data class DeleteGood(val characterGoodId: Int) : CharacterItemsTabActions
+    data class SellGood(val characterGoodId: Int) : CharacterItemsTabActions
 }

@@ -1,4 +1,4 @@
-package com.rumpilstilstkin.gloomhavenhelper.screens.characters.items.add
+package com.rumpilstilstkin.gloomhavenhelper.screens.characters.goods.add
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -22,10 +22,10 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.GoodType
-import com.rumpilstilstkin.gloomhavenhelper.screens.characters.items.add.components.AddGoodsStatusRow
-import com.rumpilstilstkin.gloomhavenhelper.screens.characters.items.add.components.GoodFilters
-import com.rumpilstilstkin.gloomhavenhelper.screens.characters.items.add.components.GoodItem
-import com.rumpilstilstkin.gloomhavenhelper.screens.characters.items.add.components.SelectedGoodsView
+import com.rumpilstilstkin.gloomhavenhelper.screens.characters.goods.add.components.AddGoodsStatusRow
+import com.rumpilstilstkin.gloomhavenhelper.screens.characters.goods.add.components.GoodFilters
+import com.rumpilstilstkin.gloomhavenhelper.screens.characters.goods.add.components.GoodItem
+import com.rumpilstilstkin.gloomhavenhelper.screens.characters.goods.add.components.SelectedGoodsView
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.GoodUi
 import com.rumpilstilstkin.gloomhavenhelper.ui.icons.GloomhavenIcons
 import com.rumpilstilstkin.gloomhavenhelper.ui.icons.goods.Foot

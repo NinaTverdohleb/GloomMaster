@@ -1,13 +1,10 @@
 package com.rumpilstilstkin.gloomhavenhelper.screens.characters.perks
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.characters.perks.AddPerksForCharacterUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.characters.perks.DeleteCharacterPerkUseCase
-import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.characters.perks.GetAvaliableCharacterPerksUseCase
-import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.characters.perks.GetCharacterPerksUseCase
-import com.rumpilstilstkin.gloomhavenhelper.screens.models.GoodUi
+import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.characters.perks.GetCharacterPerksInfoUseCase
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.toUi
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
@@ -20,21 +17,19 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
-
 @HiltViewModel(assistedFactory = CharacterPerksTabViewModel.Factory::class)
 class CharacterPerksTabViewModel @AssistedInject constructor(
     @Assisted val id: Int,
-    getCharacterPerksUseCase: GetCharacterPerksUseCase,
-    private val getAvaliableCharacterPerksUseCase: GetAvaliableCharacterPerksUseCase,
+    getCharacterPerksInfoUseCase: GetCharacterPerksInfoUseCase,
     private val deleteCharacterPerksUseCase: DeleteCharacterPerkUseCase,
     private val addCharacterPerksUseCase: AddPerksForCharacterUseCase
 ) : ViewModel() {
 
-    val uiState: StateFlow<CharacterPerksScreenState> = getCharacterPerksUseCase(id).map {
+    val uiState: StateFlow<CharacterPerksScreenState> = getCharacterPerksInfoUseCase(id).map { info ->
         CharacterPerksScreenState(
-            characterPerks = it.map { perk -> perk.toUi() }.sortedBy { id }.toImmutableList(),
-            avaliablePerks = getAvaliableCharacterPerksUseCase(id, it).map { perk -> perk.toUi() }
-                .toImmutableList()
+            characterPerks = info.characterPerks.map { perk -> perk.toUi() }.sortedBy { id }.toImmutableList(),
+            avaliablePerks = info.avaliablePerks.map { perk -> perk.toUi() }.sortedBy { id }.toImmutableList(),
+            avaliablePerksCount = info.avaliablePerksCount
         )
     }.stateIn(
         scope = viewModelScope,

@@ -1,4 +1,4 @@
-package com.rumpilstilstkin.gloomhavenhelper.screens.characters.items.add.components
+package com.rumpilstilstkin.gloomhavenhelper.screens.characters.goods.add.components
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -19,7 +19,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.GoodType
-import com.rumpilstilstkin.gloomhavenhelper.screens.characters.items.add.AddGoodsScreenActions
+import com.rumpilstilstkin.gloomhavenhelper.screens.characters.goods.add.AddGoodsScreenActions
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.toImage
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
 
