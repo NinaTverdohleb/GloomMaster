@@ -12,5 +12,7 @@ import javax.inject.Inject
 class AddCharactersDialogViewModel @Inject constructor(
     private val classRepository: ClassRepository,
 ) : ViewModel() {
+
+    // TODO flow
    val classes: List<CharacterClassUI> = runBlocking { classRepository.getAllClasses().map { it.toUi() } }
 }

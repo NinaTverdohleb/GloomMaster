@@ -22,12 +22,17 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.CharacterClassType
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.quest.QuestReward
+import com.rumpilstilstkin.gloomhavenhelper.screens.dialogs.quests.QuestDetailsDialog
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.CharacterTaskItemUI
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.PersonalQuestUI
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.QuestTaskPhaseUI
@@ -38,38 +43,46 @@ import kotlinx.collections.immutable.persistentListOf
 
 @Composable
 fun PersonalQuestView(
-    task: PersonalQuestUI,
+    quest: PersonalQuestUI,
     onRetire: () -> Unit,
     onTaskCheckedChange: (Int) -> Unit,
-    onQuestDetails: (PersonalQuestUI) -> Unit,
+    selectNewQuest: () -> Unit,
     onTaskCountChanged: (Int, Int) -> Unit,
     modifier: Modifier = Modifier
 ) {
+
+    var showDetailsDialog by remember { mutableStateOf(false) }
+    QuestDetailsDialog(
+        quest = quest,
+        showDialog = showDetailsDialog,
+        onAction = { selectNewQuest() },
+        onDismiss = { showDetailsDialog = false },
+        buttonText = "Сменить"
+    )
+
     Column(
         modifier = modifier
             .fillMaxWidth()
-            .clickable { onQuestDetails(task) },
+            .clickable { showDetailsDialog = true },
     ) {
         Row(
             verticalAlignment = Alignment.CenterVertically
         ) {
             Text(
-                text = "# ${task.id}",
+                text = "# ${quest.id}",
                 style = MaterialTheme.typography.headlineSmall,
-                color = MaterialTheme.colorScheme.onPrimary
             )
             Spacer(
                 modifier = Modifier.width(16.dp)
             )
             Text(
                 modifier = Modifier.weight(1f),
-                text = task.title,
+                text = quest.title,
                 style = MaterialTheme.typography.headlineSmall,
-                color = MaterialTheme.colorScheme.onPrimary
             )
             IconButton(
                 onClick = onRetire,
-                enabled = task.completed
+                enabled = quest.completed
             ) {
                 Icon(
                     modifier = Modifier.size(32.dp),
@@ -80,7 +93,7 @@ fun PersonalQuestView(
             }
         }
 
-        task.phases.forEach { phase ->
+        quest.phases.forEach { phase ->
             if (phase.visible) {
                 phase.tasks.forEach { task ->
                     when (task) {
@@ -185,7 +198,7 @@ private fun CountTask(
 private fun PersonalQuestViewPreview() {
     GloomhavenHalperTheme {
         PersonalQuestView(
-            task = PersonalQuestUI(
+            quest = PersonalQuestUI(
                 id = "511",
                 title = "title",
                 description = "description",
@@ -220,7 +233,7 @@ private fun PersonalQuestViewPreview() {
                 )
             ),
             onRetire = {},
-            onQuestDetails = {},
+            selectNewQuest = {},
             onTaskCheckedChange = {},
             onTaskCountChanged = {i, k -> }
         )

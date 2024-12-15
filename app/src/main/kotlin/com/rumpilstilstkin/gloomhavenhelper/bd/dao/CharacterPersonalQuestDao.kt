@@ -1,6 +1,7 @@
 package com.rumpilstilstkin.gloomhavenhelper.bd.dao
 
 import androidx.room.Dao
+import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Transaction
@@ -19,6 +20,9 @@ interface CharacterPersonalQuestDao {
     suspend fun insert(characterPerk: CharacterPersonalQuestBd)
 
     @Transaction
-    @Query("DELETE FROM CharacterPersonalQuestBd WHERE id LIKE :characterQuestId")
-    suspend fun deleteById(characterQuestId: Int)
+    @Query("DELETE FROM CharacterPersonalQuestBd WHERE questId LIKE :questId")
+    suspend fun deleteById(questId: Int)
+
+    @Query("DELETE FROM CharacterPersonalQuestBd WHERE characterId LIKE :characterId")
+    suspend fun deleteByCharacterId(characterId: Int)
 }

@@ -15,4 +15,6 @@ sealed interface GlHelperScreens {
     data class CharacterDetails(val characterId: Int): GlHelperScreens
     @Serializable
     data class AddGoodsForCharacter(val characterId: Int): GlHelperScreens
+    @Serializable
+    data class SearchPersonalQuest(val characterId: Int): GlHelperScreens
 }

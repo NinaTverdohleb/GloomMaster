@@ -61,7 +61,7 @@ fun CharacterDetailsScreen(
         teamName = uiState.teamName ?: "Укажите команду...",
         level = uiState.level,
         modifier = modifier,
-        showFirstTab = { CharacterGeneralTab(characterId) },
+        showFirstTab = { CharacterGeneralTab(characterId, navController) },
         showSecondTab = { CharacterItemsTab(characterId, navController) },
         showThirdTab = { CharacterPerksTab(characterId) },
         onNameClick = { /*viewModel.onAction(CharacterDetailsActions.EditName)*/ },

@@ -41,6 +41,11 @@ fun GoodFilters(
                 onAction(AddGoodsScreenActions.SelectFilter(it))
             }
             FilterButton(
+                type = GoodType.Head,
+                selectedFilter = filterType,
+                onSelectedChanged = selectedFilter
+            )
+            FilterButton(
                 type = GoodType.Foot,
                 selectedFilter = filterType,
                 onSelectedChanged = selectedFilter

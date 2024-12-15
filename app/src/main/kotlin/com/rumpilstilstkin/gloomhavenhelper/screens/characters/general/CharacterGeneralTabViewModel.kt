@@ -9,13 +9,17 @@ import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.characters.GetCharact
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.characters.LevelUpUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.characters.UpdateGoldUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.characters.UpdateNotesUseCase
+import com.rumpilstilstkin.gloomhavenhelper.navigation.GlHelperScreens
+import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEvent
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.toUI
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
@@ -31,6 +35,9 @@ class CharacterGeneralTabViewModel @AssistedInject constructor(
     private val checkedChangeUseCase: CheckedChangeUseCase,
     private val updateNotesUseCase: UpdateNotesUseCase,
 ) : ViewModel() {
+
+    private val _navigationEvents = MutableSharedFlow<GlHelperEvent>()
+    val navigationEvents = _navigationEvents.asSharedFlow()
 
     val uiState: StateFlow<CharacterGeneralTabState> = getCharacterUseCase(id).map {
         CharacterGeneralTabState(
@@ -78,11 +85,18 @@ class CharacterGeneralTabViewModel @AssistedInject constructor(
                     updateNotesUseCase.invoke(id, action.notice)
                 }
 
-                GeneralTabActions.ChoosePersonalQuest -> TODO()
-                is GeneralTabActions.QuestDetails -> TODO()
-                GeneralTabActions.Retire -> TODO()
-                is GeneralTabActions.TaskCheckedChange -> TODO()
-                is GeneralTabActions.TaskCountChanged -> TODO()
+                GeneralTabActions.ChoosePersonalQuest -> {
+                    _navigationEvents.emit(GlHelperEvent.Screen(GlHelperScreens.SearchPersonalQuest(id)))
+                }
+                GeneralTabActions.Retire -> {
+
+                }
+                is GeneralTabActions.TaskCheckedChange -> {
+
+                }
+                is GeneralTabActions.TaskCountChanged -> {
+
+                }
             }
         }
     }

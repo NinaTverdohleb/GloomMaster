@@ -87,7 +87,10 @@ fun QuestDetailsDialog(
                             modifier = Modifier
                                 .padding(top = 16.dp)
                                 .width(240.dp),
-                            onClick = { onAction(quest.id) }
+                            onClick = {
+                                onAction(quest.id)
+                                onDismiss()
+                            }
                         ) {
                             Text(buttonText)
                         }

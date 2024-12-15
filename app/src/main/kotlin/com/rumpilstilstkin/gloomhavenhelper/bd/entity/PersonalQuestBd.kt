@@ -13,5 +13,4 @@ data class PersonalQuestBd(
     val specialText: String,
     val characterType: String?,
     val tasks: List<CharacterTaskItem>,
-    val isRecyclable: Boolean,
 )

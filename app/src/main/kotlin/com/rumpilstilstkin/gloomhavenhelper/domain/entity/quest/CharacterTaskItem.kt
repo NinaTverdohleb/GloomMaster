@@ -9,6 +9,9 @@ import kotlinx.serialization.encoding.Decoder
 import kotlinx.serialization.encoding.Encoder
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonDecoder
+import kotlinx.serialization.json.JsonEncoder
+import kotlinx.serialization.json.JsonObject
+import kotlinx.serialization.json.JsonPrimitive
 import kotlinx.serialization.json.jsonObject
 import kotlinx.serialization.json.jsonPrimitive
 
@@ -38,7 +41,8 @@ sealed interface CharacterTaskItem {
         override val priority: Int,
         val text: String,
         val count: Int = 0,
-        val currentCount: Int = 0
+        val currentCount: Int = 0,
+        val step: Int = 1,
     ) : CharacterTaskItem {
         override val completed: Boolean
             get() = count <= currentCount
@@ -56,11 +60,21 @@ sealed interface CharacterTaskItem {
         }
         override val descriptor: SerialDescriptor
             get() = PolymorphicSerializer(CharacterTaskItem::class).descriptor
+
         override fun serialize(encoder: Encoder, value: CharacterTaskItem) {
-            when (value) {
-                is Check -> encoder.encodeSerializableValue(Check.serializer(), value)
-                is Count -> encoder.encodeSerializableValue(Count.serializer(), value)
-            }
+            require(encoder is JsonEncoder) { "This class can be serialized only by Json" }
+
+            // Сериализуем объект в JsonObject
+            val jsonObject = when (value) {
+                is Check -> encoder.json.encodeToJsonElement(Check.serializer(), value).jsonObject
+                is Count -> encoder.json.encodeToJsonElement(Count.serializer(), value).jsonObject
+            }.toMutableMap()
+
+            // Добавляем поле "type"
+            jsonObject["type"] = JsonPrimitive(value.type)
+
+            // Сериализуем JsonObject обратно
+            encoder.encodeJsonElement(JsonObject(jsonObject))
         }
 
         override fun deserialize(decoder: Decoder): CharacterTaskItem {

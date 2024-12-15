@@ -29,6 +29,7 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -41,7 +42,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.rumpilstilstkin.gloomhavenhelper.bd.dao.PersonalQuestDao
+import androidx.navigation.NavHostController
+import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEventHelper
 import com.rumpilstilstkin.gloomhavenhelper.screens.characters.general.components.PersonalQuestView
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.PersonalQuestUI
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
@@ -50,6 +52,7 @@ import com.rumpilstilstkin.gloomhavenhelper.ui.view.NumberPicker
 @Composable
 fun CharacterGeneralTab(
     characterId: Int,
+    navController: NavHostController,
     modifier: Modifier = Modifier
 ) {
     val viewModel =
@@ -57,6 +60,17 @@ fun CharacterGeneralTab(
             factory.create(characterId)
         }
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+
+    val navigationEvents by viewModel.navigationEvents.collectAsStateWithLifecycle(initialValue = null)
+
+    LaunchedEffect(navigationEvents) {
+        navigationEvents?.let { event ->
+            GlHelperEventHelper.event(
+                event = event,
+                navController = navController
+            )
+        }
+    }
 
     CharacterGeneralTabContent(
         content = uiState,
@@ -103,7 +117,6 @@ fun CharacterGeneralTabContent(
             personalQuest = content.personalQuest,
             onRetire = { onAction(GeneralTabActions.Retire) },
             onTaskCheckedChange = { onAction(GeneralTabActions.TaskCheckedChange(it)) },
-            onQuestDetails = { onAction(GeneralTabActions.QuestDetails(it)) },
             onTaskCountChanged = { i, k -> onAction(GeneralTabActions.TaskCountChanged(i, k)) },
             choosePersonalQuest = { onAction(GeneralTabActions.ChoosePersonalQuest) },
         )
@@ -139,7 +152,6 @@ fun PersonalQuest(
     personalQuest: PersonalQuestUI?,
     onRetire: () -> Unit,
     onTaskCheckedChange: (Int) -> Unit,
-    onQuestDetails: (PersonalQuestUI) -> Unit,
     onTaskCountChanged: (Int, Int) -> Unit,
     choosePersonalQuest: () -> Unit,
     modifier: Modifier = Modifier
@@ -164,9 +176,9 @@ fun PersonalQuest(
             }
         } else {
             PersonalQuestView(
-                task = personalQuest,
+                quest = personalQuest,
                 onRetire = onRetire,
-                onQuestDetails = onQuestDetails,
+                selectNewQuest = choosePersonalQuest,
                 onTaskCheckedChange = onTaskCheckedChange,
                 onTaskCountChanged = onTaskCountChanged
             )
