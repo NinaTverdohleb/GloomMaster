@@ -12,7 +12,7 @@ class SellGoodCharacterUseCase @Inject constructor(
         val character = characterRepository.getCharacterById(characterId)
         val good = characterRepository.getCharacterGood(characterGoodId)
         deleteCharacterGoodsUseCase.invoke(characterGoodId = characterGoodId)
-        characterRepository.updateGold(characterId, character.gold + good.cost.div(2))
+        characterRepository.updateGold(characterId, character.goldCount + good.cost.div(2))
         return Result.success(Unit)
     }
 }

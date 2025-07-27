@@ -14,8 +14,8 @@ class BuyGoodForCharacterUseCase @Inject constructor(
 
         val goodsCost = goods.sumOf { it.cost }
 
-        if (goodsCost > character.gold) {
-            Log.d("Dto", "Не хватает денег, нужно $goodsCost, у вас ${character.gold}")
+        if (goodsCost > character.goldCount) {
+            Log.d("Dto", "Не хватает денег, нужно $goodsCost, у вас ${character.goldCount}")
             return Result.failure(Exception())
         }
 
@@ -26,7 +26,7 @@ class BuyGoodForCharacterUseCase @Inject constructor(
             )
         }
 
-        characterRepository.updateGold(characterId, character.gold - goodsCost)
+        characterRepository.updateGold(characterId, character.goldCount - goodsCost)
         return Result.success(Unit)
     }
 

@@ -26,10 +26,10 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.CharacterClassType
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.quest.CharacterTaskItem
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.quest.QuestReward
 import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEventHelper
 import com.rumpilstilstkin.gloomhavenhelper.screens.characters.quests.components.PersonalQuestItem
-import com.rumpilstilstkin.gloomhavenhelper.screens.models.CharacterTaskItemUI
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.PersonalQuestUI
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.QuestTaskPhaseUI
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
@@ -138,9 +138,9 @@ private fun SearchQuestPreview() {
                                 QuestTaskPhaseUI(
                                     priority = 0,
                                     tasks = persistentListOf(
-                                        CharacterTaskItemUI.Count(
+                                        CharacterTaskItem.Count(
                                             priority = 0,
-                                            title = "Пройдите три сценария с названием Склеп",
+                                            text = "Пройдите три сценария с названием Склеп",
                                             count = 3,
                                             currentCount = 0,
                                             id = 1
@@ -150,9 +150,9 @@ private fun SearchQuestPreview() {
                                 QuestTaskPhaseUI(
                                     priority = 1,
                                     tasks = persistentListOf(
-                                        CharacterTaskItemUI.Check(
+                                        CharacterTaskItem.Check(
                                             priority = 1,
-                                            title = "Откройте и пройдите полностью сенарий \"Жуткий погреб\"",
+                                            text = "Откройте и пройдите полностью сенарий \"Жуткий погреб\"",
                                             id = 2
                                         )
                                     )

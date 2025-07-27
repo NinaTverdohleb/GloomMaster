@@ -8,13 +8,16 @@ import com.rumpilstilstkin.gloomhavenhelper.domain.entity.quest.CharacterPersona
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
-class QuestsRepository  @Inject constructor(
+class QuestsRepository @Inject constructor(
     private val personalQuestDao: PersonalQuestDao,
     private val characterPersonalQuestDao: CharacterPersonalQuestDao
 ) {
     fun getQuestsFlow() = personalQuestDao.getQuestsFlow().map { it.map { it.toDomain() } }
 
     suspend fun getQuestById(questId: String) = personalQuestDao.getQuest(questId).toDomain()
+
+    suspend fun getCharacterQuestById(characterId: Int): CharacterPersonalQuest? =
+        characterPersonalQuestDao.getCharacterQuestById(characterId)?.toDomain()
 
     suspend fun setQuestForCharacter(quest: CharacterPersonalQuest, characterId: Int) {
         characterPersonalQuestDao.insert(
@@ -26,5 +29,14 @@ class QuestsRepository  @Inject constructor(
         )
     }
 
-    suspend fun deleteCharacterQuests(characterId: Int) = characterPersonalQuestDao.deleteByCharacterId(characterId)
+    suspend fun updateCharacterQuest(quest: CharacterPersonalQuest, characterId: Int) {
+        deleteCharacterQuests(characterId)
+        setQuestForCharacter(
+            quest = quest,
+            characterId = characterId
+        )
+    }
+
+    suspend fun deleteCharacterQuests(characterId: Int) =
+        characterPersonalQuestDao.deleteByCharacterId(characterId)
 }

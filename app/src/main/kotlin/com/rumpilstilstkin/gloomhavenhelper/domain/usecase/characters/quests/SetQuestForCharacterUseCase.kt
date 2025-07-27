@@ -1,4 +1,4 @@
-package com.rumpilstilstkin.gloomhavenhelper.domain.usecase.quests
+package com.rumpilstilstkin.gloomhavenhelper.domain.usecase.characters.quests
 
 import com.rumpilstilstkin.gloomhavenhelper.data.QuestsRepository
 import javax.inject.Inject
@@ -8,7 +8,6 @@ class SetQuestForCharacterUseCase@Inject constructor(
 ) {
     suspend operator fun invoke(questId: String, characterId: Int) {
         val quest = questsRepository.getQuestById(questId)
-        questsRepository.deleteCharacterQuests(characterId)
-        questsRepository.setQuestForCharacter(quest, characterId)
+        questsRepository.updateCharacterQuest(quest, characterId)
     }
 }

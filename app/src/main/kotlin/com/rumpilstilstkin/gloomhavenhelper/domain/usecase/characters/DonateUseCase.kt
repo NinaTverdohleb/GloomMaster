@@ -8,6 +8,6 @@ class DonateUseCase @Inject constructor(
 ) {
     suspend operator fun invoke(characterId: Int) {
         val character = characterRepository.getCharacterById(characterId)
-        characterRepository.updateGold(characterId, character.gold - 10)
+        characterRepository.updateGold(characterId, character.goldCount - 10)
     }
 }

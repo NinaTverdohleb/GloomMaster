@@ -43,6 +43,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.quest.CharacterTaskItem
 import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEventHelper
 import com.rumpilstilstkin.gloomhavenhelper.screens.characters.general.components.PersonalQuestView
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.PersonalQuestUI
@@ -121,9 +122,9 @@ fun CharacterGeneralTabContent(
             choosePersonalQuest = { onAction(GeneralTabActions.ChoosePersonalQuest) },
         )
         Spacer(modifier = Modifier.height(16.dp))
-        NoticeRow(
-            notice = content.notes,
-            onNoticeChanged = { onAction(GeneralTabActions.NoticeChanged(it)) }
+        NotesRow(
+            notes = content.notes,
+            onNotesChanged = { onAction(GeneralTabActions.NotesChanged(it)) }
         )
     }
 }
@@ -151,8 +152,8 @@ fun CheckMarksBlock(
 fun PersonalQuest(
     personalQuest: PersonalQuestUI?,
     onRetire: () -> Unit,
-    onTaskCheckedChange: (Int) -> Unit,
-    onTaskCountChanged: (Int, Int) -> Unit,
+    onTaskCheckedChange: (CharacterTaskItem.Check) -> Unit,
+    onTaskCountChanged: (CharacterTaskItem.Count, Int) -> Unit,
     choosePersonalQuest: () -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -188,22 +189,22 @@ fun PersonalQuest(
 }
 
 @Composable
-fun NoticeRow(
-    notice: String,
+fun NotesRow(
+    notes: String,
     modifier: Modifier = Modifier,
-    onNoticeChanged: (String) -> Unit
+    onNotesChanged: (String) -> Unit
 ) {
 
     // add characterDialog
-    var showNoticeDialog by remember { mutableStateOf(false) }
+    var showNotesDialog by remember { mutableStateOf(false) }
 
-    NoticeDialog(
-        text = notice,
-        showDialog = showNoticeDialog,
-        onDismiss = { showNoticeDialog = false },
-        onNoticeChanged = { text ->
-            onNoticeChanged(text)
-            showNoticeDialog = false
+    NotesDialog(
+        text = notes,
+        showDialog = showNotesDialog,
+        onDismiss = { showNotesDialog = false },
+        onNotesChanged = { text ->
+            onNotesChanged(text)
+            showNotesDialog = false
         }
     )
 
@@ -215,13 +216,13 @@ fun NoticeRow(
             style = MaterialTheme.typography.titleSmall
         )
         Spacer(modifier = Modifier.height(8.dp))
-        if (notice.isNotEmpty()) {
-            Text(text = notice)
+        if (notes.isNotEmpty()) {
+            Text(text = notes)
             Spacer(modifier = Modifier.height(8.dp))
         }
         OutlinedButton(
             onClick = {
-                showNoticeDialog = true
+                showNotesDialog = true
             },
         ) {
             Text(
@@ -233,15 +234,15 @@ fun NoticeRow(
 }
 
 @Composable
-fun NoticeDialog(
+fun NotesDialog(
     text: String,
     showDialog: Boolean,
     modifier: Modifier = Modifier,
     onDismiss: () -> Unit,
-    onNoticeChanged: (String) -> Unit,
+    onNotesChanged: (String) -> Unit,
 ) {
     if (showDialog) {
-        var newNotice by rememberSaveable { mutableStateOf(text) }
+        var newNotes by rememberSaveable { mutableStateOf(text) }
 
         AlertDialog(
             modifier = modifier,
@@ -257,8 +258,8 @@ fun NoticeDialog(
                 Box {
                     OutlinedTextField(
                         modifier = Modifier.defaultMinSize(minHeight = 240.dp),
-                        value = newNotice,
-                        onValueChange = { newNotice = it },
+                        value = newNotes,
+                        onValueChange = { newNotes = it },
                         label = { Text("Заметки") }
                     )
                 }
@@ -267,7 +268,7 @@ fun NoticeDialog(
                 Button(
                     modifier = Modifier.fillMaxWidth(),
                     onClick = {
-                        onNoticeChanged.invoke(newNotice)
+                        onNotesChanged.invoke(newNotes)
                     }
                 ) {
                     Text("Сохранить")
@@ -458,13 +459,13 @@ private fun Sample() {
 
 @Preview
 @Composable
-private fun SampleNoticeDialog() {
+private fun SampleNotesDialog() {
     GloomhavenHalperTheme {
-        NoticeDialog(
+        NotesDialog(
             text = "",
             showDialog = true,
             onDismiss = { /*TODO*/ },
-            onNoticeChanged = {}
+            onNotesChanged = {}
         )
     }
 }

@@ -40,7 +40,7 @@ class AddGoodsScreenViewModel @AssistedInject constructor(
     init {
         viewModelScope.launch {
             val availableGoods = getGodsForCharacterUseCase(characterId = id)
-            val totalGold = getCharacterGeneralInfoUseCase(id).gold
+            val totalGold = getCharacterGeneralInfoUseCase(id).goldCount
             logicState.emit(
                 logicState.value.copy(
                     availableGoods = availableGoods,

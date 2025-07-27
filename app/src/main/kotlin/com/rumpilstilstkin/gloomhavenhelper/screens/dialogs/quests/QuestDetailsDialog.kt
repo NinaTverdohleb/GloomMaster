@@ -24,8 +24,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.CharacterClassType
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.quest.CharacterTaskItem
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.quest.QuestReward
-import com.rumpilstilstkin.gloomhavenhelper.screens.models.CharacterTaskItemUI
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.PersonalQuestUI
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.QuestTaskPhaseUI
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.toImage
@@ -112,7 +112,7 @@ private fun Task(
         phases.forEach { phase ->
             phase.tasks.forEach { task ->
                 Text(
-                    text = task.title,
+                    text = task.text,
                     style = MaterialTheme.typography.labelMedium
                 )
                 Spacer(
@@ -173,9 +173,9 @@ private fun GoodDetailsDialogPreview() {
                     QuestTaskPhaseUI(
                         priority = 0,
                         tasks = persistentListOf(
-                            CharacterTaskItemUI.Count(
+                            CharacterTaskItem.Count(
                                 priority = 0,
-                                title = "Пройдите три сценария с названием Склеп",
+                                text = "Пройдите три сценария с названием Склеп",
                                 count = 3,
                                 currentCount = 0,
                                 id = 1
@@ -185,9 +185,9 @@ private fun GoodDetailsDialogPreview() {
                     QuestTaskPhaseUI(
                         priority = 1,
                         tasks = persistentListOf(
-                            CharacterTaskItemUI.Check(
+                            CharacterTaskItem.Check(
                                 priority = 1,
-                                title = "Откройте и пройдите полностью сенарий \"Жуткий погреб\"",
+                                text = "Откройте и пройдите полностью сенарий \"Жуткий погреб\"",
                                 id = 2
                             )
                         )

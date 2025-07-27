@@ -1,7 +1,9 @@
 package com.rumpilstilstkin.gloomhavenhelper.screens.characters.general
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.quest.CharacterTaskItem
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.characters.MarksCheckedChangeUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.characters.DonateUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.characters.ExperienceChangeUseCase
@@ -9,6 +11,7 @@ import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.characters.GetCharact
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.characters.LevelUpUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.characters.UpdateGoldUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.characters.UpdateNotesUseCase
+import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.characters.quests.QuestTaskUpdateUseCase
 import com.rumpilstilstkin.gloomhavenhelper.navigation.GlHelperScreens
 import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEvent
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.toUI
@@ -34,6 +37,7 @@ class CharacterGeneralTabViewModel @AssistedInject constructor(
     private val experienceChangeUseCase: ExperienceChangeUseCase,
     private val checkedChangeUseCase: MarksCheckedChangeUseCase,
     private val updateNotesUseCase: UpdateNotesUseCase,
+    private val questTaskUpdateUseCase: QuestTaskUpdateUseCase,
 ) : ViewModel() {
 
     private val _navigationEvents = MutableSharedFlow<GlHelperEvent>()
@@ -81,21 +85,40 @@ class CharacterGeneralTabViewModel @AssistedInject constructor(
                     checkedChangeUseCase.invoke(id, action.isChecked)
                 }
 
-                is GeneralTabActions.NoticeChanged -> {
-                    updateNotesUseCase.invoke(id, action.notice)
+                is GeneralTabActions.NotesChanged -> {
+                    updateNotesUseCase.invoke(id, action.notes)
                 }
 
                 GeneralTabActions.ChoosePersonalQuest -> {
-                    _navigationEvents.emit(GlHelperEvent.Screen(GlHelperScreens.SearchPersonalQuest(id)))
+                    _navigationEvents.emit(
+                        GlHelperEvent.Screen(
+                            GlHelperScreens.SearchPersonalQuest(
+                                id
+                            )
+                        )
+                    )
                 }
+
                 GeneralTabActions.Retire -> {
 
                 }
+
                 is GeneralTabActions.TaskCheckedChange -> {
-
+                    questTaskUpdateUseCase.invoke(
+                        characterId = id,
+                        task = action.task.copy(
+                            isChecked = !action.task.isChecked
+                        )
+                    )
                 }
-                is GeneralTabActions.TaskCountChanged -> {
 
+                is GeneralTabActions.TaskCountChanged -> {
+                    questTaskUpdateUseCase.invoke(
+                        characterId = id,
+                        task = action.task.copy(
+                            currentCount = action.count
+                        )
+                    )
                 }
             }
         }

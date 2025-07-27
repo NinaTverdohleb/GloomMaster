@@ -21,12 +21,13 @@ sealed interface CharacterTaskItem {
     val type: String
     val completed: Boolean
     val priority: Int
+    val text: String
 
     @Serializable
     data class Check(
         override val id: Int,
         override val priority: Int,
-        val text: String,
+        override val text: String,
         val isChecked: Boolean = false
     ) : CharacterTaskItem {
         override val completed: Boolean
@@ -39,7 +40,7 @@ sealed interface CharacterTaskItem {
     data class Count(
         override val id: Int,
         override val priority: Int,
-        val text: String,
+        override val text: String,
         val count: Int = 0,
         val currentCount: Int = 0,
         val step: Int = 1,

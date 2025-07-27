@@ -5,6 +5,7 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Transaction
+import androidx.room.Update
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.CharacterPersonalQuestBd
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.CharacterPersonalQuestDetailsBd
 import kotlinx.coroutines.flow.Flow
@@ -19,10 +20,10 @@ interface CharacterPersonalQuestDao {
     @Insert
     suspend fun insert(characterPerk: CharacterPersonalQuestBd)
 
-    @Transaction
-    @Query("DELETE FROM CharacterPersonalQuestBd WHERE questId LIKE :questId")
-    suspend fun deleteById(questId: Int)
-
     @Query("DELETE FROM CharacterPersonalQuestBd WHERE characterId LIKE :characterId")
     suspend fun deleteByCharacterId(characterId: Int)
+
+    @Transaction
+    @Query("SELECT * FROM CharacterPersonalQuestBd WHERE characterId LIKE :characterId LIMIT 1")
+    suspend fun getCharacterQuestById(characterId: Int): CharacterPersonalQuestDetailsBd?
 }

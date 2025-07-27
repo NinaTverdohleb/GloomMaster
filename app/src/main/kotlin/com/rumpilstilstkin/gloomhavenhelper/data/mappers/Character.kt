@@ -29,8 +29,8 @@ fun CharacterBd.toDomain(
     id = this.characterId,
     team = team,
     experience = this.experience,
-    gold = this.goldCount,
-    checkMarks = this.checkMarkCount,
+    goldCount = this.goldCount,
+    checkMarkCount = this.checkMarkCount,
     notes = this.notes
 )
 
@@ -43,7 +43,7 @@ fun CharacterBd.toShortDomain(
     id = this.characterId,
     teamId = this.teamId,
     experience = this.experience,
-    gold = this.goldCount,
-    checkMarks = this.checkMarkCount,
+    goldCount = this.goldCount,
+    checkMarkCount = this.checkMarkCount,
     notes = this.notes
 )

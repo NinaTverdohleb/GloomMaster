@@ -22,48 +22,9 @@ data class QuestTaskPhaseUI(
     val priority: Int,
     val completed: Boolean = false,
     val visible: Boolean = false,
-    val tasks: ImmutableList<CharacterTaskItemUI>,
+    val tasks: ImmutableList<CharacterTaskItem>,
 )
 
-sealed interface CharacterTaskItemUI {
-    val id: Int
-    val title: String
-    val priority: Int
-
-    data class Check(
-        override val id: Int,
-        override val title: String,
-        override val priority: Int,
-        val isChecked: Boolean = false,
-    ) : CharacterTaskItemUI
-
-    data class Count(
-        override val id: Int,
-        override val title: String,
-        override val priority: Int,
-        val count: Int,
-        val currentCount: Int = 0,
-    ) : CharacterTaskItemUI
-}
-
-fun CharacterTaskItem.toUI(): CharacterTaskItemUI {
-    return when (this) {
-        is CharacterTaskItem.Check -> CharacterTaskItemUI.Check(
-            id = this.id,
-            title = this.text,
-            priority = this.priority,
-            isChecked = this.isChecked
-        )
-
-        is CharacterTaskItem.Count -> CharacterTaskItemUI.Count(
-            id = this.id,
-            title = this.text,
-            priority = this.priority,
-            count = this.count,
-            currentCount = this.currentCount
-        )
-    }
-}
 
 fun CharacterPersonalQuest.toUI() = PersonalQuestUI(
     id = this.questId,
@@ -79,7 +40,7 @@ private fun List<CharacterTaskItem>.toImmutableListQuestTaskPhaseUIList() =
         QuestTaskPhaseUI(
             priority = priority,
             completed = tasks.all { it.completed },
-            tasks = tasks.map { it.toUI() }.sortedBy { it.priority }.toImmutableList()
+            tasks = tasks.map { it }.sortedBy { it.priority }.toImmutableList()
         )
     }.compile()
 
