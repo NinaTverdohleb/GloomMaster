@@ -101,7 +101,7 @@ fun CharacterGeneralTabContent(
         Spacer(modifier = Modifier.height(32.dp))
 
         GoldRow(
-            goldCount = content.gold,
+            goldCount = content.goldCount,
             isDonateAvailable = content.isDonateAvailable,
             onGoldChanged = { onAction(GeneralTabActions.GoldChanged(it)) },
             onDonate = { onAction(GeneralTabActions.Donate) }
@@ -109,7 +109,7 @@ fun CharacterGeneralTabContent(
 
         Spacer(modifier = Modifier.height(32.dp))
         CheckMarksBlock(
-            checkMarkCount = content.checkMarks,
+            checkMarkCount = content.checkMarkCount,
             onCheckedChange = { onAction(GeneralTabActions.CheckedChange(it)) }
         )
         Spacer(modifier = Modifier.height(16.dp))
@@ -443,8 +443,8 @@ private fun Sample() {
         CharacterGeneralTabContent(
             content = CharacterGeneralTabState(
                 experience = 150,
-                gold = 10,
-                checkMarks = 15,
+                goldCount = 10,
+                checkMarkCount = 15,
                 hasTeam = false,
                 teamName = null,
                 nextLevel = 175,
@@ -468,4 +468,3 @@ private fun SampleNoticeDialog() {
         )
     }
 }
-

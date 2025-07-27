@@ -6,7 +6,7 @@ import javax.inject.Inject
 class UpdateGoldUseCase @Inject constructor(
     private val characterRepository: CharacterRepository
 ) {
-    suspend operator fun invoke(characterId: Int, newGold: Int) {
-        characterRepository.updateGold(characterId, newGold)
+    suspend operator fun invoke(characterId: Int, newGoldCount: Int) {
+        characterRepository.updateGold(characterId, newGoldCount)
     }
 }

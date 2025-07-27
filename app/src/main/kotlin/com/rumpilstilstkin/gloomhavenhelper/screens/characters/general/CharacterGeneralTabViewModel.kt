@@ -2,7 +2,7 @@ package com.rumpilstilstkin.gloomhavenhelper.screens.characters.general
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.characters.CheckedChangeUseCase
+import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.characters.MarksCheckedChangeUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.characters.DonateUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.characters.ExperienceChangeUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.characters.GetCharacterDetailsInfoUseCase
@@ -32,7 +32,7 @@ class CharacterGeneralTabViewModel @AssistedInject constructor(
     private val donateUseCase: DonateUseCase,
     private val updateGoldUseCase: UpdateGoldUseCase,
     private val experienceChangeUseCase: ExperienceChangeUseCase,
-    private val checkedChangeUseCase: CheckedChangeUseCase,
+    private val checkedChangeUseCase: MarksCheckedChangeUseCase,
     private val updateNotesUseCase: UpdateNotesUseCase,
 ) : ViewModel() {
 
@@ -42,12 +42,12 @@ class CharacterGeneralTabViewModel @AssistedInject constructor(
     val uiState: StateFlow<CharacterGeneralTabState> = getCharacterUseCase(id).map {
         CharacterGeneralTabState(
             experience = it.generalInfo.experience,
-            gold = it.generalInfo.gold,
+            goldCount = it.generalInfo.goldCount,
             hasTeam = it.generalInfo.team != null,
             teamName = it.generalInfo.team?.name,
             nextLevel = it.nextLevelExperience,
             notes = it.generalInfo.notes,
-            checkMarks = it.generalInfo.checkMarks,
+            checkMarkCount = it.generalInfo.checkMarkCount,
             isDonateAvailable = it.isDonateAvailable,
             personalQuest = it.personalQuest?.toUI()
 
@@ -66,7 +66,7 @@ class CharacterGeneralTabViewModel @AssistedInject constructor(
                 }
 
                 is GeneralTabActions.GoldChanged -> {
-                    updateGoldUseCase.invoke(id, action.gold)
+                    updateGoldUseCase.invoke(id, action.goldCount)
                 }
 
                 is GeneralTabActions.Donate -> {

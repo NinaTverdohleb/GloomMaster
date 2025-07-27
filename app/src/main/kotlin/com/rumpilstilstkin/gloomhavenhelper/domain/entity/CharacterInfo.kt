@@ -16,8 +16,8 @@ data class CharacterInfo(
     val id: Int,
     val team: ShortTeamInfo?,
     val experience: Int,
-    val gold: Int,
-    val checkMarks: Int,
+    val goldCount: Int,
+    val checkMarkCount: Int,
     val notes: String
 )
 
@@ -29,8 +29,8 @@ data class CharacterShortInfo(
     val id: Int,
     val teamId: Int?,
     val experience: Int,
-    val gold: Int,
-    val checkMarks: Int,
+    val goldCount: Int,
+    val checkMarkCount: Int,
     val notes: String
 )
 
@@ -48,5 +48,3 @@ fun List<Int>.toLevel(): Int {
 }
 
 private const val MAX_LEVEL = 7
-
-

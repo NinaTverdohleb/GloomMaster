@@ -98,9 +98,9 @@ class CharacterRepository @Inject constructor(
         }
     }
 
-    suspend fun updateCheckMarks(id: Int, checkMarks: Int) {
+    suspend fun updateCheckMarks(id: Int, checkMarkCount: Int) {
         characterDao.getCharacterById(id).let {
-            characterDao.update(it.copy(checkMarkCount = checkMarks))
+            characterDao.update(it.copy(checkMarkCount = checkMarkCount))
         }
     }
 
@@ -110,9 +110,9 @@ class CharacterRepository @Inject constructor(
         }
     }
 
-    suspend fun updateGold(id: Int, gold: Int) {
+    suspend fun updateGold(id: Int, goldCount: Int) {
         characterDao.getCharacterById(id).let {
-            characterDao.update(it.copy(goldCount = gold))
+            characterDao.update(it.copy(goldCount = goldCount))
         }
     }
 

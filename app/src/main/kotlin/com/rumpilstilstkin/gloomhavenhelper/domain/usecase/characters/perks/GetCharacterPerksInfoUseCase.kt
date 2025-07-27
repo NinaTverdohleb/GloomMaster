@@ -18,7 +18,7 @@ class GetCharacterPerksInfoUseCase @Inject constructor(
             val character = characterRepository.getCharacterById(characterId)
             val avaliablePerks = perksRepository.getPerksForCharacterClass(character.characterType)
                 .filter { perk -> perk.id !in perks.map { it.id } }
-            val allCount = character.level + character.checkMarks.div(3)
+            val allCount = character.level + character.checkMarkCount.div(3)
             CharacterPerksInfo(
                 characterPerks = perks,
                 avaliablePerks = avaliablePerks,
