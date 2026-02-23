@@ -1,8 +1,5 @@
-import org.jetbrains.kotlin.gradle.dsl.JvmTarget
-
 plugins {
     alias(libs.plugins.android.application)
-    alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.ksp)
     alias(libs.plugins.kotlin.serialization)
@@ -11,13 +8,13 @@ plugins {
 }
 
 android {
+    enableKotlin = true
     namespace = "com.rumpilstilstkin.gloomhavenhelper"
     compileSdk = 36
 
     defaultConfig {
         applicationId = "com.rumpilstilstkin.gloomhavenhalper"
         minSdk = 31
-        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
@@ -40,11 +37,6 @@ android {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
-    kotlin {
-        compilerOptions {
-            jvmTarget = JvmTarget.JVM_11
-        }
-    }
     buildFeatures {
         compose = true
     }
@@ -56,6 +48,11 @@ android {
     }
     room {
         schemaDirectory("$projectDir/schemas")
+    }
+    kotlin {
+        compilerOptions {
+            languageVersion = org.jetbrains.kotlin.gradle.dsl.KotlinVersion.KOTLIN_2_3
+        }
     }
 }
 
@@ -69,6 +66,7 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+    implementation(libs.androidx.material.icons.extended)
     implementation(libs.androidx.navigation.compose)
     implementation(libs.androidx.hilt.navigation.compose)
     implementation(libs.androidx.splashscreen)

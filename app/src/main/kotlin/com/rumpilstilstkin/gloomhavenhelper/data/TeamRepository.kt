@@ -22,7 +22,7 @@ import javax.inject.Singleton
 
 @Singleton
 class TeamRepository @Inject constructor(
-    @ApplicationScope private val externalScope: CoroutineScope,
+    @param:ApplicationScope private val externalScope: CoroutineScope,
     private val currentTeamDatasource: CurrentTeamDatasource,
     private val teamDao: TeamDao,
     private val characterDao: CharacterDao,
@@ -81,7 +81,7 @@ class TeamRepository @Inject constructor(
 
     private suspend fun updateCurrentTeam() {
         if (currentTeamDatasource.currentTeam != CurrentTeamDatasource.EMPTY_TEAM) {
-            teamDao.findById(currentTeamDatasource.currentTeam)?.let { team ->
+            teamDao.findById(currentTeamDatasource.currentTeam).let { team ->
                 _currentTeam.emit(
                     Result.success(team.teamId)
                 )

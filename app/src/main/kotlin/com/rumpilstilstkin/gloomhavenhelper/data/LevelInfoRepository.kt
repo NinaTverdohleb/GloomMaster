@@ -2,17 +2,13 @@ package com.rumpilstilstkin.gloomhavenhelper.data
 
 import com.rumpilstilstkin.gloomhavenhelper.bd.dao.GameLevelInfoDao
 import com.rumpilstilstkin.gloomhavenhelper.data.mappers.toDomain
-import com.rumpilstilstkin.gloomhavenhelper.di.ApplicationScope
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.LevelInfo
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
 class LevelInfoRepository @Inject constructor(
     private val levelInfoDao: GameLevelInfoDao,
-    @ApplicationScope private val externalScope: CoroutineScope,
 ) {
     private var levelInfoCache: List<LevelInfo> = emptyList()
 
