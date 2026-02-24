@@ -1,4 +1,4 @@
-package com.rumpilstilstkin.gloomhavenhelper.screens.main
+package com.rumpilstilstkin.gloomhavenhelper.screens.draft
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

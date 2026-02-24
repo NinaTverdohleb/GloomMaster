@@ -19,6 +19,7 @@ class GetAvaliableCharacterGoodsUseCase @Inject constructor(
                 .sortedBy { it.number }
                 .distinctBy { it.number }
         } else {
+            // TODO
             emptyList()
         }
     }

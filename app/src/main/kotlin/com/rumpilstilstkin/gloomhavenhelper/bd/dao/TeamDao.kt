@@ -6,6 +6,7 @@ import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Transaction
 import androidx.room.Update
+import androidx.room.Upsert
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.TeamBd
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.TeamWithScenariosBd
 import kotlinx.coroutines.flow.Flow
@@ -21,7 +22,7 @@ interface TeamDao {
     @Query("SELECT * FROM TeamBd WHERE teamId LIKE :id LIMIT 1")
     suspend fun findById(id: Int): TeamBd
 
-    @Insert
+    @Upsert
     suspend fun insert(team: TeamBd): Long
 
     @Delete

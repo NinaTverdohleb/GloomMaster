@@ -1,7 +1,8 @@
 package com.rumpilstilstkin.gloomhavenhelper.screens
 
-import android.content.SharedPreferences
+import android.animation.ObjectAnimator
 import android.os.Bundle
+import android.view.View
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -12,6 +13,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.core.animation.doOnEnd
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -36,7 +38,7 @@ class MainActivity : ComponentActivity() {
     override fun onStart() {
         super.onStart()
         //for test
-        currentTeamDatasource.saveCurrentTeam(CurrentTeamDatasource.EMPTY_TEAM)
+       // currentTeamDatasource.saveCurrentTeam(CurrentTeamDatasource.EMPTY_TEAM)
 
     }
 
@@ -55,9 +57,12 @@ class MainActivity : ComponentActivity() {
             }
         }
 
-        // Keep the splash screen on-screen until the UI state is loaded. This condition is
-        // evaluated each time the app needs to be redrawn so it should be fast to avoid blocking
-        // the UI.
+        splashScreen.setOnExitAnimationListener { splashScreenView ->
+            val fadeOut = ObjectAnimator.ofFloat(splashScreenView.view, View.ALPHA, 1f, 0f)
+            fadeOut.duration = 200L
+            fadeOut.doOnEnd { splashScreenView.remove() }
+            fadeOut.start()
+        }
         splashScreen.setKeepOnScreenCondition {
             when (uiState) {
                 MainActivityUiState.Loading -> true

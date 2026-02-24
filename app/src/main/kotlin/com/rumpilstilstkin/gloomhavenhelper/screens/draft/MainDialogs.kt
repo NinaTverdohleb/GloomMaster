@@ -1,4 +1,4 @@
-package com.rumpilstilstkin.gloomhavenhelper.screens.main
+package com.rumpilstilstkin.gloomhavenhelper.screens.draft
 
 import androidx.compose.runtime.Composable
 import com.rumpilstilstkin.gloomhavenhelper.screens.dialogs.character.add.AddCharacterDialog

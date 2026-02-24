@@ -2,33 +2,21 @@ package com.rumpilstilstkin.gloomhavenhelper.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
-// Primary цвета
-val Primary = Color(0xFF6A5E4F)
-val OnPrimary = Color(0xFFFFFFFF)
-val PrimaryContainer = Color(0xFF8B7765)
-val OnPrimaryContainer = Color(0xFF1E1B18)
+// Акценты
+val SurfaceVariant = Color(0xFF5A1010)
+val OnSurfaceVariant = Color.White
 
-// Secondary цвета
-val Secondary = Color(0xFFA64D2D)
-val OnSecondary = Color(0xFFFFFFFF)
-val SecondaryContainer = Color(0xFFC97E5A)
-val OnSecondaryContainer = Color(0xFF3B2319)
+val Secondary = Color(0xFFE1C36B)
+val OnSecondary = Color(0xFF3D2E00) // Тон 20: Иконка внутри FAB
+val SecondaryContainer = Color(0xFF584400) // Тон 30: Выделенные состояния
+val onSecondaryContainer = Color(0xFFFFE088) // Тон 90: Золотой текст (Заголовки, Золото)
 
-// Tertiary цвета
-val Tertiary = Color(0xFFFFB74D)
-val OnTertiary = Color(0xFF1E1B18)
-val TertiaryContainer = Color(0xFFFFD9A8)
-val OnTertiaryContainer = Color(0xFF4F260F)
+// База
+val Background = Color(0xFF12201F)
 
-// Фон и поверхность
-val Background = Color(0xFF1E1B18)
-val OnBackground = Color(0xFFE0E0E0)
-val Surface = Color(0xFF29241F)
-val OnSurface = Color(0xFFE0E0E0)
+val primary = Color(0xFF00382E) // Тон 80: Текст, иконки на темном фоне
+val onPrimary = Color.White // Тон 20: Иконки на primary фоне
+val primaryContainer = Color(0xFF105D54) // Тон 30: Заливка кнопок (Continue Adventure)
+val onPrimaryContainer = Color.White // Тон 90: Текст внутри кнопок
 
-// Ошибки
-val Error = Color(0xFFBA1A1A)
-val OnError = Color(0xFFFFFFFF)
-val ErrorContainer = Color(0xFFFFDAD6)
-val OnErrorContainer = Color(0xFF410002)
 

@@ -16,29 +16,64 @@ import androidx.sqlite.db.SupportSQLiteDatabase
  */
 
 /**
- * Example migration from version 1 to 2.
- * This is a placeholder for the first migration that will be needed in the future.
- * Uncomment and modify when needed.
+ * Migration from version 1 to 2.
+ * Adds monster management tables: MonsterBd, MonsterStatsBd, MonsterAbilityCardBd, ScenarioMonsterBd
  */
-/*
 val MIGRATION_1_2 = object : Migration(1, 2) {
-    override fun migrate(database: SupportSQLiteDatabase) {
-        // Example migration operations:
-        // - Add a new column: database.execSQL("ALTER TABLE TableName ADD COLUMN column_name TEXT NOT NULL DEFAULT ''")
-        // - Create a new table: database.execSQL("CREATE TABLE IF NOT EXISTS NewTable (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL)")
-        // - Rename a table: database.execSQL("ALTER TABLE OldTableName RENAME TO NewTableName")
-        // - Delete a table: database.execSQL("DROP TABLE IF EXISTS TableName")
+    override fun migrate(db: SupportSQLiteDatabase) {
+        // Create MonsterBd table
+        db.execSQL("""
+            CREATE TABLE IF NOT EXISTS MonsterBd (
+                monsterId INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+                name TEXT NOT NULL
+            )
+        """)
+
+        // Create MonsterStatsBd table
+        db.execSQL("""
+            CREATE TABLE IF NOT EXISTS MonsterStatsBd (
+                monsterId INTEGER NOT NULL,
+                scenarioLevel INTEGER NOT NULL,
+                isElite INTEGER NOT NULL,
+                stats TEXT NOT NULL,
+                PRIMARY KEY (monsterId, scenarioLevel, isElite),
+                FOREIGN KEY (monsterId) REFERENCES MonsterBd(monsterId) ON DELETE CASCADE
+            )
+        """)
+        db.execSQL("CREATE INDEX IF NOT EXISTS index_MonsterStatsBd_monsterId ON MonsterStatsBd(monsterId)")
+
+        // Create MonsterAbilityCardBd table
+        db.execSQL("""
+            CREATE TABLE IF NOT EXISTS MonsterAbilityCardBd (
+                cardId INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+                monsterId INTEGER NOT NULL,
+                initiative INTEGER NOT NULL,
+                actions TEXT NOT NULL,
+                needsShuffle INTEGER NOT NULL DEFAULT 0,
+                FOREIGN KEY (monsterId) REFERENCES MonsterBd(monsterId) ON DELETE CASCADE
+            )
+        """)
+        db.execSQL("CREATE INDEX IF NOT EXISTS index_MonsterAbilityCardBd_monsterId ON MonsterAbilityCardBd(monsterId)")
+
+        // Create ScenarioMonsterBd table
+        db.execSQL("""
+            CREATE TABLE IF NOT EXISTS ScenarioMonsterBd (
+                id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+                scenarioNumber INTEGER NOT NULL,
+                monsterId INTEGER NOT NULL,
+                FOREIGN KEY (scenarioNumber) REFERENCES ScenarioBd(scenarioNumber) ON DELETE CASCADE,
+                FOREIGN KEY (monsterId) REFERENCES MonsterBd(monsterId) ON DELETE CASCADE
+            )
+        """)
+        db.execSQL("CREATE INDEX IF NOT EXISTS index_ScenarioMonsterBd_scenarioNumber ON ScenarioMonsterBd(scenarioNumber)")
+        db.execSQL("CREATE INDEX IF NOT EXISTS index_ScenarioMonsterBd_monsterId ON ScenarioMonsterBd(monsterId)")
     }
 }
-*/
 
 /**
  * List of all migrations to be applied to the database.
  * Add new migrations to this list as they are created.
  */
 val ALL_MIGRATIONS = arrayOf<Migration>(
-    // Add migrations here as they are created
-    // MIGRATION_1_2,
-    // MIGRATION_2_3,
-    // etc.
+    MIGRATION_1_2,
 )

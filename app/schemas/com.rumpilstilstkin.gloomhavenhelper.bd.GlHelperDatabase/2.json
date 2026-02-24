@@ -1,0 +1,941 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 2,
+    "identityHash": "94b138def6b17f25113bf5d83b15e680",
+    "entities": [
+      {
+        "tableName": "TeamBd",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`teamId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL, `teamAchievement` TEXT NOT NULL, `globalAchievement` TEXT NOT NULL, `reputation` INTEGER NOT NULL, `prosperity` INTEGER NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "teamId",
+            "columnName": "teamId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "teamAchievement",
+            "columnName": "teamAchievement",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "globalAchievement",
+            "columnName": "globalAchievement",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "reputation",
+            "columnName": "reputation",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "prosperity",
+            "columnName": "prosperity",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "teamId"
+          ]
+        }
+      },
+      {
+        "tableName": "CharacterClassBd",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`name` TEXT NOT NULL, `characterType` TEXT NOT NULL, PRIMARY KEY(`characterType`))",
+        "fields": [
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "characterType",
+            "columnName": "characterType",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "characterType"
+          ]
+        }
+      },
+      {
+        "tableName": "CharacterBd",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`characterId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL, `level` INTEGER NOT NULL, `experience` INTEGER NOT NULL, `goldCount` INTEGER NOT NULL, `characterType` TEXT NOT NULL, `teamId` INTEGER, `isAlive` INTEGER NOT NULL, `notes` TEXT NOT NULL, `checkMarkCount` INTEGER NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "characterId",
+            "columnName": "characterId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "level",
+            "columnName": "level",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "experience",
+            "columnName": "experience",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "goldCount",
+            "columnName": "goldCount",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "characterType",
+            "columnName": "characterType",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "teamId",
+            "columnName": "teamId",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "isAlive",
+            "columnName": "isAlive",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "notes",
+            "columnName": "notes",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "checkMarkCount",
+            "columnName": "checkMarkCount",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "characterId"
+          ]
+        }
+      },
+      {
+        "tableName": "GameLevelInfoBd",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`level` INTEGER NOT NULL, `monsterLevel` INTEGER NOT NULL, `goldCount` INTEGER NOT NULL, `trapDamage` INTEGER NOT NULL, `experience` INTEGER NOT NULL, PRIMARY KEY(`level`))",
+        "fields": [
+          {
+            "fieldPath": "level",
+            "columnName": "level",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "monsterLevel",
+            "columnName": "monsterLevel",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "goldCount",
+            "columnName": "goldCount",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "trapDamage",
+            "columnName": "trapDamage",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "experience",
+            "columnName": "experience",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "level"
+          ]
+        }
+      },
+      {
+        "tableName": "ScenarioBd",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`scenarioNumber` INTEGER NOT NULL, `name` TEXT NOT NULL, `newScenarios` TEXT NOT NULL, `teamAchievement` TEXT NOT NULL, `globalAchievement` TEXT NOT NULL, `requirements` TEXT NOT NULL, PRIMARY KEY(`scenarioNumber`))",
+        "fields": [
+          {
+            "fieldPath": "scenarioNumber",
+            "columnName": "scenarioNumber",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "newScenarios",
+            "columnName": "newScenarios",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "teamAchievement",
+            "columnName": "teamAchievement",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "globalAchievement",
+            "columnName": "globalAchievement",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "requirements",
+            "columnName": "requirements",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "scenarioNumber"
+          ]
+        }
+      },
+      {
+        "tableName": "TeamScenarioBd",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `teamId` INTEGER NOT NULL, `scenarioNumber` INTEGER NOT NULL, `scenarioName` TEXT NOT NULL, `scenarioRequirements` TEXT NOT NULL, `completed` INTEGER NOT NULL, FOREIGN KEY(`teamId`) REFERENCES `TeamBd`(`teamId`) ON UPDATE NO ACTION ON DELETE CASCADE , FOREIGN KEY(`scenarioNumber`) REFERENCES `ScenarioBd`(`scenarioNumber`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "teamId",
+            "columnName": "teamId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "scenarioNumber",
+            "columnName": "scenarioNumber",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "scenarioName",
+            "columnName": "scenarioName",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "scenarioRequirements",
+            "columnName": "scenarioRequirements",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "completed",
+            "columnName": "completed",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_TeamScenarioBd_teamId",
+            "unique": false,
+            "columnNames": [
+              "teamId"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_TeamScenarioBd_teamId` ON `${TABLE_NAME}` (`teamId`)"
+          },
+          {
+            "name": "index_TeamScenarioBd_scenarioNumber",
+            "unique": false,
+            "columnNames": [
+              "scenarioNumber"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_TeamScenarioBd_scenarioNumber` ON `${TABLE_NAME}` (`scenarioNumber`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "TeamBd",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "teamId"
+            ],
+            "referencedColumns": [
+              "teamId"
+            ]
+          },
+          {
+            "table": "ScenarioBd",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "scenarioNumber"
+            ],
+            "referencedColumns": [
+              "scenarioNumber"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "GoodBd",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`goodId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `number` INTEGER NOT NULL, `name` TEXT NOT NULL, `type` TEXT NOT NULL, `cost` INTEGER NOT NULL, `is_drawing` INTEGER NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "goodId",
+            "columnName": "goodId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "number",
+            "columnName": "number",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "type",
+            "columnName": "type",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "cost",
+            "columnName": "cost",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isDrawing",
+            "columnName": "is_drawing",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "goodId"
+          ]
+        }
+      },
+      {
+        "tableName": "CharacterGoodBd",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `characterId` INTEGER NOT NULL, `goodId` INTEGER NOT NULL, FOREIGN KEY(`characterId`) REFERENCES `CharacterBd`(`characterId`) ON UPDATE NO ACTION ON DELETE CASCADE , FOREIGN KEY(`goodId`) REFERENCES `GoodBd`(`goodId`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "characterId",
+            "columnName": "characterId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "goodId",
+            "columnName": "goodId",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_CharacterGoodBd_characterId",
+            "unique": false,
+            "columnNames": [
+              "characterId"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_CharacterGoodBd_characterId` ON `${TABLE_NAME}` (`characterId`)"
+          },
+          {
+            "name": "index_CharacterGoodBd_goodId",
+            "unique": false,
+            "columnNames": [
+              "goodId"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_CharacterGoodBd_goodId` ON `${TABLE_NAME}` (`goodId`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "CharacterBd",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "characterId"
+            ],
+            "referencedColumns": [
+              "characterId"
+            ]
+          },
+          {
+            "table": "GoodBd",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "goodId"
+            ],
+            "referencedColumns": [
+              "goodId"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "CharacterPerkBd",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `characterId` INTEGER NOT NULL, `perkId` INTEGER NOT NULL, FOREIGN KEY(`characterId`) REFERENCES `CharacterBd`(`characterId`) ON UPDATE NO ACTION ON DELETE CASCADE , FOREIGN KEY(`perkId`) REFERENCES `PerkBd`(`perkId`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "characterId",
+            "columnName": "characterId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "perkId",
+            "columnName": "perkId",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_CharacterPerkBd_characterId",
+            "unique": false,
+            "columnNames": [
+              "characterId"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_CharacterPerkBd_characterId` ON `${TABLE_NAME}` (`characterId`)"
+          },
+          {
+            "name": "index_CharacterPerkBd_perkId",
+            "unique": false,
+            "columnNames": [
+              "perkId"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_CharacterPerkBd_perkId` ON `${TABLE_NAME}` (`perkId`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "CharacterBd",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "characterId"
+            ],
+            "referencedColumns": [
+              "characterId"
+            ]
+          },
+          {
+            "table": "PerkBd",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "perkId"
+            ],
+            "referencedColumns": [
+              "perkId"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "PerkBd",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`perkId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `text` TEXT NOT NULL, `characterType` TEXT NOT NULL, FOREIGN KEY(`characterType`) REFERENCES `CharacterClassBd`(`characterType`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "perkId",
+            "columnName": "perkId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "text",
+            "columnName": "text",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "characterType",
+            "columnName": "characterType",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "perkId"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_PerkBd_characterType",
+            "unique": false,
+            "columnNames": [
+              "characterType"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_PerkBd_characterType` ON `${TABLE_NAME}` (`characterType`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "CharacterClassBd",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "characterType"
+            ],
+            "referencedColumns": [
+              "characterType"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "PersonalQuestBd",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`questId` TEXT NOT NULL, `title` TEXT NOT NULL, `description` TEXT NOT NULL, `specialText` TEXT NOT NULL, `characterType` TEXT, `tasks` TEXT NOT NULL, PRIMARY KEY(`questId`))",
+        "fields": [
+          {
+            "fieldPath": "questId",
+            "columnName": "questId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "title",
+            "columnName": "title",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "description",
+            "columnName": "description",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "specialText",
+            "columnName": "specialText",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "characterType",
+            "columnName": "characterType",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "tasks",
+            "columnName": "tasks",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "questId"
+          ]
+        }
+      },
+      {
+        "tableName": "CharacterPersonalQuestBd",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `characterId` INTEGER NOT NULL, `questId` TEXT NOT NULL, `tasks` TEXT NOT NULL, FOREIGN KEY(`characterId`) REFERENCES `CharacterBd`(`characterId`) ON UPDATE NO ACTION ON DELETE CASCADE , FOREIGN KEY(`questId`) REFERENCES `PersonalQuestBd`(`questId`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "characterId",
+            "columnName": "characterId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "questId",
+            "columnName": "questId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "tasks",
+            "columnName": "tasks",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_CharacterPersonalQuestBd_characterId",
+            "unique": false,
+            "columnNames": [
+              "characterId"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_CharacterPersonalQuestBd_characterId` ON `${TABLE_NAME}` (`characterId`)"
+          },
+          {
+            "name": "index_CharacterPersonalQuestBd_questId",
+            "unique": false,
+            "columnNames": [
+              "questId"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_CharacterPersonalQuestBd_questId` ON `${TABLE_NAME}` (`questId`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "CharacterBd",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "characterId"
+            ],
+            "referencedColumns": [
+              "characterId"
+            ]
+          },
+          {
+            "table": "PersonalQuestBd",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "questId"
+            ],
+            "referencedColumns": [
+              "questId"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "MonsterBd",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`monsterId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "monsterId",
+            "columnName": "monsterId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "monsterId"
+          ]
+        }
+      },
+      {
+        "tableName": "MonsterStatsBd",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`monsterId` INTEGER NOT NULL, `scenarioLevel` INTEGER NOT NULL, `isElite` INTEGER NOT NULL, `stats` TEXT NOT NULL, PRIMARY KEY(`monsterId`, `scenarioLevel`, `isElite`), FOREIGN KEY(`monsterId`) REFERENCES `MonsterBd`(`monsterId`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "monsterId",
+            "columnName": "monsterId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "scenarioLevel",
+            "columnName": "scenarioLevel",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isElite",
+            "columnName": "isElite",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "stats",
+            "columnName": "stats",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "monsterId",
+            "scenarioLevel",
+            "isElite"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_MonsterStatsBd_monsterId",
+            "unique": false,
+            "columnNames": [
+              "monsterId"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_MonsterStatsBd_monsterId` ON `${TABLE_NAME}` (`monsterId`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "MonsterBd",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "monsterId"
+            ],
+            "referencedColumns": [
+              "monsterId"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "MonsterAbilityCardBd",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`cardId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `monsterId` INTEGER NOT NULL, `initiative` INTEGER NOT NULL, `actions` TEXT NOT NULL, `needsShuffle` INTEGER NOT NULL, FOREIGN KEY(`monsterId`) REFERENCES `MonsterBd`(`monsterId`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "cardId",
+            "columnName": "cardId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "monsterId",
+            "columnName": "monsterId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "initiative",
+            "columnName": "initiative",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "actions",
+            "columnName": "actions",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "needsShuffle",
+            "columnName": "needsShuffle",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "cardId"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_MonsterAbilityCardBd_monsterId",
+            "unique": false,
+            "columnNames": [
+              "monsterId"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_MonsterAbilityCardBd_monsterId` ON `${TABLE_NAME}` (`monsterId`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "MonsterBd",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "monsterId"
+            ],
+            "referencedColumns": [
+              "monsterId"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "ScenarioMonsterBd",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `scenarioNumber` INTEGER NOT NULL, `monsterId` INTEGER NOT NULL, FOREIGN KEY(`scenarioNumber`) REFERENCES `ScenarioBd`(`scenarioNumber`) ON UPDATE NO ACTION ON DELETE CASCADE , FOREIGN KEY(`monsterId`) REFERENCES `MonsterBd`(`monsterId`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "scenarioNumber",
+            "columnName": "scenarioNumber",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "monsterId",
+            "columnName": "monsterId",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_ScenarioMonsterBd_scenarioNumber",
+            "unique": false,
+            "columnNames": [
+              "scenarioNumber"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_ScenarioMonsterBd_scenarioNumber` ON `${TABLE_NAME}` (`scenarioNumber`)"
+          },
+          {
+            "name": "index_ScenarioMonsterBd_monsterId",
+            "unique": false,
+            "columnNames": [
+              "monsterId"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_ScenarioMonsterBd_monsterId` ON `${TABLE_NAME}` (`monsterId`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "ScenarioBd",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "scenarioNumber"
+            ],
+            "referencedColumns": [
+              "scenarioNumber"
+            ]
+          },
+          {
+            "table": "MonsterBd",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "monsterId"
+            ],
+            "referencedColumns": [
+              "monsterId"
+            ]
+          }
+        ]
+      }
+    ],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '94b138def6b17f25113bf5d83b15e680')"
+    ]
+  }
+}

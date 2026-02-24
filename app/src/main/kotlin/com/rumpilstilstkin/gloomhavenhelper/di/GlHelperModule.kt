@@ -19,6 +19,7 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object GlHelperModule {
 
+    @Singleton
     @Provides
     fun providesSharedPreference(
         @ApplicationContext context: Context

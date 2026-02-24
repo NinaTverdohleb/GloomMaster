@@ -1,6 +1,7 @@
 package com.rumpilstilstkin.gloomhavenhelper.data
 
 import android.content.res.Resources.NotFoundException
+import android.util.Log
 import com.rumpilstilstkin.gloomhavenhelper.bd.dao.CharacterDao
 import com.rumpilstilstkin.gloomhavenhelper.bd.dao.TeamDao
 import com.rumpilstilstkin.gloomhavenhelper.data.datasource.CurrentTeamDatasource
@@ -49,6 +50,7 @@ class TeamRepository @Inject constructor(
 
     suspend fun saveTeam(team: TeamInfoForSave): Int {
         val savedTeamId = teamDao.insert(team.toBd()).toInt()
+        Log.d("PREFS", "Save team: $savedTeamId")
         currentTeamDatasource.saveCurrentTeam(savedTeamId)
         team.characters.forEach {
             characterDao.insert(it.toBd(savedTeamId))
@@ -80,8 +82,9 @@ class TeamRepository @Inject constructor(
     }
 
     private suspend fun updateCurrentTeam() {
-        if (currentTeamDatasource.currentTeam != CurrentTeamDatasource.EMPTY_TEAM) {
-            teamDao.findById(currentTeamDatasource.currentTeam).let { team ->
+        val currentTeam = currentTeamDatasource.getCurrentTeam()
+        if (currentTeam != CurrentTeamDatasource.EMPTY_TEAM) {
+            teamDao.findById(currentTeam).let { team ->
                 _currentTeam.emit(
                     Result.success(team.teamId)
                 )

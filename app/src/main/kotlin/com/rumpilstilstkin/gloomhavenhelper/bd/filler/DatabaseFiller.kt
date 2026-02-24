@@ -8,6 +8,7 @@ import com.rumpilstilstkin.gloomhavenhelper.bd.dao.PerksDao
 import com.rumpilstilstkin.gloomhavenhelper.bd.dao.PersonalQuestDao
 import com.rumpilstilstkin.gloomhavenhelper.bd.dao.ScenarioDao
 import javax.inject.Inject
+import androidx.core.content.edit
 
 class DatabaseFiller @Inject constructor(
     private val characterClassDao: CharacterClassDao,
@@ -30,7 +31,7 @@ class DatabaseFiller @Inject constructor(
                 else -> {}
             }
         }*/
-        preferences.edit().putInt(PREFS_VERSION, VERSION).apply()
+        preferences.edit { putInt(PREFS_VERSION, VERSION) }
     }
 
     private suspend fun startFill() {

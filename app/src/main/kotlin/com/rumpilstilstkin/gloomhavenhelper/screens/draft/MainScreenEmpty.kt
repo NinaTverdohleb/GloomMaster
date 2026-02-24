@@ -1,4 +1,4 @@
-package com.rumpilstilstkin.gloomhavenhelper.screens.main
+package com.rumpilstilstkin.gloomhavenhelper.screens.draft
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement

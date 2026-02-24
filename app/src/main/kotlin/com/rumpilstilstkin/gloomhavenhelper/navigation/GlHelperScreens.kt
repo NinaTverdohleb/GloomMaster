@@ -10,7 +10,7 @@ sealed interface GlHelperScreens {
     @Serializable
     data object TeamDetails : GlHelperScreens
     @Serializable
-    data object Scenario : GlHelperScreens
+    data class Scenario(val scenarioId: Int) : GlHelperScreens
     @Serializable
     data class CharacterDetails(val characterId: Int): GlHelperScreens
     @Serializable

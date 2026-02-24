@@ -1,7 +1,6 @@
 package com.rumpilstilstkin.gloomhavenhelper.ui.team
 
 import androidx.compose.runtime.Composable
-import com.rumpilstilstkin.gloomhavenhelper.screens.main.MainScreenAction
 
 @Composable
 fun ProsperityDialog(
