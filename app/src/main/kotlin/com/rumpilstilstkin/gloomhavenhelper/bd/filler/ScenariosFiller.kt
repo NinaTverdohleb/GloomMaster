@@ -96,6 +96,12 @@ object ScenariosFiller {
                 newScenarios = "7, 13, 14",
                 globalAchievement = "Сбежавшая торговка",
                 requirements = "Получено достижение отряда Планы Джексеры и не получено общее достижение Вторжение мертвецов",
+                monsters = listOf(
+                    "Ожившие кости",
+                    "Оживший труп",
+                    "Инокс-телохранитель - 1",
+                    "Инокс-телохранитель - 2",
+                )
             ),
             ScenarioBd(
                 scenarioNumber = 9,
@@ -103,6 +109,11 @@ object ScenariosFiller {
                 newScenarios = "11, 12",
                 globalAchievement = "Вторжение мертвецов",
                 requirements = "Не получено общее достижение Сбежавшая торговка",
+                monsters = listOf(
+                    "Гончая",
+                    "Вермлинг-разведчик",
+                    "Жестокий надзиратель",
+                )
             ),
             ScenarioBd(
                 scenarioNumber = 10,
@@ -110,6 +121,11 @@ object ScenariosFiller {
                 newScenarios = "21, 22",
                 teamAchievement = "Задание демона",
                 requirements = "Не получено общее достижение Портал обезврежен",
+                monsters = listOf(
+                    "Огненный демон",
+                    "Земляной демон",
+                    "Солнечный демон",
+                )
             ),
             ScenarioBd(
                 scenarioNumber = 11,

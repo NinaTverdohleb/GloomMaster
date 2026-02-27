@@ -543,6 +543,184 @@ object MonstersFiller {
             MonsterStatsBd(caveBearId, 7, false, 22, listOf(Action(MOVE, "5"), Action(ATTACK, "5"), Action(WOUND, ""))),
             MonsterStatsBd(caveBearId, 7, true, 33, listOf(Action(MOVE, "5"), Action(ATTACK, "7"), Action(WOUND, ""))),
         )
+
+        val inoxBodyGuardId1 = monsterDao.insertMonster(
+            MonsterBd(
+                name = "Инокс-телохранитель - 1",
+                deckName = "boss",
+                isBoss = true,
+                immunity = listOf(DISARM, MUDDLE, POISON, STUN)
+            )
+        ).toInt()
+        monsterDao.insertAllStats(
+            MonsterStatsBd(inoxBodyGuardId1, 0, false, 6, listOf(Action(MOVE, "2"), Action(ATTACK, "С"), Text("Способность 1: Движение -1, Атака -1 по площади #37"), Text("Способность 2: Движение +0, Атака +0, Ответный удар 4"))),
+
+            MonsterStatsBd(inoxBodyGuardId1, 1, false, 7, listOf(Action(MOVE, "2"), Action(ATTACK, "1+С"), Text("Способность 1: Движение -1, Атака -1 по площади #37"), Text("Способность 2: Движение +0, Атака +0, Ответный удар 4"))),
+
+            MonsterStatsBd(inoxBodyGuardId1, 2, false, 9, listOf(Action(MOVE, "2"), Action(ATTACK, "1+С"), Text("Способность 1: Движение -1, Атака -1 по площади #37"), Text("Способность 2: Движение +0, Атака +0, Ответный удар 4"))),
+
+            MonsterStatsBd(inoxBodyGuardId1, 3, false, 10, listOf(Action(MOVE, "3"), Action(ATTACK, "2+С"), Text("Способность 1: Движение -1, Атака -1 по площади #37"), Text("Способность 2: Движение +0, Атака +0, Ответный удар 4"))),
+
+            MonsterStatsBd(inoxBodyGuardId1, 4, false, 11, listOf(Action(MOVE, "3"), Action(ATTACK, "2+С"), Text("Способность 1: Движение -1, Атака -1 по площади #37"), Text("Способность 2: Движение +0, Атака +0, Ответный удар 4"))),
+
+            MonsterStatsBd(inoxBodyGuardId1, 5, false, 13, listOf(Action(MOVE, "3"), Action(ATTACK, "3+С"), Text("Способность 1: Движение -1, Атака -1 по площади #37"), Text("Способность 2: Движение +0, Атака +0, Ответный удар 4"))),
+
+            MonsterStatsBd(inoxBodyGuardId1, 6, false, 15, listOf(Action(MOVE, "4"), Action(ATTACK, "3+С"), Text("Способность 1: Движение -1, Атака -1 по площади #37"), Text("Способность 2: Движение +0, Атака +0, Ответный удар 4"))),
+
+            MonsterStatsBd(inoxBodyGuardId1, 7, false, 27, listOf(Action(MOVE, "4"), Action(ATTACK, "4+С"), Text("Способность 1: Движение -1, Атака -1 по площади #37"), Text("Способность 2: Движение +0, Атака +0, Ответный удар 4"))),
+        )
+
+        val inoxBodyGuardId2 = monsterDao.insertMonster(
+            MonsterBd(
+                name = "Инокс-телохранитель - 2",
+                deckName = "boss",
+                isBoss = true,
+                immunity = listOf(DISARM, MUDDLE, POISON, STUN)
+            )
+        ).toInt()
+        monsterDao.insertAllStats(
+            MonsterStatsBd(inoxBodyGuardId2, 0, false, 6, listOf(Action(MOVE, "2"), Action(ATTACK, "С"), Text("Способность 1: Движение -1, Атака -1 по площади #37"), Text("Способность 2: Движение +0, Атака +0, Ответный удар 4"))),
+
+            MonsterStatsBd(inoxBodyGuardId2, 1, false, 7, listOf(Action(MOVE, "2"), Action(ATTACK, "1+С"), Text("Способность 1: Движение -1, Атака -1 по площади #37"), Text("Способность 2: Движение +0, Атака +0, Ответный удар 4"))),
+
+            MonsterStatsBd(inoxBodyGuardId2, 2, false, 9, listOf(Action(MOVE, "2"), Action(ATTACK, "1+С"), Text("Способность 1: Движение -1, Атака -1 по площади #37"), Text("Способность 2: Движение +0, Атака +0, Ответный удар 4"))),
+
+            MonsterStatsBd(inoxBodyGuardId2, 3, false, 10, listOf(Action(MOVE, "3"), Action(ATTACK, "2+С"), Text("Способность 1: Движение -1, Атака -1 по площади #37"), Text("Способность 2: Движение +0, Атака +0, Ответный удар 4"))),
+
+            MonsterStatsBd(inoxBodyGuardId2, 4, false, 11, listOf(Action(MOVE, "3"), Action(ATTACK, "2+С"), Text("Способность 1: Движение -1, Атака -1 по площади #37"), Text("Способность 2: Движение +0, Атака +0, Ответный удар 4"))),
+
+            MonsterStatsBd(inoxBodyGuardId2, 5, false, 13, listOf(Action(MOVE, "3"), Action(ATTACK, "3+С"), Text("Способность 1: Движение -1, Атака -1 по площади #37"), Text("Способность 2: Движение +0, Атака +0, Ответный удар 4"))),
+
+            MonsterStatsBd(inoxBodyGuardId2, 6, false, 15, listOf(Action(MOVE, "4"), Action(ATTACK, "3+С"), Text("Способность 1: Движение -1, Атака -1 по площади #37"), Text("Способность 2: Движение +0, Атака +0, Ответный удар 4"))),
+
+            MonsterStatsBd(inoxBodyGuardId2, 7, false, 27, listOf(Action(MOVE, "4"), Action(ATTACK, "4+С"), Text("Способность 1: Движение -1, Атака -1 по площади #37"), Text("Способность 2: Движение +0, Атака +0, Ответный удар 4"))),
+        )
+
+        val houndId = monsterDao.insertMonster(
+            MonsterBd(
+                name = "Гончая",
+                deckName = "hound",
+                isBoss = false,
+            )
+        ).toInt()
+        monsterDao.insertAllStats(
+            MonsterStatsBd(houndId, 0, false, 4, listOf(Action(MOVE, "3"), Action(ATTACK, "2"))),
+            MonsterStatsBd(houndId, 0, true, 6, listOf(Action(MOVE, "5"), Action(ATTACK, "2"))),
+
+            MonsterStatsBd(houndId, 1, false, 4, listOf(Action(MOVE, "4"), Action(ATTACK, "2"), Action(RETALIATE, "1"))),
+            MonsterStatsBd(houndId, 1, true, 6, listOf(Action(MOVE, "5"), Action(ATTACK, "3"), Action(RETALIATE, "1"))),
+
+            MonsterStatsBd(houndId, 2, false, 6, listOf(Action(MOVE, "4"), Action(ATTACK, "2"), Action(RETALIATE, "1"))),
+            MonsterStatsBd(houndId, 2, true, 7, listOf(Action(MOVE, "5"), Action(ATTACK, "3"), Action(RETALIATE, "2"))),
+
+            MonsterStatsBd(houndId, 3, false, 8, listOf(Action(MOVE, "4"), Action(ATTACK, "2"), Action(RETALIATE, "1"))),
+            MonsterStatsBd(houndId, 3, true, 8, listOf(Action(MOVE, "5"), Action(ATTACK, "4"), Action(RETALIATE, "2"))),
+
+            MonsterStatsBd(houndId, 4, false, 8, listOf(Action(MOVE, "4"), Action(ATTACK, "3"), Action(RETALIATE, "1"))),
+            MonsterStatsBd(houndId, 4, true, 11, listOf(Action(MOVE, "5"), Action(ATTACK, "4"), Action(RETALIATE, "2"))),
+
+            MonsterStatsBd(houndId, 5, false, 9, listOf(Action(MOVE, "4"), Action(ATTACK, "3"), Action(RETALIATE, "2"))),
+            MonsterStatsBd(houndId, 5, true, 12, listOf(Action(MOVE, "5"), Action(ATTACK, "4"), Action(RETALIATE, "3"))),
+
+            MonsterStatsBd(houndId, 6, false, 11, listOf(Action(MOVE, "5"), Action(ATTACK, "3"), Action(RETALIATE, "2"))),
+            MonsterStatsBd(houndId, 6, true, 15, listOf(Action(MOVE, "6"), Action(ATTACK, "4"), Action(RETALIATE, "3"))),
+
+            MonsterStatsBd(houndId, 7, false, 15, listOf(Action(MOVE, "5"), Action(ATTACK, "3"), Action(RETALIATE, "2"))),
+            MonsterStatsBd(houndId, 7, true, 15, listOf(Action(MOVE, "6"), Action(ATTACK, "5"), Action(RETALIATE, "4"))),
+        )
+
+        val vermlingScoutId = monsterDao.insertMonster(
+            MonsterBd(
+                name = "Вермлинг-разведчик",
+                deckName = "scout",
+                isBoss = false,
+            )
+        ).toInt()
+        monsterDao.insertAllStats(
+            MonsterStatsBd(vermlingScoutId, 0, false, 2, listOf(Action(MOVE, "3"), Action(ATTACK, "1"))),
+            MonsterStatsBd(vermlingScoutId, 0, true, 4, listOf(Action(MOVE, "3"), Action(ATTACK, "2"))),
+
+            MonsterStatsBd(vermlingScoutId, 1, false, 3, listOf(Action(MOVE, "3"), Action(ATTACK, "1"))),
+            MonsterStatsBd(vermlingScoutId, 1, true, 5, listOf(Action(MOVE, "3"), Action(ATTACK, "2"))),
+
+            MonsterStatsBd(vermlingScoutId, 2, false, 3, listOf(Action(MOVE, "3"), Action(ATTACK, "2"))),
+            MonsterStatsBd(vermlingScoutId, 2, true, 5, listOf(Action(MOVE, "4"), Action(ATTACK, "3"))),
+
+            MonsterStatsBd(vermlingScoutId, 3, false, 5, listOf(Action(MOVE, "3"), Action(ATTACK, "2"))),
+            MonsterStatsBd(vermlingScoutId, 3, true, 7, listOf(Action(MOVE, "4"), Action(ATTACK, "3"))),
+
+            MonsterStatsBd(vermlingScoutId, 4, false, 6, listOf(Action(MOVE, "3"), Action(ATTACK, "3"))),
+            MonsterStatsBd(vermlingScoutId, 4, true, 8, listOf(Action(MOVE, "4"), Action(ATTACK, "4"))),
+
+            MonsterStatsBd(vermlingScoutId, 5, false, 8, listOf(Action(MOVE, "3"), Action(ATTACK, "3"))),
+            MonsterStatsBd(vermlingScoutId, 5, true, 11, listOf(Action(MOVE, "4"), Action(ATTACK, "4"))),
+
+            MonsterStatsBd(vermlingScoutId, 6, false, 9, listOf(Action(MOVE, "4"), Action(ATTACK, "3"))),
+            MonsterStatsBd(vermlingScoutId, 6, true, 12, listOf(Action(MOVE, "5"), Action(ATTACK, "4"))),
+
+            MonsterStatsBd(vermlingScoutId, 7, false, 11, listOf(Action(MOVE, "4"), Action(ATTACK, "3"))),
+            MonsterStatsBd(vermlingScoutId, 7, true, 15, listOf(Action(MOVE, "5"), Action(ATTACK, "4"))),
+        )
+
+        val cruelOverseerId = monsterDao.insertMonster(
+            MonsterBd(
+                name = "Жестокий надзиратель",
+                deckName = "boss",
+                isBoss = true,
+                immunity = listOf(STUN, WOUND, DISARM, CURSE)
+            )
+        ).toInt()
+        monsterDao.insertAllStats(
+            MonsterStatsBd(cruelOverseerId, 0, false, 6, listOf(Action(MOVE, "2"), Action(ATTACK, "V"), Text("Способность 1: все разведчики ходят еще раз"), Text("Способность 2: Призывает вермлинга разведчика"), Text("V = количество разведчиков на карте"))),
+
+            MonsterStatsBd(cruelOverseerId, 1, false, 8, listOf(Action(MOVE, "2"), Action(ATTACK, "V"), Text("Способность 1: все разведчики ходят еще раз"), Text("Способность 2: Призывает вермлинга разведчика"), Text("V = количество разведчиков на карте"))),
+
+            MonsterStatsBd(cruelOverseerId, 2, false, 9, listOf(Action(MOVE, "3"), Action(ATTACK, "V"), Text("Способность 1: все разведчики ходят еще раз"), Text("Способность 2: Призывает вермлинга разведчика"), Text("V = количество разведчиков на карте"))),
+
+            MonsterStatsBd(cruelOverseerId, 3, false, 11, listOf(Action(MOVE, "3"), Action(ATTACK, "V"), Text("Способность 1: все разведчики ходят еще раз"), Text("Способность 2: Призывает вермлинга разведчика"), Text("V = количество разведчиков на карте"))),
+
+            MonsterStatsBd(cruelOverseerId, 4, false, 12, listOf(Action(MOVE, "4"), Action(ATTACK, "V"), Text("Способность 1: все разведчики ходят еще раз"), Text("Способность 2: Призывает вермлинга разведчика"), Text("V = количество разведчиков на карте"))),
+
+            MonsterStatsBd(cruelOverseerId, 5, false, 14, listOf(Action(MOVE, "4"), Action(ATTACK, "V"), Text("Способность 1: все разведчики ходят еще раз"), Text("Способность 2: Призывает вермлинга разведчика"), Text("V = количество разведчиков на карте"))),
+
+            MonsterStatsBd(cruelOverseerId, 6, false, 16, listOf(Action(MOVE, "4"), Action(ATTACK, "V"), Text("Способность 1: все разведчики ходят еще раз"), Text("Способность 2: Призывает вермлинга разведчика"), Text("V = количество разведчиков на карте"))),
+
+            MonsterStatsBd(cruelOverseerId, 7, false, 19, listOf(Action(MOVE, "4"), Action(ATTACK, "V"), Text("Способность 1: все разведчики ходят еще раз"), Text("Способность 2: Призывает вермлинга разведчика"), Text("V = количество разведчиков на карте"))),
+        )
+
+        val sunDemonId = monsterDao.insertMonster(
+            MonsterBd(
+                name = "Солнечный демон",
+                deckName = "sun-demon",
+                isBoss = false,
+                fly = true,
+            )
+        ).toInt()
+        monsterDao.insertAllStats(
+            MonsterStatsBd(sunDemonId, 0, false, 5, listOf(Action(MOVE, "2"), Action(ATTACK, "2"), Action(SHIELD, "1"), Text("Атакует с преимуществом"))),
+            MonsterStatsBd(sunDemonId, 0, true, 9, listOf(Action(MOVE, "2"), Action(ATTACK, "3"), Action(SHIELD, "1"), Text("Атакует с преимуществом"))),
+
+            MonsterStatsBd(sunDemonId, 1, false, 7, listOf(Action(MOVE, "2"), Action(ATTACK, "2"), Action(SHIELD, "1"), Text("Атакует с преимуществом"))),
+            MonsterStatsBd(sunDemonId, 1, true, 12, listOf(Action(MOVE, "2"), Action(ATTACK, "3"), Action(SHIELD, "1"), Text("Атакует с преимуществом"))),
+
+            MonsterStatsBd(sunDemonId, 2, false, 9, listOf(Action(MOVE, "2"), Action(ATTACK, "2"), Action(SHIELD, "1"), Text("Атакует с преимуществом"))),
+            MonsterStatsBd(sunDemonId, 2, true, 13, listOf(Action(MOVE, "2"), Action(ATTACK, "4"), Action(SHIELD, "1"), Text("Атакует с преимуществом"))),
+
+            MonsterStatsBd(sunDemonId, 3, false, 10, listOf(Action(MOVE, "2"), Action(ATTACK, "3"), Action(SHIELD, "1"), Text("Атакует с преимуществом"))),
+            MonsterStatsBd(sunDemonId, 3, true, 15, listOf(Action(MOVE, "3"), Action(ATTACK, "4"), Action(SHIELD, "1"), Text("Атакует с преимуществом"))),
+
+            MonsterStatsBd(sunDemonId, 4, false, 11, listOf(Action(MOVE, "3"), Action(ATTACK, "3"), Action(SHIELD, "1"), Text("Атакует с преимуществом"))),
+            MonsterStatsBd(sunDemonId, 4, true, 16, listOf(Action(MOVE, "3"), Action(ATTACK, "5"), Action(SHIELD, "1"), Text("Атакует с преимуществом"))),
+
+            MonsterStatsBd(sunDemonId, 5, false, 11, listOf(Action(MOVE, "3"), Action(ATTACK, "3"), Action(SHIELD, "2"), Text("Атакует с преимуществом"))),
+            MonsterStatsBd(sunDemonId, 5, true, 16, listOf(Action(MOVE, "3"), Action(ATTACK, "5"), Action(SHIELD, "2"), Text("Атакует с преимуществом"))),
+
+            MonsterStatsBd(sunDemonId, 6, false, 12, listOf(Action(MOVE, "3"), Action(ATTACK, "4"), Action(SHIELD, "2"), Text("Атакует с преимуществом"))),
+            MonsterStatsBd(sunDemonId, 6, true, 18, listOf(Action(MOVE, "4"), Action(ATTACK, "5"), Action(SHIELD, "2"), Text("Атакует с преимуществом"))),
+
+            MonsterStatsBd(sunDemonId, 7, false, 15, listOf(Action(MOVE, "3"), Action(ATTACK, "4"), Action(SHIELD, "2"), Text("Атакует с преимуществом"))),
+            MonsterStatsBd(sunDemonId, 7, true, 22, listOf(Action(MOVE, "4"), Action(ATTACK, "5"), Action(SHIELD, "2"), Text("Атакует с преимуществом"))),
+        )
     }
 
     private suspend fun fillAbilityDecks(monsterDao: MonsterDao) {
@@ -716,14 +894,50 @@ object MonstersFiller {
 
         // cave-bear deck
         monsterDao.insertCards(
-            MonsterAbilityCardBd(deckName = "imp", imageName = "ic_deck_ma_cb_1.webp"),
-            MonsterAbilityCardBd(deckName = "imp", imageName = "ic_deck_ma_cb_2.webp"),
-            MonsterAbilityCardBd(deckName = "imp", imageName = "ic_deck_ma_cb_3.webp", needsShuffle = true),
-            MonsterAbilityCardBd(deckName = "imp", imageName = "ic_deck_ma_cb_4.webp"),
-            MonsterAbilityCardBd(deckName = "imp", imageName = "ic_deck_ma_cb_5.webp"),
-            MonsterAbilityCardBd(deckName = "imp", imageName = "ic_deck_ma_cb_6.webp", needsShuffle = true),
-            MonsterAbilityCardBd(deckName = "imp", imageName = "ic_deck_ma_cb_7.webp"),
-            MonsterAbilityCardBd(deckName = "imp", imageName = "ic_deck_ma_cb_8.webp"),
+            MonsterAbilityCardBd(deckName = "cave-bear", imageName = "ic_deck_ma_cb_1.webp"),
+            MonsterAbilityCardBd(deckName = "cave-bear", imageName = "ic_deck_ma_cb_2.webp"),
+            MonsterAbilityCardBd(deckName = "cave-bear", imageName = "ic_deck_ma_cb_3.webp", needsShuffle = true),
+            MonsterAbilityCardBd(deckName = "cave-bear", imageName = "ic_deck_ma_cb_4.webp"),
+            MonsterAbilityCardBd(deckName = "cave-bear", imageName = "ic_deck_ma_cb_5.webp"),
+            MonsterAbilityCardBd(deckName = "cave-bear", imageName = "ic_deck_ma_cb_6.webp", needsShuffle = true),
+            MonsterAbilityCardBd(deckName = "cave-bear", imageName = "ic_deck_ma_cb_7.webp"),
+            MonsterAbilityCardBd(deckName = "cave-bear", imageName = "ic_deck_ma_cb_8.webp"),
+        )
+
+        // hound deck
+        monsterDao.insertCards(
+            MonsterAbilityCardBd(deckName = "hound", imageName = "ic_deck_ma_ho_1.webp"),
+            MonsterAbilityCardBd(deckName = "hound", imageName = "ic_deck_ma_ho_2.webp"),
+            MonsterAbilityCardBd(deckName = "hound", imageName = "ic_deck_ma_ho_3.webp", needsShuffle = true),
+            MonsterAbilityCardBd(deckName = "hound", imageName = "ic_deck_ma_ho_4.webp", needsShuffle = true),
+            MonsterAbilityCardBd(deckName = "hound", imageName = "ic_deck_ma_ho_5.webp"),
+            MonsterAbilityCardBd(deckName = "hound", imageName = "ic_deck_ma_ho_6.webp"),
+            MonsterAbilityCardBd(deckName = "hound", imageName = "ic_deck_ma_ho_7.webp"),
+            MonsterAbilityCardBd(deckName = "hound", imageName = "ic_deck_ma_ho_8.webp"),
+        )
+
+        // scout deck
+        monsterDao.insertCards(
+            MonsterAbilityCardBd(deckName = "scout", imageName = "ic_deck_ma_sc_1.webp"),
+            MonsterAbilityCardBd(deckName = "scout", imageName = "ic_deck_ma_sc_2.webp"),
+            MonsterAbilityCardBd(deckName = "scout", imageName = "ic_deck_ma_sc_3.webp"),
+            MonsterAbilityCardBd(deckName = "scout", imageName = "ic_deck_ma_sc_4.webp"),
+            MonsterAbilityCardBd(deckName = "scout", imageName = "ic_deck_ma_sc_5.webp"),
+            MonsterAbilityCardBd(deckName = "scout", imageName = "ic_deck_ma_sc_6.webp", needsShuffle = true),
+            MonsterAbilityCardBd(deckName = "scout", imageName = "ic_deck_ma_sc_7.webp"),
+            MonsterAbilityCardBd(deckName = "scout", imageName = "ic_deck_ma_sc_8.webp", needsShuffle = true),
+        )
+
+        // sun-demon deck
+        monsterDao.insertCards(
+            MonsterAbilityCardBd(deckName = "sun-demon", imageName = "ic_deck_ma_sud_1.webp", needsShuffle = true),
+            MonsterAbilityCardBd(deckName = "sun-demon", imageName = "ic_deck_ma_sud_2.webp"),
+            MonsterAbilityCardBd(deckName = "sun-demon", imageName = "ic_deck_ma_sud_3.webp"),
+            MonsterAbilityCardBd(deckName = "sun-demon", imageName = "ic_deck_ma_sud_4.webp"),
+            MonsterAbilityCardBd(deckName = "sun-demon", imageName = "ic_deck_ma_sud_5.webp", needsShuffle = true),
+            MonsterAbilityCardBd(deckName = "sun-demon", imageName = "ic_deck_ma_sud_6.webp"),
+            MonsterAbilityCardBd(deckName = "sun-demon", imageName = "ic_deck_ma_sud_7.webp"),
+            MonsterAbilityCardBd(deckName = "sun-demon", imageName = "ic_deck_ma_sud_8.webp"),
         )
     }
 }

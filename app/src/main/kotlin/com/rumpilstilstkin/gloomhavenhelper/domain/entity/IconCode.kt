@@ -37,6 +37,7 @@ private object IconCode {
     const val SPEND_ANY = "34"
     const val AREA_1 = "35"
     const val AREA_2 = "36"
+    const val AREA_3 = "37"
 }
 
 enum class IconVectorCode(val id: String) {
