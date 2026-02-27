@@ -303,40 +303,77 @@ object ScenariosFiller {
                 scenarioNumber = 25,
                 name = "Восхождение на Ледяной утес",
                 newScenarios = "33, 34",
-                teamAchievement = "Предложение дрейка"
+                teamAchievement = "Предложение дрейка",
+                monsters = listOf(
+                    "Когтистый дрейк",
+                    "Шипящий дрейк",
+                    "Гончая",
+                )
             ),
             ScenarioBd(
                 scenarioNumber = 26,
                 name = "Древний резервуар",
                 requirements = "Получено общее достижение Подводное дыхание или Путь через руины",
                 newScenarios = "22",
-                teamAchievement = "По следам"
+                teamAchievement = "По следам",
+                monsters = listOf(
+                    "Оживший труп",
+                    "Слизь",
+                    "Ночной демон",
+                    "Черный бес"
+                )
             ),
             ScenarioBd(
                 scenarioNumber = 27,
                 name = "Зловещий портал",
                 requirements = "Не получено общее достижение Артефакт: потерян и получено достижение отряда Кадило Каменолома",
-                globalAchievement = "Портал обезврежен"
+                globalAchievement = "Портал обезврежен",
+                monsters = listOf(
+                    "Ночной демон",
+                    "Воздушный демон",
+                    "Морозный демон",
+                    "Солнечный демон",
+                    "Земляной демон",
+                    "Огненный демон"
+                )
             ),
             ScenarioBd(
                 scenarioNumber = 28,
                 name = "Внешнее капище",
                 requirements = "Получено общее достижение Темная награда",
                 newScenarios = "29",
-                teamAchievement = "Приглашение"
+                teamAchievement = "Приглашение",
+                monsters = listOf(
+                    "Ночной демон",
+                    "Оживший труп",
+                    "Ожившие кости",
+                    "Солнечный демон",
+                    "Культист",
+                )
             ),
             ScenarioBd(
                 scenarioNumber = 29,
                 name = "Обитель Мрака",
                 requirements = "Получено достижение отряда Приглашение",
-                globalAchievement = "На грани тьмы"
+                globalAchievement = "На грани тьмы",
+                monsters = listOf(
+                    "Ожившие кости",
+                    "Оживший дух",
+                    "Оживший труп",
+                    "Черный бес",
+                )
             ),
             ScenarioBd(
                 scenarioNumber = 30,
                 name = "Святилище глубин",
                 requirements = "Получено достижение отряда Веление Голоса",
                 newScenarios = "42",
-                teamAchievement = "Голос и скипитер"
+                teamAchievement = "Голос и скипитер",
+                monsters = listOf(
+                    "Слизь",
+                    "Скрытень",
+                    "Невыносимый ужас",
+                )
             ),
             ScenarioBd(
                 scenarioNumber = 31,

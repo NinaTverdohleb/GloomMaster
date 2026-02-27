@@ -1164,6 +1164,106 @@ object MonstersFiller {
             MonsterStatsBd(rendingDrakeId, 7, false, 14, listOf(Action(MOVE, "5"), Action(ATTACK, "5"), Action(WOUND, ""))),
             MonsterStatsBd(rendingDrakeId, 7, true, 18, listOf(Action(MOVE, "6"), Action(ATTACK, "7"), Action(WOUND, ""))),
         )
+
+        val blackImpId = monsterDao.insertMonster(
+            MonsterBd(
+                name = "Черный бес",
+                deckName = "imp",
+                isBoss = false,
+            )
+        ).toInt()
+        monsterDao.insertAllStats(
+            MonsterStatsBd(blackImpId, 0, false, 3, listOf(Action(MOVE, "1"), Action(ATTACK, "1"), Action(RANGE, "3"))),
+            MonsterStatsBd(blackImpId, 0, true, 4, listOf(Action(MOVE, "1"), Action(ATTACK, "2"), Action(RANGE, "3"), Action(POISON, ""))),
+
+            MonsterStatsBd(blackImpId, 1, false, 4, listOf(Action(MOVE, "1"), Action(ATTACK, "1"), Action(RANGE, "3"), Action(POISON, ""))),
+            MonsterStatsBd(blackImpId, 1, true, 6, listOf(Action(MOVE, "1"), Action(ATTACK, "2"), Action(RANGE, "3"), Action(POISON, ""))),
+
+            MonsterStatsBd(blackImpId, 2, false, 5, listOf(Action(MOVE, "1"), Action(ATTACK, "1"), Action(RANGE, "4"), Action(POISON, ""))),
+            MonsterStatsBd(blackImpId, 2, true, 8, listOf(Action(MOVE, "1"), Action(ATTACK, "2"), Action(RANGE, "4"), Action(POISON, ""))),
+
+            MonsterStatsBd(blackImpId, 3, false, 5, listOf(Action(MOVE, "1"), Action(ATTACK, "2"), Action(RANGE, "4"), Action(POISON, ""))),
+            MonsterStatsBd(blackImpId, 3, true, 8, listOf(Action(MOVE, "1"), Action(ATTACK, "3"), Action(RANGE, "4"), Action(POISON, ""), Text("Атаки по бесу проходят с помехой"))),
+
+            MonsterStatsBd(blackImpId, 4, false, 7, listOf(Action(MOVE, "1"), Action(ATTACK, "2"), Action(RANGE, "4"), Action(POISON, ""))),
+            MonsterStatsBd(blackImpId, 4, true, 11, listOf(Action(MOVE, "1"), Action(ATTACK, "3"), Action(RANGE, "4"), Action(POISON, ""), Text("Атаки по бесу проходят с помехой"))),
+
+            MonsterStatsBd(blackImpId, 5, false, 9, listOf(Action(MOVE, "1"), Action(ATTACK, "2"), Action(RANGE, "4"), Action(POISON, ""))),
+            MonsterStatsBd(blackImpId, 5, true, 12, listOf(Action(MOVE, "1"), Action(ATTACK, "3"), Action(RANGE, "5"), Action(POISON, ""), Text("Атаки по бесу проходят с помехой"))),
+
+            MonsterStatsBd(blackImpId, 6, false, 10, listOf(Action(MOVE, "1"), Action(ATTACK, "3"), Action(RANGE, "4"), Action(POISON, ""))),
+            MonsterStatsBd(blackImpId, 6, true, 14, listOf(Action(MOVE, "1"), Action(ATTACK, "4"), Action(RANGE, "5"), Action(POISON, ""), Text("Атаки по бесу проходят с помехой"))),
+
+            MonsterStatsBd(blackImpId, 7, false, 12, listOf(Action(MOVE, "1"), Action(ATTACK, "3"), Action(RANGE, "4"), Action(POISON, ""))),
+            MonsterStatsBd(blackImpId, 7, true, 17, listOf(Action(MOVE, "1"), Action(ATTACK, "4"), Action(RANGE, "5"), Action(POISON, ""), Text("Атаки по бесу проходят с помехой"))),
+        )
+
+        val deepTerrorId = monsterDao.insertMonster(
+            MonsterBd(
+                name = "Невыносимый ужас",
+                deckName = "deep-terror",
+                isBoss = false,
+                immunity = listOf(STUN, DISARM, IMMOBILIZE, MUDDLE)
+            )
+        ).toInt()
+        monsterDao.insertAllStats(
+            MonsterStatsBd(deepTerrorId, 0, false, 3, listOf(Action(ATTACK, "2"))),
+            MonsterStatsBd(deepTerrorId, 0, true, 5, listOf(Action(ATTACK, "3"))),
+
+            MonsterStatsBd(deepTerrorId, 1, false, 4, listOf(Action(ATTACK, "2"), Action(RETALIATE, "1"))),
+            MonsterStatsBd(deepTerrorId, 1, true, 6, listOf(Action(ATTACK, "3"), Action(RETALIATE, "1"))),
+
+            MonsterStatsBd(deepTerrorId, 2, false, 4, listOf(Action(ATTACK, "3"), Action(RETALIATE, "1"))),
+            MonsterStatsBd(deepTerrorId, 2, true, 7, listOf(Action(ATTACK, "4"), Action(RETALIATE, "1"))),
+
+            MonsterStatsBd(deepTerrorId, 3, false, 5, listOf(Action(ATTACK, "3"), Action(RETALIATE, "2"))),
+            MonsterStatsBd(deepTerrorId, 3, true, 8, listOf(Action(ATTACK, "4"), Action(RETALIATE, "2"))),
+
+            MonsterStatsBd(deepTerrorId, 4, false, 6, listOf(Action(ATTACK, "4"), Action(RETALIATE, "2"))),
+            MonsterStatsBd(deepTerrorId, 4, true, 9, listOf(Action(ATTACK, "5"), Action(RETALIATE, "2"))),
+
+            MonsterStatsBd(deepTerrorId, 5, false, 7, listOf(Action(ATTACK, "4"), Action(RETALIATE, "3"))),
+            MonsterStatsBd(deepTerrorId, 5, true, 11, listOf(Action(ATTACK, "5"), Action(RETALIATE, "3"))),
+
+            MonsterStatsBd(deepTerrorId, 6, false, 8, listOf(Action(ATTACK, "5"), Action(RETALIATE, "3"))),
+            MonsterStatsBd(deepTerrorId, 6, true, 13, listOf(Action(ATTACK, "6"), Action(RETALIATE, "3"))),
+
+            MonsterStatsBd(deepTerrorId, 7, false, 9, listOf(Action(ATTACK, "5"), Action(RETALIATE, "4"))),
+            MonsterStatsBd(deepTerrorId, 7, true, 15, listOf(Action(ATTACK, "6"), Action(RETALIATE, "4"))),
+        )
+
+        val lurkerId = monsterDao.insertMonster(
+            MonsterBd(
+                name = "Скрытень",
+                deckName = "lurker",
+                isBoss = false,
+            )
+        ).toInt()
+        monsterDao.insertAllStats(
+            MonsterStatsBd(lurkerId, 0, false, 5, listOf(Action(MOVE, "2"), Action(ATTACK, "2"), Action(TARGET, "2"))),
+            MonsterStatsBd(lurkerId, 0, true, 7, listOf(Action(MOVE, "2"), Action(ATTACK, "3"), Action(TARGET, "2"), Action(SHIELD, "1"))),
+
+            MonsterStatsBd(lurkerId, 1, false, 7, listOf(Action(MOVE, "2"), Action(ATTACK, "2"), Action(TARGET, "2"), Action(PIERCE, "1"))),
+            MonsterStatsBd(lurkerId, 1, true, 9, listOf(Action(MOVE, "2"), Action(ATTACK, "3"),  Action(TARGET, "2"), Action(PIERCE, "1"), Action(SHIELD, "1"))),
+
+            MonsterStatsBd(lurkerId, 2, false, 9, listOf(Action(MOVE, "3"), Action(ATTACK, "2"), Action(TARGET, "2"), Action(PIERCE, "1"))),
+            MonsterStatsBd(lurkerId, 2, true, 12, listOf(Action(MOVE, "3"), Action(ATTACK, "3"), Action(TARGET, "2"), Action(PIERCE, "2"), Action(SHIELD, "1"))),
+
+            MonsterStatsBd(lurkerId, 3, false, 10, listOf(Action(MOVE, "3"), Action(ATTACK, "3"), Action(TARGET, "2"), Action(PIERCE, "2"))),
+            MonsterStatsBd(lurkerId, 3, true, 14, listOf(Action(MOVE, "3"), Action(ATTACK, "4"), Action(TARGET, "2"), Action(PIERCE, "2"), Action(SHIELD, "1"))),
+
+            MonsterStatsBd(lurkerId, 4, false, 10, listOf(Action(MOVE, "3"), Action(ATTACK, "3"), Action(TARGET, "2"), Action(PIERCE, "2"), Action(SHIELD, "1"))),
+            MonsterStatsBd(lurkerId, 4, true, 14, listOf(Action(MOVE, "3"), Action(ATTACK, "4"), Action(TARGET, "2"), Action(PIERCE, "3"), Action(SHIELD, "2"))),
+
+            MonsterStatsBd(lurkerId, 5, false, 11, listOf(Action(MOVE, "3"), Action(ATTACK, "4"), Action(TARGET, "2"), Action(PIERCE, "2"), Action(SHIELD, "1"))),
+            MonsterStatsBd(lurkerId, 5, true, 15, listOf(Action(MOVE, "3"), Action(ATTACK, "5"), Action(TARGET, "2"), Action(PIERCE, "3"), Action(SHIELD, "2"))),
+
+            MonsterStatsBd(lurkerId, 6, false, 12, listOf(Action(MOVE, "4"), Action(ATTACK, "4"), Action(TARGET, "2"), Action(PIERCE, "3"), Action(SHIELD, "1"))),
+            MonsterStatsBd(lurkerId, 6, true, 16, listOf(Action(MOVE, "4"), Action(ATTACK, "5"), Action(TARGET, "2"), Action(PIERCE, "4"), Action(SHIELD, "2"))),
+
+            MonsterStatsBd(lurkerId, 7, false, 14, listOf(Action(MOVE, "4"), Action(ATTACK, "4"), Action(TARGET, "2"), Action(PIERCE, "3"), Action(SHIELD, "1"))),
+            MonsterStatsBd(lurkerId, 7, true, 18, listOf(Action(MOVE, "4"), Action(ATTACK, "5"), Action(TARGET, "2"), Action(PIERCE, "4"), Action(SHIELD, "2"))),
+        )
     }
 
     private suspend fun fillAbilityDecks(monsterDao: MonsterDao) {
@@ -1477,6 +1577,30 @@ object MonstersFiller {
             MonsterAbilityCardBd(deckName = "rending-drake", imageName = "ic_deck_ma_rd_6.webp"),
             MonsterAbilityCardBd(deckName = "rending-drake", imageName = "ic_deck_ma_rd_7.webp", needsShuffle = true),
             MonsterAbilityCardBd(deckName = "rending-drake", imageName = "ic_deck_ma_rd_8.webp"),
+        )
+
+        // deep-terror deck
+        monsterDao.insertCards(
+            MonsterAbilityCardBd(deckName = "deep-terror", imageName = "ic_deck_ma_dt_1.webp"),
+            MonsterAbilityCardBd(deckName = "deep-terror", imageName = "ic_deck_ma_dt_2.webp", needsShuffle = true),
+            MonsterAbilityCardBd(deckName = "deep-terror", imageName = "ic_deck_ma_dt_3.webp", needsShuffle = true),
+            MonsterAbilityCardBd(deckName = "deep-terror", imageName = "ic_deck_ma_dt_4.webp"),
+            MonsterAbilityCardBd(deckName = "deep-terror", imageName = "ic_deck_ma_dt_5.webp"),
+            MonsterAbilityCardBd(deckName = "deep-terror", imageName = "ic_deck_ma_dt_6.webp"),
+            MonsterAbilityCardBd(deckName = "deep-terror", imageName = "ic_deck_ma_dt_7.webp"),
+            MonsterAbilityCardBd(deckName = "deep-terror", imageName = "ic_deck_ma_dt_8.webp"),
+        )
+
+        // lurker deck
+        monsterDao.insertCards(
+            MonsterAbilityCardBd(deckName = "lurker", imageName = "ic_deck_ma_lu_1.webp", needsShuffle = true),
+            MonsterAbilityCardBd(deckName = "lurker", imageName = "ic_deck_ma_lu_2.webp"),
+            MonsterAbilityCardBd(deckName = "lurker", imageName = "ic_deck_ma_lu_3.webp"),
+            MonsterAbilityCardBd(deckName = "lurker", imageName = "ic_deck_ma_lu_4.webp"),
+            MonsterAbilityCardBd(deckName = "lurker", imageName = "ic_deck_ma_lu_5.webp"),
+            MonsterAbilityCardBd(deckName = "lurker", imageName = "ic_deck_ma_lu_6.webp"),
+            MonsterAbilityCardBd(deckName = "lurker", imageName = "ic_deck_ma_lu_7.webp"),
+            MonsterAbilityCardBd(deckName = "lurker", imageName = "ic_deck_ma_lu_8.webp", needsShuffle = true),
         )
     }
 }
