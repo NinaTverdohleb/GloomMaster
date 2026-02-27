@@ -147,30 +147,67 @@ object ScenariosFiller {
                 newScenarios = "16, 18, 28",
                 globalAchievement = "Конец вторжения",
                 requirements = "Не получено общее достижение Конец вторжения",
+                monsters = listOf(
+                    "Ожившие кости",
+                    "Оживший труп",
+                    "Культист",
+                    "Городской страж",
+                    "Городской лучник",
+                    "Джексера"
+                )
             ),
             ScenarioBd(
                 scenarioNumber = 13,
                 name = "Храм прорицателя",
                 newScenarios = "15, 17, 20",
+                monsters = listOf(
+                    "Каменный голем",
+                    "Пещерный медведь",
+                    "Оживший дух",
+                    "Шипящй дрейк",
+                )
             ),
             ScenarioBd(
                 scenarioNumber = 14,
                 name = "Ледяная пещера",
                 newScenarios = "",
                 globalAchievement = "Возможость улучшений",
+                monsters = listOf(
+                    "Гончая",
+                    "Оживший дух",
+                    "Морозный демон",
+                )
             ),
             ScenarioBd(
                 scenarioNumber = 15,
                 name = "Святилище силы",
+                monsters = listOf(
+                    "Каменный голем",
+                    "Саввас Ледяной шторм",
+                    "Воздушный демон",
+                    "Морозный демон",
+                    "Жнец заразитель",
+                )
             ),
             ScenarioBd(
                 scenarioNumber = 16,
                 name = "Горный перевал",
                 newScenarios = "24, 25",
+                monsters = listOf(
+                    "Земляной демон",
+                    "Воздушный демон",
+                    "Инокс-стражница",
+                    "Инокс-лучник",
+                )
             ),
             ScenarioBd(
                 scenarioNumber = 17,
                 name = "Затерянный остров",
+                monsters = listOf(
+                    "Вермлинг-разведчик",
+                    "Вермлинг-шаман",
+                    "Пещерный медведь",
+                )
             ),
             ScenarioBd(
                 scenarioNumber = 18,
