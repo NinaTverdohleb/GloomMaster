@@ -1297,6 +1297,86 @@ object MonstersFiller {
             MonsterStatsBd(savvasLavaflowId, 7, false, 24, listOf(Action(MOVE, "4"), Action(ATTACK, "4"), Action(POISON, ""), Action(WOUND, ""))),
             MonsterStatsBd(savvasLavaflowId, 7, true, 35, listOf(Action(MOVE, "4"), Action(ATTACK, "6"), Action(POISON, ""), Action(WOUND, ""))),
         )
+
+        val drakePatriarchId = monsterDao.insertMonster(
+            MonsterBd(
+                name = "Дрейк-патриарх",
+                deckName = "boss",
+                isBoss = true,
+                immunity = listOf(STUN, IMMOBILIZE, DISARM, PUSH, PULL, POISON, WOUND)
+            )
+        ).toInt()
+        monsterDao.insertAllStats(
+            MonsterStatsBd(drakePatriarchId, 0, false, 11, listOf(Action(ATTACK, "3"), Text("Способность 1: Атака +0 #38"), Text("Способность 2: Двишается и призывает 2 зефира"))),
+
+            MonsterStatsBd(drakePatriarchId, 1, false, 12, listOf(Action(ATTACK, "4"), Text("Способность 1: Атака +0 #38"), Text("Способность 2: Двишается и призывает 2 зефира"))),
+
+            MonsterStatsBd(drakePatriarchId, 2, false, 15, listOf(Action(ATTACK, "4"), Text("Способность 1: Атака +0 #38"), Text("Способность 2: Двишается и призывает 2 зефира"))),
+
+            MonsterStatsBd(drakePatriarchId, 3, false, 16, listOf( Action(ATTACK, "5"), Text("Способность 1: Атака +0 #38"), Text("Способность 2: Двишается и призывает 2 зефира"))),
+
+            MonsterStatsBd(drakePatriarchId, 4, false, 20, listOf(Action(ATTACK, "5"), Text("Способность 1: Атака +0 #38"), Text("Способность 2: Двишается и призывает 2 зефира"))),
+
+            MonsterStatsBd(drakePatriarchId, 5, false, 22, listOf(Action(ATTACK, "6"), Text("Способность 1: Атака +0 #38"), Text("Способность 2: Двишается и призывает 2 зефира"))),
+
+            MonsterStatsBd(drakePatriarchId, 6, false, 27, listOf(Action(ATTACK, "6"), Text("Способность 1: Атака +0 #38"), Text("Способность 2: Двишается и призывает 2 зефира"))),
+
+            MonsterStatsBd(drakePatriarchId, 7, false, 29, listOf(Action(ATTACK, "7"), Text("Способность 1: Атака +0 #38"), Text("Способность 2: Двишается и призывает 2 зефира"))),
+        )
+
+        val wingedHorrorId = monsterDao.insertMonster(
+            MonsterBd(
+                name = "Крылатый ужас",
+                deckName = "boss",
+                isBoss = true,
+                immunity = listOf(STUN, DISARM, CURSE, MUDDLE, POISON)
+            )
+        ).toInt()
+        monsterDao.insertAllStats(
+            MonsterStatsBd(wingedHorrorId, 0, false, 6, listOf(Action(MOVE, "3"), Action(ATTACK, "3"), Text("Способность 1: Атакует -1 все рядомстоящие враги, Атакует +0 дальность 3, Вылупляются яйца"), Text("Способность 2: Призывает КП яиц, двигается -1, атакует +0"))),
+
+            MonsterStatsBd(wingedHorrorId, 1, false, 7, listOf(Action(MOVE, "4"), Action(ATTACK, "3"), Text("Способность 1: Атакует -1 все рядомстоящие враги, Атакует +0 дальность 3, Вылупляются яйца"), Text("Способность 2: Призывает КП яиц, двигается -1, атакует +0"))),
+
+            MonsterStatsBd(wingedHorrorId, 2, false, 8, listOf(Action(MOVE, "4"), Action(ATTACK, "4"), Text("Способность 1: Атакует -1 все рядомстоящие враги, Атакует +0 дальность 3, Вылупляются яйца"), Text("Способность 2: Призывает КП яиц, двигается -1, атакует +0"))),
+
+            MonsterStatsBd(wingedHorrorId, 3, false, 10, listOf(Action(MOVE, "4"), Action(ATTACK, "4"), Text("Способность 1: Атакует -1 все рядомстоящие враги, Атакует +0 дальность 3, Вылупляются яйца"), Text("Способность 2: Призывает КП яиц, двигается -1, атакует +0"))),
+
+            MonsterStatsBd(wingedHorrorId, 4, false, 12, listOf(Action(MOVE, "5"), Action(ATTACK, "4"), Text("Способность 1: Атакует -1 все рядомстоящие враги, Атакует +0 дальность 3, Вылупляются яйца"), Text("Способность 2: Призывает КП яиц, двигается -1, атакует +0"))),
+
+            MonsterStatsBd(wingedHorrorId, 5, false, 14, listOf(Action(MOVE, "5"), Action(ATTACK, "5"), Text("Способность 1: Атакует -1 все рядомстоящие враги, Атакует +0 дальность 3, Вылупляются яйца"), Text("Способность 2: Призывает КП яиц, двигается -1, атакует +0"))),
+
+            MonsterStatsBd(wingedHorrorId, 6, false, 17, listOf(Action(MOVE, "5"), Action(ATTACK, "5"), Text("Способность 1: Атакует -1 все рядомстоящие враги, Атакует +0 дальность 3, Вылупляются яйца"), Text("Способность 2: Призывает КП яиц, двигается -1, атакует +0"))),
+
+            MonsterStatsBd(wingedHorrorId, 7, false, 20, listOf(Action(MOVE, "5"), Action(ATTACK, "5"), Text("Способность 1: Атакует -1 все рядомстоящие враги, Атакует +0 дальность 3, Вылупляются яйца"), Text("Способность 2: Призывает КП яиц, двигается -1, атакует +0"))),
+        )
+
+        val sightlessEyeId = monsterDao.insertMonster(
+            MonsterBd(
+                name = "Невидящее око",
+                deckName = "boss",
+                isBoss = true,
+                immunity = listOf(STUN, PUSH, PULL, DISARM, CURSE, MUDDLE)
+            )
+        ).toInt()
+        monsterDao.run {
+            insertAllStats(
+                MonsterStatsBd(sightlessEyeId, 0, false, 7, listOf( Action(ATTACK, "5"), Action(RANGE, "3"), Text("Способность 1: Призывает Невыносимый ужас, атакует -3 #39"), Text("Способность 2: Призывает Невыносимый ужас, атакует -2 #40"))),
+
+                MonsterStatsBd(sightlessEyeId, 1, false, 8, listOf(Action(ATTACK, "6"), Action(RANGE, "3"),Text("Способность 1: Призывает Невыносимый ужас, атакует -3 #39"), Text("Способность 2: Призывает Невыносимый ужас, атакует -2 #40"))),
+
+                MonsterStatsBd(sightlessEyeId, 2, false, 10, listOf(Action(ATTACK, "6"),Action(RANGE, "3"), Text("Способность 1: Призывает Невыносимый ужас, атакует -3 #39"), Text("Способность 2: Призывает Невыносимый ужас, атакует -2 #40"))),
+
+                MonsterStatsBd(sightlessEyeId, 3, false, 11, listOf(Action(ATTACK, "7"),Action(RANGE, "3"), Text("Способность 1: Призывает Невыносимый ужас, атакует -3 #39"), Text("Способность 2: Призывает Невыносимый ужас, атакует -2 #40"))),
+
+                MonsterStatsBd(sightlessEyeId, 4, false, 14, listOf(Action(ATTACK, "7"), Action(RANGE, "3"),Text("Способность 1: Призывает Невыносимый ужас, атакует -3 #39"), Text("Способность 2: Призывает Невыносимый ужас, атакует -2 #40"))),
+
+                MonsterStatsBd(sightlessEyeId, 5, false, 25, listOf(Action(ATTACK, "8"),Action(RANGE, "3"), Text("Способность 1: Призывает Невыносимый ужас, атакует -3 #39"), Text("Способность 2: Призывает Невыносимый ужас, атакует -2 #40"))),
+
+                MonsterStatsBd(sightlessEyeId, 6, false, 18, listOf(Action(ATTACK, "8"),Action(RANGE, "3"), Text("Способность 1: Призывает Невыносимый ужас, атакует -3 #39"), Text("Способность 2: Призывает Невыносимый ужас, атакует -2 #40"))),
+
+                MonsterStatsBd(sightlessEyeId, 7, false, 20, listOf(Action(ATTACK, "9"), Action(RANGE, "3"),Text("Способность 1: Призывает Невыносимый ужас, атакует -3 #39"), Text("Способность 2: Призывает Невыносимый ужас, атакует -2 #40"))),
+            )
+        }
     }
 
     private suspend fun fillAbilityDecks(monsterDao: MonsterDao) {

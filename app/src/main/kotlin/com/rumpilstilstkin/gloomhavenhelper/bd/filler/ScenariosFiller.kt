@@ -418,7 +418,12 @@ object ScenariosFiller {
                 name = "Выжженнная вершина",
                 requirements = "Получено достижение отряда Предложение дрейка и не получено общее достижение Помощь дрейку",
                 teamAchievement = "(-)Предложение дрейка",
-                globalAchievement = "Убийство дракона"
+                globalAchievement = "Убийство дракона",
+                monsters = listOf(
+                    "Когтистый дрейк",
+                    "Шипящий дрейк",
+                    "Дрейк-патриарх",
+                )
             ),
             ScenarioBd(
                 scenarioNumber = 35,
@@ -426,84 +431,166 @@ object ScenariosFiller {
                 requirements = "Получено достижение отряда Задание демона и не получено общее достижение Портал обезврежен",
                 newScenarios = "45",
                 teamAchievement = "(-)Задание демона",
-                globalAchievement = "Городское правление: демоны, Артефакт: потерян"
+                globalAchievement = "Городское правление: демоны, Артефакт: потерян",
+                monsters = listOf(
+                    "Городской страж",
+                    "Городской лучник",
+                    "Воздушный демон",
+                    "Морозный демон",
+                    "Огненный демон",
+                    "Земляной демон",
+                    "Начальник стражи"
+                )
             ),
             ScenarioBd(
                 scenarioNumber = 36,
                 name = "Бойницы Мрачной гавани Б",
                 requirements = "Получено достижение отряда Задание демона и не получено общее достижение Портал обезврежен",
                 teamAchievement = "(-)Задание демона",
-                globalAchievement = "Портал обезврежен"
+                globalAchievement = "Портал обезврежен",
+                monsters = listOf(
+                    "Городской лучник",
+                    "Воздушный демон",
+                    "Морозный демон",
+                    "Огненный демон",
+                    "Земляной демон",
+                    "Архидемон"
+                )
             ),
             ScenarioBd(
                 scenarioNumber = 37,
                 name = "Гиблая впадина",
                 requirements = "Получено общее достижение Подводное дыхание",
                 newScenarios = "47",
-                teamAchievement = "Путь через впадину"
+                teamAchievement = "Путь через впадину",
+                monsters = listOf(
+                    "Скрытень",
+                    "Невыносимый ужас",
+                    "Жнец заразитель",
+                )
             ),
             ScenarioBd(
                 scenarioNumber = 38,
                 name = "Невольничьи клетки",
                 newScenarios = "44, 48",
-                teamAchievement = "Помощь Красношипа"
+                teamAchievement = "Помощь Красношипа",
+                monsters = listOf(
+                    "Инокс-стражница",
+                    "Инокс-лучник",
+                    "Инокс-шаман",
+                    "Каменный голем"
+                )
             ),
             ScenarioBd(
                 scenarioNumber = 39,
                 name = "Коварная пропасть",
                 newScenarios = "15, 46",
-                teamAchievement = "Путь через пропасть"
+                teamAchievement = "Путь через пропасть",
+                monsters = listOf(
+                    "Пещерный медведь",
+                    "Морозный демон",
+                    "Шипящий дрейк",
+                    "Культист",
+                    "Ожившие кости"
+                )
             ),
             ScenarioBd(
                 scenarioNumber = 40,
                 name = "Древние защитные механизмы",
                 requirements = "Получены достижения отряда Веление Голоса и Сокровище голоса",
                 newScenarios = "41",
-                globalAchievement = "Древняя технология"
+                globalAchievement = "Древняя технология",
+                monsters = listOf(
+                    "Пещерный медведь",
+                    "Оживший труп",
+                    "Лесной бес",
+                    "Каменный голем",
+                    "Огненный демон"
+                )
             ),
             ScenarioBd(
                 scenarioNumber = 41,
                 name = "Вековая гробница",
                 requirements = "Получено достижение отряда Веление Голоса",
-                globalAchievement = "Голос освобожден"
+                globalAchievement = "Голос освобожден",
+                monsters = listOf(
+                    "Древняя пушка",
+                    "Оживший труп",
+                    "Оживший дух",
+                    "Каменный голем",
+                )
             ),
             ScenarioBd(
                 scenarioNumber = 42,
                 name = "Царство Голоса",
                 requirements = "Получено достижение отряда Голос и скипитер и не получено общее достижение Голос освобожден",
                 teamAchievement = "(-)Веление Голоса",
-                globalAchievement = "Голос умолк"
+                globalAchievement = "Голос умолк",
+                monsters = listOf(
+                    "Воздушный демон",
+                    "Ночной демон",
+                    "Оживший дух",
+                )
             ),
             ScenarioBd(
                 scenarioNumber = 43,
                 name = "Гнездо дрейков",
                 requirements = "Получено общее достижение Возможость улучшений",
-                globalAchievement = "Подводное дыхание"
+                globalAchievement = "Подводное дыхание",
+                monsters = listOf(
+                    "Когтистый дрейк",
+                    "Шипящий дрейк",
+                    "Огненный демон",
+                )
             ),
             ScenarioBd(
                 scenarioNumber = 44,
                 name = "Нападение племени",
                 requirements = "Получено достижение отряда Помощь Красношипа",
+                monsters = listOf(
+                    "Инокс-стражница",
+                    "Инокс-лучник",
+                    "Инокс-шаман",
+                    "Гончая"
+                )
             ),
             ScenarioBd(
                 scenarioNumber = 45,
                 name = "Привал подводных повстанцев",
                 requirements = "Получено общее достижение Городское правление: демоны",
                 newScenarios = "49, 50",
+                monsters = listOf(
+                    "Городской страж",
+                    "Городской лучник",
+                    "Гончая",
+                )
             ),
             ScenarioBd(
                 scenarioNumber = 46,
                 name = "Пик кошмара",
                 requirements = "Получено достижение отряда Путь через пропасть",
                 newScenarios = "51",
-                globalAchievement = "Конец упадка"
+                globalAchievement = "Конец упадка",
+                monsters = listOf(
+                    "Ночной демон",
+                    "Морозный демон",
+                    "Воздушный демон",
+                    "Саввас Ледяной шторм",
+                    "Крылатый ужас"
+                )
             ),
             ScenarioBd(
                 scenarioNumber = 47,
                 name = "Логово невидящего ока",
                 requirements = "Получено достижение отряда Путь через впадину",
                 newScenarios = "51",
-                globalAchievement = "Конец упадка"
+                globalAchievement = "Конец упадка",
+                monsters = listOf(
+                    "Скрытень",
+                    "Невыносимый ужас",
+                    "Невидящее око",
+                    "Жнец заразитель"
+                )
             ),
             ScenarioBd(
                 scenarioNumber = 48,
