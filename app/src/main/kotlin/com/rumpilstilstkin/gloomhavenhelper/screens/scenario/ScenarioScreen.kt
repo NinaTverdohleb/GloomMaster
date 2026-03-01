@@ -36,7 +36,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.PlatformTextStyle
 import androidx.compose.ui.text.style.LineHeightStyle
@@ -46,13 +45,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.ActionUi
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.EffectItem
-import com.rumpilstilstkin.gloomhavenhelper.screens.models.MonsterAbilityCard
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.MonsterItem
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.MonsterUnit
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.components.AddMonsterCard
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.components.RegularMonsterCard
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
-import com.rumpilstilstkin.gloomhavenhelper.ui.toImage
 
 @Composable
 fun ScenarioScreen(
@@ -89,7 +86,7 @@ fun ScenarioScreen(
         )
 
         Spacer(
-            modifier = Modifier.height(16.dp)
+            modifier = Modifier.height(8.dp)
         )
         ScenarioScreenContent(
             modifier = Modifier.weight(1f),
@@ -190,33 +187,26 @@ private fun ScenarioHeader(
         modifier = Modifier.height(16.dp)
     )
 
-    //TODO fix icons very slovly
-
-    /*Row(
+    Row(
         modifier = Modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
         magics.keys.forEach { magic ->
             IconButton(
                 onClick = { clickMagic(magic) },
-                modifier = Modifier.size(32.dp),
+                modifier = Modifier.size(48.dp),
             ) {
-                val value = magics[magic]
-
-                Image(
-                    painter = painterResource(id = magic.icon.toImage()),
-                    contentDescription = "Icon",
+                val color = magics[magic]?.color(magic) ?: magic.icon.color
+                Icon(
+                    painter = painterResource(id = magic.icon.imageRes),
+                    contentDescription = magic.icon.title,
                     modifier = modifier
-                        .size(32.dp),
-                )
-                Box(
-                    modifier = Modifier
-                        .size(32.dp)
-                        .background(value?.getTintColor() ?: Color.Transparent)
+                        .size(48.dp),
+                    tint = color
                 )
             }
         }
-    }*/
+    }
 }
 
 @Composable
@@ -290,12 +280,9 @@ private fun ScenarioScreenPreview() {
                 monsters = listOf(
                     MonsterItem(
                         id = 1,
+                        isFly = true,
                         name = "Хвостожабка",
-                        currentCard = MonsterAbilityCard(
-                            id = 524,
-                            imageName = "",
-                            needsShuffle = true
-                        ),
+                        currentCard = null,
                         units = listOf(
                             MonsterUnit(
                                 number = 2,
@@ -362,11 +349,8 @@ private fun ScenarioScreenPreview() {
                     MonsterItem(
                         id = 2,
                         name = "Скелет",
-                        currentCard = MonsterAbilityCard(
-                            id = 524,
-                            imageName = "",
-                            needsShuffle = true
-                        ),
+                        currentCard = null,
+                        isFly = true,
                         units = listOf(
                             MonsterUnit(
                                 number = 2,
@@ -395,9 +379,9 @@ private fun ScenarioScreenPreview() {
                     Magic.FIRE to MagicValue(0),
                     Magic.FROST to MagicValue(2),
                     Magic.AIR to MagicValue(0),
-                    Magic.EARTH to MagicValue(1),
-                    Magic.SUN to MagicValue(0),
-                    Magic.MOON to MagicValue(1),
+                    Magic.EARTH to MagicValue(2),
+                    Magic.SUN to MagicValue(1),
+                    Magic.MOON to MagicValue(2),
                 )
             ),
             addMonster = {},

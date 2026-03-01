@@ -6,6 +6,7 @@ data class Good(
     val name: String,
     val type: GoodType,
     val cost: Int,
+    val image: String,
     val characterGoodId: Int? = null,
 )
 

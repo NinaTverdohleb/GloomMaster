@@ -17,8 +17,12 @@ data class GoodUi(
     val name: String,
     val typeImage: ImageVector,
     val cost: Int,
-    val characterGoodId: Int? = null
-)
+    val characterGoodId: Int? = null,
+    val image: String
+){
+    val imagePath
+        get() = "file:///android_asset/image/goods/$image"
+}
 
 fun Good.toUi() = GoodUi(
     id = this.id,
@@ -26,7 +30,8 @@ fun Good.toUi() = GoodUi(
     name = this.name,
     typeImage = this.type.toImage(),
     cost = this.cost,
-    characterGoodId = this.characterGoodId
+    characterGoodId = this.characterGoodId,
+    image = this.image
 )
 
 fun GoodType.toImage() = when(this) {

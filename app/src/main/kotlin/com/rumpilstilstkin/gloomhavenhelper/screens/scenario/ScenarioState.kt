@@ -1,7 +1,7 @@
 package com.rumpilstilstkin.gloomhavenhelper.screens.scenario
 
 import androidx.compose.ui.graphics.Color
-import com.rumpilstilstkin.gloomhavenhelper.domain.entity.IconResCode
+import com.rumpilstilstkin.gloomhavenhelper.R
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.ScenarioBattleInfo
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterCard
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.ActionUi
@@ -9,7 +9,7 @@ import com.rumpilstilstkin.gloomhavenhelper.screens.models.EffectItem
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.MonsterAbilityCard
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.MonsterItem
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.MonsterUnit
-import kotlin.collections.plus
+import com.rumpilstilstkin.gloomhavenhelper.ui.icons.GameIcons
 
 data class ScenarioLogicState(
     val scenarioInfo: ScenarioBattleInfo,
@@ -55,6 +55,7 @@ data class ScenarioLogicState(
                 MonsterItem(
                     id = it.id,
                     name = it.name,
+                    isFly = it.isFly,
                     currentCard = null,
                 )
             },
@@ -70,6 +71,7 @@ data class ScenarioLogicState(
                 val maxLife = newMonster.life * scenarioInfo.gamersCount
                 MonsterItem(
                     id = newMonster.id,
+                    isFly = newMonster.isFly,
                     name = newMonster.name,
                     currentCard = null,
                     isBoss = true,
@@ -91,7 +93,8 @@ data class ScenarioLogicState(
                     id = newMonster.id,
                     name = newMonster.name,
                     currentCard = null,
-                    isBoss = false
+                    isBoss = false,
+                    isFly = newMonster.isFly
                 )
             }
             state = state
@@ -260,13 +263,13 @@ data class ScenarioUIState(
     val magicChargeList: Map<Magic, MagicValue> = emptyMap()
 )
 
-enum class Magic(val icon: IconResCode) {
-    FIRE(IconResCode.FIRE),
-    FROST(IconResCode.FROST),
-    AIR(IconResCode.AIR),
-    EARTH(IconResCode.EARTH),
-    SUN(IconResCode.SUN),
-    MOON(IconResCode.MOON),
+enum class Magic(val icon: GameIcons) {
+    FIRE(GameIcons.FIRE),
+    FROST(GameIcons.FROST),
+    AIR(GameIcons.AIR),
+    EARTH(GameIcons.EARTH),
+    SUN(GameIcons.SUN),
+    MOON(GameIcons.MOON),
 }
 
 data class MagicValue(
@@ -277,13 +280,25 @@ data class MagicValue(
     }
 
     fun update(): MagicValue {
-        return copy(value = if (value < 2) value + 1 else 0)
+        return copy(
+            value = if (value == 0) {
+                2
+            } else {
+                value - 1
+            }
+        )
     }
 
-    fun getTintColor(): Color = when (value) {
-        0 -> Color.Gray.copy(alpha = 0.8f)
-        1 -> Color.Gray.copy(alpha = 0.3f)
-        else -> Color.Transparent
+    fun getChargeImage(): Int? = when (value) {
+        0 -> null
+        1 -> R.drawable.ic_magic_half
+        else -> R.drawable.ic_magic_full
+    }
+
+    fun color(magic: Magic): Color = when(value){
+        0 -> magic.icon.color.copy(alpha = 0.2f)
+        1 -> magic.icon.color.copy(alpha = 0.5f)
+        else -> magic.icon.color
     }
 }
 

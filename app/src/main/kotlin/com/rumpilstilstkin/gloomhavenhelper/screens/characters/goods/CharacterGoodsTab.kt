@@ -118,6 +118,7 @@ private fun GoodItem(
         showDialog = showDetailsDialog,
         isAction = true,
         buttonText = "Продать",
+        imagePath = good.imagePath,
         onDismiss = { showDetailsDialog = false },
         onAction = { good.characterGoodId?.let { onSell(it) } }
     )
@@ -177,6 +178,7 @@ private fun CharacterItemsTabExample() {
                     name = "Сапоги большого шага поешь этих сладких французких булок",
                     typeImage = GloomhavenIcons.GoodTypes.Foot,
                     cost = 20,
+                    image = ""
                 ),
                 GoodUi(
                     id = 1,
@@ -184,6 +186,7 @@ private fun CharacterItemsTabExample() {
                     name = "Перчатка большого шага",
                     typeImage = GloomhavenIcons.GoodTypes.Arm,
                     cost = 30,
+                    image = ""
                 )
             ),
             onGoodDelete = {},

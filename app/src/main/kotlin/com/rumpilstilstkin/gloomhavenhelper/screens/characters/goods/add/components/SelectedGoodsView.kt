@@ -65,6 +65,7 @@ private fun SelectedGoodsViewPreview() {
                     name = "Сапоги большого шага поешь этих сладких французких булок",
                     typeImage = GloomhavenIcons.GoodTypes.Foot,
                     cost = 20,
+                    image = ""
                 ),
                 GoodUi(
                     id = 2,
@@ -72,6 +73,7 @@ private fun SelectedGoodsViewPreview() {
                     name = "Сапоги большого шага поешь этих сладких французких булок",
                     typeImage = GloomhavenIcons.GoodTypes.Foot,
                     cost = 20,
+                    image = ""
                 )
             ),
             onAction = {}

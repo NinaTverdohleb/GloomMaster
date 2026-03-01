@@ -82,7 +82,11 @@ enum class ActionUi(
         iconRes = R.drawable.dr // TODO
     ),
     PULL(
-        title = "Оттолкнуть",
+        title = "Притянуть",
+        iconRes = R.drawable.dr // TODO
+    ),
+    PIERCE(
+        title = "Пробитие",
         iconRes = R.drawable.dr // TODO
     )
     ;
@@ -109,6 +113,7 @@ enum class ActionUi(
             MonsterStatType.PUSH -> PUSH
             MonsterStatType.BLESS -> BLESS
             MonsterStatType.PULL -> PULL
+            MonsterStatType.PIERCE -> PIERCE
         }
     }
 }

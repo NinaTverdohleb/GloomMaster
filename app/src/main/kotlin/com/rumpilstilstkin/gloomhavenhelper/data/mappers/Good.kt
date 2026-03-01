@@ -10,7 +10,8 @@ fun GoodBd.toDomain() = Good(
     number = this.number,
     name = this.name,
     type = GoodType.valueOf(this.type),
-    cost = this.cost
+    cost = this.cost,
+    image = this.image
 )
 
 fun CharacterGoodDetailsBd.toDomain() = Good(
@@ -19,5 +20,6 @@ fun CharacterGoodDetailsBd.toDomain() = Good(
     name = this.good.name,
     type = GoodType.valueOf(this.good.type),
     cost = this.good.cost,
-    characterGoodId = this.characterGood.id
+    characterGoodId = this.characterGood.id,
+    image = this.good.image
 )

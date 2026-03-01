@@ -1,18 +1,22 @@
-package com.rumpilstilstkin.gloomhavenhelper.ui.perks
+package com.rumpilstilstkin.gloomhavenhelper.ui.icons
 
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.text.InlineTextContent
 import androidx.compose.foundation.text.appendInlineContent
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.Placeholder
 import androidx.compose.ui.text.PlaceholderVerticalAlign
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.withStyle
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.rumpilstilstkin.gloomhavenhelper.domain.entity.IconResCode
-import com.rumpilstilstkin.gloomhavenhelper.domain.entity.IconVectorCode
 
-fun replacePerkTextWithIcons(text: String): AnnotatedString {
+fun replaceTextWithIcons(text: String): AnnotatedString {
     val pattern =
         Regex("#(\\d+)")
     val matches = pattern.findAll(text)
@@ -30,25 +34,21 @@ fun replacePerkTextWithIcons(text: String): AnnotatedString {
     }
 }
 
-val perkEffectsInlineContentMap: Map<String, InlineTextContent> =
-    IconVectorCode.entries.associate { effectType ->
-        effectType.id.value to InlineTextContent(
+val iconsInlineContentMap: Map<String, InlineTextContent> =
+    GameIcons.entries.associate { icon ->
+        icon.textCode.value to InlineTextContent(
             Placeholder(
-                width = 28.sp,
-                height = 28.sp,
+                width = 38.sp,
+                height = 38.sp,
                 placeholderVerticalAlign = PlaceholderVerticalAlign.Center
             )
         ) {
-            PerkEffectIcon(effectType)
-        }
-    } + IconResCode.entries.associate { effectType ->
-        effectType.id.value to InlineTextContent(
-            Placeholder(
-                width = 28.sp,
-                height = 28.sp,
-                placeholderVerticalAlign = PlaceholderVerticalAlign.Center
+            Image(
+                painter = painterResource(id = icon.imageRes),
+                contentDescription = "Icon",
+                modifier = Modifier
+                    .size(64.dp)
+                    .padding(2.dp)
             )
-        ) {
-            PerkEffectIcon(effectType)
         }
     }

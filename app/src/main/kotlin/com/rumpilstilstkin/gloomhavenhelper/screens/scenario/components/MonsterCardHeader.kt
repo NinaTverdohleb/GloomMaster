@@ -22,17 +22,20 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.rumpilstilstkin.gloomhavenhelper.ui.icons.GameIcons
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.CardColors
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
 
 @Composable
 fun MonsterCardHeader(
     name: String,
+    isFly: Boolean,
     modifier: Modifier = Modifier,
     delete: () -> Unit,
     onAddUnit: (() -> Unit)? = null
@@ -43,13 +46,28 @@ fun MonsterCardHeader(
         .padding(vertical = 8.dp),
     verticalAlignment = Alignment.CenterVertically,
 ) {
-    Text(
-        text = name,
-        fontSize = 16.sp,
-        fontWeight = FontWeight.SemiBold,
-        color = MaterialTheme.colorScheme.onSurface,
+    Row(
         modifier = Modifier.weight(1f),
-    )
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Text(
+            text = name,
+            fontSize = 16.sp,
+            fontWeight = FontWeight.SemiBold,
+            color = MaterialTheme.colorScheme.onSurface,
+        )
+
+        if (isFly) {
+            Spacer(modifier = Modifier.width(8.dp))
+            val flyIcon = GameIcons.FLY
+            Icon(
+                modifier = Modifier.size(26.dp),
+                painter = painterResource(id = flyIcon.imageRes),
+                contentDescription = flyIcon.title,
+                tint = MaterialTheme.colorScheme.onSurface,
+            )
+        }
+    }
     if (onAddUnit != null) {
 
         OutlinedButton(
@@ -92,6 +110,7 @@ private fun MonsterCardHeaderPreview() {
         MonsterCardHeader(
             delete = {},
             name = "Разбойник страж",
+            isFly = true,
             onAddUnit = {}
         )
     }

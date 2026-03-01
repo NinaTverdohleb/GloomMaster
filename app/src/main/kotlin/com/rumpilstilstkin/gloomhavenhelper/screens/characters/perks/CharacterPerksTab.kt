@@ -271,7 +271,8 @@ fun PerkText(
 
     Text(
         modifier = modifier.padding(4.dp),
-        text = textWithIcons, inlineContent = perkEffectsInlineContentMap,
+        text = textWithIcons,
+        inlineContent = perkEffectsInlineContentMap,
         color = Color.Black,
         lineHeight = 28.sp
     )

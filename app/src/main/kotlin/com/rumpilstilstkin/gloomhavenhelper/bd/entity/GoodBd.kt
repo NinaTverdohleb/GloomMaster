@@ -11,5 +11,6 @@ data class GoodBd(
     @ColumnInfo(name = "name") val name: String,
     @ColumnInfo(name = "type") val type: String,
     @ColumnInfo(name = "cost") val cost: Int,
+    @ColumnInfo(name = "image") val image: String,
     @ColumnInfo(name = "is_drawing") val isDrawing: Boolean = false
 )

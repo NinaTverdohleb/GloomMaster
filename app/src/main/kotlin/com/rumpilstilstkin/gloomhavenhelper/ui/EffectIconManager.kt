@@ -43,19 +43,10 @@ fun IconResCode.toImage(): Int = when(this) {
     IconResCode.PLUS3 -> R.drawable.plus3
     IconResCode.PLUS4 -> R.drawable.plus4
     IconResCode.ZERO -> R.drawable.neutral
-    IconResCode.FROST -> R.drawable.frost
-    IconResCode.SUN -> R.drawable.sun
-    IconResCode.MOON -> R.drawable.moon
-    IconResCode.AIR -> R.drawable.air
-    IconResCode.FIRE -> R.drawable.fire
-    IconResCode.EARTH -> R.drawable.earth
-    IconResCode.SPEND_FROST -> TODO()
-    IconResCode.SPEND_SUN -> R.drawable.use_light
-    IconResCode.SPEND_MOON -> R.drawable.use_dark
-    IconResCode.SPEND_AIR -> TODO()
-    IconResCode.SPEND_FIRE -> TODO()
-    IconResCode.SPEND_EARTH -> TODO()
-    IconResCode.SPEND_ANY -> TODO()
-    IconResCode.AREA_0 -> TODO()
-    IconResCode.AREA_1 -> TODO()
+    IconResCode.FROST -> R.drawable.ic_magic_frost
+    IconResCode.SUN -> R.drawable.ic_magic_sun
+    IconResCode.MOON -> R.drawable.ic_magic_moon
+    IconResCode.AIR -> R.drawable.ic_magic_air
+    IconResCode.FIRE -> R.drawable.ic_magic_fire
+    IconResCode.EARTH -> R.drawable.ic_magic_earth
 }

@@ -40,6 +40,7 @@ fun RegularMonsterCard(
     BasicCard(modifier) {
         MonsterCardHeader(
             name = item.name,
+            isFly = item.isFly,
             delete = { delete(item.id) },
             onAddUnit = { showSpawnDialog = true }
         )
@@ -125,6 +126,7 @@ private fun RegularMonsterCardPreview() {
                 id = 1,
                 name = "Хвостожабка",
                 currentCard = null,
+                isFly = true,
                 units = listOf(
                     MonsterUnit(
                         number = 2,

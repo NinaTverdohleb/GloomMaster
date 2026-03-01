@@ -140,6 +140,7 @@ private fun SampleItem() {
                             name = "Сапоги большого шага поешь этих сладких французких булок",
                             typeImage = GloomhavenIcons.GoodTypes.Foot,
                             cost = 20,
+                            image = ""
                         ),
                         GoodUi(
                             id = 2,
@@ -147,6 +148,7 @@ private fun SampleItem() {
                             name = "Сапоги большого шага поешь этих сладких французких булок",
                             typeImage = GloomhavenIcons.GoodTypes.Foot,
                             cost = 20,
+                            image = ""
                         )
                     ),
                     selectedGoods = persistentListOf(
@@ -156,6 +158,7 @@ private fun SampleItem() {
                             name = "Сапоги большого шага поешь этих сладких французких булок",
                             typeImage = GloomhavenIcons.GoodTypes.Foot,
                             cost = 20,
+                            image = ""
                         ),
                         GoodUi(
                             id = 2,
@@ -163,6 +166,7 @@ private fun SampleItem() {
                             name = "Сапоги большого шага поешь этих сладких французких булок",
                             typeImage = GloomhavenIcons.GoodTypes.Foot,
                             cost = 20,
+                            image = ""
                         )
                     ),
                     selectedFilter = GoodType.Arm,

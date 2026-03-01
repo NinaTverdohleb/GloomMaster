@@ -1,52 +1,51 @@
 package com.rumpilstilstkin.gloomhavenhelper.domain.entity
 
-private object IconCode {
-    const val MINUS1 = "01"
-    const val MINUS2 = "02"
-    const val PLUS1 = "03"
-    const val PLUS2 = "04"
-    const val PLUS3 = "05"
-    const val PLUS4 = "06"
-    const val NEXT = "07"
-    const val PUSH = "08"
-    const val PROBOY = "09"
-    const val STUN = "10"
-    const val DISARM = "11"
-    const val CONFUSE = "12"
-    const val TARGET = "13"
-    const val WOUND = "14"
-    const val ZERO = "15"
-    const val FROST = "16"
-    const val PULL = "17"
-    const val PARALYZE = "18"
-    const val SUN = "19"
-    const val MOON = "20"
-    const val AIR = "21"
-    const val FIRE = "22"
-    const val EARTH = "23"
-    const val INVISIBILITY = "24"
-    const val POISON = "25"
-    const val CURSE = "26"
-    const val AREA_0 = "27"
-    const val SPEND_FROST = "28"
-    const val SPEND_SUN = "29"
-    const val SPEND_MOON = "30"
-    const val SPEND_AIR = "31"
-    const val SPEND_FIRE = "32"
-    const val SPEND_EARTH = "33"
-    const val SPEND_ANY = "34"
-    const val AREA_1 = "35"
-    const val AREA_2 = "36"
-    const val AREA_3 = "37"
-    const val AREA_4 = "38"
-    const val AREA_5 = "39"
-    const val AREA_6 = "40"
+enum class IconCode(val value: String) {
+    MINUS1("01"),
+    MINUS2("02"),
+    PLUS1("03"),
+    PLUS2("04"),
+    PLUS3("05"),
+    PLUS4("06"),
+    NEXT("07"),
+    PUSH("08"),
+    PIERCE("09"),
+    STUN("10"),
+    DISARM("11"),
+    CONFUSE("12"),
+    TARGET("13"),
+    WOUND("14"),
+    ZERO("15"),
+
+    FROST("16"),
+
+    PULL("17"),
+    PARALYZE("18"),
+
+    SUN("19"),
+    MOON("20"),
+    AIR("21"),
+    FIRE("22"),
+    EARTH("23"),
+
+    INVISIBILITY("24"),
+    POISON("25"),
+    CURSE("26"),
+
+    AREA_0("27"),
+    AREA_1("28"),
+    AREA_2("29"),
+    AREA_3("30"),
+    AREA_4("31"),
+    AREA_5("32"),
+    AREA_6("33"),
+    FLY("41"),
 }
 
-enum class IconVectorCode(val id: String) {
+enum class IconVectorCode(val id: IconCode) {
     NEXT(IconCode.NEXT),
     PUSH(IconCode.PUSH),
-    PROBOY(IconCode.PROBOY),
+    PROBOY(IconCode.PIERCE),
     STUN(IconCode.STUN),
     DISARM(IconCode.DISARM),
     CONFUSE(IconCode.CONFUSE),
@@ -59,7 +58,7 @@ enum class IconVectorCode(val id: String) {
     CURSE(IconCode.CURSE),
 }
 
-enum class IconResCode(val id: String) {
+enum class IconResCode(val id: IconCode) {
     MINUS1(IconCode.MINUS1),
     MINUS2(IconCode.MINUS2),
     PLUS1(IconCode.PLUS1),
@@ -67,19 +66,11 @@ enum class IconResCode(val id: String) {
     PLUS3(IconCode.PLUS3),
     PLUS4(IconCode.PLUS4),
     ZERO(IconCode.ZERO),
+
     FROST(IconCode.FROST),
     SUN(IconCode.SUN),
     MOON(IconCode.MOON),
     AIR(IconCode.AIR),
     FIRE(IconCode.FIRE),
     EARTH(IconCode.EARTH),
-    SPEND_FROST(IconCode.SPEND_FROST),
-    SPEND_SUN(IconCode.SPEND_SUN),
-    SPEND_MOON(IconCode.SPEND_MOON),
-    SPEND_AIR(IconCode.SPEND_AIR),
-    SPEND_FIRE(IconCode.SPEND_FIRE),
-    SPEND_EARTH(IconCode.SPEND_EARTH),
-    SPEND_ANY(IconCode.SPEND_ANY),
-    AREA_0(IconCode.AREA_0),
-    AREA_1(IconCode.AREA_1)
 }

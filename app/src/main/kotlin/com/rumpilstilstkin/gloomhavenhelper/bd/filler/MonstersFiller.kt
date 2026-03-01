@@ -10,11 +10,12 @@ import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterStatTyp
 
 object MonstersFiller {
     suspend fun fill_v1(monsterDao: MonsterDao) {
-        fillMonsters(monsterDao)
+        fillMonsters1(monsterDao)
+        fillMonsters2(monsterDao)
         fillAbilityDecks(monsterDao)
     }
 
-    private suspend fun fillMonsters(monsterDao: MonsterDao) {
+    private suspend fun fillMonsters1(monsterDao: MonsterDao) {
         val bossId = monsterDao.insertMonster(
             MonsterBd(
                 name = "Главарь разбойников",
@@ -24,14 +25,14 @@ object MonstersFiller {
             )
         ).toInt()
         monsterDao.insertAllStats(
-            MonsterStatsBd(bossId, 0, false, 8, listOf(Action(MOVE, "3"), Action(ATTACK, "3"), Text("Перемещается к двери и открывает комнату"), Text("Призывает Ожившие кости"))),
-            MonsterStatsBd(bossId, 1, false, 10, listOf(Action(MOVE, "3"), Action(ATTACK, "3"), Text("Перемещается к двери и открывает комнату"), Text("Призывает Ожившие кости"))),
-            MonsterStatsBd(bossId, 2, false, 12, listOf(Action(MOVE, "4"), Action(ATTACK, "3"), Text("Перемещается к двери и открывает комнату"), Text("Призывает Ожившие кости"))),
-            MonsterStatsBd(bossId, 3, false, 13, listOf(Action(MOVE, "4"), Action(ATTACK, "4"), Text("Перемещается к двери и открывает комнату"), Text("Призывает Ожившие кости"))),
-            MonsterStatsBd(bossId, 4, false, 15, listOf(Action(MOVE, "4"), Action(ATTACK, "4"), Text("Перемещается к двери и открывает комнату"), Text("Призывает Ожившие кости"))),
-            MonsterStatsBd(bossId, 5, false, 16, listOf(Action(MOVE, "5"), Action(ATTACK, "5"), Text("Перемещается к двери и открывает комнату"), Text("Призывает Ожившие кости"))),
-            MonsterStatsBd(bossId, 6, false, 19, listOf(Action(MOVE, "5"), Action(ATTACK, "5"), Text("Перемещается к двери и открывает комнату"), Text("Призывает Ожившие кости"))),
-            MonsterStatsBd(bossId, 7, false, 23, listOf(Action(MOVE, "5"), Action(ATTACK, "5"), Text("Перемещается к двери и открывает комнату"), Text("Призывает Ожившие кости"))),
+            MonsterStatsBd(bossId, 0, false, 8, listOf(Action(MOVE, "3"), Action(ATTACK, "3"), Text("Способность 1: Перемещается к двери и открывает комнату"), Text("Способность 2: Призывает Ожившие кости"))),
+            MonsterStatsBd(bossId, 1, false, 10, listOf(Action(MOVE, "3"), Action(ATTACK, "3"), Text("Способность 1: Перемещается к двери и открывает комнату"), Text("Способность 2: Призывает Ожившие кости"))),
+            MonsterStatsBd(bossId, 2, false, 12, listOf(Action(MOVE, "4"), Action(ATTACK, "3"), Text("Способность 1: Перемещается к двери и открывает комнату"), Text("Способность 2: Призывает Ожившие кости"))),
+            MonsterStatsBd(bossId, 3, false, 13, listOf(Action(MOVE, "4"), Action(ATTACK, "4"), Text("Способность 1: Перемещается к двери и открывает комнату"), Text("Способность 2: Призывает Ожившие кости"))),
+            MonsterStatsBd(bossId, 4, false, 15, listOf(Action(MOVE, "4"), Action(ATTACK, "4"), Text("Способность 1: Перемещается к двери и открывает комнату"), Text("Способность 2: Призывает Ожившие кости"))),
+            MonsterStatsBd(bossId, 5, false, 16, listOf(Action(MOVE, "5"), Action(ATTACK, "5"), Text("Способность 1: Перемещается к двери и открывает комнату"), Text("Способность 2: Призывает Ожившие кости"))),
+            MonsterStatsBd(bossId, 6, false, 19, listOf(Action(MOVE, "5"), Action(ATTACK, "5"), Text("Способность 1: Перемещается к двери и открывает комнату"), Text("Способность 2: Призывает Ожившие кости"))),
+            MonsterStatsBd(bossId, 7, false, 23, listOf(Action(MOVE, "5"), Action(ATTACK, "5"), Text("Способность 1: Перемещается к двери и открывает комнату"), Text("Способность 2: Призывает Ожившие кости"))),
         )
 
         val livingBonesId = monsterDao.insertMonster(
@@ -553,21 +554,21 @@ object MonstersFiller {
             )
         ).toInt()
         monsterDao.insertAllStats(
-            MonsterStatsBd(inoxBodyGuardId1, 0, false, 6, listOf(Action(MOVE, "2"), Action(ATTACK, "С"), Text("Способность 1: Движение -1, Атака -1 по площади #37"), Text("Способность 2: Движение +0, Атака +0, Ответный удар 4"))),
+            MonsterStatsBd(inoxBodyGuardId1, 0, false, 6, listOf(Action(MOVE, "2"), Action(ATTACK, "С"), Text("Способность 1: Движение -1, Атака -1 по площади #30"), Text("Способность 2: Движение +0, Атака +0, Ответный удар 4"))),
 
-            MonsterStatsBd(inoxBodyGuardId1, 1, false, 7, listOf(Action(MOVE, "2"), Action(ATTACK, "1+С"), Text("Способность 1: Движение -1, Атака -1 по площади #37"), Text("Способность 2: Движение +0, Атака +0, Ответный удар 4"))),
+            MonsterStatsBd(inoxBodyGuardId1, 1, false, 7, listOf(Action(MOVE, "2"), Action(ATTACK, "1+С"), Text("Способность 1: Движение -1, Атака -1 по площади #30"), Text("Способность 2: Движение +0, Атака +0, Ответный удар 4"))),
 
-            MonsterStatsBd(inoxBodyGuardId1, 2, false, 9, listOf(Action(MOVE, "2"), Action(ATTACK, "1+С"), Text("Способность 1: Движение -1, Атака -1 по площади #37"), Text("Способность 2: Движение +0, Атака +0, Ответный удар 4"))),
+            MonsterStatsBd(inoxBodyGuardId1, 2, false, 9, listOf(Action(MOVE, "2"), Action(ATTACK, "1+С"), Text("Способность 1: Движение -1, Атака -1 по площади #30"), Text("Способность 2: Движение +0, Атака +0, Ответный удар 4"))),
 
-            MonsterStatsBd(inoxBodyGuardId1, 3, false, 10, listOf(Action(MOVE, "3"), Action(ATTACK, "2+С"), Text("Способность 1: Движение -1, Атака -1 по площади #37"), Text("Способность 2: Движение +0, Атака +0, Ответный удар 4"))),
+            MonsterStatsBd(inoxBodyGuardId1, 3, false, 10, listOf(Action(MOVE, "3"), Action(ATTACK, "2+С"), Text("Способность 1: Движение -1, Атака -1 по площади #30"), Text("Способность 2: Движение +0, Атака +0, Ответный удар 4"))),
 
-            MonsterStatsBd(inoxBodyGuardId1, 4, false, 11, listOf(Action(MOVE, "3"), Action(ATTACK, "2+С"), Text("Способность 1: Движение -1, Атака -1 по площади #37"), Text("Способность 2: Движение +0, Атака +0, Ответный удар 4"))),
+            MonsterStatsBd(inoxBodyGuardId1, 4, false, 11, listOf(Action(MOVE, "3"), Action(ATTACK, "2+С"), Text("Способность 1: Движение -1, Атака -1 по площади #30"), Text("Способность 2: Движение +0, Атака +0, Ответный удар 4"))),
 
-            MonsterStatsBd(inoxBodyGuardId1, 5, false, 13, listOf(Action(MOVE, "3"), Action(ATTACK, "3+С"), Text("Способность 1: Движение -1, Атака -1 по площади #37"), Text("Способность 2: Движение +0, Атака +0, Ответный удар 4"))),
+            MonsterStatsBd(inoxBodyGuardId1, 5, false, 13, listOf(Action(MOVE, "3"), Action(ATTACK, "3+С"), Text("Способность 1: Движение -1, Атака -1 по площади #30"), Text("Способность 2: Движение +0, Атака +0, Ответный удар 4"))),
 
-            MonsterStatsBd(inoxBodyGuardId1, 6, false, 15, listOf(Action(MOVE, "4"), Action(ATTACK, "3+С"), Text("Способность 1: Движение -1, Атака -1 по площади #37"), Text("Способность 2: Движение +0, Атака +0, Ответный удар 4"))),
+            MonsterStatsBd(inoxBodyGuardId1, 6, false, 15, listOf(Action(MOVE, "4"), Action(ATTACK, "3+С"), Text("Способность 1: Движение -1, Атака -1 по площади #30"), Text("Способность 2: Движение +0, Атака +0, Ответный удар 4"))),
 
-            MonsterStatsBd(inoxBodyGuardId1, 7, false, 27, listOf(Action(MOVE, "4"), Action(ATTACK, "4+С"), Text("Способность 1: Движение -1, Атака -1 по площади #37"), Text("Способность 2: Движение +0, Атака +0, Ответный удар 4"))),
+            MonsterStatsBd(inoxBodyGuardId1, 7, false, 27, listOf(Action(MOVE, "4"), Action(ATTACK, "4+С"), Text("Способность 1: Движение -1, Атака -1 по площади #30"), Text("Способность 2: Движение +0, Атака +0, Ответный удар 4"))),
         )
 
         val inoxBodyGuardId2 = monsterDao.insertMonster(
@@ -579,21 +580,21 @@ object MonstersFiller {
             )
         ).toInt()
         monsterDao.insertAllStats(
-            MonsterStatsBd(inoxBodyGuardId2, 0, false, 6, listOf(Action(MOVE, "2"), Action(ATTACK, "С"), Text("Способность 1: Движение -1, Атака -1 по площади #37"), Text("Способность 2: Движение +0, Атака +0, Ответный удар 4"))),
+            MonsterStatsBd(inoxBodyGuardId2, 0, false, 6, listOf(Action(MOVE, "2"), Action(ATTACK, "С"), Text("Способность 1: Движение -1, Атака -1 по площади #30"), Text("Способность 2: Движение +0, Атака +0, Ответный удар 4"))),
 
-            MonsterStatsBd(inoxBodyGuardId2, 1, false, 7, listOf(Action(MOVE, "2"), Action(ATTACK, "1+С"), Text("Способность 1: Движение -1, Атака -1 по площади #37"), Text("Способность 2: Движение +0, Атака +0, Ответный удар 4"))),
+            MonsterStatsBd(inoxBodyGuardId2, 1, false, 7, listOf(Action(MOVE, "2"), Action(ATTACK, "1+С"), Text("Способность 1: Движение -1, Атака -1 по площади #30"), Text("Способность 2: Движение +0, Атака +0, Ответный удар 4"))),
 
-            MonsterStatsBd(inoxBodyGuardId2, 2, false, 9, listOf(Action(MOVE, "2"), Action(ATTACK, "1+С"), Text("Способность 1: Движение -1, Атака -1 по площади #37"), Text("Способность 2: Движение +0, Атака +0, Ответный удар 4"))),
+            MonsterStatsBd(inoxBodyGuardId2, 2, false, 9, listOf(Action(MOVE, "2"), Action(ATTACK, "1+С"), Text("Способность 1: Движение -1, Атака -1 по площади #30"), Text("Способность 2: Движение +0, Атака +0, Ответный удар 4"))),
 
-            MonsterStatsBd(inoxBodyGuardId2, 3, false, 10, listOf(Action(MOVE, "3"), Action(ATTACK, "2+С"), Text("Способность 1: Движение -1, Атака -1 по площади #37"), Text("Способность 2: Движение +0, Атака +0, Ответный удар 4"))),
+            MonsterStatsBd(inoxBodyGuardId2, 3, false, 10, listOf(Action(MOVE, "3"), Action(ATTACK, "2+С"), Text("Способность 1: Движение -1, Атака -1 по площади #30"), Text("Способность 2: Движение +0, Атака +0, Ответный удар 4"))),
 
-            MonsterStatsBd(inoxBodyGuardId2, 4, false, 11, listOf(Action(MOVE, "3"), Action(ATTACK, "2+С"), Text("Способность 1: Движение -1, Атака -1 по площади #37"), Text("Способность 2: Движение +0, Атака +0, Ответный удар 4"))),
+            MonsterStatsBd(inoxBodyGuardId2, 4, false, 11, listOf(Action(MOVE, "3"), Action(ATTACK, "2+С"), Text("Способность 1: Движение -1, Атака -1 по площади #30"), Text("Способность 2: Движение +0, Атака +0, Ответный удар 4"))),
 
-            MonsterStatsBd(inoxBodyGuardId2, 5, false, 13, listOf(Action(MOVE, "3"), Action(ATTACK, "3+С"), Text("Способность 1: Движение -1, Атака -1 по площади #37"), Text("Способность 2: Движение +0, Атака +0, Ответный удар 4"))),
+            MonsterStatsBd(inoxBodyGuardId2, 5, false, 13, listOf(Action(MOVE, "3"), Action(ATTACK, "3+С"), Text("Способность 1: Движение -1, Атака -1 по площади #30"), Text("Способность 2: Движение +0, Атака +0, Ответный удар 4"))),
 
-            MonsterStatsBd(inoxBodyGuardId2, 6, false, 15, listOf(Action(MOVE, "4"), Action(ATTACK, "3+С"), Text("Способность 1: Движение -1, Атака -1 по площади #37"), Text("Способность 2: Движение +0, Атака +0, Ответный удар 4"))),
+            MonsterStatsBd(inoxBodyGuardId2, 6, false, 15, listOf(Action(MOVE, "4"), Action(ATTACK, "3+С"), Text("Способность 1: Движение -1, Атака -1 по площади #30"), Text("Способность 2: Движение +0, Атака +0, Ответный удар 4"))),
 
-            MonsterStatsBd(inoxBodyGuardId2, 7, false, 27, listOf(Action(MOVE, "4"), Action(ATTACK, "4+С"), Text("Способность 1: Движение -1, Атака -1 по площади #37"), Text("Способность 2: Движение +0, Атака +0, Ответный удар 4"))),
+            MonsterStatsBd(inoxBodyGuardId2, 7, false, 27, listOf(Action(MOVE, "4"), Action(ATTACK, "4+С"), Text("Способность 1: Движение -1, Атака -1 по площади #30"), Text("Способность 2: Движение +0, Атака +0, Ответный удар 4"))),
         )
 
         val houndId = monsterDao.insertMonster(
@@ -1006,7 +1007,9 @@ object MonstersFiller {
             MonsterStatsBd(vermlingShamanId, 7, false, 7, listOf(Action(MOVE, "3"), Action(ATTACK, "4"), Action(RANGE, "4"), Action(SHIELD, "3"), Action(MUDDLE, ""))),
             MonsterStatsBd(vermlingShamanId, 7, true, 8, listOf(Action(MOVE, "3"), Action(ATTACK, "4"), Action(RANGE, "4"), Action(SHIELD, "5"), Action(MUDDLE, ""))),
         )
+    }
 
+    private suspend fun fillMonsters2(monsterDao: MonsterDao) {
         val giantViperId = monsterDao.insertMonster(
             MonsterBd(
                 name = "Гигантская гадюка",
@@ -1307,21 +1310,21 @@ object MonstersFiller {
             )
         ).toInt()
         monsterDao.insertAllStats(
-            MonsterStatsBd(drakePatriarchId, 0, false, 11, listOf(Action(ATTACK, "3"), Text("Способность 1: Атака +0 #38"), Text("Способность 2: Двишается и призывает 2 зефира"))),
+            MonsterStatsBd(drakePatriarchId, 0, false, 11, listOf(Action(ATTACK, "3"), Text("Способность 1: Атака +0 #31"), Text("Способность 2: Двишается и призывает 2 зефира"))),
 
-            MonsterStatsBd(drakePatriarchId, 1, false, 12, listOf(Action(ATTACK, "4"), Text("Способность 1: Атака +0 #38"), Text("Способность 2: Двишается и призывает 2 зефира"))),
+            MonsterStatsBd(drakePatriarchId, 1, false, 12, listOf(Action(ATTACK, "4"), Text("Способность 1: Атака +0 #31"), Text("Способность 2: Двишается и призывает 2 зефира"))),
 
-            MonsterStatsBd(drakePatriarchId, 2, false, 15, listOf(Action(ATTACK, "4"), Text("Способность 1: Атака +0 #38"), Text("Способность 2: Двишается и призывает 2 зефира"))),
+            MonsterStatsBd(drakePatriarchId, 2, false, 15, listOf(Action(ATTACK, "4"), Text("Способность 1: Атака +0 #31"), Text("Способность 2: Двишается и призывает 2 зефира"))),
 
-            MonsterStatsBd(drakePatriarchId, 3, false, 16, listOf( Action(ATTACK, "5"), Text("Способность 1: Атака +0 #38"), Text("Способность 2: Двишается и призывает 2 зефира"))),
+            MonsterStatsBd(drakePatriarchId, 3, false, 16, listOf( Action(ATTACK, "5"), Text("Способность 1: Атака +0 #31"), Text("Способность 2: Двишается и призывает 2 зефира"))),
 
-            MonsterStatsBd(drakePatriarchId, 4, false, 20, listOf(Action(ATTACK, "5"), Text("Способность 1: Атака +0 #38"), Text("Способность 2: Двишается и призывает 2 зефира"))),
+            MonsterStatsBd(drakePatriarchId, 4, false, 20, listOf(Action(ATTACK, "5"), Text("Способность 1: Атака +0 #31"), Text("Способность 2: Двишается и призывает 2 зефира"))),
 
-            MonsterStatsBd(drakePatriarchId, 5, false, 22, listOf(Action(ATTACK, "6"), Text("Способность 1: Атака +0 #38"), Text("Способность 2: Двишается и призывает 2 зефира"))),
+            MonsterStatsBd(drakePatriarchId, 5, false, 22, listOf(Action(ATTACK, "6"), Text("Способность 1: Атака +0 #31"), Text("Способность 2: Двишается и призывает 2 зефира"))),
 
-            MonsterStatsBd(drakePatriarchId, 6, false, 27, listOf(Action(ATTACK, "6"), Text("Способность 1: Атака +0 #38"), Text("Способность 2: Двишается и призывает 2 зефира"))),
+            MonsterStatsBd(drakePatriarchId, 6, false, 27, listOf(Action(ATTACK, "6"), Text("Способность 1: Атака +0 #31"), Text("Способность 2: Двишается и призывает 2 зефира"))),
 
-            MonsterStatsBd(drakePatriarchId, 7, false, 29, listOf(Action(ATTACK, "7"), Text("Способность 1: Атака +0 #38"), Text("Способность 2: Двишается и призывает 2 зефира"))),
+            MonsterStatsBd(drakePatriarchId, 7, false, 29, listOf(Action(ATTACK, "7"), Text("Способность 1: Атака +0 #31"), Text("Способность 2: Двишается и призывает 2 зефира"))),
         )
 
         val wingedHorrorId = monsterDao.insertMonster(
@@ -1359,22 +1362,22 @@ object MonstersFiller {
             )
         ).toInt()
         monsterDao.insertAllStats(
-                MonsterStatsBd(sightlessEyeId, 0, false, 7, listOf( Action(ATTACK, "5"), Action(RANGE, "3"), Text("Способность 1: Призывает Невыносимый ужас, атакует -3 #39"), Text("Способность 2: Призывает Невыносимый ужас, атакует -2 #40"))),
+            MonsterStatsBd(sightlessEyeId, 0, false, 7, listOf( Action(ATTACK, "5"), Action(RANGE, "3"), Text("Способность 1: Призывает Невыносимый ужас, атакует -3 #32"), Text("Способность 2: Призывает Невыносимый ужас, атакует -2 #33"))),
 
-                MonsterStatsBd(sightlessEyeId, 1, false, 8, listOf(Action(ATTACK, "6"), Action(RANGE, "3"),Text("Способность 1: Призывает Невыносимый ужас, атакует -3 #39"), Text("Способность 2: Призывает Невыносимый ужас, атакует -2 #40"))),
+            MonsterStatsBd(sightlessEyeId, 1, false, 8, listOf(Action(ATTACK, "6"), Action(RANGE, "3"),Text("Способность 1: Призывает Невыносимый ужас, атакует -3 #32"), Text("Способность 2: Призывает Невыносимый ужас, атакует -2 #33"))),
 
-                MonsterStatsBd(sightlessEyeId, 2, false, 10, listOf(Action(ATTACK, "6"),Action(RANGE, "3"), Text("Способность 1: Призывает Невыносимый ужас, атакует -3 #39"), Text("Способность 2: Призывает Невыносимый ужас, атакует -2 #40"))),
+            MonsterStatsBd(sightlessEyeId, 2, false, 10, listOf(Action(ATTACK, "6"),Action(RANGE, "3"), Text("Способность 1: Призывает Невыносимый ужас, атакует -3 #32"), Text("Способность 2: Призывает Невыносимый ужас, атакует -2 #33"))),
 
-                MonsterStatsBd(sightlessEyeId, 3, false, 11, listOf(Action(ATTACK, "7"),Action(RANGE, "3"), Text("Способность 1: Призывает Невыносимый ужас, атакует -3 #39"), Text("Способность 2: Призывает Невыносимый ужас, атакует -2 #40"))),
+            MonsterStatsBd(sightlessEyeId, 3, false, 11, listOf(Action(ATTACK, "7"),Action(RANGE, "3"), Text("Способность 1: Призывает Невыносимый ужас, атакует -3 #32"), Text("Способность 2: Призывает Невыносимый ужас, атакует -2 #33"))),
 
-                MonsterStatsBd(sightlessEyeId, 4, false, 14, listOf(Action(ATTACK, "7"), Action(RANGE, "3"),Text("Способность 1: Призывает Невыносимый ужас, атакует -3 #39"), Text("Способность 2: Призывает Невыносимый ужас, атакует -2 #40"))),
+            MonsterStatsBd(sightlessEyeId, 4, false, 14, listOf(Action(ATTACK, "7"), Action(RANGE, "3"),Text("Способность 1: Призывает Невыносимый ужас, атакует -3 #32"), Text("Способность 2: Призывает Невыносимый ужас, атакует -2 #33"))),
 
-                MonsterStatsBd(sightlessEyeId, 5, false, 25, listOf(Action(ATTACK, "8"),Action(RANGE, "3"), Text("Способность 1: Призывает Невыносимый ужас, атакует -3 #39"), Text("Способность 2: Призывает Невыносимый ужас, атакует -2 #40"))),
+            MonsterStatsBd(sightlessEyeId, 5, false, 25, listOf(Action(ATTACK, "8"),Action(RANGE, "3"), Text("Способность 1: Призывает Невыносимый ужас, атакует -3 #32"), Text("Способность 2: Призывает Невыносимый ужас, атакует -2 #33"))),
 
-                MonsterStatsBd(sightlessEyeId, 6, false, 18, listOf(Action(ATTACK, "8"),Action(RANGE, "3"), Text("Способность 1: Призывает Невыносимый ужас, атакует -3 #39"), Text("Способность 2: Призывает Невыносимый ужас, атакует -2 #40"))),
+            MonsterStatsBd(sightlessEyeId, 6, false, 18, listOf(Action(ATTACK, "8"),Action(RANGE, "3"), Text("Способность 1: Призывает Невыносимый ужас, атакует -3 #32"), Text("Способность 2: Призывает Невыносимый ужас, атакует -2 #33"))),
 
-                MonsterStatsBd(sightlessEyeId, 7, false, 20, listOf(Action(ATTACK, "9"), Action(RANGE, "3"),Text("Способность 1: Призывает Невыносимый ужас, атакует -3 #39"), Text("Способность 2: Призывает Невыносимый ужас, атакует -2 #40"))),
-            )
+            MonsterStatsBd(sightlessEyeId, 7, false, 20, listOf(Action(ATTACK, "9"), Action(RANGE, "3"),Text("Способность 1: Призывает Невыносимый ужас, атакует -3 #32"), Text("Способность 2: Призывает Невыносимый ужас, атакует -2 #33"))),
+        )
 
         // Темный всадник (босс)
         val darkRiderId = monsterDao.insertMonster(

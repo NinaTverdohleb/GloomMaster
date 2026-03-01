@@ -7,6 +7,7 @@ import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterStatTyp
 data class MonsterItem(
     val id: Int,
     val name: String,
+    val isFly: Boolean,
     val currentCard: MonsterAbilityCard? = null,
     val units: List<MonsterUnit> = emptyList(),
     val isBoss: Boolean = false,
@@ -15,12 +16,14 @@ data class MonsterItem(
         fun fixture(
             id: Int = 1,
             name: String = "Name",
-            isBoss: Boolean = false
+            isBoss: Boolean = false,
+            isFly: Boolean = false,
         ) = MonsterItem(
             id = id,
             name = name,
             currentCard = null,
             isBoss = isBoss,
+            isFly = isFly
         )
     }
 }

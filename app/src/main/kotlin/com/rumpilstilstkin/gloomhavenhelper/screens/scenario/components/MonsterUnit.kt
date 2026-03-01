@@ -37,6 +37,10 @@ import com.rumpilstilstkin.gloomhavenhelper.screens.models.ActionGroups
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.ActionUi
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.EffectItem
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.MonsterUnit
+import com.rumpilstilstkin.gloomhavenhelper.ui.icons.iconsInlineContentMap
+import com.rumpilstilstkin.gloomhavenhelper.ui.icons.replaceTextWithIcons
+import com.rumpilstilstkin.gloomhavenhelper.ui.perks.perkEffectsInlineContentMap
+import com.rumpilstilstkin.gloomhavenhelper.ui.perks.replacePerkTextWithIcons
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.CardColors
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
 import com.rumpilstilstkin.gloomhavenhelper.ui.view.NumberPicker
@@ -125,7 +129,7 @@ fun MonsterUnitCard(
             horizontalArrangement = Arrangement.SpaceAround
         ) {
             val immunitySet = unit.immunity.toSet()
-            ActionGroups.effectsPack.filter { it !in immunitySet}.forEach { effect ->
+            ActionGroups.effectsPack.filter { it !in immunitySet }.forEach { effect ->
                 val tint =
                     if (unit.effects.contains(effect)) {
                         MaterialTheme.colorScheme.secondary
@@ -198,12 +202,19 @@ fun MonsterUnitCard(
                 Column(
                     modifier = Modifier.padding(16.dp)
                 ) {
-                    texts.forEach { stat ->
+                    texts.forEachIndexed { index, stat ->
+                        val textWithIcons = replaceTextWithIcons(stat.content)
                         Text(
-                            text = stat.content,
+                            text = textWithIcons,
+                            inlineContent = iconsInlineContentMap,
                             fontSize = 14.sp,
                             color = MaterialTheme.colorScheme.onSurface
                         )
+                        if (index != texts.lastIndex) {
+                            Spacer(
+                                modifier = Modifier.height(8.dp)
+                            )
+                        }
                     }
                 }
             }
@@ -356,10 +367,10 @@ private fun MonsterUnitBossPreview() {
                         modifier = "4"
                     ),
                     EffectItem.Text(
-                        content = "Способность 1: Убивает всех"
+                        content = "Способность 1: Призывает Невыносимый ужас, атакует -3 #33"
                     ),
                     EffectItem.Text(
-                        content = "Способность 2: Убивает всех"
+                        content = "Способность 2: #20: Убивает всех"
                     )
                 ),
                 immunity = listOf(

@@ -44,7 +44,8 @@ class MonsterRepository @Inject constructor(
                     cards = cards.map { it.toDomain() },
                     deckName = monster.deckName,
                     isBoss = monster.isBoss,
-                    immunity = monster.immunity
+                    immunity = monster.immunity,
+                    isFly = monster.fly
                 )
             }
 }

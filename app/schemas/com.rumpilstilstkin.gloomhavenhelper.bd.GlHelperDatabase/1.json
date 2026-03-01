@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "e840873b47b856d06bca9fd4f8722ca8",
+    "identityHash": "9d8265e8c5782c27c017b33e0957851d",
     "entities": [
       {
         "tableName": "TeamBd",
@@ -337,7 +337,7 @@
       },
       {
         "tableName": "GoodBd",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`goodId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `number` INTEGER NOT NULL, `name` TEXT NOT NULL, `type` TEXT NOT NULL, `cost` INTEGER NOT NULL, `is_drawing` INTEGER NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`goodId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `number` INTEGER NOT NULL, `name` TEXT NOT NULL, `type` TEXT NOT NULL, `cost` INTEGER NOT NULL, `image` TEXT NOT NULL, `is_drawing` INTEGER NOT NULL)",
         "fields": [
           {
             "fieldPath": "goodId",
@@ -367,6 +367,12 @@
             "fieldPath": "cost",
             "columnName": "cost",
             "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "image",
+            "columnName": "image",
+            "affinity": "TEXT",
             "notNull": true
           },
           {
@@ -878,7 +884,7 @@
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'e840873b47b856d06bca9fd4f8722ca8')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '9d8265e8c5782c27c017b33e0957851d')"
     ]
   }
 }

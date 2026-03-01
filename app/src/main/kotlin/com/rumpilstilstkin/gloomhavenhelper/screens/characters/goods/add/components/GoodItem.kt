@@ -42,7 +42,8 @@ fun GoodItem(
             onActionClick(good)
             showDetailsDialog = false
         },
-        buttonText = dialogButtonText
+        buttonText = dialogButtonText,
+        imagePath = good.imagePath
     )
     Row(
         modifier = modifier
@@ -96,6 +97,7 @@ private fun GoodItemPreview() {
                 name = "Сапоги большого шага поешь этих сладких французких булок",
                 typeImage = GloomhavenIcons.GoodTypes.Foot,
                 cost = 20,
+                image = ""
             ),
             onActionClick = {}
         )
