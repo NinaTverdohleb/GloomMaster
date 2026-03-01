@@ -36,7 +36,7 @@ fun TitleTeamRow(
         Spacer(modifier = Modifier.size(16.dp))
         RoundButton(
             text = teamLevel.toString(),
-            color = MaterialTheme.colorScheme.secondary,
+            color = MaterialTheme.colorScheme.primary,
             size = 64.dp
         ) {
             onLevelClick.invoke()

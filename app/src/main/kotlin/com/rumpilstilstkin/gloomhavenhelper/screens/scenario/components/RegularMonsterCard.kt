@@ -48,30 +48,24 @@ fun RegularMonsterCard(
             thickness = 1.dp,
             color = MaterialTheme.colorScheme.outlineVariant
         )
-        Spacer(
-            modifier = Modifier.height(16.dp)
-        )
-
-        MonsterActionCard(
-            card = item.currentCard
-        )
-
-        Spacer(
-            modifier = Modifier.height(8.dp)
-        )
-
-        Text(
-            text = "Активные враги",
-            fontSize = 9.sp,
-            letterSpacing = 1.sp,
-            color = CardColors.TextMuted,
-            modifier = Modifier.padding(vertical = 2.dp),
-        )
-
         LazyColumn(
             modifier = modifier,
             verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
+            item {
+                MonsterActionCard(
+                    card = item.currentCard
+                )
+            }
+            item {
+                Text(
+                    text = "Активные враги",
+                    fontSize = 9.sp,
+                    letterSpacing = 1.sp,
+                    color = CardColors.TextMuted,
+                    modifier = Modifier.padding(vertical = 2.dp),
+                )
+            }
             if (item.units.isEmpty()) {
                 item {
                     EmptyMonsterUnitCard()

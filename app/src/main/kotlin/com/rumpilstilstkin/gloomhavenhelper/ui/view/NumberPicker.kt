@@ -40,7 +40,7 @@ fun NumberPicker(
     Row(
         modifier = modifier
             .clip(RoundedCornerShape(16.dp))
-            .background(MaterialTheme.colorScheme.primaryContainer)
+            .background(MaterialTheme.colorScheme.secondaryContainer)
             .padding(vertical = 4.dp, horizontal = 8.dp),
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = CenterVertically
@@ -65,7 +65,8 @@ fun NumberPicker(
             modifier = Modifier
                 .align(CenterVertically)
                 .weight(1f, fill = false)
-                .defaultMinSize(minWidth = 48.dp),
+                .defaultMinSize(minWidth = 48.dp)
+                .padding(bottom = 4.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(

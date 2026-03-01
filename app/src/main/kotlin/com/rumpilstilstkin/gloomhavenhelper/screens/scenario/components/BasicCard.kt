@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults.cardColors
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -19,11 +20,11 @@ fun BasicCard(
     Card(
         modifier = modifier,
         colors = cardColors(
-            containerColor = CardColors.Background,
+            containerColor = MaterialTheme.colorScheme.primaryContainer,
         ),
         border = BorderStroke(
             1.dp,
-            CardColors.Gold
+            MaterialTheme.colorScheme.primary
         )
     ) {
         Column(

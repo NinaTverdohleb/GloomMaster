@@ -3,17 +3,15 @@ package com.rumpilstilstkin.gloomhavenhelper.screens.scenario.components
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.AddCircle
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -41,16 +39,16 @@ fun AddMonsterCard(
         ) {
             Box(
                 modifier = Modifier
-                    .size(72.dp)
+                    .size(120.dp)
                     .clip(CircleShape)
                     .background(CardColors.Surface),
                 contentAlignment = Alignment.Center,
             ) {
                 Icon(
-                    painter = painterResource(id = R.drawable.ic_complete),
+                    painter = painterResource(id = R.drawable.ic_empty),
                     contentDescription = null,
-                    modifier = Modifier.size(32.dp),
-                    tint = CardColors.IconTint,
+                    modifier = Modifier.size(64.dp),
+                    tint = MaterialTheme.colorScheme.outline,
                 )
             }
             Spacer(modifier = Modifier.size(24.dp))
@@ -58,7 +56,8 @@ fun AddMonsterCard(
             Button(
                 modifier = Modifier.fillMaxWidth(),
                 onClick = addMonster,
-                colors = ButtonDefaults.buttonColors(containerColor = CardColors.ButtonGold),
+                contentPadding = PaddingValues(16.dp),
+                colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primary),
             ) {
                 Text("Добавить монстра", fontSize = 12.sp)
             }

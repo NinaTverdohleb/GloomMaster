@@ -53,6 +53,8 @@ fun SpawnMonsterDialog(
     var selectedIds by remember { mutableStateOf<List<Int>>(emptyList()) }
 
     GloomAlertDialog(
+        title = monsterName,
+        titleIcon = Icons.Default.Person,
         onDismissRequest = onDismiss,
         onConfirmRequest = {
             onSpawn(selectedIds, selectedTier == UnitTier.Elite)
@@ -62,24 +64,6 @@ fun SpawnMonsterDialog(
         Column(
             verticalArrangement = Arrangement.spacedBy(16.dp),
         ) {
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(8.dp),
-            ) {
-                Icon(
-                    imageVector = Icons.Default.Person,
-                    contentDescription = null,
-                    tint = MaterialTheme.colorScheme.secondary,
-                    modifier = Modifier.size(20.dp),
-                )
-                Text(
-                    text = monsterName,
-                    fontSize = 16.sp,
-                    fontWeight = FontWeight.Bold,
-                    color = Color.White,
-                )
-            }
-
             TierSelector(
                 selected = selectedTier,
                 onSelect = { selectedTier = it },
@@ -114,7 +98,7 @@ private fun TierSelector(
         modifier = Modifier
             .fillMaxWidth()
             .clip(RoundedCornerShape(8.dp))
-            .background(MaterialTheme.colorScheme.surfaceVariant)
+            .background(MaterialTheme.colorScheme.secondaryContainer)
             .padding(4.dp),
         horizontalArrangement = Arrangement.spacedBy(4.dp),
     ) {
@@ -147,8 +131,7 @@ private fun TierSelector(
                     }
                     Text(
                         text = tier.text,
-                        fontSize = 13.sp,
-                        fontWeight = FontWeight.Normal,
+                        style = MaterialTheme.typography.bodyMedium,
                         color = contentColor,
                     )
                 }
@@ -204,9 +187,9 @@ private fun UnitIdCell(
             .clip(RoundedCornerShape(8.dp))
             .background(
                 if (isSelected) {
-                    MaterialTheme.colorScheme.secondary
+                    MaterialTheme.colorScheme.primary
                 } else {
-                    MaterialTheme.colorScheme.surfaceVariant
+                    MaterialTheme.colorScheme.secondaryContainer
                 }
             )
             .clickable(onClick = onClick),

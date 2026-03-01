@@ -103,7 +103,8 @@ fun ScenarioScreen(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(16.dp),
-                onClick = nextRound
+                onClick = nextRound,
+                contentPadding = PaddingValues(16.dp)
             ) {
                 Text(
                     text = "Раунд",
@@ -128,7 +129,7 @@ private fun CombatToolbar(
             modifier = Modifier
                 .border(
                     width = 1.dp,
-                    color = MaterialTheme.colorScheme.secondary,
+                    color = MaterialTheme.colorScheme.primary,
                     shape = RoundedCornerShape(50)
                 )
                 .heightIn(min = 24.dp)
@@ -146,7 +147,7 @@ private fun CombatToolbar(
                         trim = LineHeightStyle.Trim.Both
                     )
                 ),
-                color = MaterialTheme.colorScheme.secondary,
+                color = MaterialTheme.colorScheme.primary,
                 textAlign = TextAlign.Center
             )
         }
@@ -194,15 +195,24 @@ private fun ScenarioHeader(
         magics.keys.forEach { magic ->
             IconButton(
                 onClick = { clickMagic(magic) },
-                modifier = Modifier.size(48.dp),
+                modifier = Modifier.size(52.dp),
             ) {
-                val color = magics[magic]?.color(magic) ?: magic.icon.color
+                magics[magic]?.getChargeImage()?.let { image ->
+                    Icon(
+                        painter = painterResource(id = image),
+                        contentDescription = null,
+                        modifier = modifier
+                            .size(52.dp),
+                        tint = MaterialTheme.colorScheme.primary
+                    )
+                }
+
                 Icon(
                     painter = painterResource(id = magic.icon.imageRes),
                     contentDescription = magic.icon.title,
                     modifier = modifier
-                        .size(48.dp),
-                    tint = color
+                        .size(32.dp),
+                    tint = magic.icon.color
                 )
             }
         }

@@ -1,6 +1,7 @@
 package com.rumpilstilstkin.gloomhavenhelper.screens.scenario.components
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -49,7 +50,7 @@ fun MonsterListDialog(
                 selectMonster(selectedIds)
             },
             confirmEnabled = selectedIds.isNotEmpty(),
-            title = "Выберете тип врагов"
+            title = "Выберете врагов"
         ) {
             Column {
                 LazyColumn(
@@ -84,11 +85,17 @@ private fun MonsterClassItem(
     isSelected: Boolean,
     onClick: () -> Unit,
 ) {
+    val borderColor = if(isSelected) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.primary.copy(alpha = 0.2f)
+    val borderWidth = if(isSelected) 1.5.dp else 1.dp
     Row(
         modifier = Modifier
             .fillMaxWidth()
             .clip(RoundedCornerShape(12.dp))
-            .background(MaterialTheme.colorScheme.surfaceVariant)
+            .background(MaterialTheme.colorScheme.secondaryContainer).border(
+                borderWidth,
+                borderColor,
+                RoundedCornerShape(12.dp)
+            )
             .clickable(onClick = onClick)
             .padding(horizontal = 16.dp, vertical = 18.dp),
         verticalAlignment = Alignment.CenterVertically,
@@ -103,28 +110,10 @@ private fun MonsterClassItem(
             Icon(
                 imageVector = Icons.Default.CheckCircle,
                 contentDescription = null,
-                tint = MaterialTheme.colorScheme.secondary,
+                tint = MaterialTheme.colorScheme.primary,
                 modifier = Modifier.size(20.dp),
             )
         }
-    }
-}
-
-@Composable
-fun MonsterListItem(
-    monsterItem: MonsterItem,
-    modifier: Modifier = Modifier
-) {
-    Column(
-        modifier = modifier
-            .padding(8.dp)
-            .fillMaxWidth()
-    ) {
-        Text(
-            modifier = Modifier.fillMaxWidth(),
-            style = MaterialTheme.typography.headlineSmall,
-            text = monsterItem.name
-        )
     }
 }
 

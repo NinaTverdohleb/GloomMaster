@@ -72,11 +72,11 @@ fun MonsterCardHeader(
 
         OutlinedButton(
             onClick = onAddUnit,
-            border = BorderStroke(1.dp, CardColors.Green),
+            border = BorderStroke(1.dp, MaterialTheme.colorScheme.secondary),
             shape = RoundedCornerShape(16.dp),
             colors = ButtonDefaults.outlinedButtonColors(
                 containerColor = Color.Transparent,
-                contentColor = CardColors.Green,
+                contentColor = MaterialTheme.colorScheme.secondary,
             ),
             contentPadding = PaddingValues(horizontal = 14.dp, vertical = 0.dp),
         ) {
@@ -88,7 +88,7 @@ fun MonsterCardHeader(
             )
         }
 
-        Spacer(Modifier.width(16.dp))
+        Spacer(Modifier.width(8.dp))
     }
     IconButton(
         onClick = delete,
@@ -97,7 +97,7 @@ fun MonsterCardHeader(
         Icon(
             imageVector = Icons.Default.Delete,
             contentDescription = "Delete",
-            tint = CardColors.TextSecondary,
+            tint = MaterialTheme.colorScheme.error,
             modifier = Modifier.size(24.dp),
         )
     }

@@ -6,16 +6,16 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 
 private val colors = darkColorScheme(
-    primary = Green, // Тон 80: Текст, иконки на темном фоне
-    onPrimary = Color(0xFFFFFFFF), // Тон 20: Иконки на primary фоне
-    primaryContainer = primaryContainer, // Тон 30: Заливка кнопок (Continue Adventure)
-    onPrimaryContainer = Color(0xFFFFFFFF), // Тон 90: Текст внутри кнопок
+    primary = Gold,
+    onPrimary = Color(0xFFFFFFFF),
+    primaryContainer = primaryContainer,
+    onPrimaryContainer = Color(0xFFFFFFFF),
 
     // Secondary (Золотой)
-    secondary = Gold, // Тон 80: Акценты, FAB (+)
-    onSecondary = Color(0xFF3D2E00), // Тон 20: Иконка внутри FAB
-    secondaryContainer = SurfaceContainer, // Тон 30: Выделенные состояния
-    onSecondaryContainer = Color(0xFFFFE088), // Тон 90: Золотой текст (Заголовки, Золото)
+    secondary = Green,
+    onSecondary = Color(0xFFC5ECDF),
+    secondaryContainer = secondaryContainer,
+    onSecondaryContainer = Color(0xFFFFE088),
 
     // Tertiary (Приглушенный морской - для третьего уровня акцентов, например XP)
     tertiary = Color(0xFFA9CFC4),
@@ -30,18 +30,18 @@ private val colors = darkColorScheme(
     onErrorContainer = Color(0xFFFFDAD6),
 
     // Базовые фоны (Нейтральные темно-зеленые оттенки)
-    background = Background, // Тон 10: Самый темный фон (подложка приложения)
-    onBackground = Color.White, // Тон 90: Основной текст
-    surface = SurfaceContainer, // Тон 10: Совпадает с background
-    onSurface = Color.White, // Тон 90: Основной текст на surface
+    background = Background,
+    onBackground = Color.White,
+    surface = SurfaceContainer,
+    onSurface = Color.White,
 
     // Поверхности карточек и списков
-    surfaceVariant = SurfaceVariant, // Тон 30: Фон карточек (Your Party, Chapter 4)
-    onSurfaceVariant = OnSurfaceVariant, // Тон 80: Второстепенный текст (LVL, описания)
+    surfaceVariant = SurfaceVariant,
+    onSurfaceVariant = OnSurfaceVariant,
 
     // Обводки и разделители
-    outline = Divider, // Тон 50: Активные границы (фокус)
-    outlineVariant = DividerVariant, // Тон 30: Тонкие неактивные рамки карточек
+    outline = Divider,
+    outlineVariant = DividerVariant,
 
     // Инвертированные цвета (Снэкбары)
     inverseSurface = Color(0xFFE0E3E1),

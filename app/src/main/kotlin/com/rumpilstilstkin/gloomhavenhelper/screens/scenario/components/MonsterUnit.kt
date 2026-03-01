@@ -111,7 +111,7 @@ fun MonsterUnitCard(
                     Icon(
                         imageVector = Icons.Default.Delete,
                         contentDescription = "Remove unit",
-                        tint = CardColors.TextMuted,
+                        tint = MaterialTheme.colorScheme.error,
                         modifier = Modifier.size(24.dp),
                     )
                 }
@@ -132,7 +132,7 @@ fun MonsterUnitCard(
             ActionGroups.effectsPack.filter { it !in immunitySet }.forEach { effect ->
                 val tint =
                     if (unit.effects.contains(effect)) {
-                        MaterialTheme.colorScheme.secondary
+                        MaterialTheme.colorScheme.primary
                     } else {
                         MaterialTheme.colorScheme.onSurfaceVariant
                     }
@@ -284,9 +284,9 @@ private fun UnitNumberBadge(
     isElite: Boolean
 ) {
     val textColor =
-        if (isElite) MaterialTheme.colorScheme.secondary else MaterialTheme.colorScheme.onSurface
+        if (isElite) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurface
     val color =
-        if (isElite) MaterialTheme.colorScheme.secondary else MaterialTheme.colorScheme.onSurfaceVariant
+        if (isElite) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurfaceVariant
 
     Box(
         modifier = Modifier
