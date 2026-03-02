@@ -6,7 +6,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 
 private val colors = darkColorScheme(
-    primary = Gold,
+    primary = primary,
     onPrimary = Color(0xFFFFFFFF),
     primaryContainer = primaryContainer,
     onPrimaryContainer = Color(0xFFFFFFFF),
@@ -30,10 +30,10 @@ private val colors = darkColorScheme(
     onErrorContainer = Color(0xFFFFDAD6),
 
     // Базовые фоны (Нейтральные темно-зеленые оттенки)
-    background = Background,
-    onBackground = Color.White,
-    surface = SurfaceContainer,
-    onSurface = Color.White,
+    background = background,
+    onBackground = onSurface,
+    surface = surface,
+    onSurface = onSurface,
 
     // Поверхности карточек и списков
     surfaceVariant = SurfaceVariant,

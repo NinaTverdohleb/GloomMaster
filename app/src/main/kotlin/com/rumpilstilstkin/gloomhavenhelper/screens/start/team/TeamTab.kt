@@ -17,8 +17,7 @@ import com.rumpilstilstkin.gloomhavenhelper.screens.models.CharacterClassUI
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.CharacterUI
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.ShortScenarioUI
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.TeamUI
-import com.rumpilstilstkin.gloomhavenhelper.screens.start.team.component.CompanyInfoView
-import com.rumpilstilstkin.gloomhavenhelper.screens.start.team.component.EmptyCompanyView
+import com.rumpilstilstkin.gloomhavenhelper.screens.start.team.component.TeamInfo
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
 
 @Composable
@@ -50,7 +49,7 @@ fun Content(
 ) {
     when (state) {
         is TeamTabUiState.Data -> {
-            CompanyInfoView(
+            TeamInfo(
                 modifier = Modifier.padding(16.dp),
                 team = state.currentTeam,
                 characterDetails = {
@@ -69,9 +68,7 @@ fun Content(
             )
         }
 
-        TeamTabUiState.Empty -> EmptyCompanyView {
-            action(TeamTabAction.AddTeam)
-        }
+        TeamTabUiState.Empty -> Unit
     }
 }
 

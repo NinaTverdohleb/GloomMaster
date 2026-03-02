@@ -20,7 +20,7 @@ import com.rumpilstilstkin.gloomhavenhelper.screens.models.TeamUI
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
 
 @Composable
-fun CompanyInfoView(
+internal fun TeamInfo(
     team: TeamUI,
     characterDetails: (Int) -> Unit,
     completeScenario: (Int) -> Unit,
@@ -71,15 +71,6 @@ fun CompanyInfoView(
                 teamAchievements = team.teamAchievements
             )
 
-            Spacer(modifier = Modifier.height(32.dp))
-
-            CharactersBlock(
-                characters = team.characters,
-                canAdd = team.canAddCharacter,
-                characterDetails = characterDetails,
-                addCharacter = {}
-            )
-
             Spacer(modifier = Modifier.height(16.dp))
 
             ScenarioBlock(
@@ -90,14 +81,13 @@ fun CompanyInfoView(
             )
         }
     }
-
 }
 
 @Preview
 @Composable
 private fun ContentSample() {
     GloomhavenHalperTheme {
-        CompanyInfoView(
+        TeamInfo(
             team = TeamUI(
                 teamId = 1,
                 teamLevel = 3,

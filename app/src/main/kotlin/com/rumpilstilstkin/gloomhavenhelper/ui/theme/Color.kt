@@ -4,7 +4,6 @@ import androidx.compose.ui.graphics.Color
 
 
 // База
-val Background = Color(0xFF1A1C24)
 val primaryContainer = Color(0x10FFFFFF)
 val secondaryContainer = Color(0x44000000)
 
@@ -18,7 +17,10 @@ val Red = Color(0xFF6B1C1C)
 val OnSurfaceVariant = Color(0xFF64748B)
 val SurfaceVariant = Color(0xFF0F1F18)
 
-val SurfaceContainer = Color(0xFF212C34)
+val primary = Gold
+val surface = Color(0xFF212C34)
+val onSurface = Color(0xFFECE1D4)
+val background = Color(0xFF1A1C24)
 
 
 object CardColors {

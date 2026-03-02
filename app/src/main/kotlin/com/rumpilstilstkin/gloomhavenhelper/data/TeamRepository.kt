@@ -44,13 +44,18 @@ class TeamRepository @Inject constructor(
         return teamDao.getTeamWithScenariosFlow(id).map { it.toDomain() }
     }
 
+    suspend fun setCurrentTeam(teamId: Int) {
+        currentTeamDatasource.saveCurrentTeam(teamId)
+        updateCurrentTeam()
+    }
+
     suspend fun getTeam(id: Int): ShortTeamInfo = teamDao.findById(id).toDomain()
 
-    fun getTeams(): Flow<List<ShortTeamInfo>> = teamDao.getAllFlow().map { teams -> teams.map { it.toDomain() } }
+    fun getTeams(): Flow<List<ShortTeamInfo>> =
+        teamDao.getAllFlow().map { teams -> teams.map { it.toDomain() } }
 
     suspend fun saveTeam(team: TeamInfoForSave): Int {
         val savedTeamId = teamDao.insert(team.toBd()).toInt()
-        Log.d("PREFS", "Save team: $savedTeamId")
         currentTeamDatasource.saveCurrentTeam(savedTeamId)
         team.characters.forEach {
             characterDao.insert(it.toBd(savedTeamId))
@@ -65,7 +70,7 @@ class TeamRepository @Inject constructor(
         }
     }
 
-    suspend fun updateProsperity( prosperity: Int) {
+    suspend fun updateProsperity(prosperity: Int) {
         _currentTeam.value.onSuccess {
             teamDao.updateProsperity(it, prosperity)
         }

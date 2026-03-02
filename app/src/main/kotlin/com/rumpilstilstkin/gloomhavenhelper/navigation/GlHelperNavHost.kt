@@ -14,8 +14,7 @@ import com.rumpilstilstkin.gloomhavenhelper.screens.characters.CharacterDetailsS
 import com.rumpilstilstkin.gloomhavenhelper.screens.characters.goods.add.AddGoodsScreen
 import com.rumpilstilstkin.gloomhavenhelper.screens.characters.quests.freeselect.SearchQuestScreen
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.ScenarioRoute
-import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.ScenarioScreen
-import com.rumpilstilstkin.gloomhavenhelper.screens.start.StartScreen
+import com.rumpilstilstkin.gloomhavenhelper.screens.start.StartScreenRoute
 import com.rumpilstilstkin.gloomhavenhelper.screens.teem.create.TeamCreateScreen
 import com.rumpilstilstkin.gloomhavenhelper.screens.teem.edit.TeamDetailsScreen
 
@@ -32,7 +31,7 @@ fun GlHelperNavHost(
             .padding(innerPadding)
     ) {
         composable<GlHelperScreens.Start> {
-            StartScreen(
+            StartScreenRoute(
                 navController = navController
             )
         }
