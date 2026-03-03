@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "9d8265e8c5782c27c017b33e0957851d",
+    "identityHash": "5497fe2e28371a8c2d7f56f793744050",
     "entities": [
       {
         "tableName": "TeamBd",
@@ -191,7 +191,7 @@
       },
       {
         "tableName": "ScenarioBd",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`scenarioNumber` INTEGER NOT NULL, `name` TEXT NOT NULL, `newScenarios` TEXT NOT NULL, `teamAchievement` TEXT NOT NULL, `globalAchievement` TEXT NOT NULL, `requirements` TEXT NOT NULL, `monsters` TEXT NOT NULL, PRIMARY KEY(`scenarioNumber`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`scenarioNumber` INTEGER NOT NULL, `name` TEXT NOT NULL, `newScenarios` TEXT NOT NULL, `teamAchievement` TEXT NOT NULL, `globalAchievement` TEXT NOT NULL, `requirements` TEXT NOT NULL, `monsters` TEXT NOT NULL, `location` TEXT NOT NULL, PRIMARY KEY(`scenarioNumber`))",
         "fields": [
           {
             "fieldPath": "scenarioNumber",
@@ -234,6 +234,12 @@
             "columnName": "monsters",
             "affinity": "TEXT",
             "notNull": true
+          },
+          {
+            "fieldPath": "location",
+            "columnName": "location",
+            "affinity": "TEXT",
+            "notNull": true
           }
         ],
         "primaryKey": {
@@ -245,7 +251,7 @@
       },
       {
         "tableName": "TeamScenarioBd",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `teamId` INTEGER NOT NULL, `scenarioNumber` INTEGER NOT NULL, `scenarioName` TEXT NOT NULL, `scenarioRequirements` TEXT NOT NULL, `completed` INTEGER NOT NULL, FOREIGN KEY(`teamId`) REFERENCES `TeamBd`(`teamId`) ON UPDATE NO ACTION ON DELETE CASCADE , FOREIGN KEY(`scenarioNumber`) REFERENCES `ScenarioBd`(`scenarioNumber`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `teamId` INTEGER NOT NULL, `scenarioNumber` INTEGER NOT NULL, `scenarioName` TEXT NOT NULL, `scenarioRequirements` TEXT NOT NULL, `completed` INTEGER NOT NULL, `location` TEXT NOT NULL, FOREIGN KEY(`teamId`) REFERENCES `TeamBd`(`teamId`) ON UPDATE NO ACTION ON DELETE CASCADE , FOREIGN KEY(`scenarioNumber`) REFERENCES `ScenarioBd`(`scenarioNumber`) ON UPDATE NO ACTION ON DELETE CASCADE )",
         "fields": [
           {
             "fieldPath": "id",
@@ -281,6 +287,12 @@
             "fieldPath": "completed",
             "columnName": "completed",
             "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "location",
+            "columnName": "location",
+            "affinity": "TEXT",
             "notNull": true
           }
         ],
@@ -884,7 +896,7 @@
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '9d8265e8c5782c27c017b33e0957851d')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '5497fe2e28371a8c2d7f56f793744050')"
     ]
   }
 }

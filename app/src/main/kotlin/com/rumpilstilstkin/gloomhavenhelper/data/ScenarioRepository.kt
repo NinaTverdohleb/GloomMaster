@@ -24,7 +24,8 @@ class ScenarioRepository @Inject constructor(
                 teamId = teamId,
                 scenarioNumber = scenario.scenarioNumber,
                 scenarioName = scenario.scenarioName,
-                scenarioRequirements = scenario.scenarioRequirements
+                scenarioRequirements = scenario.scenarioRequirements,
+                location = scenario.location
             )
         )
     }

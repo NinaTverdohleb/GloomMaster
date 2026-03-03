@@ -4,17 +4,17 @@ import androidx.compose.ui.graphics.Color
 
 
 // База
-val primaryContainer = Color(0x10FFFFFF)
-val secondaryContainer = Color(0x44000000)
+val primaryContainer = Color(0x05FFFFFF)
+val secondaryContainer = Color(0x66000000)
 
 val Gold = Color(0xFFB8882A) // 1 accent
 val goldContainer = Color(0xFF2B2B2B)
 val Green = Color(0xFF0D5C5F) // 2 accent
-val Divider = Color(0x44DEB44B)
+val Divider = Color(0x66DEB44B)
 val DividerVariant = Color(0x440D5F57)
 val Red = Color(0xFF6B1C1C)
 
-val OnSurfaceVariant = Color(0xFF64748B)
+val OnSurfaceVariant = Color(0xFF948C81)
 val SurfaceVariant = Color(0xFF0F1F18)
 
 val primary = Gold

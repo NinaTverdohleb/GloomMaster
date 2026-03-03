@@ -11,9 +11,9 @@ private val colors = darkColorScheme(
     primaryContainer = primaryContainer,
     onPrimaryContainer = Color(0xFFFFFFFF),
 
-    // Secondary (Золотой)
-    secondary = Green,
-    onSecondary = Color(0xFFC5ECDF),
+    // Secondary
+    secondary = Color(0xFFDAC3A1),
+    onSecondary = Color(0xFF3C2E16),
     secondaryContainer = secondaryContainer,
     onSecondaryContainer = Color(0xFFFFE088),
 
@@ -24,8 +24,8 @@ private val colors = darkColorScheme(
     onTertiaryContainer = Color(0xFFC5ECDF),
 
     // Error (Стандартный красный M3 для темной темы)
-    error = Red,
-    onError = Color(0xFFFFFFFF),
+    error = Color(0xFFFFB4AB),
+    onError = Red,
     errorContainer = Color(0x4493000A),
     onErrorContainer = Color(0xFFFFDAD6),
 

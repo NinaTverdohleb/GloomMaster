@@ -21,7 +21,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.PrimaryTabRow
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Tab
-import androidx.compose.material3.TabRow
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -45,7 +44,7 @@ import com.rumpilstilstkin.gloomhavenhelper.screens.characters.goods.CharacterIt
 import com.rumpilstilstkin.gloomhavenhelper.screens.characters.perks.CharacterPerksTab
 import com.rumpilstilstkin.gloomhavenhelper.screens.dialogs.teams.TeamListDialog
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
-import com.rumpilstilstkin.gloomhavenhelper.ui.view.Bage
+import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomBadge
 
 @Composable
 fun CharacterDetailsScreen(
@@ -160,7 +159,7 @@ fun CharacterHeader(
                 )
             }
 
-            Bage(
+            GloomBadge(
                 text = level.toString(),
                 color = MaterialTheme.colorScheme.background,
                 modifier = Modifier.size(42.dp)

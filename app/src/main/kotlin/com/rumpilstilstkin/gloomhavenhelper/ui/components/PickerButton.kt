@@ -1,8 +1,9 @@
-package com.rumpilstilstkin.gloomhavenhelper.ui.view
+package com.rumpilstilstkin.gloomhavenhelper.ui.components
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Add
 import androidx.compose.material3.Icon
@@ -22,14 +23,23 @@ fun PickerButton(
     type: PickerButtonType,
     modifier: Modifier = Modifier,
     onValueChange: (Int) -> Unit = {},
-    size: PickerSize = PickerSize.M,
+    size: GloomSize = GloomSize.M,
 ) {
     val sizeDp = when (size) {
-        PickerSize.S -> 24.dp
-        PickerSize.M -> 48.dp
+        GloomSize.S -> 32.dp
+        GloomSize.M -> 48.dp
     }
     IconButton(
         modifier = modifier
+            .background(
+                color = MaterialTheme.colorScheme.secondaryContainer,
+                shape = RoundedCornerShape(16.dp),
+            )
+            .border(
+                shape = RoundedCornerShape(16.dp),
+                color = MaterialTheme.colorScheme.outline,
+                width = 1.dp
+            )
             .size(sizeDp),
         onClick = {
             onValueChange(

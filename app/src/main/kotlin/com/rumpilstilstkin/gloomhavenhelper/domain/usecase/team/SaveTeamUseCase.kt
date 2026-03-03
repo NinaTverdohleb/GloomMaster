@@ -9,7 +9,7 @@ class SaveTeamUseCase @Inject constructor(
     private val teamRepository: TeamRepository,
     private val scenarioRepository: ScenarioRepository
 ){
-    suspend fun execute(team: TeamInfoForSave) {
+    suspend operator fun invoke(team: TeamInfoForSave) {
         val teamId = teamRepository.saveTeam(team)
         val scenario = scenarioRepository.getScenario(1)
         scenarioRepository.saveTeamScenario(scenario, teamId)

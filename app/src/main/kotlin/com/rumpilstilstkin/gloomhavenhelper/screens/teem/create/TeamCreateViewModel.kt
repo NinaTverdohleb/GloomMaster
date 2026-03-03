@@ -62,7 +62,7 @@ class TeamCreateViewModel@Inject constructor(
                 }
 
                 is TeamCreateAction.Save -> {
-                    saveTeamUseCase.execute(currentValue.toTeamForSave())
+                    saveTeamUseCase(currentValue.toTeamForSave())
                     _navigationEvents.emit(GlHelperEvent.Back)
                 }
 

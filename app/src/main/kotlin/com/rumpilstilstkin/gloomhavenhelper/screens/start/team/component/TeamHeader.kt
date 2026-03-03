@@ -11,36 +11,33 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
-import com.rumpilstilstkin.gloomhavenhelper.ui.view.RoundButton
-
+import com.rumpilstilstkin.gloomhavenhelper.ui.components.RoundButton
 
 @Composable
-fun TitleTeamRow(
+internal fun TeamHeader(
     teamName: String,
     teamLevel: Int,
     modifier: Modifier = Modifier,
-    onLevelClick: () -> Unit,
-    onTeamNameClick: () -> Unit
+    onLevelClick: () -> Unit = {},
 ) {
     Row(
         modifier = modifier,
         verticalAlignment = Alignment.CenterVertically
     ) {
+        RoundButton(
+            text = teamLevel.toString(),
+        ) {
+            onLevelClick.invoke()
+        }
+        Spacer(modifier = Modifier.size(24.dp))
         Text(
             modifier = Modifier
                 .weight(1f)
                 .align(Alignment.CenterVertically),
             text = teamName,
-            style = MaterialTheme.typography.titleLarge,
+            color = MaterialTheme.colorScheme.onBackground,
+            style = MaterialTheme.typography.headlineMedium,
         )
-        Spacer(modifier = Modifier.size(16.dp))
-        RoundButton(
-            text = teamLevel.toString(),
-            color = MaterialTheme.colorScheme.primary,
-            size = 64.dp
-        ) {
-            onLevelClick.invoke()
-        }
     }
 }
 
@@ -48,12 +45,10 @@ fun TitleTeamRow(
 @Composable
 private fun Sample() {
     GloomhavenHalperTheme {
-        TitleTeamRow(
+        TeamHeader(
             teamName = "Супер мега длинное имя пипец какое невыносимо огромное",
             teamLevel = 6,
             onLevelClick = {},
-            onTeamNameClick = {}
         )
     }
-
 }

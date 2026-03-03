@@ -2,9 +2,7 @@ package com.rumpilstilstkin.gloomhavenhelper.screens.start.team.component
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -21,31 +19,22 @@ fun ScenarioBlock(
     modifier: Modifier = Modifier,
     completeScenario: (Int) -> Unit,
     startScenario: (Int) -> Unit,
-    addScenario: () -> Unit
 ) {
     Column(
         modifier = modifier
     ) {
         Text(
-            text = "Сценарии",
-            style = MaterialTheme.typography.titleMedium,
+            style = MaterialTheme.typography.labelLarge,
+            text = "ДОСТУПНЫЕ СЦЕНАРИИ",
+            color = MaterialTheme.colorScheme.primary
         )
-        Spacer(modifier = Modifier.height(8.dp))
+        Spacer(modifier = Modifier.height(16.dp))
 
         ScenarioListWithDialogs(
             scenarios = scenarios,
             onComplete = completeScenario,
             onStart = startScenario
         )
-
-        Spacer(modifier = Modifier.height(16.dp))
-
-        Button(
-            onClick = { addScenario() },
-            modifier = Modifier.fillMaxWidth()
-        ) {
-            Text("Добавить сценарий")
-        }
     }
 }
 
@@ -58,12 +47,12 @@ private fun ScenarioBlockPreview() {
                 ShortScenarioUI(
                     scenarioNumber = 1,
                     scenarioName = "Scenario 1",
-                    scenarioRequirements = "Requirements 1"
+                    scenarioRequirements = "Requirements 1",
+                    location = "Глубокая жопа"
                 )
             ),
             completeScenario = {},
             startScenario = {},
-            addScenario = {}
         )
     }
 }

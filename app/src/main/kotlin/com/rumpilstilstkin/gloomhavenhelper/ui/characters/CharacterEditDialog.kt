@@ -28,7 +28,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.rumpilstilstkin.gloomhavenhelper.R
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
-import com.rumpilstilstkin.gloomhavenhelper.ui.view.NumberPicker
+import com.rumpilstilstkin.gloomhavenhelper.ui.components.NumberPicker
 
 @Composable
 fun CharacterEditDialog(

@@ -12,4 +12,5 @@ data class ScenarioBd(
     val globalAchievement: String= "",
     val requirements: String = "",
     val monsters: List<String> = emptyList(),
+    val location: String = "",
 )

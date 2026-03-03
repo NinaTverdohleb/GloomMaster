@@ -11,7 +11,6 @@ class CompleteScenarioUseCase @Inject constructor(
     private val scenarioRepository: ScenarioRepository
 ) {
     suspend operator fun invoke(scenarioNumber: Int) {
-        Log.d("Dto", "scenarioNumber: $scenarioNumber")
         teamRepository.currentTeamId.first().let { teamId ->
             Log.d("Dto", "teamId: $teamId")
 

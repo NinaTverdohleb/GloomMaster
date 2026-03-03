@@ -1,8 +1,6 @@
 package com.rumpilstilstkin.gloomhavenhelper.screens.scenario.components
 
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -22,6 +20,7 @@ import com.rumpilstilstkin.gloomhavenhelper.screens.models.ActionUi
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.EffectItem
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.MonsterItem
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.MonsterUnit
+import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomCard
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.CardColors
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
 
@@ -37,7 +36,7 @@ fun RegularMonsterCard(
 ) {
     var showSpawnDialog by remember { mutableStateOf(false) }
 
-    BasicCard(modifier) {
+    GloomCard(modifier) {
         MonsterCardHeader(
             name = item.name,
             isFly = item.isFly,

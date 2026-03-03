@@ -74,34 +74,7 @@ fun Team(
 private fun TeamPreview() {
     GloomhavenHalperTheme {
         Team(
-            team = TeamUI(
-                teamId = 1,
-                teamLevel = 3,
-                teamName = "Team 1",
-                teamReputation = 1,
-                prosperity = 5,
-                teamAchievements = "Первые шаги",
-                globalAchievements = "Сбежавшая торговка",
-                teamScenario = listOf(
-                    ShortScenarioUI(
-                        scenarioNumber = 1,
-                        scenarioName = "Scenario 1",
-                        scenarioRequirements = "Requirements 1"
-                    )
-                ),
-                characters = listOf(
-                    CharacterUI(
-                        name = "Character 1",
-                        level = 1,
-                        characterClass = CharacterClassUI(
-                            classType = CharacterClassType.Brute,
-                            name = "Class 1",
-                            imageRes = R.drawable.br,
-                        ),
-                        teamName = null
-                    )
-                ),
-            ),
+            team = TeamUI.fixture(),
             onAction = {}
         )
     }

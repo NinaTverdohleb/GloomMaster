@@ -39,12 +39,10 @@ import com.rumpilstilstkin.gloomhavenhelper.screens.models.EffectItem
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.MonsterUnit
 import com.rumpilstilstkin.gloomhavenhelper.ui.icons.iconsInlineContentMap
 import com.rumpilstilstkin.gloomhavenhelper.ui.icons.replaceTextWithIcons
-import com.rumpilstilstkin.gloomhavenhelper.ui.perks.perkEffectsInlineContentMap
-import com.rumpilstilstkin.gloomhavenhelper.ui.perks.replacePerkTextWithIcons
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.CardColors
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
-import com.rumpilstilstkin.gloomhavenhelper.ui.view.NumberPicker
-import com.rumpilstilstkin.gloomhavenhelper.ui.view.PickerSize
+import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomSize
+import com.rumpilstilstkin.gloomhavenhelper.ui.components.NumberPickerProgress
 
 @Composable
 fun MonsterUnitCard(
@@ -91,13 +89,12 @@ fun MonsterUnitCard(
                     .padding(horizontal = 16.dp),
                 contentAlignment = Alignment.Center
             ) {
-                NumberPicker(
+                NumberPickerProgress(
                     modifier = Modifier.fillMaxWidth(),
                     value = unit.currentLife,
                     onValueChange = { value -> changeLife(unit.number, value) },
                     intRange = 0..unit.maxLife,
-                    size = PickerSize.S,
-                    showProgress = true,
+                    size = GloomSize.S,
                     progressColor = MaterialTheme.colorScheme.error
                 )
 

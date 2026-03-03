@@ -16,30 +16,35 @@ val Typography = Typography(
         fontSize = 57.sp,
         lineHeight = 64.sp,
         letterSpacing = (-0.25).sp,
+        fontFamily = FontFamily.Serif
     ),
     displayMedium = TextStyle(
         fontWeight = FontWeight.Normal,
         fontSize = 45.sp,
         lineHeight = 52.sp,
         letterSpacing = 0.sp,
+        fontFamily = FontFamily.Serif
     ),
     displaySmall = TextStyle(
         fontWeight = FontWeight.Normal,
         fontSize = 36.sp,
         lineHeight = 44.sp,
         letterSpacing = 0.sp,
+        fontFamily = FontFamily.Serif
     ),
     headlineLarge = TextStyle(
         fontWeight = FontWeight.Normal,
         fontSize = 32.sp,
         lineHeight = 40.sp,
         letterSpacing = 0.sp,
+        fontFamily = FontFamily.Serif
     ),
     headlineMedium = TextStyle(
         fontWeight = FontWeight.Normal,
         fontSize = 28.sp,
         lineHeight = 36.sp,
         letterSpacing = 0.sp,
+        fontFamily = FontFamily.Serif
     ),
     headlineSmall = TextStyle(
         fontWeight = FontWeight.Normal,
@@ -50,6 +55,7 @@ val Typography = Typography(
             alignment = Alignment.Bottom,
             trim = Trim.None,
         ),
+        fontFamily = FontFamily.Serif
     ),
     titleLarge = TextStyle(
         fontWeight = FontWeight.Bold,
@@ -60,18 +66,21 @@ val Typography = Typography(
             alignment = Alignment.Bottom,
             trim = Trim.LastLineBottom,
         ),
+        fontFamily = FontFamily.Serif
     ),
     titleMedium = TextStyle(
         fontWeight = FontWeight.Bold,
         fontSize = 18.sp,
         lineHeight = 24.sp,
         letterSpacing = 0.1.sp,
+        fontFamily = FontFamily.Serif
     ),
     titleSmall = TextStyle(
         fontWeight = FontWeight.Medium,
         fontSize = 14.sp,
         lineHeight = 20.sp,
         letterSpacing = 0.1.sp,
+        fontFamily = FontFamily.Serif
     ),
     // Default text style
     bodyLarge = TextStyle(
@@ -84,6 +93,7 @@ val Typography = Typography(
             alignment = Alignment.Center,
             trim = Trim.None,
         ),
+        fontFamily = FontFamily.Serif
     ),
     bodyMedium = TextStyle(
         fontStyle = FontStyle.Italic,
@@ -91,6 +101,7 @@ val Typography = Typography(
         fontSize = 14.sp,
         lineHeight = 20.sp,
         letterSpacing = 0.25.sp,
+        fontFamily = FontFamily.Serif
     ),
     bodySmall = TextStyle(
         fontStyle = FontStyle.Italic,
@@ -110,6 +121,7 @@ val Typography = Typography(
             alignment = Alignment.Center,
             trim = Trim.LastLineBottom,
         ),
+        fontFamily = FontFamily.Serif
     ),
     // Used for Navigation items
     labelMedium = TextStyle(
@@ -121,6 +133,7 @@ val Typography = Typography(
             alignment = Alignment.Center,
             trim = Trim.LastLineBottom,
         ),
+        fontFamily = FontFamily.Serif
     ),
     // Used for Tag
     labelSmall = TextStyle(
@@ -132,5 +145,6 @@ val Typography = Typography(
             alignment = Alignment.Center,
             trim = Trim.LastLineBottom,
         ),
+        fontFamily = FontFamily.Serif
     ),
 )

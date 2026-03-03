@@ -1,6 +1,5 @@
 package com.rumpilstilstkin.gloomhavenhelper.screens.characters.general.components
 
-import android.util.Log
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -38,8 +37,8 @@ import com.rumpilstilstkin.gloomhavenhelper.screens.dialogs.quests.QuestDetailsD
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.PersonalQuestUI
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.QuestTaskPhaseUI
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
-import com.rumpilstilstkin.gloomhavenhelper.ui.view.NumberPicker
-import com.rumpilstilstkin.gloomhavenhelper.ui.view.PickerSize
+import com.rumpilstilstkin.gloomhavenhelper.ui.components.NumberPicker
+import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomSize
 import kotlinx.collections.immutable.persistentListOf
 
 @Composable
@@ -185,7 +184,7 @@ private fun CountTask(
             )
 
             NumberPicker(
-                size = PickerSize.S,
+                size = GloomSize.S,
                 value = questTask.currentCount,
                 intRange = IntRange(0, questTask.count),
                 onValueChange = {value ->

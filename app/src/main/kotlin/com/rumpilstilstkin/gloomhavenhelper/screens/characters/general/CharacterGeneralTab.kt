@@ -48,7 +48,7 @@ import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEventHelpe
 import com.rumpilstilstkin.gloomhavenhelper.screens.characters.general.components.PersonalQuestView
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.PersonalQuestUI
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
-import com.rumpilstilstkin.gloomhavenhelper.ui.view.NumberPicker
+import com.rumpilstilstkin.gloomhavenhelper.ui.components.NumberPicker
 
 @Composable
 fun CharacterGeneralTab(

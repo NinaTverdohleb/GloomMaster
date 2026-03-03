@@ -9,7 +9,8 @@ fun TeamScenarioBd.toDomain() = TeamScenario(
     scenarioNumber = this.scenarioNumber,
     scenarioName = this.scenarioName,
     scenarioRequirements = this.scenarioRequirements,
-    isCompleted = this.completed
+    isCompleted = this.completed,
+    location = this.location
 )
 
 fun ScenarioBd.toDomain() = ScenarioInfo(
@@ -19,5 +20,6 @@ fun ScenarioBd.toDomain() = ScenarioInfo(
     newScenario = this.newScenarios.split(",")
         .mapNotNull { if (it.isNotBlank()) it.trim().toInt() else null },
     teamAchievements = this.teamAchievement.split(","),
-    globalAchievements = this.globalAchievement.split(",")
+    globalAchievements = this.globalAchievement.split(","),
+    location = this.location
 )

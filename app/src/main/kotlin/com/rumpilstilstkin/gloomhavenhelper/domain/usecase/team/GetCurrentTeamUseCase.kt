@@ -12,7 +12,9 @@ import javax.inject.Inject
 
 class GetCurrentTeamUseCase @Inject constructor(
     private val teamRepository: TeamRepository,
-    private val characterRepository: CharacterRepository
+    private val characterRepository: CharacterRepository,
+    private val getDiscountByReputation: GetDiscountByReputationUseCase,
+    private val getTeamProsperityUseCase: GetTeamProsperityUseCase
 ) {
     @OptIn(ExperimentalCoroutinesApi::class)
     operator fun invoke(): Flow<TeamInfo> =
@@ -28,9 +30,10 @@ class GetCurrentTeamUseCase @Inject constructor(
                         teamAchievement = team.teamAchievement,
                         globalAchievement = team.globalAchievement,
                         reputation = team.reputation,
-                        prosperity = team.prosperity,
+                        prosperity = getTeamProsperityUseCase(team.prosperity),
                         scenario = activeScenarios,
-                        characters = activeCharacters
+                        characters = activeCharacters,
+                        shopDiscount = getDiscountByReputation(team.reputation)
                     )
                 }
         }

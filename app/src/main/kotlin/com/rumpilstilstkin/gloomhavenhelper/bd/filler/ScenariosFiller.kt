@@ -17,7 +17,8 @@ object ScenariosFiller {
                     "Разбойник-страж",
                     "Разбойник-лучница",
                     "Ожившие кости"
-                )
+                ),
+                location = "Мертволесье"
             ),
             ScenarioBd(
                 scenarioNumber = 2,
@@ -29,7 +30,8 @@ object ScenariosFiller {
                     "Ожившие кости",
                     "Оживший труп",
                     "Главарь разбойников"
-                )
+                ),
+                location = "Мертволесье"
             ),
             ScenarioBd(
                 scenarioNumber = 3,
@@ -41,7 +43,8 @@ object ScenariosFiller {
                     "Инокс-стражница",
                     "Инокс-лучник",
                     "Инокс-шаман",
-                )
+                ),
+                location = "Кинжальный лес"
             ),
             ScenarioBd(
                 scenarioNumber = 4,
@@ -53,7 +56,8 @@ object ScenariosFiller {
                     "Культист",
                     "Земляной демон",
                     "Воздушный демон"
-                )
+                ),
+                location = "Тихая река"
             ),
             ScenarioBd(
                 scenarioNumber = 5,
@@ -65,7 +69,8 @@ object ScenariosFiller {
                     "Ночной демон",
                     "Огненный демон",
                     "Морозный демон",
-                )
+                ),
+                location = "Медные хребты"
             ),
             ScenarioBd(
                 scenarioNumber = 6,
@@ -76,7 +81,8 @@ object ScenariosFiller {
                     "Оживший дух",
                     "Оживший труп",
                     "Ожившие кости",
-                )
+                ),
+                location = "Тихая река"
             ),
             ScenarioBd(
                 scenarioNumber = 7,
@@ -88,7 +94,8 @@ object ScenariosFiller {
                     "Пещерный медведь",
                     "Инокс-шаман",
                     "Земляной демон",
-                )
+                ),
+                location = "Медные хребты"
             ),
             ScenarioBd(
                 scenarioNumber = 8,
@@ -101,7 +108,8 @@ object ScenariosFiller {
                     "Оживший труп",
                     "Инокс-телохранитель - 1",
                     "Инокс-телохранитель - 2",
-                )
+                ),
+                location = "Мрачная гавань"
             ),
             ScenarioBd(
                 scenarioNumber = 9,
@@ -113,7 +121,8 @@ object ScenariosFiller {
                     "Гончая",
                     "Вермлинг-разведчик",
                     "Жестокий надзиратель",
-                )
+                ),
+                location = "Сторожевые горы"
             ),
             ScenarioBd(
                 scenarioNumber = 10,
@@ -125,7 +134,8 @@ object ScenariosFiller {
                     "Огненный демон",
                     "Земляной демон",
                     "Солнечный демон",
-                )
+                ),
+                location = "Медные хребты"
             ),
             ScenarioBd(
                 scenarioNumber = 11,
@@ -139,7 +149,8 @@ object ScenariosFiller {
                     "Городской страж",
                     "Городской лучник",
                     "Начальник стражи"
-                )
+                ),
+                location = "Мрачная гавань"
             ),
             ScenarioBd(
                 scenarioNumber = 12,
@@ -154,7 +165,8 @@ object ScenariosFiller {
                     "Городской страж",
                     "Городской лучник",
                     "Джексера"
-                )
+                ),
+                location = "Мрачная гавань"
             ),
             ScenarioBd(
                 scenarioNumber = 13,
@@ -165,7 +177,8 @@ object ScenariosFiller {
                     "Пещерный медведь",
                     "Оживший дух",
                     "Шипящий дрейк",
-                )
+                ),
+                location = "Сторожевые горы"
             ),
             ScenarioBd(
                 scenarioNumber = 14,
@@ -176,7 +189,8 @@ object ScenariosFiller {
                     "Гончая",
                     "Оживший дух",
                     "Морозный демон",
-                )
+                ),
+                location = "Медные хребты"
             ),
             ScenarioBd(
                 scenarioNumber = 15,
@@ -187,7 +201,8 @@ object ScenariosFiller {
                     "Воздушный демон",
                     "Морозный демон",
                     "Жнец заразитель",
-                )
+                ),
+                location = "Медные хребты"
             ),
             ScenarioBd(
                 scenarioNumber = 16,
@@ -198,7 +213,8 @@ object ScenariosFiller {
                     "Воздушный демон",
                     "Инокс-стражница",
                     "Инокс-лучник",
-                )
+                ),
+                location = "Медные хребты"
             ),
             ScenarioBd(
                 scenarioNumber = 17,
@@ -207,7 +223,8 @@ object ScenariosFiller {
                     "Вермлинг-разведчик",
                     "Вермлинг-шаман",
                     "Пещерный медведь",
-                )
+                ),
+                location = "Туманное море"
             ),
             ScenarioBd(
                 scenarioNumber = 18,
@@ -217,7 +234,8 @@ object ScenariosFiller {
                     "Вермлинг-разведчик",
                     "Гигантская гадюка",
                     "Слизь",
-                )
+                ),
+                location = "Мрачная гавань"
             ),
             ScenarioBd(
                 scenarioNumber = 19,
@@ -230,7 +248,8 @@ object ScenariosFiller {
                     "Ожившие кости",
                     "Оживший дух",
                     "Оживший труп",
-                )
+                ),
+                location = "Вечное болото"
             ),
             ScenarioBd(
                 scenarioNumber = 20,
@@ -243,7 +262,8 @@ object ScenariosFiller {
                     "Ночной демон",
                     "Оживший труп",
                     "Джексера",
-                )
+                ),
+                location = "Мертволесье"
             ),
             ScenarioBd(
                 scenarioNumber = 21,
@@ -258,7 +278,8 @@ object ScenariosFiller {
                     "Земляной демон",
                     "Огненный демон",
                     "Архидемон"
-                )
+                ),
+                location = "Медные хребты"
             ),
             ScenarioBd(
                 scenarioNumber = 22,
@@ -273,7 +294,8 @@ object ScenariosFiller {
                     "Воздушный демон",
                     "Земляной демон",
                     "Огненный демон",
-                )
+                ),
+                location = "Река Змеиный поцелуй"
             ),
             ScenarioBd(
                 scenarioNumber = 23,
@@ -286,7 +308,8 @@ object ScenariosFiller {
                     "Древняя пушка",
                     "Ожившие кости",
                     "Оживший дух",
-                )
+                ),
+                location = "Мрачная гавань"
             ),
             ScenarioBd(
                 scenarioNumber = 24,
@@ -297,7 +320,8 @@ object ScenariosFiller {
                     "Когтистый дрейк",
                     "Слизь",
                     "Оживший дух",
-                )
+                ),
+                location = "Медные хребты"
             ),
             ScenarioBd(
                 scenarioNumber = 25,
@@ -308,7 +332,8 @@ object ScenariosFiller {
                     "Когтистый дрейк",
                     "Шипящий дрейк",
                     "Гончая",
-                )
+                ),
+                location = "Медные хребты"
             ),
             ScenarioBd(
                 scenarioNumber = 26,
@@ -321,7 +346,8 @@ object ScenariosFiller {
                     "Слизь",
                     "Ночной демон",
                     "Черный бес"
-                )
+                ),
+                location = "Мрачная гавань"
             ),
             ScenarioBd(
                 scenarioNumber = 27,
@@ -335,7 +361,8 @@ object ScenariosFiller {
                     "Солнечный демон",
                     "Земляной демон",
                     "Огненный демон"
-                )
+                ),
+                location = "Медные хребты"
             ),
             ScenarioBd(
                 scenarioNumber = 28,
@@ -349,7 +376,8 @@ object ScenariosFiller {
                     "Ожившие кости",
                     "Солнечный демон",
                     "Культист",
-                )
+                ),
+                location = "Кинжальный лес"
             ),
             ScenarioBd(
                 scenarioNumber = 29,
@@ -361,7 +389,8 @@ object ScenariosFiller {
                     "Оживший дух",
                     "Оживший труп",
                     "Черный бес",
-                )
+                ),
+                location = "Кинжальный лес"
             ),
             ScenarioBd(
                 scenarioNumber = 30,
@@ -373,7 +402,8 @@ object ScenariosFiller {
                     "Слизь",
                     "Скрытень",
                     "Невыносимый ужас",
-                )
+                ),
+                location = "Туманное море"
             ),
             ScenarioBd(
                 scenarioNumber = 31,
@@ -385,7 +415,8 @@ object ScenariosFiller {
                     "Черный бес",
                     "Ночной демон",
                     "Невыносимый ужас",
-                )
+                ),
+                location = "Мрачная гавань"
             ),
             ScenarioBd(
                 scenarioNumber = 32,
@@ -397,7 +428,8 @@ object ScenariosFiller {
                     "Гигантская гадюка",
                     "Невыносимый ужас",
                     "Черный бес",
-                )
+                ),
+                location = "Вечное болото"
             ),
             ScenarioBd(
                 scenarioNumber = 33,
@@ -411,7 +443,8 @@ object ScenariosFiller {
                     "Морозный демон",
                     "Огненный демон",
                     "Земляной демон",
-                )
+                ),
+                location = "Медные хребты"
             ),
             ScenarioBd(
                 scenarioNumber = 34,
@@ -423,7 +456,8 @@ object ScenariosFiller {
                     "Когтистый дрейк",
                     "Шипящий дрейк",
                     "Дрейк-патриарх",
-                )
+                ),
+                location = "Медные хребты"
             ),
             ScenarioBd(
                 scenarioNumber = 35,
@@ -440,7 +474,8 @@ object ScenariosFiller {
                     "Огненный демон",
                     "Земляной демон",
                     "Начальник стражи"
-                )
+                ),
+                location = "Мрачная гавань"
             ),
             ScenarioBd(
                 scenarioNumber = 36,
@@ -455,7 +490,8 @@ object ScenariosFiller {
                     "Огненный демон",
                     "Земляной демон",
                     "Архидемон"
-                )
+                ),
+                location = "Мрачная гавань"
             ),
             ScenarioBd(
                 scenarioNumber = 37,
@@ -467,7 +503,8 @@ object ScenariosFiller {
                     "Скрытень",
                     "Невыносимый ужас",
                     "Жнец заразитель",
-                )
+                ),
+                location = "Туманное море"
             ),
             ScenarioBd(
                 scenarioNumber = 38,
@@ -479,7 +516,8 @@ object ScenariosFiller {
                     "Инокс-лучник",
                     "Инокс-шаман",
                     "Каменный голем"
-                )
+                ),
+                location = "Кинжальный лес"
             ),
             ScenarioBd(
                 scenarioNumber = 39,
@@ -492,7 +530,8 @@ object ScenariosFiller {
                     "Шипящий дрейк",
                     "Культист",
                     "Ожившие кости"
-                )
+                ),
+                location = "Медные хребты"
             ),
             ScenarioBd(
                 scenarioNumber = 40,
@@ -506,7 +545,8 @@ object ScenariosFiller {
                     "Лесной бес",
                     "Каменный голем",
                     "Огненный демон"
-                )
+                ),
+                location = "Мертволесье"
             ),
             ScenarioBd(
                 scenarioNumber = 41,
@@ -518,7 +558,8 @@ object ScenariosFiller {
                     "Оживший труп",
                     "Оживший дух",
                     "Каменный голем",
-                )
+                ),
+                location = "Мертволесье"
             ),
             ScenarioBd(
                 scenarioNumber = 42,
@@ -530,7 +571,8 @@ object ScenariosFiller {
                     "Воздушный демон",
                     "Ночной демон",
                     "Оживший дух",
-                )
+                ),
+                location = "Медные хребты"
             ),
             ScenarioBd(
                 scenarioNumber = 43,
@@ -541,7 +583,8 @@ object ScenariosFiller {
                     "Когтистый дрейк",
                     "Шипящий дрейк",
                     "Огненный демон",
-                )
+                ),
+                location = "Кинжальный лес"
             ),
             ScenarioBd(
                 scenarioNumber = 44,
@@ -552,7 +595,8 @@ object ScenariosFiller {
                     "Инокс-лучник",
                     "Инокс-шаман",
                     "Гончая"
-                )
+                ),
+                location = "Кинжальный лес"
             ),
             ScenarioBd(
                 scenarioNumber = 45,
@@ -563,7 +607,8 @@ object ScenariosFiller {
                     "Городской страж",
                     "Городской лучник",
                     "Гончая",
-                )
+                ),
+                location = "Вечное болото"
             ),
             ScenarioBd(
                 scenarioNumber = 46,
@@ -577,7 +622,8 @@ object ScenariosFiller {
                     "Воздушный демон",
                     "Саввас Ледяной шторм",
                     "Крылатый ужас"
-                )
+                ),
+                location = "Медные хребты"
             ),
             ScenarioBd(
                 scenarioNumber = 47,
@@ -590,7 +636,8 @@ object ScenariosFiller {
                     "Невыносимый ужас",
                     "Невидящее око",
                     "Жнец заразитель"
-                )
+                ),
+                location = "Туманное море"
             ),
             ScenarioBd(
                 scenarioNumber = 48,
@@ -603,7 +650,8 @@ object ScenariosFiller {
                     "Земляной демон",
                     "Жнец заразитель",
                     "Темный всадник",
-                )
+                ),
+                location = "Кинжальный лес"
             ),
             ScenarioBd(
                 scenarioNumber = 49,
@@ -615,7 +663,8 @@ object ScenariosFiller {
                     "Городской страж",
                     "Городской лучник",
                     "Древняя пушка"
-                )
+                ),
+                location = "Вечное болото"
             ),
             ScenarioBd(
                 scenarioNumber = 50,
@@ -627,7 +676,8 @@ object ScenariosFiller {
                     "Солнечный демон",
                     "Земляной демон",
                     "Воздушный демон"
-                )
+                ),
+                location = "Мрачная гавань"
             ),
             ScenarioBd(
                 scenarioNumber = 51,
@@ -636,7 +686,8 @@ object ScenariosFiller {
                 globalAchievement = "Конец эпохи Мрака",
                 monsters = listOf(
                     "Мрак",
-                )
+                ),
+                location = "Мрачная гавань"
             ),
             ScenarioBd(
                 scenarioNumber = 52,
@@ -649,7 +700,8 @@ object ScenariosFiller {
                     "Вермлинг-разведчик",
                     "Вермлинг-шаман",
                     "Оживший труп"
-                )
+                ),
+                location = "Мрачная гавань"
             ),
             ScenarioBd(
                 scenarioNumber = 53,
@@ -662,7 +714,8 @@ object ScenariosFiller {
                     "Оживший дух",
                     "Ожившие кости",
                     "Гигантская гадюка"
-                )
+                ),
+                location = "Тихая река"
             ),
             ScenarioBd(
                 scenarioNumber = 54,
@@ -673,13 +726,15 @@ object ScenariosFiller {
                     "Оживший дух",
                     "Морозный демон",
                     "Жнец заразитель",
-                )
+                ),
+                location = "Медные хребты"
             ),
             ScenarioBd(
                 scenarioNumber = 55,
                 name = "Туманные заросли",
                 requirements = "Личное задание Возвращение леса",
                 newScenarios = "56",
+                location = "Кинжальный лес"
             ),
             ScenarioBd(
                 scenarioNumber = 56,
@@ -690,7 +745,8 @@ object ScenariosFiller {
                     "Разбойник-лучница",
                     "Когтистый дрейк",
                     "Разбойник-страж",
-                )
+                ),
+                location = "Кинжальный лес"
             ),
             ScenarioBd(
                 scenarioNumber = 57,
@@ -702,7 +758,8 @@ object ScenariosFiller {
                     "Городской страж",
                     "Городской лучник",
                     "Жнец заразитель",
-                )
+                ),
+                location = "Мрачная гавань"
             ),
             ScenarioBd(
                 scenarioNumber = 58,
@@ -713,7 +770,8 @@ object ScenariosFiller {
                     "Городской страж",
                     "Черный бес",
                     "Жнец заразитель",
-                )
+                ),
+                location = "Мрачная гавань"
             ),
             ScenarioBd(
                 scenarioNumber = 59,
@@ -724,7 +782,8 @@ object ScenariosFiller {
                     "Гончая",
                     "Пещерный медведь",
                     "Лесной бес",
-                )
+                ),
+                location = "Кинжальный лес"
             ),
             ScenarioBd(
                 scenarioNumber = 60,
@@ -736,7 +795,8 @@ object ScenariosFiller {
                     "Слизь",
                     "Когтистый дрейк",
                     "Шипящий дрейк",
-                )
+                ),
+                location = "Мрачная гавань"
             ),
             ScenarioBd(
                 scenarioNumber = 61,
@@ -748,7 +808,8 @@ object ScenariosFiller {
                     "Гигантская гадюка",
                     "Морозный демон",
                     "Огненный демон",
-                )
+                ),
+                location = "Вечное болото"
             ),
             ScenarioBd(
                 scenarioNumber = 62,
@@ -757,7 +818,8 @@ object ScenariosFiller {
                 monsters = listOf(
                     "Оживший дух",
                     "Ожившие кости",
-                )
+                ),
+                location = "Вечное болото"
             ),
             ScenarioBd(
                 scenarioNumber = 63,
@@ -767,7 +829,8 @@ object ScenariosFiller {
                     "Огненный демон",
                     "Инокс-стражница",
                     "Инокс-лучник",
-                )
+                ),
+                location = "Сторожевые горы"
             ),
             ScenarioBd(
                 scenarioNumber = 64,
@@ -777,7 +840,8 @@ object ScenariosFiller {
                     "Слизь",
                     "Лесной бес",
                     "Когтистый дрейк",
-                )
+                ),
+                location = "Туманное море"
             ),
             ScenarioBd(
                 scenarioNumber = 65,
@@ -787,7 +851,8 @@ object ScenariosFiller {
                     "Вермлинг-разведчик",
                     "Гончая",
                     "Инокс-шаман",
-                )
+                ),
+                location = "Сторожевые горы"
             ),
             ScenarioBd(
                 scenarioNumber = 66,
@@ -798,7 +863,8 @@ object ScenariosFiller {
                     "Древняя пушка",
                     "Каменный голем",
                     "Оживший дух"
-                )
+                ),
+                location = "Мертволесье"
             ),
             ScenarioBd(
                 scenarioNumber = 67,
@@ -808,7 +874,8 @@ object ScenariosFiller {
                     "Лесной бес",
                     "Пещерный медведь",
                     "Каменный голем",
-                )
+                ),
+                location = "Восточный тракт"
             ),
             ScenarioBd(
                 scenarioNumber = 68,
@@ -818,7 +885,8 @@ object ScenariosFiller {
                     "Черный бес",
                     "Гигантская гадюка",
                     "Оживший труп",
-                )
+                ),
+                location = "Вечное болото"
             ),
             ScenarioBd(
                 scenarioNumber = 69,
@@ -829,7 +897,8 @@ object ScenariosFiller {
                     "Лесной бес",
                     "Каменный голем",
                     "Оживший дух"
-                )
+                ),
+                location = "Каменистый тракт"
             ),
             ScenarioBd(
                 scenarioNumber = 70,
@@ -838,7 +907,8 @@ object ScenariosFiller {
                     "Ночной демон",
                     "Воздушный демон",
                     "Оживший дух"
-                )
+                ),
+                location = "Туманное море"
             ),
             ScenarioBd(
                 scenarioNumber = 71,
@@ -847,7 +917,8 @@ object ScenariosFiller {
                     "Шипящий дрейк",
                     "Воздушный демон",
                     "Солнечный демон"
-                )
+                ),
+                location = "Река Змеиный поцелуй"
             ),
             ScenarioBd(
                 scenarioNumber = 72,
@@ -856,7 +927,8 @@ object ScenariosFiller {
                     "Слизь",
                     "Гигантская гадюка",
                     "Лесной бес",
-                )
+                ),
+                location = "Мертволесье"
             ),
             ScenarioBd(
                 scenarioNumber = 73,
@@ -867,7 +939,8 @@ object ScenariosFiller {
                     "Инокс-стражница",
                     "Инокс-лучник",
                     "Гончая",
-                )
+                ),
+                location = "Сторожевые горы"
             ),
             ScenarioBd(
                 scenarioNumber = 74,
@@ -878,7 +951,8 @@ object ScenariosFiller {
                     "Разбойник-лучница",
                     "Скрытень",
                     "Невыносимый ужас",
-                )
+                ),
+                location = "Туманное море"
             ),
             ScenarioBd(
                 scenarioNumber = 75,
@@ -888,7 +962,8 @@ object ScenariosFiller {
                     "Оживший дух",
                     "Оживший труп",
                     "Ожившие кости",
-                )
+                ),
+                location = "Мертволесье"
             ),
             ScenarioBd(
                 scenarioNumber = 76,
@@ -899,7 +974,8 @@ object ScenariosFiller {
                     "Ночной демон",
                     "Ожившие кости",
                     "Жнец заразитель"
-                )
+                ),
+                location = "Сторожевые горы"
             ),
             ScenarioBd(
                 scenarioNumber = 77,
@@ -909,7 +985,8 @@ object ScenariosFiller {
                     "Городской страж",
                     "Городской лучник",
                     "Каменный голем",
-                )
+                ),
+                location = "Мрачная гавань"
             ),
             ScenarioBd(
                 scenarioNumber = 78,
@@ -920,7 +997,8 @@ object ScenariosFiller {
                     "Культист",
                     "Ожившие кости",
                     "Черный бес"
-                )
+                ),
+                location = "Мрачная гавань"
             ),
             ScenarioBd(
                 scenarioNumber = 79,
@@ -930,7 +1008,8 @@ object ScenariosFiller {
                     "Каменный голем",
                     "Гигантская гадюка",
                     "Предатель",
-                )
+                ),
+                location = "Вечное болото"
             ),
             ScenarioBd(
                 scenarioNumber = 80,
@@ -940,7 +1019,8 @@ object ScenariosFiller {
                     "Городской страж",
                     "Городской лучник",
                     "Древняя пушка",
-                )
+                ),
+                location = "Сторожевые горы"
             ),
             ScenarioBd(
                 scenarioNumber = 81,
@@ -951,7 +1031,8 @@ object ScenariosFiller {
                     "Каменный голем",
                     "Древняя пушка",
                     "Бесцветный"
-                )
+                ),
+                location = "Кинжальный лес"
             ),
             ScenarioBd(
                 scenarioNumber = 82,
@@ -960,7 +1041,8 @@ object ScenariosFiller {
                     "Земляной демон",
                     "Огненный демон",
                     "Каменный голем",
-                )
+                ),
+                location = "Сторожевые горы"
             ),
             ScenarioBd(
                 scenarioNumber = 83,
@@ -972,7 +1054,8 @@ object ScenariosFiller {
                     "Ожившие кости",
                     "Оживший дух",
                     "Огненный демон",
-                )
+                ),
+                location = "Мрачная гавань"
             ),
             ScenarioBd(
                 scenarioNumber = 84,
@@ -982,7 +1065,8 @@ object ScenariosFiller {
                     "Земляной демон",
                     "Огненный демон",
                     "Морозный демон",
-                )
+                ),
+                location = "Медные хребты"
             ),
             ScenarioBd(
                 scenarioNumber = 85,
@@ -992,7 +1076,8 @@ object ScenariosFiller {
                     "Солнечный демон",
                     "Гончая",
                     "Черный бес"
-                )
+                ),
+                location = "Сторожевые горы"
             ),
             ScenarioBd(
                 scenarioNumber = 86,
@@ -1004,7 +1089,8 @@ object ScenariosFiller {
                     "Вермлинг-шаман",
                     "Вермлинг-разведчик",
                     "Скрытень"
-                )
+                ),
+                location = "Мрачная гавань"
             ),
             ScenarioBd(
                 scenarioNumber = 87,
@@ -1015,7 +1101,8 @@ object ScenariosFiller {
                     "Невыносимый ужас",
                     "Слизь",
                     "Черный бес"
-                )
+                ),
+                location = "Бухта торговцев"
             ),
             ScenarioBd(
                 scenarioNumber = 88,
@@ -1025,7 +1112,8 @@ object ScenariosFiller {
                     "Морозный демон",
                     "Слизь",
                     "Скрытень",
-                )
+                ),
+                location = "Мрачная гавань"
             ),
             ScenarioBd(
                 scenarioNumber = 89,
@@ -1036,7 +1124,8 @@ object ScenariosFiller {
                     "Разбойник-лучница",
                     "Культист",
                     "Гигантская гадюка",
-                )
+                ),
+                location = "Мрачная гавань"
             ),
             ScenarioBd(
                 scenarioNumber = 90,
@@ -1046,7 +1135,8 @@ object ScenariosFiller {
                     "Воздушный демон",
                     "Ночной демон",
                     "Оживший дух"
-                )
+                ),
+                location = "Река Змеиный поцелуй"
             ),
             ScenarioBd(
                 scenarioNumber = 91,
@@ -1057,7 +1147,8 @@ object ScenariosFiller {
                     "Пещерный медведь",
                     "Оживший дух",
                     "Гончая",
-                )
+                ),
+                location = "Кинжальный лес"
             ),
             ScenarioBd(
                 scenarioNumber = 92,
@@ -1072,7 +1163,8 @@ object ScenariosFiller {
                     "Огненный демон",
                     "Инокс-стражница",
                     "Саввас Поток лавы"
-                )
+                ),
+                location = "Мрачная гавань"
             ),
             ScenarioBd(
                 scenarioNumber = 93,
@@ -1082,7 +1174,8 @@ object ScenariosFiller {
                     "Скрытень",
                     "Морозный демон",
                     "Оживший дух",
-                )
+                ),
+                location = "Туманное море"
             ),
             ScenarioBd(
                 scenarioNumber = 94,
@@ -1094,7 +1187,8 @@ object ScenariosFiller {
                     "Гончая",
                     "Вермлинг-разведчик",
                     "Вермлинг-шаман",
-                )
+                ),
+                location = "Мертволесье"
             ),
             ScenarioBd(
                 scenarioNumber = 95,
@@ -1105,7 +1199,8 @@ object ScenariosFiller {
                     "Огненный демон",
                     "Невыносимый ужас",
                     "Саввас Поток лавы"
-                )
+                ),
+                location = "Мертволесье"
             ),
         )
     }

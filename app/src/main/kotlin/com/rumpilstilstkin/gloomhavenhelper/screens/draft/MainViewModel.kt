@@ -40,7 +40,7 @@ class MainViewModel @Inject constructor(
             _effects.value.copy(
                 levelInfo = levelInfoRepository.getLevelInfo(team.level).getOrNull(),
                 reputation = team.reputation,
-                prosperity = team.prosperity
+                prosperity = team.prosperity.prosperitySource
             )
         )
         MainScreenUiState.Team(
@@ -54,7 +54,8 @@ class MainViewModel @Inject constructor(
                 teamAchievements = team.teamAchievement,
                 globalAchievements = team.globalAchievement,
                 characters = team.characters.map { it.toUi() },
-                canAddCharacter = team.characters.size < 4
+                canAddCharacter = team.characters.size < 4,
+                shopDiscount = 0
             ),
         )
     }.stateIn(

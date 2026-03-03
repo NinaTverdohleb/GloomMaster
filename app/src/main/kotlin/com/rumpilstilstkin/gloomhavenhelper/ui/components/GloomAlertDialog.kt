@@ -110,6 +110,7 @@ fun GloomAlertDialog(
                 ) {
                     Text(
                         text = confirmText,
+                        color = MaterialTheme.colorScheme.onSecondary,
                         style = MaterialTheme.typography.bodyMedium
                     )
                 }

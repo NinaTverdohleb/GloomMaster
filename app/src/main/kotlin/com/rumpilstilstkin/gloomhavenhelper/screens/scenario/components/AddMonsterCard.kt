@@ -22,6 +22,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.rumpilstilstkin.gloomhavenhelper.R
+import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomCard
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.CardColors
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
 
@@ -30,7 +31,7 @@ fun AddMonsterCard(
     modifier: Modifier = Modifier,
     addMonster: () -> Unit,
 ) {
-    BasicCard(
+    GloomCard(
         modifier = modifier
     ) {
         Column(

@@ -6,5 +6,13 @@ sealed interface TeamTabUiState {
     data object Empty : TeamTabUiState
     data class Data(
         val currentTeam: TeamUI,
-    ) : TeamTabUiState
+    ) : TeamTabUiState {
+        companion object {
+            fun fixture(
+                team: TeamUI = TeamUI.fixture()
+            ) = Data(
+                currentTeam = team,
+            )
+        }
+    }
 }
