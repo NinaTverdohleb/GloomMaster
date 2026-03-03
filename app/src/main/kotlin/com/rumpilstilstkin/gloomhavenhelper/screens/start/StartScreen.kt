@@ -79,7 +79,7 @@ internal fun StartScreen(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(paddingValues)
-                .padding(vertical = 32.dp, horizontal = 16.dp)
+                .padding(top = 32.dp, start = 16.dp, end = 16.dp)
         ) {
             when (state) {
                 StartScreenState.Empty -> EmptyTeamScreen(
