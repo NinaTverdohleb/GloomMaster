@@ -20,6 +20,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -45,7 +46,6 @@ fun SpawnMonsterDialog(
 ) {
     var selectedTier by remember { mutableStateOf(UnitTier.Normal) }
     var selectedIds by remember { mutableStateOf<List<Int>>(emptyList()) }
-
     GloomAlertDialog(
         title = monsterName,
         titleIcon = Icons.Default.Person,

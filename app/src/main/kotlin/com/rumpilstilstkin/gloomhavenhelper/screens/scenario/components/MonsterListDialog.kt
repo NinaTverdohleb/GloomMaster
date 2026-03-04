@@ -19,6 +19,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -36,45 +37,42 @@ import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MonsterListDialog(
-    showDialog: Boolean,
     monsters: List<MonsterItem>,
     selectMonster: (List<Int>) -> Unit,
     onDismiss: () -> Unit,
 ) {
     var selectedIds by remember { mutableStateOf(emptyList<Int>()) }
 
-    if (showDialog) {
-        GloomAlertDialog(
-            onDismissRequest = onDismiss,
-            onConfirmRequest = {
-                selectMonster(selectedIds)
-            },
-            confirmEnabled = selectedIds.isNotEmpty(),
-            title = "Выберете врагов"
-        ) {
-            Column {
-                LazyColumn(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .heightIn(max = 420.dp),
-                    verticalArrangement = Arrangement.spacedBy(8.dp),
-                ) {
-                    items(monsters.size) { index ->
-                        MonsterClassItem(
-                            name = monsters[index].name,
-                            isSelected = selectedIds.contains(monsters[index].id),
-                            onClick = {
-                                selectedIds = if (selectedIds.contains(monsters[index].id)) {
-                                    selectedIds - monsters[index].id
-                                } else {
-                                    selectedIds + monsters[index].id
-                                }
-                            },
-                        )
-                    }
+    GloomAlertDialog(
+        onDismissRequest = onDismiss,
+        onConfirmRequest = {
+            selectMonster(selectedIds)
+        },
+        confirmEnabled = selectedIds.isNotEmpty(),
+        title = "Выберете врагов"
+    ) {
+        Column {
+            LazyColumn(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .heightIn(max = 420.dp),
+                verticalArrangement = Arrangement.spacedBy(8.dp),
+            ) {
+                items(monsters.size) { index ->
+                    MonsterClassItem(
+                        name = monsters[index].name,
+                        isSelected = selectedIds.contains(monsters[index].id),
+                        onClick = {
+                            selectedIds = if (selectedIds.contains(monsters[index].id)) {
+                                selectedIds - monsters[index].id
+                            } else {
+                                selectedIds + monsters[index].id
+                            }
+                        },
+                    )
                 }
-
             }
+
         }
     }
 }
@@ -85,13 +83,17 @@ private fun MonsterClassItem(
     isSelected: Boolean,
     onClick: () -> Unit,
 ) {
-    val borderColor = if(isSelected) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.primary.copy(alpha = 0.2f)
-    val borderWidth = if(isSelected) 1.5.dp else 1.dp
+    val borderColor =
+        if (isSelected) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.primary.copy(
+            alpha = 0.2f
+        )
+    val borderWidth = if (isSelected) 1.5.dp else 1.dp
     Row(
         modifier = Modifier
             .fillMaxWidth()
             .clip(RoundedCornerShape(12.dp))
-            .background(MaterialTheme.colorScheme.secondaryContainer).border(
+            .background(MaterialTheme.colorScheme.secondaryContainer)
+            .border(
                 borderWidth,
                 borderColor,
                 RoundedCornerShape(12.dp)
@@ -122,7 +124,6 @@ private fun MonsterClassItem(
 private fun MonsterListDialogPreview() {
     GloomhavenHalperTheme {
         MonsterListDialog(
-            showDialog = true,
             monsters = listOf(
                 MonsterItem.fixture(1, "Скелет"),
                 MonsterItem.fixture(2, "Зомби"),

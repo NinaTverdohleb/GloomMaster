@@ -69,12 +69,13 @@ fun ScenarioRoute(
         }
     )
 
-    MonsterListDialog(
-        showDialog = uiState.showMonsterDialog,
-        monsters = uiState.monstersForAdd,
-        selectMonster = { viewModel.onAction(ScenarioActions.AddMonster(it)) },
-        onDismiss = { viewModel.onAction(ScenarioActions.CloseMonstersDialog) },
-    )
+    if (uiState.showMonsterDialog) {
+        MonsterListDialog(
+            monsters = uiState.monstersForAdd,
+            selectMonster = { viewModel.onAction(ScenarioActions.AddMonster(it)) },
+            onDismiss = { viewModel.onAction(ScenarioActions.CloseMonstersDialog) },
+        )
+    }
 
     LaunchedEffect(navigationEvents) {
         navigationEvents?.let { event ->
