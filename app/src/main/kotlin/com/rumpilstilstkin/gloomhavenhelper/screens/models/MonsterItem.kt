@@ -1,15 +1,20 @@
 package com.rumpilstilstkin.gloomhavenhelper.screens.models
 
+import androidx.compose.runtime.Immutable
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterAction
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterCard
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterStatType
+import kotlinx.collections.immutable.ImmutableList
+import kotlinx.collections.immutable.persistentListOf
+import kotlinx.collections.immutable.toImmutableList
 
+@Immutable
 data class MonsterItem(
     val id: Int,
     val name: String,
     val isFly: Boolean,
     val currentCard: MonsterAbilityCard? = null,
-    val units: List<MonsterUnit> = emptyList(),
+    val units: ImmutableList<MonsterUnit> = persistentListOf(),
     val isBoss: Boolean = false,
 ) {
     companion object {
@@ -28,16 +33,43 @@ data class MonsterItem(
     }
 }
 
+@Immutable
 data class MonsterUnit(
     val number: Int,
     val currentLife: Int,
     val maxLife: Int,
-    val stats: List<EffectItem>,
+    val stats: ImmutableList<EffectItem>,
     val isSpecial: Boolean,
-    val effects: List<ActionUi> = emptyList(),
-    val immunity: List<ActionUi> = emptyList()
-)
+    val effects: ImmutableList<ActionUi> = persistentListOf(),
+    val immunity: ImmutableList<ActionUi> = persistentListOf()
+){
+    companion object {
+        fun fixture(
+            number: Int
+        ) = MonsterUnit(
+            number = number,
+            isSpecial = true,
+            currentLife = 10,
+            maxLife = 10,
+            stats = persistentListOf(
+                EffectItem.Action(
+                    type = ActionUi.MOVE,
+                    modifier = "3"
+                ),
+                EffectItem.Action(
+                    type = ActionUi.ATTACK,
+                    modifier = "4"
+                ),
+                EffectItem.Action(
+                    type = ActionUi.SHIELD,
+                    modifier = "2"
+                ),
+            )
+        )
+    }
+}
 
+@Immutable
 data class MonsterAbilityCard(
     val id: Int,
     val imageName: String,
@@ -56,17 +88,17 @@ data class MonsterAbilityCard(
 }
 
 sealed interface EffectItem {
-    val subLines: List<EffectItem>?
+    val subLines: ImmutableList<EffectItem>?
 
     data class Action(
         val type: ActionUi,
         val modifier: String,
-        override val subLines: List<EffectItem>? = null
+        override val subLines: ImmutableList<EffectItem>? = null
     ) : EffectItem
 
     data class Text(
         val content: String,
-        override val subLines: List<EffectItem>? = null
+        override val subLines: ImmutableList<EffectItem>? = null
     ) : EffectItem
 
     companion object {
@@ -74,12 +106,12 @@ sealed interface EffectItem {
             is MonsterAction.Action -> Action(
                 type = ActionUi.fromMonsterStatType(action.statType),
                 modifier = action.modifier,
-                subLines = action.subAction?.let { action -> action.map { fromCardAction(it) } }
+                subLines = action.subAction?.let { action -> action.map { fromCardAction(it) } }?.toImmutableList()
             )
 
             is MonsterAction.Text -> Text(
                 content = action.content,
-                subLines = action.subAction?.let { action -> action.map { fromCardAction(it) } }
+                subLines = action.subAction?.let { action -> action.map { fromCardAction(it) } }?.toImmutableList()
             )
         }
     }

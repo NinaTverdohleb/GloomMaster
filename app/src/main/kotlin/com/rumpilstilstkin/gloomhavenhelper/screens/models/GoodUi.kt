@@ -1,5 +1,6 @@
 package com.rumpilstilstkin.gloomhavenhelper.screens.models
 
+import androidx.compose.runtime.Immutable
 import androidx.compose.ui.graphics.vector.ImageVector
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.Good
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.GoodType
@@ -11,6 +12,7 @@ import com.rumpilstilstkin.gloomhavenhelper.ui.icons.goods.Head
 import com.rumpilstilstkin.gloomhavenhelper.ui.icons.goods.Smallthing
 import com.rumpilstilstkin.gloomhavenhelper.ui.icons.goods.Twoarm
 
+@Immutable
 data class GoodUi(
     val id: Int,
     val number: Int,

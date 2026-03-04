@@ -1,6 +1,7 @@
 package com.rumpilstilstkin.gloomhavenhelper.domain.entity
 
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.quest.CharacterPersonalQuest
+import kotlin.math.ceil
 
 data class CharacterForSave(
     val name: String,
@@ -42,9 +43,8 @@ data class CharacterFullInfo(
 )
 
 fun List<Int>.toLevel(): Int {
-    val clearLevel = this.average().div(2)
-    val level = clearLevel.toInt() + if(clearLevel - clearLevel.toInt() > 0) 1 else 0
-    return if (level > MAX_LEVEL) MAX_LEVEL else level
+    val clearLevel = ceil(this.average().div(2)).toInt()
+    return if (clearLevel > MAX_LEVEL) MAX_LEVEL else clearLevel
 }
 
 private const val MAX_LEVEL = 7

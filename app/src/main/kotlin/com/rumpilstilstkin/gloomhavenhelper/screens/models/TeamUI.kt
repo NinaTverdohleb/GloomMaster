@@ -1,10 +1,14 @@
 package com.rumpilstilstkin.gloomhavenhelper.screens.models
 
+import androidx.compose.runtime.Immutable
 import com.rumpilstilstkin.gloomhavenhelper.R
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.CharacterClassType
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.Prosperity
 import com.rumpilstilstkin.gloomhavenhelper.screens.draft.MainScreenAction
+import kotlinx.collections.immutable.ImmutableList
+import kotlinx.collections.immutable.persistentListOf
 
+@Immutable
 data class TeamUI(
     val teamId: Int,
     val teamLevel: Int,
@@ -14,8 +18,8 @@ data class TeamUI(
     val shopDiscount: Int,
     val teamAchievements: String,
     val globalAchievements: String,
-    val teamScenario: List<ShortScenarioUI>,
-    val characters: List<CharacterUI>,
+    val teamScenario: ImmutableList<ShortScenarioUI>,
+    val characters: ImmutableList<CharacterUI>,
     val canAddCharacter: Boolean = false,
 ) {
     companion object {
@@ -28,11 +32,11 @@ data class TeamUI(
             teamAchievements = "Первые шаги",
             globalAchievements = "Сбежавшая торговка",
             shopDiscount = 0,
-            teamScenario = listOf(
+            teamScenario = persistentListOf(
                 ShortScenarioUI.fixture(1),
                 ShortScenarioUI.fixture(2),
             ),
-            characters = listOf(
+            characters = persistentListOf(
                 CharacterUI(
                     name = "Character 1",
                     level = 1,

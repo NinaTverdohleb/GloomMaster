@@ -32,13 +32,13 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.ActionUi
-import com.rumpilstilstkin.gloomhavenhelper.screens.models.EffectItem
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.MonsterItem
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.MonsterUnit
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.components.AddMonsterCard
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.components.RegularMonsterCard
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomToolbarStatus
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
+import kotlinx.collections.immutable.persistentListOf
 
 @Composable
 internal fun ScenarioScreen(
@@ -248,95 +248,10 @@ private fun ScenarioScreenPreview() {
                         isFly = true,
                         name = "Хвостожабка",
                         currentCard = null,
-                        units = listOf(
-                            MonsterUnit(
-                                number = 2,
-                                isSpecial = true,
-                                currentLife = 10,
-                                maxLife = 10,
-                                stats = listOf(
-                                    EffectItem.Action(
-                                        type = ActionUi.MOVE,
-                                        modifier = "3"
-                                    ),
-                                    EffectItem.Action(
-                                        type = ActionUi.ATTACK,
-                                        modifier = "4"
-                                    ),
-                                    EffectItem.Action(
-                                        type = ActionUi.SHIELD,
-                                        modifier = "2"
-                                    ),
-                                )
-                            ),
-                            MonsterUnit(
-                                number = 3,
-                                isSpecial = false,
-                                currentLife = 10,
-                                maxLife = 10,
-                                stats = listOf(
-                                    EffectItem.Action(
-                                        type = ActionUi.MOVE,
-                                        modifier = "3"
-                                    ),
-                                    EffectItem.Action(
-                                        type = ActionUi.ATTACK,
-                                        modifier = "4"
-                                    ),
-                                    EffectItem.Action(
-                                        type = ActionUi.SHIELD,
-                                        modifier = "2"
-                                    ),
-                                )
-                            ),
-                            MonsterUnit(
-                                number = 5,
-                                isSpecial = false,
-                                currentLife = 10,
-                                maxLife = 10,
-                                stats = listOf(
-                                    EffectItem.Action(
-                                        type = ActionUi.MOVE,
-                                        modifier = "3"
-                                    ),
-                                    EffectItem.Action(
-                                        type = ActionUi.ATTACK,
-                                        modifier = "4"
-                                    ),
-                                    EffectItem.Action(
-                                        type = ActionUi.SHIELD,
-                                        modifier = "2"
-                                    ),
-                                )
-                            ),
-                        )
-                    ),
-                    MonsterItem(
-                        id = 2,
-                        name = "Скелет",
-                        currentCard = null,
-                        isFly = true,
-                        units = listOf(
-                            MonsterUnit(
-                                number = 2,
-                                isSpecial = true,
-                                currentLife = 10,
-                                maxLife = 10,
-                                stats = listOf(
-                                    EffectItem.Action(
-                                        type = ActionUi.MOVE,
-                                        modifier = "3"
-                                    ),
-                                    EffectItem.Action(
-                                        type = ActionUi.ATTACK,
-                                        modifier = "4"
-                                    ),
-                                    EffectItem.Action(
-                                        type = ActionUi.SHIELD,
-                                        modifier = "2"
-                                    ),
-                                )
-                            ),
+                        units = persistentListOf(
+                            MonsterUnit.fixture(2),
+                            MonsterUnit.fixture(3),
+                            MonsterUnit.fixture(5),
                         )
                     )
                 ),

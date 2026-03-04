@@ -9,6 +9,8 @@ import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.collections.immutable.persistentListOf
+import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -54,8 +56,8 @@ class ScenarioViewModel @AssistedInject constructor(
             val battleInfo = getScenarioInfoUseCase(scenarioNumber)
             _logicState.value = ScenarioLogicState(
                 scenarioInfo = battleInfo,
-                availableCards = battleInfo.monsters.flatMap { it.cards }.distinct(),
-                activeMonsters = emptyList(),
+                availableCards = battleInfo.monsters.flatMap { it.cards }.distinct().toImmutableList(),
+                activeMonsters = persistentListOf(),
                 round = 0
             )
         }

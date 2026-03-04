@@ -1,8 +1,10 @@
 package com.rumpilstilstkin.gloomhavenhelper.screens.models
 
+import androidx.compose.runtime.Immutable
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.ScenarioInfo
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.TeamScenario
 
+@Immutable
 data class ShortScenarioUI(
     val scenarioNumber: Int,
     val scenarioName: String,

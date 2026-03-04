@@ -23,6 +23,7 @@ import com.rumpilstilstkin.gloomhavenhelper.screens.models.MonsterUnit
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomCard
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.CardColors
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
+import kotlinx.collections.immutable.persistentListOf
 
 @Composable
 fun RegularMonsterCard(
@@ -120,47 +121,9 @@ private fun RegularMonsterCardPreview() {
                 name = "Хвостожабка",
                 currentCard = null,
                 isFly = true,
-                units = listOf(
-                    MonsterUnit(
-                        number = 2,
-                        isSpecial = true,
-                        currentLife = 10,
-                        maxLife = 10,
-                        stats = listOf(
-                            EffectItem.Action(
-                                type = ActionUi.MOVE,
-                                modifier = "3"
-                            ),
-                            EffectItem.Action(
-                                type = ActionUi.ATTACK,
-                                modifier = "4"
-                            ),
-                            EffectItem.Action(
-                                type = ActionUi.SHIELD,
-                                modifier = "2"
-                            ),
-                        )
-                    ),
-                    MonsterUnit(
-                        number = 3,
-                        isSpecial = false,
-                        currentLife = 10,
-                        maxLife = 10,
-                        stats = listOf(
-                            EffectItem.Action(
-                                type = ActionUi.MOVE,
-                                modifier = "3"
-                            ),
-                            EffectItem.Action(
-                                type = ActionUi.ATTACK,
-                                modifier = "4"
-                            ),
-                            EffectItem.Action(
-                                type = ActionUi.SHIELD,
-                                modifier = "2"
-                            ),
-                        )
-                    ),
+                units = persistentListOf(
+                    MonsterUnit.fixture(2),
+                    MonsterUnit.fixture(3),
                 )
             ),
             delete = {},

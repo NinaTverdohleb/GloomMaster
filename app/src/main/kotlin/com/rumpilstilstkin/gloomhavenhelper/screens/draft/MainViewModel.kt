@@ -14,6 +14,7 @@ import com.rumpilstilstkin.gloomhavenhelper.screens.models.CharacterClassUI
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.TeamUI
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.toUi
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -48,12 +49,12 @@ class MainViewModel @Inject constructor(
                 teamId = team.id,
                 teamName = team.name,
                 teamLevel = team.level,
-                teamScenario = team.scenario.map { it.toUi() },
+                teamScenario = team.scenario.map { it.toUi() }.toImmutableList(),
                 teamReputation = team.reputation,
                 prosperity = team.prosperity,
                 teamAchievements = team.teamAchievement,
                 globalAchievements = team.globalAchievement,
-                characters = team.characters.map { it.toUi() },
+                characters = team.characters.map { it.toUi() }.toImmutableList(),
                 canAddCharacter = team.characters.size < 4,
                 shopDiscount = 0
             ),

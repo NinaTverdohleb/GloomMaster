@@ -1,7 +1,9 @@
 package com.rumpilstilstkin.gloomhavenhelper.screens.models
 
+import androidx.compose.runtime.Immutable
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.CharacterInfo
 
+@Immutable
 data class CharacterUI(
     val name: String,
     val level: Int,

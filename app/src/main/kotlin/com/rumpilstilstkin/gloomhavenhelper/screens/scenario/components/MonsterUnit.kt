@@ -43,6 +43,7 @@ import com.rumpilstilstkin.gloomhavenhelper.ui.theme.CardColors
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomSize
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.NumberPickerProgress
+import kotlinx.collections.immutable.persistentListOf
 
 @Composable
 fun MonsterUnitCard(
@@ -318,7 +319,7 @@ private fun MonsterUnitPreview() {
                 isSpecial = true,
                 currentLife = 10,
                 maxLife = 10,
-                stats = listOf(
+                stats = persistentListOf(
                     EffectItem.Action(
                         type = ActionUi.MOVE,
                         modifier = "3"
@@ -332,7 +333,7 @@ private fun MonsterUnitPreview() {
                         modifier = "2"
                     ),
                 ),
-                effects = listOf(
+                effects = persistentListOf(
                     ActionUi.POISON
                 )
             ),
@@ -354,7 +355,7 @@ private fun MonsterUnitBossPreview() {
                 isSpecial = true,
                 currentLife = 10,
                 maxLife = 10,
-                stats = listOf(
+                stats = persistentListOf(
                     EffectItem.Action(
                         type = ActionUi.MOVE,
                         modifier = "3"
@@ -370,7 +371,7 @@ private fun MonsterUnitBossPreview() {
                         content = "Способность 2: #20: Убивает всех"
                     )
                 ),
-                immunity = listOf(
+                immunity = persistentListOf(
                     ActionUi.POISON
                 )
             ),

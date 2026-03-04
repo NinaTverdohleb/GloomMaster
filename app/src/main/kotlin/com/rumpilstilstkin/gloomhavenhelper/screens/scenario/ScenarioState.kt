@@ -1,5 +1,6 @@
 package com.rumpilstilstkin.gloomhavenhelper.screens.scenario
 
+import androidx.compose.runtime.Immutable
 import androidx.compose.ui.graphics.Color
 import com.rumpilstilstkin.gloomhavenhelper.R
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.ScenarioBattleInfo
@@ -10,14 +11,21 @@ import com.rumpilstilstkin.gloomhavenhelper.screens.models.MonsterAbilityCard
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.MonsterItem
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.MonsterUnit
 import com.rumpilstilstkin.gloomhavenhelper.ui.icons.GameIcons
+import kotlinx.collections.immutable.ImmutableList
+import kotlinx.collections.immutable.ImmutableMap
+import kotlinx.collections.immutable.persistentListOf
+import kotlinx.collections.immutable.persistentMapOf
+import kotlinx.collections.immutable.toImmutableList
+import kotlinx.collections.immutable.toImmutableMap
 
+@Immutable
 data class ScenarioLogicState(
     val scenarioInfo: ScenarioBattleInfo,
-    val availableCards: List<MonsterCard>,
-    val activeMonsters: List<MonsterItem> = emptyList(),
+    val availableCards: ImmutableList<MonsterCard>,
+    val activeMonsters: ImmutableList<MonsterItem> = persistentListOf(),
     val round: Int = 0,
     val showMonsterDialog: Boolean = false,
-    val magicChargeList: Map<Magic, MagicValue> = mapOf(
+    val magicChargeMap: ImmutableMap<Magic, MagicValue> = persistentMapOf(
         Magic.FIRE to MagicValue(),
         Magic.FROST to MagicValue(),
         Magic.AIR to MagicValue(),
@@ -27,10 +35,10 @@ data class ScenarioLogicState(
     )
 ) {
     fun updateMagic(magic: Magic): ScenarioLogicState {
-        val currentValue = magicChargeList[magic] ?: return this
+        val currentValue = magicChargeMap[magic] ?: return this
         val newValue = currentValue.update()
         return this.copy(
-            magicChargeList = magicChargeList.plus(magic to newValue)
+            magicChargeMap = magicChargeMap.plus(magic to newValue).toImmutableMap()
         )
     }
 
@@ -47,7 +55,7 @@ data class ScenarioLogicState(
                     units = monster.units.sortedWith(
                         compareByDescending<MonsterUnit> { it.isSpecial }
                             .thenBy { it.number }
-                    )
+                    ).toImmutableList()
                 )
             },
             showMonsterDialog = showMonsterDialog,
@@ -59,15 +67,14 @@ data class ScenarioLogicState(
                     currentCard = null,
                 )
             },
-            magicChargeList = magicChargeList
+            magicChargeList = magicChargeMap
         )
     }
 
     fun addMonster(monsterIds: List<Int>): ScenarioLogicState {
-        var state = this
-        monsterIds.forEach { monsterId ->
+        val newMonsterItems = monsterIds.map { monsterId ->
             val newMonster = scenarioInfo.monsters.first { it.id == monsterId }
-            val newMonsterItem = if (newMonster.isBoss) {
+            if (newMonster.isBoss) {
                 val maxLife = newMonster.life * scenarioInfo.gamersCount
                 MonsterItem(
                     id = newMonster.id,
@@ -75,16 +82,19 @@ data class ScenarioLogicState(
                     name = newMonster.name,
                     currentCard = null,
                     isBoss = true,
-                    units = listOf(
+                    units = persistentListOf(
                         MonsterUnit(
                             number = 1,
                             maxLife = maxLife,
                             currentLife = maxLife,
                             stats = newMonster.stats.map {
                                 EffectItem.fromCardAction(it)
-                            },
+                            }.toImmutableList(),
                             isSpecial = false,
-                            immunity = newMonster.immunity.map { ActionUi.fromMonsterStatType(it) }
+                            immunity = newMonster
+                                .immunity
+                                .map { ActionUi.fromMonsterStatType(it) }
+                                .toImmutableList()
                         )
                     )
                 )
@@ -97,16 +107,19 @@ data class ScenarioLogicState(
                     isFly = newMonster.isFly
                 )
             }
-            state = state
-                .copy(activeMonsters = activeMonsters + newMonsterItem)
-                .updateMonsterCard(newMonster.id)
+        }
+        var state = this
+            .copy(activeMonsters = (activeMonsters + newMonsterItems).toImmutableList())
+
+        monsterIds.forEach { monsterId ->
+            state = state.updateMonsterCard(monsterId)
         }
         return state
     }
 
     fun removeMonster(monsterId: Int): ScenarioLogicState =
         this.copy(
-            activeMonsters = activeMonsters.filter { it.id != monsterId }
+            activeMonsters = activeMonsters.filter { it.id != monsterId }.toImmutableList()
         )
 
     fun addUnits(numbers: List<Int>, monsterId: Int, isSpecial: Boolean): ScenarioLogicState {
@@ -118,9 +131,8 @@ data class ScenarioLogicState(
                 number = number,
                 maxLife = maxLife,
                 currentLife = maxLife,
-                stats = stats.map {
-                    EffectItem.fromCardAction(it)
-                },
+                stats = stats.map { EffectItem.fromCardAction(it) }
+                    .toImmutableList(),
                 isSpecial = isSpecial,
             )
         }
@@ -128,12 +140,12 @@ data class ScenarioLogicState(
             activeMonsters = activeMonsters.map {
                 if (it.id == monsterId) {
                     it.copy(
-                        units = it.units + newUnits
+                        units = (it.units + newUnits).toImmutableList()
                     )
                 } else {
                     it
                 }
-            }
+            }.toImmutableList()
         )
     }
 
@@ -142,12 +154,15 @@ data class ScenarioLogicState(
             activeMonsters = activeMonsters.map { monsterItem ->
                 if (monsterItem.id == monsterId) {
                     monsterItem.copy(
-                        units = monsterItem.units.filter { it.number != number }
+                        units = monsterItem
+                            .units
+                            .filter { it.number != number }
+                            .toImmutableList()
                     )
                 } else {
                     monsterItem
                 }
-            }
+            }.toImmutableList()
         )
     }
 
@@ -158,15 +173,15 @@ data class ScenarioLogicState(
         this.activeMonsters.forEach {
             state = state.updateMonsterCard(it.id)
         }
-        var chargeList = this.magicChargeList
-        this.magicChargeList.keys.forEach { magic ->
-            val newValue = magicChargeList[magic]?.decrease()
+        var chargeList = this.magicChargeMap
+        this.magicChargeMap.keys.forEach { magic ->
+            val newValue = magicChargeMap[magic]?.decrease()
             if (newValue != null) {
-                chargeList = chargeList.plus(magic to newValue)
+                chargeList = chargeList.plus(magic to newValue).toImmutableMap()
             }
         }
         return state.copy(
-            magicChargeList = chargeList
+            magicChargeMap = chargeList
         )
 
     }
@@ -176,20 +191,22 @@ data class ScenarioLogicState(
             activeMonsters = activeMonsters.map { monsterItem ->
                 if (monsterItem.id == monsterId) {
                     monsterItem.copy(
-                        units = monsterItem.units.map {
-                            if (it.number == number) {
-                                it.copy(
-                                    currentLife = newValue
-                                )
-                            } else {
-                                it
+                        units = monsterItem.units
+                            .map {
+                                if (it.number == number) {
+                                    it.copy(
+                                        currentLife = newValue
+                                    )
+                                } else {
+                                    it
+                                }
                             }
-                        }
+                            .toImmutableList()
                     )
                 } else {
                     monsterItem
                 }
-            }
+            }.toImmutableList()
         )
     }
 
@@ -198,25 +215,28 @@ data class ScenarioLogicState(
             activeMonsters = activeMonsters.map { monsterItem ->
                 if (monsterItem.id == monsterId) {
                     monsterItem.copy(
-                        units = monsterItem.units.map {
-                            if (it.number == number) {
-                                val newEffects = if (it.effects.contains(effect)) {
-                                    it.effects - effect
+                        units = monsterItem
+                            .units
+                            .map {
+                                if (it.number == number) {
+                                    val newEffects = if (it.effects.contains(effect)) {
+                                        it.effects - effect
+                                    } else {
+                                        it.effects + effect
+                                    }
+                                    it.copy(
+                                        effects = newEffects.toImmutableList()
+                                    )
                                 } else {
-                                    it.effects + effect
+                                    it
                                 }
-                                it.copy(
-                                    effects = newEffects
-                                )
-                            } else {
-                                it
                             }
-                        }
+                            .toImmutableList()
                     )
                 } else {
                     monsterItem
                 }
-            }
+            }.toImmutableList()
         )
     }
 
@@ -245,8 +265,8 @@ data class ScenarioLogicState(
                 } else {
                     it
                 }
-            },
-            availableCards = newAvaliableCards
+            }.toImmutableList(),
+            availableCards = newAvaliableCards.toImmutableList()
         )
     }
 }
@@ -295,7 +315,7 @@ data class MagicValue(
         else -> R.drawable.ic_magic_full
     }
 
-    fun color(magic: Magic): Color = when(value){
+    fun color(magic: Magic): Color = when (value) {
         0 -> magic.icon.color.copy(alpha = 0.2f)
         1 -> magic.icon.color.copy(alpha = 0.5f)
         else -> magic.icon.color

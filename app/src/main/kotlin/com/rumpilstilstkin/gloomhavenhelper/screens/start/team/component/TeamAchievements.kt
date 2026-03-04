@@ -31,7 +31,11 @@ internal fun GlobalAchievement(
         modifier = Modifier.height(16.dp)
     )
     Text(
-        text = globalAchievements.split(",").joinToString("\n") { it.trim() },
+        text = globalAchievements
+            .split(",")
+            .map { it.trim() }
+            .filter { it.isNotEmpty() }
+            .joinToString("\n") { it.trim() },
         style = MaterialTheme.typography.bodyMedium,
     )
 }
@@ -54,7 +58,11 @@ internal fun TeamAchievement(
         modifier = Modifier.height(16.dp)
     )
     Text(
-        text = teamAchievements.split(",").joinToString("\n") { it.trim() },
+        text = teamAchievements
+            .split(",")
+            .map { it.trim() }
+            .filter { it.isNotEmpty() }
+            .joinToString("\n") { it.trim() },
         style = MaterialTheme.typography.bodyMedium,
     )
 }
@@ -65,7 +73,7 @@ private fun GlobalAchievementPreview() {
     GloomhavenHalperTheme {
         GlobalAchievement(
             modifier = Modifier.fillMaxWidth(),
-            globalAchievements = "Нашествие мертвецов, Голос: умолк",
+            globalAchievements = " Нашествие мертвецов, Голос: умолк",
         )
     }
 }
