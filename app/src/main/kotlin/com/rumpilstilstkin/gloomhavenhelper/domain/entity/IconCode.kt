@@ -39,7 +39,6 @@ enum class IconCode(val value: String) {
     AREA_4("31"),
     AREA_5("32"),
     AREA_6("33"),
-    FLY("41"),
 }
 
 enum class IconVectorCode(val id: IconCode) {

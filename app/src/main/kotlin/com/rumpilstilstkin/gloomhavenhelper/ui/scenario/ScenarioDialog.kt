@@ -25,59 +25,56 @@ fun ScenarioDialog(
     scenarioName: String,
     scenarioRequirements: String,
     location: String,
-    showDialog: Boolean,
     onDismiss: () -> Unit,
     completeScenario: () -> Unit,
     startScenario: () -> Unit
 ) {
-    if (showDialog) {
-        GloomAlertDialog(
-            onDismissRequest = onDismiss,
-            onConfirmRequest = startScenario,
-            confirmText = "Играть",
-            content = {
-                ScenarioInfoItem(
-                    scenarioNumber = scenarioNumber,
-                    scenarioName = scenarioName,
-                    location = location,
-                )
-                if (scenarioRequirements.isNotBlank()) {
-                    GloomCard {
-                        Text(
-                            modifier = Modifier.fillMaxWidth(),
-                            text = "Требования: ",
-                            style = MaterialTheme.typography.labelLarge,
-                            color = MaterialTheme.colorScheme.primary,
-                            textAlign = TextAlign.Center
-                        )
-                        Spacer(
-                            modifier = Modifier.height(16.dp)
-                        )
-                        Text(
-                            text = scenarioRequirements.split(",").joinToString("\n") { it.trim() },
-                            style = MaterialTheme.typography.bodyMedium,
-                        )
-                    }
-                }
-                OutlinedButton(
-                    onClick = completeScenario,
-                    modifier = Modifier.fillMaxWidth(),
-                    shape = RoundedCornerShape(16.dp),
-                    border = BorderStroke(1.dp, MaterialTheme.colorScheme.error),
-                    colors = ButtonDefaults.outlinedButtonColors(
-                        containerColor = Color.Transparent,
-                        contentColor = Color(0xFF9CA3AF),
-                    ),
-                ) {
+    GloomAlertDialog(
+        onDismissRequest = onDismiss,
+        onConfirmRequest = startScenario,
+        confirmText = "Играть",
+        content = {
+            ScenarioInfoItem(
+                scenarioNumber = scenarioNumber,
+                scenarioName = scenarioName,
+                location = location,
+            )
+            if (scenarioRequirements.isNotBlank()) {
+                GloomCard {
                     Text(
-                        text = "Завершить сценарий",
+                        modifier = Modifier.fillMaxWidth(),
+                        text = "Требования: ",
+                        style = MaterialTheme.typography.labelLarge,
+                        color = MaterialTheme.colorScheme.primary,
+                        textAlign = TextAlign.Center
+                    )
+                    Spacer(
+                        modifier = Modifier.height(16.dp)
+                    )
+                    Text(
+                        text = scenarioRequirements.split(",").joinToString("\n") { it.trim() },
                         style = MaterialTheme.typography.bodyMedium,
-                        color = MaterialTheme.colorScheme.error
                     )
                 }
             }
-        )
-    }
+            OutlinedButton(
+                onClick = completeScenario,
+                modifier = Modifier.fillMaxWidth(),
+                shape = RoundedCornerShape(16.dp),
+                border = BorderStroke(1.dp, MaterialTheme.colorScheme.error),
+                colors = ButtonDefaults.outlinedButtonColors(
+                    containerColor = Color.Transparent,
+                    contentColor = Color(0xFF9CA3AF),
+                ),
+            ) {
+                Text(
+                    text = "Завершить сценарий",
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.error
+                )
+            }
+        }
+    )
 }
 
 @Preview
@@ -87,7 +84,6 @@ private fun Sample() {
         ScenarioDialog(
             scenarioNumber = 1,
             scenarioRequirements = "Requirements",
-            showDialog = true,
             scenarioName = "Scenario 1",
             location = "",
             onDismiss = {},

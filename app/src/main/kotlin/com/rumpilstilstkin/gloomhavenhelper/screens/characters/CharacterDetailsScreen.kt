@@ -43,8 +43,10 @@ import com.rumpilstilstkin.gloomhavenhelper.screens.characters.general.Character
 import com.rumpilstilstkin.gloomhavenhelper.screens.characters.goods.CharacterItemsTab
 import com.rumpilstilstkin.gloomhavenhelper.screens.characters.perks.CharacterPerksTab
 import com.rumpilstilstkin.gloomhavenhelper.screens.dialogs.teams.TeamListDialog
+import com.rumpilstilstkin.gloomhavenhelper.screens.models.toImage
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomBadge
+import com.rumpilstilstkin.gloomhavenhelper.ui.icons.toImage
 
 @Composable
 fun CharacterDetailsScreen(
@@ -68,7 +70,7 @@ fun CharacterDetailsScreen(
     )
 
     CharacterDetailsMain(
-        classImg = uiState.characterClass.imageRes,
+        classImg = uiState.characterClass.classType.toImage(),
         name = uiState.name,
         teamName = uiState.teamName ?: "Укажите команду...",
         level = uiState.level,
@@ -161,7 +163,6 @@ fun CharacterHeader(
 
             GloomBadge(
                 text = level.toString(),
-                color = MaterialTheme.colorScheme.background,
                 modifier = Modifier.size(42.dp)
             )
 
@@ -220,7 +221,7 @@ fun CharactersTabs(
 private fun CharacterDetailsExample() {
     GloomhavenHalperTheme {
         CharacterDetailsMain(
-            classImg = R.drawable.be,
+            classImg = R.drawable.ic_be,
             name = "Warrior",
             teamName = null,
             level = 10,

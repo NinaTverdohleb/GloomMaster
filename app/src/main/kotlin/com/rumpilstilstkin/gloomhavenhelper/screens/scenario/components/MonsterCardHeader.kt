@@ -28,8 +28,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.rumpilstilstkin.gloomhavenhelper.ui.icons.GameIcons
-import com.rumpilstilstkin.gloomhavenhelper.ui.theme.CardColors
+import com.rumpilstilstkin.gloomhavenhelper.R
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
 
 @Composable
@@ -59,11 +58,10 @@ fun MonsterCardHeader(
 
         if (isFly) {
             Spacer(modifier = Modifier.width(8.dp))
-            val flyIcon = GameIcons.FLY
             Icon(
                 modifier = Modifier.size(26.dp),
-                painter = painterResource(id = flyIcon.imageRes),
-                contentDescription = flyIcon.title,
+                painter = painterResource(id = R.drawable.ic_fly),
+                contentDescription = null,
                 tint = MaterialTheme.colorScheme.onSurface,
             )
         }

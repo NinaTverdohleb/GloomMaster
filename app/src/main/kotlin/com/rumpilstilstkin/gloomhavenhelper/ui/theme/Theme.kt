@@ -40,8 +40,8 @@ private val colors = darkColorScheme(
     onSurfaceVariant = OnSurfaceVariant,
 
     // Обводки и разделители
-    outline = Divider,
-    outlineVariant = DividerVariant,
+    outline = Color(0x66DEB44B),
+    outlineVariant = Color(0xFF4E4639),
 
     // Инвертированные цвета (Снэкбары)
     inverseSurface = Color(0xFFE0E3E1),

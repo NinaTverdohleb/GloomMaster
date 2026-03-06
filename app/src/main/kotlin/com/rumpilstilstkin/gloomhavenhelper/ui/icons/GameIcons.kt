@@ -19,7 +19,6 @@ enum class GameIcons(val textCode: IconCode, val title: String, val imageRes: In
     ARIA_4(textCode = IconCode.AREA_4, title = "Область:", imageRes = R.drawable.ic_aria_4, color = Color.White),
     ARIA_5(textCode = IconCode.AREA_5, title = "Область:", imageRes = R.drawable.ic_aria_5, color = Color.White),
     ARIA_6(textCode = IconCode.AREA_6, title = "Область:", imageRes = R.drawable.ic_aria_6, color = Color.White),
-    FLY(textCode = IconCode.FLY, title = "Полет", imageRes = R.drawable.ic_fly, color = Color.White),
     ;
 
     companion object {

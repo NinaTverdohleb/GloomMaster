@@ -26,7 +26,7 @@ fun CharactersTabRoute(
         }
     }
 
-    CharactersTab(
+    CharactersTabScreen(
         uiState = uiState,
         addCharacter = { viewModel.onAction(CharactersTabAction.ShowAddCharacterDialog) },
         openCharacterDetails = { viewModel.onAction(CharactersTabAction.CharacterDetails(it)) },

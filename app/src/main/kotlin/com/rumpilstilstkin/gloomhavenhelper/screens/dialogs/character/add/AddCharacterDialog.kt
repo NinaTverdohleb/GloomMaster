@@ -38,8 +38,10 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.CharacterClassType
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.CharacterClassUI
+import com.rumpilstilstkin.gloomhavenhelper.screens.models.toImage
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.NumberPicker
+import com.rumpilstilstkin.gloomhavenhelper.ui.icons.toImage
 
 @Composable
 fun AddCharacterDialog(
@@ -219,7 +221,7 @@ fun DropdownWithIconAndText(
             Icon(
                 modifier = Modifier
                     .size(72.dp),
-                painter = painterResource(id = items[selectedIndex].imageRes),
+                painter = painterResource(id = items[selectedIndex].classType.toImage()),
                 contentDescription = null,
                 tint = MaterialTheme.colorScheme.secondary,
 
@@ -236,7 +238,7 @@ fun DropdownWithIconAndText(
                     text = {
                         Row(verticalAlignment = Alignment.CenterVertically) {
                             Icon(
-                                painter = painterResource(id = items[index].imageRes),
+                                painter = painterResource(id = items[index].classType.toImage()),
                                 contentDescription = null,
                                 modifier = Modifier.size(24.dp)
                             )

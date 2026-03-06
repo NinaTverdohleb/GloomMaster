@@ -1,13 +1,18 @@
 package com.rumpilstilstkin.gloomhavenhelper.ui.characters
 
-import androidx.annotation.DrawableRes
-import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -17,117 +22,122 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.ColorFilter.Companion.tint
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.rumpilstilstkin.gloomhavenhelper.R
+import com.rumpilstilstkin.gloomhavenhelper.screens.models.CharacterUI
+import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomCard
+import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomSize
+import com.rumpilstilstkin.gloomhavenhelper.ui.components.RoundButton
+import com.rumpilstilstkin.gloomhavenhelper.ui.icons.toImage
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
-
 
 @Composable
 fun CharacterItem(
-    characterId: Int,
-    @DrawableRes
-    imageRes: Int,
-    name: String,
-    level: Int,
+    character: CharacterUI,
     modifier: Modifier = Modifier,
-    isAlive: Boolean = true,
-    onClick: (Int) -> Unit
+    onItemClick: (Int) -> Unit,
+    onLevelClick: (Int) -> Unit = {}
+) = GloomCard(
+    modifier = modifier
+        .clickable {
+            onItemClick.invoke(character.id)
+        },
+    active = character.isAlive
 ) {
     Row(
-        modifier = modifier
-            .fillMaxWidth()
-            .padding(8.dp)
-            .clickable(
-                enabled = isAlive,
-            ) {
-                onClick.invoke(characterId)
-            },
+        modifier = Modifier.fillMaxWidth(),
         verticalAlignment = Alignment.CenterVertically
     ) {
-        Image(
-            painter = painterResource(id = imageRes),
-            contentDescription = "",
-            colorFilter = tint(MaterialTheme.colorScheme.onBackground),
-        )
+        Box(
+            modifier = modifier
+                .size(52.dp)
+                .background(
+                    color = MaterialTheme.colorScheme.secondaryContainer,
+                    shape = RoundedCornerShape(8.dp),
+                )
+                .border(
+                    shape = RoundedCornerShape(8.dp),
+                    color = MaterialTheme.colorScheme.outline,
+                    width = 1.dp
+                ),
+            contentAlignment = Alignment.Center
+        ) {
+            Icon(
+                modifier = Modifier.size(40.dp),
+                painter = painterResource(character.characterClass.classType.toImage()),
+                contentDescription = null
+            )
+        }
         Spacer(modifier = Modifier.width(16.dp))
-        Text(
-            text = name,
+        Column(
             modifier = Modifier.weight(1f)
-        )
-        Spacer(modifier = Modifier.width(16.dp))
-        Text(
-            text = level.toString(),
-            textAlign = TextAlign.End,
+        ) {
+            Text(
+                text = character.name,
+                style = MaterialTheme.typography.bodyLarge,
+                color = MaterialTheme.colorScheme.onSurface
+            )
+            Spacer(modifier = Modifier.height(8.dp))
+            Text(
+                text = character.characterClass.name,
+                style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.onSurface
+            )
+        }
+        RoundButton(
+            size = GloomSize.M,
+            text = character.level.toString(),
+            onClick = { onLevelClick(character.id) }
         )
     }
 }
 
 @Composable
 fun CharacterItemWithDialog(
-    characterId: Int,
-    @DrawableRes
-    imageRes: Int,
-    name: String,
-    level: Int,
+    character: CharacterUI,
     modifier: Modifier = Modifier,
-    isAlive: Boolean = true,
     onSave: (Int, Int) -> Unit,
     onDelete: (Int) -> Unit,
     onLeave: (Int) -> Unit
 ) {
     var showDialog by remember { mutableStateOf(false) }
 
-    CharacterEditDialog(
-        characterName = name,
-        classImage = imageRes,
-        showDialog = showDialog,
-        startLevel = level,
-        onDismiss = {
-            showDialog = false
-        },
-        onSave = { newLevel ->
-            onSave(characterId, newLevel)
-            showDialog = false
-        },
-        onDelete = {
-            onDelete(characterId)
-            showDialog = false
-        },
-        onLeave = {
-            onLeave(characterId)
-            showDialog = false
-        }
-    )
+    if (showDialog) {
+        CharacterEditDialog(
+            character = character,
+            onDismiss = {
+                showDialog = false
+            },
+            onSave = { newLevel ->
+                onSave(character.id, newLevel)
+                showDialog = false
+            },
+            onDelete = {
+                onDelete(character.id)
+                showDialog = false
+            },
+            onLeave = {
+                onLeave(character.id)
+                showDialog = false
+            }
+        )
+    }
 
     CharacterItem(
-        characterId = characterId,
-        imageRes = imageRes,
-        name = name,
-        level = level,
-        isAlive = isAlive,
-        modifier = modifier
-    ) {
-        showDialog = true
-    }
+        character = character,
+        modifier = modifier,
+        onItemClick = { showDialog = true }
+    )
 }
 
 @Preview
 @Composable
 private fun Sample() {
     GloomhavenHalperTheme {
-        CharacterItemWithDialog(
-            imageRes = R.drawable.br,
-            name = "Супер мега длинное имя пипец какое невыносимо огромное",
-            level = 6,
-            characterId = 0,
-            onSave = { _, _ -> },
-            onDelete = { _ -> },
-            onLeave = { _ -> }
+        CharacterItem(
+            character = CharacterUI.fixture(),
+            onItemClick = {}
         )
     }
-
 }

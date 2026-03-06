@@ -9,11 +9,11 @@ import com.rumpilstilstkin.gloomhavenhelper.domain.entity.CharacterShortInfo
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.ShortTeamInfo
 import com.rumpilstilstkin.gloomhavenhelper.domain.getExpForLevel
 
-fun CharacterForSave.toBd(teamId: Int? = null) = CharacterBd(
+fun CharacterForSave.toBd() = CharacterBd(
     name = this.name,
     level = this.level,
     characterType = this.characterType.name,
-    teamId = teamId,
+    teamId = this.teamId,
     experience = getExpForLevel(this.level),
     goldCount = 15*(level + 1)
 )

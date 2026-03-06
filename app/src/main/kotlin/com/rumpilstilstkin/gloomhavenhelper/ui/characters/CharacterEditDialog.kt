@@ -27,95 +27,90 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.rumpilstilstkin.gloomhavenhelper.R
+import com.rumpilstilstkin.gloomhavenhelper.screens.models.CharacterUI
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.NumberPicker
+import com.rumpilstilstkin.gloomhavenhelper.ui.icons.toImage
 
 @Composable
 fun CharacterEditDialog(
-    characterName: String,
-    @DrawableRes
-    classImage: Int,
-    showDialog: Boolean,
-    startLevel: Int,
+    character: CharacterUI,
     onDismiss: () -> Unit,
     onSave: (Int) -> Unit,
     onDelete: () -> Unit,
     onLeave: () -> Unit
 ) {
-    if (showDialog) {
-        var level by remember { mutableIntStateOf(startLevel) }
-        AlertDialog(
-            onDismissRequest = { onDismiss.invoke() },
-            title = {
-                Box(
+    var level by remember { mutableIntStateOf(character.level) }
+    AlertDialog(
+        onDismissRequest = { onDismiss.invoke() },
+        title = {
+            Box(
+                modifier = Modifier.fillMaxWidth(),
+                contentAlignment = Alignment.Center
+            ) {
+                Row(
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Icon(
+                        painter = painterResource(id = character.characterClass.classType.toImage()),
+                        contentDescription = null,
+                        modifier = Modifier.size(32.dp)
+                    )
+                    Spacer(modifier = Modifier.width(8.dp))
+
+                    Text(
+                        modifier = Modifier,
+                        text = character.name,
+                        textAlign = TextAlign.Center
+                    )
+                }
+            }
+        },
+        text = {
+            Column(
+                verticalArrangement = Arrangement.spacedBy(16.dp),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Text("Уровень персонажа")
+                NumberPicker(
                     modifier = Modifier.fillMaxWidth(),
-                    contentAlignment = Alignment.Center
+                    value = level,
+                    intRange = IntRange(0, 9)
                 ) {
-                    Row(
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        Icon(
-                            painter = painterResource(id = classImage),
-                            contentDescription = null,
-                            modifier = Modifier.size(32.dp)
-                        )
-                        Spacer(modifier = Modifier.width(8.dp))
-
-                        Text(
-                            modifier = Modifier,
-                            text = characterName,
-                            textAlign = TextAlign.Center
-                        )
-                    }
+                    level = it
                 }
-            },
-            text = {
-                Column(
-                    verticalArrangement = Arrangement.spacedBy(16.dp),
-                    horizontalAlignment = Alignment.CenterHorizontally
+            }
+        },
+        confirmButton = {
+            Column {
+                ElevatedButton(
+                    modifier = Modifier.fillMaxWidth(),
+                    onClick = {
+                        onLeave.invoke()
+                    }
                 ) {
-                    Text("Уровень персонажа")
-                    NumberPicker(
-                        modifier = Modifier.fillMaxWidth(),
-                        value = level,
-                        intRange = IntRange(0, 9)
-                    ) {
-                        level = it
-                    }
+                    Text("На покой")
                 }
-            },
-            confirmButton = {
-                Column {
-                    ElevatedButton(
-                        modifier = Modifier.fillMaxWidth(),
-                        onClick = {
-                            onLeave.invoke()
-                        }
-                    ) {
-                        Text("На покой")
+                FilledTonalButton(
+                    modifier = Modifier.fillMaxWidth(),
+                    onClick = {
+                        onDelete.invoke()
                     }
-                    FilledTonalButton(
-                        modifier = Modifier.fillMaxWidth(),
-                        onClick = {
-                            onDelete.invoke()
-                        }
-                    ) {
-                        Text("Удалить")
-                    }
-
-                    Button(
-                        modifier = Modifier.fillMaxWidth(),
-                        onClick = {
-                            onSave.invoke(level)
-                        }
-                    ) {
-                        Text("Сохранить")
-                    }
+                ) {
+                    Text("Удалить")
                 }
-            },
 
-            )
-    }
+                Button(
+                    modifier = Modifier.fillMaxWidth(),
+                    onClick = {
+                        onSave.invoke(level)
+                    }
+                ) {
+                    Text("Сохранить")
+                }
+            }
+        },
+    )
 }
 
 @Preview
@@ -123,10 +118,7 @@ fun CharacterEditDialog(
 private fun Sample() {
     GloomhavenHalperTheme {
         CharacterEditDialog(
-            showDialog = true,
-            characterName = "Brute",
-            classImage = R.drawable.br,
-            startLevel = 1,
+            character = CharacterUI.fixture(),
             onDismiss = {},
             onSave = { _ -> },
             onDelete = {},

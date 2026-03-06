@@ -4,7 +4,6 @@ import androidx.compose.runtime.Immutable
 import com.rumpilstilstkin.gloomhavenhelper.R
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.CharacterClassType
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.Prosperity
-import com.rumpilstilstkin.gloomhavenhelper.screens.draft.MainScreenAction
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.persistentListOf
 
@@ -37,16 +36,7 @@ data class TeamUI(
                 ShortScenarioUI.fixture(2),
             ),
             characters = persistentListOf(
-                CharacterUI(
-                    name = "Character 1",
-                    level = 1,
-                    characterClass = CharacterClassUI(
-                        classType = CharacterClassType.Brute,
-                        name = "Class 1",
-                        imageRes = R.drawable.br,
-                    ),
-                    teamName = null
-                )
+                CharacterUI.fixture()
             ),
         )
     }

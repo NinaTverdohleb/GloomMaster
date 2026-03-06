@@ -1,14 +1,12 @@
 package com.rumpilstilstkin.gloomhavenhelper.data
 
 import android.content.res.Resources.NotFoundException
-import android.util.Log
 import com.rumpilstilstkin.gloomhavenhelper.bd.dao.CharacterDao
 import com.rumpilstilstkin.gloomhavenhelper.bd.dao.TeamDao
 import com.rumpilstilstkin.gloomhavenhelper.data.datasource.CurrentTeamDatasource
 import com.rumpilstilstkin.gloomhavenhelper.data.mappers.toBd
 import com.rumpilstilstkin.gloomhavenhelper.data.mappers.toDomain
 import com.rumpilstilstkin.gloomhavenhelper.di.ApplicationScope
-import com.rumpilstilstkin.gloomhavenhelper.domain.entity.CharacterForSave
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.ShortTeamInfo
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.TeamInfoForSave
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.TeamInfoWithScenario
@@ -27,7 +25,6 @@ class TeamRepository @Inject constructor(
     private val currentTeamDatasource: CurrentTeamDatasource,
     private val teamDao: TeamDao,
     private val characterDao: CharacterDao,
-    private val characterRepository: CharacterRepository
 ) {
     private val _currentTeam: MutableStateFlow<Result<Int>> =
         MutableStateFlow(Result.failure(NotFoundException()))
@@ -58,7 +55,7 @@ class TeamRepository @Inject constructor(
         val savedTeamId = teamDao.insert(team.toBd()).toInt()
         currentTeamDatasource.saveCurrentTeam(savedTeamId)
         team.characters.forEach {
-            characterDao.insert(it.toBd(savedTeamId))
+            characterDao.insert(it.copy(teamId = savedTeamId).toBd())
         }
         updateCurrentTeam()
         return savedTeamId
@@ -78,12 +75,6 @@ class TeamRepository @Inject constructor(
 
     suspend fun updateTeam(team: ShortTeamInfo) {
         teamDao.update(team.toBd())
-    }
-
-    suspend fun addCharacterForCurrentTeam(character: CharacterForSave) {
-        _currentTeam.value.onSuccess {
-            characterRepository.addCharacter(character, it)
-        }
     }
 
     private suspend fun updateCurrentTeam() {

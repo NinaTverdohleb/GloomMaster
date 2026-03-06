@@ -36,7 +36,6 @@ class CharacterDetailsViewModel @AssistedInject constructor(
             characterClass = CharacterClassUI(
                 name = "",
                 classType = CharacterClassType.Brute,
-                imageRes = R.drawable.br
             ),
             id = id,
             isAlive = false,

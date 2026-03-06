@@ -1,5 +1,6 @@
 package com.rumpilstilstkin.gloomhavenhelper.ui.components
 
+import android.R
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.size
@@ -20,8 +21,7 @@ import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
 fun GloomBadge(
     text: String,
     modifier: Modifier = Modifier,
-    size: GloomSize = GloomSize.S,
-    color: Color = MaterialTheme.colorScheme.secondary
+    size: GloomSize = GloomSize.S
 ) {
     val boxSize = when (size) {
         GloomSize.S -> 18.dp
@@ -35,7 +35,7 @@ fun GloomBadge(
         modifier = modifier
             .size(boxSize)
             .background(
-                color = color,
+                color = MaterialTheme.colorScheme.secondary,
                 shape = CircleShape
             ),
         contentAlignment = Alignment.Center
@@ -45,6 +45,7 @@ fun GloomBadge(
             text = text,
             fontSize = textSize,
             textAlign = TextAlign.Center,
+            color = MaterialTheme.colorScheme.onSecondary
         )
     }
 }

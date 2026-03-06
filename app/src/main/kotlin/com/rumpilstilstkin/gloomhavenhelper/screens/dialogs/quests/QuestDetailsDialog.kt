@@ -29,6 +29,7 @@ import com.rumpilstilstkin.gloomhavenhelper.domain.entity.quest.QuestReward
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.PersonalQuestUI
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.QuestTaskPhaseUI
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.toImage
+import com.rumpilstilstkin.gloomhavenhelper.ui.icons.toImage
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.persistentListOf

@@ -57,19 +57,6 @@ fun TeamCreateScreen(
         }
     }
 
-    AddCharacterDialog(
-        showDialog = uiState.showCharacterDialog,
-        onDismiss = { viewModel.action(TeamCreateAction.HideCharacterDialog) }
-    ) { name, level, classType ->
-        viewModel.action(
-            TeamCreateAction.AddCharacter(
-                name = name,
-                level = level,
-                characterType = classType,
-            )
-        )
-    }
-
     Content(
         teamName = uiState.name,
         characters = uiState.characters,
@@ -77,6 +64,20 @@ fun TeamCreateScreen(
         modifier = modifier,
         action = { viewModel.action(it) }
     )
+
+    if (uiState.showCharacterDialog) {
+        AddCharacterDialog(
+            onDismiss = { viewModel.action(TeamCreateAction.HideCharacterDialog) }
+        ) { name, level, classType ->
+            viewModel.action(
+                TeamCreateAction.AddCharacter(
+                    name = name,
+                    level = level,
+                    characterType = classType,
+                )
+            )
+        }
+    }
 }
 
 @Composable
@@ -96,7 +97,7 @@ fun Content(
                 },
                 shape = RoundedCornerShape(32.dp),
 
-            )
+                )
         },
         content = { innerPadding ->
             Column(
@@ -203,31 +204,15 @@ fun CharacterPart(
 @Composable
 private fun Sample() {
     GloomhavenHalperTheme {
-            Content(
-                teamName = "Name",
-                characters = listOf(
-                    CharacterUI(
-                        name = "Name",
-                        level = 6,
-                        characterClass = CharacterClassUI(
-                            imageRes = R.drawable.br,
-                            name = "Name",
-                            classType = CharacterClassType.Brute
-                        ), teamName = null
-                    ),
-                    CharacterUI(
-                        name = "Name2",
-                        level = 6,
-                        characterClass = CharacterClassUI(
-                            imageRes = R.drawable.br,
-                            name = "Name",
-                            classType = CharacterClassType.Brute
-                        ), teamName = null
-                    )
-                ),
-                canAdd = true
-            ) { }
-        }
+        Content(
+            teamName = "Name",
+            characters = listOf(
+                CharacterUI.fixture("name 1"),
+                CharacterUI.fixture("name 2")
+            ),
+            canAdd = true
+        ) { }
+    }
 }
 
 

@@ -38,23 +38,23 @@ fun ScenarioItemWithDialog(
     onStart: (Int) -> Unit
 ) {
     var showDialog by remember { mutableStateOf(false) }
-
-    ScenarioDialog(
-        scenarioNumber = scenarioNumber,
-        scenarioName = scenarioName,
-        scenarioRequirements = scenarioRequirements,
-        showDialog = showDialog,
-        onDismiss = { showDialog = false },
-        completeScenario = {
-            onComplete(scenarioNumber)
-            showDialog = false
-        },
-        location = location,
-        startScenario = {
-            onStart(scenarioNumber)
-            showDialog = false
-        }
-    )
+    if (showDialog) {
+        ScenarioDialog(
+            scenarioNumber = scenarioNumber,
+            scenarioName = scenarioName,
+            scenarioRequirements = scenarioRequirements,
+            onDismiss = { showDialog = false },
+            completeScenario = {
+                onComplete(scenarioNumber)
+                showDialog = false
+            },
+            location = location,
+            startScenario = {
+                onStart(scenarioNumber)
+                showDialog = false
+            }
+        )
+    }
 
     ScenarioInfoCardItem(
         scenarioNumber = scenarioNumber,

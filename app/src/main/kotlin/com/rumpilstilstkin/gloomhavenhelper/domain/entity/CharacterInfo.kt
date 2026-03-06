@@ -6,7 +6,8 @@ import kotlin.math.ceil
 data class CharacterForSave(
     val name: String,
     val level: Int,
-    val characterType: CharacterClassType
+    val characterType: CharacterClassType,
+    val teamId: Int? = null
 )
 
 data class CharacterInfo(

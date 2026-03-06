@@ -79,15 +79,15 @@ enum class ActionUi(
     ),
     BLESS(
         title = "Благословение",
-        iconRes = R.drawable.dr // TODO
+        iconRes = R.drawable.curse // TODO
     ),
     PULL(
         title = "Притянуть",
-        iconRes = R.drawable.dr // TODO
+        iconRes = R.drawable.curse // TODO
     ),
     PIERCE(
         title = "Пробитие",
-        iconRes = R.drawable.dr // TODO
+        iconRes = R.drawable.curse // TODO
     )
     ;
 
