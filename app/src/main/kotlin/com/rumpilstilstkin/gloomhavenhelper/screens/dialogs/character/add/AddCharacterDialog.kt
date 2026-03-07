@@ -103,6 +103,14 @@ fun AddCharacterDialog(
             }
         }
 
+        selectedClass?.let {
+            Text(
+                modifier = Modifier.fillMaxWidth(),
+                text = it.title,
+                textAlign = TextAlign.Center
+            )
+        }
+
         OutlinedTextField(
             value = newCharacterName,
             onValueChange = { newCharacterName = it },

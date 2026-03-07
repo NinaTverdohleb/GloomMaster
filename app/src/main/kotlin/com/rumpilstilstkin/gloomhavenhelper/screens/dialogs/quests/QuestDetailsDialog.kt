@@ -5,13 +5,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.BasicAlertDialog
-import androidx.compose.material3.Button
-import androidx.compose.material3.Card
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
@@ -28,7 +22,7 @@ import com.rumpilstilstkin.gloomhavenhelper.domain.entity.quest.CharacterTaskIte
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.quest.QuestReward
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.PersonalQuestUI
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.QuestTaskPhaseUI
-import com.rumpilstilstkin.gloomhavenhelper.screens.models.toImage
+import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomAlertDialog
 import com.rumpilstilstkin.gloomhavenhelper.ui.icons.toImage
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
 import kotlinx.collections.immutable.ImmutableList
@@ -46,60 +40,40 @@ fun QuestDetailsDialog(
 ) {
     if (!showDialog) return
 
-    BasicAlertDialog(
+    GloomAlertDialog(
         modifier = modifier,
-        content = {
-            Card(
-                shape = RoundedCornerShape(16.dp),
-
-                ) {
-                Column(
-                    modifier = Modifier
-                        .padding(16.dp)
-                        .align(Alignment.CenterHorizontally),
-                    horizontalAlignment = Alignment.CenterHorizontally
-                ) {
-                    Text(
-                        style = MaterialTheme.typography.headlineSmall,
-                        text = quest.title,
-                    )
-                    Spacer(modifier = Modifier.size(16.dp))
-                    Text(
-                        text = quest.description,
-                    )
-                    Spacer(modifier = Modifier.size(8.dp))
-
-                    HorizontalDivider()
-
-                    Spacer(modifier = Modifier.size(16.dp))
-
-                    Task(
-                        phases = quest.phases
-                    )
-
-                    Spacer(modifier = Modifier.size(16.dp))
-
-                    Rewards(
-                        classType = quest.reward.classType,
-                        alternativeReward = quest.reward.alternativeReward
-                    )
-                    if (onAction != null) {
-                        Button(
-                            modifier = Modifier
-                                .padding(top = 16.dp)
-                                .width(240.dp),
-                            onClick = {
-                                onAction(quest.id)
-                                onDismiss()
-                            }
-                        ) {
-                            Text(buttonText)
-                        }
-                    }
-                }
-            }
+        onNeutralRequest = null,
+        onConfirmRequest = {
+            onAction?.invoke(quest.id)
         },
+        confirmText = buttonText,
         onDismissRequest = { onDismiss() },
+        content = {
+            Text(
+                style = MaterialTheme.typography.headlineSmall,
+                text = quest.title,
+            )
+            Spacer(modifier = Modifier.size(16.dp))
+            Text(
+                text = quest.description,
+            )
+            Spacer(modifier = Modifier.size(8.dp))
+
+            HorizontalDivider()
+
+            Spacer(modifier = Modifier.size(16.dp))
+
+            Task(
+                phases = quest.phases
+            )
+
+            Spacer(modifier = Modifier.size(16.dp))
+
+            Rewards(
+                classType = quest.reward.classType,
+                alternativeReward = quest.reward.alternativeReward
+            )
+        }
     )
 }
 
