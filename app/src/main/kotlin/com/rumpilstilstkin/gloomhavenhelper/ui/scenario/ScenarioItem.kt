@@ -28,43 +28,6 @@ import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomCard
 
 @Composable
-fun ScenarioItemWithDialog(
-    scenarioNumber: Int,
-    scenarioName: String,
-    scenarioRequirements: String,
-    location: String,
-    modifier: Modifier = Modifier,
-    onComplete: (Int) -> Unit,
-    onStart: (Int) -> Unit
-) {
-    var showDialog by remember { mutableStateOf(false) }
-    if (showDialog) {
-        ScenarioDialog(
-            scenarioNumber = scenarioNumber,
-            scenarioName = scenarioName,
-            scenarioRequirements = scenarioRequirements,
-            onDismiss = { showDialog = false },
-            completeScenario = {
-                onComplete(scenarioNumber)
-                showDialog = false
-            },
-            location = location,
-            startScenario = {
-                onStart(scenarioNumber)
-                showDialog = false
-            }
-        )
-    }
-
-    ScenarioInfoCardItem(
-        scenarioNumber = scenarioNumber,
-        scenarioName = scenarioName,
-        location = location,
-        modifier = modifier
-    ) { showDialog = true }
-}
-
-@Composable
 fun ScenarioInfoCardItem(
     scenarioNumber: Int,
     scenarioName: String,
@@ -145,14 +108,10 @@ fun ScenarioInfoItem(
 @Composable
 private fun Sample() {
     GloomhavenHalperTheme {
-        ScenarioItemWithDialog(
+        ScenarioInfoCardItem(
             scenarioNumber = 99,
             scenarioName = "Name",
-            scenarioRequirements = "",
             location = "Полная жопа",
-            onComplete = {},
-            onStart = {}
         )
     }
-
 }

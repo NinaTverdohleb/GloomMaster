@@ -49,7 +49,7 @@ fun StartScreenRoute(
             when (selectedTab) {
                 StartScreenTab.TEAM -> TeamTabRoute(navController)
                 StartScreenTab.CHARACTERS -> CharactersTabRoute(navController)
-                StartScreenTab.SCENARIOS -> ScenariosTabRoute()
+                StartScreenTab.SCENARIOS -> ScenariosTabRoute(navController)
                 StartScreenTab.SHOP -> ShopTabRoute(navController)
             }
         }
