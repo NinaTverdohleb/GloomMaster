@@ -84,4 +84,8 @@ object GlHelperModule {
     @Singleton
     @Provides
     fun provideTeamCharacterClassDao(db: GlHelperDatabase) = db.teamCharacterClassDao()
+
+    @Singleton
+    @Provides
+    fun provideTeamGoodDao(db: GlHelperDatabase) = db.teamGoodDao()
 }

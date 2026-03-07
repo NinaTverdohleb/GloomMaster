@@ -27,6 +27,7 @@ import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 import kotlin.collections.map
@@ -88,7 +89,7 @@ class CharactersTabViewModel @Inject constructor(
         viewModelScope.launch {
             when (action) {
                 is CharactersTabAction.AddCharacter -> {
-                    logicState.emit(logicState.value.copy(showAddCharacterDialog = false))
+                    logicState.update{it.copy(showAddCharacterDialog = false)}
                     addCharacterUseCase(
                         name = action.name,
                         level = action.level,
@@ -97,15 +98,15 @@ class CharactersTabViewModel @Inject constructor(
                 }
 
                 is CharactersTabAction.SwitchAlive -> {
-                    logicState.emit(logicState.value.copy(filterAlive = !logicState.value.filterAlive))
+                    logicState.update{it.copy(filterAlive = !logicState.value.filterAlive)}
                 }
 
                 is CharactersTabAction.ShowAddCharacterDialog -> {
-                    logicState.emit(logicState.value.copy(showAddCharacterDialog = true))
+                    logicState.update{it.copy(showAddCharacterDialog = true)}
                 }
 
                 is CharactersTabAction.CloseAddCharacterDialog -> {
-                    logicState.emit(logicState.value.copy(showAddCharacterDialog = false))
+                    logicState.update{it.copy(showAddCharacterDialog = false)}
                 }
 
                 is CharactersTabAction.CharacterDetails -> {

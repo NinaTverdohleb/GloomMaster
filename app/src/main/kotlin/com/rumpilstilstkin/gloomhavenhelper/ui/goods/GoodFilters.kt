@@ -1,4 +1,4 @@
-package com.rumpilstilstkin.gloomhavenhelper.screens.characters.goods.add.components
+package com.rumpilstilstkin.gloomhavenhelper.ui.goods
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -12,7 +12,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -27,46 +26,42 @@ import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
 fun GoodFilters(
     searchText: String,
     filterType: GoodType?,
-    onAction: (AddGoodsScreenActions) -> Unit,
+    selectFilter: (GoodType) -> Unit,
+    changeSearchText: (String) -> Unit,
     modifier: Modifier = Modifier
+) = Column(
+    modifier = modifier
 ) {
-    Column(
-        modifier = modifier
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(8.dp),
+        horizontalArrangement = Arrangement.SpaceBetween
     ) {
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(8.dp),
-            horizontalArrangement = Arrangement.SpaceBetween
-        ) {
-            val selectedFilter: (GoodType) -> Unit = {
-                onAction(AddGoodsScreenActions.SelectFilter(it))
-            }
-            GoodType.entries.forEach {
-                FilterButton(
-                    type = it,
-                    selectedFilter = filterType,
-                    onSelectedChanged = selectedFilter
-                )
-            }
+        GoodType.entries.forEach {
+            FilterButton(
+                type = it,
+                selectedFilter = filterType,
+                onSelectedChanged = selectFilter
+            )
         }
-        Spacer(
-            modifier = Modifier.height(4.dp)
-        )
-
-        OutlinedTextField(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 8.dp),
-            value = searchText,
-            onValueChange = { onAction(AddGoodsScreenActions.SearchTextChange(it)) },
-            label = { Text("Название или номер") },
-        )
     }
+    Spacer(
+        modifier = Modifier.height(4.dp)
+    )
+
+    OutlinedTextField(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 8.dp),
+        value = searchText,
+        onValueChange = changeSearchText,
+        label = { Text("Название или номер") },
+    )
 }
 
 @Composable
-fun FilterButton(
+private fun FilterButton(
     type: GoodType,
     selectedFilter: GoodType?,
     modifier: Modifier = Modifier,
@@ -81,19 +76,20 @@ fun FilterButton(
             },
         imageVector = type.toImage(),
         contentDescription = null,
-        tint = if (isChecked) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.secondary
+        tint = if (isChecked) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.outlineVariant
     )
 
 }
 
 @Preview
 @Composable
-private fun GoodFiltersSample() {
+private fun GoodFiltersPreview() {
     GloomhavenHalperTheme {
         GoodFilters(
             searchText = "",
             filterType = GoodType.Arm,
-            onAction = {}
+            selectFilter = {},
+            changeSearchText = {},
         )
     }
 }

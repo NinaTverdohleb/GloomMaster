@@ -33,7 +33,7 @@ class TeamTabViewModel @Inject constructor(
     private val _navigationEvents = MutableSharedFlow<GlHelperEvent>()
     val navigationEvents = _navigationEvents.asSharedFlow()
 
-    val uiState: StateFlow<TeamTabUiState> = getCurrentTeamUseCase.invoke().map { team ->
+    val uiState: StateFlow<TeamTabUiState> = getCurrentTeamUseCase().map { team ->
         TeamTabUiState.Data(
             currentTeam = TeamUI(
                 teamId = team.id,

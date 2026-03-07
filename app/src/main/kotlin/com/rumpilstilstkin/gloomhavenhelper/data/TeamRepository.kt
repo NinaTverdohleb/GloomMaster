@@ -67,10 +67,8 @@ class TeamRepository @Inject constructor(
         }
     }
 
-    suspend fun updateProsperity(prosperity: Int) {
-        _currentTeam.value.onSuccess {
-            teamDao.updateProsperity(it, prosperity)
-        }
+    suspend fun updateProsperity(teamId: Int, prosperity: Int) {
+        teamDao.updateProsperity(teamId, prosperity)
     }
 
     suspend fun updateTeam(team: ShortTeamInfo) {

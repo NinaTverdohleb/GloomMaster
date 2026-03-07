@@ -10,6 +10,7 @@ import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.characters.goods.BuyG
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.characters.goods.GetAvaliableCharacterGoodsUseCase
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.GoodUi
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.toUi
+import com.rumpilstilstkin.gloomhavenhelper.ui.goods.AddGoodsViewState
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
@@ -51,27 +52,29 @@ class AddGoodsScreenViewModel @AssistedInject constructor(
     }
 
     internal val uiState: StateFlow<AddGoodsScreenUiState> = logicState.map { state ->
-        if (state.availableGoods.isEmpty()){
+        if (state.availableGoods.isEmpty()) {
             AddGoodsScreenUiState()
         } else {
             AddGoodsScreenUiState(
-                availableGoods = state.availableGoods
-                    .filter {
-                        it.filterResult(
-                            goodType = state.selectedFilters,
-                            search = state.searchText
-                        )
-                    }.minus(state.selectedGood.toSet())
-                    .map { it.toUi() }
-                    .sortedBy { it.number }
-                    .toImmutableList(),
-                selectedGoods = state.selectedGood
-                    .map { it.toUi() }
-                    .sortedBy { it.number }
-                    .toImmutableList(),
+                goodsState = AddGoodsViewState(
+                    availableGoods = state.availableGoods
+                        .filter {
+                            it.filterResult(
+                                goodType = state.selectedFilters,
+                                search = state.searchText
+                            )
+                        }.minus(state.selectedGood.toSet())
+                        .map { it.toUi() }
+                        .sortedBy { it.number }
+                        .toImmutableList(),
+                    selectedGoods = state.selectedGood
+                        .map { it.toUi() }
+                        .sortedBy { it.number }
+                        .toImmutableList(),
+                    selectedFilter = state.selectedFilters,
+                    searchText = state.searchText,
+                ),
                 goodsGold = state.selectedGood.sumOf { it.cost },
-                selectedFilter = state.selectedFilters,
-                searchText = state.searchText,
                 isClose = state.isClose,
                 allGold = state.allGold
             )
@@ -86,7 +89,7 @@ class AddGoodsScreenViewModel @AssistedInject constructor(
         viewModelScope.launch {
             when (action) {
                 is AddGoodsScreenActions.SelectGood -> {
-                    val good = logicState.value.availableGoods.firstOrNull{it.id == action.id}
+                    val good = logicState.value.availableGoods.firstOrNull { it.id == action.id }
                     good?.also { selectedGood ->
                         logicState.emit(
                             logicState.value.copy(
@@ -95,8 +98,9 @@ class AddGoodsScreenViewModel @AssistedInject constructor(
                         )
                     }
                 }
-                is AddGoodsScreenActions.UnselectGood-> {
-                    val good = logicState.value.availableGoods.firstOrNull{it.id == action.id}
+
+                is AddGoodsScreenActions.UnselectGood -> {
+                    val good = logicState.value.availableGoods.firstOrNull { it.id == action.id }
                     good?.also { selectedGood ->
                         logicState.emit(
                             logicState.value.copy(
@@ -137,20 +141,6 @@ class AddGoodsScreenViewModel @AssistedInject constructor(
         }
     }
 
-    private fun Good.filterResult(goodType: GoodType?, search: String): Boolean {
-        if (goodType != null && goodType != this.type) return false
-        if (search.isBlank()) return true
-        if (this.name.contains(search, ignoreCase = true)) return true
-
-        val numberRegex = Regex("\\d+")
-        val matchResult = numberRegex.find(search)
-        val number = matchResult?.value?.toIntOrNull()
-
-        return if (number != null) {
-            this.number == number
-        } else false
-    }
-
     @AssistedFactory
     interface Factory {
         fun create(id: Int): AddGoodsScreenViewModel
@@ -158,12 +148,9 @@ class AddGoodsScreenViewModel @AssistedInject constructor(
 }
 
 internal data class AddGoodsScreenUiState(
-    val selectedGoods: ImmutableList<GoodUi> = persistentListOf(),
-    val availableGoods: ImmutableList<GoodUi> = persistentListOf(),
+    val goodsState: AddGoodsViewState = AddGoodsViewState(),
     val allGold: Int = 0,
     val goodsGold: Int = 0,
-    val selectedFilter: GoodType? = null,
-    val searchText: String = "",
     val isClose: Boolean = false,
 )
 

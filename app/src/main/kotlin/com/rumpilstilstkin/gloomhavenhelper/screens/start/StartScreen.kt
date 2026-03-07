@@ -21,14 +21,11 @@ import androidx.compose.ui.unit.dp
 import com.rumpilstilstkin.gloomhavenhelper.R
 import com.rumpilstilstkin.gloomhavenhelper.screens.start.characters.CharactersTabScreen
 import com.rumpilstilstkin.gloomhavenhelper.screens.start.characters.CharactersTabStateUi
-import com.rumpilstilstkin.gloomhavenhelper.screens.start.team.TeamTabScreen
-import com.rumpilstilstkin.gloomhavenhelper.screens.start.team.TeamTabUiState
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomBottomNavigationBar
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomToolbarStatus
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomToolbarTitle
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.NavItem
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
-import kotlinx.collections.immutable.persistentListOf
 
 @Composable
 internal fun StartScreen(

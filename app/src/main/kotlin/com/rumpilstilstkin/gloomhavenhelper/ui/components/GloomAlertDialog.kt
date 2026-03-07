@@ -41,7 +41,7 @@ fun GloomAlertDialog(
     confirmText: String = "Выбрать",
     negativeText: String = "Удалить",
     onDismissRequest: () -> Unit,
-    onConfirmRequest: () -> Unit,
+    onConfirmRequest: (() -> Unit)? = null,
     onNegativeRequest: (() -> Unit)? = null,
     onNeutralRequest: (() -> Unit)? = onDismissRequest,
     content: @Composable () -> Unit,
@@ -90,7 +90,7 @@ fun GloomAlertDialog(
 
                 if (onNegativeRequest != null) {
                     OutlinedButton(
-                        onClick = onDismissRequest,
+                        onClick = onNegativeRequest,
                         modifier = Modifier.weight(1f),
                         shape = RoundedCornerShape(16.dp),
                         border = BorderStroke(1.dp, MaterialTheme.colorScheme.error),
@@ -119,22 +119,24 @@ fun GloomAlertDialog(
                     }
                 }
 
-                Button(
-                    onClick = onConfirmRequest,
-                    modifier = Modifier.weight(1f),
-                    shape = RoundedCornerShape(16.dp),
-                    enabled = confirmEnabled,
-                    colors = ButtonDefaults.buttonColors(
-                        containerColor = MaterialTheme.colorScheme.secondary,
-                        contentColor = MaterialTheme.colorScheme.onSurface,
-                        disabledContainerColor = MaterialTheme.colorScheme.secondary.copy(alpha = 0.4f),
-                    ),
-                ) {
-                    Text(
-                        text = confirmText,
-                        color = MaterialTheme.colorScheme.onSecondary,
-                        style = MaterialTheme.typography.bodyMedium
-                    )
+                if (onConfirmRequest != null) {
+                    Button(
+                        onClick = onConfirmRequest,
+                        modifier = Modifier.weight(1f),
+                        shape = RoundedCornerShape(16.dp),
+                        enabled = confirmEnabled,
+                        colors = ButtonDefaults.buttonColors(
+                            containerColor = MaterialTheme.colorScheme.secondary,
+                            contentColor = MaterialTheme.colorScheme.onSurface,
+                            disabledContainerColor = MaterialTheme.colorScheme.secondary.copy(alpha = 0.4f),
+                        ),
+                    ) {
+                        Text(
+                            text = confirmText,
+                            color = MaterialTheme.colorScheme.onSecondary,
+                            style = MaterialTheme.typography.bodyMedium
+                        )
+                    }
                 }
             }
         }

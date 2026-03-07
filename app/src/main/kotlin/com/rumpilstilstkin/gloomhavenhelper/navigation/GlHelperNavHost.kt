@@ -11,11 +11,12 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
 import com.rumpilstilstkin.gloomhavenhelper.screens.characters.CharacterDetailsScreen
-import com.rumpilstilstkin.gloomhavenhelper.screens.characters.goods.add.AddGoodsScreen
+import com.rumpilstilstkin.gloomhavenhelper.screens.characters.goods.add.AddGoodsForCharacterScreenRoute
 import com.rumpilstilstkin.gloomhavenhelper.screens.characters.quests.freeselect.SearchQuestScreen
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.ScenarioRoute
 import com.rumpilstilstkin.gloomhavenhelper.screens.start.StartScreenRoute
 import com.rumpilstilstkin.gloomhavenhelper.screens.teem.edit.TeamDetailsScreen
+import com.rumpilstilstkin.gloomhavenhelper.screens.teem.goods.AddGoodsForTeamScreenRoute
 
 @Composable
 fun GlHelperNavHost(
@@ -53,7 +54,7 @@ fun GlHelperNavHost(
         }
         composable<GlHelperScreens.AddGoodsForCharacter> {
             val args = it.toRoute<GlHelperScreens.AddGoodsForCharacter>()
-            AddGoodsScreen(
+            AddGoodsForCharacterScreenRoute(
                 characterId = args.characterId,
                 navController = navController
             )
@@ -62,6 +63,11 @@ fun GlHelperNavHost(
             val args = it.toRoute<GlHelperScreens.SearchPersonalQuest>()
             SearchQuestScreen(
                 characterId = args.characterId,
+                navController = navController
+            )
+        }
+        composable<GlHelperScreens.AddGoodsForTeam> {
+            AddGoodsForTeamScreenRoute(
                 navController = navController
             )
         }

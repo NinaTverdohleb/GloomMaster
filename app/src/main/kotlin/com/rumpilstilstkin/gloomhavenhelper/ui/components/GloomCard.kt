@@ -40,7 +40,6 @@ fun GloomCard(
         )
     }
 
-
 @Preview
 @Composable
 private fun GloomCardPreview() {

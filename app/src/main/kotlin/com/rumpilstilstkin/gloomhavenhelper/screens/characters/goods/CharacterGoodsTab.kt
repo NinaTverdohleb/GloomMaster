@@ -85,6 +85,8 @@ fun CharacterGoods(
             )
         },
         content = { innerPadding ->
+            var selectedGood by remember { mutableStateOf<GoodUi?>(null) }
+
             LazyColumn(
                 modifier = modifier.padding(innerPadding)
             ) {
@@ -92,7 +94,7 @@ fun CharacterGoods(
                     GoodItem(
                         good = good,
                         onDelete = onGoodDelete,
-                        onSell = onSell
+                        clickItem = { selectedGood = it }
                     )
                     HorizontalDivider(
                         modifier = Modifier.padding(horizontal = 12.dp),
@@ -100,6 +102,18 @@ fun CharacterGoods(
                         color = MaterialTheme.colorScheme.outline
                     )
                 }
+            }
+
+            selectedGood?.let { good ->
+                GoodDetailsDialog(
+                    dismiss = { selectedGood = null },
+                    confirm = {
+                        good.characterGoodId?.let { onSell(it) }
+                        selectedGood = null
+                    },
+                    buttonText = "Продать",
+                    imagePath = good.imagePath
+                )
             }
         }
     )
@@ -110,23 +124,13 @@ private fun GoodItem(
     good: GoodUi,
     modifier: Modifier = Modifier,
     onDelete: (Int) -> Unit,
-    onSell: (Int) -> Unit
+    clickItem: (GoodUi) -> Unit,
 ) {
-    var showDetailsDialog by remember { mutableStateOf(false) }
-    GoodDetailsDialog(
-        goodNumber = good.number,
-        showDialog = showDetailsDialog,
-        isAction = true,
-        buttonText = "Продать",
-        imagePath = good.imagePath,
-        onDismiss = { showDetailsDialog = false },
-        onAction = { good.characterGoodId?.let { onSell(it) } }
-    )
     Row(
         modifier = modifier
             .fillMaxWidth()
             .padding(horizontal = 8.dp)
-            .clickable { showDetailsDialog = true },
+            .clickable { clickItem(good) },
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
     ) {

@@ -21,4 +21,6 @@ interface GoodsDao {
     @Query("SELECT * FROM GoodBd WHERE goodId IN (:goodId)")
     suspend fun getGoodsByIds(goodId: List<Int>): List<GoodBd>
 
+    @Query("SELECT * FROM GoodBd WHERE number IN (:numbers)")
+    suspend fun getGoodsByNumbers(numbers: List<Int>): List<GoodBd>
 }

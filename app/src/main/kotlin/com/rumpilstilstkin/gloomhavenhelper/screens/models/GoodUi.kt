@@ -21,9 +21,23 @@ data class GoodUi(
     val cost: Int,
     val characterGoodId: Int? = null,
     val image: String
-){
+) {
     val imagePath
         get() = "file:///android_asset/image/goods/$image"
+
+    companion object {
+        fun fixture(
+            id: Int = 1,
+            number: Int = 2
+        ) = GoodUi(
+            id = id,
+            number = number,
+            name = "Сапоги большого шага поешь этих сладких французких булок",
+            typeImage = GloomhavenIcons.GoodTypes.Foot,
+            cost = 20,
+            image = ""
+        )
+    }
 }
 
 fun Good.toUi() = GoodUi(
@@ -36,7 +50,7 @@ fun Good.toUi() = GoodUi(
     image = this.image
 )
 
-fun GoodType.toImage() = when(this) {
+fun GoodType.toImage() = when (this) {
     GoodType.Body -> GloomhavenIcons.GoodTypes.Body
     GoodType.Head -> GloomhavenIcons.GoodTypes.Head
     GoodType.Foot -> GloomhavenIcons.GoodTypes.Foot

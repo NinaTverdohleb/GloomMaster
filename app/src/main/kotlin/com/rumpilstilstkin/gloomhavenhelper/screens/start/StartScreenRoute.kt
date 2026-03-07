@@ -14,6 +14,8 @@ import androidx.navigation.NavHostController
 import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEventHelper
 import com.rumpilstilstkin.gloomhavenhelper.screens.dialogs.teams.AddTeamDialog
 import com.rumpilstilstkin.gloomhavenhelper.screens.start.characters.CharactersTabRoute
+import com.rumpilstilstkin.gloomhavenhelper.screens.start.scenarios.ScenariosTabRoute
+import com.rumpilstilstkin.gloomhavenhelper.screens.start.shop.ShopTabRoute
 import com.rumpilstilstkin.gloomhavenhelper.screens.start.team.TeamTabRoute
 
 @Composable
@@ -47,8 +49,8 @@ fun StartScreenRoute(
             when (selectedTab) {
                 StartScreenTab.TEAM -> TeamTabRoute(navController)
                 StartScreenTab.CHARACTERS -> CharactersTabRoute(navController)
-                StartScreenTab.SCENARIOS -> CharactersTabRoute(navController) //TODO
-                StartScreenTab.SHOP -> CharactersTabRoute(navController) //TODO
+                StartScreenTab.SCENARIOS -> ScenariosTabRoute()
+                StartScreenTab.SHOP -> ShopTabRoute(navController)
             }
         }
     )

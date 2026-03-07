@@ -9,11 +9,17 @@ import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.rumpilstilstkin.gloomhavenhelper.screens.characters.goods.add.AddGoodsScreenActions
+import com.rumpilstilstkin.gloomhavenhelper.screens.dialogs.goods.GoodDetailsDialog
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.GoodUi
+import com.rumpilstilstkin.gloomhavenhelper.ui.goods.GoodItem
 import com.rumpilstilstkin.gloomhavenhelper.ui.icons.GloomhavenIcons
 import com.rumpilstilstkin.gloomhavenhelper.ui.icons.goods.Foot
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
@@ -26,6 +32,7 @@ fun SelectedGoodsView(
     onAction: (AddGoodsScreenActions) -> Unit,
     modifier: Modifier = Modifier
 ) {
+    var selectedGood by remember { mutableStateOf<GoodUi?>(null) }
     Column(modifier = modifier) {
         Text(
             text = "Выбранные товары",
@@ -41,15 +48,25 @@ fun SelectedGoodsView(
                 selectedGoods.forEachIndexed { index, good ->
                     GoodItem(
                         good = good,
-                        dialogButtonText = "Убрать",
-                        onActionClick = { onAction(AddGoodsScreenActions.UnselectGood(good.id)) }
+                        clickItem = { selectedGood = it }
                     )
-                    if(index != selectedGoods.lastIndex) {
+                    if (index != selectedGoods.lastIndex) {
                         HorizontalDivider()
                     }
                 }
             }
         }
+    }
+    selectedGood?.let { good ->
+        GoodDetailsDialog(
+            dismiss = { selectedGood = null },
+            confirm = {
+                onAction(AddGoodsScreenActions.UnselectGood(good.id))
+                selectedGood = null
+            },
+            buttonText = "Убрать",
+            imagePath = good.imagePath
+        )
     }
 }
 

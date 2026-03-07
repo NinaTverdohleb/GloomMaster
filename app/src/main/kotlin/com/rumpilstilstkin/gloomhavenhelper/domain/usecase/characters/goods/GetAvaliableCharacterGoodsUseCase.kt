@@ -20,7 +20,10 @@ class GetAvaliableCharacterGoodsUseCase @Inject constructor(
                 .distinctBy { it.number }
         } else {
             // TODO
-            emptyList()
+            goodsRepository.getGoods()
+                .filter { good -> good.id !in characterGoods.map { it.id } }
+                .sortedBy { it.number }
+                .distinctBy { it.number }
         }
     }
 }
