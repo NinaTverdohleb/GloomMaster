@@ -32,7 +32,8 @@ internal fun StartScreen(
     state: StartScreenState,
     selectTab: @Composable (StartScreenTab) -> Unit,
     addTeam: () -> Unit,
-    back: () -> Unit
+    back: () -> Unit,
+    editTeam: () -> Unit,
 ) {
     var selectedTab by rememberSaveable { mutableStateOf(StartScreenTab.TEAM) }
 
@@ -59,7 +60,8 @@ internal fun StartScreen(
                                 tint = MaterialTheme.colorScheme.onSurface
                             )
                         }
-                    }
+                    },
+                    statusClick = editTeam
                 )
             } else {
                 GloomToolbarTitle(
@@ -105,6 +107,7 @@ private fun StartScreenEmptyPreview() {
             addTeam = {},
             selectTab = {},
             back = {},
+            editTeam = {}
         )
     }
 }
@@ -129,6 +132,7 @@ private fun StartScreenPreview() {
                 )
             },
             back = {},
+            editTeam = {}
         )
     }
 }

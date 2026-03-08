@@ -10,3 +10,9 @@ sealed interface StartScreenState {
         val name: String,
     ) : StartScreenState
 }
+
+sealed interface StartScreenAction {
+    data class CreateTeam(val teamName: String) : StartScreenAction
+    data class SelectTeam(val teamId: Int) : StartScreenAction
+    data object EditTeam : StartScreenAction
+}

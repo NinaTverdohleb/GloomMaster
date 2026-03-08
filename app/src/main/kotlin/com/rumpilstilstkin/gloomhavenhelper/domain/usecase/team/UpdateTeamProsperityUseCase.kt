@@ -17,7 +17,7 @@ class UpdateTeamProsperityUseCase @Inject constructor(
         prosperity: Prosperity,
         newProsperityLevelValue: Int
     ) {
-        val teamId = teamRepository.currentTeam.first().teamId
+        val teamId = teamRepository.currentTeam.first()?.teamId ?: return
 
         if (prosperity.isStartValue && newProsperityLevelValue == 0 || prosperity.isMax) {
             return

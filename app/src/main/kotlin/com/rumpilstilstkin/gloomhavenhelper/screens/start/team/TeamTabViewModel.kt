@@ -35,21 +35,25 @@ class TeamTabViewModel @Inject constructor(
     val navigationEvents = _navigationEvents.asSharedFlow()
 
     val uiState: StateFlow<TeamTabUiState> = getCurrentTeamUseCase().map { team ->
-        TeamTabUiState.Data(
-            currentTeam = TeamUI(
-                teamId = team.id,
-                teamName = team.name,
-                teamLevel = team.level,
-                teamScenario = team.activeScenario.map { it.toUi() }.toImmutableList(),
-                teamReputation = team.reputation,
-                prosperity = team.prosperity,
-                teamAchievements = team.teamAchievement,
-                globalAchievements = team.globalAchievement,
-                characters = team.characters.map { it.toUi() }.toImmutableList(),
-                canAddCharacter = team.characters.size < 4,
-                shopDiscount = team.shopDiscount
-            ),
-        )
+        if (team == null) {
+            TeamTabUiState.Empty
+        } else {
+            TeamTabUiState.Data(
+                currentTeam = TeamUI(
+                    teamId = team.id,
+                    teamName = team.name,
+                    teamLevel = team.level,
+                    teamScenario = team.activeScenario.map { it.toUi() }.toImmutableList(),
+                    teamReputation = team.reputation,
+                    prosperity = team.prosperity,
+                    teamAchievements = team.teamAchievement,
+                    globalAchievements = team.globalAchievement,
+                    characters = team.characters.map { it.toUi() }.toImmutableList(),
+                    canAddCharacter = team.characters.size < 4,
+                    shopDiscount = team.shopDiscount
+                ),
+            )
+        }
     }.stateIn(
         scope = viewModelScope,
         initialValue = TeamTabUiState.Empty,

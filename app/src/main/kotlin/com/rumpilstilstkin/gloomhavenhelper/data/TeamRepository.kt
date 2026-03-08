@@ -1,6 +1,7 @@
 package com.rumpilstilstkin.gloomhavenhelper.data
 
 import android.content.res.Resources.NotFoundException
+import android.util.Log
 import com.rumpilstilstkin.gloomhavenhelper.bd.dao.CharacterDao
 import com.rumpilstilstkin.gloomhavenhelper.bd.dao.TeamDao
 import com.rumpilstilstkin.gloomhavenhelper.data.datasource.CurrentTeamDatasource
@@ -11,9 +12,13 @@ import com.rumpilstilstkin.gloomhavenhelper.domain.entity.ShortTeamInfo
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.TeamInfoForSave
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.TeamInfoWithScenario
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.filterNotNull
+import kotlinx.coroutines.flow.flatMapLatest
+import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -29,8 +34,15 @@ class TeamRepository @Inject constructor(
     private val _currentTeam: MutableStateFlow<Result<Int>> =
         MutableStateFlow(Result.failure(NotFoundException()))
 
-    val currentTeam: Flow<ShortTeamInfo> =
-        _currentTeam.map { id -> id.getOrNull()?.let { getTeam(it) } }.filterNotNull()
+    @OptIn(ExperimentalCoroutinesApi::class)
+    val currentTeam: Flow<ShortTeamInfo?> =
+        _currentTeam
+            .flatMapLatest { result ->
+                result.fold(
+                    onSuccess = { teamId -> teamDao.getTeamFlow(teamId).map { it.toDomain() } },
+                    onFailure = { flowOf(null) }
+                )
+            }
 
     init {
         externalScope.launch {
@@ -46,8 +58,6 @@ class TeamRepository @Inject constructor(
         currentTeamDatasource.saveCurrentTeam(teamId)
         updateCurrentTeam()
     }
-
-    suspend fun getTeam(id: Int): ShortTeamInfo = teamDao.findById(id).toDomain()
 
     fun getTeams(): Flow<List<ShortTeamInfo>> =
         teamDao.getAllFlow().map { teams -> teams.map { it.toDomain() } }
@@ -76,6 +86,14 @@ class TeamRepository @Inject constructor(
         teamDao.update(team.toBd())
     }
 
+    suspend fun deleteTeam(team: ShortTeamInfo) {
+        val teams = teamDao.getAll()
+        val newTeamId = teams.firstOrNull { it.teamId != team.teamId }?.teamId
+            ?: CurrentTeamDatasource.EMPTY_TEAM
+        setCurrentTeam(newTeamId)
+        teamDao.delete(team.teamId)
+    }
+
     private suspend fun updateCurrentTeam() {
         val currentTeam = currentTeamDatasource.getCurrentTeam()
         if (currentTeam != CurrentTeamDatasource.EMPTY_TEAM) {
@@ -84,6 +102,8 @@ class TeamRepository @Inject constructor(
                     Result.success(team.teamId)
                 )
             }
+        } else {
+            _currentTeam.emit(Result.failure(NotFoundException()))
         }
     }
 }

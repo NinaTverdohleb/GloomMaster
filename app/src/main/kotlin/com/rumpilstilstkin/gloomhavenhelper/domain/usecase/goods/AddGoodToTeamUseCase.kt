@@ -11,7 +11,7 @@ class AddGoodToTeamUseCase @Inject constructor(
 ) {
 
     suspend operator fun invoke(goodNumber: Int) {
-        val team = teamRepository.currentTeam.first()
+        val team = teamRepository.currentTeam.first() ?: return
         goodsRepository.addGoodToTeam(team.teamId, goodNumber)
     }
 }

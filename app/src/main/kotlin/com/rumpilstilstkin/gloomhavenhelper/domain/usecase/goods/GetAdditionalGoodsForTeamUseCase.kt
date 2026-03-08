@@ -6,6 +6,7 @@ import com.rumpilstilstkin.gloomhavenhelper.domain.entity.Good
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flatMapLatest
+import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
@@ -17,8 +18,10 @@ class GetAdditionalGoodsForTeamUseCase @Inject constructor(
     operator fun invoke(): Flow<List<Good>> =
         teamRepository.currentTeam
             .flatMapLatest { team ->
-                val allGoods = goodsRepository.getGoods(team.packs.toSet())
-                goodsRepository.getGoodsForTeam(team.teamId)
-                    .map { goods -> (allGoods - goods.toSet()) }
+                team?.let {
+                    val allGoods = goodsRepository.getGoods(team.packs.toSet())
+                    goodsRepository.getGoodsForTeam(team.teamId)
+                        .map { goods -> (allGoods - goods.toSet()) }
+                } ?: flowOf(emptyList())
             }
 }

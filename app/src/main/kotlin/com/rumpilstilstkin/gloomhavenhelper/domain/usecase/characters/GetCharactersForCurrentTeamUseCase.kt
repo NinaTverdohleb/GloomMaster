@@ -6,6 +6,7 @@ import com.rumpilstilstkin.gloomhavenhelper.domain.entity.CharacterInfo
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flatMapLatest
+import kotlinx.coroutines.flow.flowOf
 import javax.inject.Inject
 
 class GetCharactersForCurrentTeamUseCase @Inject constructor(
@@ -17,6 +18,10 @@ class GetCharactersForCurrentTeamUseCase @Inject constructor(
     operator fun invoke(): Flow<List<CharacterInfo>> =
         teamRepository.currentTeam
             .flatMapLatest { team ->
-                characterRepository.getCharacterByTeamId(team.teamId)
+                if (team == null) {
+                    flowOf(emptyList())
+                } else {
+                    characterRepository.getCharacterByTeamId(team.teamId)
+                }
             }
 }

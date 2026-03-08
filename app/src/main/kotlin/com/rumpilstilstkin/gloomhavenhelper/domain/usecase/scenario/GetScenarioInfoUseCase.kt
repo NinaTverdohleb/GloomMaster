@@ -3,6 +3,7 @@ package com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario
 import com.rumpilstilstkin.gloomhavenhelper.data.MonsterRepository
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.ScenarioBattleInfo
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.team.GetCurrentTeamUseCase
+import com.rumpilstilstkin.gloomhavenhelper.utils.toResult
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.withContext
@@ -15,22 +16,26 @@ class GetScenarioInfoUseCase @Inject constructor(
 
     suspend operator fun invoke(
         scenarioNumber: Int,
-    ): ScenarioBattleInfo = withContext(Dispatchers.Default) {
+    ): Result<ScenarioBattleInfo> = withContext(Dispatchers.Default) {
         getCurrentTeamUseCase().first().let { team ->
-            val monsters = monsterRepository.getMonstersForScenario(
-                scenarioNumber = scenarioNumber,
-                level = team.level
-            )
-            ScenarioBattleInfo(
-                number = scenarioNumber,
-                name = team.activeScenario.firstOrNull { it.scenarioNumber == scenarioNumber }?.scenarioName
-                    ?: "",
-                monsters = monsters,
-                golds = goldByLevel(team.level),
-                exp = expByLevel(team.level),
-                trapDamage = trapDamageByLevel(team.level),
-                gamersCount = team.characters.size
-            )
+            if (team != null) {
+                val monsters = monsterRepository.getMonstersForScenario(
+                    scenarioNumber = scenarioNumber,
+                    level = team.level
+                )
+                ScenarioBattleInfo(
+                    number = scenarioNumber,
+                    name = team.activeScenario.firstOrNull { it.scenarioNumber == scenarioNumber }?.scenarioName
+                        ?: "",
+                    monsters = monsters,
+                    golds = goldByLevel(team.level),
+                    exp = expByLevel(team.level),
+                    trapDamage = trapDamageByLevel(team.level),
+                    gamersCount = team.characters.size
+                ).toResult()
+            } else {
+                Result.failure(IllegalStateException("Team is null"))
+            }
         }
     }
 

@@ -11,7 +11,7 @@ class RemoveGoodFromTeamUseCase @Inject constructor(
 ) {
 
     suspend operator fun invoke(goodNumber: Int) {
-        val teamId = teamRepository.currentTeam.first().teamId
+        val teamId = teamRepository.currentTeam.first()?.teamId ?: return
         goodsRepository.removeGoodFromTeam(teamId, goodNumber)
     }
 }

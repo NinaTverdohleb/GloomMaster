@@ -22,11 +22,15 @@ interface TeamDao {
     @Query("SELECT * FROM TeamBd WHERE teamId LIKE :id LIMIT 1")
     suspend fun findById(id: Int): TeamBd
 
+    @Query("SELECT * FROM TeamBd WHERE teamId LIKE :id LIMIT 1")
+    fun getTeamFlow(id: Int): Flow<TeamBd>
+
     @Upsert
     suspend fun insert(team: TeamBd): Long
 
-    @Delete
-    suspend fun delete(team: TeamBd)
+    @Transaction
+    @Query("DELETE FROM TeamBd WHERE teamId = :teamId")
+    suspend fun delete(teamId: Int)
 
     @Update
     suspend fun update(team: TeamBd)

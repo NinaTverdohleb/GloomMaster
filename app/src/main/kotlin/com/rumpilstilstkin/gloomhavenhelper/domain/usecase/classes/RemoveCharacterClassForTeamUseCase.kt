@@ -14,7 +14,7 @@ class RemoveCharacterClassForTeamUseCase @Inject constructor(
 
     @OptIn(ExperimentalCoroutinesApi::class)
     suspend operator fun invoke(type: CharacterClassType) {
-        val team = teamRepository.currentTeam.first()
+        val team = teamRepository.currentTeam.first() ?: return
         characterClassRepository.removeAvailableClass(
             teamId = team.teamId,
             type = type

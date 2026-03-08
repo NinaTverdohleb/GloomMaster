@@ -1,16 +1,40 @@
 package com.rumpilstilstkin.gloomhavenhelper.screens.teem.edit
 
-import androidx.compose.foundation.layout.Box
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.navigation.NavHostController
+import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEventHelper
 
 @Composable
-fun TeamEditRoute(modifier: Modifier = Modifier) {
-    Box(
-        modifier = modifier,
-        contentAlignment = Alignment.Center) {
-        Text(text = "Edit team")
+fun TeamEditRoute(
+    navController: NavHostController,
+    viewModel: TeamEditViewModel = hiltViewModel(),
+) {
+    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+    val navigationEvents by viewModel.navigationEvents.collectAsStateWithLifecycle(initialValue = null)
+
+    LaunchedEffect(navigationEvents) {
+        navigationEvents?.let { event ->
+            GlHelperEventHelper.event(
+                event = event,
+                navController = navController
+            )
+        }
     }
+
+    TeamEditScreen(
+        uiState = uiState,
+        onNameChange = { viewModel.onAction(TeamEditAction.ChangeTeamName(it)) },
+        onTogglePack = { viewModel.onAction(TeamEditAction.TogglePack(it)) },
+        back = { viewModel.onAction(TeamEditAction.Back) },
+        showDeleteDialog = { viewModel.onAction(TeamEditAction.ShowDeleteConfirmDialog) },
+        dismissDeleteDialog = { viewModel.onAction(TeamEditAction.DismissDeleteConfirmDialog) },
+        confirmDelete = { viewModel.onAction(TeamEditAction.ConfirmDelete) },
+        showTeamListDialog = { viewModel.onAction(TeamEditAction.ShowTeamListDialog) },
+        dismissTeamListDialog = { viewModel.onAction(TeamEditAction.DismissTeamListDialog) },
+        selectTeam = { viewModel.onAction(TeamEditAction.SelectTeam(it)) },
+    )
 }

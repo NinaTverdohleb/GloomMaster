@@ -8,6 +8,7 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
@@ -18,13 +19,17 @@ class GetAvailableScenariosForTeamUseCase @Inject constructor(
     @OptIn(ExperimentalCoroutinesApi::class)
     operator fun invoke(): Flow<List<ScenarioInfo>> =
         teamRepository.currentTeam.flatMapLatest { team ->
-            val allScenarios = scenarioRepository.getAllScenarios().filter { scenario ->
-                scenario.pack in team.packs
-            }
-            scenarioRepository.getTeamScenariosFlow(team.teamId).map { scenarios ->
-                val teamScenarioNumbers = scenarios.map { it.scenarioNumber }.toSet()
-                allScenarios.filter { scenario ->
-                    scenario.scenarioNumber !in teamScenarioNumbers
+            if (team == null) {
+                flowOf(emptyList())
+            } else {
+                val allScenarios = scenarioRepository.getAllScenarios().filter { scenario ->
+                    scenario.pack in team.packs
+                }
+                scenarioRepository.getTeamScenariosFlow(team.teamId).map { scenarios ->
+                    val teamScenarioNumbers = scenarios.map { it.scenarioNumber }.toSet()
+                    allScenarios.filter { scenario ->
+                        scenario.scenarioNumber !in teamScenarioNumbers
+                    }
                 }
             }
         }

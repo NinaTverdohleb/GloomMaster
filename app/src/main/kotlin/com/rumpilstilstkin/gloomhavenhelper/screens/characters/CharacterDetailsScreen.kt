@@ -42,7 +42,6 @@ import com.rumpilstilstkin.gloomhavenhelper.R
 import com.rumpilstilstkin.gloomhavenhelper.screens.characters.general.CharacterGeneralTab
 import com.rumpilstilstkin.gloomhavenhelper.screens.characters.goods.CharacterItemsTab
 import com.rumpilstilstkin.gloomhavenhelper.screens.characters.perks.CharacterPerksTab
-import com.rumpilstilstkin.gloomhavenhelper.screens.dialogs.teams.TeamListDialog
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.toImage
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomBadge
@@ -60,14 +59,6 @@ fun CharacterDetailsScreen(
         }
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     var showTeamsDialog by remember { mutableStateOf(false) }
-
-    TeamListDialog(
-        showDialog = showTeamsDialog,
-        onDismiss = { showTeamsDialog = false },
-        selectTeam = {
-            viewModel.onAction(CharacterDetailsAction.ChangeTeam(it))
-        }
-    )
 
     CharacterDetailsMain(
         classImg = uiState.characterClass.image,

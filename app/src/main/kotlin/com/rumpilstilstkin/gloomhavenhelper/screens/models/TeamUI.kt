@@ -41,3 +41,8 @@ data class TeamUI(
         )
     }
 }
+
+data class ShortTeamInfoUi(
+    val teamId: Int,
+    val teamName: String,
+)

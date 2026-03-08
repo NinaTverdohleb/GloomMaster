@@ -53,13 +53,17 @@ class ScenarioViewModel @AssistedInject constructor(
 
     private fun loadScenario() {
         viewModelScope.launch {
-            val battleInfo = getScenarioInfoUseCase(scenarioNumber)
-            _logicState.value = ScenarioLogicState(
-                scenarioInfo = battleInfo,
-                availableCards = battleInfo.monsters.flatMap { it.cards }.distinct().toImmutableList(),
-                activeMonsters = persistentListOf(),
-                round = 0
-            )
+            getScenarioInfoUseCase(scenarioNumber).onSuccess {battleInfo ->
+                _logicState.update {
+                    ScenarioLogicState(
+                        scenarioInfo = battleInfo,
+                        availableCards = battleInfo.monsters.flatMap { it.cards }.distinct()
+                            .toImmutableList(),
+                        activeMonsters = persistentListOf(),
+                        round = 0
+                    )
+                }
+            }
         }
     }
 

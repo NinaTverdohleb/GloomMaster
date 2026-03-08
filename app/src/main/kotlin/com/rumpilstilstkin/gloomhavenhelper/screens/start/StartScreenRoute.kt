@@ -52,7 +52,8 @@ fun StartScreenRoute(
                 StartScreenTab.SCENARIOS -> ScenariosTabRoute(navController)
                 StartScreenTab.SHOP -> ShopTabRoute(navController)
             }
-        }
+        },
+        editTeam = {viewModel.onAction(StartScreenAction.EditTeam)}
     )
 
     if (showAddTeamDialog) {

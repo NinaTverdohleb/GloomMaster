@@ -12,7 +12,7 @@ class CompleteScenarioUseCase @Inject constructor(
     private val scenarioRepository: ScenarioRepository
 ) {
     suspend operator fun invoke(scenarioNumber: Int) {
-        teamRepository.currentTeam.first().let { team ->
+        teamRepository.currentTeam.first()?.let { team ->
                 Log.d("Dto", "teamName: ${team.name}")
 
                 val oldScenarios = scenarioRepository.getAllTeamScenarios(team.teamId)

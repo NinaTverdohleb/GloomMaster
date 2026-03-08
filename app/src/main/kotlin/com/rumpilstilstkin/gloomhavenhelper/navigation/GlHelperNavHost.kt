@@ -36,8 +36,10 @@ fun GlHelperNavHost(
                 navController = navController
             )
         }
-        composable<GlHelperScreens.TeamDetails> {
-            TeamEditRoute()
+        composable<GlHelperScreens.EditCurrentTeam> {
+            TeamEditRoute(
+                navController = navController
+            )
         }
         composable<GlHelperScreens.Scenario> {
             val args = it.toRoute<GlHelperScreens.Scenario>()

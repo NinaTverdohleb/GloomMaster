@@ -38,10 +38,14 @@ class StartScreenViewModel @Inject constructor(
     val navigationEvents = _navigationEvents.asSharedFlow()
 
     val uiState: StateFlow<StartScreenState> = getCurrentTeamUseCase().map { team ->
-        StartScreenState.Team(
-            name = team.name,
-            id = team.id
-        )
+        if (team == null) {
+            StartScreenState.Empty
+        } else {
+            StartScreenState.Team(
+                name = team.name,
+                id = team.id
+            )
+        }
     }.stateIn(
         scope = viewModelScope,
         initialValue = StartScreenState.Empty,
@@ -63,12 +67,10 @@ class StartScreenViewModel @Inject constructor(
                 is StartScreenAction.SelectTeam -> {
                     changeCurrentTeamUseCase(action.teamId)
                 }
+
+                StartScreenAction.EditTeam ->
+                    _navigationEvents.emit(Screen(GlHelperScreens.EditCurrentTeam))
             }
         }
     }
-}
-
-sealed interface StartScreenAction {
-    data class CreateTeam(val teamName: String) : StartScreenAction
-    data class SelectTeam(val teamId: Int) : StartScreenAction
 }

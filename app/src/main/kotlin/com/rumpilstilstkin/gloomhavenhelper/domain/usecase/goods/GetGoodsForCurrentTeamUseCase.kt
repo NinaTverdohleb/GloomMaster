@@ -6,9 +6,11 @@ import com.rumpilstilstkin.gloomhavenhelper.domain.entity.Good
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flatMapLatest
+import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 import kotlin.collections.distinctBy
+import kotlin.collections.emptyList
 
 class GetGoodsForCurrentTeamUseCase @Inject constructor(
     private val teamRepository: TeamRepository,
@@ -19,7 +21,9 @@ class GetGoodsForCurrentTeamUseCase @Inject constructor(
     operator fun invoke(): Flow<List<Good>> =
         teamRepository.currentTeam
             .flatMapLatest { team ->
-                goodsRepository.getGoodsForTeam(team.teamId)
-                    .map { goods -> goods.distinctBy { it.number } }
+                team?.let {
+                    goodsRepository.getGoodsForTeam(team.teamId)
+                        .map { goods -> goods.distinctBy { it.number } }
+                } ?: flowOf(emptyList())
             }
 }

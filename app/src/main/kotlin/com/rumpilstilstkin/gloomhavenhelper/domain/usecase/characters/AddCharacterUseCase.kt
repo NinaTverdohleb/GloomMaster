@@ -22,7 +22,7 @@ class AddCharacterUseCase @Inject constructor(
         level: Int,
         characterType: CharacterClassType
     ) {
-        val team = teamRepository.currentTeam.first()
+        val team = teamRepository.currentTeam.first() ?: return
         val character = CharacterForSave(
             name = name,
             level = level,
