@@ -4,7 +4,6 @@ import com.rumpilstilstkin.gloomhavenhelper.bd.dao.PersonalQuestDao
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.PersonalQuestBd
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.CharacterClassType
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.quest.CharacterTaskItem
-import com.rumpilstilstkin.gloomhavenhelper.screens.characters.general.PersonalQuest
 
 object QuestsFiller {
 

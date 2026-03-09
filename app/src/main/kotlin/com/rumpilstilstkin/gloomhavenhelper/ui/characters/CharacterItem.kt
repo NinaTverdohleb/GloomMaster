@@ -16,10 +16,6 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
@@ -29,7 +25,6 @@ import com.rumpilstilstkin.gloomhavenhelper.screens.models.CharacterUI
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomCard
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomSize
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.RoundButton
-import com.rumpilstilstkin.gloomhavenhelper.ui.icons.toImage
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
 
 @Composable
@@ -93,47 +88,9 @@ fun CharacterItem(
     }
 }
 
-@Composable
-fun CharacterItemWithDialog(
-    character: CharacterUI,
-    modifier: Modifier = Modifier,
-    onSave: (Int, Int) -> Unit,
-    onDelete: (Int) -> Unit,
-    onLeave: (Int) -> Unit
-) {
-    var showDialog by remember { mutableStateOf(false) }
-
-    if (showDialog) {
-        CharacterEditDialog(
-            character = character,
-            onDismiss = {
-                showDialog = false
-            },
-            onSave = { newLevel ->
-                onSave(character.id, newLevel)
-                showDialog = false
-            },
-            onDelete = {
-                onDelete(character.id)
-                showDialog = false
-            },
-            onLeave = {
-                onLeave(character.id)
-                showDialog = false
-            }
-        )
-    }
-
-    CharacterItem(
-        character = character,
-        modifier = modifier,
-        onItemClick = { showDialog = true }
-    )
-}
-
 @Preview
 @Composable
-private fun Sample() {
+private fun CharacterItemPreview() {
     GloomhavenHalperTheme {
         CharacterItem(
             character = CharacterUI.fixture(),

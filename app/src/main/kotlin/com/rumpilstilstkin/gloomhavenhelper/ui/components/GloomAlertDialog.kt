@@ -4,6 +4,7 @@ import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -80,7 +81,6 @@ fun GloomAlertDialog(
                         color = MaterialTheme.colorScheme.onSurface,
                     )
                 }
-                Spacer(modifier = Modifier.height(8.dp))
             }
             content()
             Row(
@@ -100,7 +100,8 @@ fun GloomAlertDialog(
                         ),
                     ) {
                         Text(
-                            text = negativeText, style = MaterialTheme.typography.bodyMedium)
+                            text = negativeText, style = MaterialTheme.typography.bodyMedium
+                        )
                     }
                 }
 
@@ -139,6 +140,58 @@ fun GloomAlertDialog(
                     }
                 }
             }
+        }
+    }
+)
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun GloomAlertDialogCustomActions(
+    modifier: Modifier = Modifier,
+    title: String? = null,
+    titleIcon: ImageVector? = null,
+    onDismissRequest: () -> Unit,
+    content: @Composable () -> Unit,
+    actions: @Composable () -> Unit,
+) = BasicAlertDialog(
+    onDismissRequest = onDismissRequest,
+    modifier = modifier
+        .clip(RoundedCornerShape(16.dp))
+        .background(MaterialTheme.colorScheme.surface)
+        .border(
+            1.dp,
+            MaterialTheme.colorScheme.outlineVariant,
+            RoundedCornerShape(16.dp)
+
+        )
+        .padding(16.dp),
+    content = {
+        Column(
+            verticalArrangement = Arrangement.spacedBy(16.dp),
+        ) {
+            if (title != null) {
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                ) {
+                    if (titleIcon != null) {
+                        Icon(
+                            imageVector = titleIcon,
+                            contentDescription = null,
+                            tint = MaterialTheme.colorScheme.secondary,
+                            modifier = Modifier.size(20.dp),
+                        )
+                    }
+                    Text(
+                        text = title,
+                        style = MaterialTheme.typography.titleMedium,
+                        color = MaterialTheme.colorScheme.onSurface,
+                    )
+                }
+                Spacer(modifier = Modifier.height(8.dp))
+            }
+            content()
+            actions()
         }
     }
 )

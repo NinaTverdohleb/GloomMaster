@@ -1,93 +1,71 @@
 package com.rumpilstilstkin.gloomhavenhelper.screens.models
 
-import androidx.annotation.DrawableRes
-import com.rumpilstilstkin.gloomhavenhelper.R
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterStatType
+import com.rumpilstilstkin.gloomhavenhelper.ui.icons.GameIcon
 import java.util.EnumSet
 
 enum class ActionUi(
-    val title: String,
-    @DrawableRes val iconRes: Int,
+    val icon: GameIcon,
 ) {
     ATTACK(
-        title = "Атака",
-        iconRes = R.drawable.attack
+        icon = GameIcon.ATTACK,
     ),
     MOVE(
-        title = "Движение",
-        iconRes = R.drawable.move
+        icon = GameIcon.MOVE,
     ),
     SHIELD(
-        title = "Защита",
-        iconRes = R.drawable.ic_shield
+        icon = GameIcon.SHIELD,
     ),
     RETALIATE(
-        title = "Ответный удар",
-        iconRes = R.drawable.retaliate
+        icon = GameIcon.RETALIATE,
     ),
     STRENGTH(
-        title = "Усиление",
-        iconRes = R.drawable.strengthen
+        icon = GameIcon.STRENGTH,
     ),
     POISON(
-        title = "Отравление",
-        iconRes = R.drawable.poison
+        icon = GameIcon.POISON,
     ),
     RANGED_ATTACK(
-        title = "Дальний удар",
-        iconRes = R.drawable.range
+        icon = GameIcon.RANGED_ATTACK,
     ),
     TARGET(
-        title = "Цели",
-        iconRes = R.drawable.targets
+        icon = GameIcon.TARGET,
     ),
     STUN(
-        title = "Оцепенение",
-        iconRes = R.drawable.stun
+        icon = GameIcon.STUN,
     ),
     WOUND(
-        title = "Рана",
-        iconRes = R.drawable.wound
+        icon = GameIcon.WOUND,
     ),
     HEAL(
-        title = "Лечение",
-        iconRes = R.drawable.hp
+        icon = GameIcon.HEAL,
     ),
     PUSH(
-        title = "Толкнуть",
-        iconRes = R.drawable.push
+        icon = GameIcon.PUSH,
     ),
     MUDDLE(
-        title = "Замешательство",
-        iconRes = R.drawable.muddle
+        icon = GameIcon.CONFUSE,
     ),
     IMMOBILIZE(
-        title = "Обездвижить",
-        iconRes = R.drawable.immobilize
+        icon = GameIcon.IMMOBILIZE,
     ),
     INVISIBLE(
-        title = "Невидимость",
-        iconRes = R.drawable.invisible
+        icon = GameIcon.INVISIBILITY,
     ),
     DISARM(
-        title = "Обезоружить",
-        iconRes = R.drawable.disarm
+        icon = GameIcon.DISARM,
     ),
     CURSE(
-        title = "Проклятье",
-        iconRes = R.drawable.curse
+        icon = GameIcon.CURSE,
     ),
     BLESS(
-        title = "Благословение",
-        iconRes = R.drawable.curse // TODO
+        icon = GameIcon.BLESS,
     ),
     PULL(
-        title = "Притянуть",
-        iconRes = R.drawable.curse // TODO
+        icon = GameIcon.PULL,
     ),
     PIERCE(
-        title = "Пробитие",
-        iconRes = R.drawable.curse // TODO
+        icon = GameIcon.PIERCE,
     )
     ;
 

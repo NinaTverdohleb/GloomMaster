@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.HorizontalDivider
@@ -71,7 +72,6 @@ private fun SearchQuestView(
     modifier: Modifier = Modifier,
     onAction: (SearchQuestActions) -> Unit,
 ) {
-    val scrollState = rememberLazyListState()
     Column(
         modifier = modifier
             .fillMaxSize()
@@ -97,9 +97,8 @@ private fun SearchQuestView(
         )
         LazyColumn(
             modifier = Modifier.weight(1f),
-            state = scrollState
         ) {
-            itemsIndexed(state.quests) { index, quest ->
+            items(state.quests) { quest ->
                 PersonalQuestItem(
                     modifier = Modifier
                         .padding(8.dp)
@@ -107,11 +106,6 @@ private fun SearchQuestView(
                     quest = quest,
                     chooseQuest = { onAction(SearchQuestActions.ChooseQuest(quest.id)) }
                 )
-                if (index != state.quests.lastIndex) {
-                    HorizontalDivider(
-                        modifier = Modifier.padding(horizontal = 16.dp),
-                    )
-                }
             }
         }
     }
@@ -129,6 +123,38 @@ private fun SearchQuestPreview() {
                     quests = persistentListOf(
                         PersonalQuestUI(
                             id = "511",
+                            title = "Искатель Ксорна",
+                            description = "Еше с детства ты слышал зов Ксорна. Когда-то его почитали как бога, но его паства давно уничтожена. Но ты можешь слышать его зов. Ты отправтлся в Глумхевен по его приказу. Ты найдешь нго останки и освободишь его. Случившееся однажды повторится снова.",
+                            reward = QuestReward(
+                                classType = CharacterClassType.Plagueherald,
+                            ),
+                            phases = persistentListOf(
+                                QuestTaskPhaseUI(
+                                    priority = 0,
+                                    tasks = persistentListOf(
+                                        CharacterTaskItem.Count(
+                                            priority = 0,
+                                            text = "Пройдите три сценария с названием Склеп",
+                                            count = 3,
+                                            currentCount = 0,
+                                            id = 1
+                                        )
+                                    )
+                                ),
+                                QuestTaskPhaseUI(
+                                    priority = 1,
+                                    tasks = persistentListOf(
+                                        CharacterTaskItem.Check(
+                                            priority = 1,
+                                            text = "Откройте и пройдите полностью сенарий \"Жуткий погреб\"",
+                                            id = 2
+                                        )
+                                    )
+                                )
+                            )
+                        ),
+                        PersonalQuestUI(
+                            id = "512",
                             title = "Искатель Ксорна",
                             description = "Еше с детства ты слышал зов Ксорна. Когда-то его почитали как бога, но его паства давно уничтожена. Но ты можешь слышать его зов. Ты отправтлся в Глумхевен по его приказу. Ты найдешь нго останки и освободишь его. Случившееся однажды повторится снова.",
                             reward = QuestReward(

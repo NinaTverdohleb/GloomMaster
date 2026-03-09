@@ -10,7 +10,7 @@ import com.rumpilstilstkin.gloomhavenhelper.screens.models.EffectItem
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.MonsterAbilityCard
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.MonsterItem
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.MonsterUnit
-import com.rumpilstilstkin.gloomhavenhelper.ui.icons.GameIcons
+import com.rumpilstilstkin.gloomhavenhelper.ui.icons.GameIcon
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.ImmutableMap
 import kotlinx.collections.immutable.persistentListOf
@@ -283,13 +283,13 @@ data class ScenarioUIState(
     val magicChargeList: Map<Magic, MagicValue> = emptyMap()
 )
 
-enum class Magic(val icon: GameIcons) {
-    FIRE(GameIcons.FIRE),
-    FROST(GameIcons.FROST),
-    AIR(GameIcons.AIR),
-    EARTH(GameIcons.EARTH),
-    SUN(GameIcons.SUN),
-    MOON(GameIcons.MOON),
+enum class Magic(val icon: GameIcon) {
+    FIRE(GameIcon.FIRE),
+    FROST(GameIcon.FROST),
+    AIR(GameIcon.AIR),
+    EARTH(GameIcon.EARTH),
+    SUN(GameIcon.SUN),
+    MOON(GameIcon.MOON),
 }
 
 data class MagicValue(

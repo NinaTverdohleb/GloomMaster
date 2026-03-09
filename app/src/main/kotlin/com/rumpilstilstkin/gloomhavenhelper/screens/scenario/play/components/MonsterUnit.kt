@@ -37,8 +37,8 @@ import com.rumpilstilstkin.gloomhavenhelper.screens.models.ActionGroups
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.ActionUi
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.EffectItem
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.MonsterUnit
-import com.rumpilstilstkin.gloomhavenhelper.ui.icons.iconsInlineContentMap
-import com.rumpilstilstkin.gloomhavenhelper.ui.icons.replaceTextWithIcons
+import com.rumpilstilstkin.gloomhavenhelper.ui.icons.text.iconsInlineContentMap
+import com.rumpilstilstkin.gloomhavenhelper.ui.icons.text.replaceTextWithIcons
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.CardColors
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomSize
@@ -65,9 +65,9 @@ fun MonsterUnitCard(
                 unit.immunity.forEach { effect ->
                     Icon(
                         modifier = Modifier.size(32.dp),
-                        painter = painterResource(id = effect.iconRes),
+                        painter = painterResource(id = effect.icon.imageRes),
                         contentDescription = null,
-                        tint = MaterialTheme.colorScheme.primary
+                        tint = effect.icon.color
                     )
                     Spacer(modifier = Modifier.width(12.dp))
                 }
@@ -130,7 +130,7 @@ fun MonsterUnitCard(
             ActionGroups.effectsPack.filter { it !in immunitySet }.forEach { effect ->
                 val tint =
                     if (unit.effects.contains(effect)) {
-                        MaterialTheme.colorScheme.primary
+                        effect.icon.color
                     } else {
                         MaterialTheme.colorScheme.onSurfaceVariant
                     }
@@ -141,7 +141,7 @@ fun MonsterUnitCard(
 
                     Icon(
                         modifier = Modifier.size(32.dp),
-                        painter = painterResource(id = effect.iconRes),
+                        painter = painterResource(id = effect.icon.imageRes),
                         contentDescription = null,
                         tint = tint
                     )
@@ -169,7 +169,7 @@ fun MonsterUnitCard(
                         Row {
                             Icon(
                                 modifier = Modifier.size(24.dp),
-                                painter = painterResource(id = stat.type.iconRes),
+                                painter = painterResource(id = stat.type.icon.imageRes),
                                 contentDescription = null,
                                 tint = MaterialTheme.colorScheme.onSurface
                             )

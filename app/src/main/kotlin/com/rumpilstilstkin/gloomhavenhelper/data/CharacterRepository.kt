@@ -93,6 +93,16 @@ class CharacterRepository @Inject constructor(
         }
     }
 
+    suspend fun setLevel(
+        id: Int,
+        level: Int,
+        experience: Int,
+    ){
+        characterDao.getCharacterById(id).let {
+            characterDao.update(it.copy(level = level, experience = experience))
+        }
+    }
+
     suspend fun updateNotes(id: Int, notes: String) {
         characterDao.getCharacterById(id).let {
             characterDao.update(it.copy(notes = notes))
@@ -126,6 +136,12 @@ class CharacterRepository @Inject constructor(
     suspend fun setTeam(characterId: Int, teamId: Int) {
         characterDao.getCharacterById(characterId).let {
             characterDao.update(it.copy(teamId = teamId))
+        }
+    }
+
+    suspend fun updateName(id: Int, name: String) {
+        characterDao.getCharacterById(id).let {
+            characterDao.update(it.copy(name = name))
         }
     }
 }

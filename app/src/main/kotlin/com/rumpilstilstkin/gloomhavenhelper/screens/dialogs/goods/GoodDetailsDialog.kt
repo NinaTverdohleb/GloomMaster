@@ -11,6 +11,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomAlertDialog
+import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomAlertDialogCustomActions
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -47,6 +48,37 @@ fun GoodDetailsDialog(
         negativeText = buttonText,
         onNegativeRequest = if (isActionPositive) null else confirm,
         onNeutralRequest = null,
+    )
+}
+
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun GoodDetailsDialogCustomActions(
+    imagePath: String,
+    modifier: Modifier = Modifier,
+    dismiss: () -> Unit,
+    actions: @Composable () -> Unit,
+) {
+    GloomAlertDialogCustomActions(
+        modifier = modifier,
+        content = {
+            Column(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                AsyncImage(
+                    modifier = Modifier.size(
+                        width = 240.dp,
+                        height = 350.dp
+                    ),
+                    model = imagePath,
+                    contentDescription = null
+                )
+            }
+        },
+        onDismissRequest = dismiss,
+        actions = actions
     )
 }
 

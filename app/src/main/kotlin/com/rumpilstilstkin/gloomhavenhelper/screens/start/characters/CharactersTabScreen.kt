@@ -18,13 +18,19 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.rumpilstilstkin.gloomhavenhelper.screens.dialogs.character.CharacterEditLevelDialog
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.CharacterClassTypeUI
+import com.rumpilstilstkin.gloomhavenhelper.screens.models.CharacterUI
 import com.rumpilstilstkin.gloomhavenhelper.screens.start.characters.components.CharacterAvailableClasses
 import com.rumpilstilstkin.gloomhavenhelper.screens.start.characters.components.EmptyCharacters
 import com.rumpilstilstkin.gloomhavenhelper.ui.characters.CharacterItem
@@ -38,9 +44,25 @@ internal fun CharactersTabScreen(
     openCharacterDetails: (Int) -> Unit,
     switchAlive: (Boolean) -> Unit,
     toggleClass: (CharacterClassTypeUI) -> Unit,
+    changeLevel: (Int, Int) -> Unit
 ) = Column(
     modifier = Modifier.fillMaxSize()
 ) {
+    var selectedCharacter by remember { mutableStateOf<CharacterUI?>(null) }
+
+    selectedCharacter?.let { character ->
+        CharacterEditLevelDialog(
+            characterLevel = character.level,
+            characterName = character.name,
+            characterClass = character.characterClass,
+            dismiss = { selectedCharacter = null },
+            changeLevel = {
+                changeLevel(character.id, it)
+                selectedCharacter = null
+            }
+        )
+    }
+
     CharacterAvailableClasses(
         availableClasses = state.avaliableClasses,
         onToggle = toggleClass
@@ -81,7 +103,8 @@ internal fun CharactersTabScreen(
             items(state.characters) { character ->
                 CharacterItem(
                     character = character,
-                    onItemClick = openCharacterDetails
+                    onItemClick = openCharacterDetails,
+                    onLevelClick = { selectedCharacter = character }
                 )
             }
         }
@@ -112,7 +135,8 @@ private fun CharactersTabScreenPreview() {
             switchAlive = {},
             addCharacter = {},
             openCharacterDetails = {},
-            toggleClass = {}
+            toggleClass = {},
+            changeLevel = {_,_ ->}
         )
     }
 }
@@ -126,7 +150,8 @@ private fun CharactersTabScreenEmptyPreview() {
             switchAlive = {},
             addCharacter = {},
             openCharacterDetails = {},
-            toggleClass = {}
+            toggleClass = {},
+            changeLevel = {_,_ ->}
         )
     }
 }

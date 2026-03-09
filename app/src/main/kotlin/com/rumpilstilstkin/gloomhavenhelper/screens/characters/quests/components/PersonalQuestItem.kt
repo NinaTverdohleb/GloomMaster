@@ -23,6 +23,7 @@ import androidx.compose.ui.unit.dp
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.quest.QuestReward
 import com.rumpilstilstkin.gloomhavenhelper.screens.dialogs.quests.QuestDetailsDialog
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.PersonalQuestUI
+import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomCard
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
 import kotlinx.collections.immutable.persistentListOf
 
@@ -39,30 +40,33 @@ fun PersonalQuestItem(
         onAction = { chooseQuest(it) },
         onDismiss = { showDetailsDialog = false }
     )
-    Row(
+    GloomCard(
         modifier = modifier
-            .fillMaxWidth()
-            .padding(8.dp)
-            .clickable { showDetailsDialog = true },
-        horizontalArrangement = Arrangement.SpaceBetween,
-        verticalAlignment = Alignment.CenterVertically
     ) {
         Row(
-            modifier = Modifier.weight(1f),
+            modifier = Modifier
+                .fillMaxWidth()
+                .clickable { showDetailsDialog = true },
+            horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Text(
-                text = "# ${quest.id}",
-                style = MaterialTheme.typography.headlineSmall,
-            )
-            Spacer(
-                modifier = Modifier.width(16.dp)
-            )
-            Text(
+            Row(
                 modifier = Modifier.weight(1f),
-                text = quest.title,
-                style = MaterialTheme.typography.headlineSmall,
-            )
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Text(
+                    text = "# ${quest.id}",
+                    style = MaterialTheme.typography.headlineSmall,
+                )
+                Spacer(
+                    modifier = Modifier.width(16.dp)
+                )
+                Text(
+                    modifier = Modifier.weight(1f),
+                    text = quest.title,
+                    style = MaterialTheme.typography.headlineSmall,
+                )
+            }
         }
     }
 }

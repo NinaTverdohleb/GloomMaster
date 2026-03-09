@@ -13,7 +13,7 @@ fun CharacterForSave.toBd() = CharacterBd(
     level = this.level,
     characterType = this.characterType.name,
     teamId = this.teamId,
-    experience = getExpForLevel(this.level),
+    experience = this.experience,
     goldCount = 15*(level + 1)
 )
 

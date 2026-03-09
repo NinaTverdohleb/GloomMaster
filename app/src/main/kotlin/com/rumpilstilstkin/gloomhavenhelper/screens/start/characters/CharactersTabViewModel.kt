@@ -1,16 +1,14 @@
 package com.rumpilstilstkin.gloomhavenhelper.screens.start.characters
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.rumpilstilstkin.gloomhavenhelper.domain.entity.CharacterClassType
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.CharacterInfo
-import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.characters.AddCharacterUseCase
+import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.characters.CreateCharacterUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.characters.GetCharactersForCurrentTeamUseCase
+import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.characters.UpdateCharacterLevelUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.classes.AddCharacterClassForTeamUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.classes.GetAvaliableClassesForCurrentTeamUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.classes.RemoveCharacterClassForTeamUseCase
-import com.rumpilstilstkin.gloomhavenhelper.navigation.GlHelperScreens
 import com.rumpilstilstkin.gloomhavenhelper.navigation.GlHelperScreens.*
 import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEvent
 import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEvent.Screen
@@ -36,9 +34,10 @@ import kotlin.collections.map
 class CharactersTabViewModel @Inject constructor(
     getCharactersForCurrentTeamUseCase: GetCharactersForCurrentTeamUseCase,
     getAvaliableClassesForCurrentTeamUseCase: GetAvaliableClassesForCurrentTeamUseCase,
-    private val addCharacterUseCase: AddCharacterUseCase,
+    private val createCharacterUseCase: CreateCharacterUseCase,
     private val removeCharacterClassForTeamUseCase: RemoveCharacterClassForTeamUseCase,
-    private val addCharacterClassForTeamUseCase: AddCharacterClassForTeamUseCase
+    private val addCharacterClassForTeamUseCase: AddCharacterClassForTeamUseCase,
+    private val updateCharacterLevelUseCase: UpdateCharacterLevelUseCase
 ) : ViewModel() {
 
     private val _navigationEvents = MutableSharedFlow<GlHelperEvent>()
@@ -89,8 +88,8 @@ class CharactersTabViewModel @Inject constructor(
         viewModelScope.launch {
             when (action) {
                 is CharactersTabAction.AddCharacter -> {
-                    logicState.update{it.copy(showAddCharacterDialog = false)}
-                    addCharacterUseCase(
+                    logicState.update { it.copy(showAddCharacterDialog = false) }
+                    createCharacterUseCase(
                         name = action.name,
                         level = action.level,
                         characterType = action.characterType.type
@@ -98,15 +97,15 @@ class CharactersTabViewModel @Inject constructor(
                 }
 
                 is CharactersTabAction.SwitchAlive -> {
-                    logicState.update{it.copy(filterAlive = !logicState.value.filterAlive)}
+                    logicState.update { it.copy(filterAlive = !logicState.value.filterAlive) }
                 }
 
                 is CharactersTabAction.ShowAddCharacterDialog -> {
-                    logicState.update{it.copy(showAddCharacterDialog = true)}
+                    logicState.update { it.copy(showAddCharacterDialog = true) }
                 }
 
                 is CharactersTabAction.CloseAddCharacterDialog -> {
-                    logicState.update{it.copy(showAddCharacterDialog = false)}
+                    logicState.update { it.copy(showAddCharacterDialog = false) }
                 }
 
                 is CharactersTabAction.CharacterDetails -> {
@@ -119,6 +118,10 @@ class CharactersTabViewModel @Inject constructor(
                     } else {
                         addCharacterClassForTeamUseCase(action.type.type)
                     }
+                }
+
+                is CharactersTabAction.ChangeLevel -> {
+                    updateCharacterLevelUseCase(action.characterId, action.level)
                 }
             }
         }

@@ -128,7 +128,8 @@ private fun StartScreenPreview() {
                     switchAlive = {},
                     addCharacter = {},
                     openCharacterDetails = {},
-                    toggleClass = {}
+                    toggleClass = {},
+                    changeLevel = {_, _ ->}
                 )
             },
             back = {},

@@ -16,22 +16,17 @@ enum class IconCode(val value: String) {
     TARGET("13"),
     WOUND("14"),
     ZERO("15"),
-
     FROST("16"),
-
     PULL("17"),
     PARALYZE("18"),
-
     SUN("19"),
     MOON("20"),
     AIR("21"),
     FIRE("22"),
     EARTH("23"),
-
     INVISIBILITY("24"),
     POISON("25"),
     CURSE("26"),
-
     AREA_0("27"),
     AREA_1("28"),
     AREA_2("29"),
@@ -39,6 +34,14 @@ enum class IconCode(val value: String) {
     AREA_4("31"),
     AREA_5("32"),
     AREA_6("33"),
+    BLESS("34"),
+    STRENGTH("35"),
+    RETALIATE("36"),
+    RANGED_ATTACK("37"),
+    MOVE("38"),
+    SHIELD("39"),
+    HEAL("40"),
+    ATTACK("41")
 }
 
 enum class IconVectorCode(val id: IconCode) {
@@ -55,21 +58,4 @@ enum class IconVectorCode(val id: IconCode) {
     INVISIBILITY(IconCode.INVISIBILITY),
     POISON(IconCode.POISON),
     CURSE(IconCode.CURSE),
-}
-
-enum class IconResCode(val id: IconCode) {
-    MINUS1(IconCode.MINUS1),
-    MINUS2(IconCode.MINUS2),
-    PLUS1(IconCode.PLUS1),
-    PLUS2(IconCode.PLUS2),
-    PLUS3(IconCode.PLUS3),
-    PLUS4(IconCode.PLUS4),
-    ZERO(IconCode.ZERO),
-
-    FROST(IconCode.FROST),
-    SUN(IconCode.SUN),
-    MOON(IconCode.MOON),
-    AIR(IconCode.AIR),
-    FIRE(IconCode.FIRE),
-    EARTH(IconCode.EARTH),
 }

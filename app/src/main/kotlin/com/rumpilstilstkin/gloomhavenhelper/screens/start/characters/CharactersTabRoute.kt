@@ -7,7 +7,7 @@ import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEventHelper
-import com.rumpilstilstkin.gloomhavenhelper.screens.dialogs.character.add.AddCharacterDialog
+import com.rumpilstilstkin.gloomhavenhelper.screens.dialogs.character.AddCharacterDialog
 
 @Composable
 fun CharactersTabRoute(
@@ -31,7 +31,8 @@ fun CharactersTabRoute(
         addCharacter = { viewModel.onAction(CharactersTabAction.ShowAddCharacterDialog) },
         openCharacterDetails = { viewModel.onAction(CharactersTabAction.CharacterDetails(it)) },
         switchAlive = { viewModel.onAction(CharactersTabAction.SwitchAlive) },
-        toggleClass = { viewModel.onAction(CharactersTabAction.SwitchClassAvailability(it)) }
+        toggleClass = { viewModel.onAction(CharactersTabAction.SwitchClassAvailability(it)) },
+        changeLevel = { characterId, level -> viewModel.onAction(CharactersTabAction.ChangeLevel(characterId, level)) }
     )
 
     if (uiState.showAddCharacterDialog) {

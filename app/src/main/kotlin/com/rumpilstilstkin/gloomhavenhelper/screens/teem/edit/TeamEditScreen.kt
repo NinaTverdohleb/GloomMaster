@@ -30,6 +30,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.PackType
+import com.rumpilstilstkin.gloomhavenhelper.screens.dialogs.teams.DeleteTeamDialog
 import com.rumpilstilstkin.gloomhavenhelper.screens.dialogs.teams.TeamsDialog
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomAlertDialog
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomCard
@@ -130,7 +131,7 @@ internal fun TeamEditScreen(
     }
 
     if (uiState.showDeleteConfirmDialog) {
-        DeleteTeamConfirmDialog(
+        DeleteTeamDialog(
             teamName = uiState.teamName,
             onDismiss = dismissDeleteDialog,
             onConfirm = confirmDelete,
@@ -144,29 +145,6 @@ internal fun TeamEditScreen(
             selectTeam = selectTeam,
         )
     }
-}
-
-@Composable
-private fun DeleteTeamConfirmDialog(
-    teamName: String,
-    onDismiss: () -> Unit,
-    onConfirm: () -> Unit,
-) {
-    GloomAlertDialog(
-        title = "Удалить команду?",
-        onDismissRequest = onDismiss,
-        onConfirmRequest = null,
-        onNeutralRequest = onDismiss,
-        onNegativeRequest = onConfirm,
-        negativeText = "Удалить",
-        content = {
-            Text(
-                text = "Вы уверены, что хотите удалить команду \"$teamName\"? Это действие нельзя отменить.",
-                style = MaterialTheme.typography.bodyMedium,
-                color = MaterialTheme.colorScheme.onSurface,
-            )
-        }
-    )
 }
 
 @Preview(showBackground = true, backgroundColor = 0xFF1A1C24)

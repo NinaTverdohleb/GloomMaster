@@ -7,6 +7,7 @@ data class CharacterForSave(
     val name: String,
     val level: Int,
     val characterType: CharacterClassType,
+    val experience: Int,
     val teamId: Int? = null
 )
 

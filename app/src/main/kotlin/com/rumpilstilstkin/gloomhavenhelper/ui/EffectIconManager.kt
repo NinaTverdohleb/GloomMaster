@@ -1,8 +1,6 @@
 package com.rumpilstilstkin.gloomhavenhelper.ui
 
 import androidx.compose.ui.graphics.vector.ImageVector
-import com.rumpilstilstkin.gloomhavenhelper.R
-import com.rumpilstilstkin.gloomhavenhelper.domain.entity.IconResCode
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.IconVectorCode
 import com.rumpilstilstkin.gloomhavenhelper.ui.icons.GloomhavenIcons
 import com.rumpilstilstkin.gloomhavenhelper.ui.icons.effects.Confuse
@@ -33,20 +31,4 @@ fun IconVectorCode.toImage(): ImageVector = when(this) {
     IconVectorCode.INVISIBILITY -> GloomhavenIcons.Effect.Invisibility
     IconVectorCode.POISON -> GloomhavenIcons.Effect.Poison
     IconVectorCode.CURSE -> GloomhavenIcons.Effect.Curse
-}
-
-fun IconResCode.toImage(): Int = when(this) {
-    IconResCode.MINUS1 -> R.drawable.minus1
-    IconResCode.MINUS2 -> R.drawable.minus2
-    IconResCode.PLUS1 -> R.drawable.plus1
-    IconResCode.PLUS2 -> R.drawable.plus2
-    IconResCode.PLUS3 -> R.drawable.plus3
-    IconResCode.PLUS4 -> R.drawable.plus4
-    IconResCode.ZERO -> R.drawable.neutral
-    IconResCode.FROST -> R.drawable.ic_magic_frost
-    IconResCode.SUN -> R.drawable.ic_magic_sun
-    IconResCode.MOON -> R.drawable.ic_magic_moon
-    IconResCode.AIR -> R.drawable.ic_magic_air
-    IconResCode.FIRE -> R.drawable.ic_magic_fire
-    IconResCode.EARTH -> R.drawable.ic_magic_earth
 }

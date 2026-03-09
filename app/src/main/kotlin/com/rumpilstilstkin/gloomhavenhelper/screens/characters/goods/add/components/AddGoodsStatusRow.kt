@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Button
@@ -37,28 +38,28 @@ fun AddGoodsStatusRow(
         Text(
             text = "Стоимость : $goodsGold G",
         )
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.End,
+    }
+    Spacer(modifier = Modifier.height(16.dp))
+    Row(
+        modifier = Modifier.fillMaxWidth(),
+    ) {
+        Button(
+            enabled = goodsGold <= allGold,
+            modifier = Modifier.weight(1f),
+            onClick = {
+                onAction(AddGoodsForCharacterScreenActions.BuySelectedGoods)
+            }
         ) {
-            Button(
-                enabled = goodsGold <= allGold,
-                modifier = Modifier,
-                onClick = {
-                    onAction(AddGoodsForCharacterScreenActions.BuySelectedGoods)
-                }
-            ) {
-                Text("Купить")
+            Text("Купить")
+        }
+        Spacer(modifier = Modifier.width(16.dp))
+        Button(
+            modifier = Modifier.weight(1f),
+            onClick = {
+                onAction(AddGoodsForCharacterScreenActions.AddSelectedGoods)
             }
-            Spacer(modifier = Modifier.width(16.dp))
-            Button(
-                modifier = Modifier,
-                onClick = {
-                    onAction(AddGoodsForCharacterScreenActions.AddSelectedGoods)
-                }
-            ) {
-                Text("Добавить")
-            }
+        ) {
+            Text("Добавить")
         }
     }
 }

@@ -10,7 +10,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
-import com.rumpilstilstkin.gloomhavenhelper.screens.characters.CharacterDetailsScreen
+import com.rumpilstilstkin.gloomhavenhelper.screens.characters.start.CharacterDetailsRoute
 import com.rumpilstilstkin.gloomhavenhelper.screens.characters.goods.add.AddGoodsForCharacterScreenRoute
 import com.rumpilstilstkin.gloomhavenhelper.screens.characters.quests.freeselect.SearchQuestScreen
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.ScenarioRoute
@@ -52,7 +52,7 @@ fun GlHelperNavHost(
         }
         composable<GlHelperScreens.CharacterDetails> {
             val args = it.toRoute<GlHelperScreens.CharacterDetails>()
-            CharacterDetailsScreen(
+            CharacterDetailsRoute(
                 navController = navController,
                 characterId = args.characterId
             )

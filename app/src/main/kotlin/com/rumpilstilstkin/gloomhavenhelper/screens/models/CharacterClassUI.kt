@@ -1,12 +1,8 @@
 package com.rumpilstilstkin.gloomhavenhelper.screens.models
 
 import androidx.annotation.DrawableRes
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
 import com.rumpilstilstkin.gloomhavenhelper.R
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.CharacterClassType
-import com.rumpilstilstkin.gloomhavenhelper.domain.entity.IconCode
-import com.rumpilstilstkin.gloomhavenhelper.ui.icons.GameIcons
 
 enum class CharacterClassTypeUI(
     val title: String,

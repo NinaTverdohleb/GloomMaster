@@ -1,7 +1,6 @@
 package com.rumpilstilstkin.gloomhavenhelper.screens.start.characters
 
 import androidx.compose.runtime.Immutable
-import com.rumpilstilstkin.gloomhavenhelper.domain.entity.CharacterClassType
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.CharacterClassTypeUI
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.CharacterUI
 import kotlinx.collections.immutable.ImmutableList
@@ -41,7 +40,7 @@ data class CharactersTabStateUi(
 
 data class CharactersTabStateLogic(
     val filterAlive: Boolean = true,
-    val showAddCharacterDialog: Boolean = false
+    val showAddCharacterDialog: Boolean = false,
 )
 
 sealed interface CharactersTabAction {
@@ -56,4 +55,5 @@ sealed interface CharactersTabAction {
     data object CloseAddCharacterDialog : CharactersTabAction
     data class CharacterDetails(val characterId: Int) : CharactersTabAction
     data class SwitchClassAvailability(val type: CharacterClassTypeUI) : CharactersTabAction
+    data class ChangeLevel(val characterId: Int, val level: Int) : CharactersTabAction
 }
