@@ -10,4 +10,5 @@ data class ScenarioBattleInfo(
     val exp: Int,
     val trapDamage: Int,
     val gamersCount: Int,
+    val monsterLevel: Int,
 )

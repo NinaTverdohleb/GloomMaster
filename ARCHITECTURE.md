@@ -14,13 +14,17 @@
 erDiagram
     TeamBd ||--o{ CharacterBd : "has"
     TeamBd ||--o{ TeamScenarioBd : "has"
+    TeamBd ||--o{ TeamGoodBd : "has"
+    TeamBd ||--o{ TeamCharacterClassBd : "has"
     ScenarioBd ||--o{ TeamScenarioBd : "referenced by"
     CharacterClassBd ||--o{ CharacterBd : "defines"
+    CharacterClassBd ||--o{ TeamCharacterClassBd : "referenced by"
     CharacterClassBd ||--o{ PerkBd : "has"
     CharacterBd ||--o{ CharacterGoodBd : "owns"
     CharacterBd ||--o{ CharacterPerkBd : "has"
     CharacterBd ||--o{ CharacterPersonalQuestBd : "assigned"
     GoodBd ||--o{ CharacterGoodBd : "referenced by"
+    GoodBd ||--o{ TeamGoodBd : "referenced by"
     PerkBd ||--o{ CharacterPerkBd : "referenced by"
     PersonalQuestBd ||--o{ CharacterPersonalQuestBd : "referenced by"
     MonsterBd ||--o{ MonsterStatsBd : "has stats"
@@ -31,8 +35,9 @@ erDiagram
     TeamBd {
         int teamId PK "AUTOINCREMENT"
         string name
-        string teamAchievement
-        string globalAchievement
+        string teamAchievement "JSON List<Achievement>"
+        string globalAchievement "JSON List<Achievement>"
+        string packs "JSON List<String>"
         int reputation
         int prosperity
     }
@@ -53,6 +58,7 @@ erDiagram
     CharacterClassBd {
         string characterType PK
         string name
+        string pack
     }
 
     GameLevelInfoBd {
@@ -70,6 +76,7 @@ erDiagram
         string teamAchievement
         string globalAchievement
         string requirements
+        string pack
     }
 
     TeamScenarioBd {
@@ -88,12 +95,25 @@ erDiagram
         string type
         int cost
         boolean is_drawing
+        string pack
     }
 
     CharacterGoodBd {
         int id PK "AUTOINCREMENT"
         int characterId FK
         int goodId FK
+    }
+
+    TeamGoodBd {
+        int id PK "AUTOINCREMENT"
+        int teamId FK
+        int goodId FK
+    }
+
+    TeamCharacterClassBd {
+        int id PK "AUTOINCREMENT"
+        int teamId FK
+        string characterType FK
     }
 
     PerkBd {
@@ -122,6 +142,14 @@ erDiagram
         int characterId FK
         string questId FK
         string tasks "JSON"
+    }
+
+    AchievementBd {
+        int achievementId PK "AUTOINCREMENT"
+        string name
+        string pack
+        int maxRang
+        boolean isGlobal
     }
 
     MonsterBd {
@@ -160,8 +188,9 @@ erDiagram
 |--------|------|-------------|
 | `teamId` | INTEGER | PRIMARY KEY, AUTOINCREMENT, NOT NULL |
 | `name` | TEXT | NOT NULL |
-| `teamAchievement` | TEXT | NOT NULL |
-| `globalAchievement` | TEXT | NOT NULL |
+| `teamAchievement` | TEXT | NOT NULL, JSON serialized List<Achievement> |
+| `globalAchievement` | TEXT | NOT NULL, JSON serialized List<Achievement> |
+| `packs` | TEXT | NOT NULL, JSON serialized List<String> |
 | `reputation` | INTEGER | NOT NULL |
 | `prosperity` | INTEGER | NOT NULL |
 
@@ -179,11 +208,21 @@ erDiagram
 | `notes` | TEXT | NOT NULL |
 | `checkMarkCount` | INTEGER | NOT NULL |
 
+#### AchievementBd
+| Column | Type | Constraints |
+|--------|------|-------------|
+| `achievementId` | INTEGER | PRIMARY KEY, AUTOINCREMENT, NOT NULL |
+| `name` | TEXT | NOT NULL |
+| `pack` | TEXT | NOT NULL |
+| `maxRang` | INTEGER | NOT NULL, DEFAULT 1 |
+| `isGlobal` | INTEGER | NOT NULL |
+
 #### CharacterClassBd
 | Column | Type | Constraints |
 |--------|------|-------------|
 | `characterType` | TEXT | PRIMARY KEY, NOT NULL |
 | `name` | TEXT | NOT NULL |
+| `pack` | TEXT | NOT NULL |
 
 #### GameLevelInfoBd
 | Column | Type | Constraints |
@@ -203,6 +242,7 @@ erDiagram
 | `teamAchievement` | TEXT | NOT NULL |
 | `globalAchievement` | TEXT | NOT NULL |
 | `requirements` | TEXT | NOT NULL |
+| `pack` | TEXT | NOT NULL |
 
 #### TeamScenarioBd
 | Column | Type | Constraints |
@@ -227,6 +267,7 @@ erDiagram
 | `type` | TEXT | NOT NULL |
 | `cost` | INTEGER | NOT NULL |
 | `is_drawing` | INTEGER | NOT NULL |
+| `pack` | TEXT | NOT NULL |
 
 #### CharacterGoodBd
 | Column | Type | Constraints |
@@ -238,6 +279,28 @@ erDiagram
 **Indices:**
 - `index_CharacterGoodBd_characterId` on `characterId`
 - `index_CharacterGoodBd_goodId` on `goodId`
+
+#### TeamGoodBd
+| Column | Type | Constraints |
+|--------|------|-------------|
+| `id` | INTEGER | PRIMARY KEY, AUTOINCREMENT, NOT NULL |
+| `teamId` | INTEGER | FK → TeamBd(teamId), ON DELETE CASCADE |
+| `goodId` | INTEGER | FK → GoodBd(goodId), ON DELETE CASCADE |
+
+**Indices:**
+- `index_TeamGoodBd_teamId` on `teamId`
+- `index_TeamGoodBd_goodId` on `goodId`
+
+#### TeamCharacterClassBd
+| Column | Type | Constraints |
+|--------|------|-------------|
+| `id` | INTEGER | PRIMARY KEY, AUTOINCREMENT, NOT NULL |
+| `teamId` | INTEGER | FK → TeamBd(teamId), ON DELETE CASCADE |
+| `characterType` | TEXT | FK → CharacterClassBd(characterType), ON DELETE CASCADE |
+
+**Indices:**
+- `index_TeamCharacterClassBd_teamId` on `teamId`
+- `index_TeamCharacterClassBd_characterType` on `characterType`
 
 #### PerkBd
 | Column | Type | Constraints |
@@ -356,6 +419,12 @@ class CardActionsTypeConverter {
 ```
 Serializes `List<CardAction>` to JSON string for storage in `MonsterAbilityCardBd.actions`.
 
+#### AchievementListTypeConverter
+Serializes `List<Achievement>` to JSON string for storage in `TeamBd.teamAchievement` and `TeamBd.globalAchievement`.
+
+#### StringListTypeConverter
+Serializes `List<String>` to JSON string for storage in `TeamBd.packs`.
+
 ### DAO Interfaces
 
 #### TeamDao
@@ -366,6 +435,7 @@ Serializes `List<CardAction>` to JSON string for storage in `MonsterAbilityCardB
 | `findById(id)` | `@Query` | `SELECT * FROM TeamBd WHERE teamId LIKE :id LIMIT 1` |
 | `insert(team)` | `@Upsert` | — |
 | `delete(team)` | `@Delete` | — |
+| `deleteById(id)` | `@Query` | `DELETE FROM TeamBd WHERE teamId = :id` |
 | `update(team)` | `@Update` | — |
 | `getTeamWithScenariosFlow(id)` | `@Transaction @Query` | `SELECT * FROM TeamBd WHERE teamId LIKE :id LIMIT 1` → `Flow<TeamWithScenariosBd>` |
 | `getTeamWithScenarios(id)` | `@Transaction @Query` | `SELECT * FROM TeamBd WHERE teamId LIKE :id LIMIT 1` |
@@ -385,6 +455,16 @@ Serializes `List<CardAction>` to JSON string for storage in `MonsterAbilityCardB
 | `update(character)` | `@Update` | — |
 | `deleteById(characterId)` | `@Transaction @Query` | `DELETE FROM CharacterBd WHERE characterId = :characterId` |
 
+#### AchievementDao
+| Method | Annotation | Query |
+|--------|-----------|-------|
+| `getAll()` | `@Query` | `SELECT * FROM AchievementBd` |
+| `getGlobalAchievements()` | `@Query` | `SELECT * FROM AchievementBd WHERE isGlobal = 1` |
+| `getTeamAchievements()` | `@Query` | `SELECT * FROM AchievementBd WHERE isGlobal = 0` |
+| `getGlobalAchievementsByPacks(packs)` | `@Query` | `SELECT * FROM AchievementBd WHERE pack IN (:packs) AND isGlobal = 1` |
+| `getTeamAchievementsByPacks(packs)` | `@Query` | `SELECT * FROM AchievementBd WHERE pack IN (:packs) AND isGlobal = 0` |
+| `insertAll(vararg achievements)` | `@Insert` | — |
+
 #### CharacterGoodsDao
 | Method | Annotation | Query |
 |--------|-----------|-------|
@@ -394,6 +474,24 @@ Serializes `List<CardAction>` to JSON string for storage in `MonsterAbilityCardB
 | `insert(characterGood)` | `@Insert` | — |
 | `delete(characterGood)` | `@Delete` | — |
 | `deleteById(characterGoodId)` | `@Transaction @Query` | `DELETE FROM CharacterGoodBd WHERE id LIKE :characterGoodId` |
+
+#### TeamGoodDao
+| Method | Annotation | Query |
+|--------|-----------|-------|
+| `getTeamGoodsFlow(teamId)` | `@Transaction @Query` | `SELECT * FROM TeamGoodBd WHERE teamId = :teamId` → `Flow` |
+| `getTeamGoods(teamId)` | `@Transaction @Query` | `SELECT * FROM TeamGoodBd WHERE teamId = :teamId` |
+| `insert(teamGood)` | `@Insert` | — |
+| `delete(teamGood)` | `@Delete` | — |
+| `deleteById(id)` | `@Query` | `DELETE FROM TeamGoodBd WHERE id = :id` |
+
+#### TeamCharacterClassDao
+| Method | Annotation | Query |
+|--------|-----------|-------|
+| `getTeamClassesFlow(teamId)` | `@Query` | `SELECT * FROM TeamCharacterClassBd WHERE teamId = :teamId` → `Flow` |
+| `getTeamClasses(teamId)` | `@Query` | `SELECT * FROM TeamCharacterClassBd WHERE teamId = :teamId` |
+| `insert(teamClass)` | `@Insert` | — |
+| `delete(teamClass)` | `@Delete` | — |
+| `deleteByTeamAndType(teamId, characterType)` | `@Query` | `DELETE FROM TeamCharacterClassBd WHERE teamId = :teamId AND characterType = :characterType` |
 
 #### CharacterPerksDao
 | Method | Annotation | Query |
@@ -417,6 +515,7 @@ Serializes `List<CardAction>` to JSON string for storage in `MonsterAbilityCardB
 |--------|-----------|-------|
 | `getAll()` | `@Query` | `SELECT * FROM ScenarioBd` |
 | `getScenario(scenarioNumber)` | `@Query` | `SELECT * FROM ScenarioBd WHERE scenarioNumber LIKE :scenarioNumber LIMIT 1` |
+| `getScenariosByPacks(packs)` | `@Query` | `SELECT * FROM ScenarioBd WHERE pack IN (:packs)` |
 | `insertAll(vararg scenarios)` | `@Insert` | — |
 
 #### TeamScenarioDao
@@ -426,11 +525,13 @@ Serializes `List<CardAction>` to JSON string for storage in `MonsterAbilityCardB
 | `update(team)` | `@Update` | — |
 | `getTeamScenario(teamId, scenarioNumber)` | `@Query` | `SELECT * FROM TeamScenarioBd WHERE teamId = :teamId AND scenarioNumber = :scenarioNumber LIMIT 1` |
 | `getTeamScenarios(teamId)` | `@Query` | `SELECT * FROM TeamScenarioBd WHERE teamId = :teamId` |
+| `getTeamScenariosFlow(teamId)` | `@Query` | `SELECT * FROM TeamScenarioBd WHERE teamId = :teamId` → `Flow` |
 
 #### GoodsDao
 | Method | Annotation | Query |
 |--------|-----------|-------|
 | `getAll()` | `@Query` | `SELECT * FROM GoodBd` |
+| `getGoodsByPacks(packs)` | `@Query` | `SELECT * FROM GoodBd WHERE pack IN (:packs)` |
 | `insertAll(vararg users)` | `@Insert` | — |
 | `getGoodsByIds(goodId)` | `@Transaction @Query` | `SELECT * FROM GoodBd WHERE goodId IN (:goodId)` |
 
@@ -458,6 +559,7 @@ Serializes `List<CardAction>` to JSON string for storage in `MonsterAbilityCardB
 |--------|-----------|-------|
 | `getAll()` | `@Query` | `SELECT * FROM CharacterClassBd` |
 | `findByType(characterType)` | `@Query` | `SELECT * FROM CharacterClassBd WHERE characterType LIKE :characterType LIMIT 1` |
+| `getClassesByPacks(packs)` | `@Query` | `SELECT * FROM CharacterClassBd WHERE pack IN (:packs)` |
 | `insertAll(vararg users)` | `@Insert` | — |
 
 #### MonsterDao
@@ -503,11 +605,14 @@ flowchart TB
                 TeamScenarioDao
                 GoodsDao
                 CharacterGoodsDao
+                TeamGoodDao
+                TeamCharacterClassDao
                 PerksDao
                 MonsterDao
                 CharacterPerksDao
                 PersonalQuestDao
                 CharacterPersonalQuestDao
+                AchievementDao
             end
 
             subgraph Dispatchers["Coroutine Dispatchers"]
@@ -527,40 +632,49 @@ flowchart TB
     DB --> TeamScenarioDao
     DB --> GoodsDao
     DB --> CharacterGoodsDao
+    DB --> TeamGoodDao
+    DB --> TeamCharacterClassDao
     DB --> PerksDao
     DB --> CharacterPerksDao
     DB --> PersonalQuestDao
     DB --> CharacterPersonalQuestDao
+    DB --> AchievementDao
+    DB --> MonsterDao
 
     SP --> CurrentTeamDatasource
 
     subgraph Repositories["Repository Layer"]
         TeamRepository
         CharacterRepository
-        ClassRepository
+        CharacterClassRepository
         ScenarioRepository
         GoodsRepository
         PerksRepository
         QuestsRepository
         LevelInfoRepository
+        AchievementRepository
+        MonsterRepository
         CurrentTeamDatasource
     end
 
     TeamDao --> TeamRepository
     CharacterDao --> TeamRepository
     CharacterDao --> CharacterRepository
-    CharacterClassDao --> CharacterRepository
-    CharacterClassDao --> ClassRepository
+    CharacterClassDao --> CharacterClassRepository
     CharacterGoodsDao --> CharacterRepository
     CharacterPerksDao --> CharacterRepository
     CharacterPersonalQuestDao --> CharacterRepository
     ScenarioDao --> ScenarioRepository
     TeamScenarioDao --> ScenarioRepository
     GoodsDao --> GoodsRepository
+    TeamGoodDao --> GoodsRepository
+    TeamCharacterClassDao --> CharacterClassRepository
     PerksDao --> PerksRepository
     PersonalQuestDao --> QuestsRepository
     CharacterPersonalQuestDao --> QuestsRepository
     GameLevelInfoDao --> LevelInfoRepository
+    AchievementDao --> AchievementRepository
+    MonsterDao --> MonsterRepository
     CurrentTeamDatasource --> TeamRepository
     CharacterRepository --> TeamRepository
     ApplicationScope --> TeamRepository
@@ -570,14 +684,16 @@ flowchart TB
 
 | Repository | Scope | Dependencies | Reactive Streams |
 |------------|-------|--------------|------------------|
-| `TeamRepository` | `@Singleton` | `TeamDao`, `CharacterDao`, `CharacterRepository`, `CurrentTeamDatasource`, `@ApplicationScope CoroutineScope` | `currentTeamId: Flow<Int>`, `getTeams(): Flow<List>`, `getTeamWithScenarioFlow(): Flow` |
-| `CharacterRepository` | — | `CharacterDao`, `CharacterClassDao`, `TeamDao`, `CharacterGoodsDao`, `CharacterPerksDao`, `CharacterPersonalQuestDao` | `getCharacterPerksFlow()`, `getCharacterGoodsFlow()`, `getCharacterByTeamId()`, `getCharacterByIdFlow()`, `getCharacterPersonalQuestFlow()`, `getAllCharacters()` |
-| `ClassRepository` | — | `CharacterClassDao` | — |
-| `ScenarioRepository` | — | `ScenarioDao`, `TeamScenarioDao` | — |
-| `GoodsRepository` | — | `GoodsDao` | — |
+| `TeamRepository` | `@Singleton` | `TeamDao`, `CharacterDao`, `CharacterRepository`, `CurrentTeamDatasource`, `@ApplicationScope CoroutineScope` | `currentTeamId: Flow<Int>`, `currentTeam: Flow<TeamInfo?>`, `getTeams(): Flow<List>`, `getTeamWithScenarioFlow(): Flow` |
+| `CharacterRepository` | — | `CharacterDao`, `TeamDao`, `CharacterGoodsDao`, `CharacterPerksDao`, `CharacterPersonalQuestDao` | `getCharacterPerksFlow()`, `getCharacterGoodsFlow()`, `getCharacterByTeamId()`, `getCharacterByIdFlow()`, `getCharacterPersonalQuestFlow()` |
+| `CharacterClassRepository` | — | `CharacterClassDao`, `TeamCharacterClassDao` | `getTeamClassesFlow()` |
+| `ScenarioRepository` | — | `ScenarioDao`, `TeamScenarioDao` | `getTeamScenariosFlow()` |
+| `GoodsRepository` | — | `GoodsDao`, `TeamGoodDao` | `getTeamGoodsFlow()` |
 | `PerksRepository` | — | `PerksDao` | — |
 | `QuestsRepository` | — | `PersonalQuestDao`, `CharacterPersonalQuestDao` | `getQuestsFlow(): Flow<List<PersonalQuest>>` |
 | `LevelInfoRepository` | `@Singleton` | `GameLevelInfoDao` | — (uses caching) |
+| `AchievementRepository` | — | `AchievementDao` | — |
+| `MonsterRepository` | — | `MonsterDao` | `getMonstersForScenarioFlow()` |
 | `CurrentTeamDatasource` | `@Singleton` | `SharedPreferences` | — |
 
 ### Use Cases
@@ -586,8 +702,28 @@ flowchart TB
 | UseCase | Dependencies | Operation |
 |---------|--------------|-----------|
 | `GetCurrentTeamUseCase` | `TeamRepository` | Retrieves current team info flow |
+| `GetCurrentTeamShortInfoUseCase` | `TeamRepository` | Retrieves current team short info flow |
+| `GetCurrentTeamWithTeamsUseCase` | `TeamRepository` | Retrieves current team with all teams |
 | `GetTeamsUseCase` | `TeamRepository` | Retrieves all teams |
 | `SaveTeamUseCase` | `TeamRepository`, `ScenarioRepository` | Saves team and initial scenario |
+| `ChangeCurrentTeamUseCase` | `TeamRepository` | Changes current team |
+| `DeleteCurrentTeamUseCase` | `TeamRepository` | Deletes current team |
+| `UpdateNameForCurrentTeamUseCase` | `TeamRepository` | Updates team name |
+| `SwitchPackForCurrentTeamUseCase` | `TeamRepository` | Enables/disables pack for team |
+| `UpdateTeamReputationUseCase` | `TeamRepository` | Updates team reputation |
+| `UpdateTeamProsperityUseCase` | `TeamRepository` | Updates team prosperity |
+| `GetTeamProsperityUseCase` | `TeamRepository` | Gets team prosperity |
+| `GetDiscountByReputationUseCase` | `TeamRepository` | Calculates shop discount |
+
+#### Achievement Domain
+| UseCase | Dependencies | Operation |
+|---------|--------------|-----------|
+| `GetAvailableTeamAchievementsUseCase` | `TeamRepository`, `AchievementRepository` | Gets unearned team achievements |
+| `GetAvailableGlobalAchievementsUseCase` | `TeamRepository`, `AchievementRepository` | Gets unearned global achievements |
+| `UpdateTeamAchievementUseCase` | `TeamRepository` | Adds/updates team achievement |
+| `UpdateGlobalAchievementUseCase` | `TeamRepository` | Adds/updates global achievement |
+| `RemoveTeamAchievementUseCase` | `TeamRepository` | Removes team achievement |
+| `RemoveGlobalAchievementUseCase` | `TeamRepository` | Removes global achievement |
 
 #### Character Domain
 | UseCase | Dependencies | Operation |
@@ -595,8 +731,14 @@ flowchart TB
 | `GetCharacterDetailsInfoUseCase` | `CharacterRepository` | Character details flow |
 | `GetCharacterGeneralInfoUseCase` | `CharacterRepository` | Character info |
 | `GetCharacterGeneralInfoFlowUseCase` | `CharacterRepository` | Character info flow |
+| `GetCharactersForCurrentTeamUseCase` | `CharacterRepository`, `TeamRepository` | Characters for current team |
 | `GetCharacterPerksUseCase` | `CharacterRepository` | Character perks |
+| `CreateCharacterUseCase` | `CharacterRepository` | Creates new character |
+| `DeleteCharacterUseCase` | `CharacterRepository` | Deletes character |
+| `RetireCharacterUseCase` | `CharacterRepository` | Retires character |
 | `LevelUpUseCase` | `CharacterRepository` | Level increment |
+| `UpdateCharacterLevelUseCase` | `CharacterRepository` | Sets specific level |
+| `UpdateCharacterNameUseCase` | `CharacterRepository` | Updates character name |
 | `ExperienceChangeUseCase` | `CharacterRepository` | Experience update |
 | `UpdateGoldUseCase` | `CharacterRepository` | Gold update |
 | `UpdateNotesUseCase` | `CharacterRepository` | Notes update |
@@ -627,10 +769,21 @@ flowchart TB
 | `SetQuestForCharacterUseCase` | `QuestsRepository` | Assign quest |
 | `QuestTaskUpdateUseCase` | `QuestsRepository`, `CharacterRepository` | Update task progress |
 
-#### Goods Domain
+#### Team Goods Domain
 | UseCase | Dependencies | Operation |
 |---------|--------------|-----------|
-| `GetAllGoodsUseCase` | `GoodsRepository` | All goods list |
+| `GetGoodsForCurrentTeamUseCase` | `GoodsRepository`, `TeamRepository` | Gets team goods |
+| `GetAdditionalGoodsForTeamUseCase` | `GoodsRepository`, `TeamRepository` | Gets available goods for team |
+| `GetGoodsForLevelUseCase` | `GoodsRepository`, `TeamRepository` | Gets goods by prosperity level |
+| `AddGoodToTeamUseCase` | `GoodsRepository` | Adds single good to team |
+| `AddGoodsToTeamUseCase` | `GoodsRepository` | Adds multiple goods to team |
+| `RemoveGoodFromTeamUseCase` | `GoodsRepository` | Removes good from team |
+
+#### Character Classes Domain
+| UseCase | Dependencies | Operation |
+|---------|--------------|-----------|
+| `AddCharacterClassForTeamUseCase` | `CharacterClassRepository` | Unlocks class for team |
+| `RemoveCharacterClassForTeamUseCase` | `CharacterClassRepository` | Locks class for team |
 
 #### Quests Domain
 | UseCase | Dependencies | Operation |
@@ -640,6 +793,11 @@ flowchart TB
 #### Scenario Domain
 | UseCase | Dependencies | Operation |
 |---------|--------------|-----------|
+| `GetTeamScenariosUseCase` | `ScenarioRepository`, `TeamRepository` | Gets team scenarios |
+| `GetAvailableScenariosForTeamUseCase` | `ScenarioRepository`, `TeamRepository` | Gets scenarios not yet added |
+| `FilterTeamScenariosUseCase` | — | Filters scenarios by status |
+| `GetScenarioInfoUseCase` | `ScenarioRepository` | Gets scenario details |
+| `AddScenarioToTeamUseCase` | `ScenarioRepository`, `TeamRepository` | Adds scenario to team |
 | `CompleteScenarioUseCase` | `ScenarioRepository` | Mark scenario completed |
 
 ### Data Flow Diagram
@@ -721,28 +879,35 @@ flowchart LR
     VM -.->|"emit()"| State
 ```
 
-### ViewModel Dependencies
-
-| ViewModel | Injected Dependencies |
-|-----------|----------------------|
-| `MainActivityViewModel` | `DatabaseFiller` |
-| `MainViewModel` | `GetCurrentTeamUseCase`, `LevelInfoRepository`, `ClassRepository`, `TeamRepository`, `CharacterRepository`, `CompleteScenarioUseCase` |
-| `TeamTabViewModel` | `GetCurrentTeamUseCase` |
-| `TeamCreateViewModel` | `ClassRepository`, `SaveTeamUseCase` |
-| `CharactersTabViewModel` | `CharacterRepository` |
-| `CharacterDetailsViewModel` | `GetCharacterGeneralInfoFlowUseCase`, `SetTeamUseCase` |
-| `CharacterGeneralTabViewModel` | `GetCharacterDetailsInfoUseCase`, `LevelUpUseCase`, `DonateUseCase`, `UpdateGoldUseCase`, `ExperienceChangeUseCase`, `MarksCheckedChangeUseCase`, `UpdateNotesUseCase`, `QuestTaskUpdateUseCase` |
-| `CharacterGoodsTabViewModel` | `GetCharacterGoodsUseCase`, `DeleteCharacterGoodsUseCase`, `SellGoodCharacterUseCase` |
-| `AddGoodsScreenViewModel` | `AddGoodForCharacterUseCase`, `BuyGoodForCharacterUseCase`, `GetAvaliableCharacterGoodsUseCase`, `GetCharacterGeneralInfoUseCase` |
-| `CharacterPerksTabViewModel` | `GetCharacterPerksInfoUseCase`, `DeleteCharacterPerkUseCase`, `AddPerksForCharacterUseCase` |
-| `SearchQuestViewModel` | `GetQuestsFlowUseCase`, `SetQuestForCharacterUseCase` |
-| `AddScenarioViewModel` | `ScenarioRepository`, `TeamRepository` |
-| `AddCharactersDialogViewModel` | `ClassRepository` |
-| `TeamListDialogViewModel` | `GetTeamsUseCase` |
-
 ---
 
-## UI Layer (Minimal)
+## UI Layer
+
+### Navigation Structure
+
+```mermaid
+flowchart TD
+    Start[StartScreen] --> CharTab[CharactersTab]
+    Start --> TeamTab[TeamTab]
+    Start --> ScenariosTab[ScenariosTab]
+    Start --> ShopTab[ShopTab]
+
+    TeamTab --> TeamEdit[TeamEditScreen]
+    TeamTab --> TeamAch[TeamAchievementsScreen]
+    TeamTab --> GlobalAch[GlobalAchievementsScreen]
+    TeamTab --> AddScenario[AddScenarioForTeamScreen]
+    TeamTab --> TeamGoods[TeamGoodsScreen]
+
+    CharTab --> CharDetails[CharacterDetailsScreen]
+    CharDetails --> GeneralTab[CharacterGeneralTab]
+    CharDetails --> GoodsTab[CharacterGoodsTab]
+    CharDetails --> PerksTab[CharacterPerksTab]
+
+    GeneralTab --> SearchQuest[SearchQuestScreen]
+    GoodsTab --> AddGoods[AddGoodsScreen]
+
+    ScenariosTab --> ScenarioPlay[ScenarioScreen]
+```
 
 ### Main Screens
 
@@ -750,13 +915,19 @@ flowchart LR
 |--------|---------|
 | `MainActivity` | Application entry point; handles database initialization via `MainActivityViewModel`. |
 | `MainScreen` | Primary navigation hub displaying current team info, characters, and scenarios. |
-| `StartScreen` | Tab-based screen with Team and Characters tabs for overview. |
-| `TeamTab` | Displays current team details including reputation, prosperity, and achievements. |
+| `StartScreen` | Tab-based screen with Team, Characters, Scenarios, and Shop tabs. |
+| `TeamTab` | Displays current team details including reputation, prosperity, achievements, and packs. |
 | `CharactersTab` | Lists all characters with navigation to character details. |
+| `ScenariosTab` | Lists team scenarios with filtering by status. |
+| `ShopTab` | Team goods management and shop. |
 | `TeamCreateScreen` | Form for creating a new team with initial characters. |
-| `TeamDetailsScreen` | Team editing interface. |
-| `CharacterDetailsScreen` | Tab-based character view with General, Items, and Perks tabs. |
-| `CharacterGeneralTab` | Character stats, experience, gold, notes, and personal quest management. |
+| `TeamEditScreen` | Team editing: name, packs, delete team, change team. |
+| `TeamAchievementsScreen` | Team achievements management with add/delete functionality. |
+| `GlobalAchievementsScreen` | Global achievements management with add/delete functionality. |
+| `AddScenarioForTeamScreen` | Scenario selection for team progression. |
+| `TeamGoodsScreen` | Team goods management. |
+| `CharacterDetailsScreen` | Tab-based character view with General, Items, and Perks tabs. Delete and rename character. |
+| `CharacterGeneralTab` | Character stats, experience, gold, notes, level, and personal quest management. |
 | `CharacterGoodsTab` | Character inventory management with sell functionality. |
 | `CharacterPerksTab` | Perk selection and management for character. |
 | `AddGoodsScreen` | Item shop interface for purchasing/adding goods to character. |
@@ -768,7 +939,9 @@ flowchart LR
 | Dialog | Purpose |
 |--------|---------|
 | `AddCharacterDialog` | Character class selection for adding new character. |
-| `AddScenarioDialog` | Scenario selection for team progression. |
 | `TeamListDialog` | Team selection dropdown. |
 | `GoodDetailsDialog` | Item detail view. |
 | `QuestDetailsDialog` | Quest detail view. |
+| `DeleteConfirmDialog` | Confirmation for delete operations. |
+| `EditNameDialog` | Text input for name editing. |
+| `AddAchievementDialog` | Achievement selection for adding to team. |

@@ -12,11 +12,11 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface CharacterPerksDao {
     @Transaction
-    @Query("SELECT * FROM CharacterPerkBd WHERE characterId LIKE :characterId")
+    @Query("SELECT * FROM CharacterPerkBd WHERE characterId = :characterId")
     fun getCharacterPerksFlow(characterId: Int): Flow<List<CharacterPerkDetailsBd>>
 
     @Transaction
-    @Query("SELECT * FROM CharacterPerkBd WHERE characterId LIKE :characterId")
+    @Query("SELECT * FROM CharacterPerkBd WHERE characterId = :characterId")
     suspend fun getCharacterPerks(characterId: Int): List<CharacterPerkDetailsBd>
 
     @Insert
@@ -26,6 +26,6 @@ interface CharacterPerksDao {
     suspend fun delete(characterPerk: CharacterPerkBd)
 
     @Transaction
-    @Query("DELETE FROM CharacterPerkBd WHERE id LIKE :characterPerkId")
+    @Query("DELETE FROM CharacterPerkBd WHERE id = :characterPerkId")
     suspend fun deleteById(characterPerkId: Int)
 }

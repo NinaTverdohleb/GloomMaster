@@ -5,7 +5,9 @@ import com.rumpilstilstkin.gloomhavenhelper.bd.dao.ScenarioDao
 import com.rumpilstilstkin.gloomhavenhelper.data.mappers.toDomain
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.Monster
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class MonsterRepository @Inject constructor(
     val monsterDao: MonsterDao,
     val scenarioDao: ScenarioDao,

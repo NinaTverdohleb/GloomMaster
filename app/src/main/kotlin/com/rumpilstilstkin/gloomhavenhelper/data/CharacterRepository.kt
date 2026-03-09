@@ -16,7 +16,9 @@ import com.rumpilstilstkin.gloomhavenhelper.domain.entity.CharacterShortInfo
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class CharacterRepository @Inject constructor(
     private val characterDao: CharacterDao,
     private val teamDao: TeamDao,

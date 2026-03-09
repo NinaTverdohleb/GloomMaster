@@ -7,7 +7,9 @@ import com.rumpilstilstkin.gloomhavenhelper.data.mappers.toDomain
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.quest.CharacterPersonalQuest
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class QuestsRepository @Inject constructor(
     private val personalQuestDao: PersonalQuestDao,
     private val characterPersonalQuestDao: CharacterPersonalQuestDao

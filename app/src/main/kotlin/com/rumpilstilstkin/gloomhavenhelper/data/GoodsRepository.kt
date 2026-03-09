@@ -9,8 +9,10 @@ import com.rumpilstilstkin.gloomhavenhelper.domain.entity.PackType
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
+import javax.inject.Singleton
 import kotlin.collections.contains
 
+@Singleton
 class GoodsRepository @Inject constructor(
     private val goodsDao: GoodsDao,
     private val teamGoodDao: TeamGoodDao,

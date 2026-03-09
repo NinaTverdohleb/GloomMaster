@@ -1,16 +1,13 @@
 package com.rumpilstilstkin.gloomhavenhelper.domain.usecase.characters.goods
 
 import com.rumpilstilstkin.gloomhavenhelper.data.CharacterRepository
-import com.rumpilstilstkin.gloomhavenhelper.data.GoodsRepository
-import com.rumpilstilstkin.gloomhavenhelper.data.TeamRepository
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.Good
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.goods.GetGoodsForCurrentTeamUseCase
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.combine
-import kotlinx.coroutines.flow.first
 import javax.inject.Inject
 
-class GetAvaliableCharacterGoodsUseCase @Inject constructor(
+class GetAvailableCharacterGoodsUseCase @Inject constructor(
     private val characterRepository: CharacterRepository,
     private val getGoodsForCurrentTeamUseCase: GetGoodsForCurrentTeamUseCase
 ) {

@@ -1,5 +1,6 @@
 package com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario
 
+import com.rumpilstilstkin.gloomhavenhelper.data.LevelInfoRepository
 import com.rumpilstilstkin.gloomhavenhelper.data.MonsterRepository
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.ScenarioBattleInfo
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.team.GetCurrentTeamUseCase
@@ -12,13 +13,14 @@ import javax.inject.Inject
 class GetScenarioInfoUseCase @Inject constructor(
     private val monsterRepository: MonsterRepository,
     private val getCurrentTeamUseCase: GetCurrentTeamUseCase,
+    private val levelInfoRepository: LevelInfoRepository,
 ) {
-
     suspend operator fun invoke(
         scenarioNumber: Int,
     ): Result<ScenarioBattleInfo> = withContext(Dispatchers.Default) {
         getCurrentTeamUseCase().first().let { team ->
             if (team != null) {
+                val levelInfo = levelInfoRepository.getLevelInfo(team.level).getOrNull()
                 val monsters = monsterRepository.getMonstersForScenario(
                     scenarioNumber = scenarioNumber,
                     level = team.level
@@ -28,38 +30,15 @@ class GetScenarioInfoUseCase @Inject constructor(
                     name = team.activeScenario.firstOrNull { it.scenarioNumber == scenarioNumber }?.scenarioName
                         ?: "",
                     monsters = monsters,
-                    golds = goldByLevel(team.level),
-                    exp = expByLevel(team.level),
-                    trapDamage = trapDamageByLevel(team.level),
-                    gamersCount = team.characters.size
+                    golds = levelInfo?.goldCount ?: 0,
+                    exp = levelInfo?.experience ?: 0,
+                    trapDamage = levelInfo?.trapDamage ?: 0,
+                    gamersCount = team.characters.size,
+                    monsterLevel = levelInfo?.monsterLevel ?: 0
                 ).toResult()
             } else {
                 Result.failure(IllegalStateException("Team is null"))
             }
         }
-    }
-
-    private fun goldByLevel(level: Int): Int = when (level) {
-        0, 1 -> 2
-        2, 3 -> 3
-        4, 5 -> 4
-        6 -> 5
-        else -> 6
-    }
-
-    private fun expByLevel(level: Int): Int = when (level) {
-        0 -> 4
-        1 -> 6
-        2 -> 8
-        3 -> 10
-        4 -> 12
-        5 -> 14
-        6 -> 16
-        else -> 18
-    }
-
-    private fun trapDamageByLevel(level: Int): Int = when {
-        level <= 6 -> 2 + level
-        else -> 9
     }
 }

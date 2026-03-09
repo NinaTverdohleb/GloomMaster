@@ -3,7 +3,9 @@ package com.rumpilstilstkin.gloomhavenhelper.data
 import com.rumpilstilstkin.gloomhavenhelper.bd.dao.AchievementDao
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.Achievement
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class AchievementRepository @Inject constructor(
     private val achievementDao: AchievementDao,
 ) {

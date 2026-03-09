@@ -5,7 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.characters.GetCharacterGeneralInfoUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.characters.goods.AddGoodForCharacterUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.characters.goods.BuyGoodForCharacterUseCase
-import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.characters.goods.GetAvaliableCharacterGoodsUseCase
+import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.characters.goods.GetAvailableCharacterGoodsUseCase
 import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEvent
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.GoodUi
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.toUi
@@ -30,7 +30,7 @@ class AddGoodsForCharacterScreenViewModel @AssistedInject constructor(
     @Assisted val id: Int,
     private val addCharacterGoodsUseCase: AddGoodForCharacterUseCase,
     private val buyGoodForCharacterUseCase: BuyGoodForCharacterUseCase,
-    getGodsForCharacterUseCase: GetAvaliableCharacterGoodsUseCase,
+    getGodsForCharacterUseCase: GetAvailableCharacterGoodsUseCase,
     private val getCharacterGeneralInfoUseCase: GetCharacterGeneralInfoUseCase,
 ) : ViewModel() {
 

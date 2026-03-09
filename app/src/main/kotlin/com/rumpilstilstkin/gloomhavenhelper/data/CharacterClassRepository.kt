@@ -6,7 +6,9 @@ import com.rumpilstilstkin.gloomhavenhelper.domain.entity.CharacterClassType
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class CharacterClassRepository @Inject constructor(
     private val teamCharacterClassDao: TeamCharacterClassDao,
 ) {
