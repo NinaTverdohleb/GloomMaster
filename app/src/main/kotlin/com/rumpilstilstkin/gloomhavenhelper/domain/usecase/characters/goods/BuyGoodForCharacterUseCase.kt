@@ -15,7 +15,6 @@ class BuyGoodForCharacterUseCase @Inject constructor(
         val goodsCost = goodIdToCosts.sumOf { it.second }
 
         if (goodsCost > character.goldCount) {
-            Log.d("Dto", "Не хватает денег, нужно $goodsCost, у вас ${character.goldCount}")
             return Result.failure(Exception())
         }
 

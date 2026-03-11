@@ -24,7 +24,6 @@ class QuestTaskUpdateUseCase @Inject constructor(
                         }
                     }
                 )
-                Log.d("QuestTaskUpdateUseCase", "it: $newTask")
                 newTask
             }
             ?.let { updatedQuest ->
