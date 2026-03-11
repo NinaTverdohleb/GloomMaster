@@ -43,19 +43,3 @@ enum class IconCode(val value: String) {
     HEAL("40"),
     ATTACK("41")
 }
-
-enum class IconVectorCode(val id: IconCode) {
-    NEXT(IconCode.NEXT),
-    PUSH(IconCode.PUSH),
-    PROBOY(IconCode.PIERCE),
-    STUN(IconCode.STUN),
-    DISARM(IconCode.DISARM),
-    CONFUSE(IconCode.CONFUSE),
-    TARGET(IconCode.TARGET),
-    WOUND(IconCode.WOUND),
-    PULL(IconCode.PULL),
-    PARALYZE(IconCode.PARALYZE),
-    INVISIBILITY(IconCode.INVISIBILITY),
-    POISON(IconCode.POISON),
-    CURSE(IconCode.CURSE),
-}

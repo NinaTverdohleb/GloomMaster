@@ -1621,9 +1621,8 @@ object MonstersFiller {
             MonsterBd(
                 name = "Села Наберис",
                 deckName = "tracker",
-                lifeMultiple = false,
                 isBoss = true,
-                immunity = listOf(STUN, DISARM),
+                immunity = listOf(STUN, DISARM, POISON, MUDDLE, IMMOBILIZE),
                 pack = PackType.FORGOTTEN_CIRCLES.name,
             )
         ).toInt()
@@ -1636,6 +1635,69 @@ object MonstersFiller {
             MonsterStatsBd(selaNaberisId, 5, false, 18, listOf(Action(MOVE, "3"), Action(ATTACK, "5"), Action(RANGE, "7"), Action(PIERCE, "12"), Text("Цели - количество персонажей"), Action(PUSH, "1"))),
             MonsterStatsBd(selaNaberisId, 6, false, 21, listOf(Action(MOVE, "3"), Action(ATTACK, "5"), Action(RANGE, "8"), Action(PIERCE, "12"), Text("Цели - количество персонажей"), Action(PUSH, "2"))),
             MonsterStatsBd(selaNaberisId, 7, false, 24, listOf(Action(MOVE, "3"), Action(ATTACK, "6"), Action(RANGE, "8"), Action(PIERCE, "13"), Text("Цели - количество персонажей"), Action(PUSH, "2"))),
+        )
+
+        val shrakaMudryId = monsterDao.insertMonster(
+            MonsterBd(
+                name = "Шрака мудрый",
+                deckName = "shaman",
+                lifeMultiple = true,
+                isBoss = true,
+                immunity = listOf(STUN, WOUND, DISARM, PIERCE),
+                pack = PackType.FORGOTTEN_CIRCLES.name,
+            )
+        ).toInt()
+        monsterDao.insertAllStats(
+            MonsterStatsBd(shrakaMudryId, 0, false, 2, listOf(Action(MOVE, "3"), Action(ATTACK, "2"), Action(SHIELD, "2"), Text("Шрака удваивает показатели всех действий лечения, а в качестве целей действий лечения по возможности выбирает Стального Льва"), Text("Если Шрака применяет Эффект #26 или #34 он применяет этот же эффект второй раз"))),
+            MonsterStatsBd(shrakaMudryId, 1, false, 2, listOf(Action(MOVE, "3"), Action(ATTACK, "2"), Action(SHIELD, "3"), Text("Шрака удваивает показатели всех действий лечения, а в качестве целей действий лечения по возможности выбирает Стального Льва"), Text("Если Шрака применяет Эффект #26 или #34 он применяет этот же эффект второй раз"))),
+            MonsterStatsBd(shrakaMudryId, 2, false, 2, listOf(Action(MOVE, "3"), Action(ATTACK, "2"), Action(SHIELD, "3"), Text("Шрака удваивает показатели всех действий лечения, а в качестве целей действий лечения по возможности выбирает Стального Льва"), Text("Если Шрака применяет Эффект #26 или #34 он применяет этот же эффект второй раз"))),
+            MonsterStatsBd(shrakaMudryId, 3, false, 3, listOf(Action(MOVE, "3"), Action(ATTACK, "3"), Action(SHIELD, "3"), Text("Шрака удваивает показатели всех действий лечения, а в качестве целей действий лечения по возможности выбирает Стального Льва"), Text("Если Шрака применяет Эффект #26 или #34 он применяет этот же эффект второй раз"))),
+            MonsterStatsBd(shrakaMudryId, 4, false, 3, listOf(Action(MOVE, "3"), Action(ATTACK, "3"), Action(SHIELD, "4"), Action(MUDDLE, ""), Text("Шрака удваивает показатели всех действий лечения, а в качестве целей действий лечения по возможности выбирает Стального Льва"), Text("Если Шрака применяет Эффект #26 или #34 он применяет этот же эффект второй раз"))),
+            MonsterStatsBd(shrakaMudryId, 5, false, 3, listOf(Action(MOVE, "3"), Action(ATTACK, "4"), Action(SHIELD, "4"), Action(MUDDLE, ""), Text("Шрака удваивает показатели всех действий лечения, а в качестве целей действий лечения по возможности выбирает Стального Льва"), Text("Если Шрака применяет Эффект #26 или #34 он применяет этот же эффект второй раз"))),
+            MonsterStatsBd(shrakaMudryId, 6, false, 3, listOf(Action(MOVE, "3"), Action(ATTACK, "4"), Action(SHIELD, "5"), Action(MUDDLE, ""), Text("Шрака удваивает показатели всех действий лечения, а в качестве целей действий лечения по возможности выбирает Стального Льва"), Text("Если Шрака применяет Эффект #26 или #34 он применяет этот же эффект второй раз"))),
+            MonsterStatsBd(shrakaMudryId, 7, false, 4, listOf(Action(MOVE, "3"), Action(ATTACK, "4"), Action(SHIELD, "5"), Action(MUDDLE, ""), Text("Шрака удваивает показатели всех действий лечения, а в качестве целей действий лечения по возможности выбирает Стального Льва"), Text("Если Шрака применяет Эффект #26 или #34 он применяет этот же эффект второй раз"))),
+        )
+
+        val steelLionId = monsterDao.insertMonster(
+            MonsterBd(
+                name = "Стальной лев",
+                deckName = "guard",
+                lifeMultiple = true,
+                isBoss = true,
+                immunity = listOf(WOUND, IMMOBILIZE, MUDDLE, STUN),
+                pack = PackType.FORGOTTEN_CIRCLES.name,
+            )
+        ).toInt()
+        monsterDao.insertAllStats(
+            MonsterStatsBd(steelLionId, 0, false, 3, listOf(Action(MOVE, "3"), Action(ATTACK, "3"), Action(SHIELD, "1"), Text("Шит действует на себя и на всех союзников"), Text("Если союзник Стального льва на соседней клетке становится целью атаки, вместо этого Стальной лев становиться целью этой атаки."), Text("В первых случаяъ равных КП, получение 6 и более урона не проходят по Стальному льву"))),
+            MonsterStatsBd(steelLionId, 1, false, 4, listOf(Action(MOVE, "3"), Action(ATTACK, "3"), Action(SHIELD, "2"), Text("Шит действует на себя и на всех союзников"), Text("Если союзник Стального льва на соседней клетке становится целью атаки, вместо этого Стальной лев становиться целью этой атаки."), Text("В первых случаяъ равных КП, получение 6 и более урона не проходят по Стальному льву"))),
+            MonsterStatsBd(steelLionId, 2, false, 5, listOf(Action(MOVE, "3"), Action(ATTACK, "3"), Action(SHIELD, "2"), Text("Шит действует на себя и на всех союзников"), Text("Если союзник Стального льва на соседней клетке становится целью атаки, вместо этого Стальной лев становиться целью этой атаки."), Text("В первых случаяъ равных КП, получение 6 и более урона не проходят по Стальному льву"))),
+            MonsterStatsBd(steelLionId, 3, false, 5, listOf(Action(MOVE, "3"), Action(ATTACK, "4"), Action(SHIELD, "2"), Action(RETALIATE, "1"), Text("Шит действует на себя и на всех союзников"), Text("Если союзник Стального льва на соседней клетке становится целью атаки, вместо этого Стальной лев становиться целью этой атаки."), Text("В первых случаяъ равных КП, получение 6 и более урона не проходят по Стальному льву"))),
+            MonsterStatsBd(steelLionId, 4, false, 6, listOf(Action(MOVE, "4"), Action(ATTACK, "4"), Action(SHIELD, "2"), Action(RETALIATE, "2"), Text("Шит действует на себя и на всех союзников"), Text("Если союзник Стального льва на соседней клетке становится целью атаки, вместо этого Стальной лев становиться целью этой атаки."), Text("В первых случаяъ равных КП, получение 6 и более урона не проходят по Стальному льву"))),
+            MonsterStatsBd(steelLionId, 5, false, 7, listOf(Action(MOVE, "4"), Action(ATTACK, "4"), Action(SHIELD, "3"), Action(RETALIATE, "2"), Text("Шит действует на себя и на всех союзников"), Text("Если союзник Стального льва на соседней клетке становится целью атаки, вместо этого Стальной лев становиться целью этой атаки."), Text("В первых случаяъ равных КП, получение 6 и более урона не проходят по Стальному льву"))),
+            MonsterStatsBd(steelLionId, 6, false, 8, listOf(Action(MOVE, "4"), Action(ATTACK, "5"), Action(SHIELD, "3"), Action(RETALIATE, "3"), Text("Шит действует на себя и на всех союзников"), Text("Если союзник Стального льва на соседней клетке становится целью атаки, вместо этого Стальной лев становиться целью этой атаки."), Text("В первых случаяъ равных КП, получение 6 и более урона не проходят по Стальному льву"))),
+            MonsterStatsBd(steelLionId, 7, false, 9, listOf(Action(MOVE, "4"), Action(ATTACK, "6"), Action(SHIELD, "3"), Action(RETALIATE, "3"), Text("Шит действует на себя и на всех союзников"), Text("Если союзник Стального льва на соседней клетке становится целью атаки, вместо этого Стальной лев становиться целью этой атаки."), Text("В первых случаяъ равных КП, получение 6 и более урона не проходят по Стальному льву"))),
+        )
+
+        val uiratIkkumaId = monsterDao.insertMonster(
+            MonsterBd(
+                name = "Уйрат Иккума",
+                deckName = "savvas-lavaflow",
+                lifeMultiple = true,
+                isBoss = true,
+                immunity = listOf(STUN, MUDDLE, POISON, IMMOBILIZE),
+                pack = PackType.FORGOTTEN_CIRCLES.name,
+            )
+        ).toInt()
+        monsterDao.insertAllStats(
+            MonsterStatsBd(uiratIkkumaId, 0, false, 7, listOf(Action(MOVE, "3"), Action(ATTACK, "3"), Text("Все призванные создания Уйрата мощные, если учавствуют 3 или 4 игрока"), Text("Когда на игровом поле есть Огненный или Земляной демон, Уйрат может использовать #22 и #23 как если бы они имелт максимальный заряд."))),
+            MonsterStatsBd(uiratIkkumaId, 1, false, 8, listOf(Action(MOVE, "3"), Action(ATTACK, "3"), Action(WOUND, ""), Text("Все призванные создания Уйрата мощные, если учавствуют 3 или 4 игрока"), Text("Когда на игровом поле есть Огненный или Земляной демон, Уйрат может использовать #22 и #23 как если бы они имелт максимальный заряд."))),
+            MonsterStatsBd(uiratIkkumaId, 2, false, 9, listOf(Action(MOVE, "3"), Action(ATTACK, "3"), Action(POISON, ""), Action(WOUND, ""), Text("Все призванные создания Уйрата мощные, если учавствуют 3 или 4 игрока"), Text("Когда на игровом поле есть Огненный или Земляной демон, Уйрат может использовать #22 и #23 как если бы они имелт максимальный заряд."))),
+            MonsterStatsBd(uiratIkkumaId, 3, false, 11, listOf(Action(MOVE, "3"), Action(ATTACK, "4"), Action(POISON, ""), Action(WOUND, ""), Text("Все призванные создания Уйрата мощные, если учавствуют 3 или 4 игрока"), Text("Когда на игровом поле есть Огненный или Земляной демон, Уйрат может использовать #22 и #23 как если бы они имелт максимальный заряд."))),
+            MonsterStatsBd(uiratIkkumaId, 4, false, 12, listOf(Action(MOVE, "4"), Action(ATTACK, "4"), Action(POISON, ""), Action(WOUND, ""), Text("Все призванные создания Уйрата мощные, если учавствуют 3 или 4 игрока"), Text("Когда на игровом поле есть Огненный или Земляной демон, Уйрат может использовать #22 и #23 как если бы они имелт максимальный заряд."))),
+            MonsterStatsBd(uiratIkkumaId, 5, false, 14, listOf(Action(MOVE, "4"), Action(ATTACK, "5"), Action(POISON, ""), Action(WOUND, ""), Text("Все призванные создания Уйрата мощные, если учавствуют 3 или 4 игрока"), Text("Когда на игровом поле есть Огненный или Земляной демон, Уйрат может использовать #22 и #23 как если бы они имелт максимальный заряд."))),
+            MonsterStatsBd(uiratIkkumaId, 6, false, 15, listOf(Action(MOVE, "4"), Action(ATTACK, "6"), Action(POISON, ""), Action(WOUND, ""), Text("Все призванные создания Уйрата мощные, если учавствуют 3 или 4 игрока"), Text("Когда на игровом поле есть Огненный или Земляной демон, Уйрат может использовать #22 и #23 как если бы они имелт максимальный заряд."))),
+            MonsterStatsBd(uiratIkkumaId, 7, false, 18, listOf(Action(MOVE, "4"), Action(ATTACK, "6"), Action(POISON, ""), Action(WOUND, ""), Text("Все призванные создания Уйрата мощные, если учавствуют 3 или 4 игрока"), Text("Когда на игровом поле есть Огненный или Земляной демон, Уйрат может использовать #22 и #23 как если бы они имелт максимальный заряд."))),
         )
     }
 
