@@ -25,10 +25,9 @@ import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
 internal fun TeamTabScreen(
     state: TeamTabUiState,
     completeScenario: (Int) -> Unit,
-    startScenario: (Int) -> Unit,
+    startScenario: (Int?) -> Unit,
     updateProsperity: (Int) -> Unit,
     updateReputation: (Int) -> Unit,
-    addScenario: (Int?) -> Unit,
     openTeamAchievements: () -> Unit,
     openGlobalAchievements: () -> Unit,
 ) {
@@ -68,7 +67,6 @@ internal fun TeamTabScreen(
                         scenarios = team.teamScenario,
                         completeScenario = completeScenario,
                         startScenario = startScenario,
-                        addScenario = addScenario
                     )
                 }
                 item {
@@ -101,7 +99,6 @@ private fun TeamTabScreenPreview() {
             startScenario = {},
             updateProsperity = {},
             updateReputation = {},
-            addScenario = {},
             openTeamAchievements = {},
             openGlobalAchievements = {}
         )

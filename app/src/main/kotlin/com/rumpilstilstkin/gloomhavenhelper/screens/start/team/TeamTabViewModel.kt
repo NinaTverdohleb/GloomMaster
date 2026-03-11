@@ -30,7 +30,6 @@ class TeamTabViewModel @Inject constructor(
     private val completeScenarioUseCase: CompleteScenarioUseCase,
     private val updateTeamProsperityUseCase: UpdateTeamProsperityUseCase,
     private val updateTeamReputationUseCase: UpdateTeamReputationUseCase,
-    private val getMonstersForScenarioUseCase: GetMonsterForScenarioUseCase,
 ) : ViewModel() {
 
     private val _navigationEvents = MutableSharedFlow<GlHelperEvent>()
@@ -80,24 +79,18 @@ class TeamTabViewModel @Inject constructor(
                 }
 
                 is TeamTabAction.StartScenario -> {
-                    getMonstersForScenarioUseCase(action.scenarioId).onSuccess { monsters ->
-                        _navigationEvents.emit(
-                            Screen(
-                                Scenario(
-                                    scenarioId = action.scenarioId,
-                                    restore = false
-                                )
+                    _navigationEvents.emit(
+                        Screen(
+                            Scenario(
+                                scenarioId = action.scenarioId,
+                                restore = false
                             )
                         )
-                    }
+                    )
                 }
 
                 is TeamTabAction.CompleteScenario -> {
                     completeScenarioUseCase.invoke(scenarioNumber = action.scenarioId)
-                }
-
-                is TeamTabAction.AddScenario -> {
-                    _navigationEvents.emit(Screen(GlHelperScreens.ScenarioConstructor(null)))
                 }
 
                 TeamTabAction.OpenGlobalAchievements -> {
@@ -113,11 +106,10 @@ class TeamTabViewModel @Inject constructor(
 }
 
 sealed interface TeamTabAction {
-    data class StartScenario(val scenarioId: Int) : TeamTabAction
+    data class StartScenario(val scenarioId: Int?) : TeamTabAction
     data class CompleteScenario(val scenarioId: Int) : TeamTabAction
     data class UpdateReputation(val value: Int) : TeamTabAction
     data class UpdateProsperity(val value: Int) : TeamTabAction
-    data class AddScenario(val scenarioNumber: Int?) : TeamTabAction
     data object OpenTeamAchievements : TeamTabAction
     data object OpenGlobalAchievements : TeamTabAction
 }

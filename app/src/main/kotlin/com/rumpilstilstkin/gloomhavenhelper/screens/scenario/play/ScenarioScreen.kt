@@ -36,15 +36,17 @@ import com.rumpilstilstkin.gloomhavenhelper.screens.models.MonsterItem
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.MonsterUnit
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.components.AddMonsterCard
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.components.RegularMonsterCard
+import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.state.Magic
+import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.state.MagicValue
+import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.state.ScenarioStateUi
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomToolbarStatus
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.persistentMapOf
-import kotlinx.collections.immutable.toImmutableMap
 
 @Composable
 internal fun ScenarioScreen(
-    state: ScenarioUIState,
+    state: ScenarioStateUi,
     complete: () -> Unit,
     back: () -> Unit,
     addMonster: () -> Unit,
@@ -246,7 +248,7 @@ fun ScenarioScreenContent(
 private fun ScenarioScreenPreview() {
     GloomhavenHalperTheme {
         ScenarioScreen(
-            state = ScenarioUIState(
+            state = ScenarioStateUi(
                 name = "Гиблая лужa",
                 monsters = persistentListOf(
                     MonsterItem.fixture()
@@ -280,7 +282,7 @@ private fun ScenarioScreenPreview() {
 private fun ScenarioScreenEmptyPreview() {
     GloomhavenHalperTheme {
         ScenarioScreen(
-            state = ScenarioUIState(
+            state = ScenarioStateUi(
                 name = "Гиблая лужa",
             ),
             addMonster = {},

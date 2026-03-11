@@ -1,6 +1,7 @@
 package com.rumpilstilstkin.gloomhavenhelper.screens.models
 
 import androidx.compose.runtime.Immutable
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.Monster
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterAction
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterCard
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterStatType
@@ -46,8 +47,43 @@ data class MonsterUnit(
     val effects: ImmutableList<ActionUi> = persistentListOf(),
     val immunity: ImmutableList<ActionUi> = persistentListOf(),
     val level: Int,
-){
+) {
     companion object {
+        fun create(
+            monster: Monster,
+            number: Int,
+            isElite: Boolean,
+            currentLife: Int? = null
+        ): MonsterUnit {
+            val maxLife = if (isElite) monster.eliteLife else monster.life
+            val stats = if (isElite) monster.eliteStats else monster.stats
+            return MonsterUnit(
+                number = number,
+                maxLife = maxLife,
+                currentLife = currentLife ?: maxLife,
+                stats = stats.map { EffectItem.fromCardAction(it) }.toImmutableList(),
+                isSpecial = isElite,
+                level = monster.level,
+                immunity = monster.immunity.map { ActionUi.fromMonsterStatType(it) }.toImmutableList()
+            )
+        }
+
+        fun createBoss(
+            monster: Monster,
+            gamersCount: Int
+        ): MonsterUnit {
+            val maxLife = monster.life * gamersCount
+            return MonsterUnit(
+                number = 1,
+                maxLife = maxLife,
+                currentLife = maxLife,
+                stats = monster.stats.map { EffectItem.fromCardAction(it) }.toImmutableList(),
+                isSpecial = false,
+                level = monster.level,
+                immunity = monster.immunity.map { ActionUi.fromMonsterStatType(it) }.toImmutableList()
+            )
+        }
+
         fun fixture(
             number: Int = 1
         ) = MonsterUnit(

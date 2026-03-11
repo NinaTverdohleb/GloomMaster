@@ -2,17 +2,17 @@ package com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.Monster
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario.CompleteScenarioUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario.GetMonsterStatsForLevelUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario.GetScenarioInfoUseCase
 import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEvent
+import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.state.ScenarioActions
+import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.state.ScenarioLogicState
+import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.state.ScenarioStateUi
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.collections.immutable.persistentListOf
-import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -38,13 +38,13 @@ class ScenarioViewModel @AssistedInject constructor(
     val navigationEvents = _navigationEvents.asSharedFlow()
 
     private val _logicState = MutableStateFlow<ScenarioLogicState?>(null)
-    val uiState: StateFlow<ScenarioUIState> = _logicState
+    val uiState: StateFlow<ScenarioStateUi> = _logicState
         .filterNotNull()
         .map { it.toUIState() }
         .stateIn(
             scope = viewModelScope,
             started = SharingStarted.WhileSubscribed(5000),
-            initialValue = ScenarioUIState()
+            initialValue = ScenarioStateUi()
         )
 
     init {

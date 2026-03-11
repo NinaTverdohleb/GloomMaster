@@ -31,8 +31,7 @@ fun ScenarioBlock(
     scenarios: List<ShortScenarioUI>,
     modifier: Modifier = Modifier,
     completeScenario: (Int) -> Unit,
-    startScenario: (Int) -> Unit,
-    addScenario: (Int?) -> Unit,
+    startScenario: (Int?) -> Unit,
 ) = Column(
     modifier = modifier
 ) {
@@ -47,7 +46,7 @@ fun ScenarioBlock(
             color = MaterialTheme.colorScheme.primary
         )
 
-        IconButton(onClick = {addScenario(null)}) {
+        IconButton(onClick = {startScenario(null)}) {
             Icon(
                 Icons.Default.Add,
                 contentDescription = null,
@@ -77,18 +76,14 @@ fun ScenarioBlock(
             scenarioName = scenario.scenarioName,
             scenarioRequirements = scenario.scenarioRequirements,
             onDismiss = { selectedScenario = null },
-            confirmText = if (scenario.canPlay) "Играть" else "Конструктор",
+            confirmText = "Играть",
             completeScenario = {
                 completeScenario(scenario.scenarioNumber)
                 selectedScenario = null
             },
             location = scenario.location,
             startScenario = {
-                if (scenario.canPlay) {
-                    startScenario(scenario.scenarioNumber)
-                } else {
-                    addScenario(scenario.scenarioNumber)
-                }
+                startScenario(scenario.scenarioNumber)
                 selectedScenario = null
             }
         )
@@ -105,7 +100,6 @@ private fun ScenarioBlockPreview() {
             ),
             completeScenario = {},
             startScenario = {},
-            addScenario = {},
         )
     }
 }
