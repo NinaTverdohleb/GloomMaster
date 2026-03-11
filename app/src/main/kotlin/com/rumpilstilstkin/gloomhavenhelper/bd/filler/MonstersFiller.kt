@@ -1699,6 +1699,61 @@ object MonstersFiller {
             MonsterStatsBd(uiratIkkumaId, 6, false, 15, listOf(Action(MOVE, "4"), Action(ATTACK, "6"), Action(POISON, ""), Action(WOUND, ""), Text("Все призванные создания Уйрата мощные, если учавствуют 3 или 4 игрока"), Text("Когда на игровом поле есть Огненный или Земляной демон, Уйрат может использовать #22 и #23 как если бы они имелт максимальный заряд."))),
             MonsterStatsBd(uiratIkkumaId, 7, false, 18, listOf(Action(MOVE, "4"), Action(ATTACK, "6"), Action(POISON, ""), Action(WOUND, ""), Text("Все призванные создания Уйрата мощные, если учавствуют 3 или 4 игрока"), Text("Когда на игровом поле есть Огненный или Земляной демон, Уйрат может использовать #22 и #23 как если бы они имелт максимальный заряд."))),
         )
+
+        val aestherAshbladeId = monsterDao.insertMonster(
+            MonsterBd(
+                name = "Эстер Пепельный клинок",
+                deckName = "ashblade",
+                isBoss = false,
+                pack = PackType.FORGOTTEN_CIRCLES.name,
+            )
+        ).toInt()
+        monsterDao.insertAllStats(
+            MonsterStatsBd(aestherAshbladeId, 0, false, 8, listOf(Action(MOVE, "3"), Action(ATTACK, "2"))),
+            MonsterStatsBd(aestherAshbladeId, 0, true, 12, listOf(Action(MOVE, "3"), Action(ATTACK, "3"), Action(POISON, ""))),
+
+            MonsterStatsBd(aestherAshbladeId, 1, false, 9, listOf(Action(MOVE, "3"), Action(ATTACK, "3"))),
+            MonsterStatsBd(aestherAshbladeId, 1, true, 14, listOf(Action(MOVE, "4"), Action(ATTACK, "3"), Action(POISON, ""))),
+
+            MonsterStatsBd(aestherAshbladeId, 2, false, 13, listOf(Action(MOVE, "3"), Action(ATTACK, "3"))),
+            MonsterStatsBd(aestherAshbladeId, 2, true, 16, listOf(Action(MOVE, "4"), Action(ATTACK, "4"), Action(POISON, ""))),
+
+            MonsterStatsBd(aestherAshbladeId, 3, false, 15, listOf(Action(MOVE, "3"), Action(ATTACK, "3"), Action(POISON, ""))),
+            MonsterStatsBd(aestherAshbladeId, 3, true, 18, listOf(Action(MOVE, "4"), Action(ATTACK, "4"), Action(POISON, ""), Text("Все атаки на Эстер Пепельный клинок проводятся с затруднением"))),
+
+            MonsterStatsBd(aestherAshbladeId, 4, false, 15, listOf(Action(MOVE, "4"), Action(ATTACK, "4"), Action(POISON, ""))),
+            MonsterStatsBd(aestherAshbladeId, 4, true, 21, listOf(Action(MOVE, "4"), Action(ATTACK, "5"), Action(POISON, ""), Text("Все атаки на Эстер Пепельный клинок проводятся с затруднением"))),
+
+            MonsterStatsBd(aestherAshbladeId, 5, false, 18, listOf(Action(MOVE, "4"), Action(ATTACK, "4"), Action(POISON, ""))),
+            MonsterStatsBd(aestherAshbladeId, 5, true, 25, listOf(Action(MOVE, "4"), Action(ATTACK, "5"), Action(POISON, ""), Text("Все атаки на Эстер Пепельный клинок проводятся с затруднением"))),
+
+            MonsterStatsBd(aestherAshbladeId, 6, false, 21, listOf(Action(MOVE, "4"), Action(ATTACK, "4"), Action(POISON, ""))),
+            MonsterStatsBd(aestherAshbladeId, 6, true, 28, listOf(Action(MOVE, "4"), Action(ATTACK, "6"), Action(POISON, ""), Text("Все атаки на Эстер Пепельный клинок проводятся с затруднением"))),
+
+            MonsterStatsBd(aestherAshbladeId, 7, false, 24, listOf(Action(MOVE, "4"), Action(ATTACK, "5"), Action(POISON, ""))),
+            MonsterStatsBd(aestherAshbladeId, 7, true, 33, listOf(Action(MOVE, "5"), Action(ATTACK, "6"), Action(POISON, ""), Text("Все атаки на Эстер Пепельный клинок проводятся с затруднением"))),
+        )
+
+        val sheluhaId = monsterDao.insertMonster(
+            MonsterBd(
+                name = "Шелуха",
+                deckName = "ashblade",
+                lifeMultiple = true,
+                isBoss = true,
+                immunity = listOf(STUN, DISARM,IMMOBILIZE),
+                pack = PackType.FORGOTTEN_CIRCLES.name,
+            )
+        ).toInt()
+        monsterDao.insertAllStats(
+            MonsterStatsBd(sheluhaId, 0, false, 12, listOf(Action(MOVE, "3"), Action(ATTACK, "3"), Action(POISON, ""))),
+            MonsterStatsBd(sheluhaId, 1, false, 14, listOf(Action(MOVE, "4"), Action(ATTACK, "3"), Action(POISON, ""))),
+            MonsterStatsBd(sheluhaId, 2, false, 16, listOf(Action(MOVE, "4"), Action(ATTACK, "4"), Action(POISON, ""))),
+            MonsterStatsBd(sheluhaId, 3, false, 18, listOf(Action(MOVE, "4"), Action(ATTACK, "4"), Action(POISON, ""), Text("Все атаки на Эстер Пепельный клинок проводятся с затруднением"))),
+            MonsterStatsBd(sheluhaId, 4, false, 21, listOf(Action(MOVE, "4"), Action(ATTACK, "5"), Action(POISON, ""), Text("Все атаки на Эстер Пепельный клинок проводятся с затруднением"))),
+            MonsterStatsBd(sheluhaId, 5, false, 25, listOf(Action(MOVE, "4"), Action(ATTACK, "5"), Action(POISON, ""), Text("Все атаки на Эстер Пепельный клинок проводятся с затруднением"))),
+            MonsterStatsBd(sheluhaId, 6, false, 28, listOf(Action(MOVE, "4"), Action(ATTACK, "6"), Action(POISON, ""), Text("Все атаки на Эстер Пепельный клинок проводятся с затруднением"))),
+            MonsterStatsBd(sheluhaId, 7, false, 33, listOf(Action(MOVE, "5"), Action(ATTACK, "6"), Action(POISON, ""), Text("Все атаки на Эстер Пепельный клинок проводятся с затруднением"))),
+        )
     }
 
     private suspend fun fillAbilityDecks(monsterDao: MonsterDao) {
@@ -2072,6 +2127,18 @@ object MonstersFiller {
             MonsterAbilityCardBd(deckName = "tracker", imageName = "ic_deck_ma_tr_6.webp", initiative = 48),
             MonsterAbilityCardBd(deckName = "tracker", imageName = "ic_deck_ma_tr_7.webp", initiative = 55),
             MonsterAbilityCardBd(deckName = "tracker", imageName = "ic_deck_ma_tr_8.webp", needsShuffle = true, initiative = 69),
+        )
+
+        // ashblade deck
+        monsterDao.insertCards(
+            MonsterAbilityCardBd(deckName = "ashblade", imageName = "ic_deck_ma_ab_1.webp", initiative = 29),
+            MonsterAbilityCardBd(deckName = "ashblade", imageName = "ic_deck_ma_ab_2.webp", initiative = 40),
+            MonsterAbilityCardBd(deckName = "ashblade", imageName = "ic_deck_ma_ab_3.webp", initiative = 53),
+            MonsterAbilityCardBd(deckName = "ashblade", imageName = "ic_deck_ma_ab_4.webp", initiative = 54),
+            MonsterAbilityCardBd(deckName = "ashblade", imageName = "ic_deck_ma_ab_5.webp", initiative = 69),
+            MonsterAbilityCardBd(deckName = "ashblade", imageName = "ic_deck_ma_ab_6.webp", needsShuffle = true, initiative = 92),
+            MonsterAbilityCardBd(deckName = "ashblade", imageName = "ic_deck_ma_ab_7.webp", initiative = 79),
+            MonsterAbilityCardBd(deckName = "ashblade", imageName = "ic_deck_ma_ab_8.webp", needsShuffle = true, initiative = 35),
         )
     }
 }

@@ -1483,6 +1483,60 @@ object ScenariosFiller {
                 ),
                 pack = PackType.FORGOTTEN_CIRCLES.name,
             ),
+
+            ScenarioBd(
+                scenarioNumber = 111,
+                name = "Сброщенные оковы",
+                location = "Мрачная гавань",
+                monsters = listOf(
+                    "Эстер Пепельный клинок",
+                    "Эстер-разведчик",
+                    "Черный бес",
+                    "Ночной демон",
+                    "Шелуха",
+                ),
+                pack = PackType.FORGOTTEN_CIRCLES.name,
+            ),
+
+            ScenarioBd(
+                scenarioNumber = 112,
+                name = "Основа основ",
+                location = "Перемещение между измерениями",
+                monsters = listOf(
+                    "Древняя пушка",
+                    "Ожившие кости ",
+                    "Каменный голем",
+                ),
+                pack = PackType.FORGOTTEN_CIRCLES.name,
+            ),
+
+            ScenarioBd(
+                scenarioNumber = 113,
+                name = "Потерянный след",
+                location = "Перемещение между измерениями",
+                monsters = listOf(
+                    "Каменный голем",
+                ),
+                pack = PackType.FORGOTTEN_CIRCLES.name,
+            ),
+
+            ScenarioBd(
+                scenarioNumber = 114,
+                name = "Хрупкое равновесие",
+                location = "Мрачная гавань",
+                monsters = listOf(
+                    "Эстер Пепельный клинок",
+                    "Эстер-разведчик",
+                ),
+                pack = PackType.FORGOTTEN_CIRCLES.name,
+            ),
+
+            ScenarioBd(
+                scenarioNumber = 114,
+                name = "Будущее туманно",
+                location = "Перемещение между измерениями",
+                pack = PackType.FORGOTTEN_CIRCLES.name,
+            ),
         )
     }
 }
