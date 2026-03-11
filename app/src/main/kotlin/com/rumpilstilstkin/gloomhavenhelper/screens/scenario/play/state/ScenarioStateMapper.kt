@@ -1,6 +1,10 @@
 package com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.state
 
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.ScenarioBattleInfo
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.ScenarioGameState
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.ScenarioGameStateMagic
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.ScenarioGameStateMonsterItem
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.ScenarioGameStateMonsterUnit
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.MonsterAbilityCard
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.MonsterItem
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.MonsterUnit
@@ -72,5 +76,33 @@ object ScenarioStateMapper {
             showMonsterDialog = false,
             showUnitLevelDialog = false,
             magicState = MagicState.restore(battleInfo.magicCharges)
+        )
+
+    fun stateForSave(state: ScenarioLogicState) =
+        ScenarioGameState(
+            name = state.scenarioInfo.name,
+            monsterNames = state.scenarioInfo.monsters.map { it.name },
+            round = state.round,
+            availableCards = state.cardDeck.getCards().map { it.cardId },
+            activeMonsters = state.activeMonsters.map { monsterItem ->
+                ScenarioGameStateMonsterItem(
+                    id = monsterItem.id,
+                    currentCard = monsterItem.currentCard?.id,
+                    units = monsterItem.units.map { unit ->
+                        ScenarioGameStateMonsterUnit(
+                            number = unit.number,
+                            currentLife = unit.currentLife,
+                            level = unit.level,
+                            isElite = unit.isSpecial
+                        )
+                    },
+                )
+            },
+            magicCharges = state.magicState.toList().map { (name, value) ->
+                ScenarioGameStateMagic(
+                    name = name,
+                    value = value
+                )
+            }
         )
 }

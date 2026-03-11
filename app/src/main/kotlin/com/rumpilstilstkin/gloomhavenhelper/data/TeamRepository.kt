@@ -29,6 +29,7 @@ class TeamRepository @Inject constructor(
     private val teamDao: TeamDao,
     private val characterDao: CharacterDao,
     private val scenarioRepository: ScenarioRepository,
+    private val scenarioGameStateRepository: ScenarioGameStateRepository
 ) {
     private val _currentTeam: MutableStateFlow<Result<Int>> =
         MutableStateFlow(Result.failure(NotFoundException()))
@@ -58,6 +59,7 @@ class TeamRepository @Inject constructor(
 
     suspend fun setCurrentTeam(teamId: Int) {
         currentTeamDatasource.saveCurrentTeam(teamId)
+        scenarioGameStateRepository.delete()
         updateCurrentTeam()
     }
 
@@ -66,11 +68,10 @@ class TeamRepository @Inject constructor(
 
     suspend fun saveTeam(team: TeamInfoForSave): Int {
         val savedTeamId = teamDao.insert(team.toBd()).toInt()
-        currentTeamDatasource.saveCurrentTeam(savedTeamId)
         team.characters.forEach {
             characterDao.insert(it.copy(teamId = savedTeamId).toBd())
         }
-        updateCurrentTeam()
+        setCurrentTeam(teamId = savedTeamId)
         return savedTeamId
     }
 

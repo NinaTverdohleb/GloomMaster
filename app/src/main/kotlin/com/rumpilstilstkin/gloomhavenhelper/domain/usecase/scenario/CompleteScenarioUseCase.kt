@@ -1,6 +1,7 @@
 package com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario
 
 import com.rumpilstilstkin.gloomhavenhelper.data.AchievementRepository
+import com.rumpilstilstkin.gloomhavenhelper.data.ScenarioGameStateRepository
 import com.rumpilstilstkin.gloomhavenhelper.data.ScenarioRepository
 import com.rumpilstilstkin.gloomhavenhelper.data.TeamRepository
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.Achievement
@@ -11,6 +12,7 @@ class CompleteScenarioUseCase @Inject constructor(
     private val teamRepository: TeamRepository,
     private val scenarioRepository: ScenarioRepository,
     private val achievementRepository: AchievementRepository,
+    private val scenarioGameStateRepository: ScenarioGameStateRepository
 ) {
     suspend operator fun invoke(scenarioNumber: Int) {
         teamRepository.currentTeam.first()?.let { team ->
@@ -25,6 +27,7 @@ class CompleteScenarioUseCase @Inject constructor(
                                     && newScenario.pack in team.packs.toSet()
                         }
                 scenarioRepository.completeTeamScenario(team.teamId, scenarioNumber)
+                scenarioGameStateRepository.delete()
                 newScenario.forEach {
                     scenarioRepository.saveTeamScenario(it, team.teamId)
                 }

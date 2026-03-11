@@ -5,40 +5,49 @@ import androidx.lifecycle.viewModelScope
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario.CompleteScenarioUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario.GetMonsterStatsForLevelUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario.GetScenarioInfoUseCase
+import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario.SaveScenarioStateUseCase
 import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEvent
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.state.ScenarioActions
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.state.ScenarioLogicState
+import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.state.ScenarioStateMapper
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.state.ScenarioStateUi
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asSharedFlow
+import kotlinx.coroutines.flow.debounce
+import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.filterNotNull
+import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
+@OptIn(FlowPreview::class)
 @HiltViewModel(assistedFactory = ScenarioViewModel.Factory::class)
 class ScenarioViewModel @AssistedInject constructor(
     private val getScenarioInfoUseCase: GetScenarioInfoUseCase,
     private val completeScenarioUseCase: CompleteScenarioUseCase,
     private val getMonsterStatsForLevelUseCase: GetMonsterStatsForLevelUseCase,
+    private val saveScenarioStateUseCase: SaveScenarioStateUseCase,
     @Assisted private val scenarioNumber: Int?,
     @Assisted private val restore: Boolean,
 ) : ViewModel() {
     private val _navigationEvents = MutableSharedFlow<GlHelperEvent>()
     val navigationEvents = _navigationEvents.asSharedFlow()
 
-    private val _logicState = MutableStateFlow<ScenarioLogicState?>(null)
-    val uiState: StateFlow<ScenarioStateUi> = _logicState
+    private val logicState = MutableStateFlow<ScenarioLogicState?>(null)
+    val uiState: StateFlow<ScenarioStateUi> = logicState
         .filterNotNull()
         .map { it.toUIState() }
         .stateIn(
@@ -49,12 +58,23 @@ class ScenarioViewModel @AssistedInject constructor(
 
     init {
         loadScenario()
+        logicState
+            .filterNotNull()
+            .debounce(500)
+            .map { logicState ->
+                ScenarioStateMapper.stateForSave(logicState)
+            }
+            .distinctUntilChanged()
+            .onEach { newState ->
+                saveScenarioStateUseCase(newState)
+            }
+            .launchIn(viewModelScope)
     }
 
     private fun loadScenario() {
         viewModelScope.launch {
             getScenarioInfoUseCase(scenarioNumber, restore).onSuccess { battleInfo ->
-                _logicState.update {
+                logicState.update {
                     ScenarioLogicState.restore(battleInfo)
                 }
             }
@@ -155,10 +175,10 @@ class ScenarioViewModel @AssistedInject constructor(
     private suspend fun updateState(
         update: suspend (ScenarioLogicState) -> ScenarioLogicState
     ) {
-        val state = _logicState.value ?: return
+        val state = logicState.value ?: return
         withContext(Dispatchers.Default) {
             val newState = update(state)
-            _logicState.update { newState }
+            logicState.update { newState }
         }
     }
 

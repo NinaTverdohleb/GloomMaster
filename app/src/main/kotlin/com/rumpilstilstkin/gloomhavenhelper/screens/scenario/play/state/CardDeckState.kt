@@ -20,6 +20,8 @@ data class CardDeckState(
         return DrawResult(card = card, newState = copy(cards = newCards))
     }
 
+    fun getCards(): List<MonsterCard> = cards
+
     companion object {
         fun create(cards: List<MonsterCard>): CardDeckState = CardDeckState(cards)
     }

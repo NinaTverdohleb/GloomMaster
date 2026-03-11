@@ -55,6 +55,10 @@ data class MagicState(
 
     fun toMap(): Map<Magic, MagicValue> = charges
 
+    fun toList(): List<Pair<String, Int>> = charges.toList().map { (magic, value) ->
+        magic.name to value.value
+    }
+
     companion object {
         fun initial(): MagicState = MagicState()
 
