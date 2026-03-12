@@ -102,24 +102,6 @@ Domain ↔ Entity mapping scattered across repositories.
 
 ## Code Quality
 
-### 🔧 REF-002: Standardize DAO Query Operators
-**Priority:** 🟢 Low
-
-Inconsistent use of `LIKE` vs `=` for exact matches in queries.
-
-**Examples:**
-```sql
-WHERE teamId LIKE :teamId    -- should be =
-WHERE teamId = :teamId       -- correct
-```
-
-**Tasks:**
-- [ ] Audit all DAO queries
-- [ ] Replace `LIKE` with `=` for exact ID matches
-- [ ] Use `LIKE` only for pattern matching
-
----
-
 ### 🔧 REF-004: Unify State Class Patterns
 **Priority:** 🟢 Low
 
@@ -163,17 +145,6 @@ Mixed patterns for UI state: `sealed interface`, `sealed class`, `data class`.
 
 ## DevOps
 
-### 🔧 DEV-001: Set Up CI/CD Pipeline
-**Priority:** 🟡 Medium
-
-**Tasks:**
-- [ ] Create GitHub Actions workflow
-- [ ] Run lint on PR
-- [ ] Build APK on merge to main
-- [ ] Automate version bumping
-
----
-
 ### 🔧 DEV-002: Add ProGuard/R8 Rules
 **Priority:** 🟡 Medium
 
@@ -187,13 +158,13 @@ Mixed patterns for UI state: `sealed interface`, `sealed class`, `data class`.
 
 ## Summary by Priority
 
-| Priority | Count  |
-|----------|--------|
-| 🔴 Critical | 0      |
-| 🟠 High | 2      |
-| 🟡 Medium | 3      |
-| 🟢 Low | 6      |
-| **Total** | **11** |
+| Priority | Count |
+|----------|-------|
+| 🔴 Critical | 0     |
+| 🟠 High | 2     |
+| 🟡 Medium | 2     |
+| 🟢 Low | 5     |
+| **Total** | **9** |
 
 ## Recommended Execution Order
 
@@ -203,13 +174,11 @@ Mixed patterns for UI state: `sealed interface`, `sealed class`, `data class`.
 
 ### Phase 2: Quality (Medium Priority)
 3. ARCH-005: Implement caching strategy
-4. DEV-001: CI/CD pipeline
-5. DEV-002: ProGuard rules
+4. DEV-002: ProGuard rules
 
 ### Phase 3: Enhancement (Low Priority)
-6. REF-002: Standardize DAO queries
-7. REF-004: Unify state class patterns
-8. ARCH-006: Extract mapping logic
-9. DB-005: Database export/import
-10. FEAT-005: Scenario rewards
-11. FEAT-006: Cloud sync
+5. REF-004: Unify state class patterns
+6. ARCH-006: Extract mapping logic
+7. DB-005: Database export/import
+8. FEAT-005: Scenario rewards
+9. FEAT-006: Cloud sync

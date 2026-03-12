@@ -1,6 +1,8 @@
 package com.rumpilstilstkin.gloomhavenhelper.bd.filler.json
 
 import android.content.Context
+import com.rumpilstilstkin.gloomhavenhelper.bd.filler.json.models.AchievementJson
+import com.rumpilstilstkin.gloomhavenhelper.bd.filler.json.models.GameLevelJson
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.serialization.json.Json
 import javax.inject.Inject
@@ -23,6 +25,10 @@ class JsonDataLoader @Inject constructor(
             .use { it.readText() }
         return json.decodeFromString(jsonString)
     }
+
+    fun loadGameLevels(version: Int): List<GameLevelJson> = load("v${version}_game_levels.json")
+
+    fun loadAchievements(version: Int): List<AchievementJson> = load("v${version}_achievements.json")
 
     fun loadAbilityDecks(): List<AbilityDeckJson> = load("ability_decks.json")
 
