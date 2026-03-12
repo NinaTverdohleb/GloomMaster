@@ -46,8 +46,8 @@ data class ScenarioLogicState(
         var state = this
             .copy(activeMonsters = (activeMonsters + newMonsterItems).toImmutableList())
 
-        monsterIds.forEach { monsterId ->
-            state = state.updateMonsterCard(monsterId)
+        newMonsterItems.forEach { monster ->
+            state = state.updateMonsterCard(monster)
         }
         return state
     }
@@ -81,7 +81,7 @@ data class ScenarioLogicState(
             round = round + 1
         )
         this.activeMonsters.forEach {
-            state = state.updateMonsterCard(it.id)
+            state = state.updateMonsterCard(it)
         }
         return state.copy(
             magicState = magicState.decreaseAll()
@@ -94,7 +94,8 @@ data class ScenarioLogicState(
                 .updateMonster(monsterId) { monster ->
                     monster.updateUnit(number) { unit ->
                         unit.copy(
-                            stats = stats.stats.map { EffectItem.fromCardAction(it) }.toImmutableList(),
+                            stats = stats.stats.map { EffectItem.fromCardAction(it) }
+                                .toImmutableList(),
                             currentLife = stats.life,
                             maxLife = stats.life,
                             level = stats.level
@@ -129,16 +130,19 @@ data class ScenarioLogicState(
                 .toImmutableList()
         )
 
-    private fun updateMonsterCard(monsterId: Int): ScenarioLogicState {
-        if (round == 0) return this
-
-        val monster = scenarioInfo.monsters.first { it.id == monsterId }
+    private fun updateMonsterCard(monster: MonsterItem): ScenarioLogicState {
+        if (monster.units.isEmpty()) return this
+        val monster = scenarioInfo.monsters.first { it.id == monster.id }
         val drawResult = cardDeck.drawCard(monster.deckName)
 
         return copy(
             activeMonsters = activeMonsters
-                .updateMonster(monsterId) { m ->
-                    m.copy(currentCard = drawResult.card?.let { MonsterAbilityCard.createFromMonsterCard(it) })
+                .updateMonster(monster.id) { m ->
+                    m.copy(currentCard = drawResult.card?.let {
+                        MonsterAbilityCard.createFromMonsterCard(
+                            it
+                        )
+                    })
                 },
             cardDeck = drawResult.newState
         )

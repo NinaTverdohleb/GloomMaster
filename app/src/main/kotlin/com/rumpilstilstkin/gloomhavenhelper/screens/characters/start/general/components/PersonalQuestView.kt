@@ -81,7 +81,9 @@ fun PersonalQuestView(
                 style = MaterialTheme.typography.headlineSmall,
             )
         }
-
+        Spacer(
+            modifier = Modifier.height(16.dp)
+        )
         quest.phases.forEach { phase ->
             if (phase.visible) {
                 phase.tasks.forEach { task ->

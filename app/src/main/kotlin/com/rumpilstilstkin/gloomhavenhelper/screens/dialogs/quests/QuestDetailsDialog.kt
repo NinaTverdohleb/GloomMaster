@@ -107,7 +107,7 @@ private fun Rewards(
         Text(
             modifier = Modifier.fillMaxWidth(),
             style = MaterialTheme.typography.titleSmall,
-            text = "Нагада",
+            text = "Награда",
         )
         Spacer(modifier = Modifier.size(4.dp))
         if (classType != null) {

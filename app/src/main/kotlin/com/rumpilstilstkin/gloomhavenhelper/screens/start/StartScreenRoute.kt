@@ -36,14 +36,10 @@ fun StartScreenRoute(
             )
         }
     }
-    val context = LocalContext.current
     StartScreen(
         state = uiState,
         addTeam = {
             showAddTeamDialog = true
-        },
-        back = {
-            (context as? Activity)?.finishAffinity()
         },
         selectTab = { selectedTab ->
             when (selectedTab) {

@@ -32,7 +32,6 @@ internal fun StartScreen(
     state: StartScreenState,
     selectTab: @Composable (StartScreenTab) -> Unit,
     addTeam: () -> Unit,
-    back: () -> Unit,
     editTeam: () -> Unit,
 ) {
     var selectedTab by rememberSaveable { mutableStateOf(StartScreenTab.TEAM) }
@@ -51,7 +50,6 @@ internal fun StartScreen(
             if (state is StartScreenState.Team) {
                 GloomToolbarStatus(
                     status = state.name,
-                    back = back,
                     actions = {
                         IconButton(onClick = addTeam) {
                             Icon(
@@ -66,7 +64,6 @@ internal fun StartScreen(
             } else {
                 GloomToolbarTitle(
                     title = stringResource(R.string.app_name),
-                    back = back,
                 )
             }
         }
@@ -106,7 +103,6 @@ private fun StartScreenEmptyPreview() {
             state = StartScreenState.Empty,
             addTeam = {},
             selectTab = {},
-            back = {},
             editTeam = {}
         )
     }
@@ -132,7 +128,6 @@ private fun StartScreenPreview() {
                     changeLevel = {_, _ ->}
                 )
             },
-            back = {},
             editTeam = {}
         )
     }
