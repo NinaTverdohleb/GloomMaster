@@ -1,0 +1,533 @@
+[
+  {
+    "name": "Главарь разбойников",
+    "deckName": "boss",
+    "isBoss": true,
+    "fly": false,
+    "lifeMultiple": true,
+    "immunity": ["STUN", "IMMOBILIZE", "CURSE"],
+    "pack": "MAIN"
+  },
+  {
+    "name": "Ожившие кости",
+    "deckName": "living-bones",
+    "isBoss": false,
+    "fly": false,
+    "lifeMultiple": false,
+    "immunity": [],
+    "pack": "MAIN"
+  },
+  {
+    "name": "Разбойник-страж",
+    "deckName": "guard",
+    "isBoss": false,
+    "fly": false,
+    "lifeMultiple": false,
+    "immunity": [],
+    "pack": "MAIN"
+  },
+  {
+    "name": "Разбойник-лучница",
+    "deckName": "archer",
+    "isBoss": false,
+    "fly": false,
+    "lifeMultiple": false,
+    "immunity": [],
+    "pack": "MAIN"
+  },
+  {
+    "name": "Оживший труп",
+    "deckName": "living-corpse",
+    "isBoss": false,
+    "fly": false,
+    "lifeMultiple": false,
+    "immunity": [],
+    "pack": "MAIN"
+  },
+  {
+    "name": "Инокс-стражница",
+    "deckName": "guard",
+    "isBoss": false,
+    "fly": false,
+    "lifeMultiple": false,
+    "immunity": [],
+    "pack": "MAIN"
+  },
+  {
+    "name": "Инокс-лучник",
+    "deckName": "archer",
+    "isBoss": false,
+    "fly": false,
+    "lifeMultiple": false,
+    "immunity": [],
+    "pack": "MAIN"
+  },
+  {
+    "name": "Инокс-шаман",
+    "deckName": "shaman",
+    "isBoss": false,
+    "fly": false,
+    "lifeMultiple": false,
+    "immunity": [],
+    "pack": "MAIN"
+  },
+  {
+    "name": "Культист",
+    "deckName": "cultist",
+    "isBoss": false,
+    "fly": false,
+    "lifeMultiple": false,
+    "immunity": [],
+    "pack": "MAIN"
+  },
+  {
+    "name": "Земляной демон",
+    "deckName": "earth-demon",
+    "isBoss": false,
+    "fly": false,
+    "lifeMultiple": false,
+    "immunity": [],
+    "pack": "MAIN"
+  },
+  {
+    "name": "Воздушный демон",
+    "deckName": "wind-demon",
+    "isBoss": false,
+    "fly": true,
+    "lifeMultiple": false,
+    "immunity": [],
+    "pack": "MAIN"
+  },
+  {
+    "name": "Оживший дух",
+    "deckName": "living-spirit",
+    "isBoss": false,
+    "fly": true,
+    "lifeMultiple": false,
+    "immunity": [],
+    "pack": "MAIN"
+  },
+  {
+    "name": "Ночной демон",
+    "deckName": "night-demon",
+    "isBoss": false,
+    "fly": false,
+    "lifeMultiple": false,
+    "immunity": [],
+    "pack": "MAIN"
+  },
+  {
+    "name": "Огненный демон",
+    "deckName": "flame-demon",
+    "isBoss": false,
+    "fly": true,
+    "lifeMultiple": false,
+    "immunity": [],
+    "pack": "MAIN"
+  },
+  {
+    "name": "Морозный демон",
+    "deckName": "frost-demon",
+    "isBoss": false,
+    "fly": false,
+    "lifeMultiple": false,
+    "immunity": [],
+    "pack": "MAIN"
+  },
+  {
+    "name": "Лесной бес",
+    "deckName": "imp",
+    "isBoss": false,
+    "fly": true,
+    "lifeMultiple": false,
+    "immunity": [],
+    "pack": "MAIN"
+  },
+  {
+    "name": "Пещерный медведь",
+    "deckName": "cave-bear",
+    "isBoss": false,
+    "fly": false,
+    "lifeMultiple": false,
+    "immunity": [],
+    "pack": "MAIN"
+  },
+  {
+    "name": "Инокс-телохранитель - 1",
+    "deckName": "boss",
+    "isBoss": true,
+    "fly": false,
+    "lifeMultiple": true,
+    "immunity": ["DISARM", "MUDDLE", "POISON", "STUN"],
+    "pack": "MAIN"
+  },
+  {
+    "name": "Инокс-телохранитель - 2",
+    "deckName": "boss",
+    "isBoss": true,
+    "fly": false,
+    "lifeMultiple": true,
+    "immunity": ["DISARM", "MUDDLE", "POISON", "STUN"],
+    "pack": "MAIN"
+  },
+  {
+    "name": "Гончая",
+    "deckName": "hound",
+    "isBoss": false,
+    "fly": false,
+    "lifeMultiple": false,
+    "immunity": [],
+    "pack": "MAIN"
+  },
+  {
+    "name": "Вермлинг-разведчик",
+    "deckName": "scout",
+    "isBoss": false,
+    "fly": false,
+    "lifeMultiple": false,
+    "immunity": [],
+    "pack": "MAIN"
+  },
+  {
+    "name": "Жестокий надзиратель",
+    "deckName": "boss",
+    "isBoss": true,
+    "fly": false,
+    "lifeMultiple": true,
+    "immunity": ["STUN", "WOUND", "DISARM", "CURSE"],
+    "pack": "MAIN"
+  },
+  {
+    "name": "Солнечный демон",
+    "deckName": "sun-demon",
+    "isBoss": false,
+    "fly": true,
+    "lifeMultiple": false,
+    "immunity": [],
+    "pack": "MAIN"
+  },
+  {
+    "name": "Городской страж",
+    "deckName": "guard",
+    "isBoss": false,
+    "fly": false,
+    "lifeMultiple": false,
+    "immunity": [],
+    "pack": "MAIN"
+  },
+  {
+    "name": "Городской лучник",
+    "deckName": "archer",
+    "isBoss": false,
+    "fly": false,
+    "lifeMultiple": false,
+    "immunity": [],
+    "pack": "MAIN"
+  },
+  {
+    "name": "Начальник стражи",
+    "deckName": "boss",
+    "isBoss": true,
+    "fly": false,
+    "lifeMultiple": true,
+    "immunity": ["STUN", "DISARM", "WOUND", "MUDDLE"],
+    "pack": "MAIN"
+  },
+  {
+    "name": "Джексера",
+    "deckName": "boss",
+    "isBoss": true,
+    "fly": false,
+    "lifeMultiple": true,
+    "immunity": ["STUN", "DISARM", "CURSE", "WOUND"],
+    "pack": "MAIN"
+  },
+  {
+    "name": "Каменный голем",
+    "deckName": "stone-golem",
+    "isBoss": false,
+    "fly": false,
+    "lifeMultiple": false,
+    "immunity": [],
+    "pack": "MAIN"
+  },
+  {
+    "name": "Шипящий дрейк",
+    "deckName": "spitting-drake",
+    "isBoss": false,
+    "fly": true,
+    "lifeMultiple": false,
+    "immunity": [],
+    "pack": "MAIN"
+  },
+  {
+    "name": "Саввас Ледяной шторм",
+    "deckName": "savvas-icestorm",
+    "isBoss": false,
+    "fly": false,
+    "lifeMultiple": false,
+    "immunity": [],
+    "pack": "MAIN"
+  },
+  {
+    "name": "Жнец заразитель",
+    "deckName": "harrower-infester",
+    "isBoss": false,
+    "fly": true,
+    "lifeMultiple": false,
+    "immunity": [],
+    "pack": "MAIN"
+  },
+  {
+    "name": "Вермлинг-шаман",
+    "deckName": "shaman",
+    "isBoss": false,
+    "fly": false,
+    "lifeMultiple": false,
+    "immunity": [],
+    "pack": "MAIN"
+  },
+  {
+    "name": "Гигантская гадюка",
+    "deckName": "giant-viper",
+    "isBoss": false,
+    "fly": false,
+    "lifeMultiple": false,
+    "immunity": [],
+    "pack": "MAIN"
+  },
+  {
+    "name": "Слизь",
+    "deckName": "ooze",
+    "isBoss": false,
+    "fly": false,
+    "lifeMultiple": false,
+    "immunity": [],
+    "pack": "MAIN"
+  },
+  {
+    "name": "Архидемон",
+    "deckName": "boss",
+    "isBoss": true,
+    "fly": false,
+    "lifeMultiple": true,
+    "immunity": ["STUN", "IMMOBILIZE", "DISARM", "MUDDLE", "POISON", "WOUND"],
+    "pack": "MAIN"
+  },
+  {
+    "name": "Древняя пушка",
+    "deckName": "ancient-artillery",
+    "isBoss": false,
+    "fly": false,
+    "lifeMultiple": false,
+    "immunity": [],
+    "pack": "MAIN"
+  },
+  {
+    "name": "Когтистый дрейк",
+    "deckName": "rending-drake",
+    "isBoss": false,
+    "fly": false,
+    "lifeMultiple": false,
+    "immunity": [],
+    "pack": "MAIN"
+  },
+  {
+    "name": "Черный бес",
+    "deckName": "imp",
+    "isBoss": false,
+    "fly": false,
+    "lifeMultiple": false,
+    "immunity": [],
+    "pack": "MAIN"
+  },
+  {
+    "name": "Невыносимый ужас",
+    "deckName": "deep-terror",
+    "isBoss": false,
+    "fly": false,
+    "lifeMultiple": false,
+    "immunity": ["STUN", "DISARM", "IMMOBILIZE", "MUDDLE"],
+    "pack": "MAIN"
+  },
+  {
+    "name": "Скрытень",
+    "deckName": "lurker",
+    "isBoss": false,
+    "fly": false,
+    "lifeMultiple": false,
+    "immunity": [],
+    "pack": "MAIN"
+  },
+  {
+    "name": "Саввас Поток лавы",
+    "deckName": "savvas-lavaflow",
+    "isBoss": false,
+    "fly": false,
+    "lifeMultiple": false,
+    "immunity": [],
+    "pack": "MAIN"
+  },
+  {
+    "name": "Дрейк-патриарх",
+    "deckName": "boss",
+    "isBoss": true,
+    "fly": false,
+    "lifeMultiple": true,
+    "immunity": ["STUN", "IMMOBILIZE", "DISARM", "PUSH", "PULL", "POISON", "WOUND"],
+    "pack": "MAIN"
+  },
+  {
+    "name": "Крылатый ужас",
+    "deckName": "boss",
+    "isBoss": true,
+    "fly": false,
+    "lifeMultiple": true,
+    "immunity": ["STUN", "DISARM", "CURSE", "MUDDLE", "POISON"],
+    "pack": "MAIN"
+  },
+  {
+    "name": "Невидящее око",
+    "deckName": "boss",
+    "isBoss": true,
+    "fly": false,
+    "lifeMultiple": true,
+    "immunity": ["STUN", "PUSH", "PULL", "DISARM", "CURSE", "MUDDLE"],
+    "pack": "MAIN"
+  },
+  {
+    "name": "Темный всадник",
+    "deckName": "boss",
+    "isBoss": true,
+    "fly": false,
+    "lifeMultiple": true,
+    "immunity": ["STUN", "IMMOBILIZE", "DISARM", "POISON"],
+    "pack": "MAIN"
+  },
+  {
+    "name": "Мрак",
+    "deckName": "boss",
+    "isBoss": true,
+    "fly": false,
+    "lifeMultiple": true,
+    "immunity": ["STUN", "IMMOBILIZE", "DISARM", "CURSE", "MUDDLE", "POISON", "WOUND"],
+    "pack": "MAIN"
+  },
+  {
+    "name": "Предатель",
+    "deckName": "boss",
+    "isBoss": true,
+    "fly": false,
+    "lifeMultiple": true,
+    "immunity": ["STUN", "WOUND", "DISARM", "CURSE", "POISON"],
+    "pack": "MAIN"
+  },
+  {
+    "name": "Бесцветный",
+    "deckName": "boss",
+    "isBoss": true,
+    "fly": false,
+    "lifeMultiple": true,
+    "immunity": ["STUN", "WOUND", "POISON", "CURSE", "MUDDLE"],
+    "pack": "MAIN"
+  },
+  {
+    "name": "Эстер-разведчик",
+    "deckName": "scout",
+    "isBoss": false,
+    "fly": false,
+    "lifeMultiple": false,
+    "immunity": [],
+    "pack": "MAIN"
+  },
+  {
+    "name": "Валрат-варвар",
+    "deckName": "savage",
+    "isBoss": false,
+    "fly": false,
+    "lifeMultiple": false,
+    "immunity": [],
+    "pack": "MAIN"
+  },
+  {
+    "name": "Валрат-следопыт",
+    "deckName": "tracker",
+    "isBoss": false,
+    "fly": false,
+    "lifeMultiple": false,
+    "immunity": [],
+    "pack": "MAIN"
+  },
+  {
+    "name": "Полководец людей",
+    "deckName": "boss",
+    "isBoss": true,
+    "fly": false,
+    "lifeMultiple": true,
+    "immunity": ["STUN", "DISARM", "POISON", "WOUND", "IMMOBILIZE", "CURSE"],
+    "pack": "MAIN"
+  },
+  {
+    "name": "Полководец валратов",
+    "deckName": "boss",
+    "isBoss": true,
+    "fly": false,
+    "lifeMultiple": true,
+    "immunity": ["STUN", "DISARM", "MUDDLE", "WOUND", "IMMOBILIZE", "CURSE"],
+    "pack": "MAIN"
+  },
+  {
+    "name": "Села Наберис",
+    "deckName": "tracker",
+    "isBoss": true,
+    "fly": false,
+    "lifeMultiple": false,
+    "immunity": ["STUN", "DISARM", "POISON", "MUDDLE", "IMMOBILIZE"],
+    "pack": "FORGOTTEN_CIRCLES"
+  },
+  {
+    "name": "Шрака мудрый",
+    "deckName": "shaman",
+    "isBoss": true,
+    "fly": false,
+    "lifeMultiple": true,
+    "immunity": ["STUN", "WOUND", "DISARM", "PIERCE"],
+    "pack": "FORGOTTEN_CIRCLES"
+  },
+  {
+    "name": "Стальной лев",
+    "deckName": "guard",
+    "isBoss": true,
+    "fly": false,
+    "lifeMultiple": true,
+    "immunity": ["WOUND", "IMMOBILIZE", "MUDDLE", "STUN"],
+    "pack": "FORGOTTEN_CIRCLES"
+  },
+  {
+    "name": "Уйрат Иккума",
+    "deckName": "savvas-lavaflow",
+    "isBoss": true,
+    "fly": false,
+    "lifeMultiple": true,
+    "immunity": ["STUN", "MUDDLE", "POISON", "IMMOBILIZE"],
+    "pack": "FORGOTTEN_CIRCLES"
+  },
+  {
+    "name": "Эстер Пепельный клинок",
+    "deckName": "ashblade",
+    "isBoss": false,
+    "fly": false,
+    "lifeMultiple": false,
+    "immunity": [],
+    "pack": "FORGOTTEN_CIRCLES"
+  },
+  {
+    "name": "Шелуха",
+    "deckName": "ashblade",
+    "isBoss": true,
+    "fly": false,
+    "lifeMultiple": true,
+    "immunity": ["STUN", "DISARM", "IMMOBILIZE"],
+    "pack": "FORGOTTEN_CIRCLES"
+  }
+]

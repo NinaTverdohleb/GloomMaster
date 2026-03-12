@@ -5,6 +5,7 @@ import com.rumpilstilstkin.gloomhavenhelper.bd.filler.json.models.AchievementJso
 import com.rumpilstilstkin.gloomhavenhelper.bd.filler.json.models.CharacterPerksJson
 import com.rumpilstilstkin.gloomhavenhelper.bd.filler.json.models.GameLevelJson
 import com.rumpilstilstkin.gloomhavenhelper.bd.filler.json.models.GoodJson
+import com.rumpilstilstkin.gloomhavenhelper.bd.filler.json.models.MonsterJson
 import com.rumpilstilstkin.gloomhavenhelper.bd.filler.json.models.PersonalQuestJson
 import com.rumpilstilstkin.gloomhavenhelper.bd.filler.json.models.ScenarioJson
 import dagger.hilt.android.qualifiers.ApplicationContext
@@ -41,4 +42,6 @@ class JsonDataLoader @Inject constructor(
     fun loadPerks(version: Int): List<CharacterPerksJson> = load("v${version}_perks.json")
 
     fun loadQuests(version: Int): List<PersonalQuestJson> = load("v${version}_quests.json")
+
+    fun loadMonsters(version: Int): List<MonsterJson> = load("v${version}_monsters.json")
 }
