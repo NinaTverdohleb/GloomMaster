@@ -48,9 +48,20 @@ class ScenarioRepository @Inject constructor(
         )
     }
 
-    suspend fun completeTeamScenario(teamId: Int, scenarioId: Int) {
-        teamScenarioDao.getTeamScenarioClear(teamId, scenarioId).let {
+    suspend fun completeTeamScenario(teamId: Int, scenarioNumber: Int) {
+        teamScenarioDao.getTeamScenarioClear(teamId, scenarioNumber).let {
             teamScenarioDao.update(it.copy(completed = true))
         }
+    }
+
+    suspend fun restoreTeamScenario(teamId: Int, scenarioNumber: Int) {
+        teamScenarioDao.getTeamScenarioClear(teamId, scenarioNumber).let {
+            teamScenarioDao.update(it.copy(completed = false))
+        }
+    }
+
+    suspend fun deleteTeamScenario(teamId: Int, scenarioNumber: Int) {
+        teamScenarioDao.deleteTeamScenario(teamId, scenarioNumber)
+
     }
 }

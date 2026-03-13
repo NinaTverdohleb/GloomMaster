@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.Button
@@ -35,7 +34,8 @@ fun ScenarioBlock(
     modifier: Modifier = Modifier,
     completeScenario: (Int) -> Unit,
     startScenario: (Int?) -> Unit,
-    restoreScenario: () -> Unit,
+    playCurrentScenario: () -> Unit,
+    deleteScenario: (Int) -> Unit
 ) = Column(
     modifier = modifier
 ) {
@@ -62,7 +62,7 @@ fun ScenarioBlock(
         Button(
             modifier = Modifier
                 .fillMaxWidth(),
-            onClick = { restoreScenario() },
+            onClick = { playCurrentScenario() },
         ) {
             Text("Продолжить")
         }
@@ -98,6 +98,10 @@ fun ScenarioBlock(
             startScenario = {
                 startScenario(scenario.scenarioNumber)
                 selectedScenario = null
+            },
+            deleteScenario = {
+                deleteScenario(it)
+                selectedScenario = null
             }
         )
     }
@@ -114,7 +118,8 @@ private fun ScenarioBlockPreview() {
             canRestore = true,
             completeScenario = {},
             startScenario = {},
-            restoreScenario = {},
+            playCurrentScenario = {},
+            deleteScenario = {}
         )
     }
 }

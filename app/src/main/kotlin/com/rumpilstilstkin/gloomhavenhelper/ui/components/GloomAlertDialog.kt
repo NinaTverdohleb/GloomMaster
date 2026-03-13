@@ -83,15 +83,15 @@ fun GloomAlertDialog(
                 }
             }
             content()
-            Row(
+            Column(
                 modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.spacedBy(12.dp),
+                verticalArrangement = Arrangement.spacedBy(12.dp),
             ) {
 
                 if (onNegativeRequest != null) {
                     OutlinedButton(
                         onClick = onNegativeRequest,
-                        modifier = Modifier.weight(1f),
+                        modifier = Modifier.fillMaxWidth(),
                         shape = RoundedCornerShape(16.dp),
                         border = BorderStroke(1.dp, MaterialTheme.colorScheme.error),
                         colors = ButtonDefaults.outlinedButtonColors(
@@ -108,7 +108,7 @@ fun GloomAlertDialog(
                 if (onNeutralRequest != null) {
                     OutlinedButton(
                         onClick = onNeutralRequest,
-                        modifier = Modifier.weight(1f),
+                        modifier = Modifier.fillMaxWidth(),
                         shape = RoundedCornerShape(16.dp),
                         border = BorderStroke(1.dp, MaterialTheme.colorScheme.secondary),
                         colors = ButtonDefaults.outlinedButtonColors(
@@ -123,7 +123,7 @@ fun GloomAlertDialog(
                 if (onConfirmRequest != null) {
                     Button(
                         onClick = onConfirmRequest,
-                        modifier = Modifier.weight(1f),
+                        modifier = Modifier.fillMaxWidth(),
                         shape = RoundedCornerShape(16.dp),
                         enabled = confirmEnabled,
                         colors = ButtonDefaults.buttonColors(

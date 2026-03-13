@@ -30,8 +30,9 @@ internal fun TeamTabScreen(
     updateReputation: (Int) -> Unit,
     openTeamAchievements: () -> Unit,
     openGlobalAchievements: () -> Unit,
-    restore: () -> Unit,
-    donate: () -> Unit
+    playCurrentScenario: () -> Unit,
+    donate: () -> Unit,
+    deleteScenario: (Int) -> Unit
 ) {
     if (state is TeamTabUiState.Data) {
         val team = state.currentTeam
@@ -73,7 +74,8 @@ internal fun TeamTabScreen(
                         completeScenario = completeScenario,
                         startScenario = startScenario,
                         canRestore = team.hasActiveScenario,
-                        restoreScenario = restore
+                        playCurrentScenario = playCurrentScenario,
+                        deleteScenario = deleteScenario
                     )
                 }
                 item {
@@ -108,8 +110,9 @@ private fun TeamTabScreenPreview() {
             updateReputation = {},
             openTeamAchievements = {},
             openGlobalAchievements = {},
-            restore = {},
-            donate = {}
+            playCurrentScenario = {},
+            donate = {},
+            deleteScenario = {}
         )
     }
 }

@@ -38,6 +38,8 @@ internal fun ScenariosTabScreen(
     startScenario: (Int) -> Unit,
     toggleSection: (ScenarioSectionType) -> Unit,
     addScenario: () -> Unit,
+    deleteScenario: (Int) -> Unit,
+    restoreScenario: (Int) -> Unit,
 ) = Column(
     modifier = Modifier.fillMaxSize(),
 ) {
@@ -120,17 +122,30 @@ internal fun ScenariosTabScreen(
             startScenario = {
                 startScenario(scenario.scenarioNumber)
                 selectedActiveScenario = null
+            },
+            deleteScenario = {
+                deleteScenario(it)
+                selectedActiveScenario = null
             }
         )
     }
 
     selectedInfoScenario?.let { scenario ->
         ScenarioInfoDialog(
+            completed = scenario.complated,
             scenarioNumber = scenario.scenarioNumber,
             scenarioName = scenario.scenarioName,
             scenarioRequirements = scenario.scenarioRequirements,
             onDismiss = { selectedInfoScenario = null },
             location = scenario.location,
+            restoreScenario = {
+                restoreScenario(it)
+                selectedInfoScenario = null
+            },
+            deleteScenario = {
+                deleteScenario(it)
+                selectedInfoScenario = null
+            },
         )
     }
 }
@@ -145,6 +160,8 @@ private fun ScenariosTabScreenPreview() {
             startScenario = {},
             toggleSection = {},
             addScenario = {},
+            deleteScenario = {},
+            restoreScenario = {}
         )
     }
 }

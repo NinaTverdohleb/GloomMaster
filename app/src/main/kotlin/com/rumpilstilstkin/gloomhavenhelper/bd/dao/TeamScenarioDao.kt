@@ -31,4 +31,8 @@ interface TeamScenarioDao {
     @Transaction
     @Query("SELECT * FROM TeamScenarioBd WHERE teamId = :teamId")
     fun getTeamScenariosFlow(teamId: Int): Flow<List<TeamScenarioBdDetailsBd>>
+
+    @Query("DELETE FROM TeamScenarioBd WHERE teamId = :teamId AND scenarioNumber = :scenarioNumber")
+    suspend fun deleteTeamScenario(teamId: Int, scenarioNumber: Int)
+
 }

@@ -51,4 +51,6 @@ sealed interface ScenariosTabAction {
     data class CompleteScenario(val scenarioId: Int) : ScenariosTabAction
     data class ToggleSection(val sectionType: ScenarioSectionType) : ScenariosTabAction
     data object AddScenario : ScenariosTabAction
+    data class DeleteScenario(val scenarioNumber: Int) : ScenariosTabAction
+    data class RestoreScenario(val scenarioNumber: Int) : ScenariosTabAction
 }

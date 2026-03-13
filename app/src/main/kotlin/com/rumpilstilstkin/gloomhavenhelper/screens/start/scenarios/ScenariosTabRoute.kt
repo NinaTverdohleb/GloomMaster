@@ -30,6 +30,8 @@ fun ScenariosTabRoute(
         completeScenario = { viewModel.onAction(ScenariosTabAction.CompleteScenario(it)) },
         startScenario = { viewModel.onAction(ScenariosTabAction.StartScenario(it)) },
         toggleSection = { viewModel.onAction(ScenariosTabAction.ToggleSection(it)) },
-        addScenario = { viewModel.onAction(ScenariosTabAction.AddScenario) }
+        addScenario = { viewModel.onAction(ScenariosTabAction.AddScenario) },
+        deleteScenario = { viewModel.onAction(ScenariosTabAction.DeleteScenario(it)) },
+        restoreScenario = { viewModel.onAction(ScenariosTabAction.RestoreScenario(it)) },
     )
 }

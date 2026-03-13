@@ -23,15 +23,16 @@ fun ScenarioActionDialog(
     confirmText: String = "Играть",
     onDismiss: () -> Unit,
     completeScenario: () -> Unit,
-    startScenario: () -> Unit
+    startScenario: () -> Unit,
+    deleteScenario: (Int) -> Unit
 ) {
     GloomAlertDialog(
         onDismissRequest = onDismiss,
         onConfirmRequest = startScenario,
-        onNeutralRequest = null,
-        onNegativeRequest = completeScenario,
+        onNeutralRequest = completeScenario,
+        neutralText = "Завершить",
+        onNegativeRequest = { deleteScenario(scenarioNumber) },
         confirmText = confirmText,
-        negativeText = "Завершить",
         content = {
             ScenarioInfoItem(
                 scenarioNumber = scenarioNumber,
@@ -62,17 +63,23 @@ fun ScenarioActionDialog(
 
 @Composable
 fun ScenarioInfoDialog(
+    completed: Boolean,
     scenarioNumber: Int,
     scenarioName: String,
     scenarioRequirements: String,
     location: String,
+    restoreScenario: (Int) -> Unit,
+    deleteScenario: (Int) -> Unit,
     onDismiss: () -> Unit,
 ) {
     GloomAlertDialog(
         onDismissRequest = onDismiss,
-        onConfirmRequest = null,
-        onNeutralRequest = onDismiss,
-        onNegativeRequest = null,
+        onConfirmRequest = if (completed) {
+            { restoreScenario(scenarioNumber) }
+        } else null,
+        confirmText = "Восстановить",
+        onNeutralRequest = null,
+        onNegativeRequest = { deleteScenario(scenarioNumber) },
         content = {
             ScenarioInfoItem(
                 scenarioNumber = scenarioNumber,
@@ -112,7 +119,8 @@ private fun ScenarioActionDialogPreview() {
             location = "",
             onDismiss = {},
             completeScenario = {},
-            startScenario = {}
+            startScenario = {},
+            deleteScenario = {}
         )
     }
 }
@@ -122,11 +130,14 @@ private fun ScenarioActionDialogPreview() {
 private fun ScenarioInfoDialogPreview() {
     GloomhavenHalperTheme {
         ScenarioInfoDialog(
+            completed = true,
             scenarioNumber = 1,
             scenarioRequirements = "Requirements",
             scenarioName = "Scenario 1",
             location = "",
             onDismiss = {},
+            restoreScenario = {},
+            deleteScenario = {}
         )
     }
 }

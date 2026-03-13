@@ -10,7 +10,7 @@ data class ShortScenarioUI(
     val scenarioName: String,
     val scenarioRequirements: String,
     val location: String,
-    val canPlay: Boolean,
+    val complated: Boolean,
 ) {
     companion object {
         fun fixture(
@@ -20,7 +20,7 @@ data class ShortScenarioUI(
             scenarioName = "Scenario 1",
             scenarioRequirements = "Requirements 1",
             location = "Глубокая жопа",
-            canPlay = true
+            complated = true
         )
     }
 }
@@ -30,7 +30,7 @@ fun ScenarioShortInfo.toUi() = ShortScenarioUI(
     scenarioName = this.scenarioName,
     scenarioRequirements = this.scenarioRequirements.toHumanReadable(),
     location = this.location,
-    canPlay = this.monsters.isNotEmpty()
+    complated = this.isCompleted
 )
 
 fun ScenarioInfo.toUi() = ShortScenarioUI(
@@ -38,5 +38,5 @@ fun ScenarioInfo.toUi() = ShortScenarioUI(
     scenarioName = this.scenarioName,
     scenarioRequirements = this.scenarioRequirements.toHumanReadable(),
     location = this.location,
-    canPlay = this.monsters.isNotEmpty()
+    complated = this.monsters.isNotEmpty()
 )

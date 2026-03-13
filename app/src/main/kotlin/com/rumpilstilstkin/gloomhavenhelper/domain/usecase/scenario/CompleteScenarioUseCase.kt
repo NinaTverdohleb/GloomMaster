@@ -13,10 +13,8 @@ class CompleteScenarioUseCase @Inject constructor(
 ) {
     suspend operator fun invoke(scenarioNumber: Int) {
         teamRepository.currentTeam.first()?.let { team ->
-
             val oldScenarios = scenarioRepository.getAllTeamScenarios(team.teamId)
             scenarioRepository.getScenario(scenarioNumber).let { scenario ->
-
                 val newScenario =
                     scenario.newScenario.map { scenarioRepository.getScenario(it) }
                         .filter { newScenario ->

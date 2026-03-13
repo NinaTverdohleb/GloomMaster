@@ -4,8 +4,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario.CompleteScenarioUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario.CreateActiveScenarioUseCase
-import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario.GetMonsterForScenarioUseCase
+import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario.DeleteScenarioUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario.GetTeamScenariosUseCase
+import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario.RestoreScenarioUseCase
 import com.rumpilstilstkin.gloomhavenhelper.navigation.GlHelperScreens
 import com.rumpilstilstkin.gloomhavenhelper.navigation.GlHelperScreens.Scenario
 import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEvent
@@ -29,7 +30,9 @@ import javax.inject.Inject
 class ScenariosTabViewModel @Inject constructor(
     getTeamScenariosUseCase: GetTeamScenariosUseCase,
     private val completeScenarioUseCase: CompleteScenarioUseCase,
-    private val createActiveScenarioUseCase: CreateActiveScenarioUseCase
+    private val createActiveScenarioUseCase: CreateActiveScenarioUseCase,
+    private val restoreScenarioUseCase: RestoreScenarioUseCase,
+    private val deleteScenarioUseCase: DeleteScenarioUseCase,
 ) : ViewModel() {
 
     private val _navigationEvents = MutableSharedFlow<GlHelperEvent>()
@@ -108,6 +111,13 @@ class ScenariosTabViewModel @Inject constructor(
 
             ScenariosTabAction.AddScenario ->
                 _navigationEvents.emit(Screen(GlHelperScreens.AddScenarioForTeam))
+
+            is ScenariosTabAction.DeleteScenario -> {
+                deleteScenarioUseCase.invoke(action.scenarioNumber)
+            }
+            is ScenariosTabAction.RestoreScenario -> {
+                restoreScenarioUseCase.invoke(action.scenarioNumber)
+            }
         }
     }
 }

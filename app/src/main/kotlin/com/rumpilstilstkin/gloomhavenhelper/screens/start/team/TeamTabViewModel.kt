@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.team.DonateUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario.CompleteScenarioUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario.CreateActiveScenarioUseCase
+import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario.DeleteScenarioUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.team.GetCurrentTeamUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.team.GetNextChurchValueUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.team.UpdateTeamProsperityUseCase
@@ -35,6 +36,7 @@ class TeamTabViewModel @Inject constructor(
     private val createActiveScenarioUseCase: CreateActiveScenarioUseCase,
     private val donateUseCase: DonateUseCase,
     private val getNextChurchValueUseCase: GetNextChurchValueUseCase,
+    private val deleteScenarioUseCase: DeleteScenarioUseCase,
 ) : ViewModel() {
 
     private val _navigationEvents = MutableSharedFlow<GlHelperEvent>()
@@ -110,6 +112,8 @@ class TeamTabViewModel @Inject constructor(
                 TeamTabAction.Donate -> donateUseCase(
                     oldChurchValue = state.currentTeam.churchValue
                 )
+
+                is TeamTabAction.DeleteScenario -> deleteScenarioUseCase(action.scenarioNumber)
             }
         }
     }
@@ -124,4 +128,5 @@ sealed interface TeamTabAction {
     data object OpenGlobalAchievements : TeamTabAction
     data object RestoreLastScenario : TeamTabAction
     data object Donate : TeamTabAction
+    data class DeleteScenario(val scenarioNumber: Int): TeamTabAction
 }
