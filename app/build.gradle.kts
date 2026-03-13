@@ -15,7 +15,7 @@ android {
     defaultConfig {
         applicationId = "com.rumpilstilstkin.gloomhavenhalper"
         minSdk = 31
-        versionCode = 5
+        versionCode = 6
         versionName = "1.3"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
