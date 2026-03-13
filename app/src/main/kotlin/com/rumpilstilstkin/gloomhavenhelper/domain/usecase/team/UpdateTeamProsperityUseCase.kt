@@ -1,7 +1,6 @@
 package com.rumpilstilstkin.gloomhavenhelper.domain.usecase.team
 
 import com.rumpilstilstkin.gloomhavenhelper.data.TeamRepository
-import com.rumpilstilstkin.gloomhavenhelper.domain.entity.Prosperity
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.goods.AddGoodsToTeamByNumbersUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.goods.GetGoodNumbersForLevelUseCase
 import kotlinx.coroutines.flow.first
@@ -18,7 +17,6 @@ class UpdateTeamProsperityUseCase @Inject constructor(
     ) {
         val team = teamRepository.currentTeam.first() ?: return
         val prosperity = getTeamProsperityUseCase(team.prosperity)
-
         if (prosperity.isStartValue && newProsperityLevelValue == 0 || prosperity.isMax) {
             return
         }
@@ -35,7 +33,7 @@ class UpdateTeamProsperityUseCase @Inject constructor(
         }
 
         teamRepository.updateProsperity(team.teamId, prosperityValue)
-        val newProsperity = getTeamProsperityUseCase(newProsperityLevelValue)
+        val newProsperity = getTeamProsperityUseCase(prosperityValue)
         if (newProsperity.prosperityLevel > prosperity.prosperityLevel) {
             addGoodsToTeamUseCase(team.teamId, getGoodsForLevelUseCase(newProsperity.prosperityLevel))
         }
