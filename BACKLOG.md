@@ -15,22 +15,7 @@
 | 🏗️ | Architecture |
 | 📦 | Database |
 | ✨ | Feature |
-| 📝 | Documentation |
 | 🔧 | Refactoring |
-
----
-
-## Database Layer
-
-### 📦 DB-005: Implement Database Export/Import
-**Priority:** 🟢 Low
-
-**Tasks:**
-- [ ] Create `DatabaseBackupManager` class
-- [ ] Implement JSON export of all tables
-- [ ] Implement JSON import with validation
-- [ ] Add UI for export/import in settings
-- [ ] Handle version compatibility
 
 ---
 
@@ -76,10 +61,9 @@ No unified error handling pattern across layers.
 ### 🏗️ ARCH-005: Implement Repository Caching Strategy
 **Priority:** 🟡 Medium
 
-Only `LevelInfoRepository` implements caching. Other static data (classes, goods, perks, achievements) loaded on each request.
+Only `LevelInfoRepository` implements caching. Other static data (goods, perks, achievements) loaded on each request.
 
 **Tasks:**
-- [ ] Add in-memory cache to `CharacterClassRepository`
 - [ ] Add in-memory cache to `GoodsRepository`
 - [ ] Add in-memory cache to `PerksRepository`
 - [ ] Add in-memory cache to `AchievementRepository`
@@ -88,48 +72,34 @@ Only `LevelInfoRepository` implements caching. Other static data (classes, goods
 
 ---
 
-### 🏗️ ARCH-006: Extract Mapping Logic to Dedicated Mappers
-**Priority:** 🟢 Low
-
-Domain ↔ Entity mapping scattered across repositories.
-
-**Tasks:**
-- [ ] Create `mappers/` package in data layer
-- [ ] Extract all `toDomain()` extension functions
-- [ ] Extract all `toEntity()` extension functions
-
----
-
-## Code Quality
-
-### 🔧 REF-004: Unify State Class Patterns
-**Priority:** 🟢 Low
-
-Mixed patterns for UI state: `sealed interface`, `sealed class`, `data class`.
-
-**Tasks:**
-- [ ] Document preferred pattern (sealed interface recommended)
-- [ ] Refactor inconsistent state classes
-- [ ] Add `Loading`, `Error`, `Success` base states
-
----
-
 ## Features
 
-### ✨ FEAT-005: Add Scenario Rewards Processing
-**Priority:** 🟢 Low
+### ✨ FEAT-001: Scenario Rewards Distribution
+**Priority:** 🟡 Medium
 
-`ScenarioBd` has `newScenarios`, `teamAchievement`, `globalAchievement` but not processed on completion.
+Auto-calculate and distribute rewards after scenario completion.
 
 **Tasks:**
-- [ ] Parse `newScenarios` field
-- [ ] Auto-unlock new scenarios on completion
-- [ ] Auto-add achievements on completion
-- [ ] Show rewards dialog after scenario completion
+- [ ] Calculate gold per character based on scenario level
+- [ ] Calculate experience rewards
+- [ ] Show reward summary dialog
+- [ ] Apply rewards to characters
 
 ---
 
-### ✨ FEAT-006: Add Data Sync/Backup to Cloud
+### ✨ FEAT-002: Database Export/Import
+**Priority:** 🟢 Low
+
+**Tasks:**
+- [ ] Create `DatabaseBackupManager` class
+- [ ] Implement JSON export of all tables
+- [ ] Implement JSON import with validation
+- [ ] Add UI for export/import in settings
+- [ ] Handle version compatibility
+
+---
+
+### ✨ FEAT-003: Cloud Sync/Backup
 **Priority:** 🟢 Low
 
 **Tasks:**
@@ -141,18 +111,17 @@ Mixed patterns for UI state: `sealed interface`, `sealed class`, `data class`.
 
 ---
 
-## Documentation
+## Code Quality
 
-## DevOps
+### 🔧 REF-001: Unify State Class Patterns
+**Priority:** 🟢 Low
 
-### 🔧 DEV-002: Add ProGuard/R8 Rules
-**Priority:** 🟡 Medium
+Mixed patterns for UI state: `sealed interface`, `sealed class`, `data class`.
 
 **Tasks:**
-- [ ] Configure R8 for release builds
-- [ ] Add keep rules for Room entities
-- [ ] Add keep rules for Kotlin serialization
-- [ ] Test release build functionality
+- [ ] Document preferred pattern (sealed interface recommended)
+- [ ] Refactor inconsistent state classes
+- [ ] Add `Loading`, `Error`, `Success` base states
 
 ---
 
@@ -160,25 +129,23 @@ Mixed patterns for UI state: `sealed interface`, `sealed class`, `data class`.
 
 | Priority | Count |
 |----------|-------|
-| 🔴 Critical | 0     |
-| 🟠 High | 2     |
-| 🟡 Medium | 2     |
-| 🟢 Low | 5     |
-| **Total** | **9** |
+| 🔴 Critical | 0 |
+| 🟠 High | 2 |
+| 🟡 Medium | 2 |
+| 🟢 Low | 3 |
+| **Total** | **7** |
 
 ## Recommended Execution Order
 
-### Phase 1: Foundation (Critical + High Priority)
+### Phase 1: Foundation (High Priority)
 1. ARCH-003: Implement error handling strategy
 2. ARCH-001: Split CharacterRepository
 
 ### Phase 2: Quality (Medium Priority)
 3. ARCH-005: Implement caching strategy
-4. DEV-002: ProGuard rules
+4. FEAT-001: Scenario rewards distribution
 
 ### Phase 3: Enhancement (Low Priority)
-5. REF-004: Unify state class patterns
-6. ARCH-006: Extract mapping logic
-7. DB-005: Database export/import
-8. FEAT-005: Scenario rewards
-9. FEAT-006: Cloud sync
+5. REF-001: Unify state class patterns
+6. FEAT-002: Database export/import
+7. FEAT-003: Cloud sync
