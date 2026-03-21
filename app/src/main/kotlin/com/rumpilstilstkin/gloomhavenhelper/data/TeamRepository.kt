@@ -85,7 +85,8 @@ class TeamRepository @Inject constructor(
 
     suspend fun getTeamInfo(teamId: Int): ShortTeamInfo? =
         teamDao.findById(teamId)?.let { team ->
-            val characters = characterDao.findByTeamId(team.teamId).filter { it.isAlive }.map { it.characterId }
+            val characters =
+                characterDao.findByTeamId(team.teamId).filter { it.isAlive }.map { it.characterId }
             team.toDomain(characters)
         }
 
@@ -109,14 +110,12 @@ class TeamRepository @Inject constructor(
         teamDao.updateProsperity(teamId, prosperity)
     }
 
-    suspend fun donate(teamId: Int): Int =
-        teamDao.findById(teamId)?.let { team ->
-            val newTeam = team.copy(
-                churchValue = team.churchValue + 10
-            )
-            teamDao.update(newTeam)
-            newTeam.churchValue
-        } ?: 0
+    suspend fun donate(teamId: Int): Int {
+        val team = teamDao.findById(teamId)
+        val newValue = team?.churchValue?.plus(10) ?: 0
+        teamDao.updateDonateValue(teamId, team?.churchValue?.plus(10) ?: 0)
+        return newValue
+    }
 
     suspend fun updateTeam(team: ShortTeamInfo) {
         teamDao.update(team.toBd())

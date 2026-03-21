@@ -1,6 +1,7 @@
 package com.rumpilstilstkin.gloomhavenhelper.ui.components
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -8,6 +9,8 @@ import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.material3.Icon
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -17,9 +20,11 @@ import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.StrokeCap
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.rumpilstilstkin.gloomhavenhelper.R
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
 import java.util.Locale
 
@@ -30,7 +35,8 @@ fun NumberPicker(
     modifier: Modifier = Modifier,
     showSign: Boolean = false,
     size: GloomSize = GloomSize.M,
-    onValueChange: (Int) -> Unit,
+    numberBack: @Composable () -> Unit = {},
+    onValueChange: (Int) -> Unit
 ) {
     Row(
         modifier = modifier,
@@ -66,14 +72,17 @@ fun NumberPicker(
             } else {
                 value.toString()
             }
-            Text(
-                modifier = Modifier
-                    .padding(padding),
-                style = textStyle,
-                text = text,
-                textAlign = TextAlign.Center,
-                color = MaterialTheme.colorScheme.onSurface
-            )
+            Box {
+                numberBack()
+                Text(
+                    modifier = Modifier
+                        .padding(padding),
+                    style = textStyle,
+                    text = text,
+                    textAlign = TextAlign.Center,
+                    color = MaterialTheme.colorScheme.onSurface
+                )
+            }
         }
         PickerButton(
             size = size,
@@ -93,6 +102,7 @@ fun NumberPickerProgress(
     intRange: IntRange,
     modifier: Modifier = Modifier,
     showSign: Boolean = false,
+    numberBack: @Composable () -> Unit = {},
     progressColor: Color = MaterialTheme.colorScheme.secondary,
     size: GloomSize = GloomSize.M,
     onValueChange: (Int) -> Unit,
@@ -136,14 +146,19 @@ fun NumberPickerProgress(
                 } else {
                     value.toString()
                 }
-                Text(
-                    modifier = Modifier
-                        .padding(padding),
-                    style = textStyle,
-                    text = text,
-                    textAlign = TextAlign.Center,
-                    color = MaterialTheme.colorScheme.onSurface
-                )
+                Box(
+                    contentAlignment = Alignment.Center
+                ) {
+                    numberBack()
+                    Text(
+                        modifier = Modifier
+                            .padding(padding),
+                        style = textStyle,
+                        text = text,
+                        textAlign = TextAlign.Center,
+                        color = MaterialTheme.colorScheme.onSurface
+                    )
+                }
             }
             PickerButton(
                 size = size,
@@ -215,6 +230,14 @@ private fun NumberPickerProgressPreview() {
             value = 5,
             intRange = IntRange(0, 16),
             onValueChange = {},
+            numberBack = {
+                Icon(
+                    modifier = Modifier.size(64.dp),
+                    painter = painterResource(id = R.drawable.ic_life),
+                    contentDescription = null,
+                    tint = MaterialTheme.colorScheme.error
+                )
+            }
         )
     }
 

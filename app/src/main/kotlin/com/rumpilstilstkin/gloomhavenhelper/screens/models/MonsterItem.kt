@@ -111,6 +111,10 @@ data class MonsterUnit(
                     type = ActionUi.SHIELD,
                     modifier = "2"
                 ),
+                EffectItem.Action(
+                    type = ActionUi.POISON,
+                    modifier = ""
+                ),
             )
         )
     }

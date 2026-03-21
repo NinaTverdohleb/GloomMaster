@@ -98,7 +98,15 @@ fun MonsterUnitCard(
                     onValueChange = { value -> changeLife(unit.number, value) },
                     intRange = 0..unit.maxLife,
                     size = GloomSize.S,
-                    progressColor = MaterialTheme.colorScheme.error
+                    progressColor = MaterialTheme.colorScheme.error,
+                    numberBack = {
+                        Icon(
+                            modifier = Modifier.size(52.dp),
+                            painter = painterResource(id = R.drawable.ic_life),
+                            contentDescription = null,
+                            tint = MaterialTheme.colorScheme.error
+                        )
+                    }
                 )
 
             }
@@ -170,17 +178,19 @@ fun MonsterUnitCard(
             ) {
                 unit.stats.forEach { stat ->
                     if (stat is EffectItem.Action) {
-                        Row {
+                        Row(
+                            verticalAlignment = Alignment.CenterVertically,
+                        ) {
                             Icon(
-                                modifier = Modifier.size(24.dp),
+                                modifier = Modifier.size(28.dp),
                                 painter = painterResource(id = stat.type.icon.imageRes),
                                 contentDescription = null,
-                                tint = MaterialTheme.colorScheme.onSurface
+                                tint = stat.type.icon.color
                             )
                             Spacer(modifier = Modifier.width(8.dp))
                             Text(
                                 text = stat.modifier,
-                                fontSize = 10.sp,
+                                fontSize = 24.sp,
                                 color = MaterialTheme.colorScheme.onSurface
                             )
                         }

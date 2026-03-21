@@ -131,7 +131,7 @@ data class ScenarioLogicState(
         )
 
     private fun updateMonsterCard(monster: MonsterItem): ScenarioLogicState {
-        if (monster.units.isEmpty()) return this
+        if (round == 0) return this
         val monster = scenarioInfo.monsters.first { it.id == monster.id }
         val drawResult = cardDeck.drawCard(monster.deckName)
 
