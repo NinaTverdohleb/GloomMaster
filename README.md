@@ -1,4 +1,4 @@
-# Gloomhaven Helper
+# Gloomhaven Master
 
 <p align="center">
   <strong>Android companion app for the Gloomhaven board game</strong>
