@@ -1,7 +1,7 @@
 package com.rumpilstilstkin.gloomhavenhelper.domain.error
 
 /**
- * Base class for all errors in the GloomhavenHalper application.
+ * Base class for all errors in the GloomhavenMaster application.
  * This provides a consistent way to handle errors across all layers.
  */
 sealed class GlHelperError(): Exception() {

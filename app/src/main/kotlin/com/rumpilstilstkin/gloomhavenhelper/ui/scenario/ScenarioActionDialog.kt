@@ -12,7 +12,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomAlertDialog
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomCard
-import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
+import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
 
 @Composable
 fun ScenarioActionDialog(
@@ -111,7 +111,7 @@ fun ScenarioInfoDialog(
 @Preview
 @Composable
 private fun ScenarioActionDialogPreview() {
-    GloomhavenHalperTheme {
+    GloomhavenMasterTheme {
         ScenarioActionDialog(
             scenarioNumber = 1,
             scenarioRequirements = "Requirements",
@@ -128,7 +128,7 @@ private fun ScenarioActionDialogPreview() {
 @Preview
 @Composable
 private fun ScenarioInfoDialogPreview() {
-    GloomhavenHalperTheme {
+    GloomhavenMasterTheme {
         ScenarioInfoDialog(
             completed = true,
             scenarioNumber = 1,

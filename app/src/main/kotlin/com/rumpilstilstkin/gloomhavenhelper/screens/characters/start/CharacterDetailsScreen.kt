@@ -30,7 +30,7 @@ import com.rumpilstilstkin.gloomhavenhelper.screens.dialogs.character.DeleteChar
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.CharacterClassTypeUI
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomToolbarTitle
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.NavItem
-import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
+import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
 import com.rumpilstilstkin.gloomhavenhelper.screens.dialogs.character.CharacterEditNameDialog
 
 @Composable
@@ -157,7 +157,7 @@ internal fun CharactersTabs(
 @Preview
 @Composable
 private fun CharacterDetailsScreenPreview() {
-    GloomhavenHalperTheme {
+    GloomhavenMasterTheme {
         CharacterDetailsScreen(
             state = CharacterDetailsStateUi(
                 name = "Персонаж",

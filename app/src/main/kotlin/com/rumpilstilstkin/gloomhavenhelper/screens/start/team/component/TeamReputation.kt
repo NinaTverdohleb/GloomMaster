@@ -20,7 +20,7 @@ import com.rumpilstilstkin.gloomhavenhelper.R
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomCard
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomVariantCard
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.NumberPicker
-import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
+import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
 import java.util.Locale
 
 @Composable
@@ -90,7 +90,7 @@ internal fun TeamReputation(
 @Preview
 @Composable
 private fun TeamReputationSample() {
-    GloomhavenHalperTheme {
+    GloomhavenMasterTheme {
         TeamReputation(
             reputation = 2,
             discount = -1,

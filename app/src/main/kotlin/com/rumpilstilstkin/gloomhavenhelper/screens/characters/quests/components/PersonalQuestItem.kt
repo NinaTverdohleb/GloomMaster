@@ -24,7 +24,7 @@ import com.rumpilstilstkin.gloomhavenhelper.domain.entity.quest.QuestReward
 import com.rumpilstilstkin.gloomhavenhelper.screens.dialogs.quests.QuestDetailsDialog
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.PersonalQuestUI
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomCard
-import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
+import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
 import kotlinx.collections.immutable.persistentListOf
 
 @Composable
@@ -74,7 +74,7 @@ fun PersonalQuestItem(
 @Preview
 @Composable
 private fun PersonalQuestItemPreview() {
-    GloomhavenHalperTheme {
+    GloomhavenMasterTheme {
         PersonalQuestItem(
             quest = PersonalQuestUI(
                 id = "512",

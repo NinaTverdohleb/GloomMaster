@@ -30,7 +30,7 @@ import androidx.compose.ui.unit.dp
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomToolbarTitle
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomVariantCard
 import com.rumpilstilstkin.gloomhavenhelper.ui.goods.GoodItem
-import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
+import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
 import kotlinx.collections.immutable.persistentListOf
 
 @Composable
@@ -167,7 +167,7 @@ private fun MonsterSelectCard(
 @Preview
 @Composable
 private fun ScenarioConstructorScreenPreview() {
-    GloomhavenHalperTheme {
+    GloomhavenMasterTheme {
         ScenarioConstructorScreen(
             state = ScenarioConstructorStateUi.Content(
                 availableMonsters = persistentListOf(

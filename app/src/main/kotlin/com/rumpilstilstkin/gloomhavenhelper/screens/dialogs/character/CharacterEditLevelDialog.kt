@@ -26,7 +26,7 @@ import androidx.compose.ui.unit.dp
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.CharacterClassTypeUI
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.CharacterUI
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomAlertDialog
-import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
+import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.NumberPicker
 
 @Composable
@@ -87,7 +87,7 @@ fun CharacterEditLevelDialog(
 @Preview
 @Composable
 private fun CharacterEditLevelDialogPreview() {
-    GloomhavenHalperTheme {
+    GloomhavenMasterTheme {
         CharacterEditLevelDialog(
             characterLevel = 1,
             characterName = "Персонаж",

@@ -5,7 +5,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomAlertDialog
-import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
+import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
 
 @Composable
 fun DeleteAchievementConfirmDialog(
@@ -33,7 +33,7 @@ fun DeleteAchievementConfirmDialog(
 @Preview
 @Composable
 private fun DeleteAchievementConfirmDialogPreview() {
-    GloomhavenHalperTheme {
+    GloomhavenMasterTheme {
         DeleteAchievementConfirmDialog(
             achievementName = "Первые шаги",
             onDismiss = {},

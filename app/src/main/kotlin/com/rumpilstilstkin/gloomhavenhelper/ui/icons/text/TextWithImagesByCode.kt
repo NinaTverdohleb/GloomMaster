@@ -6,7 +6,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
-import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
+import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
 
 @Composable
 fun TextWithImagesByCode(
@@ -26,7 +26,7 @@ fun TextWithImagesByCode(
 @Preview
 @Composable
 private fun TextWithImagesByCodePreview() {
-    GloomhavenHalperTheme {
+    GloomhavenMasterTheme {
         TextWithImagesByCode(text = "Уберите две карты #27")
     }
 }

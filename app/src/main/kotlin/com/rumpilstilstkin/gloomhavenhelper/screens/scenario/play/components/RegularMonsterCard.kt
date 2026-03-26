@@ -20,7 +20,7 @@ import com.rumpilstilstkin.gloomhavenhelper.screens.models.ActionUi
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.MonsterItem
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.MonsterUnit
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomCard
-import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
+import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
 import kotlinx.collections.immutable.persistentListOf
 
 @Composable
@@ -137,7 +137,7 @@ fun RegularMonsterCard(
 @Preview(showBackground = true, backgroundColor = 0xFF1A1C24)
 @Composable
 private fun RegularMonsterCardPreview() {
-    GloomhavenHalperTheme {
+    GloomhavenMasterTheme {
         RegularMonsterCard(
             item = MonsterItem(
                 id = 1,

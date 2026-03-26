@@ -27,7 +27,7 @@ import androidx.compose.ui.unit.dp
 import com.rumpilstilstkin.gloomhavenhelper.screens.dialogs.character.AddPerksDialog
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.PerkUI
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomCard
-import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
+import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.toImmutableList
 import com.rumpilstilstkin.gloomhavenhelper.ui.icons.text.TextWithImagesByCode
@@ -118,7 +118,7 @@ fun PerkItem(
 @Preview
 @Composable
 private fun CharacterPerkTabScreenPreview() {
-    GloomhavenHalperTheme {
+    GloomhavenMasterTheme {
         CharacterPerkTabScreen(
             uiState = CharacterPerksScreenStateUi(
                 characterPerks = listOf(

@@ -28,7 +28,7 @@ import com.rumpilstilstkin.gloomhavenhelper.screens.models.PerkUI
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomAlertDialog
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomCard
 import com.rumpilstilstkin.gloomhavenhelper.ui.icons.text.TextWithImagesByCode
-import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
+import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
 
 @Composable
 fun AddPerksDialog(
@@ -108,7 +108,7 @@ private fun AddPerkDialogItem(
 @Preview
 @Composable
 private fun AddPerksDialogPreview() {
-    GloomhavenHalperTheme {
+    GloomhavenMasterTheme {
         AddPerksDialog(
             avaliablePerks = listOf(
                 PerkUI(1, "Уберите две карты #01"),
@@ -124,7 +124,7 @@ private fun AddPerksDialogPreview() {
 @Preview
 @Composable
 private fun AddPerkDialogItemPreview() {
-    GloomhavenHalperTheme {
+    GloomhavenMasterTheme {
         AddPerkDialogItem(
             perk = PerkUI(1, "Уберите две карты #01"),
             checked = true,

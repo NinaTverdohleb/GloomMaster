@@ -18,37 +18,27 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import com.rumpilstilstkin.gloomhavenhelper.data.datasource.CurrentTeamDatasource
 import com.rumpilstilstkin.gloomhavenhelper.navigation.GlHelperNavHost
-import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
+import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
     val viewModel: MainActivityViewModel by viewModels()
 
-    @Inject
-    lateinit var currentTeamDatasource: CurrentTeamDatasource
-
     override fun onStart() {
         super.onStart()
-        //for test
-       // currentTeamDatasource.saveCurrentTeam(CurrentTeamDatasource.EMPTY_TEAM)
-
     }
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         val splashScreen = installSplashScreen()
         super.onCreate(savedInstanceState)
         var uiState: MainActivityUiState by mutableStateOf(MainActivityUiState.Loading)
 
-        // Update the uiState
         lifecycleScope.launch {
             lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.uiState
@@ -72,7 +62,7 @@ class MainActivity : ComponentActivity() {
 
         enableEdgeToEdge()
         setContent {
-            GloomhavenHalperTheme {
+            GloomhavenMasterTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     GlHelperNavHost(innerPadding = innerPadding)
                 }

@@ -33,7 +33,7 @@ import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomCard
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomSize
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomToolbarTitle
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.NumberPicker
-import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
+import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
 import kotlinx.collections.immutable.persistentListOf
 
 @Composable
@@ -161,7 +161,7 @@ private fun AchievementItem(
 @Preview(showBackground = true, backgroundColor = 0xFF1A1C24)
 @Composable
 private fun AchievementsScreenPreview() {
-    GloomhavenHalperTheme {
+    GloomhavenMasterTheme {
         AchievementsScreen(
             title = "Командные достижения",
             uiState = AchievementsStateUi(
@@ -189,7 +189,7 @@ private fun AchievementsScreenPreview() {
 @Preview(showBackground = true, backgroundColor = 0xFF1A1C24)
 @Composable
 private fun AchievementsScreenEmptyPreview() {
-    GloomhavenHalperTheme {
+    GloomhavenMasterTheme {
         AchievementsScreen(
             title = "Командные достижения",
             uiState = AchievementsStateUi(),

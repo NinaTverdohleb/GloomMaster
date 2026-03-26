@@ -20,7 +20,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomAlertDialog
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.NumberPicker
-import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
+import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
 
 @Composable
 fun MonsterLevelDialog(
@@ -72,7 +72,7 @@ fun MonsterLevelDialog(
 @Preview
 @Composable
 private fun MonsterLevelDialogPreview() {
-    GloomhavenHalperTheme {
+    GloomhavenMasterTheme {
         MonsterLevelDialog(
             unitLevel = 1,
             monsterName = "Персонаж",

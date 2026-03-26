@@ -24,7 +24,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
+import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomCard
 
 @Composable
@@ -107,7 +107,7 @@ fun ScenarioInfoItem(
 @Preview
 @Composable
 private fun Sample() {
-    GloomhavenHalperTheme {
+    GloomhavenMasterTheme {
         ScenarioInfoCardItem(
             scenarioNumber = 99,
             scenarioName = "Name",

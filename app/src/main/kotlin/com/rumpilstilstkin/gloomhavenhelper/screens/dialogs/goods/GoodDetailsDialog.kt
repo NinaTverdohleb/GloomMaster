@@ -12,7 +12,7 @@ import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomAlertDialog
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomAlertDialogCustomActions
-import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
+import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -85,7 +85,7 @@ fun GoodDetailsDialogCustomActions(
 @Preview
 @Composable
 private fun GoodDetailsDialogPreview() {
-    GloomhavenHalperTheme {
+    GloomhavenMasterTheme {
         GoodDetailsDialog(
             imagePath = "",
             dismiss = {}

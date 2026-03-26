@@ -24,7 +24,7 @@ import com.rumpilstilstkin.gloomhavenhelper.screens.models.PersonalQuestUI
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.QuestTaskPhaseUI
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomAlertDialog
 import com.rumpilstilstkin.gloomhavenhelper.ui.icons.toImage
-import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
+import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.persistentListOf
 
@@ -134,7 +134,7 @@ private fun Rewards(
 @Preview
 @Composable
 private fun GoodDetailsDialogPreview() {
-    GloomhavenHalperTheme {
+    GloomhavenMasterTheme {
         QuestDetailsDialog(
             quest = PersonalQuestUI(
                 id = "511",

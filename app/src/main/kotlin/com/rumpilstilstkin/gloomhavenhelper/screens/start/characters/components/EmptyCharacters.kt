@@ -22,7 +22,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.rumpilstilstkin.gloomhavenhelper.R
-import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
+import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
 
 @Composable
 internal fun EmptyCharacters(
@@ -74,7 +74,7 @@ internal fun EmptyCharacters(
 @Preview(showBackground = true, backgroundColor = 0xFF1A1C24)
 @Composable
 private fun EmptyCharactersPreview() {
-    GloomhavenHalperTheme {
+    GloomhavenMasterTheme {
         EmptyCharacters()
     }
 }

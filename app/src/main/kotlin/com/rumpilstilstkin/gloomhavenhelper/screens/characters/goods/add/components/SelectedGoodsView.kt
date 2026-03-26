@@ -22,7 +22,7 @@ import com.rumpilstilstkin.gloomhavenhelper.screens.models.GoodUi
 import com.rumpilstilstkin.gloomhavenhelper.ui.goods.GoodItem
 import com.rumpilstilstkin.gloomhavenhelper.ui.icons.GloomhavenIcons
 import com.rumpilstilstkin.gloomhavenhelper.ui.icons.goods.Foot
-import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
+import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.persistentListOf
 
@@ -73,7 +73,7 @@ fun SelectedGoodsView(
 @Preview
 @Composable
 private fun SelectedGoodsViewPreview() {
-    GloomhavenHalperTheme {
+    GloomhavenMasterTheme {
         SelectedGoodsView(
             selectedGoods = persistentListOf(
                 GoodUi(

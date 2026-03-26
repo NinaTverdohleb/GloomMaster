@@ -13,7 +13,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomAlertDialog
-import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
+import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
 
 @Composable
 fun AddTeamDialog(
@@ -43,7 +43,7 @@ fun AddTeamDialog(
 @Preview
 @Composable
 private fun AddTeamDialogPreview() {
-    GloomhavenHalperTheme {
+    GloomhavenMasterTheme {
         AddTeamDialog(
             onDismiss = {},
             onAdd = {},

@@ -25,7 +25,7 @@ import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomBottomNavigationB
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomToolbarStatus
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomToolbarTitle
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.NavItem
-import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
+import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
 
 @Composable
 internal fun StartScreen(
@@ -98,7 +98,7 @@ internal enum class StartScreenTab(
 @Preview
 @Composable
 private fun StartScreenEmptyPreview() {
-    GloomhavenHalperTheme {
+    GloomhavenMasterTheme {
         StartScreen(
             state = StartScreenState.Empty,
             addTeam = {},
@@ -111,7 +111,7 @@ private fun StartScreenEmptyPreview() {
 @Preview(device = "spec:width=411dp,height=891dp")
 @Composable
 private fun StartScreenPreview() {
-    GloomhavenHalperTheme {
+    GloomhavenMasterTheme {
         StartScreen(
             state = StartScreenState.Team(
                 id = 1,

@@ -33,7 +33,7 @@ import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEventHelpe
 import com.rumpilstilstkin.gloomhavenhelper.screens.characters.quests.components.PersonalQuestItem
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.PersonalQuestUI
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.QuestTaskPhaseUI
-import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
+import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
 import kotlinx.collections.immutable.persistentListOf
 
 @Composable
@@ -114,7 +114,7 @@ private fun SearchQuestView(
 @Preview
 @Composable
 private fun SearchQuestPreview() {
-    GloomhavenHalperTheme {
+    GloomhavenMasterTheme {
         Box(
             modifier = Modifier.background(MaterialTheme.colorScheme.background)
         ) {

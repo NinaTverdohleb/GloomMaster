@@ -24,7 +24,7 @@ import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomAlertDialog
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomToolbarTitle
 import com.rumpilstilstkin.gloomhavenhelper.ui.scenario.ScenarioInfoCardItem
 import com.rumpilstilstkin.gloomhavenhelper.ui.scenario.ScenarioInfoItem
-import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
+import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
 import kotlinx.collections.immutable.persistentListOf
 
 @Composable
@@ -126,7 +126,7 @@ private fun AddScenarioConfirmDialog(
 @Preview(showBackground = true, backgroundColor = 0xFF1A1C24)
 @Composable
 private fun AddScenarioForTeamScreenPreview() {
-    GloomhavenHalperTheme {
+    GloomhavenMasterTheme {
         AddScenarioForTeamScreen(
             uiState = AddScenarioForTeamUiState(
                 scenarios = persistentListOf(
@@ -149,7 +149,7 @@ private fun AddScenarioForTeamScreenPreview() {
 @Preview(showBackground = true, backgroundColor = 0xFF1A1C24)
 @Composable
 private fun AddScenarioConfirmDialogPreview() {
-    GloomhavenHalperTheme {
+    GloomhavenMasterTheme {
         AddScenarioConfirmDialog(
             scenario = ShortScenarioUI.fixture(1),
             onDismiss = {},

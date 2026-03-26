@@ -29,7 +29,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
+import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -199,7 +199,7 @@ fun GloomAlertDialogCustomActions(
 @Preview
 @Composable
 private fun GloomAlertDialogPreview() {
-    GloomhavenHalperTheme {
+    GloomhavenMasterTheme {
         GloomAlertDialog(
             onDismissRequest = {},
             onConfirmRequest = {},

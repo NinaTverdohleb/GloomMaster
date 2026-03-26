@@ -43,7 +43,7 @@ import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomSize
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.NumberPickerProgress
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.RoundButton
 import com.rumpilstilstkin.gloomhavenhelper.ui.icons.text.TextWithImagesByCode
-import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
+import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
 import kotlinx.collections.immutable.persistentListOf
 
 @Composable
@@ -322,7 +322,7 @@ private fun UnitNumberBadge(
 @Preview
 @Composable
 private fun MonsterUnitPreview() {
-    GloomhavenHalperTheme {
+    GloomhavenMasterTheme {
         MonsterUnitCard(
             unit = MonsterUnit.fixture(1),
             isBoss = false,
@@ -337,7 +337,7 @@ private fun MonsterUnitPreview() {
 @Preview
 @Composable
 private fun MonsterUnitBossPreview() {
-    GloomhavenHalperTheme {
+    GloomhavenMasterTheme {
         MonsterUnitCard(
             unit = MonsterUnit.fixture(1),
             isBoss = true,
@@ -352,7 +352,7 @@ private fun MonsterUnitBossPreview() {
 @Preview
 @Composable
 private fun EmptyMonsterUnitCardPreview() {
-    GloomhavenHalperTheme {
+    GloomhavenMasterTheme {
         EmptyMonsterUnitCard()
     }
 }

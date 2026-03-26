@@ -40,7 +40,7 @@ import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.state.Magic
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.state.MagicValue
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.state.ScenarioStateUi
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomToolbarStatus
-import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
+import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.persistentMapOf
 
@@ -201,7 +201,7 @@ fun ScenarioScreenContent(
 @Preview(showBackground = true)
 @Composable
 private fun ScenarioScreenPreview() {
-    GloomhavenHalperTheme {
+    GloomhavenMasterTheme {
         ScenarioScreen(
             state = ScenarioStateUi(
                 name = "Гиблая лужa",
@@ -235,7 +235,7 @@ private fun ScenarioScreenPreview() {
 @Preview(showBackground = true)
 @Composable
 private fun ScenarioScreenEmptyPreview() {
-    GloomhavenHalperTheme {
+    GloomhavenMasterTheme {
         ScenarioScreen(
             state = ScenarioStateUi(
                 name = "Гиблая лужa",

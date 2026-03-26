@@ -22,7 +22,7 @@ import androidx.compose.ui.unit.dp
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.CharacterClassTypeUI
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomSize
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.RoundButton
-import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
+import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
 
 
 @Composable
@@ -84,7 +84,7 @@ internal fun CharacterHeader(
 @Preview
 @Composable
 private fun CharacterHeaderPreview() {
-    GloomhavenHalperTheme {
+    GloomhavenMasterTheme {
         CharacterHeader(
             characterClass = CharacterClassTypeUI.Brute,
             name = "Warrior",

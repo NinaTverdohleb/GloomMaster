@@ -11,7 +11,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
+import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.NumberPicker
 
 @Composable
@@ -51,7 +51,7 @@ fun NumberPickerDialog(
 @Preview
 @Composable
 private fun Sample() {
-    GloomhavenHalperTheme {
+    GloomhavenMasterTheme {
         NumberPickerDialog(
             startValue = 0,
             title = "Репутация",

@@ -31,7 +31,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.MonsterItem
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomAlertDialog
-import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
+import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -133,7 +133,7 @@ private fun MonsterClassItem(
 @Preview
 @Composable
 private fun MonsterListDialogPreview() {
-    GloomhavenHalperTheme {
+    GloomhavenMasterTheme {
         MonsterListDialog(
             monsters = listOf(
                 MonsterItem.fixture(1, "Скелет"),

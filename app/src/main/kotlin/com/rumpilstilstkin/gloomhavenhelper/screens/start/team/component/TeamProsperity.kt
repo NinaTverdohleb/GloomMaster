@@ -21,7 +21,7 @@ import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomSize
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.NumberPickerProgress
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.PickerButton
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.PickerButtonType
-import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
+import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
 
 @Composable
 internal fun TeamProsperity(
@@ -113,7 +113,7 @@ internal fun TeamProsperity(
 @Preview
 @Composable
 private fun TeamProsperitySample() {
-    GloomhavenHalperTheme {
+    GloomhavenMasterTheme {
         TeamProsperity(
             prosperity = Prosperity.fixture(),
             churchValue = 100,

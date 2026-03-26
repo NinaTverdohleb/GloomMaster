@@ -16,7 +16,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.CharacterClassTypeUI
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomVariantCard
-import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
+import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.persistentListOf
 
@@ -57,7 +57,7 @@ fun CharacterAvailableClasses(
 @Preview
 @Composable
 private fun CharacterAvailableClassesPreview() {
-    GloomhavenHalperTheme {
+    GloomhavenMasterTheme {
         CharacterAvailableClasses(
             availableClasses = persistentListOf(
                 CharacterClassTypeUI.Brute,

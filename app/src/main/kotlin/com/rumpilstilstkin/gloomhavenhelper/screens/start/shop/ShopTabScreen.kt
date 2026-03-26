@@ -24,7 +24,7 @@ import com.rumpilstilstkin.gloomhavenhelper.screens.dialogs.goods.GoodDetailsDia
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.GoodUi
 import com.rumpilstilstkin.gloomhavenhelper.ui.goods.GoodFilters
 import com.rumpilstilstkin.gloomhavenhelper.ui.goods.GoodItem
-import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
+import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
 import kotlinx.collections.immutable.persistentListOf
 
 @Composable
@@ -90,7 +90,7 @@ internal fun ShopTabScreen(
 @Preview(showBackground = true, backgroundColor = 0xFF1A1C24)
 @Composable
 private fun ShopTabScreenPreview() {
-    GloomhavenHalperTheme {
+    GloomhavenMasterTheme {
         ShopTabScreen(
             state = ShopTabStateUi(
                 avaliableGoods = persistentListOf(

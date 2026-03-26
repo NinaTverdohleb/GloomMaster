@@ -15,7 +15,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.rumpilstilstkin.gloomhavenhelper.R
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomVariantCard
-import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
+import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
 
 @Composable
 fun ScenarioStatsRow(
@@ -71,7 +71,7 @@ internal fun StatItem(
 @Preview
 @Composable
 private fun ScenarioStatsRowPreview() {
-    GloomhavenHalperTheme {
+    GloomhavenMasterTheme {
         ScenarioStatsRow(
             level = 1,
             exp = 100,

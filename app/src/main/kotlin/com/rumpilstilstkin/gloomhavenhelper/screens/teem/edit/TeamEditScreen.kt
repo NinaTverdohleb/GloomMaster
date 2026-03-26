@@ -35,7 +35,7 @@ import com.rumpilstilstkin.gloomhavenhelper.screens.dialogs.teams.TeamsDialog
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomAlertDialog
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomCard
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomToolbarTitle
-import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
+import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
 import kotlinx.collections.immutable.persistentListOf
 
 @Composable
@@ -150,7 +150,7 @@ internal fun TeamEditScreen(
 @Preview(showBackground = true, backgroundColor = 0xFF1A1C24)
 @Composable
 private fun TeamEditScreenPreview() {
-    GloomhavenHalperTheme {
+    GloomhavenMasterTheme {
         TeamEditScreen(
             uiState = TeamEditStateUi(
                 teamName = "Моя команда",

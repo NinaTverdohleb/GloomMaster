@@ -25,7 +25,7 @@ import androidx.compose.ui.unit.dp
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.ShortScenarioUI
 import com.rumpilstilstkin.gloomhavenhelper.ui.scenario.ScenarioActionDialog
 import com.rumpilstilstkin.gloomhavenhelper.ui.scenario.ScenarioInfoCardItem
-import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
+import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
 
 @Composable
 fun ScenarioBlock(
@@ -110,7 +110,7 @@ fun ScenarioBlock(
 @Preview
 @Composable
 private fun ScenarioBlockPreview() {
-    GloomhavenHalperTheme {
+    GloomhavenMasterTheme {
         ScenarioBlock(
             scenarios = listOf(
                 ShortScenarioUI.fixture(1)

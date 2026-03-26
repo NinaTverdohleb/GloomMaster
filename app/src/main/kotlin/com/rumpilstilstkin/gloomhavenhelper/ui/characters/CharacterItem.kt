@@ -25,7 +25,7 @@ import com.rumpilstilstkin.gloomhavenhelper.screens.models.CharacterUI
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomCard
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomSize
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.RoundButton
-import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
+import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
 
 @Composable
 fun CharacterItem(
@@ -91,7 +91,7 @@ fun CharacterItem(
 @Preview
 @Composable
 private fun CharacterItemPreview() {
-    GloomhavenHalperTheme {
+    GloomhavenMasterTheme {
         CharacterItem(
             character = CharacterUI.fixture(),
             onItemClick = {}

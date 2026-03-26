@@ -16,7 +16,7 @@ import com.rumpilstilstkin.gloomhavenhelper.screens.models.GoodUi
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomToolbarTitle
 import com.rumpilstilstkin.gloomhavenhelper.ui.goods.AddGoodsView
 import com.rumpilstilstkin.gloomhavenhelper.ui.goods.AddGoodsViewState
-import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
+import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
 
 @Composable
 internal fun AddGoodsForTeamScreen(
@@ -65,7 +65,7 @@ internal fun AddGoodsForTeamScreen(
 @Preview(showBackground = true, backgroundColor = 0xFF1A1C24)
 @Composable
 private fun AddGoodsForTeamScreenPreview() {
-    GloomhavenHalperTheme {
+    GloomhavenMasterTheme {
         AddGoodsForTeamScreen(
             uiState = AddGoodsForTeamUiState(
                 goodsState = AddGoodsViewState.fixture(),

@@ -15,7 +15,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
+import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
 
 @Composable
 fun GloomBadge(
@@ -53,7 +53,7 @@ fun GloomBadge(
 @Preview
 @Composable
 private fun GloomBadgeSPreview() {
-    GloomhavenHalperTheme {
+    GloomhavenMasterTheme {
         GloomBadge(
             text = "999",
             size = GloomSize.S
@@ -64,7 +64,7 @@ private fun GloomBadgeSPreview() {
 @Preview
 @Composable
 private fun GloomBadgeMPreview() {
-    GloomhavenHalperTheme {
+    GloomhavenMasterTheme {
         GloomBadge(
             text = "999",
             size = GloomSize.M

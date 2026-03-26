@@ -33,7 +33,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomAlertDialog
-import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
+import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -200,7 +200,7 @@ private fun UnitIdCell(
 @Preview
 @Composable
 private fun SpawnMonsterDialogPreview() {
-    GloomhavenHalperTheme {
+    GloomhavenMasterTheme {
         SpawnMonsterDialog(
             monsterName = "Хвостожабка",
             availableIds = (1..14).toList(),

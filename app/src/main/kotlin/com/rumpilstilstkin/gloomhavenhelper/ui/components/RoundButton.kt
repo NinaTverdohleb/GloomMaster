@@ -16,7 +16,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
+import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
 
 @Composable
 fun RoundButton(
@@ -58,7 +58,7 @@ fun RoundButton(
 @Preview
 @Composable
 private fun RoundButtonPreview() {
-    GloomhavenHalperTheme {
+    GloomhavenMasterTheme {
         RoundButton(
             text = "2",
             onClick = {}

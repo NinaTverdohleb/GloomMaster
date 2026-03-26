@@ -13,7 +13,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.ShortTeamInfoUi
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomAlertDialog
-import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
+import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.persistentListOf
 
@@ -64,7 +64,7 @@ private fun TeamInfoItem(
 @Preview
 @Composable
 private fun TeamListDialogPreview() {
-    GloomhavenHalperTheme {
+    GloomhavenMasterTheme {
         TeamsDialog(
             teams = persistentListOf(
                 ShortTeamInfoUi(1, "Team 1"),

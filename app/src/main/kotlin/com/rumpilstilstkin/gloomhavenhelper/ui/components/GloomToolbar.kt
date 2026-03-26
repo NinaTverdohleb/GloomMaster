@@ -28,7 +28,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
+import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -119,7 +119,7 @@ fun GloomToolbarTitle(
 @Preview
 @Composable
 private fun GloomToolbarStatusPreview() {
-    GloomhavenHalperTheme {
+    GloomhavenMasterTheme {
         GloomToolbarStatus(
             status = "Status",
             back = {},
@@ -139,7 +139,7 @@ private fun GloomToolbarStatusPreview() {
 @Preview
 @Composable
 private fun GloomToolbarTitlePreview() {
-    GloomhavenHalperTheme {
+    GloomhavenMasterTheme {
         GloomToolbarTitle(
             title = "Status",
             back = {},

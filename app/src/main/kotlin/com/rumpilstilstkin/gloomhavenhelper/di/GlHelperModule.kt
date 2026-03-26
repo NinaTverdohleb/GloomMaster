@@ -29,7 +29,7 @@ object GlHelperModule {
 
     @Singleton
     @Provides
-    fun provideYourDatabase(
+    fun provideGloomDatabase(
         @ApplicationContext app: Context,
     ) = createGlHelperDatabase(app)
 

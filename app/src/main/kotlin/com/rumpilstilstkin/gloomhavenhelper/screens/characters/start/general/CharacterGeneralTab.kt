@@ -48,7 +48,7 @@ import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEventHelpe
 import com.rumpilstilstkin.gloomhavenhelper.screens.characters.start.general.components.PersonalQuestView
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.PersonalQuestUI
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomAlertDialog
-import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
+import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.NumberPicker
 
 @Composable
@@ -409,7 +409,7 @@ fun ExperienceRow(
 @Preview
 @Composable
 private fun Sample() {
-    GloomhavenHalperTheme {
+    GloomhavenMasterTheme {
         CharacterGeneralTabContent(
             content = CharacterGeneralTabState(
                 experience = 150,
@@ -429,7 +429,7 @@ private fun Sample() {
 @Preview
 @Composable
 private fun SampleNotesDialog() {
-    GloomhavenHalperTheme {
+    GloomhavenMasterTheme {
         NotesDialog(
             text = "",
             showDialog = true,

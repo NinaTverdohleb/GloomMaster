@@ -11,7 +11,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomAlertDialog
-import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
+import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
 
 @Composable
 fun CharacterEditNameDialog(
@@ -41,7 +41,7 @@ fun CharacterEditNameDialog(
 @Preview
 @Composable
 private fun CharacterEditNameDialogPreview() {
-    GloomhavenHalperTheme {
+    GloomhavenMasterTheme {
         CharacterEditNameDialog(
             currentName = "Персонаж",
             onDismiss = {},

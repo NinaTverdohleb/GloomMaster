@@ -34,7 +34,7 @@ import com.rumpilstilstkin.gloomhavenhelper.screens.models.QuestTaskPhaseUI
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomCard
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomSize
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.NumberPicker
-import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
+import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
 import kotlinx.collections.immutable.persistentListOf
 
 @Composable
@@ -179,7 +179,7 @@ private fun CountTask(
 @Preview
 @Composable
 private fun PersonalQuestViewPreview() {
-    GloomhavenHalperTheme {
+    GloomhavenMasterTheme {
         PersonalQuestView(
             quest = PersonalQuestUI(
                 id = "511",

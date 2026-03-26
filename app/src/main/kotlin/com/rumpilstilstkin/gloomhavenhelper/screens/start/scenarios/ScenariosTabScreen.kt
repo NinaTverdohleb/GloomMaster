@@ -29,7 +29,7 @@ import com.rumpilstilstkin.gloomhavenhelper.screens.models.ShortScenarioUI
 import com.rumpilstilstkin.gloomhavenhelper.ui.scenario.ScenarioActionDialog
 import com.rumpilstilstkin.gloomhavenhelper.ui.scenario.ScenarioInfoCardItem
 import com.rumpilstilstkin.gloomhavenhelper.ui.scenario.ScenarioInfoDialog
-import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
+import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
 
 @Composable
 internal fun ScenariosTabScreen(
@@ -153,7 +153,7 @@ internal fun ScenariosTabScreen(
 @Preview(showBackground = true, backgroundColor = 0xFF1A1C24)
 @Composable
 private fun ScenariosTabScreenPreview() {
-    GloomhavenHalperTheme {
+    GloomhavenMasterTheme {
         ScenariosTabScreen(
             state = ScenariosTabStateUi.fixture(),
             completeScenario = {},

@@ -23,7 +23,7 @@ import androidx.compose.ui.unit.dp
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.GoodType
 import com.rumpilstilstkin.gloomhavenhelper.screens.dialogs.goods.GoodDetailsDialog
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.GoodUi
-import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
+import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
 
 @Composable
 fun AddGoodsView(
@@ -126,7 +126,7 @@ fun AddGoodsView(
 @Preview
 @Composable
 private fun GoodFiltersPreview() {
-    GloomhavenHalperTheme {
+    GloomhavenMasterTheme {
         AddGoodsView(
             modifier = Modifier.fillMaxSize(),
             state = AddGoodsViewState.fixture(),

@@ -13,7 +13,7 @@ import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
 import com.rumpilstilstkin.gloomhavenhelper.R
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.MonsterAbilityCard
-import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
+import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
 
 @Composable
 fun MonsterActionCard(
@@ -43,7 +43,7 @@ fun MonsterActionCard(
 @Preview
 @Composable
 private fun MonsterActionCardPreview() {
-    GloomhavenHalperTheme {
+    GloomhavenMasterTheme {
         MonsterActionCard(
             card = null
         )

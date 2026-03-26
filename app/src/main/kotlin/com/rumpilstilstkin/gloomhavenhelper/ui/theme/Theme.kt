@@ -49,7 +49,7 @@ private val colors = darkColorScheme(
 )
 
 @Composable
-fun GloomhavenHalperTheme(
+fun GloomhavenMasterTheme(
     content: @Composable () -> Unit
 ) {
     MaterialTheme(

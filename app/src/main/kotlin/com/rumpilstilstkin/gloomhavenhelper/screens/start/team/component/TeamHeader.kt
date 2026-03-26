@@ -10,7 +10,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
+import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.RoundButton
 
 @Composable
@@ -44,7 +44,7 @@ internal fun TeamHeader(
 @Preview
 @Composable
 private fun Sample() {
-    GloomhavenHalperTheme {
+    GloomhavenMasterTheme {
         TeamHeader(
             teamName = "Супер мега длинное имя пипец какое невыносимо огромное",
             teamLevel = 6,

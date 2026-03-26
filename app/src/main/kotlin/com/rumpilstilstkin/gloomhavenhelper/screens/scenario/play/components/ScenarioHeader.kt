@@ -24,7 +24,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.state.Magic
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.state.MagicValue
-import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
+import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
 import kotlin.collections.forEach
 
 @Composable
@@ -106,7 +106,7 @@ internal fun ScenarioHeader(
 @Preview
 @Composable
 private fun ScenarioHeaderPreview() {
-    GloomhavenHalperTheme {
+    GloomhavenMasterTheme {
         ScenarioHeader(
             level = 1,
             exp = 100,

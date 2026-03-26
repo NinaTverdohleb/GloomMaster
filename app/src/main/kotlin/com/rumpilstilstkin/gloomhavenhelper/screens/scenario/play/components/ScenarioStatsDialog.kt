@@ -10,7 +10,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.rumpilstilstkin.gloomhavenhelper.R
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomAlertDialog
-import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
+import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
 
 @Composable
 internal fun ScenarioStatsDialog(
@@ -52,7 +52,7 @@ internal fun ScenarioStatsDialog(
 @Preview
 @Composable
 private fun ScenarioStatsDialogPreview() {
-    GloomhavenHalperTheme {
+    GloomhavenMasterTheme {
         ScenarioStatsDialog(
             level = 1,
             exp = 100,

@@ -14,7 +14,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
+import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
 
 
 @Composable
@@ -44,7 +44,7 @@ fun GloomVariantCard(
 @Preview
 @Composable
 private fun GloomVariantCardPreview() {
-    GloomhavenHalperTheme {
+    GloomhavenMasterTheme {
         GloomVariantCard(
             modifier = Modifier.fillMaxWidth()
         ) {

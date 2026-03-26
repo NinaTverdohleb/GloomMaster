@@ -19,7 +19,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.rumpilstilstkin.gloomhavenhelper.R
-import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
+import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
 
 @Composable
 internal fun EmptyTeamScreen(
@@ -50,7 +50,7 @@ internal fun EmptyTeamScreen(
 @Preview
 @Composable
 private fun EmptyTeamScreenPreview() {
-    GloomhavenHalperTheme {
+    GloomhavenMasterTheme {
         EmptyTeamScreen(addTeam = {})
     }
 }

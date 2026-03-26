@@ -34,7 +34,7 @@ import com.rumpilstilstkin.gloomhavenhelper.screens.models.CharacterUI
 import com.rumpilstilstkin.gloomhavenhelper.screens.start.characters.components.CharacterAvailableClasses
 import com.rumpilstilstkin.gloomhavenhelper.screens.start.characters.components.EmptyCharacters
 import com.rumpilstilstkin.gloomhavenhelper.ui.characters.CharacterItem
-import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
+import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
 import kotlinx.collections.immutable.persistentListOf
 
 @Composable
@@ -129,7 +129,7 @@ internal fun CharactersTabScreen(
 @Preview(showBackground = true, backgroundColor = 0xFF1A1C24)
 @Composable
 private fun CharactersTabScreenPreview() {
-    GloomhavenHalperTheme {
+    GloomhavenMasterTheme {
         CharactersTabScreen(
             state = CharactersTabStateUi.fixture(),
             switchAlive = {},
@@ -144,7 +144,7 @@ private fun CharactersTabScreenPreview() {
 @Preview(showBackground = true, backgroundColor = 0xFF1A1C24)
 @Composable
 private fun CharactersTabScreenEmptyPreview() {
-    GloomhavenHalperTheme {
+    GloomhavenMasterTheme {
         CharactersTabScreen(
             state = CharactersTabStateUi.fixture(characters = persistentListOf()),
             switchAlive = {},

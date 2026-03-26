@@ -21,7 +21,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.GoodType
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.toImage
-import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
+import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
 
 @Composable
 fun GoodFilters(
@@ -91,7 +91,7 @@ private fun FilterButton(
 @Preview
 @Composable
 private fun GoodFiltersPreview() {
-    GloomhavenHalperTheme {
+    GloomhavenMasterTheme {
         GoodFilters(
             searchText = "",
             filterType = GoodType.Arm,

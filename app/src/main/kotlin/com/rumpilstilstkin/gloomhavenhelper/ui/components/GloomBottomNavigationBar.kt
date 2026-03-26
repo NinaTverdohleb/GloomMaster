@@ -15,7 +15,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.rumpilstilstkin.gloomhavenhelper.R
-import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
+import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
 
 @Composable
 fun GloomBottomNavigationBar(
@@ -61,7 +61,7 @@ interface NavItem {
 @Preview(showBackground = true, device = "spec:width=411dp,height=891dp")
 @Composable
 fun CampaignEmptyStatePreview() {
-    GloomhavenHalperTheme {
+    GloomhavenMasterTheme {
         GloomBottomNavigationBar(
             items = SampleScreenTab.entries,
             selectedItem = SampleScreenTab.PROSPERITY,

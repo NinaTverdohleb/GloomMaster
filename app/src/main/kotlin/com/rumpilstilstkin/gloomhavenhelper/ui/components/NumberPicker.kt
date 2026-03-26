@@ -25,7 +25,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.rumpilstilstkin.gloomhavenhelper.R
-import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
+import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
 import java.util.Locale
 
 @Composable
@@ -195,7 +195,7 @@ private fun checkRange(value: Int, range: IntRange): Int {
 @Preview
 @Composable
 private fun NumberPickerMPreview() {
-    GloomhavenHalperTheme {
+    GloomhavenMasterTheme {
         NumberPicker(
             value = 5,
             intRange = IntRange(0, 15),
@@ -208,7 +208,7 @@ private fun NumberPickerMPreview() {
 @Preview
 @Composable
 private fun NumberPickerSPreview() {
-    GloomhavenHalperTheme {
+    GloomhavenMasterTheme {
         NumberPicker(
             size = GloomSize.S,
             value = 5,
@@ -222,7 +222,7 @@ private fun NumberPickerSPreview() {
 @Preview
 @Composable
 private fun NumberPickerProgressPreview() {
-    GloomhavenHalperTheme {
+    GloomhavenMasterTheme {
         NumberPickerProgress(
             modifier = Modifier.fillMaxWidth(),
             size = GloomSize.M,

@@ -31,7 +31,7 @@ import com.rumpilstilstkin.gloomhavenhelper.ui.goods.GoodItem
 import com.rumpilstilstkin.gloomhavenhelper.ui.icons.GloomhavenIcons
 import com.rumpilstilstkin.gloomhavenhelper.ui.icons.goods.Arm
 import com.rumpilstilstkin.gloomhavenhelper.ui.icons.goods.Foot
-import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
+import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
 
 @Composable
 fun CharacterItemsTabScreen(
@@ -124,7 +124,7 @@ fun CharacterItemsTabScreen(
 @Preview
 @Composable
 private fun CharacterItemsTabPreview() {
-    GloomhavenHalperTheme {
+    GloomhavenMasterTheme {
         CharacterItemsTabScreen(
             goods = listOf(
                 GoodUi(

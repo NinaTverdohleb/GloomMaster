@@ -15,7 +15,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.rumpilstilstkin.gloomhavenhelper.ui.icons.Minus
-import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
+import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
 
 @Composable
 fun PickerButton(
@@ -68,7 +68,7 @@ enum class PickerButtonType(
 @Preview
 @Composable
 private fun SamplePlus() {
-    GloomhavenHalperTheme {
+    GloomhavenMasterTheme {
 
         PickerButton(
             0,
@@ -80,7 +80,7 @@ private fun SamplePlus() {
 @Preview
 @Composable
 private fun SampleMinus() {
-    GloomhavenHalperTheme {
+    GloomhavenMasterTheme {
         PickerButton(
             0,
             PickerButtonType.MINUS

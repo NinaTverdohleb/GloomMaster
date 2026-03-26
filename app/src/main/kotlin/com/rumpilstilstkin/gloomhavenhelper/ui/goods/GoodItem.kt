@@ -27,7 +27,7 @@ import com.rumpilstilstkin.gloomhavenhelper.screens.models.GoodUi
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomCard
 import com.rumpilstilstkin.gloomhavenhelper.ui.icons.GloomhavenIcons
 import com.rumpilstilstkin.gloomhavenhelper.ui.icons.goods.Foot
-import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
+import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
 
 @Composable
 fun GoodItem(
@@ -87,7 +87,7 @@ fun GoodItem(
 @Preview
 @Composable
 private fun GoodItemPreview() {
-    GloomhavenHalperTheme {
+    GloomhavenMasterTheme {
         GoodItem(
             good = GoodUi(
                 id = 1,

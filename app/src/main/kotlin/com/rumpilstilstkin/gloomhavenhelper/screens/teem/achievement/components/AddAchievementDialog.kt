@@ -14,7 +14,7 @@ import androidx.compose.ui.unit.dp
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.Achievement
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomAlertDialog
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomCard
-import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
+import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.persistentListOf
 
@@ -56,7 +56,7 @@ fun AddAchievementDialog(
 @Preview
 @Composable
 private fun AddAchievementDialogPreview() {
-    GloomhavenHalperTheme {
+    GloomhavenMasterTheme {
         AddAchievementDialog(
             availableAchievements = persistentListOf(
                 Achievement.fixture("Первые шаги"),

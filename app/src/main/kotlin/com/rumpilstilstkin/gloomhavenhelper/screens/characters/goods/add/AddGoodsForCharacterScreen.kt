@@ -14,7 +14,7 @@ import com.rumpilstilstkin.gloomhavenhelper.screens.characters.goods.add.compone
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomToolbarTitle
 import com.rumpilstilstkin.gloomhavenhelper.ui.goods.AddGoodsView
 import com.rumpilstilstkin.gloomhavenhelper.ui.goods.AddGoodsViewState
-import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenHalperTheme
+import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
 
 @Composable
 internal fun AddGoodsScreen(
@@ -49,7 +49,7 @@ internal fun AddGoodsScreen(
 @Preview(showBackground = true, backgroundColor = 0xFF1A1C24)
 @Composable
 private fun AddGoodsScreenPreview() {
-    GloomhavenHalperTheme {
+    GloomhavenMasterTheme {
         AddGoodsScreen(
             uiState = AddGoodsForCharacterScreenUiState(
                 goodsState = AddGoodsViewState.fixture()
