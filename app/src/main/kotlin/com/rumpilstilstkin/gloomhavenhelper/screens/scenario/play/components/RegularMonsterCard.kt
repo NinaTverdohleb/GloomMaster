@@ -1,5 +1,7 @@
 package com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.components
 
+import androidx.compose.animation.core.spring
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -77,6 +79,11 @@ fun RegularMonsterCard(
             } else {
                 items(item.units, key = { it.number }) { unit ->
                     MonsterUnitCard(
+                        modifier = Modifier
+                            .animateItem(
+                                fadeOutSpec = tween(400),
+                                placementSpec = spring()
+                            ),
                         unit = unit,
                         isBoss = item.isBoss,
                         deleteUnit = { unitNumber -> deleteUnit(unitNumber, item.id) },

@@ -26,6 +26,27 @@ class MonsterJsonFiller @Inject constructor(
         monsterDao.insertMonsters(*entities.toTypedArray())
     }
 
+    // for old versions
+    suspend fun fixLivingSpiritDeck(){
+        val cards = monsterDao.getCardsByDeckName("living-spirit")
+        val newCards = cards.map { card ->
+            val initiative = when(card.imageName){
+                "ic_deck_ma_ls_1.webp" -> 75
+                "ic_deck_ma_ls_2.webp" -> 55
+                "ic_deck_ma_ls_3.webp" -> 67
+                "ic_deck_ma_ls_4.webp" -> 48
+                "ic_deck_ma_ls_5.webp" -> 22
+                "ic_deck_ma_ls_6.webp" -> 33
+                "ic_deck_ma_ls_7.webp" -> 48
+                "ic_deck_ma_ls_8.webp" -> 61
+                else -> card.initiative
+            }
+            card.copy(initiative = initiative)
+        }
+        monsterDao.insertCards(*newCards.toTypedArray())
+
+    }
+
     suspend fun fillStats(version: Int, type: String, pack: String) {
         val allMonsters = monsterDao.getAllMonsters()
         val nameToId = allMonsters.associate { it.name to it.monsterId }

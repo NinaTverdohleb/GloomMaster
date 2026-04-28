@@ -47,5 +47,6 @@ fun ShortTeamInfo.toBd() = TeamBd(
     globalAchievement = this.globalAchievement,
     reputation = this.reputation,
     prosperity = this.prosperity,
-    packs = this.packs.map { it.name }
+    packs = this.packs.map { it.name },
+    churchValue = this.churchValue
 )

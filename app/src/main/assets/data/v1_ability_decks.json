@@ -119,14 +119,14 @@
   {
     "name": "living-spirit",
     "cards": [
-      { "image": "ic_deck_ma_ls_1.webp", "needsShuffle": false, "initiative": 22 },
-      { "image": "ic_deck_ma_ls_2.webp", "needsShuffle": false, "initiative": 33 },
-      { "image": "ic_deck_ma_ls_3.webp", "needsShuffle": false, "initiative": 48 },
+      { "image": "ic_deck_ma_ls_1.webp", "needsShuffle": false, "initiative": 75 },
+      { "image": "ic_deck_ma_ls_2.webp", "needsShuffle": false, "initiative": 55 },
+      { "image": "ic_deck_ma_ls_3.webp", "needsShuffle": false, "initiative": 67 },
       { "image": "ic_deck_ma_ls_4.webp", "needsShuffle": false, "initiative": 48 },
-      { "image": "ic_deck_ma_ls_5.webp", "needsShuffle": true, "initiative": 61 },
-      { "image": "ic_deck_ma_ls_6.webp", "needsShuffle": true, "initiative": 75 },
-      { "image": "ic_deck_ma_ls_7.webp", "needsShuffle": false, "initiative": 5 },
-      { "image": "ic_deck_ma_ls_8.webp", "needsShuffle": false, "initiative": 67 }
+      { "image": "ic_deck_ma_ls_5.webp", "needsShuffle": true, "initiative": 22 },
+      { "image": "ic_deck_ma_ls_6.webp", "needsShuffle": true, "initiative": 33 },
+      { "image": "ic_deck_ma_ls_7.webp", "needsShuffle": false, "initiative": 48 },
+      { "image": "ic_deck_ma_ls_8.webp", "needsShuffle": false, "initiative": 61 }
     ]
   },
   {

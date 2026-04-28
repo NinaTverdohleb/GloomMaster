@@ -24,13 +24,23 @@ class DatabaseFiller @Inject constructor(
     val version = preferences.getInt(PREFS_VERSION, 0)
 
     suspend fun fillDatabase() {
-        if (version == 0) {
-            startFill()
+        var version = preferences.getInt(PREFS_VERSION, 0)
+        while (version < VERSION) {
+            update(version)
+            version++
         }
         preferences.edit { putInt(PREFS_VERSION, VERSION) }
     }
 
-    private suspend fun startFill() {
+    private suspend fun update(version: Int) {
+        when (version) {
+            0 -> update0()
+            1 -> update1()
+            else -> {}
+        }
+    }
+
+    private suspend fun update0() {
         gameLevelInfoJsonFiller.fill(1)
         scenarioJsonFiller.fill(1)
         goodJsonFiller.fill(1)
@@ -61,8 +71,12 @@ class DatabaseFiller @Inject constructor(
         achievementJsonFiller.fill(1)
     }
 
+    private suspend fun update1() {
+        monsterJsonFiller.fixLivingSpiritDeck()
+    }
+
     companion object {
-        private const val VERSION = 1
+        private const val VERSION = 2
         private const val PREFS_VERSION = "filler_version"
     }
 }

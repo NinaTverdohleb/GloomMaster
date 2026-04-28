@@ -2,6 +2,7 @@ package com.rumpilstilstkin.gloomhavenhelper.bd.dao
 
 import androidx.room.Dao
 import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.MonsterAbilityCardBd
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.MonsterBd
@@ -47,9 +48,9 @@ interface MonsterDao {
     @Query("SELECT * FROM MonsterAbilityCardBd WHERE cardId = :cardId")
     suspend fun getCardById(cardId: Int): MonsterAbilityCardBd
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertCard(card: MonsterAbilityCardBd): Long
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertCards(vararg cards: MonsterAbilityCardBd)
 }
