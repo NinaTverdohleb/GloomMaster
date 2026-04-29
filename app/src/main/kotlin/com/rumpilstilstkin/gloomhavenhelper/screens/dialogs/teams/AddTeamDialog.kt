@@ -19,6 +19,7 @@ import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
 fun AddTeamDialog(
     onDismiss: () -> Unit,
     onAdd: (String) -> Unit,
+    openFile: () -> Unit,
 ) {
     var teamName by rememberSaveable { mutableStateOf("") }
 
@@ -26,9 +27,17 @@ fun AddTeamDialog(
         title = "Новая команда",
         titleIcon = Icons.Default.Groups,
         confirmText = "Добавить",
+        neutralText = "Импортировать",
         confirmEnabled = teamName.isNotBlank(),
         onDismissRequest = onDismiss,
-        onConfirmRequest = { onAdd(teamName.trim()) },
+        onConfirmRequest = {
+            onAdd(teamName.trim())
+            onDismiss()
+        },
+        onNeutralRequest = {
+            openFile()
+            onDismiss()
+        }
     ) {
         OutlinedTextField(
             modifier = Modifier.fillMaxWidth(),
@@ -47,6 +56,7 @@ private fun AddTeamDialogPreview() {
         AddTeamDialog(
             onDismiss = {},
             onAdd = {},
+            openFile = {}
         )
     }
 }

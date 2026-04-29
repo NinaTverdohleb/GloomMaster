@@ -1,6 +1,7 @@
 package com.rumpilstilstkin.gloomhavenhelper.domain.entity
 
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.quest.CharacterPersonalQuest
+import kotlinx.serialization.Serializable
 import kotlin.math.ceil
 
 data class CharacterForSave(
@@ -8,9 +9,14 @@ data class CharacterForSave(
     val level: Int,
     val characterType: CharacterClassType,
     val experience: Int,
-    val teamId: Int? = null
+    val teamId: Int? = null,
+    val goldCount: Int? = null,
+    val isAlive: Boolean = true,
+    val notes: String = "",
+    val checkMarkCount: Int = 0,
 )
 
+@Serializable
 data class CharacterInfo(
     val name: String,
     val level: Int,

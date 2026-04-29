@@ -34,16 +34,16 @@ class GoodsRepository @Inject constructor(
         teamGoodDao.getGoodsForTeam(teamId)
             .map { goods -> goods.map { it.good.toDomain() } }
 
+    suspend fun getTeamGoodsNumbers(teamId: Int): List<Int> = teamGoodDao.getGoodsForTeamSync(teamId).map { it.goodId }
+
+    suspend fun getCharacterGoodIds(characterId: Int): List<Int> =
+        characterGoodsDao.getCharacterGoods(characterId).map { it.good.goodId }
+
     fun getCharacterGoodIds(characterIds: List<Int>): Flow<List<Int>> =
         characterGoodsDao.getCharactersGoodIds(characterIds)
 
     suspend fun getGoodsByNumbers(numbers: List<Int>): List<Good> =
         goodsDao.getGoodsByNumbers(numbers).map { it.toDomain() }
-
-
-    suspend fun deleteCharacterGoods(characterId: Int) {
-        characterGoodsDao.deleteCharacterGoods(characterId)
-    }
 
     suspend fun delete(teamId: Int, goodId: Int) {
         teamGoodDao.delete(teamId, goodId)

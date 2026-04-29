@@ -4,6 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import androidx.room.Transaction
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.TeamGoodBd
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.TeamGoodBdDetailsBd
 import kotlinx.coroutines.flow.Flow
@@ -23,6 +24,11 @@ interface TeamGoodDao {
     @Query("DELETE FROM TeamGoodBd WHERE teamId = :teamId")
     suspend fun deleteAllForTeam(teamId: Int)
 
+    @Transaction
     @Query("SELECT * FROM TeamGoodBd WHERE teamId = :teamId")
     fun getGoodsForTeam(teamId: Int): Flow<List<TeamGoodBdDetailsBd>>
+
+    // Export/Import methods
+    @Query("SELECT * FROM TeamGoodBd WHERE teamId = :teamId")
+    suspend fun getGoodsForTeamSync(teamId: Int): List<TeamGoodBd>
 }

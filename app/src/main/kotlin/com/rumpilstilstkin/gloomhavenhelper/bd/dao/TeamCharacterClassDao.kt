@@ -25,6 +25,9 @@ interface TeamCharacterClassDao {
     @Query("SELECT * FROM TeamCharacterClassBd WHERE teamId = :teamId")
     fun getClassesForTeam(teamId: Int): Flow<List<TeamCharacterClassBd>>
 
+    @Query("SELECT * FROM TeamCharacterClassBd WHERE teamId = :teamId")
+    suspend fun getClassesForTeamSync(teamId: Int): List<TeamCharacterClassBd>
+
     @Query("SELECT characterType FROM TeamCharacterClassBd WHERE teamId = :teamId")
     fun getClassTypesForTeam(teamId: Int): Flow<List<String>>
 }

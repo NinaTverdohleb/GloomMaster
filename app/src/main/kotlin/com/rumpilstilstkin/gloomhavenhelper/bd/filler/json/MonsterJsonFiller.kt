@@ -1,9 +1,7 @@
 package com.rumpilstilstkin.gloomhavenhelper.bd.filler.json
 
 import com.rumpilstilstkin.gloomhavenhelper.bd.dao.MonsterDao
-import com.rumpilstilstkin.gloomhavenhelper.bd.entity.MonsterBd
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.MonsterStatsBd
-import com.rumpilstilstkin.gloomhavenhelper.bd.filler.json.models.MonsterJson
 import javax.inject.Inject
 
 class MonsterJsonFiller @Inject constructor(

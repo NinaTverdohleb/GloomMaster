@@ -6,6 +6,7 @@ import com.rumpilstilstkin.gloomhavenhelper.domain.entity.CharacterForSave
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.CharacterInfo
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.CharacterShortInfo
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.Team
+import kotlin.String
 
 fun CharacterForSave.toBd() = CharacterBd(
     name = this.name,
@@ -13,7 +14,10 @@ fun CharacterForSave.toBd() = CharacterBd(
     characterType = this.characterType.name,
     teamId = this.teamId,
     experience = this.experience,
-    goldCount = 15*(level + 1)
+    goldCount = this.goldCount ?: (15 * (level + 1)),
+    isAlive = this.isAlive,
+    notes = this.notes,
+    checkMarkCount = this.checkMarkCount,
 )
 
 fun CharacterBd.toDomain(

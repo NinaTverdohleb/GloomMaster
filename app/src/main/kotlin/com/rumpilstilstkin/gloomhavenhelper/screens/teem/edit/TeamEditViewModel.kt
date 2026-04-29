@@ -1,17 +1,21 @@
 package com.rumpilstilstkin.gloomhavenhelper.screens.teem.edit
 
-import android.util.Log
+import android.content.Context
+import android.content.Intent
+import androidx.core.content.FileProvider
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.selectablePacks
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.team.ChangeCurrentTeamUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.team.DeleteCurrentTeamUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.team.GetCurrentTeamWithTeamsUseCase
+import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.team.GetShareFileUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.team.SwitchPackForCurrentTeamUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.team.UpdateNameForCurrentTeamUseCase
 import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEvent
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.ShortTeamInfoUi
 import dagger.hilt.android.lifecycle.HiltViewModel
+import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -22,15 +26,18 @@ import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import java.io.File
 import javax.inject.Inject
 
 @HiltViewModel
 class TeamEditViewModel @Inject constructor(
+    @param:ApplicationContext private val context: Context,
     getCurrentTeamWithTeamsCountUseCase: GetCurrentTeamWithTeamsUseCase,
     private val switchPackForCurrentTeamUseCase: SwitchPackForCurrentTeamUseCase,
     private val updateNameForCurrentTeamUseCase: UpdateNameForCurrentTeamUseCase,
     private val deleteCurrentTeamUseCase: DeleteCurrentTeamUseCase,
     private val changeCurrentTeamUseCase: ChangeCurrentTeamUseCase,
+    private val getShareFileUseCase: GetShareFileUseCase,
 ) : ViewModel() {
 
     private val _navigationEvents = MutableSharedFlow<GlHelperEvent>()
@@ -64,7 +71,8 @@ class TeamEditViewModel @Inject constructor(
                         teamId = it.teamId,
                         teamName = it.name,
                     )
-                }.toImmutableList()
+                }.toImmutableList(),
+                createShareFileInProgress = logicState.createShareFileInProgress,
             )
         }
     }.stateIn(
@@ -113,6 +121,39 @@ class TeamEditViewModel @Inject constructor(
                 is TeamEditAction.SelectTeam -> {
                     changeCurrentTeamUseCase(action.teamId)
                     logicState.update { it.copy(showTeamListDialog = false) }
+                }
+
+                TeamEditAction.ShareTeam -> {
+                    logicState.update { it.copy(createShareFileInProgress = true) }
+                    viewModelScope.launch {
+                        getShareFileUseCase(File(context.filesDir, "exports"))
+                            .fold(
+                                onSuccess = { file ->
+                                    val contentUri = FileProvider.getUriForFile(
+                                        context,
+                                        "${context.packageName}.fileprovider",
+                                        file
+                                    )
+
+                                    val shareIntent = Intent(Intent.ACTION_SEND).apply {
+                                        type = "application/json"
+                                        putExtra(Intent.EXTRA_STREAM, contentUri)
+                                        addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                                        addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                                    }
+
+                                    val chooser = Intent.createChooser(shareIntent, "Share Team Data").apply {
+                                        addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                                    }
+                                    logicState.update { it.copy(createShareFileInProgress = false) }
+                                    context.startActivity(chooser)
+                                },
+                                onFailure = { _ ->
+                                    logicState.update { it.copy(createShareFileInProgress = false,) }
+                                    _navigationEvents.emit(GlHelperEvent.Message("Что-то не получилось :("))
+                                }
+                            )
+                    }
                 }
             }
         }

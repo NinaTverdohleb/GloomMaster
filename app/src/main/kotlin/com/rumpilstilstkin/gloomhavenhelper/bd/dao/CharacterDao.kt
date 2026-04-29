@@ -3,6 +3,7 @@ package com.rumpilstilstkin.gloomhavenhelper.bd.dao
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Transaction
 import androidx.room.Update
@@ -27,8 +28,8 @@ interface CharacterDao {
     @Query("SELECT * FROM CharacterBd WHERE characterId = :characterId LIMIT 1")
     fun getCharacterByIdFlow(characterId: Int): Flow<CharacterBd?>
 
-    @Insert
-    suspend fun insert(character: CharacterBd)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insert(character: CharacterBd): Long
 
     @Delete
     suspend fun delete(character: CharacterBd)

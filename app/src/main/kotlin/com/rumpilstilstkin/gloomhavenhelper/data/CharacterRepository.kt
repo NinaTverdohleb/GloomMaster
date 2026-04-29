@@ -28,7 +28,6 @@ class CharacterRepository @Inject constructor(
 
     suspend fun addCharacterPerk(characterId: Int, perkId: Int) {
         characterPerksDao.insert(CharacterPerkBd(characterId = characterId, perkId = perkId))
-
     }
 
     suspend fun deleteCharacterPerk(characterPerkId: Int) {
@@ -39,6 +38,9 @@ class CharacterRepository @Inject constructor(
         characterPerksDao.getCharacterPerksFlow(characterId).map { perks ->
             perks.map { it.toDomain() }
         }
+
+    suspend fun getCharacterPerks(characterId: Int): List<Int> =
+        characterPerksDao.getCharacterPerks(characterId).map { it.perk.perkId }
 
     fun getCharacterByTeamId(teamId: Int): Flow<List<CharacterInfo>> =
         characterDao.findByTeamIdFlow(teamId).map { list ->
@@ -54,6 +56,9 @@ class CharacterRepository @Inject constructor(
                 it.toDomain(team)
             }
         }
+
+    suspend fun getCharacterByTeamIdSync(teamId: Int): List<CharacterInfo> =
+        characterDao.findByTeamId(teamId).map { it.toDomain(null) }
 
     fun getCharacterByIdFlow(id: Int): Flow<CharacterInfo?> =
         characterDao.getCharacterByIdFlow(id).map { character ->
@@ -75,9 +80,8 @@ class CharacterRepository @Inject constructor(
     suspend fun getCharacterById(id: Int): CharacterShortInfo? =
         characterDao.getCharacterById(id)?.toShortDomain()
 
-    suspend fun addCharacter(character: CharacterForSave) {
-        characterDao.insert(character.toBd())
-    }
+    suspend fun addCharacter(character: CharacterForSave): Int =
+        characterDao.insert(character.toBd()).toInt()
 
     suspend fun deleteCharacter(id: Int) {
         characterDao.deleteById(id)

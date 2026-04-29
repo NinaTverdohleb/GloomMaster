@@ -1,6 +1,7 @@
 package com.rumpilstilstkin.gloomhavenhelper.screens.start
 
-import android.app.Activity
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -49,15 +50,19 @@ fun StartScreenRoute(
                 StartScreenTab.SHOP -> ShopTabRoute(navController)
             }
         },
-        editTeam = {viewModel.onAction(StartScreenAction.EditTeam)}
+        editTeam = { viewModel.onAction(StartScreenAction.EditTeam) }
     )
-
+    val openDocumentLauncher = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.OpenDocument(),
+        onResult = { uri -> uri?.let { viewModel.onAction(StartScreenAction.ImportTeam(it)) } }
+    )
     if (showAddTeamDialog) {
         AddTeamDialog(
-            onDismiss = { showAddTeamDialog = false }
-        ) { name ->
-            viewModel.onAction(StartScreenAction.CreateTeam(name))
-            showAddTeamDialog = false
-        }
+            onDismiss = { showAddTeamDialog = false },
+            openFile = { openDocumentLauncher.launch(arrayOf("application/json")) },
+            onAdd = { name ->
+                viewModel.onAction(StartScreenAction.CreateTeam(name))
+            }
+        )
     }
 }

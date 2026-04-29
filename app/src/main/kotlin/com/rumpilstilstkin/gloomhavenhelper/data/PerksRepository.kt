@@ -10,6 +10,8 @@ import javax.inject.Singleton
 class PerksRepository @Inject constructor(
     private val perksDao: PerksDao
 ) {
-    suspend fun getPerksForCharacterClass(characterType: CharacterClassType) = perksDao.getPerksByCharacterClass(characterType.name).map { it.toDomain() }
-
+    suspend fun getPerksForCharacterClass(characterType: CharacterClassType) =
+        perksDao
+            .getPerksByCharacterClass(characterType.name)
+            .map { it.toDomain() }
 }

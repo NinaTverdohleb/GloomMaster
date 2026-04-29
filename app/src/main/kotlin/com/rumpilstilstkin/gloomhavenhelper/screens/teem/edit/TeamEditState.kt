@@ -14,11 +14,13 @@ data class TeamEditStateUi(
     val showTeamListDialog: Boolean = false,
     val showChangeTeamButton: Boolean = false,
     val teamsForSelect: ImmutableList<ShortTeamInfoUi> = persistentListOf(),
+    val createShareFileInProgress: Boolean = false,
 )
 
 data class TeamEditStateLogic(
     val showDeleteConfirmDialog: Boolean = false,
     val showTeamListDialog: Boolean = false,
+    val createShareFileInProgress: Boolean = false,
 )
 
 @Immutable
@@ -42,4 +44,5 @@ sealed interface TeamEditAction {
     data object ShowTeamListDialog : TeamEditAction
     data object DismissTeamListDialog : TeamEditAction
     data class SelectTeam(val teamId: Int) : TeamEditAction
+    data object ShareTeam: TeamEditAction
 }

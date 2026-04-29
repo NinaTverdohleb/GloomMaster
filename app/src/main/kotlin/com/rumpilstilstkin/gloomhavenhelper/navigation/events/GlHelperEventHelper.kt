@@ -1,5 +1,6 @@
 package com.rumpilstilstkin.gloomhavenhelper.navigation.events
 
+import android.widget.Toast
 import androidx.navigation.NavHostController
 
 object GlHelperEventHelper {
@@ -14,6 +15,14 @@ object GlHelperEventHelper {
 
             is GlHelperEvent.Back -> {
                 navController.popBackStack()
+            }
+
+            is GlHelperEvent.Message -> {
+                Toast.makeText(
+                    navController.context,
+                    event.text,
+                    Toast.LENGTH_LONG
+                ).show()
             }
         }
     }

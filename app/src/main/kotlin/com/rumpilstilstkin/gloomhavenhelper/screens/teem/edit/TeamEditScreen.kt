@@ -12,7 +12,9 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Delete
+import androidx.compose.material.icons.filled.Share
 import androidx.compose.material3.Checkbox
+import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -32,7 +34,6 @@ import androidx.compose.ui.unit.dp
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.PackType
 import com.rumpilstilstkin.gloomhavenhelper.screens.dialogs.teams.DeleteTeamDialog
 import com.rumpilstilstkin.gloomhavenhelper.screens.dialogs.teams.TeamsDialog
-import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomAlertDialog
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomCard
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomToolbarTitle
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
@@ -50,10 +51,11 @@ internal fun TeamEditScreen(
     showTeamListDialog: () -> Unit,
     dismissTeamListDialog: () -> Unit,
     selectTeam: (Int) -> Unit,
+    shareTeamData: () -> Unit,
 ) = Scaffold(
     topBar = {
         GloomToolbarTitle(
-            title = "Редактирование команды",
+            title = "",
             back = back,
             actions = {
                 IconButton(onClick = showDeleteDialog) {
@@ -61,6 +63,13 @@ internal fun TeamEditScreen(
                         Icons.Default.Delete,
                         contentDescription = null,
                         tint = MaterialTheme.colorScheme.error
+                    )
+                }
+                IconButton(onClick = shareTeamData) {
+                    Icon(
+                        Icons.Default.Share,
+                        contentDescription = null,
+                        tint = MaterialTheme.colorScheme.onSurface
                     )
                 }
             }
@@ -160,6 +169,7 @@ private fun TeamEditScreenPreview() {
                         isEnabled = false,
                     ),
                 ),
+                showChangeTeamButton = true
             ),
             onNameChange = {},
             onTogglePack = {},
@@ -170,6 +180,7 @@ private fun TeamEditScreenPreview() {
             showTeamListDialog = {},
             dismissTeamListDialog = {},
             selectTeam = {},
+            shareTeamData = {},
         )
     }
 }

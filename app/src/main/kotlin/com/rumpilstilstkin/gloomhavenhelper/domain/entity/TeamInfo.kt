@@ -1,5 +1,7 @@
 package com.rumpilstilstkin.gloomhavenhelper.domain.entity
 
+import kotlinx.serialization.Serializable
+
 data class TeamInfo(
     val id: Int,
     val name: String,
@@ -35,13 +37,14 @@ data class Prosperity(
     }
 }
 
+@Serializable
 data class Team(
     val teamId: Int,
     val name: String,
     val packs: List<PackType>
 )
 
-
+@Serializable
 data class ShortTeamInfo(
     val teamId: Int,
     val name: String,

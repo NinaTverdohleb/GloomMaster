@@ -7,6 +7,7 @@ import com.rumpilstilstkin.gloomhavenhelper.data.mappers.toDomain
 import com.rumpilstilstkin.gloomhavenhelper.data.mappers.toShortDomain
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.ScenarioInfo
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.ScenarioShortInfo
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.export.TeamScenarioDataDto
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
@@ -45,6 +46,18 @@ class ScenarioRepository @Inject constructor(
                 teamId = teamId,
                 scenarioNumber = scenario.scenarioNumber,
             )
+        )
+    }
+
+    suspend fun addTeamScenarios(scenarios: List<Pair<Int, Boolean>>, teamId: Int) {
+        teamScenarioDao.insertAll(
+            *scenarios.map { (number, completed) ->
+                TeamScenarioBd(
+                    teamId = teamId,
+                    scenarioNumber = number,
+                    completed = completed
+                )
+            }.toTypedArray()
         )
     }
 

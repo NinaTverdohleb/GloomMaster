@@ -7,6 +7,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 import javax.inject.Singleton
+import kotlin.collections.map
 
 @Singleton
 class CharacterClassRepository @Inject constructor(
@@ -18,6 +19,11 @@ class CharacterClassRepository @Inject constructor(
         teamCharacterClassDao
             .getClassTypesForTeam(teamId)
             .map { list -> list.map { CharacterClassType.valueOf(it) } }
+
+    suspend fun getAvailableClassesForTeamSync(teamId: Int): List<String> =
+        teamCharacterClassDao
+            .getClassesForTeamSync(teamId)
+            .map { it.characterType }
 
     suspend fun addAvailableClass(teamId: Int, type: CharacterClassType) {
         teamCharacterClassDao.insert(

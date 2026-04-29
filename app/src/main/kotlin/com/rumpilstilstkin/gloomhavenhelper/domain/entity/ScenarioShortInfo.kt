@@ -1,7 +1,5 @@
 package com.rumpilstilstkin.gloomhavenhelper.domain.entity
 
-import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.Monster
-
 data class ScenarioShortInfo(
     val scenarioNumber: Int,
     val scenarioName: String,
