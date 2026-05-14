@@ -6,7 +6,7 @@ import com.rumpilstilstkin.gloomhavenhelper.domain.entity.CharacterClassType
 
 enum class CharacterClassTypeUI(
     val title: String,
-    @DrawableRes val image: Int,
+    @param:DrawableRes val image: Int,
     val type: CharacterClassType,
 ) {
     Brute("Инокс, дикарь", R.drawable.ic_br, CharacterClassType.Brute),

@@ -58,7 +58,7 @@ internal fun ScenarioScreen(
     addMonsterUnit: (unitNumbers: List<Int>, monsterId: Int, isElite: Boolean) -> Unit,
     clickMagic: (magic: Magic) -> Unit,
     changeUnitLevel: (monsterId: Int, unit: MonsterUnit, level: Int) -> Unit,
-    ) = Scaffold(
+) = Scaffold(
     topBar = {
         CombatToolbar(
             roundNumber = state.round,
@@ -97,19 +97,17 @@ internal fun ScenarioScreen(
             addMonsterUnit = addMonsterUnit,
             changeUnitLevel = changeUnitLevel
         )
-        if (state.monsters.isNotEmpty()) {
-            Button(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(16.dp),
-                onClick = nextRound,
-                contentPadding = PaddingValues(16.dp)
-            ) {
-                Text(
-                    text = "Раунд",
-                    fontSize = 16.sp
-                )
-            }
+        Button(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp),
+            onClick = nextRound,
+            contentPadding = PaddingValues(16.dp)
+        ) {
+            Text(
+                text = "Раунд",
+                fontSize = 16.sp
+            )
         }
     }
 }

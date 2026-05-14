@@ -12,4 +12,10 @@ class ScenarioJsonFiller @Inject constructor(
         val entities = scenarios.map { it.toEntity() }
         scenarioDao.insertAll(*entities.toTypedArray())
     }
+
+    suspend fun fixScenario21() {
+        jsonDataLoader.loadScenarios(1)
+            .find { it.scenarioNumber == 21 }
+            ?.also { scenarioDao.insertAll(it.toEntity()) }
+    }
 }

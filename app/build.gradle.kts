@@ -10,13 +10,13 @@ plugins {
 android {
     enableKotlin = true
     namespace = "com.rumpilstilstkin.gloomhavenhelper"
-    compileSdk = 36
+    compileSdk = 37
 
     defaultConfig {
         applicationId = "com.rumpilstilstkin.gloomhavenhalper"
         minSdk = 31
-        versionCode = 8
-        versionName = "1.5"
+        versionCode = 9
+        versionName = "1.6"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {

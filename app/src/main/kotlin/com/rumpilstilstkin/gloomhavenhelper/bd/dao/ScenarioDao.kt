@@ -2,6 +2,7 @@ package com.rumpilstilstkin.gloomhavenhelper.bd.dao
 
 import androidx.room.Dao
 import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.ScenarioBd
 
@@ -13,6 +14,6 @@ interface ScenarioDao {
     @Query("SELECT * FROM ScenarioBd WHERE scenarioNumber = :scenarioNumber LIMIT 1")
     suspend fun getScenario(scenarioNumber: Int): ScenarioBd
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(vararg scenarios: ScenarioBd)
 }

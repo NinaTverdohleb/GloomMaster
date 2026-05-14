@@ -21,8 +21,6 @@ class DatabaseFiller @Inject constructor(
     private val questJsonFiller: QuestJsonFiller,
     private val monsterJsonFiller: MonsterJsonFiller,
 ) {
-    val version = preferences.getInt(PREFS_VERSION, 0)
-
     suspend fun fillDatabase() {
         var version = preferences.getInt(PREFS_VERSION, 0)
         while (version < VERSION) {
@@ -32,10 +30,12 @@ class DatabaseFiller @Inject constructor(
         preferences.edit { putInt(PREFS_VERSION, VERSION) }
     }
 
+    // TODO create effective fun for fix dictionary and don't do anything if dictionary is correct
     private suspend fun update(version: Int) {
         when (version) {
             0 -> update0()
             1 -> update1()
+            2 -> update2()
             else -> {}
         }
     }
@@ -75,8 +75,12 @@ class DatabaseFiller @Inject constructor(
         monsterJsonFiller.fixLivingSpiritDeck()
     }
 
+    private suspend fun update2() {
+        scenarioJsonFiller.fixScenario21()
+    }
+
     companion object {
-        private const val VERSION = 2
+        private const val VERSION = 3
         private const val PREFS_VERSION = "filler_version"
     }
 }
