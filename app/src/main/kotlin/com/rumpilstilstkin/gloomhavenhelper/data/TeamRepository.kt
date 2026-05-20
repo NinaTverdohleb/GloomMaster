@@ -7,6 +7,7 @@ import com.rumpilstilstkin.gloomhavenhelper.data.datasource.CurrentTeamDatasourc
 import com.rumpilstilstkin.gloomhavenhelper.data.mappers.toBd
 import com.rumpilstilstkin.gloomhavenhelper.data.mappers.toDomain
 import com.rumpilstilstkin.gloomhavenhelper.di.ApplicationScope
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.DifficultyLevel
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.PackType
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.ShortTeamInfo
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.Team
@@ -78,7 +79,8 @@ class TeamRepository @Inject constructor(
                 Team(
                     teamId = teamBd.teamId,
                     name = teamBd.name,
-                    packs = teamBd.packs.map { PackType.valueOf(it) }
+                    packs = teamBd.packs.map { PackType.valueOf(it) },
+                    difficultyLevel = DifficultyLevel.fromValue(teamBd.difficultyLevel)
                 )
             }
         }

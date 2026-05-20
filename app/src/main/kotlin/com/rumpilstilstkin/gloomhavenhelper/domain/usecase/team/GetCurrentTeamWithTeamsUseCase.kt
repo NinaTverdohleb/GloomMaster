@@ -23,7 +23,8 @@ class GetCurrentTeamWithTeamsUseCase @Inject constructor(
                 val currentTeam = Team(
                     teamId = team.teamId,
                     name = team.name,
-                    packs = team.packs
+                    packs = team.packs,
+                    difficultyLevel = team.difficultyLevel
                 )
                 currentTeam to (teams - currentTeam)
             }

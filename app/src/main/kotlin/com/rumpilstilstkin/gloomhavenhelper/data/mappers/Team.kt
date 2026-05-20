@@ -1,6 +1,7 @@
 package com.rumpilstilstkin.gloomhavenhelper.data.mappers
 
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.TeamBd
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.DifficultyLevel
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.PackType
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.ScenarioShortInfo
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.ShortTeamInfo
@@ -9,7 +10,8 @@ import com.rumpilstilstkin.gloomhavenhelper.domain.entity.TeamInfoWithScenario
 
 fun TeamInfoForSave.toBd() = TeamBd(
     name = this.name,
-    packs = this.packs.map { it.name }
+    packs = this.packs.map { it.name },
+    difficultyLevel = this.difficultyLevel.value
 )
 
 fun TeamBd.toDomain(
@@ -23,7 +25,8 @@ fun TeamBd.toDomain(
     prosperity = this.prosperity,
     scenario = scenarios,
     packs = this.packs.map { PackType.valueOf(it) },
-    churchValue = this.churchValue
+    churchValue = this.churchValue,
+    difficultyLevel = DifficultyLevel.fromValue(this.difficultyLevel)
 )
 
 fun TeamBd.toDomain(
@@ -37,7 +40,8 @@ fun TeamBd.toDomain(
     prosperity = this.prosperity,
     packs = this.packs.map { PackType.valueOf(it) },
     aliveCharacterIds = characterIds,
-    churchValue = this.churchValue
+    churchValue = this.churchValue,
+    difficultyLevel = DifficultyLevel.fromValue(this.difficultyLevel)
 )
 
 fun ShortTeamInfo.toBd() = TeamBd(
@@ -48,5 +52,6 @@ fun ShortTeamInfo.toBd() = TeamBd(
     reputation = this.reputation,
     prosperity = this.prosperity,
     packs = this.packs.map { it.name },
-    churchValue = this.churchValue
+    churchValue = this.churchValue,
+    difficultyLevel = this.difficultyLevel.value
 )

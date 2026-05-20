@@ -15,7 +15,6 @@ import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEvent.Scre
 import com.rumpilstilstkin.gloomhavenhelper.utils.flatMap
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -23,10 +22,8 @@ import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import java.io.IOException
 import javax.inject.Inject
-import kotlin.onFailure
 
 @HiltViewModel
 class StartScreenViewModel @Inject constructor(

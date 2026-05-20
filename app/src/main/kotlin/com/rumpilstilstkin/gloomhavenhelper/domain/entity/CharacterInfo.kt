@@ -50,9 +50,9 @@ data class CharacterFullInfo(
     val personalQuest: CharacterPersonalQuest?,
 )
 
-fun List<Int>.toLevel(): Int {
-    val clearLevel = ceil(this.average().div(2)).toInt()
-    return if (clearLevel > MAX_LEVEL) MAX_LEVEL else clearLevel
+fun List<Int>.toLevel(difficultyLevel: DifficultyLevel): Int {
+    val clearLevel = ceil(this.average().div(2)).toInt() + difficultyLevel.value
+    return clearLevel.coerceIn(0, MAX_LEVEL)
 }
 
 private const val MAX_LEVEL = 7

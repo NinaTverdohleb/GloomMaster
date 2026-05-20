@@ -35,7 +35,7 @@ class GetCurrentTeamUseCase @Inject constructor(
                     TeamInfo(
                         id = team.teamId,
                         name = team.name,
-                        level = activeCharacters.map { it.level }.toLevel(),
+                        level = activeCharacters.map { it.level }.toLevel(team.difficultyLevel),
                         teamAchievement = team.teamAchievement,
                         globalAchievement = team.globalAchievement,
                         reputation = team.reputation,
@@ -45,7 +45,8 @@ class GetCurrentTeamUseCase @Inject constructor(
                         shopDiscount = getDiscountByReputation(team.reputation),
                         packs = team.packs,
                         hasActiveScenario = activeScenario != null,
-                        churchValue = team.churchValue
+                        churchValue = team.churchValue,
+                        difficultyLevel = team.difficultyLevel
                     )
                 }
             } ?: flowOf(null)

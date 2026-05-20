@@ -37,7 +37,8 @@ class ImportTeamUseCase @Inject constructor(
                 TeamInfoForSave(
                     name = data.team.name,
                     packs = data.team.packs,
-                    characters = emptyList()
+                    characters = emptyList(),
+                    difficultyLevel = data.team.difficultyLevel
                 )
             )
             teamRepository.updateTeam(data.team.copy(teamId = teamId))

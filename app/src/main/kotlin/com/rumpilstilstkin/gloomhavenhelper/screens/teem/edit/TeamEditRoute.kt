@@ -36,6 +36,7 @@ fun TeamEditRoute(
         showTeamListDialog = { viewModel.onAction(TeamEditAction.ShowTeamListDialog) },
         dismissTeamListDialog = { viewModel.onAction(TeamEditAction.DismissTeamListDialog) },
         selectTeam = { viewModel.onAction(TeamEditAction.SelectTeam(it)) },
-        shareTeamData = { viewModel.onAction(TeamEditAction.ShareTeam) }
+        shareTeamData = { viewModel.onAction(TeamEditAction.ShareTeam) },
+        onDifficultyChange = { viewModel.onAction(TeamEditAction.ChangeDifficultyLevel(it)) }
     )
 }

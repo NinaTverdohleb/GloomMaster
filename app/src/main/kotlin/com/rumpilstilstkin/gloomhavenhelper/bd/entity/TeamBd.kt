@@ -2,7 +2,6 @@ package com.rumpilstilstkin.gloomhavenhelper.bd.entity
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.rumpilstilstkin.gloomhavenhelper.bd.typeconverters.AchievementConverter
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.Achievement
 
 @Entity
@@ -14,5 +13,6 @@ data class TeamBd(
     val reputation: Int = 0,
     val prosperity: Int = 0,
     val churchValue: Int = 100,
-    val packs: List<String>
+    val packs: List<String>,
+    val difficultyLevel: Int = 0
 )

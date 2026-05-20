@@ -16,6 +16,7 @@ data class TeamInfo(
     val packs: List<PackType>,
     val hasActiveScenario: Boolean,
     val churchValue: Int,
+    val difficultyLevel: DifficultyLevel = DifficultyLevel.NORMAL,
 )
 
 data class Prosperity(
@@ -41,7 +42,8 @@ data class Prosperity(
 data class Team(
     val teamId: Int,
     val name: String,
-    val packs: List<PackType>
+    val packs: List<PackType>,
+    val difficultyLevel: DifficultyLevel = DifficultyLevel.NORMAL,
 )
 
 @Serializable
@@ -55,6 +57,7 @@ data class ShortTeamInfo(
     val prosperity: Int,
     val packs: List<PackType>,
     val churchValue: Int,
+    val difficultyLevel: DifficultyLevel = DifficultyLevel.NORMAL,
 ) {
     companion object {
         fun fixture(
@@ -69,7 +72,8 @@ data class ShortTeamInfo(
             prosperity = 20,
             packs = listOf(PackType.MAIN),
             aliveCharacterIds = listOf(1, 2, 3),
-            churchValue = 100
+            churchValue = 100,
+            difficultyLevel = DifficultyLevel.NORMAL
         )
     }
 }
@@ -84,12 +88,14 @@ data class TeamInfoWithScenario(
     val scenario: List<ScenarioShortInfo>,
     val packs: List<PackType>,
     val churchValue: Int,
+    val difficultyLevel: DifficultyLevel = DifficultyLevel.NORMAL,
 )
 
 data class TeamInfoForSave(
     val name: String,
     val characters: List<CharacterForSave> = emptyList(),
-    val packs: List<PackType>
+    val packs: List<PackType>,
+    val difficultyLevel: DifficultyLevel = DifficultyLevel.NORMAL,
 )
 
 

@@ -11,6 +11,7 @@ import com.rumpilstilstkin.gloomhavenhelper.data.mappers.toShortDomain
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.CharacterForSave
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.CharacterInfo
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.CharacterShortInfo
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.DifficultyLevel
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.PackType
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.Team
 import kotlinx.coroutines.flow.Flow
@@ -49,7 +50,8 @@ class CharacterRepository @Inject constructor(
                     Team(
                         teamId = teamBd.teamId,
                         name = teamBd.name,
-                        packs = teamBd.packs.map { PackType.valueOf(it) }
+                        packs = teamBd.packs.map { PackType.valueOf(it) },
+                        difficultyLevel = DifficultyLevel.fromValue(teamBd.difficultyLevel)
                     )
                 }
 
@@ -67,7 +69,8 @@ class CharacterRepository @Inject constructor(
                     Team(
                         teamId = teamBd.teamId,
                         name = teamBd.name,
-                        packs = teamBd.packs.map { PackType.valueOf(it) }
+                        packs = teamBd.packs.map { PackType.valueOf(it) },
+                        difficultyLevel = DifficultyLevel.fromValue(teamBd.difficultyLevel)
                     )
                 }
             }

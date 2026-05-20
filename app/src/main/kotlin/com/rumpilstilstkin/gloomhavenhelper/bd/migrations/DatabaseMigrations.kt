@@ -18,4 +18,10 @@ import androidx.room.migration.Migration
  * List of all migrations to be applied to the database.
  * Add new migrations to this list as they are created.
  */
-val ALL_MIGRATIONS = arrayOf<Migration>()
+val ALL_MIGRATIONS = arrayOf<Migration>(
+    object : Migration(1, 2) {
+        override fun migrate(db: androidx.sqlite.db.SupportSQLiteDatabase) {
+            db.execSQL("ALTER TABLE TeamBd ADD COLUMN difficultyLevel INTEGER NOT NULL DEFAULT 0")
+        }
+    }
+)

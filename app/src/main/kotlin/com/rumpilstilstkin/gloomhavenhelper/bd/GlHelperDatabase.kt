@@ -76,7 +76,7 @@ import com.rumpilstilstkin.gloomhavenhelper.bd.typeconverters.StringListTypeConv
         AchievementBd::class,
         ScenarioGameStateBd::class
     ],
-    version = 1
+    version = 2
 )
 abstract class GlHelperDatabase : RoomDatabase() {
     abstract fun characterDao(): CharacterDao

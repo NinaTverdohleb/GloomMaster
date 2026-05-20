@@ -11,8 +11,10 @@ import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.team.DeleteCurrentTea
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.team.GetCurrentTeamWithTeamsUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.team.GetShareFileUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.team.SwitchPackForCurrentTeamUseCase
+import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.team.UpdateDifficultyLevelUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.team.UpdateNameForCurrentTeamUseCase
 import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEvent
+import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEvent.*
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.ShortTeamInfoUi
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
@@ -38,6 +40,7 @@ class TeamEditViewModel @Inject constructor(
     private val deleteCurrentTeamUseCase: DeleteCurrentTeamUseCase,
     private val changeCurrentTeamUseCase: ChangeCurrentTeamUseCase,
     private val getShareFileUseCase: GetShareFileUseCase,
+    private val updateDifficultyLevelUseCase: UpdateDifficultyLevelUseCase,
 ) : ViewModel() {
 
     private val _navigationEvents = MutableSharedFlow<GlHelperEvent>()
@@ -57,6 +60,7 @@ class TeamEditViewModel @Inject constructor(
 
             TeamEditStateUi(
                 teamName = team.name,
+                difficultyLevel = team.difficultyLevel,
                 availablePacks = selectablePacks.map { packType ->
                     PackItemUi(
                         pack = packType,
@@ -142,18 +146,23 @@ class TeamEditViewModel @Inject constructor(
                                         addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                                     }
 
-                                    val chooser = Intent.createChooser(shareIntent, "Share Team Data").apply {
-                                        addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                                    }
+                                    val chooser =
+                                        Intent.createChooser(shareIntent, "Share Team Data").apply {
+                                            addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                                        }
                                     logicState.update { it.copy(createShareFileInProgress = false) }
                                     context.startActivity(chooser)
                                 },
                                 onFailure = { _ ->
-                                    logicState.update { it.copy(createShareFileInProgress = false,) }
-                                    _navigationEvents.emit(GlHelperEvent.Message("Что-то не получилось :("))
+                                    logicState.update { it.copy(createShareFileInProgress = false) }
+                                    _navigationEvents.emit(Message("Что-то не получилось :("))
                                 }
                             )
                     }
+                }
+
+                is TeamEditAction.ChangeDifficultyLevel -> {
+                    updateDifficultyLevelUseCase(action.level)
                 }
             }
         }
