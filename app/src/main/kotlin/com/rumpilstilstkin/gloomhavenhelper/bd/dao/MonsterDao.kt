@@ -30,6 +30,9 @@ interface MonsterDao {
     @Insert
     suspend fun insertMonsters(vararg monsters: MonsterBd)
 
+    @Query("DELETE FROM MonsterBd")
+    suspend fun deleteAllMonsters()
+
     // Monster Stats
 
     @Query("SELECT * FROM MonsterStatsBd WHERE monsterId = :monsterId AND scenarioLevel = :level AND isElite = :isElite")
@@ -40,6 +43,12 @@ interface MonsterDao {
 
     @Insert
     suspend fun insertAllStats(vararg stats: MonsterStatsBd)
+
+    @Query("DELETE FROM MonsterStatsBd")
+    suspend fun deleteAllStats()
+
+    @Query("DELETE FROM MonsterStatsBd WHERE monsterId = :monsterId")
+    suspend fun deleteStatsByMonsterId(monsterId: Int)
 
     // Monster Ability Cards
     @Query("SELECT * FROM MonsterAbilityCardBd WHERE deckName = :deckName")
@@ -53,4 +62,7 @@ interface MonsterDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertCards(vararg cards: MonsterAbilityCardBd)
+
+    @Query("DELETE FROM MonsterAbilityCardBd")
+    suspend fun deleteAllCards()
 }

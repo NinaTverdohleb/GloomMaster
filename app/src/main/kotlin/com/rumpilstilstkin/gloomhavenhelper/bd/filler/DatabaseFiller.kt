@@ -33,14 +33,21 @@ class DatabaseFiller @Inject constructor(
     // TODO create effective fun for fix dictionary and don't do anything if dictionary is correct
     private suspend fun update(version: Int) {
         when (version) {
-            0 -> update0()
-            1 -> update1()
-            2 -> update2()
+            0 -> fillV1()
+            1 -> monsterJsonFiller.fixLivingSpiritDeck()
+            2 -> scenarioJsonFiller.fixScenario21()
+            3 -> {
+                monsterJsonFiller.fillStats(
+                    version = 1,
+                    pack = "main",
+                    type = "base"
+                )
+            }
             else -> {}
         }
     }
 
-    private suspend fun update0() {
+    private suspend fun fillV1() {
         gameLevelInfoJsonFiller.fill(1)
         scenarioJsonFiller.fill(1)
         goodJsonFiller.fill(1)
@@ -71,16 +78,8 @@ class DatabaseFiller @Inject constructor(
         achievementJsonFiller.fill(1)
     }
 
-    private suspend fun update1() {
-        monsterJsonFiller.fixLivingSpiritDeck()
-    }
-
-    private suspend fun update2() {
-        scenarioJsonFiller.fixScenario21()
-    }
-
     companion object {
-        private const val VERSION = 3
+        private const val VERSION = 4
         private const val PREFS_VERSION = "filler_version"
     }
 }

@@ -10,7 +10,7 @@ class MonsterJsonFiller @Inject constructor(
 ) {
     suspend fun fillDecks(
         version: Int
-    ){
+    ) {
         val decks = jsonDataLoader.loadMonsterDeck(version)
         decks.forEach { deck ->
             val entities = deck.toEntity()
@@ -25,10 +25,10 @@ class MonsterJsonFiller @Inject constructor(
     }
 
     // for old versions
-    suspend fun fixLivingSpiritDeck(){
+    suspend fun fixLivingSpiritDeck() {
         val cards = monsterDao.getCardsByDeckName("living-spirit")
         val newCards = cards.map { card ->
-            val initiative = when(card.imageName){
+            val initiative = when (card.imageName) {
                 "ic_deck_ma_ls_1.webp" -> 75
                 "ic_deck_ma_ls_2.webp" -> 55
                 "ic_deck_ma_ls_3.webp" -> 67
@@ -55,6 +55,12 @@ class MonsterJsonFiller @Inject constructor(
                 pack = pack,
                 type = type
             )
+
+        allStats
+            .map { it.monsterName }
+            .toSet().forEach { name ->
+                nameToId[name]?.let { monsterDao.deleteStatsByMonsterId(it) }
+            }
 
         val entities = allStats.flatMap { monsterStat ->
             val monsterId = nameToId[monsterStat.monsterName]

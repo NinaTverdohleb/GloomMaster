@@ -1,4 +1,4 @@
-v1.7.0 — Difficulty Level for scenario
+v1.8.0 — Fix Night demon stats
 
-🚀 New Features
-Add Difficulty Level in Team edit screen
+📖 Dictionary Updates
+Fix Night demon stats
