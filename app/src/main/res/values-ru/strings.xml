@@ -166,4 +166,8 @@
     <string name="logical_and"> и </string>
     <string name="logical_or"> или </string>
     <string name="custom_scenario">Свой сценарий</string>
+    <string name="select_language">Выберите язык</string>
+    <string name="language_system">Системный</string>
+    <string name="language_english">English</string>
+    <string name="language_russian">Русский</string>
 </resources>

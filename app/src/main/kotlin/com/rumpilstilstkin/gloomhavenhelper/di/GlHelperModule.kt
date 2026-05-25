@@ -7,6 +7,7 @@ import com.rumpilstilstkin.gloomhavenhelper.bd.createGlHelperDatabase
 import com.rumpilstilstkin.gloomhavenhelper.bd.dao.CharacterDao
 import com.rumpilstilstkin.gloomhavenhelper.bd.dao.GameLevelInfoDao
 import com.rumpilstilstkin.gloomhavenhelper.bd.dao.TeamDao
+import com.rumpilstilstkin.gloomhavenhelper.localization.AppLocaleManager
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -24,7 +25,7 @@ object GlHelperModule {
         @ApplicationContext context: Context
     ): SharedPreferences =
         context.getSharedPreferences(
-            "GlHelperPreferences", Context.MODE_PRIVATE
+            AppLocaleManager.PREFS_NAME, Context.MODE_PRIVATE
         )
 
     @Singleton

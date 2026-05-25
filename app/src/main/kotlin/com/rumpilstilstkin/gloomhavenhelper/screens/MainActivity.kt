@@ -1,6 +1,7 @@
 package com.rumpilstilstkin.gloomhavenhelper.screens
 
 import android.animation.ObjectAnimator
+import android.content.Context
 import android.os.Bundle
 import android.view.View
 import androidx.activity.ComponentActivity
@@ -18,6 +19,7 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import com.rumpilstilstkin.gloomhavenhelper.localization.AppLocaleManager
 import com.rumpilstilstkin.gloomhavenhelper.navigation.GlHelperNavHost
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -29,6 +31,10 @@ import kotlinx.coroutines.launch
 class MainActivity : ComponentActivity() {
 
     val viewModel: MainActivityViewModel by viewModels()
+
+    override fun attachBaseContext(newBase: Context) {
+        super.attachBaseContext(AppLocaleManager.wrap(newBase))
+    }
 
     override fun onStart() {
         super.onStart()

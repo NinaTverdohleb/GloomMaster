@@ -12,12 +12,15 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
+import com.rumpilstilstkin.gloomhavenhelper.localization.AppLocaleManager
 import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEventHelper
+import com.rumpilstilstkin.gloomhavenhelper.screens.dialogs.LanguageDialog
 import com.rumpilstilstkin.gloomhavenhelper.screens.dialogs.teams.AddTeamDialog
 import com.rumpilstilstkin.gloomhavenhelper.screens.start.characters.CharactersTabRoute
 import com.rumpilstilstkin.gloomhavenhelper.screens.start.scenarios.ScenariosTabRoute
 import com.rumpilstilstkin.gloomhavenhelper.screens.start.shop.ShopTabRoute
 import com.rumpilstilstkin.gloomhavenhelper.screens.start.team.TeamTabRoute
+import com.rumpilstilstkin.gloomhavenhelper.utils.findActivity
 
 @Composable
 fun StartScreenRoute(
@@ -28,6 +31,7 @@ fun StartScreenRoute(
     val navigationEvents by viewModel.navigationEvents.collectAsStateWithLifecycle(initialValue = null)
 
     var showAddTeamDialog by remember { mutableStateOf(false) }
+    var showLanguageDialog by remember { mutableStateOf(false) }
 
     LaunchedEffect(navigationEvents) {
         navigationEvents?.let { event ->
@@ -50,7 +54,8 @@ fun StartScreenRoute(
                 StartScreenTab.SHOP -> ShopTabRoute(navController)
             }
         },
-        editTeam = { viewModel.onAction(StartScreenAction.EditTeam) }
+        editTeam = { viewModel.onAction(StartScreenAction.EditTeam) },
+        openLanguagePicker = { showLanguageDialog = true }
     )
     val openDocumentLauncher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.OpenDocument(),
@@ -62,6 +67,20 @@ fun StartScreenRoute(
             openFile = { openDocumentLauncher.launch(arrayOf("application/json")) },
             onAdd = { name ->
                 viewModel.onAction(StartScreenAction.CreateTeam(name))
+            }
+        )
+    }
+    if (showLanguageDialog) {
+        val context = LocalContext.current
+        LanguageDialog(
+            current = AppLocaleManager.currentLanguage(context),
+            onDismiss = { showLanguageDialog = false },
+            onSelect = { language ->
+                showLanguageDialog = false
+                if (language != AppLocaleManager.currentLanguage(context)) {
+                    AppLocaleManager.setLanguage(context, language)
+                    context.findActivity()?.recreate()
+                }
             }
         )
     }

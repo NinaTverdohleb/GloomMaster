@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Language
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -33,6 +34,7 @@ internal fun StartScreen(
     selectTab: @Composable (StartScreenTab) -> Unit,
     addTeam: () -> Unit,
     editTeam: () -> Unit,
+    openLanguagePicker: () -> Unit,
 ) {
     var selectedTab by rememberSaveable { mutableStateOf(StartScreenTab.TEAM) }
 
@@ -51,6 +53,7 @@ internal fun StartScreen(
                 GloomToolbarStatus(
                     status = state.name,
                     actions = {
+                        LanguageAction(onClick = openLanguagePicker)
                         IconButton(onClick = addTeam) {
                             Icon(
                                 Icons.Default.Add,
@@ -64,6 +67,9 @@ internal fun StartScreen(
             } else {
                 GloomToolbarTitle(
                     title = stringResource(R.string.app_name),
+                    actions = {
+                        LanguageAction(onClick = openLanguagePicker)
+                    }
                 )
             }
         }
@@ -85,6 +91,17 @@ internal fun StartScreen(
     }
 }
 
+@Composable
+private fun LanguageAction(onClick: () -> Unit) {
+    IconButton(onClick = onClick) {
+        Icon(
+            Icons.Default.Language,
+            contentDescription = stringResource(R.string.select_language),
+            tint = MaterialTheme.colorScheme.onSurface
+        )
+    }
+}
+
 internal enum class StartScreenTab(
     override val titleRes: Int,
     override val iconRes: Int
@@ -103,7 +120,8 @@ private fun StartScreenEmptyPreview() {
             state = StartScreenState.Empty,
             addTeam = {},
             selectTab = {},
-            editTeam = {}
+            editTeam = {},
+            openLanguagePicker = {}
         )
     }
 }
@@ -128,7 +146,8 @@ private fun StartScreenPreview() {
                     changeLevel = {_, _ ->}
                 )
             },
-            editTeam = {}
+            editTeam = {},
+            openLanguagePicker = {}
         )
     }
 }
