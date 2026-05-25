@@ -22,13 +22,14 @@ class GetAvailableScenariosForTeamUseCase @Inject constructor(
             if (team == null) {
                 flowOf(emptyList())
             } else {
-                val allScenarios = scenarioRepository.getAllScenarios().filter { scenario ->
-                    scenario.pack in team.packs
-                }
+                // getAllScenarios() is resolved inside the transform so it re-runs (and
+                // re-localizes) whenever the team-scenarios stream re-emits, including on a
+                // live language switch.
                 scenarioRepository.getTeamScenariosFlow(team.teamId).map { scenarios ->
                     val teamScenarioNumbers = scenarios.map { it.scenarioNumber }.toSet()
-                    allScenarios.filter { scenario ->
-                        scenario.scenarioNumber !in teamScenarioNumbers
+                    scenarioRepository.getAllScenarios().filter { scenario ->
+                        scenario.pack in team.packs &&
+                            scenario.scenarioNumber !in teamScenarioNumbers
                     }
                 }
             }

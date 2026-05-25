@@ -9,6 +9,7 @@ import com.rumpilstilstkin.gloomhavenhelper.bd.filler.json.MonsterJsonFiller
 import com.rumpilstilstkin.gloomhavenhelper.bd.filler.json.PerkJsonFiller
 import com.rumpilstilstkin.gloomhavenhelper.bd.filler.json.QuestJsonFiller
 import com.rumpilstilstkin.gloomhavenhelper.bd.filler.json.ScenarioJsonFiller
+import com.rumpilstilstkin.gloomhavenhelper.bd.filler.json.TranslationJsonFiller
 import javax.inject.Inject
 
 class DatabaseFiller @Inject constructor(
@@ -20,6 +21,7 @@ class DatabaseFiller @Inject constructor(
     private val perkJsonFiller: PerkJsonFiller,
     private val questJsonFiller: QuestJsonFiller,
     private val monsterJsonFiller: MonsterJsonFiller,
+    private val translationJsonFiller: TranslationJsonFiller,
 ) {
     suspend fun fillDatabase() {
         var version = preferences.getInt(PREFS_VERSION, 0)
@@ -43,6 +45,10 @@ class DatabaseFiller @Inject constructor(
                     type = "base"
                 )
             }
+            // Bumped from step 4: the translation dictionary key format changed (locations are
+            // now keyed by scenario number), so the store must be re-seeded. fill() clears the
+            // store first, so devices that ran the old format are corrected.
+            5 -> translationJsonFiller.fill()
             else -> {}
         }
     }
@@ -79,7 +85,7 @@ class DatabaseFiller @Inject constructor(
     }
 
     companion object {
-        private const val VERSION = 4
+        private const val VERSION = 6
         private const val PREFS_VERSION = "filler_version"
     }
 }

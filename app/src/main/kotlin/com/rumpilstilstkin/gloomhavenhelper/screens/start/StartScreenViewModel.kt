@@ -9,6 +9,9 @@ import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.team.ChangeCurrentTea
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.team.GetCurrentTeamUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.team.ImportTeamUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.team.SaveTeamUseCase
+import com.rumpilstilstkin.gloomhavenhelper.localization.AppLanguage
+import com.rumpilstilstkin.gloomhavenhelper.localization.AppLocaleManager
+import com.rumpilstilstkin.gloomhavenhelper.localization.LocaleSource
 import com.rumpilstilstkin.gloomhavenhelper.navigation.GlHelperScreens
 import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEvent
 import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEvent.Screen
@@ -28,6 +31,7 @@ import javax.inject.Inject
 @HiltViewModel
 class StartScreenViewModel @Inject constructor(
     @param:ApplicationContext private val context: Context,
+    private val localeSource: LocaleSource,
     getCurrentTeamUseCase: GetCurrentTeamUseCase,
     val changeCurrentTeamUseCase: ChangeCurrentTeamUseCase,
     val saveTeamUseCase: SaveTeamUseCase,
@@ -51,6 +55,16 @@ class StartScreenViewModel @Inject constructor(
         initialValue = StartScreenState.Empty,
         started = SharingStarted.WhileSubscribed(10),
     )
+
+    /**
+     * Persists the chosen language and updates the reactive content locale so game-content
+     * streams re-resolve immediately. Runs synchronously so the caller can recreate the
+     * activity (which re-applies static-UI resources) right after, with no ordering race.
+     */
+    fun applyLanguage(language: AppLanguage) {
+        AppLocaleManager.setLanguage(context, language)
+        localeSource.refresh()
+    }
 
     fun onAction(action: StartScreenAction) {
         viewModelScope.launch {

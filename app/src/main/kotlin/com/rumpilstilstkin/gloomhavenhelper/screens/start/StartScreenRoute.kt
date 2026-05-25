@@ -78,7 +78,7 @@ fun StartScreenRoute(
             onSelect = { language ->
                 showLanguageDialog = false
                 if (language != AppLocaleManager.currentLanguage(context)) {
-                    AppLocaleManager.setLanguage(context, language)
+                    viewModel.applyLanguage(language)
                     context.findActivity()?.recreate()
                 }
             }

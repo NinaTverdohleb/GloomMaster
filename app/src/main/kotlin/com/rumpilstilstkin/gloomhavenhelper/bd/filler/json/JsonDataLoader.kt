@@ -10,6 +10,7 @@ import com.rumpilstilstkin.gloomhavenhelper.bd.filler.json.models.MonsterJson
 import com.rumpilstilstkin.gloomhavenhelper.bd.filler.json.models.MonsterStatsJson
 import com.rumpilstilstkin.gloomhavenhelper.bd.filler.json.models.PersonalQuestJson
 import com.rumpilstilstkin.gloomhavenhelper.bd.filler.json.models.ScenarioJson
+import com.rumpilstilstkin.gloomhavenhelper.bd.filler.json.models.ScenarioTranslationJson
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.serialization.json.Json
 import javax.inject.Inject
@@ -50,4 +51,7 @@ class JsonDataLoader @Inject constructor(
     fun loadMonsterStats(version: Int, pack: String, type: String): List<MonsterStatsJson> = load("v${version}_${pack}_${type}_stats.json")
 
     fun loadMonsterDeck(version: Int): List<DeckJson> = load("v${version}_ability_decks.json")
+
+    fun loadScenarioTranslations(locale: String): Map<String, ScenarioTranslationJson> =
+        load("translations/$locale/scenarios.json")
 }

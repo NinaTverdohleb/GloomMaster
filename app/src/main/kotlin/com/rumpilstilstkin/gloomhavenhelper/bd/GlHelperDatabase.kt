@@ -21,6 +21,7 @@ import com.rumpilstilstkin.gloomhavenhelper.bd.dao.TeamCharacterClassDao
 import com.rumpilstilstkin.gloomhavenhelper.bd.dao.TeamDao
 import com.rumpilstilstkin.gloomhavenhelper.bd.dao.TeamGoodDao
 import com.rumpilstilstkin.gloomhavenhelper.bd.dao.TeamScenarioDao
+import com.rumpilstilstkin.gloomhavenhelper.bd.dao.TranslationDao
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.AchievementBd
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.CharacterBd
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.CharacterGoodBd
@@ -39,6 +40,7 @@ import com.rumpilstilstkin.gloomhavenhelper.bd.entity.TeamBd
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.TeamCharacterClassBd
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.TeamGoodBd
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.TeamScenarioBd
+import com.rumpilstilstkin.gloomhavenhelper.bd.entity.TranslationBd
 import com.rumpilstilstkin.gloomhavenhelper.bd.migrations.ALL_MIGRATIONS
 import com.rumpilstilstkin.gloomhavenhelper.bd.typeconverters.AchievementConverter
 import com.rumpilstilstkin.gloomhavenhelper.bd.typeconverters.CardActionsTypeConverter
@@ -74,9 +76,10 @@ import com.rumpilstilstkin.gloomhavenhelper.bd.typeconverters.StringListTypeConv
         TeamCharacterClassBd::class,
         TeamGoodBd::class,
         AchievementBd::class,
-        ScenarioGameStateBd::class
+        ScenarioGameStateBd::class,
+        TranslationBd::class
     ],
-    version = 2
+    version = 3
 )
 abstract class GlHelperDatabase : RoomDatabase() {
     abstract fun characterDao(): CharacterDao
@@ -95,6 +98,7 @@ abstract class GlHelperDatabase : RoomDatabase() {
     abstract fun teamGoodDao(): TeamGoodDao
     abstract fun achievementDao(): AchievementDao
     abstract fun scenarioGameStateDao(): ScenarioGameStateDao
+    abstract fun translationDao(): TranslationDao
 }
 
 fun createGlHelperDatabase(

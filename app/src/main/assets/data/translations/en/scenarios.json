@@ -1,0 +1,462 @@
+{
+  "1": {
+    "name": "Black Barrow",
+    "location": "Deadwood"
+  },
+  "2": {
+    "name": "Barrow Lair",
+    "location": "Deadwood"
+  },
+  "3": {
+    "name": "Inox Encampment",
+    "location": "Dagger Forest"
+  },
+  "4": {
+    "name": "Crypt of the Damned",
+    "location": "Still River"
+  },
+  "5": {
+    "name": "Ominous Crypt",
+    "location": "Copperneck Mountains"
+  },
+  "6": {
+    "name": "Decrepit Crypt",
+    "location": "Still River"
+  },
+  "7": {
+    "name": "Blooming Grotto",
+    "location": "Copperneck Mountains"
+  },
+  "8": {
+    "name": "Gloomhaven Warehouse",
+    "location": "Gloomhaven"
+  },
+  "9": {
+    "name": "Diamond Mine",
+    "location": "Watcher Mountains"
+  },
+  "10": {
+    "name": "Dimension of Elemental Power",
+    "location": "Copperneck Mountains"
+  },
+  "11": {
+    "name": "Gloomhaven Square A",
+    "location": "Gloomhaven"
+  },
+  "12": {
+    "name": "Gloomhaven Square B",
+    "location": "Gloomhaven"
+  },
+  "13": {
+    "name": "Temple of the Seer",
+    "location": "Watcher Mountains"
+  },
+  "14": {
+    "name": "Ice Cave",
+    "location": "Copperneck Mountains"
+  },
+  "15": {
+    "name": "Sanctuary of Power",
+    "location": "Copperneck Mountains"
+  },
+  "16": {
+    "name": "Mountain Pass",
+    "location": "Copperneck Mountains"
+  },
+  "17": {
+    "name": "Lost Island",
+    "location": "Misty Sea"
+  },
+  "18": {
+    "name": "Abandoned Sewers",
+    "location": "Gloomhaven"
+  },
+  "19": {
+    "name": "Forgotten Crypt",
+    "location": "Lingering Swamp"
+  },
+  "20": {
+    "name": "Necromancer's Sanctum",
+    "location": "Deadwood"
+  },
+  "21": {
+    "name": "Infernal Throne",
+    "location": "Copperneck Mountains"
+  },
+  "22": {
+    "name": "Temple of the Elements",
+    "location": "Snakekiss River"
+  },
+  "23": {
+    "name": "Deep Ruins",
+    "location": "Gloomhaven"
+  },
+  "24": {
+    "name": "Whispering Gallery",
+    "location": "Copperneck Mountains"
+  },
+  "25": {
+    "name": "Ascent to the Ice Cliff",
+    "location": "Copperneck Mountains"
+  },
+  "26": {
+    "name": "Ancient Cistern",
+    "location": "Gloomhaven"
+  },
+  "27": {
+    "name": "Sinister Portal",
+    "location": "Copperneck Mountains"
+  },
+  "28": {
+    "name": "Outer Shrine",
+    "location": "Dagger Forest"
+  },
+  "29": {
+    "name": "Abode of Darkness",
+    "location": "Dagger Forest"
+  },
+  "30": {
+    "name": "Sanctuary of the Depths",
+    "location": "Misty Sea"
+  },
+  "31": {
+    "name": "Nightfall Dimension",
+    "location": "Gloomhaven"
+  },
+  "32": {
+    "name": "Decaying Woods",
+    "location": "Lingering Swamp"
+  },
+  "33": {
+    "name": "Savvas Armory",
+    "location": "Copperneck Mountains"
+  },
+  "34": {
+    "name": "Scorched Summit",
+    "location": "Copperneck Mountains"
+  },
+  "35": {
+    "name": "Gloomhaven Battlements A",
+    "location": "Gloomhaven"
+  },
+  "36": {
+    "name": "Gloomhaven Battlements B",
+    "location": "Gloomhaven"
+  },
+  "37": {
+    "name": "Deadly Hollow",
+    "location": "Misty Sea"
+  },
+  "38": {
+    "name": "Slave Pens",
+    "location": "Dagger Forest"
+  },
+  "39": {
+    "name": "Treacherous Chasm",
+    "location": "Copperneck Mountains"
+  },
+  "40": {
+    "name": "Ancient Defense Mechanisms",
+    "location": "Deadwood"
+  },
+  "41": {
+    "name": "Timeworn Tomb",
+    "location": "Deadwood"
+  },
+  "42": {
+    "name": "Realm of the Voice",
+    "location": "Copperneck Mountains"
+  },
+  "43": {
+    "name": "Drake Nest",
+    "location": "Dagger Forest"
+  },
+  "44": {
+    "name": "Tribal Assault",
+    "location": "Dagger Forest"
+  },
+  "45": {
+    "name": "Underwater Rebels' Camp",
+    "location": "Lingering Swamp"
+  },
+  "46": {
+    "name": "Nightmare Peak",
+    "location": "Copperneck Mountains"
+  },
+  "47": {
+    "name": "Lair of the Unseeing Eye",
+    "location": "Misty Sea"
+  },
+  "48": {
+    "name": "Shadowed Thicket",
+    "location": "Dagger Forest"
+  },
+  "49": {
+    "name": "Rebel Camp",
+    "location": "Lingering Swamp"
+  },
+  "50": {
+    "name": "Spectral Fortress",
+    "location": "Gloomhaven"
+  },
+  "51": {
+    "name": "The Void",
+    "location": "Gloomhaven"
+  },
+  "52": {
+    "name": "Eerie Cellar",
+    "location": "Gloomhaven"
+  },
+  "53": {
+    "name": "Crypt Basement",
+    "location": "Still River"
+  },
+  "54": {
+    "name": "Ice Palace",
+    "location": "Copperneck Mountains"
+  },
+  "55": {
+    "name": "Misty Thicket",
+    "location": "Dagger Forest"
+  },
+  "56": {
+    "name": "Bandit Woods",
+    "location": "Dagger Forest"
+  },
+  "57": {
+    "name": "The Investigation",
+    "location": "Gloomhaven"
+  },
+  "58": {
+    "name": "Bloody Shack",
+    "location": "Gloomhaven"
+  },
+  "59": {
+    "name": "Forgotten Grove",
+    "location": "Dagger Forest"
+  },
+  "60": {
+    "name": "Alchemy Lab",
+    "location": "Gloomhaven"
+  },
+  "61": {
+    "name": "Vanishing Lighthouse",
+    "location": "Lingering Swamp"
+  },
+  "62": {
+    "name": "Well of Souls",
+    "location": "Lingering Swamp"
+  },
+  "63": {
+    "name": "Volcanic Maw",
+    "location": "Watcher Mountains"
+  },
+  "64": {
+    "name": "Underwater Lagoon",
+    "location": "Misty Sea"
+  },
+  "65": {
+    "name": "Sulfur Mine",
+    "location": "Watcher Mountains"
+  },
+  "66": {
+    "name": "Clockwork Coast",
+    "location": "Deadwood"
+  },
+  "67": {
+    "name": "Mystic Library",
+    "location": "Eastern Road"
+  },
+  "68": {
+    "name": "Venomous Mire",
+    "location": "Lingering Swamp"
+  },
+  "69": {
+    "name": "Well of Misfortune",
+    "location": "Stony Road"
+  },
+  "70": {
+    "name": "Chained Island",
+    "location": "Misty Sea"
+  },
+  "71": {
+    "name": "Leeward Highland",
+    "location": "Snakekiss River"
+  },
+  "72": {
+    "name": "Slippery Grove",
+    "location": "Deadwood"
+  },
+  "73": {
+    "name": "Rockslide Ridge",
+    "location": "Watcher Mountains"
+  },
+  "74": {
+    "name": "Merchant Ship",
+    "location": "Misty Sea"
+  },
+  "75": {
+    "name": "Overgrown Graveyard",
+    "location": "Deadwood"
+  },
+  "76": {
+    "name": "Hive of Reapers",
+    "location": "Watcher Mountains"
+  },
+  "77": {
+    "name": "Vault of Secrets",
+    "location": "Gloomhaven"
+  },
+  "78": {
+    "name": "Sacrificial Dungeon",
+    "location": "Gloomhaven"
+  },
+  "79": {
+    "name": "Lost Temple",
+    "location": "Lingering Swamp"
+  },
+  "80": {
+    "name": "Watch Citadel",
+    "location": "Watcher Mountains"
+  },
+  "81": {
+    "name": "Temple of Eclipse",
+    "location": "Dagger Forest"
+  },
+  "82": {
+    "name": "Blazing Mountain",
+    "location": "Watcher Mountains"
+  },
+  "83": {
+    "name": "Abode of Shadows",
+    "location": "Gloomhaven"
+  },
+  "84": {
+    "name": "Crystal Cave",
+    "location": "Copperneck Mountains"
+  },
+  "85": {
+    "name": "Temple of the Sun",
+    "location": "Watcher Mountains"
+  },
+  "86": {
+    "name": "Plundered Village",
+    "location": "Gloomhaven"
+  },
+  "87": {
+    "name": "Ill-fated Coast",
+    "location": "Merchants' Bay"
+  },
+  "88": {
+    "name": "Water Dimension",
+    "location": "Gloomhaven"
+  },
+  "89": {
+    "name": "Syndicate Hideout",
+    "location": "Gloomhaven"
+  },
+  "90": {
+    "name": "Demonic Portal",
+    "location": "Snakekiss River"
+  },
+  "91": {
+    "name": "Wild Skirmish",
+    "location": "Dagger Forest"
+  },
+  "92": {
+    "name": "Alley Brawl",
+    "location": "Gloomhaven"
+  },
+  "93": {
+    "name": "Sunken Vessel",
+    "location": "Misty Sea"
+  },
+  "94": {
+    "name": "Vermling Den",
+    "location": "Deadwood"
+  },
+  "95": {
+    "name": "Hour of Reckoning",
+    "location": "Deadwood"
+  },
+  "96": {
+    "name": "Unexpected Visitors",
+    "location": "Gloomhaven"
+  },
+  "97": {
+    "name": "Lost Knowledge",
+    "location": "Interdimensional Travel"
+  },
+  "98": {
+    "name": "Lost Knowledge",
+    "location": "Gloomhaven"
+  },
+  "99": {
+    "name": "Echoes of the Past",
+    "location": "Interdimensional Travel"
+  },
+  "100": {
+    "name": "Turning Mechanism",
+    "location": "Interdimensional Travel"
+  },
+  "101": {
+    "name": "Flooded Crypt",
+    "location": "Interdimensional Travel"
+  },
+  "102": {
+    "name": "Fair of Knowledge",
+    "location": "Interdimensional Travel"
+  },
+  "103": {
+    "name": "The Right Moment",
+    "location": "Interdimensional Travel"
+  },
+  "104": {
+    "name": "Gaping Wound",
+    "location": "Interdimensional Travel"
+  },
+  "105": {
+    "name": "Horrors of the Cult",
+    "location": "Interdimensional Travel"
+  },
+  "106": {
+    "name": "Bizarre Construct",
+    "location": "Interdimensional Travel"
+  },
+  "107": {
+    "name": "Mechanical Genius",
+    "location": "Interdimensional Travel"
+  },
+  "108": {
+    "name": "Mechanical Genius",
+    "location": "Interdimensional Travel"
+  },
+  "109": {
+    "name": "Outcome of War",
+    "location": "Interdimensional Travel"
+  },
+  "110": {
+    "name": "Vicious Circle",
+    "location": "Interdimensional Travel"
+  },
+  "111": {
+    "name": "Broken Shackles",
+    "location": "Gloomhaven"
+  },
+  "112": {
+    "name": "The Cornerstone",
+    "location": "Interdimensional Travel"
+  },
+  "113": {
+    "name": "Lost Trail",
+    "location": "Interdimensional Travel"
+  },
+  "114": {
+    "name": "Fragile Balance",
+    "location": "Gloomhaven"
+  },
+  "115": {
+    "name": "Hazy Future",
+    "location": "Interdimensional Travel"
+  }
+}
