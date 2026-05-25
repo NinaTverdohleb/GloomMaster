@@ -9,8 +9,10 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.rumpilstilstkin.gloomhavenhelper.R
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.GoodType
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.GoodUi
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomToolbarTitle
@@ -56,7 +58,7 @@ internal fun AddGoodsForTeamScreen(
                 enabled = uiState.goodsState.selectedGoods.isNotEmpty(),
                 onClick = addGoods,
             ) {
-                Text(text = "Добавить")
+                Text(text = stringResource(R.string.add))
             }
         }
     }

@@ -37,12 +37,14 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
+import com.rumpilstilstkin.gloomhavenhelper.R
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.quest.CharacterTaskItem
 import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEventHelper
 import com.rumpilstilstkin.gloomhavenhelper.screens.characters.start.general.components.PersonalQuestView
@@ -137,7 +139,7 @@ fun CheckMarksBlock(
         modifier = modifier
     ) {
         Text(
-            text = "Заметки",
+            text = stringResource(R.string.notes_title),
             style = MaterialTheme.typography.titleMedium
         )
         Spacer(modifier = Modifier.height(8.dp))
@@ -158,7 +160,7 @@ fun PersonalQuest(
         modifier = modifier.fillMaxWidth()
     ) {
         Text(
-            text = "Личное задание",
+            text = stringResource(R.string.personal_quest_title),
             style = MaterialTheme.typography.titleMedium
         )
         Spacer(
@@ -170,7 +172,7 @@ fun PersonalQuest(
                 modifier = Modifier.fillMaxWidth(),
                 onClick = choosePersonalQuest
             ) {
-                Text("Добавить")
+                Text(stringResource(R.string.add))
             }
         } else {
             PersonalQuestView(
@@ -208,7 +210,7 @@ fun NotesRow(
         modifier = modifier.fillMaxWidth(),
     ) {
         Text(
-            text = "Текст",
+            text = stringResource(R.string.text_label),
             style = MaterialTheme.typography.titleSmall
         )
         Spacer(modifier = Modifier.height(8.dp))
@@ -222,7 +224,7 @@ fun NotesRow(
             },
         ) {
             Text(
-                text = "Редактировать текст",
+                text = stringResource(R.string.edit_text_button),
                 textAlign = TextAlign.Center
             )
         }
@@ -241,20 +243,20 @@ fun NotesDialog(
 
         GloomAlertDialog (
             onDismissRequest = { onDismiss.invoke() },
-            title = "Заметки",
+            title = stringResource(R.string.notes_title),
             content = {
                 Box {
                     OutlinedTextField(
                         modifier = Modifier.defaultMinSize(minHeight = 240.dp),
                         value = newNotes,
                         onValueChange = { newNotes = it },
-                        label = { Text("Заметки") }
+                        label = { Text(stringResource(R.string.notes_title)) }
                     )
                 }
             },
             onConfirmRequest = {onNotesChanged.invoke(newNotes)},
             onNeutralRequest = null,
-            confirmText = "Сохранить",
+            confirmText = stringResource(R.string.save),
         )
     }
 
@@ -343,7 +345,7 @@ fun GoldRow(
         verticalArrangement = Arrangement.Center
     ) {
         Text(
-            text = "Золото",
+            text = stringResource(R.string.gold_title),
             style = MaterialTheme.typography.titleMedium
         )
         Spacer(modifier = Modifier.height(8.dp))
@@ -376,7 +378,7 @@ fun ExperienceRow(
     ) {
 
         Text(
-            text = "Опыт",
+            text = stringResource(R.string.experience_title),
             style = MaterialTheme.typography.titleMedium
         )
         Spacer(modifier = Modifier.height(8.dp))
@@ -396,13 +398,13 @@ fun ExperienceRow(
                 enabled = isCanLevelUp
             ) {
                 Text(
-                    text = "Повысить уровень",
+                    text = stringResource(R.string.level_up_button),
                     textAlign = TextAlign.Center
                 )
             }
         }
         Spacer(modifier = Modifier.height(8.dp))
-        Text(text = "Следующий уровень: $nextLevelExperience")
+        Text(text = stringResource(R.string.next_level_format, nextLevelExperience))
     }
 }
 
@@ -418,7 +420,7 @@ private fun Sample() {
                 hasTeam = false,
                 teamName = null,
                 nextLevel = 175,
-                notes = "Некоторые заметки"
+                notes = "Some notes about my journey."
             ),
             modifier = Modifier.background(MaterialTheme.colorScheme.background),
             onAction = {}

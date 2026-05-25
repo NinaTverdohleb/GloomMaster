@@ -27,8 +27,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.rumpilstilstkin.gloomhavenhelper.R
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -38,9 +40,9 @@ fun GloomAlertDialog(
     confirmEnabled: Boolean = true,
     title: String? = null,
     titleIcon: ImageVector? = null,
-    neutralText: String = "Закрыть",
-    confirmText: String = "Выбрать",
-    negativeText: String = "Удалить",
+    neutralText: String = stringResource(R.string.close),
+    confirmText: String = stringResource(R.string.select),
+    negativeText: String = stringResource(R.string.delete),
     onDismissRequest: () -> Unit,
     onConfirmRequest: (() -> Unit)? = null,
     onNegativeRequest: (() -> Unit)? = null,

@@ -45,11 +45,11 @@ class LogicalConditionTest {
 
     @Test
     fun `complex priority check - NOT and AND`() {
-        // !A && B должно читаться как (!A) && B
-        val condition = LogicalCondition("Предложение дрейка && !Помощь дрейку")
+        // !A && B should be evaluated as (!A) && B
+        val condition = LogicalCondition("Drake's offer && !Drake's help")
 
-        assertTrue(condition.evaluate(setOf("Предложение дрейка"))) // A нет, B есть -> true
-        assertFalse(condition.evaluate(setOf("Предложение дрейка", "Помощь дрейку"))) // A есть -> false
+        assertTrue(condition.evaluate(setOf("Drake's offer"))) // A is absent, B is present -> true
+        assertFalse(condition.evaluate(setOf("Drake's offer", "Drake's help"))) // A is present -> false
     }
 
     @Test

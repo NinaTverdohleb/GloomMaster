@@ -10,9 +10,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.lazy.itemsIndexed
-import androidx.compose.foundation.lazy.rememberLazyListState
-import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
@@ -21,11 +18,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
+import com.rumpilstilstkin.gloomhavenhelper.R
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.CharacterClassType
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.quest.CharacterTaskItem
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.quest.QuestReward
@@ -83,7 +82,7 @@ private fun SearchQuestView(
                 .padding(horizontal = 8.dp),
             value = state.searchText,
             onValueChange = { onAction(SearchQuestActions.SearchTextChange(it)) },
-            label = { Text("Название или номер") },
+            label = { Text(stringResource(R.string.search_hint)) },
             colors = OutlinedTextFieldDefaults.colors(
                 focusedBorderColor = MaterialTheme.colorScheme.primary,
                 unfocusedBorderColor = MaterialTheme.colorScheme.primary,
@@ -123,8 +122,8 @@ private fun SearchQuestPreview() {
                     quests = persistentListOf(
                         PersonalQuestUI(
                             id = "511",
-                            title = "Искатель Ксорна",
-                            description = "Еше с детства ты слышал зов Ксорна. Когда-то его почитали как бога, но его паства давно уничтожена. Но ты можешь слышать его зов. Ты отправтлся в Глумхевен по его приказу. Ты найдешь нго останки и освободишь его. Случившееся однажды повторится снова.",
+                            title = "Seeker of Xorn",
+                            description = "Ever since you were a child, you heard the call of Xorn. Once he was worshipped as a god, but his following has long since been destroyed. But you can hear his call. You traveled to Gloomhaven by his order. You will find his remains and free him. What happened once will happen again.",
                             reward = QuestReward(
                                 classType = CharacterClassType.Plagueherald,
                             ),
@@ -134,7 +133,7 @@ private fun SearchQuestPreview() {
                                     tasks = persistentListOf(
                                         CharacterTaskItem.Count(
                                             priority = 0,
-                                            text = "Пройдите три сценария с названием Склеп",
+                                            text = "Complete three scenarios with the name Crypt",
                                             count = 3,
                                             currentCount = 0,
                                             id = 1
@@ -146,7 +145,7 @@ private fun SearchQuestPreview() {
                                     tasks = persistentListOf(
                                         CharacterTaskItem.Check(
                                             priority = 1,
-                                            text = "Откройте и пройдите полностью сенарий \"Жуткий погреб\"",
+                                            text = "Open and complete the scenario \"Jekserah's Plans\"",
                                             id = 2
                                         )
                                     )
@@ -155,8 +154,8 @@ private fun SearchQuestPreview() {
                         ),
                         PersonalQuestUI(
                             id = "512",
-                            title = "Искатель Ксорна",
-                            description = "Еше с детства ты слышал зов Ксорна. Когда-то его почитали как бога, но его паства давно уничтожена. Но ты можешь слышать его зов. Ты отправтлся в Глумхевен по его приказу. Ты найдешь нго останки и освободишь его. Случившееся однажды повторится снова.",
+                            title = "Seeker of Xorn",
+                            description = "Ever since you were a child, you heard the call of Xorn. Once he was worshipped as a god, but his following has long since been destroyed. But you can hear his call. You traveled to Gloomhaven by his order. You will find his remains and free him. What happened once will happen again.",
                             reward = QuestReward(
                                 classType = CharacterClassType.Plagueherald,
                             ),
@@ -166,7 +165,7 @@ private fun SearchQuestPreview() {
                                     tasks = persistentListOf(
                                         CharacterTaskItem.Count(
                                             priority = 0,
-                                            text = "Пройдите три сценария с названием Склеп",
+                                            text = "Complete three scenarios with the name Crypt",
                                             count = 3,
                                             currentCount = 0,
                                             id = 1
@@ -178,7 +177,7 @@ private fun SearchQuestPreview() {
                                     tasks = persistentListOf(
                                         CharacterTaskItem.Check(
                                             priority = 1,
-                                            text = "Откройте и пройдите полностью сенарий \"Жуткий погреб\"",
+                                            text = "Open and complete the scenario \"Jekserah's Plans\"",
                                             id = 2
                                         )
                                     )

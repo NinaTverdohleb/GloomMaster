@@ -5,7 +5,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -22,8 +21,10 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.rumpilstilstkin.gloomhavenhelper.R
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.PerkUI
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomAlertDialog
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomCard
@@ -40,7 +41,7 @@ fun AddPerksDialog(
     var checkedPerks by remember { mutableStateOf(listOf<Int>()) }
     GloomAlertDialog(
         onDismissRequest = { onDismiss.invoke() },
-        title = "Доступные навыки",
+        title = stringResource(R.string.available_perks_title),
         content = {
             LazyColumn(
                 modifier = modifier.height(320.dp),
@@ -66,7 +67,7 @@ fun AddPerksDialog(
             onPerkSelected(checkedPerks)
         },
         confirmEnabled = checkedPerks.isNotEmpty(),
-        confirmText = "Добавить",
+        confirmText = stringResource(R.string.add),
     )
 }
 
@@ -111,9 +112,9 @@ private fun AddPerksDialogPreview() {
     GloomhavenMasterTheme {
         AddPerksDialog(
             avaliablePerks = listOf(
-                PerkUI(1, "Уберите две карты #01"),
-                PerkUI(2, "Поменяйте 1 карту #01 на 1 карту #03 "),
-                PerkUI(3, "Добавьте две карты #03"),
+                PerkUI(1, "Remove two cards #01"),
+                PerkUI(2, "Replace one card #01 with one card #03"),
+                PerkUI(3, "Add two cards #03"),
             ),
             onDismiss = {},
             onPerkSelected = {}
@@ -126,7 +127,7 @@ private fun AddPerksDialogPreview() {
 private fun AddPerkDialogItemPreview() {
     GloomhavenMasterTheme {
         AddPerkDialogItem(
-            perk = PerkUI(1, "Уберите две карты #01"),
+            perk = PerkUI(1, "Remove two cards #01"),
             checked = true,
             onSelectedChanged = {}
         )

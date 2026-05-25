@@ -10,7 +10,9 @@ import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import com.rumpilstilstkin.gloomhavenhelper.R
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.NumberPicker
 
@@ -42,7 +44,7 @@ fun NumberPickerDialog(
                 onClick = {
                     onNumberSelected(value);
                 }) {
-                Text("Сохранить")
+                Text(stringResource(R.string.save))
             }
         },
     )
@@ -54,7 +56,7 @@ private fun Sample() {
     GloomhavenMasterTheme {
         NumberPickerDialog(
             startValue = 0,
-            title = "Репутация",
+            title = "Reputation",
             intRange = IntRange(0, 10),
             onDismiss = {},
             onNumberSelected = {}

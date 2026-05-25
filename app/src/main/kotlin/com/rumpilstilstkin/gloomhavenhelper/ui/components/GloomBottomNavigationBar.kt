@@ -1,6 +1,7 @@
 package com.rumpilstilstkin.gloomhavenhelper.ui.components
 
 import androidx.annotation.DrawableRes
+import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Icon
@@ -12,6 +13,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.rumpilstilstkin.gloomhavenhelper.R
@@ -29,6 +31,7 @@ fun GloomBottomNavigationBar(
         contentColor = MaterialTheme.colorScheme.primary
     ) {
         items.forEach { item ->
+            val title = stringResource(item.titleRes)
             NavigationBarItem(
                 selected = selectedItem == item,
                 onClick = { selectTab(item) },
@@ -36,10 +39,10 @@ fun GloomBottomNavigationBar(
                     Icon(
                         modifier = Modifier.size(32.dp),
                         painter = painterResource(item.iconRes),
-                        contentDescription = item.title
+                        contentDescription = title
                     )
                 },
-                label = { Text(item.title.replaceFirstChar { it.uppercase() }) },
+                label = { Text(title.replaceFirstChar { it.uppercase() }) },
                 colors = NavigationBarItemDefaults.colors(
                     selectedIconColor = MaterialTheme.colorScheme.primary,
                     indicatorColor = MaterialTheme.colorScheme.outline,
@@ -53,7 +56,8 @@ fun GloomBottomNavigationBar(
 }
 
 interface NavItem {
-    val title: String
+    @get:StringRes
+    val titleRes: Int
     @get:DrawableRes
     val iconRes: Int
 }
@@ -71,9 +75,9 @@ fun CampaignEmptyStatePreview() {
 }
 
 private enum class SampleScreenTab(
-    override val title: String,
+    override val titleRes: Int,
     override val iconRes: Int
 ) : NavItem {
-    INFO("Stats", R.drawable.ic_fly),
-    PROSPERITY("Prosperity", R.drawable.ic_fly),
+    INFO(R.string.app_name, R.drawable.ic_fly),
+    PROSPERITY(R.string.app_name, R.drawable.ic_fly),
 }

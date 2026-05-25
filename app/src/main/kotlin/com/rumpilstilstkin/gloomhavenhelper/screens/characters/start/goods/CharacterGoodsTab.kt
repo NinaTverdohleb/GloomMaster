@@ -23,8 +23,10 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.rumpilstilstkin.gloomhavenhelper.R
 import com.rumpilstilstkin.gloomhavenhelper.screens.dialogs.goods.GoodDetailsDialogCustomActions
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.GoodUi
 import com.rumpilstilstkin.gloomhavenhelper.ui.goods.GoodItem
@@ -72,7 +74,7 @@ fun CharacterItemsTabScreen(
                 modifier = Modifier.fillMaxWidth(),
                 onClick = addGoods,
             ) {
-                Text(text = "Добавить")
+                Text(text = stringResource(R.string.add))
             }
         }
 
@@ -98,7 +100,7 @@ fun CharacterItemsTabScreen(
                             selectedGood = null
                         }
                     ) {
-                        Text(text = "Удалить")
+                        Text(text = stringResource(R.string.delete))
                     }
                     OutlinedButton(
                         modifier = Modifier.fillMaxWidth(),
@@ -113,7 +115,7 @@ fun CharacterItemsTabScreen(
                             selectedGood = null
                         }
                     ) {
-                        Text(text = "Продать")
+                        Text(text = stringResource(R.string.sell_button))
                     }
                 }
             }
@@ -130,7 +132,7 @@ private fun CharacterItemsTabPreview() {
                 GoodUi(
                     id = 1,
                     number = 1,
-                    name = "Сапоги большого шага поешь этих сладких французких булок",
+                    name = "Boots of Striding",
                     typeImage = GloomhavenIcons.GoodTypes.Foot,
                     cost = 20,
                     image = ""
@@ -138,7 +140,7 @@ private fun CharacterItemsTabPreview() {
                 GoodUi(
                     id = 1,
                     number = 2,
-                    name = "Перчатка большого шага",
+                    name = "Weighted Net",
                     typeImage = GloomhavenIcons.GoodTypes.Arm,
                     cost = 30,
                     image = ""

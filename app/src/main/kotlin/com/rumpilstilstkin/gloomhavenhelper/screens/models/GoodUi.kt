@@ -32,7 +32,7 @@ data class GoodUi(
         ) = GoodUi(
             id = id,
             number = number,
-            name = "Сапоги большого шага поешь этих сладких французких булок",
+            name = "Seven-league boots, feast on these sweet French brioches",
             typeImage = GloomhavenIcons.GoodTypes.Foot,
             cost = 20,
             image = ""

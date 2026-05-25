@@ -17,8 +17,10 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.rumpilstilstkin.gloomhavenhelper.R
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.ShortScenarioUI
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomAlertDialog
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomToolbarTitle
@@ -38,7 +40,7 @@ internal fun AddScenarioForTeamScreen(
 ) = Scaffold(
     topBar = {
         GloomToolbarTitle(
-            title = "Добавить сценарий",
+            title = stringResource(R.string.add_scenario_title),
             back = onBack,
         )
     },
@@ -55,7 +57,7 @@ internal fun AddScenarioForTeamScreen(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(bottom = 16.dp),
-            placeholder = { Text("Поиск по номеру или названию") },
+            placeholder = { Text(stringResource(R.string.search_scenarios_placeholder)) },
             leadingIcon = {
                 Icon(
                     imageVector = Icons.Default.Search,
@@ -100,11 +102,11 @@ private fun AddScenarioConfirmDialog(
     onConfirm: () -> Unit,
 ) {
     GloomAlertDialog(
-        title = "Добавить сценарий?",
+        title = stringResource(R.string.add_scenario_confirm_title),
         onDismissRequest = onDismiss,
         onConfirmRequest = onConfirm,
         onNeutralRequest = onDismiss,
-        confirmText = "Добавить",
+        confirmText = stringResource(R.string.add),
         content = {
             ScenarioInfoItem(
                 scenarioNumber = scenario.scenarioNumber,
@@ -113,7 +115,7 @@ private fun AddScenarioConfirmDialog(
             )
             if (scenario.scenarioRequirements.isNotBlank()) {
                 Text(
-                    text = "Требования: ${scenario.scenarioRequirements}",
+                    text = stringResource(R.string.requirements_format, scenario.scenarioRequirements),
                     style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                     modifier = Modifier.padding(top = 8.dp)

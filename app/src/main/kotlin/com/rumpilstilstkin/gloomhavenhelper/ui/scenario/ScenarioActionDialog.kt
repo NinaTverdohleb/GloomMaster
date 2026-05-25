@@ -7,9 +7,11 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.rumpilstilstkin.gloomhavenhelper.R
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomAlertDialog
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomCard
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
@@ -20,7 +22,7 @@ fun ScenarioActionDialog(
     scenarioName: String,
     scenarioRequirements: String,
     location: String,
-    confirmText: String = "Играть",
+    confirmText: String = stringResource(R.string.play),
     onDismiss: () -> Unit,
     completeScenario: () -> Unit,
     startScenario: () -> Unit,
@@ -30,7 +32,7 @@ fun ScenarioActionDialog(
         onDismissRequest = onDismiss,
         onConfirmRequest = startScenario,
         onNeutralRequest = completeScenario,
-        neutralText = "Завершить",
+        neutralText = stringResource(R.string.complete),
         onNegativeRequest = { deleteScenario(scenarioNumber) },
         confirmText = confirmText,
         content = {
@@ -43,7 +45,7 @@ fun ScenarioActionDialog(
                 GloomCard {
                     Text(
                         modifier = Modifier.fillMaxWidth(),
-                        text = "Требования: ",
+                        text = stringResource(R.string.requirements),
                         style = MaterialTheme.typography.labelLarge,
                         color = MaterialTheme.colorScheme.primary,
                         textAlign = TextAlign.Center
@@ -77,7 +79,7 @@ fun ScenarioInfoDialog(
         onConfirmRequest = if (completed) {
             { restoreScenario(scenarioNumber) }
         } else null,
-        confirmText = "Восстановить",
+        confirmText = stringResource(R.string.restore),
         onNeutralRequest = null,
         onNegativeRequest = { deleteScenario(scenarioNumber) },
         content = {
@@ -90,7 +92,7 @@ fun ScenarioInfoDialog(
                 GloomCard {
                     Text(
                         modifier = Modifier.fillMaxWidth(),
-                        text = "Требования: ",
+                        text = stringResource(R.string.requirements),
                         style = MaterialTheme.typography.labelLarge,
                         color = MaterialTheme.colorScheme.primary,
                         textAlign = TextAlign.Center

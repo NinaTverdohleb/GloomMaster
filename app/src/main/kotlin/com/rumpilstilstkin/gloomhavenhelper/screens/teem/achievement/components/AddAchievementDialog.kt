@@ -9,8 +9,10 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.rumpilstilstkin.gloomhavenhelper.R
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.Achievement
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomAlertDialog
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomCard
@@ -25,7 +27,7 @@ fun AddAchievementDialog(
     onSelect: (Achievement) -> Unit,
 ) {
     GloomAlertDialog(
-        title = "Добавить достижение",
+        title = stringResource(R.string.add_achievement_title),
         onDismissRequest = onDismiss,
         onConfirmRequest = null,
         onNeutralRequest = onDismiss,
@@ -59,13 +61,12 @@ private fun AddAchievementDialogPreview() {
     GloomhavenMasterTheme {
         AddAchievementDialog(
             availableAchievements = persistentListOf(
-                Achievement.fixture("Первые шаги"),
-                Achievement.fixture("Планы Джексеры"),
-                Achievement.fixture("Древняя технология", 3),
+                Achievement.fixture("First Steps"),
+                Achievement.fixture("Jekserah's Plans"),
+                Achievement.fixture("Ancient Technology", 3),
             ),
             onDismiss = {},
             onSelect = {},
         )
     }
-
 }

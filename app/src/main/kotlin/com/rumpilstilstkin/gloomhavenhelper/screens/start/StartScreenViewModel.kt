@@ -75,11 +75,11 @@ class StartScreenViewModel @Inject constructor(
                     runCatching {
                         context.contentResolver.openInputStream(action.uri)?.use { inputStream ->
                             inputStream.bufferedReader().use { it.readText() }
-                        } ?: throw IOException("Что то не получилось")
+                        } ?: throw IOException("Oops, something went wrong!")
                     }.flatMap { data ->
                         importTeamUseCase(data)
                     }.onFailure {
-                        _navigationEvents.emit(GlHelperEvent.Message("Что-то не получилось :("))
+                        _navigationEvents.emit(GlHelperEvent.Message("Oops, something went wrong!"))
                     }
                 }
             }

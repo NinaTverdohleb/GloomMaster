@@ -22,10 +22,13 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.rumpilstilstkin.gloomhavenhelper.R
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.ShortScenarioUI
+import com.rumpilstilstkin.gloomhavenhelper.screens.models.toHumanReadable
 import com.rumpilstilstkin.gloomhavenhelper.ui.scenario.ScenarioActionDialog
 import com.rumpilstilstkin.gloomhavenhelper.ui.scenario.ScenarioInfoCardItem
 import com.rumpilstilstkin.gloomhavenhelper.ui.scenario.ScenarioInfoDialog
@@ -64,7 +67,7 @@ internal fun ScenariosTabScreen(
                     Text(
                         modifier = Modifier.padding(vertical = 16.dp),
                         style = MaterialTheme.typography.headlineSmall,
-                        text = key.title.uppercase(),
+                        text = stringResource(key.titleRes).uppercase(),
                         color = MaterialTheme.colorScheme.primary
                     )
                 }
@@ -104,7 +107,7 @@ internal fun ScenariosTabScreen(
         contentPadding = PaddingValues(16.dp)
     ) {
         Text(
-            text = "Добавить сценарий",
+            text = stringResource(R.string.add_scenario),
             fontSize = 16.sp
         )
     }
@@ -112,7 +115,7 @@ internal fun ScenariosTabScreen(
         ScenarioActionDialog(
             scenarioNumber = scenario.scenarioNumber,
             scenarioName = scenario.scenarioName,
-            scenarioRequirements = scenario.scenarioRequirements,
+            scenarioRequirements = scenario.scenarioRequirements.toHumanReadable(),
             onDismiss = { selectedActiveScenario = null },
             completeScenario = {
                 completeScenario(scenario.scenarioNumber)
@@ -132,10 +135,10 @@ internal fun ScenariosTabScreen(
 
     selectedInfoScenario?.let { scenario ->
         ScenarioInfoDialog(
-            completed = scenario.complated,
+            completed = scenario.completed,
             scenarioNumber = scenario.scenarioNumber,
             scenarioName = scenario.scenarioName,
-            scenarioRequirements = scenario.scenarioRequirements,
+            scenarioRequirements = scenario.scenarioRequirements.toHumanReadable(),
             onDismiss = { selectedInfoScenario = null },
             location = scenario.location,
             restoreScenario = {

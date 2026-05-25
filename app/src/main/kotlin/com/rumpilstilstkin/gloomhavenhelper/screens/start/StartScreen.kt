@@ -86,13 +86,13 @@ internal fun StartScreen(
 }
 
 internal enum class StartScreenTab(
-    override val title: String,
+    override val titleRes: Int,
     override val iconRes: Int
 ) : NavItem {
-    TEAM("Команда", R.drawable.ic_company),
-    CHARACTERS("Персонажи", R.drawable.ic_characters),
-    SHOP("Магазин", R.drawable.ic_shop),
-    SCENARIOS("Сценарии", R.drawable.ic_scenario),
+    TEAM(R.string.tab_team, R.drawable.ic_company),
+    CHARACTERS(R.string.tab_characters, R.drawable.ic_characters),
+    SHOP(R.string.tab_shop, R.drawable.ic_shop),
+    SCENARIOS(R.string.tab_scenarios, R.drawable.ic_scenario),
 }
 
 @Preview

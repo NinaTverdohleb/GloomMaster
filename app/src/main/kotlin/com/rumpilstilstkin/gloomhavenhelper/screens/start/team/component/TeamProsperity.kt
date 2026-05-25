@@ -12,9 +12,11 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.rumpilstilstkin.gloomhavenhelper.R
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.Prosperity
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomCard
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomSize
@@ -45,12 +47,12 @@ internal fun TeamProsperity(
         ) {
             Text(
                 style = MaterialTheme.typography.labelLarge,
-                text = "ПРОЦВЕТАНИЕ",
+                text = stringResource(R.string.prosperity).uppercase(),
                 color = MaterialTheme.colorScheme.primary
             )
             Text(
                 style = MaterialTheme.typography.labelMedium,
-                text = "Уровень: ${prosperity.prosperityLevel}"
+                text = stringResource(R.string.level_label, prosperity.prosperityLevel)
             )
         }
 
@@ -71,7 +73,7 @@ internal fun TeamProsperity(
         Text(
             modifier = Modifier.fillMaxWidth(),
             style = MaterialTheme.typography.labelLarge,
-            text = "Пожертвования",
+            text = stringResource(R.string.donations),
             color = MaterialTheme.colorScheme.primary
         )
         Spacer(
@@ -101,7 +103,7 @@ internal fun TeamProsperity(
             )
             Text(
                 modifier = Modifier.weight(1f),
-                text = "Следующее повышение процветания при $churchValueForNextProsperity",
+                text = stringResource(R.string.next_prosperity_at, churchValueForNextProsperity),
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurface,
                 textAlign = TextAlign.End

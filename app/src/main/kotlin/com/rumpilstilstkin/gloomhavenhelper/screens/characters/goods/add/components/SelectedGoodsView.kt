@@ -14,8 +14,10 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.rumpilstilstkin.gloomhavenhelper.R
 import com.rumpilstilstkin.gloomhavenhelper.screens.characters.goods.add.AddGoodsForCharacterScreenActions
 import com.rumpilstilstkin.gloomhavenhelper.screens.dialogs.goods.GoodDetailsDialog
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.GoodUi
@@ -35,7 +37,7 @@ fun SelectedGoodsView(
     var selectedGood by remember { mutableStateOf<GoodUi?>(null) }
     Column(modifier = modifier) {
         Text(
-            text = "Выбранные товары",
+            text = stringResource(R.string.selected_goods),
             style = MaterialTheme.typography.titleLarge
         )
         Spacer(
@@ -64,7 +66,7 @@ fun SelectedGoodsView(
                 onAction(AddGoodsForCharacterScreenActions.UnselectGood(good))
                 selectedGood = null
             },
-            buttonText = "Убрать",
+            buttonText = stringResource(R.string.remove),
             imagePath = good.imagePath
         )
     }
@@ -79,7 +81,7 @@ private fun SelectedGoodsViewPreview() {
                 GoodUi(
                     id = 1,
                     number = 1,
-                    name = "Сапоги большого шага поешь этих сладких французких булок",
+                    name = "Boots of Striding",
                     typeImage = GloomhavenIcons.GoodTypes.Foot,
                     cost = 20,
                     image = ""
@@ -87,7 +89,7 @@ private fun SelectedGoodsViewPreview() {
                 GoodUi(
                     id = 2,
                     number = 1,
-                    name = "Сапоги большого шага поешь этих сладких французких булок",
+                    name = "Boots of Striding",
                     typeImage = GloomhavenIcons.GoodTypes.Foot,
                     cost = 20,
                     image = ""
@@ -96,5 +98,4 @@ private fun SelectedGoodsViewPreview() {
             onAction = {}
         )
     }
-
 }

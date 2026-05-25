@@ -1,6 +1,8 @@
 package com.rumpilstilstkin.gloomhavenhelper.screens.start.scenarios
 
+import androidx.annotation.StringRes
 import androidx.compose.runtime.Immutable
+import com.rumpilstilstkin.gloomhavenhelper.R
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.ShortScenarioUI
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.ImmutableMap
@@ -40,10 +42,10 @@ data class ScenariosSection(
     }
 }
 
-enum class ScenarioSectionType(val title: String, val isActive: Boolean) {
-    ACCESS("Доступные сценарии", true),
-    BLOCKED("Недоступные сценарии", false),
-    FINISHED("Пройденные сценарии", false)
+enum class ScenarioSectionType(@get:StringRes val titleRes: Int, val isActive: Boolean) {
+    ACCESS(R.string.available_scenarios_tab, true),
+    BLOCKED(R.string.blocked_scenarios_tab, false),
+    FINISHED(R.string.finished_scenarios_tab, false)
 }
 
 sealed interface ScenariosTabAction {

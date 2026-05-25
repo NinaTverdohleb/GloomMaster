@@ -14,6 +14,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.rumpilstilstkin.gloomhavenhelper.R
@@ -22,6 +23,7 @@ import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomVariantCard
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.NumberPicker
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
 import java.util.Locale
+import androidx.compose.ui.platform.LocalLocale
 
 @Composable
 internal fun TeamReputation(
@@ -38,7 +40,7 @@ internal fun TeamReputation(
     ) {
         Text(
             style = MaterialTheme.typography.labelLarge,
-            text = "РЕПУТАЦИЯ",
+            text = stringResource(R.string.reputation).uppercase(),
             color = MaterialTheme.colorScheme.primary
         )
 
@@ -71,14 +73,14 @@ internal fun TeamReputation(
                 )
                 Text(
                     style = MaterialTheme.typography.labelLarge,
-                    text = "Скидка в магазине:"
+                    text = stringResource(R.string.shop_discount)
                 )
                 Spacer(
                     modifier = Modifier.width(8.dp)
                 )
                 Text(
                     style = MaterialTheme.typography.titleLarge,
-                    text = String.format(Locale.getDefault(), "%+d", discount),
+                    text = String.format(LocalLocale.current.platformLocale, "%+d", discount),
                     color = MaterialTheme.colorScheme.primary
                 )
 

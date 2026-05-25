@@ -42,7 +42,7 @@ class RestoreScenarioStateUseCase @Inject constructor(
                 scenarioNumber = state.scenarioNumber
             )
         } ?: ScenarioBattleInfo(
-            name = "Своя карта",
+            name = "",
             monsters = emptyList(),
             golds = levelInfo?.goldCount ?: 0,
             exp = levelInfo?.experience ?: 0,

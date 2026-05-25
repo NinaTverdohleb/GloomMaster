@@ -22,8 +22,10 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.rumpilstilstkin.gloomhavenhelper.R
 import com.rumpilstilstkin.gloomhavenhelper.screens.dialogs.character.AddPerksDialog
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.PerkUI
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomCard
@@ -51,7 +53,7 @@ fun CharacterPerkTabScreen(
         modifier = Modifier.fillMaxSize().padding(16.dp),
     ) {
         Text(
-            text = "Доступно для добавления: ${uiState.avaliablePerksCount}",
+            text = stringResource(R.string.available_to_add_format, uiState.avaliablePerksCount),
             style = MaterialTheme.typography.headlineSmall,
             modifier = Modifier.padding(horizontal = 16.dp)
         )
@@ -81,7 +83,7 @@ fun CharacterPerkTabScreen(
                 modifier = Modifier.fillMaxWidth(),
                 onClick = addPerk,
             ) {
-                Text(text = "Добавить")
+                Text(text = stringResource(R.string.add))
             }
         }
     }
@@ -106,7 +108,7 @@ fun PerkItem(
                 onClick = { perk.characterPerId?.let { deleted(it) } }) {
                 Icon(
                     Icons.Filled.Delete,
-                    "Удалить навык",
+                    stringResource(R.string.delete_perk_desc),
                     tint = MaterialTheme.colorScheme.error
                 )
             }
@@ -122,12 +124,12 @@ private fun CharacterPerkTabScreenPreview() {
         CharacterPerkTabScreen(
             uiState = CharacterPerksScreenStateUi(
                 characterPerks = listOf(
-                    PerkUI(1, "Уберите две карты #01"),
+                    PerkUI(1, "Remove two cards #01"),
                     PerkUI(
                         2,
-                        "Поменяйте 1 карту #01 на 1 карту #03 hgdsjfhgasjkhdgfkjahgsdfjhgsadjfhgakjshdgfjahgsdfjkh"
+                        "Replace one card #01 with one card #03"
                     ),
-                    PerkUI(3, "Добавьте две карты #03"),
+                    PerkUI(3, "Add two cards #03"),
                 ).toImmutableList(),
                 avaliablePerks = persistentListOf(),
                 avaliablePerksCount = 4

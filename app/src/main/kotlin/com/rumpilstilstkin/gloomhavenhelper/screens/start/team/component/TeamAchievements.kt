@@ -8,9 +8,11 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.rumpilstilstkin.gloomhavenhelper.R
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.Achievement
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomCard
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
@@ -27,7 +29,7 @@ internal fun GlobalAchievement(
 ) {
     Text(
         modifier = Modifier.fillMaxWidth(),
-        text = "Общие достижения",
+        text = stringResource(R.string.global_achievements),
         style = MaterialTheme.typography.labelLarge,
         color = MaterialTheme.colorScheme.primary,
         textAlign = TextAlign.Center
@@ -58,7 +60,7 @@ internal fun TeamAchievement(
 ) {
     Text(
         modifier = Modifier.fillMaxWidth(),
-        text = "Достижения отряда",
+        text = stringResource(R.string.team_achievements),
         style = MaterialTheme.typography.labelLarge,
         color = MaterialTheme.colorScheme.primary,
         textAlign = TextAlign.Center
@@ -68,7 +70,7 @@ internal fun TeamAchievement(
     )
     teamAchievements.forEach { achievement ->
         val text = if(achievement.maxValue > 1){
-            "${achievement.name} - ${achievement.value}"
+            "${achievement.name} : ${achievement.value}"
         } else {
             achievement.name
         }
@@ -86,8 +88,8 @@ private fun GlobalAchievementPreview() {
         GlobalAchievement(
             modifier = Modifier.fillMaxWidth(),
             globalAchievements = persistentListOf(
-                Achievement.fixture("Нашествие мертвецов"),
-                Achievement.fixture("Голос: умолк", value = 2)
+                Achievement.fixture("City Rule: Militaristic"),
+                Achievement.fixture("The Voice: Silenced", value = 2)
             ),
             clickGlobalAchievement = {}
         )
@@ -101,8 +103,8 @@ private fun TeamAchievementPreview() {
         TeamAchievement(
             modifier = Modifier.fillMaxWidth(),
             teamAchievements = persistentListOf(
-                Achievement.fixture("Нашествие мертвецов"),
-                Achievement.fixture("Голос: умолк", value = 2, maxValue = 3),
+                Achievement.fixture("City Rule: Militaristic"),
+                Achievement.fixture("The Voice", value = 2, maxValue = 3),
             ),
             clickTeamAchievement = {}
         )

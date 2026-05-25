@@ -29,6 +29,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -120,7 +121,7 @@ fun MonsterUnitCard(
                 ) {
                     Icon(
                         imageVector = Icons.Default.Delete,
-                        contentDescription = "Remove unit",
+                        contentDescription = null,
                         tint = MaterialTheme.colorScheme.error,
                         modifier = Modifier.size(24.dp),
                     )
@@ -250,13 +251,13 @@ fun EmptyMonsterUnitCard(modifier: Modifier = Modifier) {
                 tint = MaterialTheme.colorScheme.primary,
             )
             Text(
-                text = "Враги еще не добавлены",
+                text = stringResource(R.string.no_enemies_added),
                 fontSize = 11.sp,
                 color = MaterialTheme.colorScheme.onSurface,
                 textAlign = TextAlign.Center,
             )
             Text(
-                text = "Нажмите 'Добавить врага' чтобы они появились в списке",
+                text = stringResource(R.string.add_enemies_hint),
                 fontSize = 9.sp,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                 textAlign = TextAlign.Center,

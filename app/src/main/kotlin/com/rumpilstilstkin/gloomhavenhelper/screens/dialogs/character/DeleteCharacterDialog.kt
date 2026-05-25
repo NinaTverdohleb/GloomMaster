@@ -3,7 +3,9 @@ package com.rumpilstilstkin.gloomhavenhelper.screens.dialogs.character
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import com.rumpilstilstkin.gloomhavenhelper.R
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomAlertDialog
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
 
@@ -16,16 +18,16 @@ fun DeleteCharacterDialog(
 ) {
 
     GloomAlertDialog(
-        title = "Удалить или увести на покой персонажа?",
+        title = stringResource(R.string.delete_character_title),
         onDismissRequest = onDismiss,
         onConfirmRequest = null,
         onNeutralRequest = if (canRetire) retire else null,
         onNegativeRequest = delete,
-        neutralText = "На покой",
-        negativeText = "Удалить",
+        neutralText = stringResource(R.string.retire),
+        negativeText = stringResource(R.string.delete),
         content = {
             Text(
-                text = "Это действие нельзя отменить.",
+                text = stringResource(R.string.delete_warning),
                 style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.onSurface,
             )

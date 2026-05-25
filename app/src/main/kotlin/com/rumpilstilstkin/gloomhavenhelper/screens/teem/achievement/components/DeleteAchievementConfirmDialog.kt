@@ -3,7 +3,9 @@ package com.rumpilstilstkin.gloomhavenhelper.screens.teem.achievement.components
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import com.rumpilstilstkin.gloomhavenhelper.R
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomAlertDialog
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
 
@@ -14,15 +16,15 @@ fun DeleteAchievementConfirmDialog(
     onConfirm: () -> Unit,
 ) {
     GloomAlertDialog(
-        title = "Удалить достижение?",
+        title = stringResource(R.string.delete_achievement_title),
         onDismissRequest = onDismiss,
         onConfirmRequest = null,
         onNeutralRequest = onDismiss,
         onNegativeRequest = onConfirm,
-        negativeText = "Удалить",
+        negativeText = stringResource(R.string.delete),
         content = {
             Text(
-                text = "Вы уверены, что хотите удалить достижение \"$achievementName\"?",
+                text = stringResource(R.string.delete_achievement_warning, achievementName),
                 style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.onSurface,
             )
@@ -35,7 +37,7 @@ fun DeleteAchievementConfirmDialog(
 private fun DeleteAchievementConfirmDialogPreview() {
     GloomhavenMasterTheme {
         DeleteAchievementConfirmDialog(
-            achievementName = "Первые шаги",
+            achievementName = "First Steps",
             onDismiss = {},
             onConfirm = {},
         )

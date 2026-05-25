@@ -46,7 +46,7 @@ internal fun TeamHeader(
 private fun Sample() {
     GloomhavenMasterTheme {
         TeamHeader(
-            teamName = "Супер мега длинное имя пипец какое невыносимо огромное",
+            teamName = "Super mega long team name that is incredibly huge",
             teamLevel = 6,
             onLevelClick = {},
         )

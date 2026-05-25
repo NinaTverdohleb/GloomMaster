@@ -3,9 +3,11 @@ package com.rumpilstilstkin.gloomhavenhelper.screens.teem.achievement.global
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.res.stringResource
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
+import com.rumpilstilstkin.gloomhavenhelper.R
 import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEventHelper
 import com.rumpilstilstkin.gloomhavenhelper.screens.teem.achievement.AchievementsAction
 import com.rumpilstilstkin.gloomhavenhelper.screens.teem.achievement.AchievementsScreen
@@ -28,7 +30,7 @@ fun GlobalAchievementsRoute(
     }
 
     AchievementsScreen(
-        title = "Общие достижения",
+        title = stringResource(R.string.global_achievements),
         uiState = uiState,
         showAddDialog = { viewModel.onAction(AchievementsAction.ShowAddDialog) },
         dismissAddDialog = { viewModel.onAction(AchievementsAction.DismissAddDialog) },

@@ -20,9 +20,12 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.rumpilstilstkin.gloomhavenhelper.R
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.ShortScenarioUI
+import com.rumpilstilstkin.gloomhavenhelper.screens.models.toHumanReadable
 import com.rumpilstilstkin.gloomhavenhelper.ui.scenario.ScenarioActionDialog
 import com.rumpilstilstkin.gloomhavenhelper.ui.scenario.ScenarioInfoCardItem
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
@@ -46,7 +49,7 @@ fun ScenarioBlock(
     ) {
         Text(
             style = MaterialTheme.typography.labelLarge,
-            text = "ДОСТУПНЫЕ СЦЕНАРИИ",
+            text = stringResource(R.string.available_scenarios).uppercase(),
             color = MaterialTheme.colorScheme.primary
         )
 
@@ -58,13 +61,13 @@ fun ScenarioBlock(
             )
         }
     }
-    if(canRestore) {
+    if (canRestore) {
         Button(
             modifier = Modifier
                 .fillMaxWidth(),
             onClick = { playCurrentScenario() },
         ) {
-            Text("Продолжить")
+            Text(stringResource(R.string.continue_button))
         }
     }
     Spacer(modifier = Modifier.height(16.dp))
@@ -87,9 +90,9 @@ fun ScenarioBlock(
         ScenarioActionDialog(
             scenarioNumber = scenario.scenarioNumber,
             scenarioName = scenario.scenarioName,
-            scenarioRequirements = scenario.scenarioRequirements,
+            scenarioRequirements = scenario.scenarioRequirements.toHumanReadable(),
             onDismiss = { selectedScenario = null },
-            confirmText = "Играть",
+            confirmText = stringResource(R.string.play),
             completeScenario = {
                 completeScenario(scenario.scenarioNumber)
                 selectedScenario = null

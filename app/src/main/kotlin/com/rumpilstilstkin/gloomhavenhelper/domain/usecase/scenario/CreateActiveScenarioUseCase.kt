@@ -25,14 +25,14 @@ class CreateActiveScenarioUseCase @Inject constructor(
                 clearCurrentActiveScenarioUseCase()
                 val monsters = scenarioNumber?.let { number ->
                     scenarioRepository.getScenario(number).monsters
-                } ?: emptyList<String>()
+                } ?: emptyList()
                 val scenarioMonsters =
                     monsterRepository.getMonstersByNames(monsters, team.level)
                 val state = ScenarioGameState(
                     scenarioNumber = scenarioNumber,
                     name = scenarioNumber?.let { number ->
                         team.activeScenario.firstOrNull { it.scenarioNumber == number }?.scenarioName
-                    } ?: "Своя карта",
+                    }.orEmpty(),
                     monsterNames = monsters,
                     round = 0,
                     availableCards = scenarioMonsters.flatMap { it.cards }.distinct().map { it.cardId },

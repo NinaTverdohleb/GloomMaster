@@ -22,7 +22,7 @@ data class AddGoodsViewState(
                 GoodUi(
                     id = 1,
                     number = 1,
-                    name = "Сапоги большого шага поешь этих сладких французких булок",
+                    name = "Boots of Striding",
                     typeImage = GloomhavenIcons.GoodTypes.Foot,
                     cost = 20,
                     image = ""
@@ -30,7 +30,7 @@ data class AddGoodsViewState(
                 GoodUi(
                     id = 2,
                     number = 1,
-                    name = "Сапоги большого шага поешь этих сладких французких булок",
+                    name = "Boots of Striding",
                     typeImage = GloomhavenIcons.GoodTypes.Foot,
                     cost = 20,
                     image = ""
@@ -40,7 +40,7 @@ data class AddGoodsViewState(
                 GoodUi(
                     id = 1,
                     number = 1,
-                    name = "Сапоги большого шага поешь этих сладких французких булок",
+                    name = "Boots of Striding",
                     typeImage = GloomhavenIcons.GoodTypes.Foot,
                     cost = 20,
                     image = ""
@@ -48,7 +48,7 @@ data class AddGoodsViewState(
                 GoodUi(
                     id = 2,
                     number = 1,
-                    name = "Сапоги большого шага поешь этих сладких французких булок",
+                    name = "Boots of Striding",
                     typeImage = GloomhavenIcons.GoodTypes.Foot,
                     cost = 20,
                     image = ""

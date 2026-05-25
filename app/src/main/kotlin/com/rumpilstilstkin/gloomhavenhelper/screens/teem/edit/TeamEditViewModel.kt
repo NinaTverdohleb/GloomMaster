@@ -155,7 +155,7 @@ class TeamEditViewModel @Inject constructor(
                                 },
                                 onFailure = { _ ->
                                     logicState.update { it.copy(createShareFileInProgress = false) }
-                                    _navigationEvents.emit(Message("Что-то не получилось :("))
+                                    _navigationEvents.emit(Message("Oops, something went wrong!"))
                                 }
                             )
                     }

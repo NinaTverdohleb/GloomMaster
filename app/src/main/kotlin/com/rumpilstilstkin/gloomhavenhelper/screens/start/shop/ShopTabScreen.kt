@@ -16,9 +16,11 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.rumpilstilstkin.gloomhavenhelper.R
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.GoodType
 import com.rumpilstilstkin.gloomhavenhelper.screens.dialogs.goods.GoodDetailsDialog
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.GoodUi
@@ -66,7 +68,7 @@ internal fun ShopTabScreen(
                     selectedGood = null
                 },
                 isActionPositive = false,
-                buttonText = "Удалить",
+                buttonText = stringResource(R.string.delete),
                 imagePath = good.imagePath
             )
         }
@@ -79,7 +81,7 @@ internal fun ShopTabScreen(
                 contentPadding = PaddingValues(16.dp)
             ) {
                 Text(
-                    text = "Добавить предмет",
+                    text = stringResource(R.string.add_item),
                     fontSize = 16.sp
                 )
             }

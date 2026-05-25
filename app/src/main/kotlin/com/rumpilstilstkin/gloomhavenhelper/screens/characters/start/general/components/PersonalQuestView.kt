@@ -23,8 +23,10 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.rumpilstilstkin.gloomhavenhelper.R
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.CharacterClassType
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.quest.CharacterTaskItem
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.quest.QuestReward
@@ -55,7 +57,7 @@ fun PersonalQuestView(
             showDetailsDialog = false
         },
         onDismiss = { showDetailsDialog = false },
-        buttonText = "Сменить"
+        buttonText = stringResource(R.string.change_button)
     )
 
     Column(
@@ -183,12 +185,12 @@ private fun PersonalQuestViewPreview() {
         PersonalQuestView(
             quest = PersonalQuestUI(
                 id = "511",
-                title = "title",
-                description = "description",
+                title = "Seeker of Xorn",
+                description = "Ever since you were a child, you heard the call of Xorn.",
                 completed = false,
                 reward = QuestReward(
                     classType = CharacterClassType.Plagueherald,
-                    alternativeReward = "Откройте конверт B"
+                    alternativeReward = "Open envelope B"
                 ),
                 phases = persistentListOf(
                     QuestTaskPhaseUI(
@@ -197,7 +199,7 @@ private fun PersonalQuestViewPreview() {
                         tasks = persistentListOf(
                             CharacterTaskItem.Count(
                                 priority = 0,
-                                text = "Пройдите три сценария с названием Склеп",
+                                text = "Complete three scenarios with the name Crypt",
                                 count = 3,
                                 currentCount = 0,
                                 id = 1
@@ -209,7 +211,7 @@ private fun PersonalQuestViewPreview() {
                         tasks = persistentListOf(
                             CharacterTaskItem.Check(
                                 priority = 1,
-                                text = "Откройте и пройдите полностью сенарий \"Жуткий погреб\"",
+                                text = "Open and complete the scenario \"Jekserah's Plans\"",
                                 id = 2
                             )
                         )

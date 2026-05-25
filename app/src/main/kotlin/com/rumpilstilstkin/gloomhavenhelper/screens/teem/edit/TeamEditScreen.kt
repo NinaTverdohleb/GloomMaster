@@ -39,9 +39,11 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.rumpilstilstkin.gloomhavenhelper.R
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.DifficultyLevel
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.PackType
 import com.rumpilstilstkin.gloomhavenhelper.screens.dialogs.teams.DeleteTeamDialog
@@ -105,7 +107,7 @@ internal fun TeamEditScreen(
                 onNameChange(newValue)
             },
             modifier = Modifier.fillMaxWidth(),
-            label = { Text("Название команды") },
+            label = { Text(stringResource(R.string.team_name_label)) },
             singleLine = true,
         )
 
@@ -119,7 +121,7 @@ internal fun TeamEditScreen(
         Spacer(modifier = Modifier.height(8.dp))
 
         Text(
-            text = "Дополнения",
+            text = stringResource(R.string.expansions_title),
             style = MaterialTheme.typography.titleMedium,
             color = MaterialTheme.colorScheme.primary,
         )
@@ -134,7 +136,7 @@ internal fun TeamEditScreen(
                     horizontalArrangement = Arrangement.SpaceBetween,
                 ) {
                     Text(
-                        text = packItem.displayName,
+                        text = stringResource(packItem.displayNameRes),
                         style = MaterialTheme.typography.bodyLarge,
                         color = MaterialTheme.colorScheme.onSurface,
                         modifier = Modifier.weight(1f),
@@ -154,7 +156,7 @@ internal fun TeamEditScreen(
                 onClick = showTeamListDialog,
                 modifier = Modifier.fillMaxWidth(),
             ) {
-                Text(text = "Сменить команду")
+                Text(text = stringResource(R.string.change_team_button))
             }
         }
     }
@@ -187,7 +189,7 @@ fun DifficultySelector(
 
     Column(modifier = modifier) {
         Text(
-            text = "УРОВЕНЬ СЛОЖНОСТИ",
+            text = stringResource(R.string.difficulty_level_label),
             style = MaterialTheme.typography.labelSmall,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
         )
@@ -246,11 +248,12 @@ private fun DifficultyItem(
     }
 }
 
+@Composable
 private fun DifficultyLevel.toLabel() = when(this){
-    DifficultyLevel.EASY -> "Изи"
-    DifficultyLevel.NORMAL -> "Средненько"
-    DifficultyLevel.HARD -> "Напряжно"
-    DifficultyLevel.VERY_HARD -> "Для героев!"
+    DifficultyLevel.EASY -> stringResource(R.string.difficulty_easy)
+    DifficultyLevel.NORMAL -> stringResource(R.string.difficulty_normal)
+    DifficultyLevel.HARD -> stringResource(R.string.difficulty_hard)
+    DifficultyLevel.VERY_HARD -> stringResource(R.string.difficulty_very_hard)
 }
 
 @Preview(showBackground = true, backgroundColor = 0xFF1A1C24)
@@ -259,7 +262,7 @@ private fun TeamEditScreenPreview() {
     GloomhavenMasterTheme {
         TeamEditScreen(
             uiState = TeamEditStateUi(
-                teamName = "Моя команда",
+                teamName = "My Team",
                 availablePacks = persistentListOf(
                     PackItemUi(
                         pack = PackType.FORGOTTEN_CIRCLES,

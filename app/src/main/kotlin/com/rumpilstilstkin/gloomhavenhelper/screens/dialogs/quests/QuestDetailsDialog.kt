@@ -15,8 +15,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.rumpilstilstkin.gloomhavenhelper.R
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.CharacterClassType
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.quest.CharacterTaskItem
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.quest.QuestReward
@@ -36,7 +38,7 @@ fun QuestDetailsDialog(
     modifier: Modifier = Modifier,
     onAction: ((String) -> Unit)? = null,
     onDismiss: () -> Unit = {},
-    buttonText: String = "Выбрать",
+    buttonText: String = stringResource(R.string.select),
 ) {
     if (!showDialog) return
 
@@ -107,14 +109,14 @@ private fun Rewards(
         Text(
             modifier = Modifier.fillMaxWidth(),
             style = MaterialTheme.typography.titleSmall,
-            text = "Награда",
+            text = stringResource(R.string.reward),
         )
         Spacer(modifier = Modifier.size(4.dp))
         if (classType != null) {
             Row(
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Text(text = "Откройте класс: ")
+                Text(text = stringResource(R.string.unlock_class))
                 Image(
                     modifier = Modifier.size(32.dp),
                     painter = painterResource(id = classType.toImage()),
@@ -138,11 +140,11 @@ private fun GoodDetailsDialogPreview() {
         QuestDetailsDialog(
             quest = PersonalQuestUI(
                 id = "511",
-                title = "Искатель Ксорна",
-                description = "Еше с детства ты слышал зов Ксорна. Когда-то его почитали как бога, но его паства давно уничтожена. Но ты можешь слышать его зов. Ты отправтлся в Глумхевен по его приказу. Ты найдешь нго останки и освободишь его. Случившееся однажды повторится снова.",
+                title = "Seeker of Xorn",
+                description = "Ever since you were a child, you heard the call of Xorn. Once he was worshipped as a god, but his following has long since been destroyed. But you can hear his call. You traveled to Gloomhaven by his order. You will find his remains and free him. What happened once will happen again.",
                 reward = QuestReward(
                     classType = CharacterClassType.Plagueherald,
-                    alternativeReward = "Откройте конверт B"
+                    alternativeReward = "Open envelope B"
                 ),
                 phases = persistentListOf(
                     QuestTaskPhaseUI(
@@ -150,7 +152,7 @@ private fun GoodDetailsDialogPreview() {
                         tasks = persistentListOf(
                             CharacterTaskItem.Count(
                                 priority = 0,
-                                text = "Пройдите три сценария с названием Склеп",
+                                text = "Complete three scenarios with the name Crypt",
                                 count = 3,
                                 currentCount = 0,
                                 id = 1
@@ -162,7 +164,7 @@ private fun GoodDetailsDialogPreview() {
                         tasks = persistentListOf(
                             CharacterTaskItem.Check(
                                 priority = 1,
-                                text = "Откройте и пройдите полностью сенарий \"Жуткий погреб\"",
+                                text = "Open and complete the scenario \"Jekserah's Plans\"",
                                 id = 2
                             )
                         )

@@ -1,5 +1,6 @@
 package com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.components
 
+import androidx.annotation.StringRes
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -28,10 +29,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.rumpilstilstkin.gloomhavenhelper.R
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomAlertDialog
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
 
@@ -80,7 +83,10 @@ fun SpawnMonsterDialog(
 
 // ─── Tier selector ────────────────────────────────────────────────────────────
 
-enum class UnitTier(val text: String) { Normal("Обычные"), Elite("Элитные") }
+enum class UnitTier(@StringRes val textRes: Int) {
+    Normal(R.string.tier_normal),
+    Elite(R.string.tier_elite)
+}
 
 @Composable
 private fun TierSelector(
@@ -123,7 +129,7 @@ private fun TierSelector(
                         )
                     }
                     Text(
-                        text = tier.text,
+                        text = stringResource(tier.textRes),
                         style = MaterialTheme.typography.bodyMedium,
                         color = contentColor,
                     )
@@ -202,7 +208,7 @@ private fun UnitIdCell(
 private fun SpawnMonsterDialogPreview() {
     GloomhavenMasterTheme {
         SpawnMonsterDialog(
-            monsterName = "Хвостожабка",
+            monsterName = "Living Bones",
             availableIds = (1..14).toList(),
             onDismiss = { },
             onSpawn = { _, _ -> },

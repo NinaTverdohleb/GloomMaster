@@ -20,12 +20,12 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.state.Magic
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.state.MagicValue
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
-import kotlin.collections.forEach
 
 @Composable
 internal fun ScenarioHeader(
@@ -93,7 +93,7 @@ internal fun ScenarioHeader(
 
                 Icon(
                     painter = painterResource(id = magic.icon.imageRes),
-                    contentDescription = magic.icon.title,
+                    contentDescription = stringResource(magic.icon.titleRes),
                     modifier = modifier
                         .size(32.dp),
                     tint = magic.icon.color
@@ -120,7 +120,7 @@ private fun ScenarioHeaderPreview() {
                 Magic.SUN to MagicValue(1),
                 Magic.MOON to MagicValue(2),
             ),
-            title = "Гиблая лужа",
+            title = "Black Barrow",
             clickMagic = {}
         )
     }

@@ -27,6 +27,6 @@ fun TextWithImagesByCode(
 @Composable
 private fun TextWithImagesByCodePreview() {
     GloomhavenMasterTheme {
-        TextWithImagesByCode(text = "Уберите две карты #27")
+        TextWithImagesByCode(text = "Remove two cards #27")
     }
 }

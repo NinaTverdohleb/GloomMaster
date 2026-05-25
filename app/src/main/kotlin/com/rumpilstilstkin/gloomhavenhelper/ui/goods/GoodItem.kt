@@ -10,7 +10,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -20,9 +19,10 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.rumpilstilstkin.gloomhavenhelper.R
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.GoodUi
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomCard
 import com.rumpilstilstkin.gloomhavenhelper.ui.icons.GloomhavenIcons
@@ -76,7 +76,7 @@ fun GoodItem(
             )
             Spacer(modifier = Modifier.height(8.dp))
             Text(
-                text = "${good.cost} Золотых",
+                text = stringResource(R.string.gold_format, good.cost),
                 style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.onSurface
             )
@@ -92,7 +92,7 @@ private fun GoodItemPreview() {
             good = GoodUi(
                 id = 1,
                 number = 1,
-                name = "Сапоги большого шага поешь этих сладких французких булок",
+                name = "Boots of Striding",
                 typeImage = GloomhavenIcons.GoodTypes.Foot,
                 cost = 20,
                 image = ""
@@ -100,5 +100,4 @@ private fun GoodItemPreview() {
             clickItem = {}
         )
     }
-
 }

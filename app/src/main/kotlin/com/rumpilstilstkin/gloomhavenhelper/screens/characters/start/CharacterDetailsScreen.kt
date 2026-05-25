@@ -20,6 +20,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.rumpilstilstkin.gloomhavenhelper.R
 import com.rumpilstilstkin.gloomhavenhelper.screens.characters.start.components.CharacterHeader
@@ -79,7 +80,7 @@ internal fun CharacterDetailsScreen(
     Scaffold(
         topBar = {
             GloomToolbarTitle(
-                title = "Детали персонажа",
+                title = stringResource(R.string.character_details_title),
                 back = back,
                 actions = {
                     IconButton(onClick = showDeleteDialog) {
@@ -115,12 +116,12 @@ internal fun CharacterDetailsScreen(
 }
 
 internal enum class CharacterDetailsTab(
-    override val title: String,
+    override val titleRes: Int,
     override val iconRes: Int
 ) : NavItem {
-    GENERAL("Общее", R.drawable.ic_company),
-    STUFF("Предметы", R.drawable.ic_shop),
-    SKILLS("Навыки", R.drawable.ic_scenario),
+    GENERAL(R.string.tab_general, R.drawable.ic_company),
+    STUFF(R.string.tab_items, R.drawable.ic_shop),
+    SKILLS(R.string.tab_skills, R.drawable.ic_scenario),
 }
 
 @Composable
@@ -144,7 +145,7 @@ internal fun CharactersTabs(
         ) {
             tabs.forEach { tab ->
                 Tab(
-                    text = { Text(text = tab.title) },
+                    text = { Text(text = stringResource(tab.titleRes)) },
                     selected = selectedTab == tab,
                     onClick = { selectedTab = tab }
                 )
@@ -160,10 +161,10 @@ private fun CharacterDetailsScreenPreview() {
     GloomhavenMasterTheme {
         CharacterDetailsScreen(
             state = CharacterDetailsStateUi(
-                name = "Персонаж",
+                name = "Character",
                 level = 1,
                 type = CharacterClassTypeUI.Brute,
-                teamName = "Команда"
+                teamName = "Team"
             ),
             back = {},
             showDeleteDialog = {},
@@ -185,7 +186,7 @@ private fun CharacterDetailsScreenPreview() {
                         hasTeam = false,
                         teamName = null,
                         nextLevel = 175,
-                        notes = "Некоторые заметки"
+                        notes = "Some notes"
                     ),
                     onAction = {}
                 )

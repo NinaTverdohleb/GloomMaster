@@ -11,7 +11,9 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import com.rumpilstilstkin.gloomhavenhelper.R
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomAlertDialog
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
 
@@ -24,10 +26,10 @@ fun AddTeamDialog(
     var teamName by rememberSaveable { mutableStateOf("") }
 
     GloomAlertDialog(
-        title = "Новая команда",
+        title = stringResource(R.string.new_team_title),
         titleIcon = Icons.Default.Groups,
-        confirmText = "Добавить",
-        neutralText = "Импортировать",
+        confirmText = stringResource(R.string.add),
+        neutralText = stringResource(R.string.import_button),
         confirmEnabled = teamName.isNotBlank(),
         onDismissRequest = onDismiss,
         onConfirmRequest = {
@@ -43,7 +45,7 @@ fun AddTeamDialog(
             modifier = Modifier.fillMaxWidth(),
             value = teamName,
             onValueChange = { teamName = it },
-            label = { Text("Название команды") },
+            label = { Text(stringResource(R.string.team_name_label)) },
             singleLine = true,
         )
     }

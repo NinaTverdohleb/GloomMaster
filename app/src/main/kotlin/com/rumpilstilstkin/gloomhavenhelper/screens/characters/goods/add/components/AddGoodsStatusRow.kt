@@ -1,7 +1,5 @@
 package com.rumpilstilstkin.gloomhavenhelper.screens.characters.goods.add.components
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -13,8 +11,10 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.rumpilstilstkin.gloomhavenhelper.R
 import com.rumpilstilstkin.gloomhavenhelper.screens.characters.goods.add.AddGoodsForCharacterScreenActions
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomVariantCard
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
@@ -27,7 +27,7 @@ fun AddGoodsStatusRow(
 ) = GloomVariantCard {
     Text(
         modifier = Modifier.align(Alignment.CenterHorizontally),
-        text = "Доступно : $allGold G",
+        text = stringResource(R.string.available_gold_format, allGold),
     )
     Row(
         modifier = Modifier
@@ -36,7 +36,7 @@ fun AddGoodsStatusRow(
         verticalAlignment = Alignment.CenterVertically
     ) {
         Text(
-            text = "Стоимость : $goodsGold G",
+            text = stringResource(R.string.cost_gold_format, goodsGold),
         )
     }
     Spacer(modifier = Modifier.height(16.dp))
@@ -50,7 +50,7 @@ fun AddGoodsStatusRow(
                 onAction(AddGoodsForCharacterScreenActions.BuySelectedGoods)
             }
         ) {
-            Text("Купить")
+            Text(stringResource(R.string.buy))
         }
         Spacer(modifier = Modifier.width(16.dp))
         Button(
@@ -59,7 +59,7 @@ fun AddGoodsStatusRow(
                 onAction(AddGoodsForCharacterScreenActions.AddSelectedGoods)
             }
         ) {
-            Text("Добавить")
+            Text(stringResource(R.string.add))
         }
     }
 }

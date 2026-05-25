@@ -15,17 +15,15 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
+import com.rumpilstilstkin.gloomhavenhelper.R
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomCard
+import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
 
 @Composable
 fun ScenarioInfoCardItem(
@@ -77,7 +75,7 @@ fun ScenarioInfoItem(
                 modifier = modifier
                     .padding(vertical = 8.dp, horizontal = 8.dp),
                 style = MaterialTheme.typography.headlineMedium,
-                text = "# $scenarioNumber",
+                text = stringResource(R.string.scenario_number_format, scenarioNumber),
                 textAlign = TextAlign.Center,
                 color = MaterialTheme.colorScheme.primary
             )
@@ -94,7 +92,7 @@ fun ScenarioInfoItem(
             if (location.isNotBlank()) {
                 Spacer(modifier = Modifier.height(8.dp))
                 Text(
-                    text = "Регион: $location",
+                    text = stringResource(R.string.location_format, location),
                     style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.onSurface
                 )
@@ -111,7 +109,7 @@ private fun Sample() {
         ScenarioInfoCardItem(
             scenarioNumber = 99,
             scenarioName = "Name",
-            location = "Полная жопа",
+            location = "Bad place",
         )
     }
 }

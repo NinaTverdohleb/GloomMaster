@@ -12,6 +12,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.CharacterClassTypeUI
@@ -39,7 +40,7 @@ fun CharacterAvailableClasses(
                 val isAvailable = classType in availableTypes
                 Icon(
                     painter = painterResource(id = classType.image),
-                    contentDescription = classType.title,
+                    contentDescription = stringResource(classType.titleRes),
                     modifier = Modifier
                         .size(32.dp)
                         .clickable { onToggle(classType) },

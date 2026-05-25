@@ -3,7 +3,9 @@ package com.rumpilstilstkin.gloomhavenhelper.screens.dialogs.teams
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import com.rumpilstilstkin.gloomhavenhelper.R
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomAlertDialog
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
 
@@ -14,15 +16,15 @@ fun DeleteTeamDialog(
     onConfirm: () -> Unit,
 ) {
     GloomAlertDialog(
-        title = "Удалить команду?",
+        title = stringResource(R.string.delete_team_confirm_title),
         onDismissRequest = onDismiss,
         onConfirmRequest = null,
         onNeutralRequest = onDismiss,
         onNegativeRequest = onConfirm,
-        negativeText = "Удалить",
+        negativeText = stringResource(R.string.delete),
         content = {
             Text(
-                text = "Вы уверены, что хотите удалить команду \"$teamName\"? Это действие нельзя отменить.",
+                text = stringResource(R.string.delete_team_confirm_warning, teamName),
                 style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.onSurface,
             )
@@ -35,7 +37,7 @@ fun DeleteTeamDialog(
 private fun DeleteTeamDialogPreview() {
     GloomhavenMasterTheme {
         DeleteTeamDialog(
-            teamName = "Моя команда",
+            teamName = "My Team",
             onDismiss = {},
             onConfirm = {},
         )

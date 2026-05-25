@@ -25,11 +25,12 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.rumpilstilstkin.gloomhavenhelper.R
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomToolbarTitle
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomVariantCard
-import com.rumpilstilstkin.gloomhavenhelper.ui.goods.GoodItem
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
 import kotlinx.collections.immutable.persistentListOf
 
@@ -43,7 +44,7 @@ internal fun ScenarioConstructorScreen(
     Scaffold(
         topBar = {
             GloomToolbarTitle(
-                title = "Добавить монстров",
+                title = stringResource(R.string.add_monsters_title),
                 back = back,
             )
         }
@@ -66,7 +67,7 @@ internal fun ScenarioConstructorScreen(
                         if (state.selectedMonsters.isNotEmpty()) {
                             item {
                                 Text(
-                                    text = "Выбранные",
+                                    text = stringResource(R.string.selected_label),
                                     style = MaterialTheme.typography.titleLarge
                                 )
                                 Spacer(
@@ -83,7 +84,7 @@ internal fun ScenarioConstructorScreen(
                         }
                         item {
                             Text(
-                                text = "Доступные",
+                                text = stringResource(R.string.available_label),
                                 style = MaterialTheme.typography.titleLarge
                             )
                             Spacer(
@@ -107,7 +108,7 @@ internal fun ScenarioConstructorScreen(
                             .fillMaxWidth()
                             .padding(top = 16.dp)
                     ) {
-                        Text("Добавить")
+                        Text(stringResource(R.string.add))
                     }
 
                 }
@@ -171,10 +172,10 @@ private fun ScenarioConstructorScreenPreview() {
         ScenarioConstructorScreen(
             state = ScenarioConstructorStateUi.Content(
                 availableMonsters = persistentListOf(
-                    "Банит-страж",
-                    "Темный маг",
+                    "Bandit Archer",
+                    "Living Spirit",
                 ),
-                selectedMonsters = persistentListOf("Скелет-воин", "Зомби"),
+                selectedMonsters = persistentListOf("Living Bones", "Living Corpse"),
             ),
             back = {},
             toggleMonster = {},

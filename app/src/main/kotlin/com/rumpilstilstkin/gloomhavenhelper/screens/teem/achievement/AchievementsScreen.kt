@@ -22,9 +22,11 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.rumpilstilstkin.gloomhavenhelper.R
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.Achievement
 import com.rumpilstilstkin.gloomhavenhelper.screens.teem.achievement.components.AddAchievementDialog
 import com.rumpilstilstkin.gloomhavenhelper.screens.teem.achievement.components.DeleteAchievementConfirmDialog
@@ -94,7 +96,7 @@ internal fun AchievementsScreen(
             contentPadding = PaddingValues(16.dp)
         ) {
             Text(
-                text = "Добавить достижение",
+                text = stringResource(R.string.add_achievement_button),
                 fontSize = 16.sp
             )
         }
@@ -150,7 +152,7 @@ private fun AchievementItem(
             IconButton(onClick = delete) {
                 Icon(
                     imageVector = Icons.Default.Delete,
-                    contentDescription = "Удалить",
+                    contentDescription = stringResource(R.string.delete),
                     tint = MaterialTheme.colorScheme.error,
                 )
             }
@@ -163,15 +165,15 @@ private fun AchievementItem(
 private fun AchievementsScreenPreview() {
     GloomhavenMasterTheme {
         AchievementsScreen(
-            title = "Командные достижения",
+            title = "Party Achievements",
             uiState = AchievementsStateUi(
                 achievements = persistentListOf(
-                    Achievement.fixture("Первые шаги"),
-                    Achievement.fixture("Планы Джексеры"),
-                    Achievement.fixture("Древняя технология", maxValue = 3),
+                    Achievement.fixture("First Steps"),
+                    Achievement.fixture("Jekserah's Plans"),
+                    Achievement.fixture("Ancient Technology", maxValue = 3),
                 ),
                 availableAchievements = persistentListOf(
-                    Achievement.fixture("Карта сокровищ"),
+                    Achievement.fixture("Treasure Map"),
                 ),
             ),
             showAddDialog = {},
@@ -191,7 +193,7 @@ private fun AchievementsScreenPreview() {
 private fun AchievementsScreenEmptyPreview() {
     GloomhavenMasterTheme {
         AchievementsScreen(
-            title = "Командные достижения",
+            title = "Party Achievements",
             uiState = AchievementsStateUi(),
             showAddDialog = {},
             dismissAddDialog = {},

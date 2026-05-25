@@ -18,8 +18,10 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.rumpilstilstkin.gloomhavenhelper.R
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.GoodType
 import com.rumpilstilstkin.gloomhavenhelper.screens.dialogs.goods.GoodDetailsDialog
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.GoodUi
@@ -59,7 +61,7 @@ fun AddGoodsView(
             if (state.selectedGoods.isNotEmpty()) {
                 item {
                     Text(
-                        text = "Выбранные товары",
+                        text = stringResource(R.string.selected_goods),
                         style = MaterialTheme.typography.titleLarge
                     )
                     Spacer(
@@ -77,7 +79,7 @@ fun AddGoodsView(
             }
             item {
                 Text(
-                    text = "Доступные товары",
+                    text = stringResource(R.string.available_goods),
                     style = MaterialTheme.typography.titleLarge
                 )
                 Spacer(
@@ -105,7 +107,7 @@ fun AddGoodsView(
                     unselectGood(good)
                     selectedGood = null
                 },
-                buttonText = "Убрать",
+                buttonText = stringResource(R.string.remove),
                 isActionPositive = false,
                 imagePath = good.imagePath
             )
@@ -116,7 +118,7 @@ fun AddGoodsView(
                     selectGood(good)
                     selectedGood = null
                 },
-                buttonText = "Добавить",
+                buttonText = stringResource(R.string.add),
                 imagePath = good.imagePath
             )
         }

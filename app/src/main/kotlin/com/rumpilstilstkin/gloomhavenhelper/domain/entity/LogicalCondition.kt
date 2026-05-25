@@ -71,6 +71,8 @@ class LogicalCondition(val condition: String) {
         return output
     }
 
+    fun isNotBlank() = condition.isNotBlank()
+
     companion object {
         private val PRECEDENCE = mapOf("!" to 3, "&&" to 2, "||" to 1)
         private val TOKEN_PATTERN = Regex("""(\|\||&&|!|\(|\)|[^!&|()]+)""")

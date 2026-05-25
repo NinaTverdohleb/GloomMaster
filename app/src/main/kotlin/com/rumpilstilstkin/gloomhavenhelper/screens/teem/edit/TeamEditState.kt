@@ -1,6 +1,8 @@
 package com.rumpilstilstkin.gloomhavenhelper.screens.teem.edit
 
+import androidx.annotation.StringRes
 import androidx.compose.runtime.Immutable
+import com.rumpilstilstkin.gloomhavenhelper.R
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.DifficultyLevel
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.PackType
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.ShortTeamInfoUi
@@ -30,9 +32,10 @@ data class PackItemUi(
     val pack: PackType,
     val isEnabled: Boolean,
 ) {
-    val displayName: String = when (pack) {
-        PackType.MAIN -> "Gloomhaven"
-        PackType.FORGOTTEN_CIRCLES -> "Забытые круги"
+    @get:StringRes
+    val displayNameRes: Int = when (pack) {
+        PackType.MAIN -> R.string.pack_main
+        PackType.FORGOTTEN_CIRCLES -> R.string.pack_forgotten_circles
     }
 }
 

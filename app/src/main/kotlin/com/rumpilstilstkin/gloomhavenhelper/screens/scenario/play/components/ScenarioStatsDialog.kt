@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.rumpilstilstkin.gloomhavenhelper.R
@@ -22,27 +23,27 @@ internal fun ScenarioStatsDialog(
 ) {
 
     GloomAlertDialog(
-        title = "Параметры прохождения сценария",
+        title = stringResource(R.string.scenario_stats_title),
         onDismissRequest = onDismiss,
         onConfirmRequest = null,
     ) {
         StatItem(
-            value = "$level - Уровень монстров",
+            value = stringResource(R.string.stat_monster_level, level),
             image = R.drawable.ic_level
         )
 
         StatItem(
-            value = "$exp - Опыт за прохождение",
+            value = stringResource(R.string.stat_exp_reward, exp),
             image = R.drawable.ic_exp
         )
 
         StatItem(
-            value = "$gold - Золотых за монету",
+            value = stringResource(R.string.stat_gold_reward, gold),
             image = R.drawable.ic_gold
         )
 
         StatItem(
-            value = "$trapDamage - Дамага от повреждаюшей ловушки",
+            value = stringResource(R.string.stat_trap_damage, trapDamage),
             image = R.drawable.ic_trap
         )
     }

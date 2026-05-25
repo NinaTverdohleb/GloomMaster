@@ -1,6 +1,7 @@
 package com.rumpilstilstkin.gloomhavenhelper.screens.models
 
 import androidx.compose.runtime.Immutable
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.LogicalCondition
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.ScenarioInfo
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.ScenarioShortInfo
 
@@ -8,9 +9,9 @@ import com.rumpilstilstkin.gloomhavenhelper.domain.entity.ScenarioShortInfo
 data class ShortScenarioUI(
     val scenarioNumber: Int,
     val scenarioName: String,
-    val scenarioRequirements: String,
+    val scenarioRequirements: LogicalCondition,
     val location: String,
-    val complated: Boolean,
+    val completed: Boolean,
 ) {
     companion object {
         fun fixture(
@@ -18,9 +19,9 @@ data class ShortScenarioUI(
         ) = ShortScenarioUI(
             scenarioNumber = number,
             scenarioName = "Scenario 1",
-            scenarioRequirements = "Requirements 1",
-            location = "Глубокая жопа",
-            complated = true
+            scenarioRequirements = LogicalCondition("!Global Achievement"),
+            location = "Bad place",
+            completed = true
         )
     }
 }
@@ -28,15 +29,15 @@ data class ShortScenarioUI(
 fun ScenarioShortInfo.toUi() = ShortScenarioUI(
     scenarioNumber = this.scenarioNumber,
     scenarioName = this.scenarioName,
-    scenarioRequirements = this.scenarioRequirements.toHumanReadable(),
+    scenarioRequirements = this.scenarioRequirements,
     location = this.location,
-    complated = this.isCompleted
+    completed = this.isCompleted
 )
 
 fun ScenarioInfo.toUi() = ShortScenarioUI(
     scenarioNumber = this.scenarioNumber,
     scenarioName = this.scenarioName,
-    scenarioRequirements = this.scenarioRequirements.toHumanReadable(),
+    scenarioRequirements = this.scenarioRequirements,
     location = this.location,
-    complated = this.monsters.isNotEmpty()
+    completed = this.monsters.isNotEmpty()
 )
