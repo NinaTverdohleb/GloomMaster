@@ -115,7 +115,7 @@ internal fun ScenariosTabScreen(
         ScenarioActionDialog(
             scenarioNumber = scenario.scenarioNumber,
             scenarioName = scenario.scenarioName,
-            scenarioRequirements = scenario.scenarioRequirements.toHumanReadable(),
+            scenarioRequirements = scenario.scenarioRequirements.toHumanReadable(scenario.requirementAchievementNames),
             onDismiss = { selectedActiveScenario = null },
             completeScenario = {
                 completeScenario(scenario.scenarioNumber)
@@ -138,7 +138,7 @@ internal fun ScenariosTabScreen(
             completed = scenario.completed,
             scenarioNumber = scenario.scenarioNumber,
             scenarioName = scenario.scenarioName,
-            scenarioRequirements = scenario.scenarioRequirements.toHumanReadable(),
+            scenarioRequirements = scenario.scenarioRequirements.toHumanReadable(scenario.requirementAchievementNames),
             onDismiss = { selectedInfoScenario = null },
             location = scenario.location,
             restoreScenario = {

@@ -4,9 +4,11 @@ import android.content.res.Resources.NotFoundException
 import com.rumpilstilstkin.gloomhavenhelper.bd.dao.CharacterDao
 import com.rumpilstilstkin.gloomhavenhelper.bd.dao.TeamDao
 import com.rumpilstilstkin.gloomhavenhelper.data.datasource.CurrentTeamDatasource
+import com.rumpilstilstkin.gloomhavenhelper.data.mappers.localizedAchievements
 import com.rumpilstilstkin.gloomhavenhelper.data.mappers.toBd
 import com.rumpilstilstkin.gloomhavenhelper.data.mappers.toDomain
 import com.rumpilstilstkin.gloomhavenhelper.di.ApplicationScope
+import com.rumpilstilstkin.gloomhavenhelper.localization.LocaleSource
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.DifficultyLevel
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.PackType
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.ShortTeamInfo
@@ -32,7 +34,9 @@ class TeamRepository @Inject constructor(
     private val teamDao: TeamDao,
     private val characterDao: CharacterDao,
     private val scenarioRepository: ScenarioRepository,
-    private val scenarioGameStateRepository: ScenarioGameStateRepository
+    private val scenarioGameStateRepository: ScenarioGameStateRepository,
+    private val translationRepository: TranslationRepository,
+    private val localeSource: LocaleSource,
 ) {
     private val _currentTeam: MutableStateFlow<Result<Int>> =
         MutableStateFlow(Result.failure(NotFoundException()))
@@ -46,13 +50,23 @@ class TeamRepository @Inject constructor(
                         combine(
                             teamDao.getTeamFlow(teamId),
                             characterDao.findByTeamIdFlow(teamId),
-                        ) { team, characters ->
+                            resolverFlow(),
+                        ) { team, characters, resolver ->
                             team.toDomain(characters.filter { it.isAlive }.map { it.characterId })
+                                .localizedAchievements(resolver)
                         }
                     },
                     onFailure = { flowOf(null) }
                 )
             }
+
+    /**
+     * Active-locale resolver as a stream: switches when the language changes and re-emits when
+     * the translation store is (re)seeded, so localized achievement names refresh without a restart.
+     */
+    @OptIn(ExperimentalCoroutinesApi::class)
+    private fun resolverFlow(): Flow<TextResolver> =
+        localeSource.locale.flatMapLatest { translationRepository.resolverFlow(it) }
 
     init {
         externalScope.launch {
@@ -61,10 +75,13 @@ class TeamRepository @Inject constructor(
     }
 
     suspend fun getTeamWithScenarioFlow(id: Int): Flow<TeamInfoWithScenario> {
-        return teamDao.getTeamFlow(id)
-            .combine(scenarioRepository.getTeamScenariosFlow(id)) { team, scenarios ->
-                team.toDomain(scenarios)
-            }
+        return combine(
+            teamDao.getTeamFlow(id),
+            scenarioRepository.getTeamScenariosFlow(id),
+            resolverFlow(),
+        ) { team, scenarios, resolver ->
+            team.toDomain(scenarios).localizedAchievements(resolver)
+        }
     }
 
     suspend fun setCurrentTeam(teamId: Int) {

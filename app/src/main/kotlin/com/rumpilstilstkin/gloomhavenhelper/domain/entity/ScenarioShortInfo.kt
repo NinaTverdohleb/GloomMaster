@@ -7,7 +7,9 @@ data class ScenarioShortInfo(
     val isCompleted: Boolean,
     val location: String,
     val pack: PackType,
-    val monsters: List<String>
+    val monsters: List<String>,
+    // Canonical achievement name -> localized display name, for rendering requirement text.
+    val requirementAchievementNames: Map<String, String> = emptyMap(),
 )
 
 data class ScenarioInfo(
@@ -19,5 +21,7 @@ data class ScenarioInfo(
     val globalAchievements: List<String>,
     val location: String,
     val pack: PackType,
-    val monsters: List<String>
+    val monsters: List<String>,
+    // Canonical achievement name -> localized display name, for rendering requirement text.
+    val requirementAchievementNames: Map<String, String> = emptyMap(),
 )

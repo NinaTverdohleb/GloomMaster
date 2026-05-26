@@ -39,9 +39,9 @@ internal fun GlobalAchievement(
     )
     globalAchievements.forEach { achievement ->
         val text = if(achievement.maxValue > 1){
-            "${achievement.name} - ${achievement.value}"
+            "${achievement.displayName} - ${achievement.value}"
         } else {
-            achievement.name
+            achievement.displayName
         }
         Text(
             text = text,
@@ -70,9 +70,9 @@ internal fun TeamAchievement(
     )
     teamAchievements.forEach { achievement ->
         val text = if(achievement.maxValue > 1){
-            "${achievement.name} : ${achievement.value}"
+            "${achievement.displayName} : ${achievement.value}"
         } else {
-            achievement.name
+            achievement.displayName
         }
         Text(
             text = text,

@@ -73,6 +73,13 @@ class LogicalCondition(val condition: String) {
 
     fun isNotBlank() = condition.isNotBlank()
 
+    /**
+     * The canonical achievement names referenced by this condition (leaf operands, with the
+     * "!", "&&", "||" operators removed). Used to resolve each reference to a localized display
+     * name; evaluation still runs on these canonical keys.
+     */
+    val achievementKeys: List<String> get() = rpnQueue.filter { it !in PRECEDENCE }
+
     companion object {
         private val PRECEDENCE = mapOf("!" to 3, "&&" to 2, "||" to 1)
         private val TOKEN_PATTERN = Regex("""(\|\||&&|!|\(|\)|[^!&|()]+)""")

@@ -1,6 +1,7 @@
 package com.rumpilstilstkin.gloomhavenhelper.data.mappers
 
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.TeamBd
+import com.rumpilstilstkin.gloomhavenhelper.data.TextResolver
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.DifficultyLevel
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.PackType
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.ScenarioShortInfo
@@ -54,4 +55,18 @@ fun ShortTeamInfo.toBd() = TeamBd(
     packs = this.packs.map { it.name },
     churchValue = this.churchValue,
     difficultyLevel = this.difficultyLevel.value
+)
+
+/**
+ * Resolves earned achievements' display names for the active locale. Only [Achievement.displayName]
+ * changes; canonical names stay intact, so unlock matching and saved progress are unaffected.
+ */
+fun ShortTeamInfo.localizedAchievements(resolver: TextResolver) = copy(
+    teamAchievement = teamAchievement.localized(resolver),
+    globalAchievement = globalAchievement.localized(resolver),
+)
+
+fun TeamInfoWithScenario.localizedAchievements(resolver: TextResolver) = copy(
+    teamAchievement = teamAchievement.localized(resolver),
+    globalAchievement = globalAchievement.localized(resolver),
 )

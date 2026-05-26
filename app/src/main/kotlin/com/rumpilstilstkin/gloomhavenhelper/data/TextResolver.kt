@@ -1,5 +1,7 @@
 package com.rumpilstilstkin.gloomhavenhelper.data
 
+import com.rumpilstilstkin.gloomhavenhelper.localization.TranslationKeys
+
 /**
  * Resolves display text for one locale from a pre-loaded snapshot of the translation store.
  * A missing entry renders a visible key marker (rather than a blank) so untranslated content
@@ -7,10 +9,22 @@ package com.rumpilstilstkin.gloomhavenhelper.data
  */
 class TextResolver(
     private val byKey: Map<String, String>,
+    // Canonical (Russian) achievement name -> stable catalog key. Achievements are keyed in the
+    // store by this stable key, but callers only have the canonical name (the logic identity),
+    // so [resolveAchievement] bridges name -> key before looking up the text.
+    private val achievementKeys: Map<String, String> = emptyMap(),
 ) {
     fun resolve(entityType: String, entityKey: String, fieldName: String): String =
         byKey[key(entityType, entityKey, fieldName)]
             ?: "⟦$entityType:$entityKey:$fieldName⟧"
+
+    /** Display name for an achievement identified by its canonical (Russian) name. */
+    fun resolveAchievement(canonicalName: String): String =
+        resolve(
+            TranslationKeys.ACHIEVEMENT,
+            achievementKeys[canonicalName] ?: canonicalName,
+            TranslationKeys.FIELD_NAME,
+        )
 
     companion object {
         fun key(entityType: String, entityKey: String, fieldName: String): String =

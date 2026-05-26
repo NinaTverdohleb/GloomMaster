@@ -58,6 +58,12 @@ class DatabaseFiller @Inject constructor(
             // Re-seed: perk text was added to the translation store, so existing installs must
             // rebuild it. fill() clears and re-inserts every locale's dictionaries.
             8 -> translationJsonFiller.fill()
+            // Re-seed: achievement names were added to the translation store, so existing installs
+            // must rebuild it. fill() clears and re-inserts every locale's dictionaries.
+            9 -> translationJsonFiller.fill()
+            // Re-seed: achievement dictionaries were re-keyed from canonical name to stable catalog
+            // key, so the store must be rebuilt for installs that seeded the earlier key format.
+            10 -> translationJsonFiller.fill()
             else -> {}
         }
     }
@@ -94,7 +100,7 @@ class DatabaseFiller @Inject constructor(
     }
 
     companion object {
-        private const val VERSION = 9
+        private const val VERSION = 11
         private const val PREFS_VERSION = "filler_version"
     }
 }

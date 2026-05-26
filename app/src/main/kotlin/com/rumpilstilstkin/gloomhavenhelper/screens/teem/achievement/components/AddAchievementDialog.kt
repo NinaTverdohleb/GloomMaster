@@ -43,7 +43,7 @@ fun AddAchievementDialog(
                         modifier = Modifier.clickable { onSelect(achievement) }
                     ) {
                         Text(
-                            text = achievement.name,
+                            text = achievement.displayName,
                             style = MaterialTheme.typography.bodyLarge,
                             color = MaterialTheme.colorScheme.onSurface,
                             modifier = Modifier.padding(vertical = 8.dp),

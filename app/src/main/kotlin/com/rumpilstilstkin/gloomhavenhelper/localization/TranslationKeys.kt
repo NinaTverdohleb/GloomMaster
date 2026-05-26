@@ -10,6 +10,11 @@ object TranslationKeys {
     const val QUEST = "quest"
     const val PERK = "perk"
 
+    // Achievement translations are keyed by a stable catalog key (see AchievementKeyIndex), not
+    // by the Russian name. Scenario unlock logic + saved progress still match by the canonical
+    // (Russian) name; that name is bridged to the key at lookup time.
+    const val ACHIEVEMENT = "achievement"
+
     // Per-task quest text, keyed by "$questId:$taskId" so each task stays addressable
     // independent of the parent quest fields.
     const val QUEST_TASK = "quest_task"

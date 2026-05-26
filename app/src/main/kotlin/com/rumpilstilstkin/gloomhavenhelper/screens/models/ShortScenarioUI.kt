@@ -4,6 +4,9 @@ import androidx.compose.runtime.Immutable
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.LogicalCondition
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.ScenarioInfo
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.ScenarioShortInfo
+import kotlinx.collections.immutable.ImmutableMap
+import kotlinx.collections.immutable.persistentMapOf
+import kotlinx.collections.immutable.toImmutableMap
 
 @Immutable
 data class ShortScenarioUI(
@@ -12,6 +15,7 @@ data class ShortScenarioUI(
     val scenarioRequirements: LogicalCondition,
     val location: String,
     val completed: Boolean,
+    val requirementAchievementNames: ImmutableMap<String, String> = persistentMapOf(),
 ) {
     companion object {
         fun fixture(
@@ -31,7 +35,8 @@ fun ScenarioShortInfo.toUi() = ShortScenarioUI(
     scenarioName = this.scenarioName,
     scenarioRequirements = this.scenarioRequirements,
     location = this.location,
-    completed = this.isCompleted
+    completed = this.isCompleted,
+    requirementAchievementNames = this.requirementAchievementNames.toImmutableMap(),
 )
 
 fun ScenarioInfo.toUi() = ShortScenarioUI(
@@ -39,5 +44,6 @@ fun ScenarioInfo.toUi() = ShortScenarioUI(
     scenarioName = this.scenarioName,
     scenarioRequirements = this.scenarioRequirements,
     location = this.location,
-    completed = this.monsters.isNotEmpty()
+    completed = this.monsters.isNotEmpty(),
+    requirementAchievementNames = this.requirementAchievementNames.toImmutableMap(),
 )

@@ -42,11 +42,13 @@ fun ScenarioBd.toShortDomain(
 fun ScenarioShortInfo.localized(resolver: TextResolver) = copy(
     scenarioName = resolver.resolveScenarioName(scenarioNumber),
     location = resolver.resolveScenarioLocation(scenarioNumber, location),
+    requirementAchievementNames = resolver.resolveRequirementNames(scenarioRequirements),
 )
 
 fun ScenarioInfo.localized(resolver: TextResolver) = copy(
     scenarioName = resolver.resolveScenarioName(scenarioNumber),
     location = resolver.resolveScenarioLocation(scenarioNumber, location),
+    requirementAchievementNames = resolver.resolveRequirementNames(scenarioRequirements),
 )
 
 private fun TextResolver.resolveScenarioName(scenarioNumber: Int): String =
@@ -55,3 +57,11 @@ private fun TextResolver.resolveScenarioName(scenarioNumber: Int): String =
 private fun TextResolver.resolveScenarioLocation(scenarioNumber: Int, canonical: String): String =
     if (canonical.isBlank()) canonical
     else resolve(TranslationKeys.SCENARIO, scenarioNumber.toString(), TranslationKeys.FIELD_LOCATION)
+
+/**
+ * Resolves each achievement reference in a requirement expression to its localized display name,
+ * keyed by canonical name. Evaluation still runs on the canonical keys, so unlock results are
+ * language-independent; this map is display-only.
+ */
+private fun TextResolver.resolveRequirementNames(requirements: LogicalCondition): Map<String, String> =
+    requirements.achievementKeys.associateWith { resolveAchievement(it) }

@@ -112,7 +112,7 @@ internal fun AchievementsScreen(
 
     uiState.achievementToDelete?.let { achievement ->
         DeleteAchievementConfirmDialog(
-            achievementName = achievement.name,
+            achievementName = achievement.displayName,
             onDismiss = dismissDeleteDialog,
             onConfirm = confirmDelete,
         )
@@ -133,7 +133,7 @@ private fun AchievementItem(
         ) {
             Column(modifier = Modifier.weight(1f)) {
                 Text(
-                    text = achievement.name,
+                    text = achievement.displayName,
                     style = MaterialTheme.typography.bodyLarge,
                     color = MaterialTheme.colorScheme.onSurface,
                 )

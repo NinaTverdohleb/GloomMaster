@@ -5,8 +5,16 @@ import androidx.compose.ui.res.stringResource
 import com.rumpilstilstkin.gloomhavenhelper.R
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.LogicalCondition
 
+/**
+ * Renders the requirement as readable text in the active language. Operators/connectives come
+ * from string resources (static UI locale); each achievement reference (a canonical name) is
+ * mapped through [achievementNames] to its localized display name, falling back to the canonical
+ * name when absent.
+ */
 @Composable
-fun LogicalCondition.toHumanReadable(): String {
+fun LogicalCondition.toHumanReadable(
+    achievementNames: Map<String, String> = emptyMap(),
+): String {
     if (rpnQueue.isEmpty()) return stringResource(R.string.no_conditions)
 
     val stack = mutableListOf<String>()
@@ -36,7 +44,8 @@ fun LogicalCondition.toHumanReadable(): String {
                 stack.add("($l$orOp$r)")
             }
             else -> {
-                stack.add(stringResource(R.string.achievement_obtained_format, token))
+                val name = achievementNames[token] ?: token
+                stack.add(stringResource(R.string.achievement_obtained_format, name))
             }
         }
     }

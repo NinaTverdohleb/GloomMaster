@@ -90,7 +90,7 @@ fun ScenarioBlock(
         ScenarioActionDialog(
             scenarioNumber = scenario.scenarioNumber,
             scenarioName = scenario.scenarioName,
-            scenarioRequirements = scenario.scenarioRequirements.toHumanReadable(),
+            scenarioRequirements = scenario.scenarioRequirements.toHumanReadable(scenario.requirementAchievementNames),
             onDismiss = { selectedScenario = null },
             confirmText = stringResource(R.string.play),
             completeScenario = {
