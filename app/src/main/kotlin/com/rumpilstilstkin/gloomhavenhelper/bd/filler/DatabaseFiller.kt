@@ -49,6 +49,9 @@ class DatabaseFiller @Inject constructor(
             // now keyed by scenario number), so the store must be re-seeded. fill() clears the
             // store first, so devices that ran the old format are corrected.
             5 -> translationJsonFiller.fill()
+            // Re-seed: good names were added to the translation store, so existing installs
+            // must rebuild it. fill() clears and re-inserts every locale's dictionaries.
+            6 -> translationJsonFiller.fill()
             else -> {}
         }
     }
@@ -85,7 +88,7 @@ class DatabaseFiller @Inject constructor(
     }
 
     companion object {
-        private const val VERSION = 6
+        private const val VERSION = 7
         private const val PREFS_VERSION = "filler_version"
     }
 }

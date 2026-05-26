@@ -54,4 +54,7 @@ class JsonDataLoader @Inject constructor(
 
     fun loadScenarioTranslations(locale: String): Map<String, ScenarioTranslationJson> =
         load("translations/$locale/scenarios.json")
+
+    fun loadGoodTranslations(locale: String): Map<String, String> =
+        load("translations/$locale/goods.json")
 }

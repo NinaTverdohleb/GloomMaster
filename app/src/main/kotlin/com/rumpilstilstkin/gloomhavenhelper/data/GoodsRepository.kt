@@ -5,11 +5,15 @@ import com.rumpilstilstkin.gloomhavenhelper.bd.dao.GoodsDao
 import com.rumpilstilstkin.gloomhavenhelper.bd.dao.TeamGoodDao
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.CharacterGoodBd
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.TeamGoodBd
+import com.rumpilstilstkin.gloomhavenhelper.data.mappers.localized
 import com.rumpilstilstkin.gloomhavenhelper.data.mappers.toDomain
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.Good
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.PackType
+import com.rumpilstilstkin.gloomhavenhelper.localization.LocaleSource
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.flatMapLatest
 import javax.inject.Inject
 import javax.inject.Singleton
 import kotlin.collections.contains
@@ -20,19 +24,25 @@ class GoodsRepository @Inject constructor(
     private val goodsDao: GoodsDao,
     private val teamGoodDao: TeamGoodDao,
     private val characterGoodsDao: CharacterGoodsDao,
+    private val translationRepository: TranslationRepository,
+    private val localeSource: LocaleSource,
 ) {
-    suspend fun getGoods(packs: Set<PackType>): List<Good> =
-        goodsDao
+    suspend fun getGoods(packs: Set<PackType>): List<Good> {
+        val resolver = translationRepository.resolver(localeSource.current)
+        return goodsDao
             .getAll()
-            .map { it.toDomain() }
+            .map { it.toDomain().localized(resolver) }
             .filter { it.pack in packs }
+    }
 
     suspend fun getGood(goodId: Int): Good? =
         goodsDao.getGoodById(goodId)?.toDomain()
 
     fun getGoodsForTeam(teamId: Int): Flow<List<Good>> =
         teamGoodDao.getGoodsForTeam(teamId)
-            .map { goods -> goods.map { it.good.toDomain() } }
+            .combine(resolverFlow()) { goods, resolver ->
+                goods.map { it.good.toDomain().localized(resolver) }
+            }
 
     suspend fun getTeamGoodsNumbers(teamId: Int): List<Int> = teamGoodDao.getGoodsForTeamSync(teamId).map { it.goodId }
 
@@ -71,7 +81,16 @@ class GoodsRepository @Inject constructor(
     }
 
     fun getCharacterGoods(characterId: Int) =
-        characterGoodsDao.getCharacterGoodsFlow(characterId).map { goods ->
-            goods.map { it.toDomain() }
-        }
+        characterGoodsDao.getCharacterGoodsFlow(characterId)
+            .combine(resolverFlow()) { goods, resolver ->
+                goods.map { it.toDomain().localized(resolver) }
+            }
+
+    /**
+     * Active-locale resolver as a stream: switches when the language changes and re-emits when
+     * the translation store is (re)seeded, so item names refresh without a restart.
+     */
+    @OptIn(ExperimentalCoroutinesApi::class)
+    private fun resolverFlow(): Flow<TextResolver> =
+        localeSource.locale.flatMapLatest { translationRepository.resolverFlow(it) }
 }

@@ -6,6 +6,7 @@ package com.rumpilstilstkin.gloomhavenhelper.localization
  */
 object TranslationKeys {
     const val SCENARIO = "scenario"
+    const val GOOD = "good"
 
     const val FIELD_NAME = "name"
     const val FIELD_LOCATION = "location"
