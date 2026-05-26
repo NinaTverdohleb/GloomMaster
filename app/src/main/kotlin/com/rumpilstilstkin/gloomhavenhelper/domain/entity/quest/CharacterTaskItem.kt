@@ -40,3 +40,9 @@ sealed interface CharacterTaskItem {
             get() = count <= currentCount
     }
 }
+
+/** Returns a copy with display [text] replaced, preserving id, priority and progress. */
+fun CharacterTaskItem.withText(text: String): CharacterTaskItem = when (this) {
+    is CharacterTaskItem.Check -> copy(text = text)
+    is CharacterTaskItem.Count -> copy(text = text)
+}

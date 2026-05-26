@@ -9,6 +9,7 @@ import com.rumpilstilstkin.gloomhavenhelper.bd.filler.json.models.GoodJson
 import com.rumpilstilstkin.gloomhavenhelper.bd.filler.json.models.MonsterJson
 import com.rumpilstilstkin.gloomhavenhelper.bd.filler.json.models.MonsterStatsJson
 import com.rumpilstilstkin.gloomhavenhelper.bd.filler.json.models.PersonalQuestJson
+import com.rumpilstilstkin.gloomhavenhelper.bd.filler.json.models.QuestTranslationJson
 import com.rumpilstilstkin.gloomhavenhelper.bd.filler.json.models.ScenarioJson
 import com.rumpilstilstkin.gloomhavenhelper.bd.filler.json.models.ScenarioTranslationJson
 import dagger.hilt.android.qualifiers.ApplicationContext
@@ -57,4 +58,7 @@ class JsonDataLoader @Inject constructor(
 
     fun loadGoodTranslations(locale: String): Map<String, String> =
         load("translations/$locale/goods.json")
+
+    fun loadQuestTranslations(locale: String): Map<String, QuestTranslationJson> =
+        load("translations/$locale/quests.json")
 }

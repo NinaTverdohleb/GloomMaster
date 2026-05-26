@@ -52,6 +52,9 @@ class DatabaseFiller @Inject constructor(
             // Re-seed: good names were added to the translation store, so existing installs
             // must rebuild it. fill() clears and re-inserts every locale's dictionaries.
             6 -> translationJsonFiller.fill()
+            // Re-seed: quest title/description/special and per-task text were added, so existing
+            // installs must rebuild the translation store. fill() clears and re-inserts all locales.
+            7 -> translationJsonFiller.fill()
             else -> {}
         }
     }
@@ -88,7 +91,7 @@ class DatabaseFiller @Inject constructor(
     }
 
     companion object {
-        private const val VERSION = 7
+        private const val VERSION = 8
         private const val PREFS_VERSION = "filler_version"
     }
 }

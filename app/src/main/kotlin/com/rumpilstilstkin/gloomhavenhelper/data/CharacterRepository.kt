@@ -5,6 +5,7 @@ import com.rumpilstilstkin.gloomhavenhelper.bd.dao.CharacterPerksDao
 import com.rumpilstilstkin.gloomhavenhelper.bd.dao.CharacterPersonalQuestDao
 import com.rumpilstilstkin.gloomhavenhelper.bd.dao.TeamDao
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.CharacterPerkBd
+import com.rumpilstilstkin.gloomhavenhelper.data.mappers.localized
 import com.rumpilstilstkin.gloomhavenhelper.data.mappers.toBd
 import com.rumpilstilstkin.gloomhavenhelper.data.mappers.toDomain
 import com.rumpilstilstkin.gloomhavenhelper.data.mappers.toShortDomain
@@ -14,7 +15,11 @@ import com.rumpilstilstkin.gloomhavenhelper.domain.entity.CharacterShortInfo
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.DifficultyLevel
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.PackType
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.Team
+import com.rumpilstilstkin.gloomhavenhelper.localization.LocaleSource
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -24,7 +29,9 @@ class CharacterRepository @Inject constructor(
     private val characterDao: CharacterDao,
     private val teamDao: TeamDao,
     private val characterPerksDao: CharacterPerksDao,
-    private val characterQuestDao: CharacterPersonalQuestDao
+    private val characterQuestDao: CharacterPersonalQuestDao,
+    private val translationRepository: TranslationRepository,
+    private val localeSource: LocaleSource,
 ) {
 
     suspend fun addCharacterPerk(characterId: Int, perkId: Int) {
@@ -77,8 +84,12 @@ class CharacterRepository @Inject constructor(
             character?.toDomain(team)
         }
 
+    @OptIn(ExperimentalCoroutinesApi::class)
     fun getCharacterPersonalQuestFlow(characterId: Int) =
-        characterQuestDao.getCharacterPersonalQuestFlow(characterId).map { it?.toDomain() }
+        characterQuestDao.getCharacterPersonalQuestFlow(characterId)
+            .combine(localeSource.locale.flatMapLatest { translationRepository.resolverFlow(it) }) { quest, resolver ->
+                quest?.toDomain()?.localized(resolver)
+            }
 
     suspend fun getCharacterById(id: Int): CharacterShortInfo? =
         characterDao.getCharacterById(id)?.toShortDomain()

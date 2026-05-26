@@ -1,8 +1,8 @@
 package com.rumpilstilstkin.gloomhavenhelper.domain.usecase.characters.quests
 
-import android.util.Log
 import com.rumpilstilstkin.gloomhavenhelper.data.QuestsRepository
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.quest.CharacterTaskItem
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.quest.withText
 import javax.inject.Inject
 
 class QuestTaskUpdateUseCase @Inject constructor(
@@ -18,7 +18,9 @@ class QuestTaskUpdateUseCase @Inject constructor(
                 val newTask = it.copy(
                     tasks = it.tasks.map { existingTask ->
                         if (existingTask.id == task.id) {
-                            task
+                            // Keep the canonical (Russian) stored text; the incoming task carries
+                            // the active-language display text, which must not leak into the save.
+                            task.withText(existingTask.text)
                         } else {
                             existingTask
                         }

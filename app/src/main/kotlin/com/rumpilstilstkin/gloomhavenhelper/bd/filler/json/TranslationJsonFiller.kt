@@ -8,8 +8,9 @@ import javax.inject.Inject
 
 /**
  * Seeds the translation store for every supported language from per-locale dictionary assets.
- * Scenario name/location are keyed by scenario number and good names by item number — all
- * stable ids. Insert uses REPLACE, so re-running is idempotent.
+ * Scenario name/location are keyed by scenario number, good names by item number, and quest
+ * fields by quest id (task texts by "$questId:$taskId") — all stable ids. Insert uses REPLACE,
+ * so re-running is idempotent.
  */
 class TranslationJsonFiller @Inject constructor(
     private val jsonDataLoader: JsonDataLoader,
@@ -27,6 +28,18 @@ class TranslationJsonFiller @Inject constructor(
                 }
                 jsonDataLoader.loadGoodTranslations(locale).forEach { (number, name) ->
                     add(translation(TranslationKeys.GOOD, number, TranslationKeys.FIELD_NAME, locale, name))
+                }
+                jsonDataLoader.loadQuestTranslations(locale).forEach { (questId, quest) ->
+                    add(translation(TranslationKeys.QUEST, questId, TranslationKeys.FIELD_TITLE, locale, quest.title))
+                    if (quest.description.isNotBlank()) {
+                        add(translation(TranslationKeys.QUEST, questId, TranslationKeys.FIELD_DESCRIPTION, locale, quest.description))
+                    }
+                    if (quest.special.isNotBlank()) {
+                        add(translation(TranslationKeys.QUEST, questId, TranslationKeys.FIELD_SPECIAL, locale, quest.special))
+                    }
+                    quest.tasks.forEach { (taskId, text) ->
+                        add(translation(TranslationKeys.QUEST_TASK, "$questId:$taskId", TranslationKeys.FIELD_TEXT, locale, text))
+                    }
                 }
             }
             translationDao.insertAll(*rows.toTypedArray())
