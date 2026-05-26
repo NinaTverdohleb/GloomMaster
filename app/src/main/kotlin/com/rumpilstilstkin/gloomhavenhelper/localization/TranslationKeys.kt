@@ -8,6 +8,7 @@ object TranslationKeys {
     const val SCENARIO = "scenario"
     const val GOOD = "good"
     const val QUEST = "quest"
+    const val PERK = "perk"
 
     // Per-task quest text, keyed by "$questId:$taskId" so each task stays addressable
     // independent of the parent quest fields.

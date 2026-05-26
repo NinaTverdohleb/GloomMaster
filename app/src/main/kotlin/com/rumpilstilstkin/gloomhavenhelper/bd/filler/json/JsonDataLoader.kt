@@ -61,4 +61,16 @@ class JsonDataLoader @Inject constructor(
 
     fun loadQuestTranslations(locale: String): Map<String, QuestTranslationJson> =
         load("translations/$locale/quests.json")
+
+    // Perk translations are authored grouped by characterType (mirroring v1_perks.json) so a
+    // maintainer can see which class each perk belongs to. Flattened here in the same order
+    // PerkJsonFiller uses, so the 1-based position is the perk's db id (the translation store key).
+    fun loadPerkTranslations(locale: String): Map<String, String> =
+        load<List<CharacterPerksJson>>("translations/$locale/perks.json")
+            .flatMap { it.perks }
+            .mapIndexed { index, perk -> (index + 1).toString() to perk.text }
+            .toMap()
+
+    fun loadAchievementTranslations(locale: String): Map<String, String> =
+        load("translations/$locale/achievements.json")
 }

@@ -42,10 +42,12 @@ class CharacterRepository @Inject constructor(
         characterPerksDao.deleteById(characterPerkId)
     }
 
+    @OptIn(ExperimentalCoroutinesApi::class)
     fun getCharacterPerksFlow(characterId: Int) =
-        characterPerksDao.getCharacterPerksFlow(characterId).map { perks ->
-            perks.map { it.toDomain() }
-        }
+        characterPerksDao.getCharacterPerksFlow(characterId)
+            .combine(localeSource.locale.flatMapLatest { translationRepository.resolverFlow(it) }) { perks, resolver ->
+                perks.map { it.toDomain().localized(resolver) }
+            }
 
     suspend fun getCharacterPerks(characterId: Int): List<Int> =
         characterPerksDao.getCharacterPerks(characterId).map { it.perk.perkId }

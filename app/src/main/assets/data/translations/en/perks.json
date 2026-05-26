@@ -1,0 +1,362 @@
+[
+  {
+    "characterType": "Brute",
+    "perks": [
+      { "text": "Remove 2 cards #01" },
+      { "text": "Replace 1 card #01 with 1 card #03" },
+      { "text": "Add 2 cards #03" },
+      { "text": "Add 2 cards #03" },
+      { "text": "Add 1 card #05" },
+      { "text": "Add 3 cards with effect #07 PUSH #08 1" },
+      { "text": "Add 3 cards with effect #07 PUSH #08 1" },
+      { "text": "Add 2 cards with effect #07 PIERCE #09 3" },
+      { "text": "Add 1 card with effect #07 STUN #10" },
+      { "text": "Add 1 card with effect #07 STUN #10" },
+      { "text": "Add 1 card with effect #07 DISARM #11 and 1 card with effect #07 MUDDLE #12" },
+      { "text": "Add 1 card with effect #07 ADD TARGET #13" },
+      { "text": "Add 1 card with effect #07 ADD TARGET #13" },
+      { "text": "Add 1 card #03 with effect Shield 1 (on self)" },
+      { "text": "Ignore negative item effects and add 1 card #03" }
+    ]
+  },
+  {
+    "characterType": "Mindthief",
+    "perks": [
+      { "text": "Remove 2 cards #01" },
+      { "text": "Remove 2 cards #01" },
+      { "text": "Remove 4 cards #15" },
+      { "text": "Replace 2 cards #03 with 2 cards #04" },
+      { "text": "Replace 1 card #02 with 1 card #15" },
+      { "text": "Add 1 card #04 #16" },
+      { "text": "Add 1 card #04 #16" },
+      { "text": "Add 2 cards #07 #03" },
+      { "text": "Add 2 cards #07 #03" },
+      { "text": "Add 3 cards with effect #07 PULL #17 1" },
+      { "text": "Add 3 cards with effect #07 MUDDLE #12" },
+      { "text": "Add 2 cards with effect #07 IMMOBILIZE #18" },
+      { "text": "Add 1 card with effect #07 STUN #10" },
+      { "text": "Add 1 card with effect #07 DISARM #11 and 1 card with effect #07 MUDDLE #12" },
+      { "text": "Ignore negative scenario effects" }
+    ]
+  },
+  {
+    "characterType": "Cragheart",
+    "perks": [
+      { "text": "Remove 4 cards #15" },
+      { "text": "Replace 1 card #01 with 1 card #03" },
+      { "text": "Replace 1 card #01 with 1 card #03" },
+      { "text": "Replace 1 card #01 with 1 card #03" },
+      { "text": "Add 1 card #02 and 2 cards #04" },
+      { "text": "Add 1 card #03 with effect IMMOBILIZE #18" },
+      { "text": "Add 1 card #03 with effect IMMOBILIZE #18" },
+      { "text": "Add 1 card #04 with effect MUDDLE #12" },
+      { "text": "Add 1 card #04 with effect MUDDLE #12" },
+      { "text": "Add 2 cards effect #07 PUSH #08 2" },
+      { "text": "Add 2 cards #07 #23" },
+      { "text": "Add 2 cards #07 #23" },
+      { "text": "Add 2 cards #07 #21" },
+      { "text": "Ignore negative item effects" },
+      { "text": "Ignore negative scenario effects" }
+    ]
+  },
+  {
+    "characterType": "Scoundrel",
+    "perks": [
+      { "text": "Remove 2 cards #01" },
+      { "text": "Remove 2 cards #01" },
+      { "text": "Remove 4 cards #15" },
+      { "text": "Replace 1 card #02 with 1 card #15" },
+      { "text": "Replace 1 card #01 with 1 card #03" },
+      { "text": "Replace 1 card #15 with 1 card #04" },
+      { "text": "Replace 1 card #15 with 1 card #04" },
+      { "text": "Add 2 cards #07 #03" },
+      { "text": "Add 2 cards #07 #03" },
+      { "text": "Add 2 cards with effect #07 PIERCE #09 3" },
+      { "text": "Add 2 cards with effect #07 POISON #25" },
+      { "text": "Add 2 cards with effect #07 POISON #25" },
+      { "text": "Add 2 cards with effect #07 MUDDLE #12" },
+      { "text": "Add 1 card with effect #07 INVISIBLE #24" },
+      { "text": "Ignore negative scenario effects" }
+    ]
+  },
+  {
+    "characterType": "Spellweaver",
+    "perks": [
+      { "text": "Remove 4 cards #15" },
+      { "text": "Replace 1 card #01 with 1 card #03" },
+      { "text": "Replace 1 card #01 with 1 card #03" },
+      { "text": "Add 2 cards #03" },
+      { "text": "Add 2 cards #03" },
+      { "text": "Add 1 card #15 with effect STUN #10" },
+      { "text": "Add 1 card #03 with effect WOUND #14" },
+      { "text": "Add 1 card #03 with effect IMMOBILIZE #18" },
+      { "text": "Add 1 card #03 with effect CURSE #26" },
+      { "text": "Add 1 card #04 #22" },
+      { "text": "Add 1 card #04 #22" },
+      { "text": "Add 1 card #04 #16" },
+      { "text": "Add 1 card #04 #16" },
+      { "text": "Add 1 card #07 #23 and 1 card #07 #21" },
+      { "text": "Add 1 card #07 #19 and 1 card #07 #20" }
+    ]
+  },
+  {
+    "characterType": "Tinkerer",
+    "perks": [
+      { "text": "Remove 2 cards #01" },
+      { "text": "Remove 2 cards #01" },
+      { "text": "Replace 1 card #02 with 1 card #15" },
+      { "text": "Add 2 cards #03" },
+      { "text": "Add 1 card #05" },
+      { "text": "Add 2 cards #07 #22" },
+      { "text": "Add 3 cards with effect #07 MUDDLE #12" },
+      { "text": "Add 1 card #03 with effect WOUND #14" },
+      { "text": "Add 1 card #03 with effect WOUND #14" },
+      { "text": "Add 1 card #03 with effect IMMOBILIZE #18" },
+      { "text": "Add 1 card #03 with effect IMMOBILIZE #18" },
+      { "text": "Add 1 card #03 with effect Heal 2" },
+      { "text": "Add 1 card #03 with effect Heal 2" },
+      { "text": "Add 1 card #15 with effect ADD TARGET #13" },
+      { "text": "Ignore negative scenario effects" }
+    ]
+  },
+  {
+    "characterType": "BeastTyrant",
+    "perks": [
+      { "text": "Remove 2 cards #01" },
+      { "text": "Replace 1 card #01 with 1 card #03" },
+      { "text": "Replace 1 card #01 with 1 card #03" },
+      { "text": "Replace 1 card #01 with 1 card #03" },
+      { "text": "Replace 1 card #15 with 1 card #04" },
+      { "text": "Replace 1 card #15 with 1 card #04" },
+      { "text": "Add 1 card #03 with effect WOUND #14" },
+      { "text": "Add 1 card #03 with effect WOUND #14" },
+      { "text": "Add 1 card #03 with effect IMMOBILIZE #18" },
+      { "text": "Add 1 card #03 with effect IMMOBILIZE #18" },
+      { "text": "Add 2 cards with effect #07 Heal 1" },
+      { "text": "Add 2 cards with effect #07 Heal 1" },
+      { "text": "Add 2 cards with effect #07 Heal 1" },
+      { "text": "Add 2 cards #07 #23" },
+      { "text": "Ignore negative scenario effects" }
+    ]
+  },
+  {
+    "characterType": "Elementalist",
+    "perks": [
+      { "text": "Remove 2 cards #01" },
+      { "text": "Remove 2 cards #01" },
+      { "text": "Replace 1 card #01 with 1 card #03" },
+      { "text": "Replace 1 card #15 with 1 card #04" },
+      { "text": "Replace 1 card #15 with 1 card #04" },
+      { "text": "Add 3 cards #15 #22" },
+      { "text": "Add 3 cards #15 #16" },
+      { "text": "Add 3 cards #15 #21" },
+      { "text": "Add 3 cards #15 #23" },
+      { "text": "Replace 2 cards #15 with 1 card #15 #22 and 1 card #15 #23" },
+      { "text": "Replace 2 cards #15 with 1 card #15 #16 and 1 card #15 #21" },
+      { "text": "Add 2 cards #03 with effect PUSH #08 1" },
+      { "text": "Add 1 card #03 with effect WOUND #14" },
+      { "text": "Add 1 card #15 with effect STUN #10" },
+      { "text": "Add 1 card #15 with effect ADD TARGET #13" }
+    ]
+  },
+  {
+    "characterType": "Summoner",
+    "perks": [
+      { "text": "Remove 2 cards #01" },
+      { "text": "Replace 1 card #02 with 1 card #15" },
+      { "text": "Replace 1 card #01 with 1 card #03" },
+      { "text": "Replace 1 card #01 with 1 card #03" },
+      { "text": "Replace 1 card #01 with 1 card #03" },
+      { "text": "Add 1 card #04" },
+      { "text": "Add 1 card #04" },
+      { "text": "Add 2 cards with effect #07 WOUND #14" },
+      { "text": "Add 2 cards with effect #07 POISON #25" },
+      { "text": "Add 2 cards with effect #07 Heal 1" },
+      { "text": "Add 2 cards with effect #07 Heal 1" },
+      { "text": "Add 2 cards with effect #07 Heal 1" },
+      { "text": "Add 1 card #07 #22 and 1 card #07 #21" },
+      { "text": "Add 1 card #07 #20 and 1 card #07 #23" },
+      { "text": "Ignore negative scenario effects and add 2 cards #03" }
+    ]
+  },
+  {
+    "characterType": "Sunkeeper",
+    "perks": [
+      { "text": "Remove 2 cards #01" },
+      { "text": "Remove 2 cards #01" },
+      { "text": "Remove 4 cards #15" },
+      { "text": "Replace 1 card #02 with 1 card #15" },
+      { "text": "Replace 1 card #15 with 1 card #04" },
+      { "text": "Add 2 cards #07 #03" },
+      { "text": "Add 2 cards #07 #03" },
+      { "text": "Add 2 cards with effect #07 Heal 1" },
+      { "text": "Add 2 cards with effect #07 Heal 1" },
+      { "text": "Add 1 card with effect #07 STUN #10" },
+      { "text": "Add 2 cards #07 #19" },
+      { "text": "Add 2 cards #07 #19" },
+      { "text": "Add 2 cards with effect #07 Shield 1 (on self)" },
+      { "text": "Ignore negative item effects and add 2 cards #03" },
+      { "text": "Ignore negative scenario effects" }
+    ]
+  },
+  {
+    "characterType": "Doomstalker",
+    "perks": [
+      { "text": "Remove 2 cards #01" },
+      { "text": "Remove 2 cards #01" },
+      { "text": "Replace 2 cards #15 with 2 cards #03" },
+      { "text": "Replace 2 cards #15 with 2 cards #03" },
+      { "text": "Replace 2 cards #15 with 2 cards #03" },
+      { "text": "Add 2 cards #07 #03" },
+      { "text": "Add 2 cards #07 #03" },
+      { "text": "Add 1 card #04 with effect MUDDLE #12" },
+      { "text": "Add 1 card #03 with effect POISON #25" },
+      { "text": "Add 1 card #03 with effect WOUND #14" },
+      { "text": "Add 1 card #03 with effect IMMOBILIZE #18" },
+      { "text": "Add 1 card #15 with effect STUN #10" },
+      { "text": "Add 1 card with effect #07 ADD TARGET #13" },
+      { "text": "Add 1 card with effect #07 ADD TARGET #13" },
+      { "text": "Ignore negative scenario effects" }
+    ]
+  },
+  {
+    "characterType": "Soothsinger",
+    "perks": [
+      { "text": "Remove 2 cards #01" },
+      { "text": "Remove 2 cards #01" },
+      { "text": "Remove 1 card #02" },
+      { "text": "Replace 2 cards #03 with 1 card #06" },
+      { "text": "Replace 2 cards #03 with 1 card #06" },
+      { "text": "Replace 1 card #15 with 1 card #03 with effect IMMOBILIZE #18" },
+      { "text": "Replace 1 card #15 with 1 card #03 with effect DISARM #11" },
+      { "text": "Replace 1 card #15 with 1 card #04 with effect WOUND #14" },
+      { "text": "Replace 1 card #15 with 1 card #04 with effect POISON #25" },
+      { "text": "Replace 1 card #15 with 1 card #04 with effect CURSE #26" },
+      { "text": "Replace 1 card #15 with 1 card #05 with effect MUDDLE #12" },
+      { "text": "Replace 1 card #01 with 1 card #15 with effect STUN #10" },
+      { "text": "Add 3 cards #07 #03" },
+      { "text": "Add 2 cards with effect #07 CURSE #26" },
+      { "text": "Add 2 cards with effect #07 CURSE #26" }
+    ]
+  },
+  {
+    "characterType": "Sawbones",
+    "perks": [
+      { "text": "Remove 2 cards #01" },
+      { "text": "Remove 2 cards #01" },
+      { "text": "Remove 4 cards #15" },
+      { "text": "Replace 1 card #15 with 1 card #04" },
+      { "text": "Replace 1 card #15 with 1 card #04" },
+      { "text": "Add 1 card #07 #04" },
+      { "text": "Add 1 card #07 #04" },
+      { "text": "Add 1 card #03 with effect IMMOBILIZE #18" },
+      { "text": "Add 1 card #03 with effect IMMOBILIZE #18" },
+      { "text": "Add 2 cards with effect #07 WOUND #14" },
+      { "text": "Add 2 cards with effect #07 WOUND #14" },
+      { "text": "Add 1 card with effect #07 STUN #10" },
+      { "text": "Add 1 card with effect #07 Heal 3" },
+      { "text": "Add 1 card with effect #07 Heal 3" },
+      { "text": "Add 1 card #15 with effect Refresh 1 spent or consumed item card" }
+    ]
+  },
+  {
+    "characterType": "Plagueherald",
+    "perks": [
+      { "text": "Replace 1 card #02 with 1 card #15" },
+      { "text": "Replace 1 card #01 with 1 card #03" },
+      { "text": "Replace 1 card #01 with 1 card #03" },
+      { "text": "Replace 1 card #15 with 1 card #04" },
+      { "text": "Replace 1 card #15 with 1 card #04" },
+      { "text": "Add 2 cards #03" },
+      { "text": "Add 1 card #03 #21" },
+      { "text": "Add 1 card #03 #21" },
+      { "text": "Add 1 card #03 #21" },
+      { "text": "Add 3 cards with effect #07 POISON #25" },
+      { "text": "Add 2 cards with effect #07 CURSE #26" },
+      { "text": "Add 2 cards with effect #07 IMMOBILIZE #18" },
+      { "text": "Add 1 card with effect #07 STUN #10" },
+      { "text": "Add 1 card with effect #07 STUN #10" },
+      { "text": "Ignore negative scenario effects and add 1 card #03" }
+    ]
+  },
+  {
+    "characterType": "Nightshroud",
+    "perks": [
+      { "text": "Remove 2 cards #01" },
+      { "text": "Remove 2 cards #01" },
+      { "text": "Remove 4 cards #15" },
+      { "text": "Add 1 card #01 #20" },
+      { "text": "Add 1 card #01 #20" },
+      { "text": "Replace 1 card #01 #20 with 1 card #03 #20" },
+      { "text": "Replace 1 card #01 #20 with 1 card #03 #20" },
+      { "text": "Add 1 card #03 with effect INVISIBLE #24" },
+      { "text": "Add 1 card #03 with effect INVISIBLE #24" },
+      { "text": "Add 3 cards with effect #07 MUDDLE #12" },
+      { "text": "Add 3 cards with effect #07 MUDDLE #12" },
+      { "text": "Add 2 cards with effect #07 Heal 1" },
+      { "text": "Add 2 cards with effect #07 CURSE #26" },
+      { "text": "Add 1 card with effect #07 ADD TARGET #13" },
+      { "text": "Ignore negative scenario effects and add 2 cards #03" }
+    ]
+  },
+  {
+    "characterType": "Quartermaster",
+    "perks": [
+      { "text": "Remove 2 cards #01" },
+      { "text": "Remove 2 cards #01" },
+      { "text": "Remove 4 cards #15" },
+      { "text": "Replace 1 card #15 with 1 card #04" },
+      { "text": "Replace 1 card #15 with 1 card #04" },
+      { "text": "Add 2 cards #07 #03" },
+      { "text": "Add 2 cards #07 #03" },
+      { "text": "Add 3 cards with effect #07 MUDDLE #12" },
+      { "text": "Add 2 cards with effect #07 PIERCE #09 3" },
+      { "text": "Add 1 card with effect #07 STUN #10" },
+      { "text": "Add 1 card with effect #07 ADD TARGET #13" },
+      { "text": "Add 1 card #15 with effect Refresh 1 spent or consumed item card" },
+      { "text": "Add 1 card #15 with effect Refresh 1 spent or consumed item card" },
+      { "text": "Add 1 card #15 with effect Refresh 1 spent or consumed item card" },
+      { "text": "Ignore negative scenario effects and add 2 cards #03" }
+    ]
+  },
+  {
+    "characterType": "Diviner",
+    "perks": [
+      { "text": "Remove 2 cards #01" },
+      { "text": "Remove 2 cards #01" },
+      { "text": "Remove 1 card #02" },
+      { "text": "Replace 2 cards #03 with 1 card #05 with effect Shield 1 (on self)" },
+      { "text": "Replace 2 cards #03 with 1 card #05 with effect Shield 1 (on self)" },
+      { "text": "Replace 1 card #15 with 1 card #03 with effect Shield 1 (on any ally)" },
+      { "text": "Replace 1 card #15 with 1 card #04 #20" },
+      { "text": "Replace 1 card #15 with 1 card #04 #19" },
+      { "text": "Replace 1 card #15 with 1 card #05 with effect MUDDLE #12" },
+      { "text": "Replace 1 card #15 with 1 card #04 with effect CURSE #26" },
+      { "text": "Replace 1 card #15 with 1 card #04 with effect REGENERATE (on self)" },
+      { "text": "Replace 1 card #01 with 1 card #03 with effect Heal 2 (on any ally)" },
+      { "text": "Add 2 cards with effect #07 Heal 1 (on self)" },
+      { "text": "Add 2 cards with effect #07 CURSE #26" },
+      { "text": "Ignore negative scenario effects and add 2 cards #03" }
+    ]
+  },
+  {
+    "characterType": "Berserker",
+    "perks": [
+      { "text": "Remove 2 cards #01" },
+      { "text": "Remove 4 cards #15" },
+      { "text": "Replace 1 card #01 with 1 card #03" },
+      { "text": "Replace 1 card #01 with 1 card #03" },
+      { "text": "Replace 1 card #15 with 1 card #07 #04" },
+      { "text": "Replace 1 card #15 with 1 card #07 #04" },
+      { "text": "Add 2 cards with effect #07 WOUND #14" },
+      { "text": "Add 2 cards with effect #07 WOUND #14" },
+      { "text": "Add 1 card with effect #07 STUN #10" },
+      { "text": "Add 1 card with effect #07 STUN #10" },
+      { "text": "Add 1 card #03 with effect #07 DISARM #11" },
+      { "text": "Add 2 cards with effect #07 Heal 1 (on self)" },
+      { "text": "Add 1 card #04 #22" },
+      { "text": "Add 1 card #04 #22" },
+      { "text": "Ignore negative item effects" }
+    ]
+  }
+]
