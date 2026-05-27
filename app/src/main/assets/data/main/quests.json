@@ -1,0 +1,424 @@
+[
+  {
+    "questId": "510",
+    "characterType": "Plagueherald",
+    "pack": "MAIN",
+    "tasks": [
+      {
+        "taskType": "Count",
+        "id": 1,
+        "priority": 0,
+        "count": 3
+      },
+      {
+        "taskType": "Check",
+        "id": 2,
+        "priority": 1
+      }
+    ]
+  },
+  {
+    "questId": "511",
+    "characterType": "Quartermaster",
+    "pack": "MAIN",
+    "tasks": [
+      {
+        "taskType": "Count",
+        "id": 1,
+        "priority": 0,
+        "count": 2
+      },
+      {
+        "taskType": "Count",
+        "id": 2,
+        "priority": 0,
+        "count": 2
+      },
+      {
+        "taskType": "Count",
+        "id": 3,
+        "priority": 0,
+        "count": 2
+      },
+      {
+        "taskType": "Count",
+        "id": 4,
+        "priority": 0,
+        "count": 3
+      },
+      {
+        "taskType": "Count",
+        "id": 5,
+        "priority": 0,
+        "count": 4
+      }
+    ]
+  },
+  {
+    "questId": "512",
+    "characterType": "Quartermaster",
+    "pack": "MAIN",
+    "tasks": [
+      {
+        "taskType": "Count",
+        "id": 1,
+        "priority": 0,
+        "count": 200
+      }
+    ]
+  },
+  {
+    "questId": "513",
+    "characterType": null,
+    "pack": "MAIN",
+    "tasks": [
+      {
+        "taskType": "Count",
+        "id": 1,
+        "priority": 0,
+        "count": 8
+      },
+      {
+        "taskType": "Check",
+        "id": 2,
+        "priority": 1
+      }
+    ]
+  },
+  {
+    "questId": "514",
+    "characterType": "Sawbones",
+    "pack": "MAIN",
+    "tasks": [
+      {
+        "taskType": "Count",
+        "id": 1,
+        "priority": 0,
+        "count": 15
+      }
+    ]
+  },
+  {
+    "questId": "515",
+    "characterType": "Sunkeeper",
+    "pack": "MAIN",
+    "tasks": [
+      {
+        "taskType": "Count",
+        "id": 1,
+        "priority": 0,
+        "count": 20
+      }
+    ]
+  },
+  {
+    "questId": "516",
+    "characterType": "Berserker",
+    "pack": "MAIN",
+    "tasks": [
+      {
+        "taskType": "Count",
+        "id": 1,
+        "priority": 0,
+        "count": 15
+      }
+    ]
+  },
+  {
+    "questId": "517",
+    "characterType": "BeastTyrant",
+    "pack": "MAIN",
+    "tasks": [
+      {
+        "taskType": "Count",
+        "id": 1,
+        "priority": 0,
+        "count": 20
+      }
+    ]
+  },
+  {
+    "questId": "518",
+    "characterType": "Summoner",
+    "pack": "MAIN",
+    "tasks": [
+      {
+        "taskType": "Count",
+        "id": 1,
+        "priority": 0,
+        "count": 15
+      }
+    ]
+  },
+  {
+    "questId": "519",
+    "characterType": "Soothsinger",
+    "pack": "MAIN",
+    "tasks": [
+      {
+        "taskType": "Count",
+        "id": 1,
+        "priority": 0,
+        "count": 15
+      }
+    ]
+  },
+  {
+    "questId": "520",
+    "characterType": "Sunkeeper",
+    "pack": "MAIN",
+    "tasks": [
+      {
+        "taskType": "Count",
+        "id": 1,
+        "priority": 0,
+        "count": 7
+      }
+    ]
+  },
+  {
+    "questId": "521",
+    "characterType": "Doomstalker",
+    "pack": "MAIN",
+    "tasks": [
+      {
+        "taskType": "Count",
+        "id": 1,
+        "priority": 0,
+        "count": 3
+      },
+      {
+        "taskType": "Check",
+        "id": 2,
+        "priority": 1
+      }
+    ]
+  },
+  {
+    "questId": "522",
+    "characterType": "Nightshroud",
+    "pack": "MAIN",
+    "tasks": [
+      {
+        "taskType": "Count",
+        "id": 1,
+        "priority": 0,
+        "count": 3
+      }
+    ]
+  },
+  {
+    "questId": "523",
+    "characterType": "Elementalist",
+    "pack": "MAIN",
+    "tasks": [
+      {
+        "taskType": "Check",
+        "id": 1,
+        "priority": 0
+      },
+      {
+        "taskType": "Check",
+        "id": 2,
+        "priority": 0
+      },
+      {
+        "taskType": "Check",
+        "id": 3,
+        "priority": 0
+      },
+      {
+        "taskType": "Check",
+        "id": 4,
+        "priority": 0
+      },
+      {
+        "taskType": "Check",
+        "id": 5,
+        "priority": 0
+      },
+      {
+        "taskType": "Check",
+        "id": 6,
+        "priority": 0
+      }
+    ]
+  },
+  {
+    "questId": "524",
+    "characterType": "BeastTyrant",
+    "pack": "MAIN",
+    "tasks": [
+      {
+        "taskType": "Count",
+        "id": 1,
+        "priority": 0,
+        "count": 20
+      }
+    ]
+  },
+  {
+    "questId": "525",
+    "characterType": "Sawbones",
+    "pack": "MAIN",
+    "tasks": [
+      {
+        "taskType": "Count",
+        "id": 1,
+        "priority": 0,
+        "count": 120,
+        "step": 10
+      }
+    ]
+  },
+  {
+    "questId": "526",
+    "characterType": null,
+    "pack": "MAIN",
+    "tasks": [
+      {
+        "taskType": "Count",
+        "id": 1,
+        "priority": 0,
+        "count": 4
+      },
+      {
+        "taskType": "Check",
+        "id": 2,
+        "priority": 1
+      }
+    ]
+  },
+  {
+    "questId": "527",
+    "characterType": "Berserker",
+    "pack": "MAIN",
+    "tasks": [
+      {
+        "taskType": "Count",
+        "id": 1,
+        "priority": 0,
+        "count": 12
+      }
+    ]
+  },
+  {
+    "questId": "528",
+    "characterType": "Doomstalker",
+    "pack": "MAIN",
+    "tasks": [
+      {
+        "taskType": "Count",
+        "id": 1,
+        "priority": 0,
+        "count": 4
+      }
+    ]
+  },
+  {
+    "questId": "529",
+    "characterType": "Nightshroud",
+    "pack": "MAIN",
+    "tasks": [
+      {
+        "taskType": "Count",
+        "id": 1,
+        "priority": 0,
+        "count": 2
+      },
+      {
+        "taskType": "Check",
+        "id": 2,
+        "priority": 1
+      }
+    ]
+  },
+  {
+    "questId": "530",
+    "characterType": "Summoner",
+    "pack": "MAIN",
+    "tasks": [
+      {
+        "taskType": "Count",
+        "id": 1,
+        "priority": 0,
+        "count": 4
+      }
+    ]
+  },
+  {
+    "questId": "531",
+    "characterType": "Elementalist",
+    "pack": "MAIN",
+    "tasks": [
+      {
+        "taskType": "Check",
+        "id": 1,
+        "priority": 0
+      },
+      {
+        "taskType": "Check",
+        "id": 2,
+        "priority": 0
+      },
+      {
+        "taskType": "Check",
+        "id": 3,
+        "priority": 0
+      },
+      {
+        "taskType": "Check",
+        "id": 4,
+        "priority": 0
+      },
+      {
+        "taskType": "Check",
+        "id": 5,
+        "priority": 0
+      },
+      {
+        "taskType": "Check",
+        "id": 6,
+        "priority": 0
+      }
+    ]
+  },
+  {
+    "questId": "532",
+    "characterType": "Soothsinger",
+    "pack": "MAIN",
+    "tasks": [
+      {
+        "taskType": "Count",
+        "id": 1,
+        "priority": 0,
+        "count": 2
+      }
+    ]
+  },
+  {
+    "questId": "533",
+    "characterType": "Plagueherald",
+    "pack": "MAIN",
+    "tasks": [
+      {
+        "taskType": "Count",
+        "id": 1,
+        "priority": 0,
+        "count": 3
+      },
+      {
+        "taskType": "Count",
+        "id": 2,
+        "priority": 0,
+        "count": 3
+      },
+      {
+        "taskType": "Count",
+        "id": 3,
+        "priority": 0,
+        "count": 3
+      }
+    ]
+  }
+]

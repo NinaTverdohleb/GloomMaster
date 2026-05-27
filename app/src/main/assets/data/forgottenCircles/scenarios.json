@@ -1,0 +1,213 @@
+[
+  {
+    "scenarioNumber": 96,
+    "requirements": "the_end_of_gloom",
+    "monsters": [
+      "earth_demon",
+      "flame_demon",
+      "frost_demon",
+      "wind_demon"
+    ],
+    "location": "gloomhaven",
+    "newScenarios": "97",
+    "pack": "FORGOTTEN_CIRCLES"
+  },
+  {
+    "scenarioNumber": 97,
+    "newScenarios": "98, 99, 100, 101",
+    "monsters": [
+      "black_imp",
+      "living_bones",
+      "living_corpse",
+      "aesther_scout",
+      "deep_terror"
+    ],
+    "location": "dimension-travel",
+    "pack": "FORGOTTEN_CIRCLES"
+  },
+  {
+    "scenarioNumber": 98,
+    "monsters": [
+      "ancient_artillery",
+      "bandit_archer",
+      "bandit_guard",
+      "spitting_drake"
+    ],
+    "location": "gloomhaven",
+    "pack": "FORGOTTEN_CIRCLES"
+  },
+  {
+    "scenarioNumber": 99,
+    "monsters": [
+      "black_imp",
+      "cultist",
+      "deep_terror",
+      "valrath_savage"
+    ],
+    "location": "dimension-travel",
+    "pack": "FORGOTTEN_CIRCLES"
+  },
+  {
+    "scenarioNumber": 100,
+    "monsters": [
+      "stone_golem",
+      "living_spirit"
+    ],
+    "location": "dimension-travel",
+    "globalAchievement": "knowledge_is_power",
+    "pack": "FORGOTTEN_CIRCLES"
+  },
+  {
+    "scenarioNumber": 101,
+    "newScenarios": "108, 109",
+    "monsters": [
+      "rending_drake",
+      "spitting_drake",
+      "living_bones",
+      "living_corpse"
+    ],
+    "location": "dimension-travel",
+    "pack": "FORGOTTEN_CIRCLES"
+  },
+  {
+    "scenarioNumber": 102,
+    "requirements": "knowledge_is_power",
+    "location": "dimension-travel",
+    "pack": "FORGOTTEN_CIRCLES"
+  },
+  {
+    "scenarioNumber": 103,
+    "requirements": "knowledge_is_power",
+    "location": "dimension-travel",
+    "pack": "FORGOTTEN_CIRCLES"
+  },
+  {
+    "scenarioNumber": 104,
+    "requirements": "knowledge_is_power",
+    "location": "dimension-travel",
+    "monsters": [
+      "harrower_infester",
+      "lurker",
+      "sun_demon",
+      "spitting_drake"
+    ],
+    "pack": "FORGOTTEN_CIRCLES"
+  },
+  {
+    "scenarioNumber": 105,
+    "requirements": "knowledge_is_power && !hunting_the_hunters",
+    "location": "dimension-travel",
+    "monsters": [
+      "bandit_guard",
+      "valrath_tracker",
+      "hound",
+      "valrath_savage"
+    ],
+    "pack": "FORGOTTEN_CIRCLES"
+  },
+  {
+    "scenarioNumber": 106,
+    "requirements": "knowledge_is_power",
+    "location": "dimension-travel",
+    "monsters": [
+      "aesther_scout",
+      "ancient_artillery",
+      "earth_demon",
+      "flame_demon",
+      "savvas_lavaflow",
+      "frost_demon",
+      "wind_demon",
+      "savvas_icestorm"
+    ],
+    "pack": "FORGOTTEN_CIRCLES"
+  },
+  {
+    "scenarioNumber": 107,
+    "requirements": "knowledge_is_power",
+    "location": "dimension-travel",
+    "pack": "FORGOTTEN_CIRCLES"
+  },
+  {
+    "scenarioNumber": 108,
+    "requirements": "knowledge_is_power",
+    "location": "dimension-travel",
+    "monsters": [
+      "city_archer",
+      "city_guard",
+      "human_commander",
+      "valrath_commander",
+      "valrath_savage",
+      "valrath_tracker"
+    ],
+    "pack": "FORGOTTEN_CIRCLES"
+  },
+  {
+    "scenarioNumber": 109,
+    "requirements": "knowledge_is_power",
+    "location": "dimension-travel",
+    "monsters": [
+      "city_archer",
+      "city_guard",
+      "valrath_savage",
+      "valrath_tracker"
+    ],
+    "pack": "FORGOTTEN_CIRCLES"
+  },
+  {
+    "scenarioNumber": 110,
+    "location": "dimension-travel",
+    "monsters": [
+      "earth_demon",
+      "the_iron_lion",
+      "flame_demon",
+      "uyraith_ikkuma",
+      "seeley_naberis",
+      "shhraelk_the_wise"
+    ],
+    "pack": "FORGOTTEN_CIRCLES"
+  },
+  {
+    "scenarioNumber": 111,
+    "location": "gloomhaven",
+    "monsters": [
+      "aesther_ashblade",
+      "aesther_scout",
+      "black_imp",
+      "night_demon",
+      "the_husk"
+    ],
+    "pack": "FORGOTTEN_CIRCLES"
+  },
+  {
+    "scenarioNumber": 112,
+    "location": "dimension-travel",
+    "monsters": [
+      "ancient_artillery",
+      "living_bones",
+      "stone_golem"
+    ],
+    "pack": "FORGOTTEN_CIRCLES"
+  },
+  {
+    "scenarioNumber": 113,
+    "location": "dimension-travel",
+    "monsters": [
+      "stone_golem"
+    ],
+    "pack": "FORGOTTEN_CIRCLES"
+  },
+  {
+    "scenarioNumber": 114,
+    "location": "gloomhaven",
+    "monsters": [
+      "aesther_ashblade",
+      "aesther_scout"
+    ],
+    "pack": "FORGOTTEN_CIRCLES"
+  },
+  {
+    "scenarioNumber": 115,
+    "location": "dimension-travel",
+    "pack": "FORGOTTEN_CIRCLES"
+  }
+]

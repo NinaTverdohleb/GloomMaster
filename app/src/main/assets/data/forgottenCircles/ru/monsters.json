@@ -1,0 +1,13 @@
+[
+  {"slug": "aesther_scout", "name": "Эстер-разведчик"},
+  {"slug": "valrath_savage", "name": "Валрат-варвар"},
+  {"slug": "valrath_tracker", "name": "Валрат-следопыт"},
+  {"slug": "human_commander", "name": "Полководец людей"},
+  {"slug": "valrath_commander", "name": "Полководец валратов"},
+  {"slug": "seeley_naberis", "name": "Села Наберис"},
+  {"slug": "shhraelk_the_wise", "name": "Шрака мудрый"},
+  {"slug": "the_iron_lion", "name": "Стальной лев"},
+  {"slug": "uyraith_ikkuma", "name": "Уйрат Иккума"},
+  {"slug": "aesther_ashblade", "name": "Эстер Пепельный клинок"},
+  {"slug": "the_husk", "name": "Шелуха"}
+]

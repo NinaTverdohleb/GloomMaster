@@ -1,0 +1,14 @@
+[
+  {"slug": "black-barrow", "name": "Мертволесье"},
+  {"slug": "dagger-forest", "name": "Кинжальный лес"},
+  {"slug": "still-river", "name": "Тихая река"},
+  {"slug": "copperneck-mountains", "name": "Медные хребты"},
+  {"slug": "gloomhaven", "name": "Мрачная гавань"},
+  {"slug": "watcher-mountains", "name": "Сторожевые горы"},
+  {"slug": "misty-sea", "name": "Туманное море"},
+  {"slug": "lingering-swamp", "name": "Вечное болото"},
+  {"slug": "serpent-kiss-river", "name": "Река Змеиный поцелуй"},
+  {"slug": "merchant-bay", "name": "Бухта торговцев"},
+  {"slug": "east-road", "name": "Восточный тракт"},
+  {"slug": "stony-road", "name": "Каменистый тракт"}
+]

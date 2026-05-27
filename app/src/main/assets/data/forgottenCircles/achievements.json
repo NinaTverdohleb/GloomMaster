@@ -1,0 +1,18 @@
+[
+  {"slug": "through_the_portal", "pack": "FORGOTTEN_CIRCLES", "isGlobal": true},
+  {"slug": "severed_ties", "pack": "FORGOTTEN_CIRCLES", "isGlobal": true},
+  {"slug": "knowledge_is_power", "pack": "FORGOTTEN_CIRCLES", "isGlobal": true, "maxRang": 4},
+  {"slug": "threat_neutralized", "pack": "FORGOTTEN_CIRCLES", "isGlobal": true, "maxRang": 4},
+  {"slug": "artifact_pieces", "pack": "FORGOTTEN_CIRCLES", "isGlobal": true, "maxRang": 3},
+  {"slug": "technological_breakthrough", "pack": "FORGOTTEN_CIRCLES", "isGlobal": true, "maxRang": 3},
+  {"slug": "diamaras_aid", "pack": "FORGOTTEN_CIRCLES", "isGlobal": false},
+  {"slug": "hunting_the_hunters", "pack": "FORGOTTEN_CIRCLES", "isGlobal": false},
+  {"slug": "beauty_in_freedom", "pack": "FORGOTTEN_CIRCLES", "isGlobal": false},
+  {"slug": "the_keepers", "pack": "FORGOTTEN_CIRCLES", "isGlobal": false},
+  {"slug": "the_guards", "pack": "FORGOTTEN_CIRCLES", "isGlobal": false},
+  {"slug": "hunted_prey", "pack": "FORGOTTEN_CIRCLES", "isGlobal": false},
+  {"slug": "dimensional_equilibrium", "pack": "FORGOTTEN_CIRCLES", "isGlobal": false},
+  {"slug": "xangroths_aid", "pack": "FORGOTTEN_CIRCLES", "isGlobal": false},
+  {"slug": "angels_of_death", "pack": "FORGOTTEN_CIRCLES", "isGlobal": false},
+  {"slug": "hunting_the_hunter", "pack": "FORGOTTEN_CIRCLES", "isGlobal": false}
+]

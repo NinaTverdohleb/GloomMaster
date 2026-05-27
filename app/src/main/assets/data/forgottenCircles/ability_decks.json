@@ -1,0 +1,41 @@
+[
+  {
+    "name": "savage",
+    "cards": [
+      { "image": "ic_deck_ma_sv_1.webp", "needsShuffle": false, "initiative": 13 },
+      { "image": "ic_deck_ma_sv_2.webp", "needsShuffle": true, "initiative": 17 },
+      { "image": "ic_deck_ma_sv_3.webp", "needsShuffle": false, "initiative": 28 },
+      { "image": "ic_deck_ma_sv_4.webp", "needsShuffle": false, "initiative": 38 },
+      { "image": "ic_deck_ma_sv_5.webp", "needsShuffle": false, "initiative": 46 },
+      { "image": "ic_deck_ma_sv_6.webp", "needsShuffle": false, "initiative": 46 },
+      { "image": "ic_deck_ma_sv_7.webp", "needsShuffle": false, "initiative": 60 },
+      { "image": "ic_deck_ma_sv_8.webp", "needsShuffle": true, "initiative": 72 }
+    ]
+  },
+  {
+    "name": "tracker",
+    "cards": [
+      { "image": "ic_deck_ma_tr_1.webp", "needsShuffle": false, "initiative": 12 },
+      { "image": "ic_deck_ma_tr_2.webp", "needsShuffle": false, "initiative": 18 },
+      { "image": "ic_deck_ma_tr_3.webp", "needsShuffle": false, "initiative": 27 },
+      { "image": "ic_deck_ma_tr_4.webp", "needsShuffle": true, "initiative": 33 },
+      { "image": "ic_deck_ma_tr_5.webp", "needsShuffle": false, "initiative": 37 },
+      { "image": "ic_deck_ma_tr_6.webp", "needsShuffle": false, "initiative": 48 },
+      { "image": "ic_deck_ma_tr_7.webp", "needsShuffle": false, "initiative": 55 },
+      { "image": "ic_deck_ma_tr_8.webp", "needsShuffle": true, "initiative": 69 }
+    ]
+  },
+  {
+    "name": "ashblade",
+    "cards": [
+      { "image": "ic_deck_ma_ab_1.webp", "needsShuffle": false, "initiative": 29 },
+      { "image": "ic_deck_ma_ab_2.webp", "needsShuffle": false, "initiative": 40 },
+      { "image": "ic_deck_ma_ab_3.webp", "needsShuffle": false, "initiative": 53 },
+      { "image": "ic_deck_ma_ab_4.webp", "needsShuffle": false, "initiative": 54 },
+      { "image": "ic_deck_ma_ab_5.webp", "needsShuffle": false, "initiative": 69 },
+      { "image": "ic_deck_ma_ab_6.webp", "needsShuffle": true, "initiative": 92 },
+      { "image": "ic_deck_ma_ab_7.webp", "needsShuffle": false, "initiative": 79 },
+      { "image": "ic_deck_ma_ab_8.webp", "needsShuffle": true, "initiative": 35 }
+    ]
+  }
+]

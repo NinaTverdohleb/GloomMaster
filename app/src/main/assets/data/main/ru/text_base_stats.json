@@ -1,0 +1,365 @@
+[
+  {
+    "monsterSlug": "night_demon",
+    "stats": [
+      {
+        "level": 0,
+        "isElite": false,
+        "textStats": [
+          "Атаки по демону проходят с помехой"
+        ]
+      },
+      {
+        "level": 0,
+        "isElite": true,
+        "textStats": [
+          "Атаки по демону проходят с помехой"
+        ]
+      },
+      {
+        "level": 1,
+        "isElite": false,
+        "textStats": [
+          "Атаки по демону проходят с помехой"
+        ]
+      },
+      {
+        "level": 1,
+        "isElite": true,
+        "textStats": [
+          "Атаки по демону проходят с помехой"
+        ]
+      },
+      {
+        "level": 2,
+        "isElite": false,
+        "textStats": [
+          "Атаки по демону проходят с помехой"
+        ]
+      },
+      {
+        "level": 2,
+        "isElite": true,
+        "textStats": [
+          "Атаки по демону проходят с помехой"
+        ]
+      },
+      {
+        "level": 3,
+        "isElite": false,
+        "textStats": [
+          "Атаки по демону проходят с помехой"
+        ]
+      },
+      {
+        "level": 3,
+        "isElite": true,
+        "textStats": [
+          "Атаки по демону проходят с помехой"
+        ]
+      },
+      {
+        "level": 4,
+        "isElite": false,
+        "textStats": [
+          "Атаки по демону проходят с помехой"
+        ]
+      },
+      {
+        "level": 4,
+        "isElite": true,
+        "textStats": [
+          "Атаки по демону проходят с помехой"
+        ]
+      },
+      {
+        "level": 5,
+        "isElite": false,
+        "textStats": [
+          "Атаки по демону проходят с помехой"
+        ]
+      },
+      {
+        "level": 5,
+        "isElite": true,
+        "textStats": [
+          "Атаки по демону проходят с помехой"
+        ]
+      },
+      {
+        "level": 6,
+        "isElite": false,
+        "textStats": [
+          "Атаки по демону проходят с помехой"
+        ]
+      },
+      {
+        "level": 6,
+        "isElite": true,
+        "textStats": [
+          "Атаки по демону проходят с помехой"
+        ]
+      },
+      {
+        "level": 7,
+        "isElite": false,
+        "textStats": [
+          "Атаки по демону проходят с помехой"
+        ]
+      },
+      {
+        "level": 7,
+        "isElite": true,
+        "textStats": [
+          "Атаки по демону проходят с помехой"
+        ]
+      }
+    ]
+  },
+  {
+    "monsterSlug": "flame_demon",
+    "stats": [
+      {
+        "level": 1,
+        "isElite": true,
+        "textStats": [
+          "Ответный удар 2 с дальностью 2"
+        ]
+      },
+      {
+        "level": 2,
+        "isElite": true,
+        "textStats": [
+          "Ответный удар 3 с дальностью 2"
+        ]
+      },
+      {
+        "level": 3,
+        "isElite": false,
+        "textStats": [
+          "Ответный удар 2 с дальностью 2"
+        ]
+      },
+      {
+        "level": 3,
+        "isElite": true,
+        "textStats": [
+          "Ответный удар 3 с дальностью 3"
+        ]
+      },
+      {
+        "level": 4,
+        "isElite": false,
+        "textStats": [
+          "Ответный удар 3 с дальностью 2"
+        ]
+      },
+      {
+        "level": 4,
+        "isElite": true,
+        "textStats": [
+          "Ответный удар 4 с дальностью 3"
+        ]
+      },
+      {
+        "level": 5,
+        "isElite": false,
+        "textStats": [
+          "Ответный удар 3 с дальностью 2"
+        ]
+      },
+      {
+        "level": 5,
+        "isElite": true,
+        "textStats": [
+          "Ответный удар 4 с дальностью 3"
+        ]
+      },
+      {
+        "level": 6,
+        "isElite": false,
+        "textStats": [
+          "Ответный удар 4 с дальностью 2"
+        ]
+      },
+      {
+        "level": 6,
+        "isElite": true,
+        "textStats": [
+          "Ответный удар 5 с дальностью 3"
+        ]
+      },
+      {
+        "level": 7,
+        "isElite": false,
+        "textStats": [
+          "Ответный удар 4 с дальностью 3"
+        ]
+      },
+      {
+        "level": 7,
+        "isElite": true,
+        "textStats": [
+          "Ответный удар 5 с дальностью 4"
+        ]
+      }
+    ]
+  },
+  {
+    "monsterSlug": "sun_demon",
+    "stats": [
+      {
+        "level": 0,
+        "isElite": false,
+        "textStats": [
+          "Атакует с преимуществом"
+        ]
+      },
+      {
+        "level": 0,
+        "isElite": true,
+        "textStats": [
+          "Атакует с преимуществом"
+        ]
+      },
+      {
+        "level": 1,
+        "isElite": false,
+        "textStats": [
+          "Атакует с преимуществом"
+        ]
+      },
+      {
+        "level": 1,
+        "isElite": true,
+        "textStats": [
+          "Атакует с преимуществом"
+        ]
+      },
+      {
+        "level": 2,
+        "isElite": false,
+        "textStats": [
+          "Атакует с преимуществом"
+        ]
+      },
+      {
+        "level": 2,
+        "isElite": true,
+        "textStats": [
+          "Атакует с преимуществом"
+        ]
+      },
+      {
+        "level": 3,
+        "isElite": false,
+        "textStats": [
+          "Атакует с преимуществом"
+        ]
+      },
+      {
+        "level": 3,
+        "isElite": true,
+        "textStats": [
+          "Атакует с преимуществом"
+        ]
+      },
+      {
+        "level": 4,
+        "isElite": false,
+        "textStats": [
+          "Атакует с преимуществом"
+        ]
+      },
+      {
+        "level": 4,
+        "isElite": true,
+        "textStats": [
+          "Атакует с преимуществом"
+        ]
+      },
+      {
+        "level": 5,
+        "isElite": false,
+        "textStats": [
+          "Атакует с преимуществом"
+        ]
+      },
+      {
+        "level": 5,
+        "isElite": true,
+        "textStats": [
+          "Атакует с преимуществом"
+        ]
+      },
+      {
+        "level": 6,
+        "isElite": false,
+        "textStats": [
+          "Атакует с преимуществом"
+        ]
+      },
+      {
+        "level": 6,
+        "isElite": true,
+        "textStats": [
+          "Атакует с преимуществом"
+        ]
+      },
+      {
+        "level": 7,
+        "isElite": false,
+        "textStats": [
+          "Атакует с преимуществом"
+        ]
+      },
+      {
+        "level": 7,
+        "isElite": true,
+        "textStats": [
+          "Атакует с преимуществом"
+        ]
+      }
+    ]
+  },
+  {
+    "monsterSlug": "black_imp",
+    "stats": [
+      {
+        "level": 3,
+        "isElite": true,
+        "textStats": [
+          "Атаки по бесу проходят с помехой"
+        ]
+      },
+      {
+        "level": 4,
+        "isElite": true,
+        "textStats": [
+          "Атаки по бесу проходят с помехой"
+        ]
+      },
+      {
+        "level": 5,
+        "isElite": true,
+        "textStats": [
+          "Атаки по бесу проходят с помехой"
+        ]
+      },
+      {
+        "level": 6,
+        "isElite": true,
+        "textStats": [
+          "Атаки по бесу проходят с помехой"
+        ]
+      },
+      {
+        "level": 7,
+        "isElite": true,
+        "textStats": [
+          "Атаки по бесу проходят с помехой"
+        ]
+      }
+    ]
+  }
+]

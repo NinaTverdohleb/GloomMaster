@@ -1,0 +1,93 @@
+[
+  {
+    "monsterSlug": "seeley_naberis",
+    "stats": [
+      { "level": 0, "isElite": false, "life": 9, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "2" }, { "kind": "action", "statType": "ATTACK", "modifier": "3" }, { "kind": "action", "statType": "RANGE", "modifier": "4" }, { "kind": "action", "statType": "PIERCE", "modifier": "10" }] },
+      { "level": 1, "isElite": false, "life": 11, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "2" }, { "kind": "action", "statType": "ATTACK", "modifier": "3" }, { "kind": "action", "statType": "RANGE", "modifier": "5" }, { "kind": "action", "statType": "PIERCE", "modifier": "10" }] },
+      { "level": 2, "isElite": false, "life": 12, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "2" }, { "kind": "action", "statType": "ATTACK", "modifier": "4" }, { "kind": "action", "statType": "RANGE", "modifier": "5" }, { "kind": "action", "statType": "PIERCE", "modifier": "11" }] },
+      { "level": 3, "isElite": false, "life": 14, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "2" }, { "kind": "action", "statType": "ATTACK", "modifier": "4" }, { "kind": "action", "statType": "RANGE", "modifier": "6" }, { "kind": "action", "statType": "PIERCE", "modifier": "11" }, { "kind": "action", "statType": "PUSH", "modifier": "1" }] },
+      { "level": 4, "isElite": false, "life": 16, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "3" }, { "kind": "action", "statType": "ATTACK", "modifier": "4" }, { "kind": "action", "statType": "RANGE", "modifier": "7" }, { "kind": "action", "statType": "PIERCE", "modifier": "12" }, { "kind": "action", "statType": "PUSH", "modifier": "1" }] },
+      { "level": 5, "isElite": false, "life": 18, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "3" }, { "kind": "action", "statType": "ATTACK", "modifier": "5" }, { "kind": "action", "statType": "RANGE", "modifier": "7" }, { "kind": "action", "statType": "PIERCE", "modifier": "12" }, { "kind": "action", "statType": "PUSH", "modifier": "1" }] },
+      { "level": 6, "isElite": false, "life": 21, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "3" }, { "kind": "action", "statType": "ATTACK", "modifier": "5" }, { "kind": "action", "statType": "RANGE", "modifier": "8" }, { "kind": "action", "statType": "PIERCE", "modifier": "12" }, { "kind": "action", "statType": "PUSH", "modifier": "2" }] },
+      { "level": 7, "isElite": false, "life": 24, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "3" }, { "kind": "action", "statType": "ATTACK", "modifier": "6" }, { "kind": "action", "statType": "RANGE", "modifier": "8" }, { "kind": "action", "statType": "PIERCE", "modifier": "13" }, { "kind": "action", "statType": "PUSH", "modifier": "2" }] }
+    ]
+  },
+  {
+    "monsterSlug": "shhraelk_the_wise",
+    "stats": [
+      { "level": 0, "isElite": false, "life": 2, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "3" }, { "kind": "action", "statType": "ATTACK", "modifier": "2" }, { "kind": "action", "statType": "SHIELD", "modifier": "2" }] },
+      { "level": 1, "isElite": false, "life": 2, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "3" }, { "kind": "action", "statType": "ATTACK", "modifier": "2" }, { "kind": "action", "statType": "SHIELD", "modifier": "3" }] },
+      { "level": 2, "isElite": false, "life": 2, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "3" }, { "kind": "action", "statType": "ATTACK", "modifier": "2" }, { "kind": "action", "statType": "SHIELD", "modifier": "3" }] },
+      { "level": 3, "isElite": false, "life": 3, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "3" }, { "kind": "action", "statType": "ATTACK", "modifier": "3" }, { "kind": "action", "statType": "SHIELD", "modifier": "3" }] },
+      { "level": 4, "isElite": false, "life": 3, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "3" }, { "kind": "action", "statType": "ATTACK", "modifier": "3" }, { "kind": "action", "statType": "SHIELD", "modifier": "4" }, { "kind": "action", "statType": "MUDDLE", "modifier": "" }] },
+      { "level": 5, "isElite": false, "life": 3, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "3" }, { "kind": "action", "statType": "ATTACK", "modifier": "4" }, { "kind": "action", "statType": "SHIELD", "modifier": "4" }, { "kind": "action", "statType": "MUDDLE", "modifier": "" }] },
+      { "level": 6, "isElite": false, "life": 3, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "3" }, { "kind": "action", "statType": "ATTACK", "modifier": "4" }, { "kind": "action", "statType": "SHIELD", "modifier": "5" }, { "kind": "action", "statType": "MUDDLE", "modifier": "" }] },
+      { "level": 7, "isElite": false, "life": 4, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "3" }, { "kind": "action", "statType": "ATTACK", "modifier": "4" }, { "kind": "action", "statType": "SHIELD", "modifier": "5" }, { "kind": "action", "statType": "MUDDLE", "modifier": "" }] }
+    ]
+  },
+  {
+    "monsterSlug": "the_iron_lion",
+    "stats": [
+      { "level": 0, "isElite": false, "life": 3, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "3" }, { "kind": "action", "statType": "ATTACK", "modifier": "3" }, { "kind": "action", "statType": "SHIELD", "modifier": "1" }] },
+      { "level": 1, "isElite": false, "life": 4, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "3" }, { "kind": "action", "statType": "ATTACK", "modifier": "3" }, { "kind": "action", "statType": "SHIELD", "modifier": "2" }] },
+      { "level": 2, "isElite": false, "life": 5, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "3" }, { "kind": "action", "statType": "ATTACK", "modifier": "3" }, { "kind": "action", "statType": "SHIELD", "modifier": "2" }] },
+      { "level": 3, "isElite": false, "life": 5, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "3" }, { "kind": "action", "statType": "ATTACK", "modifier": "4" }, { "kind": "action", "statType": "SHIELD", "modifier": "2" }, { "kind": "action", "statType": "RETALIATE", "modifier": "1" }] },
+      { "level": 4, "isElite": false, "life": 6, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "4" }, { "kind": "action", "statType": "ATTACK", "modifier": "4" }, { "kind": "action", "statType": "SHIELD", "modifier": "2" }, { "kind": "action", "statType": "RETALIATE", "modifier": "2" }] },
+      { "level": 5, "isElite": false, "life": 7, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "4" }, { "kind": "action", "statType": "ATTACK", "modifier": "4" }, { "kind": "action", "statType": "SHIELD", "modifier": "3" }, { "kind": "action", "statType": "RETALIATE", "modifier": "2" }] },
+      { "level": 6, "isElite": false, "life": 8, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "4" }, { "kind": "action", "statType": "ATTACK", "modifier": "5" }, { "kind": "action", "statType": "SHIELD", "modifier": "3" }, { "kind": "action", "statType": "RETALIATE", "modifier": "3" }] },
+      { "level": 7, "isElite": false, "life": 9, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "4" }, { "kind": "action", "statType": "ATTACK", "modifier": "6" }, { "kind": "action", "statType": "SHIELD", "modifier": "3" }, { "kind": "action", "statType": "RETALIATE", "modifier": "3" }] }
+    ]
+  },
+  {
+    "monsterSlug": "uyraith_ikkuma",
+    "stats": [
+      { "level": 0, "isElite": false, "life": 7, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "3" }, { "kind": "action", "statType": "ATTACK", "modifier": "3" }] },
+      { "level": 1, "isElite": false, "life": 8, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "3" }, { "kind": "action", "statType": "ATTACK", "modifier": "3" }, { "kind": "action", "statType": "WOUND", "modifier": "" }] },
+      { "level": 2, "isElite": false, "life": 9, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "3" }, { "kind": "action", "statType": "ATTACK", "modifier": "3" }, { "kind": "action", "statType": "POISON", "modifier": "" }, { "kind": "action", "statType": "WOUND", "modifier": "" }] },
+      { "level": 3, "isElite": false, "life": 11, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "3" }, { "kind": "action", "statType": "ATTACK", "modifier": "4" }, { "kind": "action", "statType": "POISON", "modifier": "" }, { "kind": "action", "statType": "WOUND", "modifier": "" }] },
+      { "level": 4, "isElite": false, "life": 12, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "4" }, { "kind": "action", "statType": "ATTACK", "modifier": "4" }, { "kind": "action", "statType": "POISON", "modifier": "" }, { "kind": "action", "statType": "WOUND", "modifier": "" }] },
+      { "level": 5, "isElite": false, "life": 14, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "4" }, { "kind": "action", "statType": "ATTACK", "modifier": "5" }, { "kind": "action", "statType": "POISON", "modifier": "" }, { "kind": "action", "statType": "WOUND", "modifier": "" }] },
+      { "level": 6, "isElite": false, "life": 15, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "4" }, { "kind": "action", "statType": "ATTACK", "modifier": "6" }, { "kind": "action", "statType": "POISON", "modifier": "" }, { "kind": "action", "statType": "WOUND", "modifier": "" }] },
+      { "level": 7, "isElite": false, "life": 18, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "4" }, { "kind": "action", "statType": "ATTACK", "modifier": "6" }, { "kind": "action", "statType": "POISON", "modifier": "" }, { "kind": "action", "statType": "WOUND", "modifier": "" }] }
+    ]
+  },
+  {
+    "monsterSlug": "the_husk",
+    "stats": [
+      { "level": 0, "isElite": false, "life": 12, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "3" }, { "kind": "action", "statType": "ATTACK", "modifier": "3" }, { "kind": "action", "statType": "POISON", "modifier": "" }] },
+      { "level": 1, "isElite": false, "life": 14, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "4" }, { "kind": "action", "statType": "ATTACK", "modifier": "3" }, { "kind": "action", "statType": "POISON", "modifier": "" }] },
+      { "level": 2, "isElite": false, "life": 16, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "4" }, { "kind": "action", "statType": "ATTACK", "modifier": "4" }, { "kind": "action", "statType": "POISON", "modifier": "" }] },
+      { "level": 3, "isElite": false, "life": 18, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "4" }, { "kind": "action", "statType": "ATTACK", "modifier": "4" }, { "kind": "action", "statType": "POISON", "modifier": "" }] },
+      { "level": 4, "isElite": false, "life": 21, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "4" }, { "kind": "action", "statType": "ATTACK", "modifier": "5" }, { "kind": "action", "statType": "POISON", "modifier": "" }] },
+      { "level": 5, "isElite": false, "life": 25, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "4" }, { "kind": "action", "statType": "ATTACK", "modifier": "5" }, { "kind": "action", "statType": "POISON", "modifier": "" }] },
+      { "level": 6, "isElite": false, "life": 28, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "4" }, { "kind": "action", "statType": "ATTACK", "modifier": "6" }, { "kind": "action", "statType": "POISON", "modifier": "" }] },
+      { "level": 7, "isElite": false, "life": 33, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "5" }, { "kind": "action", "statType": "ATTACK", "modifier": "6" }, { "kind": "action", "statType": "POISON", "modifier": "" }] }
+    ]
+  },
+  {
+    "monsterSlug": "human_commander",
+    "stats": [
+      { "level": 0, "isElite": false, "life": 6, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "2" }, { "kind": "action", "statType": "ATTACK", "modifier": "4" }, { "kind": "action", "statType": "SHIELD", "modifier": "2" }] },
+      { "level": 1, "isElite": false, "life": 8, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "3" }, { "kind": "action", "statType": "ATTACK", "modifier": "4" }, { "kind": "action", "statType": "SHIELD", "modifier": "2" }] },
+      { "level": 2, "isElite": false, "life": 10, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "3" }, { "kind": "action", "statType": "ATTACK", "modifier": "5" }, { "kind": "action", "statType": "SHIELD", "modifier": "2" }] },
+      { "level": 3, "isElite": false, "life": 11, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "4" }, { "kind": "action", "statType": "ATTACK", "modifier": "5" }, { "kind": "action", "statType": "SHIELD", "modifier": "3" }] },
+      { "level": 4, "isElite": false, "life": 13, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "4" }, { "kind": "action", "statType": "ATTACK", "modifier": "6" }, { "kind": "action", "statType": "SHIELD", "modifier": "3" }] },
+      { "level": 5, "isElite": false, "life": 14, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "4" }, { "kind": "action", "statType": "ATTACK", "modifier": "6" }, { "kind": "action", "statType": "SHIELD", "modifier": "4" }] },
+      { "level": 6, "isElite": false, "life": 17, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "4" }, { "kind": "action", "statType": "ATTACK", "modifier": "7" }, { "kind": "action", "statType": "SHIELD", "modifier": "4" }] },
+      { "level": 7, "isElite": false, "life": 20, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "5" }, { "kind": "action", "statType": "ATTACK", "modifier": "8" }, { "kind": "action", "statType": "SHIELD", "modifier": "4" }] }
+    ]
+  },
+  {
+    "monsterSlug": "valrath_commander",
+    "stats": [
+      { "level": 0, "isElite": false, "life": 10, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "2" }, { "kind": "action", "statType": "ATTACK", "modifier": "3" }, { "kind": "action", "statType": "RANGE", "modifier": "3" }, { "kind": "action", "statType": "WOUND", "modifier": "" }, { "kind": "action", "statType": "POISON", "modifier": "" }] },
+      { "level": 1, "isElite": false, "life": 12, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "2" }, { "kind": "action", "statType": "ATTACK", "modifier": "4" }, { "kind": "action", "statType": "RANGE", "modifier": "3" }, { "kind": "action", "statType": "WOUND", "modifier": "" }, { "kind": "action", "statType": "POISON", "modifier": "" }] },
+      { "level": 2, "isElite": false, "life": 15, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "3" }, { "kind": "action", "statType": "ATTACK", "modifier": "4" }, { "kind": "action", "statType": "RANGE", "modifier": "3" }, { "kind": "action", "statType": "WOUND", "modifier": "" }, { "kind": "action", "statType": "POISON", "modifier": "" }] },
+      { "level": 3, "isElite": false, "life": 18, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "3" }, { "kind": "action", "statType": "ATTACK", "modifier": "5" }, { "kind": "action", "statType": "RANGE", "modifier": "3" }, { "kind": "action", "statType": "WOUND", "modifier": "" }, { "kind": "action", "statType": "POISON", "modifier": "" }] },
+      { "level": 4, "isElite": false, "life": 21, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "3" }, { "kind": "action", "statType": "ATTACK", "modifier": "5" }, { "kind": "action", "statType": "RANGE", "modifier": "4" }, { "kind": "action", "statType": "WOUND", "modifier": "" }, { "kind": "action", "statType": "POISON", "modifier": "" }] },
+      { "level": 5, "isElite": false, "life": 24, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "3" }, { "kind": "action", "statType": "ATTACK", "modifier": "6" }, { "kind": "action", "statType": "RANGE", "modifier": "4" }, { "kind": "action", "statType": "WOUND", "modifier": "" }, { "kind": "action", "statType": "POISON", "modifier": "" }] },
+      { "level": 6, "isElite": false, "life": 28, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "4" }, { "kind": "action", "statType": "ATTACK", "modifier": "6" }, { "kind": "action", "statType": "RANGE", "modifier": "4" }, { "kind": "action", "statType": "WOUND", "modifier": "" }, { "kind": "action", "statType": "POISON", "modifier": "" }] },
+      { "level": 7, "isElite": false, "life": 33, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "4" }, { "kind": "action", "statType": "ATTACK", "modifier": "7" }, { "kind": "action", "statType": "RANGE", "modifier": "5" }, { "kind": "action", "statType": "WOUND", "modifier": "" }, { "kind": "action", "statType": "POISON", "modifier": "" }] }
+    ]
+  }
+]

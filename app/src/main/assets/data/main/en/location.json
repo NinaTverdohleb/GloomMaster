@@ -1,0 +1,14 @@
+[
+  {"slug": "black-barrow", "name": "Deadwood"},
+  {"slug": "dagger-forest", "name": "Dagger Forest"},
+  {"slug": "still-river", "name": "Still River"},
+  {"slug": "copperneck-mountains", "name": "Copperneck Mountains"},
+  {"slug": "gloomhaven", "name": "Gloomhaven"},
+  {"slug": "watcher-mountains", "name": "Watcher Mountains"},
+  {"slug": "misty-sea", "name": "Misty Sea"},
+  {"slug": "lingering-swamp", "name": "Lingering Swamp"},
+  {"slug": "serpent-kiss-river", "name": "Serpent's Kiss River"},
+  {"slug": "merchant-bay", "name": "Merchant's Bay"},
+  {"slug": "east-road", "name": "East Road"},
+  {"slug": "stony-road", "name": "Stony Road"}
+]

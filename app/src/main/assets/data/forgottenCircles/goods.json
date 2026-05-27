@@ -1,0 +1,15 @@
+[
+  {"number": 152, "type": "SmallThing", "image": "item_152.webp", "cost": 50, "pack": "FORGOTTEN_CIRCLES", "count": 1},
+  {"number": 153, "type": "SmallThing", "image": "item_153.webp", "cost": 25, "pack": "FORGOTTEN_CIRCLES", "count": 2},
+  {"number": 154, "type": "SmallThing", "image": "item_154.webp", "cost": 50, "pack": "FORGOTTEN_CIRCLES", "count": 2},
+  {"number": 155, "type": "Body", "image": "item_155.webp", "cost": 75, "pack": "FORGOTTEN_CIRCLES", "count": 1},
+  {"number": 156, "type": "DoubleArm", "image": "item_156.webp", "cost": 50, "pack": "FORGOTTEN_CIRCLES", "count": 2},
+  {"number": 157, "type": "DoubleArm", "image": "item_157.webp", "cost": 40, "pack": "FORGOTTEN_CIRCLES", "count": 2},
+  {"number": 158, "type": "Foot", "image": "item_158.webp", "cost": 35, "pack": "FORGOTTEN_CIRCLES", "count": 2},
+  {"number": 159, "type": "SmallThing", "image": "item_159.webp", "cost": 30, "pack": "FORGOTTEN_CIRCLES", "count": 2},
+  {"number": 160, "type": "Arm", "image": "item_160.webp", "cost": 45, "pack": "FORGOTTEN_CIRCLES", "count": 1},
+  {"number": 161, "type": "Arm", "image": "item_161.webp", "cost": 35, "pack": "FORGOTTEN_CIRCLES", "count": 2},
+  {"number": 162, "type": "SmallThing", "image": "item_162.webp", "cost": 50, "pack": "FORGOTTEN_CIRCLES", "count": 1},
+  {"number": 163, "type": "Head", "image": "item_163.webp", "cost": 75, "pack": "FORGOTTEN_CIRCLES", "count": 1},
+  {"number": 164, "type": "DoubleArm", "image": "item_164.webp", "cost": 55, "pack": "FORGOTTEN_CIRCLES", "count": 1}
+]

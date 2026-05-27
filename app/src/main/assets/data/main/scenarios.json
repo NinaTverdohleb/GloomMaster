@@ -1,0 +1,1148 @@
+[
+  {
+    "scenarioNumber": 1,
+    "newScenarios": "2",
+    "monsters": [
+      "bandit_guard",
+      "bandit_archer",
+      "living_bones"
+    ],
+    "location": "black-barrow",
+    "pack": "MAIN"
+  },
+  {
+    "scenarioNumber": 2,
+    "newScenarios": "3, 4",
+    "requirements": "first_steps",
+    "monsters": [
+      "bandit_archer",
+      "living_bones",
+      "living_corpse",
+      "bandit_commander"
+    ],
+    "location": "black-barrow",
+    "pack": "MAIN"
+  },
+  {
+    "scenarioNumber": 3,
+    "newScenarios": "8, 9",
+    "requirements": "!the_merchant_flees",
+    "monsters": [
+      "inox_guard",
+      "inox_archer",
+      "inox_shaman"
+    ],
+    "location": "dagger-forest",
+    "pack": "MAIN"
+  },
+  {
+    "scenarioNumber": 4,
+    "newScenarios": "5, 6",
+    "monsters": [
+      "bandit_archer",
+      "living_bones",
+      "cultist",
+      "earth_demon",
+      "wind_demon"
+    ],
+    "location": "still-river",
+    "pack": "MAIN"
+  },
+  {
+    "scenarioNumber": 5,
+    "newScenarios": "10, 14, 19",
+    "monsters": [
+      "living_bones",
+      "cultist",
+      "night_demon",
+      "flame_demon",
+      "frost_demon"
+    ],
+    "location": "copperneck-mountains",
+    "pack": "MAIN"
+  },
+  {
+    "scenarioNumber": 6,
+    "newScenarios": "8",
+    "monsters": [
+      "living_spirit",
+      "living_corpse",
+      "living_bones"
+    ],
+    "location": "still-river",
+    "pack": "MAIN"
+  },
+  {
+    "scenarioNumber": 7,
+    "newScenarios": "20",
+    "requirements": "the_power_of_enhancement && the_merchant_flees",
+    "monsters": [
+      "forest_imp",
+      "cave_bear",
+      "inox_shaman",
+      "earth_demon"
+    ],
+    "location": "copperneck-mountains",
+    "pack": "MAIN"
+  },
+  {
+    "scenarioNumber": 8,
+    "newScenarios": "7, 13, 14",
+    "requirements": "jekserahs_plans && !dead_invade",
+    "monsters": [
+      "living_bones",
+      "living_corpse",
+      "inox_bodyguard_the_blade",
+      "inox_bodyguard_the_axe"
+    ],
+    "location": "gloomhaven",
+    "pack": "MAIN"
+  },
+  {
+    "scenarioNumber": 9,
+    "newScenarios": "11, 12",
+    "requirements": "!the_merchant_flees",
+    "monsters": [
+      "hound",
+      "vermling_scout",
+      "merciless_overseer"
+    ],
+    "location": "watcher-mountains",
+    "pack": "MAIN"
+  },
+  {
+    "scenarioNumber": 10,
+    "newScenarios": "21, 22",
+    "requirements": "!the_portal_closed",
+    "monsters": [
+      "flame_demon",
+      "earth_demon",
+      "sun_demon"
+    ],
+    "location": "copperneck-mountains",
+    "pack": "MAIN"
+  },
+  {
+    "scenarioNumber": 11,
+    "newScenarios": "16, 18",
+    "requirements": "!the_invasion_ended",
+    "monsters": [
+      "living_bones",
+      "living_corpse",
+      "city_guard",
+      "city_archer",
+      "captain_of_the_guard"
+    ],
+    "location": "gloomhaven",
+    "pack": "MAIN"
+  },
+  {
+    "scenarioNumber": 12,
+    "newScenarios": "16, 18, 28",
+    "requirements": "!the_invasion_ended",
+    "monsters": [
+      "living_bones",
+      "living_corpse",
+      "cultist",
+      "city_guard",
+      "city_archer",
+      "jekserah"
+    ],
+    "location": "gloomhaven",
+    "pack": "MAIN"
+  },
+  {
+    "scenarioNumber": 13,
+    "newScenarios": "15, 17, 20",
+    "monsters": [
+      "stone_golem",
+      "cave_bear",
+      "living_spirit",
+      "spitting_drake"
+    ],
+    "location": "watcher-mountains",
+    "pack": "MAIN"
+  },
+  {
+    "scenarioNumber": 14,
+    "monsters": [
+      "hound",
+      "living_spirit",
+      "frost_demon"
+    ],
+    "location": "copperneck-mountains",
+    "pack": "MAIN"
+  },
+  {
+    "scenarioNumber": 15,
+    "monsters": [
+      "stone_golem",
+      "savvas_icestorm",
+      "wind_demon",
+      "frost_demon",
+      "harrower_infester"
+    ],
+    "location": "copperneck-mountains",
+    "pack": "MAIN"
+  },
+  {
+    "scenarioNumber": 16,
+    "newScenarios": "24, 25",
+    "monsters": [
+      "earth_demon",
+      "wind_demon",
+      "inox_guard",
+      "inox_archer"
+    ],
+    "location": "copperneck-mountains",
+    "pack": "MAIN"
+  },
+  {
+    "scenarioNumber": 17,
+    "monsters": [
+      "vermling_scout",
+      "vermling_shaman",
+      "cave_bear"
+    ],
+    "location": "misty-sea",
+    "pack": "MAIN"
+  },
+  {
+    "scenarioNumber": 18,
+    "newScenarios": "14, 23, 26, 43",
+    "monsters": [
+      "vermling_scout",
+      "giant_viper",
+      "ooze"
+    ],
+    "location": "gloomhaven",
+    "pack": "MAIN"
+  },
+  {
+    "scenarioNumber": 19,
+    "newScenarios": "27",
+    "requirements": "the_power_of_enhancement",
+    "monsters": [
+      "cultist",
+      "living_bones",
+      "living_spirit",
+      "living_corpse"
+    ],
+    "location": "lingering-swamp",
+    "pack": "MAIN"
+  },
+  {
+    "scenarioNumber": 20,
+    "newScenarios": "16, 18, 28",
+    "requirements": "the_merchant_flees",
+    "monsters": [
+      "cultist",
+      "living_bones",
+      "night_demon",
+      "living_corpse",
+      "jekserah"
+    ],
+    "location": "black-barrow",
+    "pack": "MAIN"
+  },
+  {
+    "scenarioNumber": 21,
+    "requirements": "!the_portal_closed",
+    "monsters": [
+      "sun_demon",
+      "frost_demon",
+      "night_demon",
+      "wind_demon",
+      "earth_demon",
+      "flame_demon",
+      "prime_demon"
+    ],
+    "location": "copperneck-mountains",
+    "pack": "MAIN"
+  },
+  {
+    "scenarioNumber": 22,
+    "newScenarios": "31, 35, 36",
+    "requirements": "a_demons_errand || following_the_clues",
+    "monsters": [
+      "living_bones",
+      "cultist",
+      "frost_demon",
+      "wind_demon",
+      "earth_demon",
+      "flame_demon"
+    ],
+    "location": "serpent-kiss-river",
+    "pack": "MAIN"
+  },
+  {
+    "scenarioNumber": 23,
+    "newScenarios": "26",
+    "monsters": [
+      "stone_golem",
+      "ancient_artillery",
+      "living_bones",
+      "living_spirit"
+    ],
+    "location": "gloomhaven",
+    "pack": "MAIN"
+  },
+  {
+    "scenarioNumber": 24,
+    "newScenarios": "30, 32",
+    "monsters": [
+      "rending_drake",
+      "ooze",
+      "living_spirit"
+    ],
+    "location": "copperneck-mountains",
+    "pack": "MAIN"
+  },
+  {
+    "scenarioNumber": 25,
+    "newScenarios": "33, 34",
+    "monsters": [
+      "rending_drake",
+      "spitting_drake",
+      "hound"
+    ],
+    "location": "copperneck-mountains",
+    "pack": "MAIN"
+  },
+  {
+    "scenarioNumber": 26,
+    "requirements": "water_breathing || through_the_ruins",
+    "newScenarios": "22",
+    "monsters": [
+      "living_corpse",
+      "ooze",
+      "night_demon",
+      "black_imp"
+    ],
+    "location": "gloomhaven",
+    "pack": "MAIN"
+  },
+  {
+    "scenarioNumber": 27,
+    "requirements": "!artifact_lost && stonebreakers_censer",
+    "monsters": [
+      "night_demon",
+      "wind_demon",
+      "frost_demon",
+      "sun_demon",
+      "earth_demon",
+      "flame_demon"
+    ],
+    "location": "copperneck-mountains",
+    "pack": "MAIN"
+  },
+  {
+    "scenarioNumber": 28,
+    "requirements": "the_dark_bounty",
+    "newScenarios": "29",
+    "monsters": [
+      "night_demon",
+      "living_corpse",
+      "living_bones",
+      "sun_demon",
+      "cultist"
+    ],
+    "location": "dagger-forest",
+    "pack": "MAIN"
+  },
+  {
+    "scenarioNumber": 29,
+    "requirements": "an_invitation",
+    "monsters": [
+      "living_bones",
+      "living_spirit",
+      "living_corpse",
+      "black_imp"
+    ],
+    "location": "dagger-forest",
+    "pack": "MAIN"
+  },
+  {
+    "scenarioNumber": 30,
+    "requirements": "the_voices_command",
+    "newScenarios": "42",
+    "monsters": [
+      "ooze",
+      "lurker",
+      "deep_terror"
+    ],
+    "location": "misty-sea",
+    "pack": "MAIN"
+  },
+  {
+    "scenarioNumber": 31,
+    "requirements": "the_power_of_enhancement && artifact_found",
+    "newScenarios": "37, 38, 39, 43",
+    "monsters": [
+      "black_imp",
+      "night_demon",
+      "deep_terror"
+    ],
+    "location": "gloomhaven",
+    "pack": "MAIN"
+  },
+  {
+    "scenarioNumber": 32,
+    "requirements": "the_voices_command",
+    "newScenarios": "33, 40",
+    "monsters": [
+      "harrower_infester",
+      "giant_viper",
+      "deep_terror",
+      "black_imp"
+    ],
+    "location": "lingering-swamp",
+    "pack": "MAIN"
+  },
+  {
+    "scenarioNumber": 33,
+    "requirements": "the_voices_command || the_drakes_request",
+    "monsters": [
+      "savvas_icestorm",
+      "savvas_lavaflow",
+      "wind_demon",
+      "frost_demon",
+      "flame_demon",
+      "earth_demon"
+    ],
+    "location": "copperneck-mountains",
+    "pack": "MAIN"
+  },
+  {
+    "scenarioNumber": 34,
+    "requirements": "the_drakes_request && !the_drakes_command",
+    "monsters": [
+      "rending_drake",
+      "spitting_drake",
+      "elder_penn_drake"
+    ],
+    "location": "copperneck-mountains",
+    "pack": "MAIN"
+  },
+  {
+    "scenarioNumber": 35,
+    "requirements": "a_demons_errand && !the_portal_closed",
+    "newScenarios": "45",
+    "monsters": [
+      "city_guard",
+      "city_archer",
+      "wind_demon",
+      "frost_demon",
+      "flame_demon",
+      "earth_demon",
+      "captain_of_the_guard"
+    ],
+    "location": "gloomhaven",
+    "pack": "MAIN"
+  },
+  {
+    "scenarioNumber": 36,
+    "requirements": "a_demons_errand && !the_portal_closed",
+    "monsters": [
+      "city_archer",
+      "wind_demon",
+      "frost_demon",
+      "flame_demon",
+      "earth_demon",
+      "prime_demon"
+    ],
+    "location": "gloomhaven",
+    "pack": "MAIN"
+  },
+  {
+    "scenarioNumber": 37,
+    "requirements": "water_breathing",
+    "newScenarios": "47",
+    "monsters": [
+      "lurker",
+      "deep_terror",
+      "harrower_infester"
+    ],
+    "location": "misty-sea",
+    "pack": "MAIN"
+  },
+  {
+    "scenarioNumber": 38,
+    "newScenarios": "44, 48",
+    "monsters": [
+      "inox_guard",
+      "inox_archer",
+      "inox_shaman",
+      "stone_golem"
+    ],
+    "location": "dagger-forest",
+    "pack": "MAIN"
+  },
+  {
+    "scenarioNumber": 39,
+    "newScenarios": "15, 46",
+    "monsters": [
+      "cave_bear",
+      "frost_demon",
+      "spitting_drake",
+      "cultist",
+      "living_bones"
+    ],
+    "location": "copperneck-mountains",
+    "pack": "MAIN"
+  },
+  {
+    "scenarioNumber": 40,
+    "requirements": "the_voices_command && the_voices_treasure",
+    "newScenarios": "41",
+    "monsters": [
+      "cave_bear",
+      "living_corpse",
+      "forest_imp",
+      "stone_golem",
+      "flame_demon"
+    ],
+    "location": "black-barrow",
+    "pack": "MAIN"
+  },
+  {
+    "scenarioNumber": 41,
+    "requirements": "the_voices_command",
+    "monsters": [
+      "ancient_artillery",
+      "living_corpse",
+      "living_spirit",
+      "stone_golem"
+    ],
+    "location": "black-barrow",
+    "pack": "MAIN"
+  },
+  {
+    "scenarioNumber": 42,
+    "requirements": "the_scepter_and_the_voice && !the_voice_freed",
+    "monsters": [
+      "wind_demon",
+      "night_demon",
+      "living_spirit"
+    ],
+    "location": "copperneck-mountains",
+    "pack": "MAIN"
+  },
+  {
+    "scenarioNumber": 43,
+    "requirements": "the_power_of_enhancement",
+    "monsters": [
+      "rending_drake",
+      "spitting_drake",
+      "flame_demon"
+    ],
+    "location": "dagger-forest",
+    "pack": "MAIN"
+  },
+  {
+    "scenarioNumber": 44,
+    "requirements": "redthorns_aid",
+    "monsters": [
+      "inox_guard",
+      "inox_archer",
+      "inox_shaman",
+      "hound"
+    ],
+    "location": "dagger-forest",
+    "pack": "MAIN"
+  },
+  {
+    "scenarioNumber": 45,
+    "requirements": "city_rule_demonic",
+    "newScenarios": "49, 50",
+    "monsters": [
+      "city_guard",
+      "city_archer",
+      "hound"
+    ],
+    "location": "lingering-swamp",
+    "pack": "MAIN"
+  },
+  {
+    "scenarioNumber": 46,
+    "requirements": "across_the_chasm",
+    "newScenarios": "51",
+    "monsters": [
+      "night_demon",
+      "frost_demon",
+      "wind_demon",
+      "savvas_icestorm",
+      "winged_horror"
+    ],
+    "location": "copperneck-mountains",
+    "pack": "MAIN"
+  },
+  {
+    "scenarioNumber": 47,
+    "requirements": "through_the_trench",
+    "newScenarios": "51",
+    "monsters": [
+      "lurker",
+      "deep_terror",
+      "the_sightless_eye",
+      "harrower_infester"
+    ],
+    "location": "misty-sea",
+    "pack": "MAIN"
+  },
+  {
+    "scenarioNumber": 48,
+    "requirements": "redthorns_aid",
+    "newScenarios": "51",
+    "monsters": [
+      "forest_imp",
+      "earth_demon",
+      "harrower_infester",
+      "the_dark_rider"
+    ],
+    "location": "dagger-forest",
+    "pack": "MAIN"
+  },
+  {
+    "scenarioNumber": 49,
+    "requirements": "city_rule_demonic",
+    "monsters": [
+      "giant_viper",
+      "city_guard",
+      "city_archer",
+      "ancient_artillery"
+    ],
+    "location": "lingering-swamp",
+    "pack": "MAIN"
+  },
+  {
+    "scenarioNumber": 50,
+    "requirements": "city_rule_demonic && !the_ruin_of_order",
+    "monsters": [
+      "night_demon",
+      "sun_demon",
+      "earth_demon",
+      "wind_demon"
+    ],
+    "location": "gloomhaven",
+    "pack": "MAIN"
+  },
+  {
+    "scenarioNumber": 51,
+    "newScenarios": "96",
+    "requirements": "an_end_to_corruption",
+    "monsters": [
+      "the_gloom"
+    ],
+    "location": "gloomhaven",
+    "pack": "MAIN"
+  },
+  {
+    "scenarioNumber": 52,
+    "requirements": "seeker_of_xorn",
+    "newScenarios": "53",
+    "monsters": [
+      "spitting_drake",
+      "ooze",
+      "vermling_scout",
+      "vermling_shaman",
+      "living_corpse"
+    ],
+    "location": "gloomhaven",
+    "pack": "MAIN"
+  },
+  {
+    "scenarioNumber": 53,
+    "requirements": "seeker_of_xorn",
+    "newScenarios": "54",
+    "monsters": [
+      "ooze",
+      "living_corpse",
+      "living_spirit",
+      "living_bones",
+      "giant_viper"
+    ],
+    "location": "still-river",
+    "pack": "MAIN"
+  },
+  {
+    "scenarioNumber": 54,
+    "requirements": "seeker_of_xorn && staff_of_xorn_in_inventory",
+    "monsters": [
+      "cave_bear",
+      "living_spirit",
+      "frost_demon",
+      "harrower_infester"
+    ],
+    "location": "copperneck-mountains",
+    "pack": "MAIN"
+  },
+  {
+    "scenarioNumber": 55,
+    "requirements": "return_to_the_forest",
+    "newScenarios": "56",
+    "location": "dagger-forest",
+    "pack": "MAIN"
+  },
+  {
+    "scenarioNumber": 56,
+    "requirements": "return_to_the_forest",
+    "monsters": [
+      "hound",
+      "bandit_archer",
+      "rending_drake",
+      "bandit_guard"
+    ],
+    "location": "dagger-forest",
+    "pack": "MAIN"
+  },
+  {
+    "scenarioNumber": 57,
+    "requirements": "vengeance",
+    "newScenarios": "58",
+    "monsters": [
+      "hound",
+      "city_guard",
+      "city_archer",
+      "harrower_infester"
+    ],
+    "location": "gloomhaven",
+    "pack": "MAIN"
+  },
+  {
+    "scenarioNumber": 58,
+    "requirements": "vengeance",
+    "monsters": [
+      "earth_demon",
+      "city_guard",
+      "black_imp",
+      "harrower_infester"
+    ],
+    "location": "gloomhaven",
+    "pack": "MAIN"
+  },
+  {
+    "scenarioNumber": 59,
+    "requirements": "finding_the_cure",
+    "newScenarios": "60",
+    "monsters": [
+      "hound",
+      "cave_bear",
+      "forest_imp"
+    ],
+    "location": "dagger-forest",
+    "pack": "MAIN"
+  },
+  {
+    "scenarioNumber": 60,
+    "requirements": "finding_the_cure",
+    "monsters": [
+      "hound",
+      "giant_viper",
+      "ooze",
+      "rending_drake",
+      "spitting_drake"
+    ],
+    "location": "gloomhaven",
+    "pack": "MAIN"
+  },
+  {
+    "scenarioNumber": 61,
+    "requirements": "fall_from_grace",
+    "newScenarios": "62",
+    "monsters": [
+      "ooze",
+      "giant_viper",
+      "frost_demon",
+      "flame_demon"
+    ],
+    "location": "lingering-swamp",
+    "pack": "MAIN"
+  },
+  {
+    "scenarioNumber": 62,
+    "requirements": "fall_from_grace",
+    "monsters": [
+      "living_spirit",
+      "living_bones"
+    ],
+    "location": "lingering-swamp",
+    "pack": "MAIN"
+  },
+  {
+    "scenarioNumber": 63,
+    "monsters": [
+      "vermling_scout",
+      "flame_demon",
+      "inox_guard",
+      "inox_archer"
+    ],
+    "location": "watcher-mountains",
+    "pack": "MAIN"
+  },
+  {
+    "scenarioNumber": 64,
+    "requirements": "water_breathing",
+    "monsters": [
+      "ooze",
+      "forest_imp",
+      "rending_drake"
+    ],
+    "location": "misty-sea",
+    "pack": "MAIN"
+  },
+  {
+    "scenarioNumber": 65,
+    "monsters": [
+      "vermling_scout",
+      "hound",
+      "inox_shaman"
+    ],
+    "location": "watcher-mountains",
+    "pack": "MAIN"
+  },
+  {
+    "scenarioNumber": 66,
+    "monsters": [
+      "ooze",
+      "ancient_artillery",
+      "stone_golem",
+      "living_spirit"
+    ],
+    "location": "black-barrow",
+    "pack": "MAIN"
+  },
+  {
+    "scenarioNumber": 67,
+    "monsters": [
+      "forest_imp",
+      "cave_bear",
+      "stone_golem"
+    ],
+    "location": "east-road",
+    "pack": "MAIN"
+  },
+  {
+    "scenarioNumber": 68,
+    "monsters": [
+      "rending_drake",
+      "black_imp",
+      "giant_viper",
+      "living_corpse"
+    ],
+    "location": "lingering-swamp",
+    "pack": "MAIN"
+  },
+  {
+    "scenarioNumber": 69,
+    "monsters": [
+      "vermling_scout",
+      "vermling_shaman",
+      "forest_imp",
+      "stone_golem",
+      "living_spirit"
+    ],
+    "location": "stony-road",
+    "pack": "MAIN"
+  },
+  {
+    "scenarioNumber": 70,
+    "monsters": [
+      "night_demon",
+      "wind_demon",
+      "living_spirit"
+    ],
+    "location": "misty-sea",
+    "pack": "MAIN"
+  },
+  {
+    "scenarioNumber": 71,
+    "monsters": [
+      "spitting_drake",
+      "wind_demon",
+      "sun_demon"
+    ],
+    "location": "serpent-kiss-river",
+    "pack": "MAIN"
+  },
+  {
+    "scenarioNumber": 72,
+    "monsters": [
+      "ooze",
+      "giant_viper",
+      "forest_imp"
+    ],
+    "location": "black-barrow",
+    "pack": "MAIN"
+  },
+  {
+    "scenarioNumber": 73,
+    "monsters": [
+      "ancient_artillery",
+      "inox_shaman",
+      "inox_guard",
+      "inox_archer",
+      "hound"
+    ],
+    "location": "watcher-mountains",
+    "pack": "MAIN"
+  },
+  {
+    "scenarioNumber": 74,
+    "requirements": "sea_escort",
+    "monsters": [
+      "bandit_guard",
+      "bandit_archer",
+      "lurker",
+      "deep_terror"
+    ],
+    "location": "misty-sea",
+    "pack": "MAIN"
+  },
+  {
+    "scenarioNumber": 75,
+    "requirements": "grave_diggers",
+    "monsters": [
+      "living_spirit",
+      "living_corpse",
+      "living_bones"
+    ],
+    "location": "black-barrow",
+    "pack": "MAIN"
+  },
+  {
+    "scenarioNumber": 76,
+    "requirements": "fortitude",
+    "monsters": [
+      "giant_viper",
+      "night_demon",
+      "living_bones",
+      "harrower_infester"
+    ],
+    "location": "watcher-mountains",
+    "pack": "MAIN"
+  },
+  {
+    "scenarioNumber": 77,
+    "monsters": [
+      "hound",
+      "city_guard",
+      "city_archer",
+      "stone_golem"
+    ],
+    "location": "gloomhaven",
+    "pack": "MAIN"
+  },
+  {
+    "scenarioNumber": 78,
+    "monsters": [
+      "bandit_guard",
+      "bandit_archer",
+      "cultist",
+      "living_bones",
+      "black_imp"
+    ],
+    "location": "gloomhaven",
+    "pack": "MAIN"
+  },
+  {
+    "scenarioNumber": 79,
+    "requirements": "a_questionable_aid",
+    "monsters": [
+      "stone_golem",
+      "giant_viper",
+      "the_betrayer"
+    ],
+    "location": "lingering-swamp",
+    "pack": "MAIN"
+  },
+  {
+    "scenarioNumber": 80,
+    "monsters": [
+      "hound",
+      "city_guard",
+      "city_archer",
+      "ancient_artillery"
+    ],
+    "location": "watcher-mountains",
+    "pack": "MAIN"
+  },
+  {
+    "scenarioNumber": 81,
+    "monsters": [
+      "night_demon",
+      "sun_demon",
+      "stone_golem",
+      "ancient_artillery",
+      "the_colorless"
+    ],
+    "location": "dagger-forest",
+    "pack": "MAIN"
+  },
+  {
+    "scenarioNumber": 82,
+    "monsters": [
+      "earth_demon",
+      "flame_demon",
+      "stone_golem"
+    ],
+    "location": "watcher-mountains",
+    "pack": "MAIN"
+  },
+  {
+    "scenarioNumber": 83,
+    "requirements": "bad_omen",
+    "monsters": [
+      "hound",
+      "cultist",
+      "living_bones",
+      "living_spirit",
+      "flame_demon"
+    ],
+    "location": "gloomhaven",
+    "pack": "MAIN"
+  },
+  {
+    "scenarioNumber": 84,
+    "requirements": "the_earth_trembles",
+    "monsters": [
+      "earth_demon",
+      "flame_demon",
+      "frost_demon"
+    ],
+    "location": "copperneck-mountains",
+    "pack": "MAIN"
+  },
+  {
+    "scenarioNumber": 85,
+    "monsters": [
+      "night_demon",
+      "sun_demon",
+      "hound",
+      "black_imp"
+    ],
+    "location": "watcher-mountains",
+    "pack": "MAIN"
+  },
+  {
+    "scenarioNumber": 86,
+    "newScenarios": "87",
+    "monsters": [
+      "cave_bear",
+      "vermling_shaman",
+      "vermling_scout",
+      "lurker"
+    ],
+    "location": "gloomhaven",
+    "pack": "MAIN"
+  },
+  {
+    "scenarioNumber": 87,
+    "requirements": "the_poisons_source",
+    "monsters": [
+      "lurker",
+      "deep_terror",
+      "ooze",
+      "black_imp"
+    ],
+    "location": "merchant-bay",
+    "pack": "MAIN"
+  },
+  {
+    "scenarioNumber": 88,
+    "requirements": "water_breathing && staff_of_water",
+    "monsters": [
+      "frost_demon",
+      "ooze",
+      "lurker"
+    ],
+    "location": "gloomhaven",
+    "pack": "MAIN"
+  },
+  {
+    "scenarioNumber": 89,
+    "requirements": "sin_ra",
+    "monsters": [
+      "bandit_guard",
+      "bandit_archer",
+      "cultist",
+      "giant_viper"
+    ],
+    "location": "gloomhaven",
+    "pack": "MAIN"
+  },
+  {
+    "scenarioNumber": 90,
+    "monsters": [
+      "earth_demon",
+      "wind_demon",
+      "night_demon",
+      "living_spirit"
+    ],
+    "location": "serpent-kiss-river",
+    "pack": "MAIN"
+  },
+  {
+    "scenarioNumber": 91,
+    "monsters": [
+      "bandit_guard",
+      "bandit_archer",
+      "cave_bear",
+      "living_spirit",
+      "hound"
+    ],
+    "location": "dagger-forest",
+    "pack": "MAIN"
+  },
+  {
+    "scenarioNumber": 92,
+    "requirements": "debt_collection",
+    "monsters": [
+      "bandit_guard",
+      "bandit_archer",
+      "city_guard",
+      "city_archer",
+      "earth_demon",
+      "flame_demon",
+      "inox_guard",
+      "savvas_lavaflow"
+    ],
+    "location": "gloomhaven",
+    "pack": "MAIN"
+  },
+  {
+    "scenarioNumber": 93,
+    "requirements": "a_tremor_in_the_underworld",
+    "monsters": [
+      "lurker",
+      "frost_demon",
+      "living_spirit"
+    ],
+    "location": "misty-sea",
+    "pack": "MAIN"
+  },
+  {
+    "scenarioNumber": 94,
+    "newScenarios": "95",
+    "monsters": [
+      "cave_bear",
+      "hound",
+      "vermling_scout",
+      "vermling_shaman"
+    ],
+    "location": "black-barrow",
+    "pack": "MAIN"
+  },
+  {
+    "scenarioNumber": 95,
+    "requirements": "through_the_nest",
+    "monsters": [
+      "earth_demon",
+      "flame_demon",
+      "deep_terror",
+      "savvas_lavaflow"
+    ],
+    "location": "black-barrow",
+    "pack": "MAIN"
+  }
+]

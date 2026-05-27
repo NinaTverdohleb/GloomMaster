@@ -1,0 +1,342 @@
+[
+  {
+    "characterType": "Brute",
+    "perks": [
+      { "id": 0, "text": "Remove two #01 cards" },
+      { "id": 1, "text": "Replace one #01 card with one #03 card" },
+      { "id": 2, "text": "Add two #03 cards" },
+      { "id": 3, "text": "Add two #03 cards" },
+      { "id": 4, "text": "Add one #05 card" },
+      { "id": 5, "text": "Add three rolling #07 PUSH #08 1 cards" },
+      { "id": 6, "text": "Add three rolling #07 PUSH #08 1 cards" },
+      { "id": 7, "text": "Add two rolling #07 PIERCE #09 3 cards" },
+      { "id": 8, "text": "Add one rolling #07 STUN #10 card" },
+      { "id": 9, "text": "Add one rolling #07 STUN #10 card" },
+      { "id": 10, "text": "Add one rolling #07 DISARM #11 card and one rolling #07 MUDDLE #12 card" },
+      { "id": 11, "text": "Add one rolling #07 ADD TARGET #13 card" },
+      { "id": 12, "text": "Add one rolling #07 ADD TARGET #13 card" },
+      { "id": 13, "text": "Add one #03 Shield 1, Self card" },
+      { "id": 14, "text": "Ignore negative item effects and add one #03 card" }
+    ]
+  },
+  {
+    "characterType": "Mindthief",
+    "perks": [
+      { "id": 0, "text": "Remove two #01 cards" },
+      { "id": 1, "text": "Remove two #01 cards" },
+      { "id": 2, "text": "Remove four #15 cards" },
+      { "id": 3, "text": "Replace two #03 cards with two #04 cards" },
+      { "id": 4, "text": "Replace one #02 card with one #15 card" },
+      { "id": 5, "text": "Add one #04 Ice #16 card" },
+      { "id": 6, "text": "Add one #04 Ice #16 card" },
+      { "id": 7, "text": "Add two rolling #07 #03 cards" },
+      { "id": 8, "text": "Add two rolling #07 #03 cards" },
+      { "id": 9, "text": "Add three rolling #07 PULL #17 1 cards" },
+      { "id": 10, "text": "Add three rolling #07 MUDDLE #12 cards" },
+      { "id": 11, "text": "Add two rolling #07 IMMOBILIZE #18 cards" },
+      { "id": 12, "text": "Add one rolling #07 STUN #10 card" },
+      { "id": 13, "text": "Add one rolling #07 DISARM #11 card and one rolling #07 MUDDLE #12 card" },
+      { "id": 14, "text": "Ignore negative scenario effects" }
+    ]
+  },
+  {
+    "characterType": "Cragheart",
+    "perks": [
+      { "id": 0, "text": "Remove four #15 cards" },
+      { "id": 1, "text": "Replace one #01 card with one #03 card" },
+      { "id": 2, "text": "Replace one #01 card with one #03 card" },
+      { "id": 3, "text": "Replace one #01 card with one #03 card" },
+      { "id": 4, "text": "Add one #02 card and two #04 cards" },
+      { "id": 5, "text": "Add one #03 IMMOBILIZE #18 card" },
+      { "id": 6, "text": "Add one #03 IMMOBILIZE #18 card" },
+      { "id": 7, "text": "Add one #04 MUDDLE #12 card" },
+      { "id": 8, "text": "Add one #04 MUDDLE #12 card" },
+      { "id": 9, "text": "Add two rolling #07 PUSH #08 2 cards" },
+      { "id": 10, "text": "Add two rolling #07 Earth #23 cards" },
+      { "id": 11, "text": "Add two rolling #07 Earth #23 cards" },
+      { "id": 12, "text": "Add two rolling #07 Air #21 cards" },
+      { "id": 13, "text": "Ignore negative item effects" },
+      { "id": 14, "text": "Ignore negative scenario effects" }
+    ]
+  },
+  {
+    "characterType": "Scoundrel",
+    "perks": [
+      { "id": 0, "text": "Remove two #01 cards" },
+      { "id": 1, "text": "Remove two #01 cards" },
+      { "id": 2, "text": "Remove four #15 cards" },
+      { "id": 3, "text": "Replace one #02 card with one #15 card" },
+      { "id": 4, "text": "Replace one #01 card with one #03 card" },
+      { "id": 5, "text": "Replace one #15 card with one #04 card" },
+      { "id": 6, "text": "Replace one #15 card with one #04 card" },
+      { "id": 7, "text": "Add two rolling #07 #03 cards" },
+      { "id": 8, "text": "Add two rolling #07 #03 cards" },
+      { "id": 9, "text": "Add two rolling #07 PIERCE #09 3 cards" },
+      { "id": 10, "text": "Add two rolling #07 POISON #25 cards" },
+      { "id": 11, "text": "Add two rolling #07 POISON #25 cards" },
+      { "id": 12, "text": "Add two rolling #07 MUDDLE #12 cards" },
+      { "id": 13, "text": "Add one rolling #07 INVISIBILITY #24 card" },
+      { "id": 14, "text": "Ignore negative scenario effects" }
+    ]
+  },
+  {
+    "characterType": "Spellweaver",
+    "perks": [
+      { "id": 0, "text": "Remove four #15 cards" },
+      { "id": 1, "text": "Replace one #01 card with one #03 card" },
+      { "id": 2, "text": "Replace one #01 card with one #03 card" },
+      { "id": 3, "text": "Add two #03 cards" },
+      { "id": 4, "text": "Add two #03 cards" },
+      { "id": 5, "text": "Add one #15 STUN #10 card" },
+      { "id": 6, "text": "Add one #03 WOUND #14 card" },
+      { "id": 7, "text": "Add one #03 IMMOBILIZE #18 card" },
+      { "id": 8, "text": "Add one #03 CURSE #26 card" },
+      { "id": 9, "text": "Add one #04 Fire #22 card" },
+      { "id": 10, "text": "Add one #04 Fire #22 card" },
+      { "id": 11, "text": "Add one #04 Ice #16 card" },
+      { "id": 12, "text": "Add one #04 Ice #16 card" },
+      { "id": 13, "text": "Add one rolling #07 Earth #23 card and one rolling #07 Air #21 card" },
+      { "id": 14, "text": "Add one rolling #07 Light #19 card and one rolling #07 Dark #20 card" }
+    ]
+  },
+  {
+    "characterType": "Tinkerer",
+    "perks": [
+      { "id": 0, "text": "Remove two #01 cards" },
+      { "id": 1, "text": "Remove two #01 cards" },
+      { "id": 2, "text": "Replace one #02 card with one #15 card" },
+      { "id": 3, "text": "Add two #03 cards" },
+      { "id": 4, "text": "Add one #05 card" },
+      { "id": 5, "text": "Add two rolling #07 Fire #22 cards" },
+      { "id": 6, "text": "Add three rolling #07 MUDDLE #12 cards" },
+      { "id": 7, "text": "Add one #03 WOUND #14 card" },
+      { "id": 8, "text": "Add one #03 WOUND #14 card" },
+      { "id": 9, "text": "Add one #03 IMMOBILIZE #18 card" },
+      { "id": 10, "text": "Add one #03 IMMOBILIZE #18 card" },
+      { "id": 11, "text": "Add one #03 Heal 2 card" },
+      { "id": 12, "text": "Add one #03 Heal 2 card" },
+      { "id": 13, "text": "Add one #15 ADD TARGET #13 card" },
+      { "id": 14, "text": "Ignore negative scenario effects" }
+    ]
+  },
+  {
+    "characterType": "BeastTyrant",
+    "perks": [
+      { "id": 0, "text": "Remove two #01 cards" },
+      { "id": 1, "text": "Replace one #01 card with one #03 card" },
+      { "id": 2, "text": "Replace one #01 card with one #03 card" },
+      { "id": 3, "text": "Replace one #01 card with one #03 card" },
+      { "id": 4, "text": "Replace one #15 card with one #04 card" },
+      { "id": 5, "text": "Replace one #15 card with one #04 card" },
+      { "id": 6, "text": "Add one #03 WOUND #14 card" },
+      { "id": 7, "text": "Add one #03 WOUND #14 card" },
+      { "id": 8, "text": "Add one #03 IMMOBILIZE #18 card" },
+      { "id": 9, "text": "Add one #03 IMMOBILIZE #18 card" },
+      { "id": 10, "text": "Add two rolling #07 Heal 1 cards" },
+      { "id": 11, "text": "Add two rolling #07 Heal 1 cards" },
+      { "id": 12, "text": "Add two rolling #07 Heal 1 cards" },
+      { "id": 13, "text": "Add two rolling #07 Earth #23 cards" },
+      { "id": 14, "text": "Ignore negative scenario effects" }
+    ]
+  },
+  {
+    "characterType": "Elementalist",
+    "perks": [
+      { "id": 0, "text": "Remove two #01 cards" },
+      { "id": 1, "text": "Remove two #01 cards" },
+      { "id": 2, "text": "Replace one #01 card with one #03 card" },
+      { "id": 3, "text": "Replace one #15 card with one #04 card" },
+      { "id": 4, "text": "Replace one #15 card with one #04 card" },
+      { "id": 5, "text": "Add three #15 Fire #22 cards" },
+      { "id": 6, "text": "Add three #15 Ice #16 cards" },
+      { "id": 7, "text": "Add three #15 Air #21 cards" },
+      { "id": 8, "text": "Add three #15 Earth #23 cards" },
+      { "id": 9, "text": "Replace two #15 cards with one #15 Fire #22 card and one #15 Earth #23 card" },
+      { "id": 10, "text": "Replace two #15 cards with one #15 Ice #16 card and one #15 Air #21 card" },
+      { "id": 11, "text": "Add two #03 PUSH #08 1 cards" },
+      { "id": 12, "text": "Add one #03 WOUND #14 card" },
+      { "id": 13, "text": "Add one #15 STUN #10 card" },
+      { "id": 14, "text": "Add one #15 ADD TARGET #13 card" }
+    ]
+  },
+  {
+    "characterType": "Summoner",
+    "perks": [
+      { "id": 0, "text": "Remove two #01 cards" },
+      { "id": 1, "text": "Replace one #02 card with one #15 card" },
+      { "id": 2, "text": "Replace one #01 card with one #03 card" },
+      { "id": 3, "text": "Replace one #01 card with one #03 card" },
+      { "id": 4, "text": "Replace one #01 card with one #03 card" },
+      { "id": 5, "text": "Add one #04 card" },
+      { "id": 6, "text": "Add one #04 card" },
+      { "id": 7, "text": "Add two rolling #07 WOUND #14 cards" },
+      { "id": 8, "text": "Add two rolling #07 POISON #25 cards" },
+      { "id": 9, "text": "Add two rolling #07 Heal 1 cards" },
+      { "id": 10, "text": "Add two rolling #07 Heal 1 cards" },
+      { "id": 11, "text": "Add two rolling #07 Heal 1 cards" },
+      { "id": 12, "text": "Add one rolling #07 Fire #22 card and one rolling #07 Air #21 card" },
+      { "id": 13, "text": "Add one rolling #07 Dark #20 card and one rolling #07 Earth #23 card" },
+      { "id": 14, "text": "Ignore negative scenario effects and add two #03 cards" }
+    ]
+  },
+  {
+    "characterType": "Sunkeeper",
+    "perks": [
+      { "id": 0, "text": "Remove two #01 cards" },
+      { "id": 1, "text": "Remove two #01 cards" },
+      { "id": 2, "text": "Remove four #15 cards" },
+      { "id": 3, "text": "Replace one #02 card with one #15 card" },
+      { "id": 4, "text": "Replace one #15 card with one #04 card" },
+      { "id": 5, "text": "Add two rolling #07 #03 cards" },
+      { "id": 6, "text": "Add two rolling #07 #03 cards" },
+      { "id": 7, "text": "Add two rolling #07 Heal 1 cards" },
+      { "id": 8, "text": "Add two rolling #07 Heal 1 cards" },
+      { "id": 9, "text": "Add one rolling #07 STUN #10 card" },
+      { "id": 10, "text": "Add two rolling #07 Light #19 cards" },
+      { "id": 11, "text": "Add two rolling #07 Light #19 cards" },
+      { "id": 12, "text": "Add two rolling #07 Shield 1 (on self) cards" },
+      { "id": 13, "text": "Ignore negative item effects and add two #03 cards" },
+      { "id": 14, "text": "Ignore negative scenario effects" }
+    ]
+  },
+  {
+    "characterType": "Doomstalker",
+    "perks": [
+      { "id": 0, "text": "Remove two #01 cards" },
+      { "id": 1, "text": "Remove two #01 cards" },
+      { "id": 2, "text": "Replace two #15 cards with two #03 cards" },
+      { "id": 3, "text": "Replace two #15 cards with two #03 cards" },
+      { "id": 4, "text": "Replace two #15 cards with two #03 cards" },
+      { "id": 5, "text": "Add two rolling #07 #03 cards" },
+      { "id": 6, "text": "Add two rolling #07 #03 cards" },
+      { "id": 7, "text": "Add one #04 MUDDLE #12 card" },
+      { "id": 8, "text": "Add one #03 POISON #25 card" },
+      { "id": 9, "text": "Add one #03 WOUND #14 card" },
+      { "id": 10, "text": "Add one #03 IMMOBILIZE #18 card" },
+      { "id": 11, "text": "Add one #15 STUN #10 card" },
+      { "id": 12, "text": "Add one rolling #07 ADD TARGET #13 card" },
+      { "id": 13, "text": "Add one rolling #07 ADD TARGET #13 card" },
+      { "id": 14, "text": "Ignore negative scenario effects" }
+    ]
+  },
+  {
+    "characterType": "Soothsinger",
+    "perks": [
+      { "id": 0, "text": "Remove two #01 cards" },
+      { "id": 1, "text": "Remove two #01 cards" },
+      { "id": 2, "text": "Remove one #02 card" },
+      { "id": 3, "text": "Replace two #03 cards with one #06 card" },
+      { "id": 4, "text": "Replace two #03 cards with one #06 card" },
+      { "id": 5, "text": "Replace one #15 card with one #03 IMMOBILIZE #18 card" },
+      { "id": 6, "text": "Replace one #15 card with one #03 DISARM #11 card" },
+      { "id": 7, "text": "Replace one #15 card with one #04 WOUND #14 card" },
+      { "id": 8, "text": "Replace one #15 card with one #04 POISON #25 card" },
+      { "id": 9, "text": "Replace one #15 card with one #04 CURSE #26 card" },
+      { "id": 10, "text": "Replace one #15 card with one #05 MUDDLE #12 card" },
+      { "id": 11, "text": "Replace one #01 card with one #15 STUN #10 card" },
+      { "id": 12, "text": "Add three rolling #07 #03 cards" },
+      { "id": 13, "text": "Add two rolling #07 CURSE #26 cards" },
+      { "id": 14, "text": "Add two rolling #07 CURSE #26 cards" }
+    ]
+  },
+  {
+    "characterType": "Sawbones",
+    "perks": [
+      { "id": 0, "text": "Remove two #01 cards" },
+      { "id": 1, "text": "Remove two #01 cards" },
+      { "id": 2, "text": "Remove four #15 cards" },
+      { "id": 3, "text": "Replace one #15 card with one #04 card" },
+      { "id": 4, "text": "Replace one #15 card with one #04 card" },
+      { "id": 5, "text": "Add one rolling #07 #04 card" },
+      { "id": 6, "text": "Add one rolling #07 #04 card" },
+      { "id": 7, "text": "Add one #03 IMMOBILIZE #18 card" },
+      { "id": 8, "text": "Add one #03 IMMOBILIZE #18 card" },
+      { "id": 9, "text": "Add two rolling #07 WOUND #14 cards" },
+      { "id": 10, "text": "Add two rolling #07 WOUND #14 cards" },
+      { "id": 11, "text": "Add one rolling #07 STUN #10 card" },
+      { "id": 12, "text": "Add one rolling #07 Heal 3 cards" },
+      { "id": 13, "text": "Add one rolling #07 Heal 3 cards" },
+      { "id": 14, "text": "Add one #15 Refresh an item card" }
+    ]
+  },
+  {
+    "characterType": "Plagueherald",
+    "perks": [
+      { "id": 0, "text": "Replace one #02 card with one #15 card" },
+      { "id": 1, "text": "Replace one #01 card with one #03 card" },
+      { "id": 2, "text": "Replace one #01 card with one #03 card" },
+      { "id": 3, "text": "Replace one #15 card with one #04 card" },
+      { "id": 4, "text": "Replace one #15 card with one #04 card" },
+      { "id": 5, "text": "Add two #03 cards" },
+      { "id": 6, "text": "Add one #03 Air #21 card" },
+      { "id": 7, "text": "Add one #03 Air #21 card" },
+      { "id": 8, "text": "Add one #03 Air #21 card" },
+      { "id": 9, "text": "Add three rolling #07 POISON #25 cards" },
+      { "id": 10, "text": "Add two rolling #07 CURSE #26 cards" },
+      { "id": 11, "text": "Add two rolling #07 IMMOBILIZE #18 cards" },
+      { "id": 12, "text": "Add one rolling #07 STUN #10 card" },
+      { "id": 13, "text": "Add one rolling #07 STUN #10 card" },
+      { "id": 14, "text": "Ignore negative scenario effects and add one #03 card" }
+    ]
+  },
+  {
+    "characterType": "Nightshroud",
+    "perks": [
+      { "id": 0, "text": "Remove two #01 cards" },
+      { "id": 1, "text": "Remove two #01 cards" },
+      { "id": 2, "text": "Remove four #15 cards" },
+      { "id": 3, "text": "Add one #01 Dark #20 card" },
+      { "id": 4, "text": "Add one #01 Dark #20 card" },
+      { "id": 5, "text": "Replace one #01 Dark #20 card with one #03 Dark #20 card" },
+      { "id": 6, "text": "Replace one #01 Dark #20 card with one #03 Dark #20 card" },
+      { "id": 7, "text": "Add one #03 INVISIBILITY #24 card" },
+      { "id": 8, "text": "Add one #03 INVISIBILITY #24 card" },
+      { "id": 9, "text": "Add three rolling #07 MUDDLE #12 cards" },
+      { "id": 10, "text": "Add three rolling #07 MUDDLE #12 cards" },
+      { "id": 11, "text": "Add two rolling #07 Heal 1 cards" },
+      { "id": 12, "text": "Add two rolling #07 CURSE #26 cards" },
+      { "id": 13, "text": "Add one rolling #07 ADD TARGET #13 card" },
+      { "id": 14, "text": "Ignore negative scenario effects and add two #03 cards" }
+    ]
+  },
+  {
+    "characterType": "Quartermaster",
+    "perks": [
+      { "id": 0, "text": "Remove two #01 cards" },
+      { "id": 1, "text": "Remove two #01 cards" },
+      { "id": 2, "text": "Remove four #15 cards" },
+      { "id": 3, "text": "Replace one #15 card with one #04 card" },
+      { "id": 4, "text": "Replace one #15 card with one #04 card" },
+      { "id": 5, "text": "Add two rolling #07 #03 cards" },
+      { "id": 6, "text": "Add two rolling #07 #03 cards" },
+      { "id": 7, "text": "Add three rolling #07 MUDDLE #12 cards" },
+      { "id": 8, "text": "Add two rolling #07 PIERCE #09 3 cards" },
+      { "id": 9, "text": "Add one rolling #07 STUN #10 card" },
+      { "id": 10, "text": "Add one rolling #07 ADD TARGET #13 card" },
+      { "id": 11, "text": "Add one #15 Refresh an item card" },
+      { "id": 12, "text": "Add one #15 Refresh an item card" },
+      { "id": 13, "text": "Add one #15 Refresh an item card" },
+      { "id": 14, "text": "Ignore negative scenario effects and add two #03 cards" }
+    ]
+  },
+  {
+    "characterType": "Berserker",
+    "perks": [
+      { "id": 0, "text": "Remove two #01 cards" },
+      { "id": 1, "text": "Remove four #15 cards" },
+      { "id": 2, "text": "Replace one #01 card with one #03 card" },
+      { "id": 3, "text": "Replace one #01 card with one #03 card" },
+      { "id": 4, "text": "Replace one #15 card with one #07 #04 card" },
+      { "id": 5, "text": "Replace one #15 card with one #07 #04 card" },
+      { "id": 6, "text": "Add two rolling #07 WOUND #14 cards" },
+      { "id": 7, "text": "Add two rolling #07 WOUND #14 cards" },
+      { "id": 8, "text": "Add one rolling #07 STUN #10 card" },
+      { "id": 9, "text": "Add one rolling #07 STUN #10 card" },
+      { "id": 10, "text": "Add one #03 rolling #07 DISARM #11 card" },
+      { "id": 11, "text": "Add two rolling #07 Heal 1, Self cards" },
+      { "id": 12, "text": "Add one #04 Fire #22 card" },
+      { "id": 13, "text": "Add one #04 Fire #22 card" },
+      { "id": 14, "text": "Ignore negative item effects" }
+    ]
+  }
+]

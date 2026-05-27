@@ -1,0 +1,122 @@
+[
+  {
+    "monsterSlug": "valrath_savage",
+    "stats": [
+      {
+        "level": 3,
+        "isElite": true,
+        "textStats": [
+          "Все союзники на соседних клетка добавляют +1 ко всем атакам"
+        ]
+      },
+      {
+        "level": 4,
+        "isElite": true,
+        "textStats": [
+          "Все союзники на соседних клетка добавляют +1 ко всем атакам"
+        ]
+      },
+      {
+        "level": 5,
+        "isElite": true,
+        "textStats": [
+          "Все союзники на соседних клетка добавляют +2 ко всем атакам"
+        ]
+      },
+      {
+        "level": 6,
+        "isElite": true,
+        "textStats": [
+          "Все союзники на соседних клетка добавляют +2 ко всем атакам"
+        ]
+      },
+      {
+        "level": 7,
+        "isElite": true,
+        "textStats": [
+          "Все союзники на соседних клетка добавляют +2 ко всем атакам"
+        ]
+      }
+    ]
+  },
+  {
+    "monsterSlug": "valrath_tracker",
+    "stats": [
+      {
+        "level": 3,
+        "isElite": false,
+        "textStats": [
+          "Преимущество"
+        ]
+      },
+      {
+        "level": 4,
+        "isElite": false,
+        "textStats": [
+          "Преимущество"
+        ]
+      },
+      {
+        "level": 5,
+        "isElite": false,
+        "textStats": [
+          "Преимущество"
+        ]
+      },
+      {
+        "level": 6,
+        "isElite": false,
+        "textStats": [
+          "Преимущество"
+        ]
+      },
+      {
+        "level": 7,
+        "isElite": false,
+        "textStats": [
+          "Преимущество"
+        ]
+      }
+    ]
+  },
+  {
+    "monsterSlug": "aesther_ashblade",
+    "stats": [
+      {
+        "level": 3,
+        "isElite": true,
+        "textStats": [
+          "Все атаки на Эстер Пепельный клинок проводятся с затруднением"
+        ]
+      },
+      {
+        "level": 4,
+        "isElite": true,
+        "textStats": [
+          "Все атаки на Эстер Пепельный клинок проводятся с затруднением"
+        ]
+      },
+      {
+        "level": 5,
+        "isElite": true,
+        "textStats": [
+          "Все атаки на Эстер Пепельный клинок проводятся с затруднением"
+        ]
+      },
+      {
+        "level": 6,
+        "isElite": true,
+        "textStats": [
+          "Все атаки на Эстер Пепельный клинок проводятся с затруднением"
+        ]
+      },
+      {
+        "level": 7,
+        "isElite": true,
+        "textStats": [
+          "Все атаки на Эстер Пепельный клинок проводятся с затруднением"
+        ]
+      }
+    ]
+  }
+]

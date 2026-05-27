@@ -1,0 +1,22 @@
+[
+  {
+    "characterType": "Diviner",
+    "perks": [
+      { "id": 0, "text": "Remove two #01 cards" },
+      { "id": 1, "text": "Remove two #01 cards" },
+      { "id": 2, "text": "Remove one #02 card" },
+      { "id": 3, "text": "Replace two #03 cards with one #05 Shield 1, Self card" },
+      { "id": 4, "text": "Replace two #03 cards with one #05 Shield 1, Self card" },
+      { "id": 5, "text": "Replace one #15 card with one #03 Shield 1, Any Ally card" },
+      { "id": 6, "text": "Replace one #15 card with one #04 Dark #20 card" },
+      { "id": 7, "text": "Replace one #15 card with one #04 Light #19 card" },
+      { "id": 8, "text": "Replace one #15 card with one #05 MUDDLE #12 card" },
+      { "id": 9, "text": "Replace one #15 card with one #04 CURSE #26 card" },
+      { "id": 10, "text": "Replace one #15 card with one #04 REGENERATE, Self card" },
+      { "id": 11, "text": "Replace one #01 card with one #03 Heal 2, Any Ally card" },
+      { "id": 12, "text": "Add two rolling #07 Heal 1, Self cards" },
+      { "id": 13, "text": "Add two rolling #07 CURSE #26 cards" },
+      { "id": 14, "text": "Ignore negative scenario effects and add two #03 cards" }
+    ]
+  }
+]
