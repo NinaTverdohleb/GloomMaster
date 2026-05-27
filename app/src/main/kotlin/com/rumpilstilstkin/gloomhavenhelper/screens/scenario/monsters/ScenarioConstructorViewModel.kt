@@ -42,8 +42,12 @@ class ScenarioConstructorViewModel @Inject constructor(
                 ScenarioConstructorStateUi.Loading
             } else {
                 ScenarioConstructorStateUi.Content(
-                    availableMonsters = (state.allMonsters - state.selectedMonsters).toImmutableList(),
-                    selectedMonsters = state.selectedMonsters.toImmutableList(),
+                    availableMonsters = state.allMonsters
+                        .filter { it.name !in state.selectedMonsters }
+                        .toImmutableList(),
+                    selectedMonsters = state.allMonsters
+                        .filter { it.name in state.selectedMonsters }
+                        .toImmutableList(),
                 )
             }
 

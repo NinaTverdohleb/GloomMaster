@@ -37,7 +37,7 @@ data class ScenarioLogicState(
             MonsterItem(
                 id = monster.id,
                 isFly = monster.isFly,
-                name = monster.name,
+                name = monster.displayName,
                 currentCard = null,
                 isBoss = monster.isBoss,
                 units = units,

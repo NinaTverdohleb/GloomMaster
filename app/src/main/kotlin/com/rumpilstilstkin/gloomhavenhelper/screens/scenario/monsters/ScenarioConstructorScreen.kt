@@ -29,6 +29,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.rumpilstilstkin.gloomhavenhelper.R
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterChoice
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomToolbarTitle
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomVariantCard
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
@@ -76,9 +77,9 @@ internal fun ScenarioConstructorScreen(
                             }
                             items(state.selectedMonsters) { monster ->
                                 MonsterSelectCard(
-                                    monster = monster,
+                                    name = monster.displayName,
                                     isSelected = true,
-                                    onClick = { toggleMonster(monster) }
+                                    onClick = { toggleMonster(monster.name) }
                                 )
                             }
                         }
@@ -94,9 +95,9 @@ internal fun ScenarioConstructorScreen(
 
                         items(state.availableMonsters) { monster ->
                             MonsterSelectCard(
-                                monster = monster,
+                                name = monster.displayName,
                                 isSelected = false,
-                                onClick = { toggleMonster(monster) }
+                                onClick = { toggleMonster(monster.name) }
                             )
                         }
                     }
@@ -130,7 +131,7 @@ internal fun ScenarioConstructorScreen(
 
 @Composable
 private fun MonsterSelectCard(
-    monster: String,
+    name: String,
     isSelected: Boolean,
     onClick: () -> Unit,
     modifier: Modifier = Modifier
@@ -149,7 +150,7 @@ private fun MonsterSelectCard(
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             Text(
-                text = monster,
+                text = name,
                 style = MaterialTheme.typography.bodyLarge,
                 color = MaterialTheme.colorScheme.onSurface
             )
@@ -172,10 +173,13 @@ private fun ScenarioConstructorScreenPreview() {
         ScenarioConstructorScreen(
             state = ScenarioConstructorStateUi.Content(
                 availableMonsters = persistentListOf(
-                    "Bandit Archer",
-                    "Living Spirit",
+                    MonsterChoice("Разбойник-лучница", "Bandit Archer"),
+                    MonsterChoice("Оживший дух", "Living Spirit"),
                 ),
-                selectedMonsters = persistentListOf("Living Bones", "Living Corpse"),
+                selectedMonsters = persistentListOf(
+                    MonsterChoice("Ожившие кости", "Living Bones"),
+                    MonsterChoice("Оживший труп", "Living Corpse"),
+                ),
             ),
             back = {},
             toggleMonster = {},

@@ -37,7 +37,7 @@ object ScenarioStateMapper {
                 .map {
                     MonsterItem(
                         id = it.id,
-                        name = it.name,
+                        name = it.displayName,
                         isFly = it.isFly,
                         currentCard = null,
                     )
@@ -56,7 +56,7 @@ object ScenarioStateMapper {
                 val monster = battleInfo.monsters.first { it.id == item.id }
                 MonsterItem(
                     id = item.id,
-                    name = monster.name,
+                    name = monster.displayName,
                     currentCard = item.currentCard?.let { cardId ->
                         battleInfo.monsters.flatMap { it.cards }
                             .firstOrNull { card -> card.cardId == cardId }

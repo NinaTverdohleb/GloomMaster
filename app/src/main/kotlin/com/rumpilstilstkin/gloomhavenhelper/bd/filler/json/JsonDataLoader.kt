@@ -8,6 +8,7 @@ import com.rumpilstilstkin.gloomhavenhelper.bd.filler.json.models.GameLevelJson
 import com.rumpilstilstkin.gloomhavenhelper.bd.filler.json.models.GoodJson
 import com.rumpilstilstkin.gloomhavenhelper.bd.filler.json.models.MonsterJson
 import com.rumpilstilstkin.gloomhavenhelper.bd.filler.json.models.MonsterStatsJson
+import com.rumpilstilstkin.gloomhavenhelper.bd.filler.json.models.MonsterTextJson
 import com.rumpilstilstkin.gloomhavenhelper.bd.filler.json.models.PersonalQuestJson
 import com.rumpilstilstkin.gloomhavenhelper.bd.filler.json.models.QuestTranslationJson
 import com.rumpilstilstkin.gloomhavenhelper.bd.filler.json.models.ScenarioJson
@@ -49,6 +50,8 @@ class JsonDataLoader @Inject constructor(
 
     fun loadMonsters(version: Int): List<MonsterJson> = load("v${version}_monsters.json")
 
+    fun loadMonsterTexts(version: Int): List<MonsterTextJson> = load("v${version}_monster_texts.json")
+
     fun loadMonsterStats(version: Int, pack: String, type: String): List<MonsterStatsJson> = load("v${version}_${pack}_${type}_stats.json")
 
     fun loadMonsterDeck(version: Int): List<DeckJson> = load("v${version}_ability_decks.json")
@@ -73,4 +76,10 @@ class JsonDataLoader @Inject constructor(
 
     fun loadAchievementTranslations(locale: String): Map<String, String> =
         load("translations/$locale/achievements.json")
+
+    fun loadMonsterTranslations(locale: String): Map<String, String> =
+        load("translations/$locale/monsters.json")
+
+    fun loadMonsterTextTranslations(locale: String): Map<String, String> =
+        load("translations/$locale/monster_texts.json")
 }

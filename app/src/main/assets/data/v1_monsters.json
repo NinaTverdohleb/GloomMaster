@@ -1,5 +1,6 @@
 [
   {
+    "key": "1",
     "name": "Главарь разбойников",
     "deckName": "boss",
     "isBoss": true,
@@ -9,6 +10,7 @@
     "pack": "MAIN"
   },
   {
+    "key": "2",
     "name": "Ожившие кости",
     "deckName": "living-bones",
     "isBoss": false,
@@ -18,6 +20,7 @@
     "pack": "MAIN"
   },
   {
+    "key": "3",
     "name": "Разбойник-страж",
     "deckName": "guard",
     "isBoss": false,
@@ -27,6 +30,7 @@
     "pack": "MAIN"
   },
   {
+    "key": "4",
     "name": "Разбойник-лучница",
     "deckName": "archer",
     "isBoss": false,
@@ -36,6 +40,7 @@
     "pack": "MAIN"
   },
   {
+    "key": "5",
     "name": "Оживший труп",
     "deckName": "living-corpse",
     "isBoss": false,
@@ -45,6 +50,7 @@
     "pack": "MAIN"
   },
   {
+    "key": "6",
     "name": "Инокс-стражница",
     "deckName": "guard",
     "isBoss": false,
@@ -54,6 +60,7 @@
     "pack": "MAIN"
   },
   {
+    "key": "7",
     "name": "Инокс-лучник",
     "deckName": "archer",
     "isBoss": false,
@@ -63,6 +70,7 @@
     "pack": "MAIN"
   },
   {
+    "key": "8",
     "name": "Инокс-шаман",
     "deckName": "shaman",
     "isBoss": false,
@@ -72,6 +80,7 @@
     "pack": "MAIN"
   },
   {
+    "key": "9",
     "name": "Культист",
     "deckName": "cultist",
     "isBoss": false,
@@ -81,6 +90,7 @@
     "pack": "MAIN"
   },
   {
+    "key": "10",
     "name": "Земляной демон",
     "deckName": "earth-demon",
     "isBoss": false,
@@ -90,6 +100,7 @@
     "pack": "MAIN"
   },
   {
+    "key": "11",
     "name": "Воздушный демон",
     "deckName": "wind-demon",
     "isBoss": false,
@@ -99,6 +110,7 @@
     "pack": "MAIN"
   },
   {
+    "key": "12",
     "name": "Оживший дух",
     "deckName": "living-spirit",
     "isBoss": false,
@@ -108,6 +120,7 @@
     "pack": "MAIN"
   },
   {
+    "key": "13",
     "name": "Ночной демон",
     "deckName": "night-demon",
     "isBoss": false,
@@ -117,6 +130,7 @@
     "pack": "MAIN"
   },
   {
+    "key": "14",
     "name": "Огненный демон",
     "deckName": "flame-demon",
     "isBoss": false,
@@ -126,6 +140,7 @@
     "pack": "MAIN"
   },
   {
+    "key": "15",
     "name": "Морозный демон",
     "deckName": "frost-demon",
     "isBoss": false,
@@ -135,6 +150,7 @@
     "pack": "MAIN"
   },
   {
+    "key": "16",
     "name": "Лесной бес",
     "deckName": "imp",
     "isBoss": false,
@@ -144,6 +160,7 @@
     "pack": "MAIN"
   },
   {
+    "key": "17",
     "name": "Пещерный медведь",
     "deckName": "cave-bear",
     "isBoss": false,
@@ -153,6 +170,7 @@
     "pack": "MAIN"
   },
   {
+    "key": "18",
     "name": "Инокс-телохранитель - 1",
     "deckName": "boss",
     "isBoss": true,
@@ -162,6 +180,7 @@
     "pack": "MAIN"
   },
   {
+    "key": "19",
     "name": "Инокс-телохранитель - 2",
     "deckName": "boss",
     "isBoss": true,
@@ -171,6 +190,7 @@
     "pack": "MAIN"
   },
   {
+    "key": "20",
     "name": "Гончая",
     "deckName": "hound",
     "isBoss": false,
@@ -180,6 +200,7 @@
     "pack": "MAIN"
   },
   {
+    "key": "21",
     "name": "Вермлинг-разведчик",
     "deckName": "scout",
     "isBoss": false,
@@ -189,6 +210,7 @@
     "pack": "MAIN"
   },
   {
+    "key": "22",
     "name": "Жестокий надзиратель",
     "deckName": "boss",
     "isBoss": true,
@@ -198,6 +220,7 @@
     "pack": "MAIN"
   },
   {
+    "key": "23",
     "name": "Солнечный демон",
     "deckName": "sun-demon",
     "isBoss": false,
@@ -207,6 +230,7 @@
     "pack": "MAIN"
   },
   {
+    "key": "24",
     "name": "Городской страж",
     "deckName": "guard",
     "isBoss": false,
@@ -216,6 +240,7 @@
     "pack": "MAIN"
   },
   {
+    "key": "25",
     "name": "Городской лучник",
     "deckName": "archer",
     "isBoss": false,
@@ -225,6 +250,7 @@
     "pack": "MAIN"
   },
   {
+    "key": "26",
     "name": "Начальник стражи",
     "deckName": "boss",
     "isBoss": true,
@@ -234,6 +260,7 @@
     "pack": "MAIN"
   },
   {
+    "key": "27",
     "name": "Джексера",
     "deckName": "boss",
     "isBoss": true,
@@ -243,6 +270,7 @@
     "pack": "MAIN"
   },
   {
+    "key": "28",
     "name": "Каменный голем",
     "deckName": "stone-golem",
     "isBoss": false,
@@ -252,6 +280,7 @@
     "pack": "MAIN"
   },
   {
+    "key": "29",
     "name": "Шипящий дрейк",
     "deckName": "spitting-drake",
     "isBoss": false,
@@ -261,6 +290,7 @@
     "pack": "MAIN"
   },
   {
+    "key": "30",
     "name": "Саввас Ледяной шторм",
     "deckName": "savvas-icestorm",
     "isBoss": false,
@@ -270,6 +300,7 @@
     "pack": "MAIN"
   },
   {
+    "key": "31",
     "name": "Жнец заразитель",
     "deckName": "harrower-infester",
     "isBoss": false,
@@ -279,6 +310,7 @@
     "pack": "MAIN"
   },
   {
+    "key": "32",
     "name": "Вермлинг-шаман",
     "deckName": "shaman",
     "isBoss": false,
@@ -288,6 +320,7 @@
     "pack": "MAIN"
   },
   {
+    "key": "33",
     "name": "Гигантская гадюка",
     "deckName": "giant-viper",
     "isBoss": false,
@@ -297,6 +330,7 @@
     "pack": "MAIN"
   },
   {
+    "key": "34",
     "name": "Слизь",
     "deckName": "ooze",
     "isBoss": false,
@@ -306,6 +340,7 @@
     "pack": "MAIN"
   },
   {
+    "key": "35",
     "name": "Архидемон",
     "deckName": "boss",
     "isBoss": true,
@@ -315,6 +350,7 @@
     "pack": "MAIN"
   },
   {
+    "key": "36",
     "name": "Древняя пушка",
     "deckName": "ancient-artillery",
     "isBoss": false,
@@ -324,6 +360,7 @@
     "pack": "MAIN"
   },
   {
+    "key": "37",
     "name": "Когтистый дрейк",
     "deckName": "rending-drake",
     "isBoss": false,
@@ -333,6 +370,7 @@
     "pack": "MAIN"
   },
   {
+    "key": "38",
     "name": "Черный бес",
     "deckName": "imp",
     "isBoss": false,
@@ -342,6 +380,7 @@
     "pack": "MAIN"
   },
   {
+    "key": "39",
     "name": "Невыносимый ужас",
     "deckName": "deep-terror",
     "isBoss": false,
@@ -351,6 +390,7 @@
     "pack": "MAIN"
   },
   {
+    "key": "40",
     "name": "Скрытень",
     "deckName": "lurker",
     "isBoss": false,
@@ -360,6 +400,7 @@
     "pack": "MAIN"
   },
   {
+    "key": "41",
     "name": "Саввас Поток лавы",
     "deckName": "savvas-lavaflow",
     "isBoss": false,
@@ -369,6 +410,7 @@
     "pack": "MAIN"
   },
   {
+    "key": "42",
     "name": "Дрейк-патриарх",
     "deckName": "boss",
     "isBoss": true,
@@ -378,6 +420,7 @@
     "pack": "MAIN"
   },
   {
+    "key": "43",
     "name": "Крылатый ужас",
     "deckName": "boss",
     "isBoss": true,
@@ -387,6 +430,7 @@
     "pack": "MAIN"
   },
   {
+    "key": "44",
     "name": "Невидящее око",
     "deckName": "boss",
     "isBoss": true,
@@ -396,6 +440,7 @@
     "pack": "MAIN"
   },
   {
+    "key": "45",
     "name": "Темный всадник",
     "deckName": "boss",
     "isBoss": true,
@@ -405,6 +450,7 @@
     "pack": "MAIN"
   },
   {
+    "key": "46",
     "name": "Мрак",
     "deckName": "boss",
     "isBoss": true,
@@ -414,6 +460,7 @@
     "pack": "MAIN"
   },
   {
+    "key": "47",
     "name": "Предатель",
     "deckName": "boss",
     "isBoss": true,
@@ -423,6 +470,7 @@
     "pack": "MAIN"
   },
   {
+    "key": "48",
     "name": "Бесцветный",
     "deckName": "boss",
     "isBoss": true,
@@ -432,6 +480,7 @@
     "pack": "MAIN"
   },
   {
+    "key": "49",
     "name": "Эстер-разведчик",
     "deckName": "scout",
     "isBoss": false,
@@ -441,6 +490,7 @@
     "pack": "MAIN"
   },
   {
+    "key": "50",
     "name": "Валрат-варвар",
     "deckName": "savage",
     "isBoss": false,
@@ -450,6 +500,7 @@
     "pack": "MAIN"
   },
   {
+    "key": "51",
     "name": "Валрат-следопыт",
     "deckName": "tracker",
     "isBoss": false,
@@ -459,6 +510,7 @@
     "pack": "MAIN"
   },
   {
+    "key": "52",
     "name": "Полководец людей",
     "deckName": "boss",
     "isBoss": true,
@@ -468,6 +520,7 @@
     "pack": "MAIN"
   },
   {
+    "key": "53",
     "name": "Полководец валратов",
     "deckName": "boss",
     "isBoss": true,
@@ -477,6 +530,7 @@
     "pack": "MAIN"
   },
   {
+    "key": "54",
     "name": "Села Наберис",
     "deckName": "tracker",
     "isBoss": true,
@@ -486,6 +540,7 @@
     "pack": "FORGOTTEN_CIRCLES"
   },
   {
+    "key": "55",
     "name": "Шрака мудрый",
     "deckName": "shaman",
     "isBoss": true,
@@ -495,6 +550,7 @@
     "pack": "FORGOTTEN_CIRCLES"
   },
   {
+    "key": "56",
     "name": "Стальной лев",
     "deckName": "guard",
     "isBoss": true,
@@ -504,6 +560,7 @@
     "pack": "FORGOTTEN_CIRCLES"
   },
   {
+    "key": "57",
     "name": "Уйрат Иккума",
     "deckName": "savvas-lavaflow",
     "isBoss": true,
@@ -513,6 +570,7 @@
     "pack": "FORGOTTEN_CIRCLES"
   },
   {
+    "key": "58",
     "name": "Эстер Пепельный клинок",
     "deckName": "ashblade",
     "isBoss": false,
@@ -522,6 +580,7 @@
     "pack": "FORGOTTEN_CIRCLES"
   },
   {
+    "key": "59",
     "name": "Шелуха",
     "deckName": "ashblade",
     "isBoss": true,

@@ -7,6 +7,9 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class MonsterJson(
+    // Stable catalog key. Used as the translation-store key for this monster's name; the (Russian)
+    // [name] remains the logic/save identity. Not persisted to the DB.
+    val key: String,
     val name: String,
     val deckName: String,
     val isBoss: Boolean,
@@ -30,6 +33,17 @@ data class MonsterJson(
 data class MonsterStatsJson(
     val monsterName: String,
     val stats: List<MonsterLevelStatsJson>
+)
+
+/**
+ * Catalog of the deduplicated ability/special text embedded in monster stats. [text] is the
+ * canonical Russian content (matched verbatim against the stats data to bridge to [key]); the
+ * per-locale dictionaries are keyed by [key]. Not persisted to the DB.
+ */
+@Serializable
+data class MonsterTextJson(
+    val key: String,
+    val text: String,
 )
 
 @Serializable

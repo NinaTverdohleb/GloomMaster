@@ -15,6 +15,15 @@ object TranslationKeys {
     // (Russian) name; that name is bridged to the key at lookup time.
     const val ACHIEVEMENT = "achievement"
 
+    // Monster names are keyed by a stable catalog key (see MonsterKeyIndex). The canonical
+    // (Russian) name stays the game-logic/save identity (scenario monster lists, active-play
+    // game state); that name is bridged to the key at lookup time.
+    const val MONSTER = "monster"
+
+    // Ability/special text embedded in monster stats, deduplicated and keyed by a stable catalog
+    // key (see MonsterTextKeyIndex). The canonical Russian text is bridged to the key at lookup.
+    const val MONSTER_TEXT = "monster_text"
+
     // Per-task quest text, keyed by "$questId:$taskId" so each task stays addressable
     // independent of the parent quest fields.
     const val QUEST_TASK = "quest_task"

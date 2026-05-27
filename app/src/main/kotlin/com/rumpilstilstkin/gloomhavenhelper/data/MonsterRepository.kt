@@ -2,9 +2,12 @@ package com.rumpilstilstkin.gloomhavenhelper.data
 
 import com.rumpilstilstkin.gloomhavenhelper.bd.dao.MonsterDao
 import com.rumpilstilstkin.gloomhavenhelper.bd.dao.ScenarioDao
+import com.rumpilstilstkin.gloomhavenhelper.data.mappers.localized
 import com.rumpilstilstkin.gloomhavenhelper.data.mappers.toDomain
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.Monster
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterChoice
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterStats
+import com.rumpilstilstkin.gloomhavenhelper.localization.LocaleSource
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -12,6 +15,8 @@ import javax.inject.Singleton
 class MonsterRepository @Inject constructor(
     val monsterDao: MonsterDao,
     val scenarioDao: ScenarioDao,
+    private val translationRepository: TranslationRepository,
+    private val localeSource: LocaleSource,
 ) {
     suspend fun getMonsterNamesForScenario(
         scenarioNumber: Int,
@@ -33,18 +38,28 @@ class MonsterRepository @Inject constructor(
             isElite = isElite,
             life = stats.life,
             stats = stats.stats,
-        )
+        ).localized(translationRepository.resolver(localeSource.current))
     }
 
     suspend fun getMonstersForPacks(packs: List<String>): List<String> =
         monsterDao.getMonstersByPacks(packs).map { monster -> monster.name }
 
+    /**
+     * Pairs each canonical (Russian) monster name with its display name for the active locale.
+     * The canonical name stays the selection/persistence identity in the scenario constructor.
+     */
+    suspend fun localizeMonsterNames(names: List<String>): List<MonsterChoice> {
+        val resolver = translationRepository.resolver(localeSource.current)
+        return names.map { MonsterChoice(name = it, displayName = resolver.resolveMonster(it)) }
+    }
+
 
     suspend fun getMonstersByNames(
         names: List<String>,
         level: Int
-    ): List<Monster> =
-        names
+    ): List<Monster> {
+        val resolver = translationRepository.resolver(localeSource.current)
+        return names
             .map { monsterName ->
                 val monster = monsterDao.getMonsterByName(monsterName)
                 val regularStats = monsterDao.getStats(
@@ -76,6 +91,7 @@ class MonsterRepository @Inject constructor(
                     isFly = monster.fly,
                     level = level,
                     lifeMultiple = monster.lifeMultiple,
-                )
+                ).localized(resolver)
             }
+    }
 }

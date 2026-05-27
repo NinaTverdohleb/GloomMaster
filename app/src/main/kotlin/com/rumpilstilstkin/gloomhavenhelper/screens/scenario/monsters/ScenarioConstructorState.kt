@@ -1,6 +1,7 @@
 package com.rumpilstilstkin.gloomhavenhelper.screens.scenario.monsters
 
 import androidx.compose.runtime.Immutable
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterChoice
 import kotlinx.collections.immutable.ImmutableList
 
 sealed interface ScenarioConstructorStateUi {
@@ -8,13 +9,15 @@ sealed interface ScenarioConstructorStateUi {
 
     @Immutable
     data class Content(
-        val availableMonsters: ImmutableList<String>,
-        val selectedMonsters: ImmutableList<String>,
+        val availableMonsters: ImmutableList<MonsterChoice>,
+        val selectedMonsters: ImmutableList<MonsterChoice>,
     ) : ScenarioConstructorStateUi
 }
 
 data class ScenarioConstructorStateLogic(
-    val allMonsters: List<String> = emptyList(),
+    // [allMonsters] carries canonical name + localized display name; [selectedMonsters] holds the
+    // canonical names (the selection/persistence identity), so language switching never alters it.
+    val allMonsters: List<MonsterChoice> = emptyList(),
     val selectedMonsters: Set<String> = emptySet(),
 )
 

@@ -48,6 +48,12 @@ class TranslationJsonFiller @Inject constructor(
                 jsonDataLoader.loadAchievementTranslations(locale).forEach { (key, name) ->
                     add(translation(TranslationKeys.ACHIEVEMENT, key, TranslationKeys.FIELD_NAME, locale, name))
                 }
+                jsonDataLoader.loadMonsterTranslations(locale).forEach { (key, name) ->
+                    add(translation(TranslationKeys.MONSTER, key, TranslationKeys.FIELD_NAME, locale, name))
+                }
+                jsonDataLoader.loadMonsterTextTranslations(locale).forEach { (key, text) ->
+                    add(translation(TranslationKeys.MONSTER_TEXT, key, TranslationKeys.FIELD_TEXT, locale, text))
+                }
             }
             translationDao.insertAll(*rows.toTypedArray())
         }

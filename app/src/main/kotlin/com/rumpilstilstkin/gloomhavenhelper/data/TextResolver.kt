@@ -13,6 +13,10 @@ class TextResolver(
     // store by this stable key, but callers only have the canonical name (the logic identity),
     // so [resolveAchievement] bridges name -> key before looking up the text.
     private val achievementKeys: Map<String, String> = emptyMap(),
+    // Canonical (Russian) monster name -> stable catalog key (same bridge rationale as achievements).
+    private val monsterKeys: Map<String, String> = emptyMap(),
+    // Canonical (Russian) embedded stats text -> stable catalog key.
+    private val monsterTextKeys: Map<String, String> = emptyMap(),
 ) {
     fun resolve(entityType: String, entityKey: String, fieldName: String): String =
         byKey[key(entityType, entityKey, fieldName)]
@@ -25,6 +29,24 @@ class TextResolver(
             achievementKeys[canonicalName] ?: canonicalName,
             TranslationKeys.FIELD_NAME,
         )
+
+    /** Display name for a monster identified by its canonical (Russian) name. */
+    fun resolveMonster(canonicalName: String): String =
+        resolve(
+            TranslationKeys.MONSTER,
+            monsterKeys[canonicalName] ?: canonicalName,
+            TranslationKeys.FIELD_NAME,
+        )
+
+    /**
+     * Display text for ability/special text embedded in monster stats, identified by its canonical
+     * (Russian) content. Content not present in the catalog falls back to the canonical content
+     * itself (rather than a key marker), so unrecognized stats text still renders readably.
+     */
+    fun resolveMonsterText(canonicalContent: String): String {
+        val catalogKey = monsterTextKeys[canonicalContent] ?: return canonicalContent
+        return resolve(TranslationKeys.MONSTER_TEXT, catalogKey, TranslationKeys.FIELD_TEXT)
+    }
 
     companion object {
         fun key(entityType: String, entityKey: String, fieldName: String): String =
