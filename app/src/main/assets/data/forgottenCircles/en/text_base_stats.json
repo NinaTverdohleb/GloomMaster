@@ -1,0 +1,122 @@
+[
+  {
+    "monsterSlug": "valrath_savage",
+    "stats": [
+      {
+        "level": 3,
+        "isElite": true,
+        "textStats": [
+          "All adjacent allies add +1 to all their attacks"
+        ]
+      },
+      {
+        "level": 4,
+        "isElite": true,
+        "textStats": [
+          "All adjacent allies add +1 to all their attacks"
+        ]
+      },
+      {
+        "level": 5,
+        "isElite": true,
+        "textStats": [
+          "All adjacent allies add +2 to all their attacks"
+        ]
+      },
+      {
+        "level": 6,
+        "isElite": true,
+        "textStats": [
+          "All adjacent allies add +2 to all their attacks"
+        ]
+      },
+      {
+        "level": 7,
+        "isElite": true,
+        "textStats": [
+          "All adjacent allies add +2 to all their attacks"
+        ]
+      }
+    ]
+  },
+  {
+    "monsterSlug": "valrath_tracker",
+    "stats": [
+      {
+        "level": 3,
+        "isElite": false,
+        "textStats": [
+          "Advantage"
+        ]
+      },
+      {
+        "level": 4,
+        "isElite": false,
+        "textStats": [
+          "Advantage"
+        ]
+      },
+      {
+        "level": 5,
+        "isElite": false,
+        "textStats": [
+          "Advantage"
+        ]
+      },
+      {
+        "level": 6,
+        "isElite": false,
+        "textStats": [
+          "Advantage"
+        ]
+      },
+      {
+        "level": 7,
+        "isElite": false,
+        "textStats": [
+          "Advantage"
+        ]
+      }
+    ]
+  },
+  {
+    "monsterSlug": "aesther_ashblade",
+    "stats": [
+      {
+        "level": 3,
+        "isElite": true,
+        "textStats": [
+          "Attacks targeting Aesther Ashblade gain Disadvantage"
+        ]
+      },
+      {
+        "level": 4,
+        "isElite": true,
+        "textStats": [
+          "Attacks targeting Aesther Ashblade gain Disadvantage"
+        ]
+      },
+      {
+        "level": 5,
+        "isElite": true,
+        "textStats": [
+          "Attacks targeting Aesther Ashblade gain Disadvantage"
+        ]
+      },
+      {
+        "level": 6,
+        "isElite": true,
+        "textStats": [
+          "Attacks targeting Aesther Ashblade gain Disadvantage"
+        ]
+      },
+      {
+        "level": 7,
+        "isElite": true,
+        "textStats": [
+          "Attacks targeting Aesther Ashblade gain Disadvantage"
+        ]
+      }
+    ]
+  }
+]

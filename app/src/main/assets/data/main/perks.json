@@ -1,0 +1,70 @@
+[
+  {
+    "characterType": "Brute",
+    "perksCount": 15
+  },
+  {
+    "characterType": "Mindthief",
+    "perksCount": 15
+  },
+  {
+    "characterType": "Cragheart",
+    "perksCount": 15
+  },
+  {
+    "characterType": "Scoundrel",
+    "perksCount": 15
+  },
+  {
+    "characterType": "Spellweaver",
+    "perksCount": 15
+  },
+  {
+    "characterType": "Tinkerer",
+    "perksCount": 15
+  },
+  {
+    "characterType": "BeastTyrant",
+    "perksCount": 15
+  },
+  {
+    "characterType": "Elementalist",
+    "perksCount": 15
+  },
+  {
+    "characterType": "Summoner",
+    "perksCount": 15
+  },
+  {
+    "characterType": "Sunkeeper",
+    "perksCount": 15
+  },
+  {
+    "characterType": "Doomstalker",
+    "perksCount": 15
+  },
+  {
+    "characterType": "Soothsinger",
+    "perksCount": 15
+  },
+  {
+    "characterType": "Sawbones",
+    "perksCount": 15
+  },
+  {
+    "characterType": "Plagueherald",
+    "perksCount": 15
+  },
+  {
+    "characterType": "Nightshroud",
+    "perksCount": 15
+  },
+  {
+    "characterType": "Quartermaster",
+    "perksCount": 15
+  },
+  {
+    "characterType": "Berserker",
+    "perksCount": 15
+  }
+]

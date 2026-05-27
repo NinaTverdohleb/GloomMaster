@@ -1,0 +1,365 @@
+[
+  {
+    "monsterSlug": "night_demon",
+    "stats": [
+      {
+        "level": 0,
+        "isElite": false,
+        "textStats": [
+          "Attacks targeting the demon gain Disadvantage"
+        ]
+      },
+      {
+        "level": 0,
+        "isElite": true,
+        "textStats": [
+          "Attacks targeting the demon gain Disadvantage"
+        ]
+      },
+      {
+        "level": 1,
+        "isElite": false,
+        "textStats": [
+          "Attacks targeting the demon gain Disadvantage"
+        ]
+      },
+      {
+        "level": 1,
+        "isElite": true,
+        "textStats": [
+          "Attacks targeting the demon gain Disadvantage"
+        ]
+      },
+      {
+        "level": 2,
+        "isElite": false,
+        "textStats": [
+          "Attacks targeting the demon gain Disadvantage"
+        ]
+      },
+      {
+        "level": 2,
+        "isElite": true,
+        "textStats": [
+          "Attacks targeting the demon gain Disadvantage"
+        ]
+      },
+      {
+        "level": 3,
+        "isElite": false,
+        "textStats": [
+          "Attacks targeting the demon gain Disadvantage"
+        ]
+      },
+      {
+        "level": 3,
+        "isElite": true,
+        "textStats": [
+          "Attacks targeting the demon gain Disadvantage"
+        ]
+      },
+      {
+        "level": 4,
+        "isElite": false,
+        "textStats": [
+          "Attacks targeting the demon gain Disadvantage"
+        ]
+      },
+      {
+        "level": 4,
+        "isElite": true,
+        "textStats": [
+          "Attacks targeting the demon gain Disadvantage"
+        ]
+      },
+      {
+        "level": 5,
+        "isElite": false,
+        "textStats": [
+          "Attacks targeting the demon gain Disadvantage"
+        ]
+      },
+      {
+        "level": 5,
+        "isElite": true,
+        "textStats": [
+          "Attacks targeting the demon gain Disadvantage"
+        ]
+      },
+      {
+        "level": 6,
+        "isElite": false,
+        "textStats": [
+          "Attacks targeting the demon gain Disadvantage"
+        ]
+      },
+      {
+        "level": 6,
+        "isElite": true,
+        "textStats": [
+          "Attacks targeting the demon gain Disadvantage"
+        ]
+      },
+      {
+        "level": 7,
+        "isElite": false,
+        "textStats": [
+          "Attacks targeting the demon gain Disadvantage"
+        ]
+      },
+      {
+        "level": 7,
+        "isElite": true,
+        "textStats": [
+          "Attacks targeting the demon gain Disadvantage"
+        ]
+      }
+    ]
+  },
+  {
+    "monsterSlug": "flame_demon",
+    "stats": [
+      {
+        "level": 1,
+        "isElite": true,
+        "textStats": [
+          "Retaliate 2, Range 2"
+        ]
+      },
+      {
+        "level": 2,
+        "isElite": true,
+        "textStats": [
+          "Retaliate 3, Range 2"
+        ]
+      },
+      {
+        "level": 3,
+        "isElite": false,
+        "textStats": [
+          "Retaliate 2, Range 2"
+        ]
+      },
+      {
+        "level": 3,
+        "isElite": true,
+        "textStats": [
+          "Retaliate 3, Range 3"
+        ]
+      },
+      {
+        "level": 4,
+        "isElite": false,
+        "textStats": [
+          "Retaliate 3, Range 2"
+        ]
+      },
+      {
+        "level": 4,
+        "isElite": true,
+        "textStats": [
+          "Retaliate 4, Range 3"
+        ]
+      },
+      {
+        "level": 5,
+        "isElite": false,
+        "textStats": [
+          "Retaliate 3, Range 2"
+        ]
+      },
+      {
+        "level": 5,
+        "isElite": true,
+        "textStats": [
+          "Retaliate 4, Range 3"
+        ]
+      },
+      {
+        "level": 6,
+        "isElite": false,
+        "textStats": [
+          "Retaliate 4, Range 2"
+        ]
+      },
+      {
+        "level": 6,
+        "isElite": true,
+        "textStats": [
+          "Retaliate 5, Range 3"
+        ]
+      },
+      {
+        "level": 7,
+        "isElite": false,
+        "textStats": [
+          "Retaliate 4, Range 3"
+        ]
+      },
+      {
+        "level": 7,
+        "isElite": true,
+        "textStats": [
+          "Retaliate 5, Range 4"
+        ]
+      }
+    ]
+  },
+  {
+    "monsterSlug": "sun_demon",
+    "stats": [
+      {
+        "level": 0,
+        "isElite": false,
+        "textStats": [
+          "Attacks gain Advantage"
+        ]
+      },
+      {
+        "level": 0,
+        "isElite": true,
+        "textStats": [
+          "Attacks gain Advantage"
+        ]
+      },
+      {
+        "level": 1,
+        "isElite": false,
+        "textStats": [
+          "Attacks gain Advantage"
+        ]
+      },
+      {
+        "level": 1,
+        "isElite": true,
+        "textStats": [
+          "Attacks gain Advantage"
+        ]
+      },
+      {
+        "level": 2,
+        "isElite": false,
+        "textStats": [
+          "Attacks gain Advantage"
+        ]
+      },
+      {
+        "level": 2,
+        "isElite": true,
+        "textStats": [
+          "Attacks gain Advantage"
+        ]
+      },
+      {
+        "level": 3,
+        "isElite": false,
+        "textStats": [
+          "Attacks gain Advantage"
+        ]
+      },
+      {
+        "level": 3,
+        "isElite": true,
+        "textStats": [
+          "Attacks gain Advantage"
+        ]
+      },
+      {
+        "level": 4,
+        "isElite": false,
+        "textStats": [
+          "Attacks gain Advantage"
+        ]
+      },
+      {
+        "level": 4,
+        "isElite": true,
+        "textStats": [
+          "Attacks gain Advantage"
+        ]
+      },
+      {
+        "level": 5,
+        "isElite": false,
+        "textStats": [
+          "Attacks gain Advantage"
+        ]
+      },
+      {
+        "level": 5,
+        "isElite": true,
+        "textStats": [
+          "Attacks gain Advantage"
+        ]
+      },
+      {
+        "level": 6,
+        "isElite": false,
+        "textStats": [
+          "Attacks gain Advantage"
+        ]
+      },
+      {
+        "level": 6,
+        "isElite": true,
+        "textStats": [
+          "Attacks gain Advantage"
+        ]
+      },
+      {
+        "level": 7,
+        "isElite": false,
+        "textStats": [
+          "Attacks gain Advantage"
+        ]
+      },
+      {
+        "level": 7,
+        "isElite": true,
+        "textStats": [
+          "Attacks gain Advantage"
+        ]
+      }
+    ]
+  },
+  {
+    "monsterSlug": "black_imp",
+    "stats": [
+      {
+        "level": 3,
+        "isElite": true,
+        "textStats": [
+          "Attacks targeting the imp gain Disadvantage"
+        ]
+      },
+      {
+        "level": 4,
+        "isElite": true,
+        "textStats": [
+          "Attacks targeting the imp gain Disadvantage"
+        ]
+      },
+      {
+        "level": 5,
+        "isElite": true,
+        "textStats": [
+          "Attacks targeting the imp gain Disadvantage"
+        ]
+      },
+      {
+        "level": 6,
+        "isElite": true,
+        "textStats": [
+          "Attacks targeting the imp gain Disadvantage"
+        ]
+      },
+      {
+        "level": 7,
+        "isElite": true,
+        "textStats": [
+          "Attacks targeting the imp gain Disadvantage"
+        ]
+      }
+    ]
+  }
+]

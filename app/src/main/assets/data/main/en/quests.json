@@ -1,0 +1,353 @@
+[
+  {
+    "questId": "510",
+    "title": "Seeker of Xorn",
+    "description": "Ever since you were a child, you have heard the call of Xorn. Once great and revered, now forgotten, his followers have long been wiped from the face of the earth. But centuries later, his voice has awakened once more, piercing through time and space. By the will of the ancient deity, you have traveled to Gloomhaven — a city shrouded in darkness and secrets. Your goal is clear: find the remains and free Xorn. What happened once will inevitably happen again.",
+    "tasks": [
+      {
+        "id": 1,
+        "text": "Complete three scenarios featuring 'Crypt' in the title"
+      },
+      {
+        "id": 2,
+        "text": "Unlock and fully complete scenario 52 - \"Noxious Cellar\""
+      }
+    ]
+  },
+  {
+    "questId": "511",
+    "title": "Merchant Class",
+    "description": "Money is power, and trade is the ultimate rule of your world. You are certain: once you gather enough items to open your own shop, a full, carefree life will become a reality. Let those fools risk their lives fighting dangers — you will be the one to inherit their trophies.",
+    "tasks": [
+      {
+        "id": 1,
+        "text": "Have two 'Head' slot items in your inventory"
+      },
+      {
+        "id": 2,
+        "text": "Have two 'Body' slot items in your inventory"
+      },
+      {
+        "id": 3,
+        "text": "Have two 'Foot' slot items in your inventory"
+      },
+      {
+        "id": 4,
+        "text": "Have three 'One-Hand' or 'Two-Hand' weapon slot items in your inventory"
+      },
+      {
+        "id": 5,
+        "text": "Have four 'Small Item' slot items in your inventory"
+      }
+    ]
+  },
+  {
+    "questId": "512",
+    "title": "Greed is Good",
+    "description": "There are many lofty and noble goals in life — to find true love or live to a ripe old age. What nonsense! The only thing that matters in this world is money: to gather as much as possible and hide it safely. The weight of golden coins in your purse is the most beautiful thing imaginable! And to hell with those old men and lovers.",
+    "tasks": [
+      {
+        "id": 1,
+        "text": "Have 200 gold in your personal supply"
+      }
+    ]
+  },
+  {
+    "questId": "513",
+    "title": "Finding the Cure",
+    "description": "It all started with a simple cough that woke you up from one of your neighbors. The fits did not stop all night, and sleep was out of the question. Then the sickness began to spread, and its symptoms grew more terrifying: bleeding, sores, and soon death. The elder revealed that a cure could be found somewhere deep in the Dagger Forest, and it is somehow connected to Forest Imps. If you harvest enough of their blood, you might be able to find the cure yourself.",
+    "specialText": "Open envelope B",
+    "tasks": [
+      {
+        "id": 1,
+        "text": "Kill 8 Forest Imps"
+      },
+      {
+        "id": 2,
+        "text": "Unlock and fully complete scenario 59 - \"Forgotten Grove\""
+      }
+    ]
+  },
+  {
+    "questId": "514",
+    "title": "Fleshmender",
+    "description": "The body is an amazing creation of nature. One can only admire how it functions and what drives this complex mechanism! And there are so many interesting races to study in the world! Just imagine the opportunity to learn what the body of a representative of each race is capable of at the absolute limit of its endurance. Of course, you could study corpses at the University, but what use are dead remains? The best way to conduct research is to roll up your sleeves and go adventuring yourself.",
+    "tasks": [
+      {
+        "id": 1,
+        "text": "Witness your party members (excluding yourself) become exhausted 15 times"
+      }
+    ]
+  },
+  {
+    "questId": "515",
+    "title": "Law and Order",
+    "description": "The world around us is divided into two parts: order and chaos — what we have already tamed, and what we have yet to tame. Gloomhaven is a hotbed of chaos that must be subdued at all costs... Granted, Vermlings have never known any other life, but humans who violate the laws of humanity deserve no mercy.",
+    "tasks": [
+      {
+        "id": 1,
+        "text": "Kill a total of 20 Bandits and Cultists"
+      }
+    ]
+  },
+  {
+    "questId": "516",
+    "title": "A Pound of Flesh",
+    "description": "In the midst of the charred remains of a once vibrant village, a child sat silently. Your silence was the only thing that saved your life. The locals knew that this area was not safe, yet they built a town anyway. And then the Vermlings came and slaughtered everyone. Everyone except for one little child. Now that child has grown up and thirsts for vengeance.",
+    "tasks": [
+      {
+        "id": 1,
+        "text": "Kill 15 Vermlings"
+      }
+    ]
+  },
+  {
+    "questId": "517",
+    "title": "Trophy Hunt",
+    "description": "You remember that first time an arrow loosed from your bow pierced the heart of a doe, dropping it instantly. And that exact feeling of surpassing prey on its own territory. But a doe is too easy a target. In the wilderness, there are far more dangerous enemies that you wish to challenge. You do not hunt for the sake of killing — you kill because those are the rules of the hunt.",
+    "tasks": [
+      {
+        "id": 1,
+        "text": "Kill 20 different types of monsters"
+      }
+    ]
+  },
+  {
+    "questId": "518",
+    "title": "Eternal Wanderer",
+    "description": "There is so much unexplored in the world. So many places of incredible beauty: snow-covered mountain peaks, lost islands, crystalline caves. Undoubtedly, all these wonderful sights did not appear by accident. You burn with impatience to visit them and try to imagine how they could have come to be. Perhaps this will give you some answers to the questions of why you exist in this world.",
+    "tasks": [
+      {
+        "id": 1,
+        "text": "Successfully complete 15 different scenarios"
+      }
+    ]
+  },
+  {
+    "questId": "519",
+    "title": "Legendary Fighter",
+    "description": "It is time to make a name for yourself. Any mercenary can go out and simply do their job. But you... you are not just \"any mercenary\" — you have style. If you are going to take on a task, do it with flair, so that stories of your battles are sung by bards in taverns all over the world. If legends are not carved about you after your death, then why live at all?",
+    "tasks": [
+      {
+        "id": 1,
+        "text": "Earn 15 checkmarks from battle goals"
+      }
+    ]
+  },
+  {
+    "questId": "520",
+    "title": "An Incorruptible Idol",
+    "description": "You were chosen to exterminate the undead. The world suffocates from the presence of otherworldly forces, and you can feel it. Recalling tales of the legendary sacred axe held by a notorious necromancer, you set a simple goal: kill the necromancer, claim the axe, and avert the threat of a dead invasion.",
+    "tasks": [
+      {
+        "id": 1,
+        "text": "Find the \"Skullbane Axe\" located in the \"Necromancer's Sanctum\", and use it to kill 7 Living Bones, Living Corpses, or Living Spirits"
+      }
+    ]
+  },
+  {
+    "questId": "521",
+    "title": "The Forest's Return",
+    "description": "They came into your village, claiming that this forest belonged to them, and demanded tribute. You fought them off, but not for long: the bandits returned in greater numbers. Now all of your friends and family members are either dead or enslaved. You must gather reinforcements, locate their hideout, and restore justice.",
+    "tasks": [
+      {
+        "id": 1,
+        "text": "Successfully complete 3 scenarios located in the Dagger Forest"
+      },
+      {
+        "id": 2,
+        "text": "Unlock and fully complete scenario 55 - \"Foggy Thicket\""
+      }
+    ]
+  },
+  {
+    "questId": "522",
+    "title": "The Thin Places",
+    "description": "The air in Gloomhaven feels somewhat thin. Though it is not the air itself, but something beyond it… as if something on the other side is pushing, scratching, desperately trying to break through. This thought weighs heavily on your shoulders. Determined to unearth the truth, you set out to investigate various corners of the surrounding lands to study this strange phenomenon. Let us hope the air does not get any thinner.",
+    "tasks": [
+      {
+        "id": 1,
+        "text": "Successfully complete 3 scenarios with a number greater than 51"
+      }
+    ]
+  },
+  {
+    "questId": "523",
+    "title": "Aberrant Slayer",
+    "description": "Since birth, you have heard stories of ancient times when demons roamed the land and preyed on the weak, before your ancestors banished them. You always considered these tales to be fairy tales... at least until recently. Demons do exist after all, and you must continue the fight started by your forebears.",
+    "tasks": [
+      {
+        "id": 1,
+        "text": "Kill 1 Flame Demon"
+      },
+      {
+        "id": 2,
+        "text": "Kill 1 Frost Demon"
+      },
+      {
+        "id": 3,
+        "text": "Kill 1 Wind Demon"
+      },
+      {
+        "id": 4,
+        "text": "Kill 1 Earth Demon"
+      },
+      {
+        "id": 5,
+        "text": "Kill 1 Night Demon"
+      },
+      {
+        "id": 6,
+        "text": "Kill 1 Sun Demon"
+      }
+    ]
+  },
+  {
+    "questId": "524",
+    "title": "Fearless Stand",
+    "description": "Among your peers, you never stood out for your large stature. In truth, your entire childhood and youth you were bullied for your short height and for being different from the rest. If only those bullies could see you now. The time has come to stand up for that little kid and show everyone who thinks they are better than others that they are deeply mistaken. Let them rest in the ground on equal terms with everyone else.",
+    "tasks": [
+      {
+        "id": 1,
+        "text": "Kill 20 elite monsters"
+      }
+    ]
+  },
+  {
+    "questId": "525",
+    "title": "Piety in All Things",
+    "description": "This wretched city of Gloomhaven is a squirming pit of vice and greed. You can feel your lungs blackening with evil barely breathing the air. But still, you agreed to help the damn Sanctuary of the Great Oak, so you must be strong. You will go into the dens of sin surrounding this city and do everything you can to revive the city's single beacon of hope.",
+    "tasks": [
+      {
+        "id": 1,
+        "text": "Donate 120 gold to the Sanctuary of the Great Oak"
+      }
+    ]
+  },
+  {
+    "questId": "526",
+    "title": "Vengeance",
+    "description": "When you close your eyes, you can still see yourselves playing happily as children. However, when you open your eyes, all you see is your dead best friend. The guards claim it was an accident, but you know better. The culprit must be found, and vengeance will be served. Sometimes blood breeds blood.",
+    "specialText": "Open envelope X",
+    "tasks": [
+      {
+        "id": 1,
+        "text": "Successfully complete 4 scenarios located in Gloomhaven"
+      },
+      {
+        "id": 2,
+        "text": "Unlock and fully complete scenario 57 - \"Investigation\""
+      }
+    ]
+  },
+  {
+    "questId": "527",
+    "title": "Zealot of the Blood God",
+    "description": "All these insignificant little ants scurry back and forth with their worthless business. None of them have any concept of what true devotion to faith means. To believe means to give all of yourself without remainder for a higher purpose. To honor the ancient texts that demand sacrifice. Only death in battle will revive the blood god. So lay down your bones in every battle! When nothing is left, eternity will await you.",
+    "tasks": [
+      {
+        "id": 1,
+        "text": "Become exhausted 12 times"
+      }
+    ]
+  },
+  {
+    "questId": "528",
+    "title": "Goliath Slayer",
+    "description": "You remember in exquisite detail the day a shadow swept over your village. Everyone said it was just a cloud, but you are certain: it was a dragon! Your future blazed with bright colors. You knew that one day you would leave the village in search of other rare and majestic creatures and that you would honor them by challenging them to a fight. After all, that is the way of true heroes.",
+    "tasks": [
+      {
+        "id": 1,
+        "text": "Successfully complete 4 different scenarios featuring boss monsters"
+      }
+    ]
+  },
+  {
+    "questId": "529",
+    "title": "Fall from Grace",
+    "description": "There is plenty of evidence, and it is everywhere, right under your nose. The main thing is to know where and how to look. Cities are built on the remains of something far more ancient. Others were here before you, but then they vanished. You must find out what happened to them.",
+    "tasks": [
+      {
+        "id": 1,
+        "text": "Successfully complete 2 different scenarios located in the Lingering Swamp"
+      },
+      {
+        "id": 2,
+        "text": "Unlock and fully complete scenario 61 - \"Fading Lighthouse\""
+      }
+    ]
+  },
+  {
+    "questId": "530",
+    "title": "Augmented Abilities",
+    "description": "Sure, Gloomhaven might not be the coziest place, but that is perfectly fine when there are so many other things going for it. Namely: Aesthers. You have never seen so many! There are even rumors of one in town capable of enhancing a person through magic. With a minor improvement, you can excel at anything!",
+    "tasks": [
+      {
+        "id": 1,
+        "text": "Purchase 4 enhancements"
+      }
+    ]
+  },
+  {
+    "questId": "531",
+    "title": "Elemental Samples",
+    "description": "How wonderful our world is, especially in the vicinity of Gloomhaven. So many fascinating unusual phenomena. So many bright and colorful samples yet to be collected. However, these places are quite dangerous — it is undesirable to venture there alone.",
+    
+    "tasks": [
+      {
+        "id": 1,
+        "text": "Complete a scenario in Gloomhaven"
+      },
+      {
+        "id": 2,
+        "text": "Complete a scenario in the Dagger Forest"
+      },
+      {
+        "id": 3,
+        "text": "Complete a scenario in the Lingering Swamp"
+      },
+      {
+        "id": 4,
+        "text": "Complete a scenario in the Watcher Mountains"
+      },
+      {
+        "id": 5,
+        "text": "Complete a scenario in the Copperneck Mountains"
+      },
+      {
+        "id": 6,
+        "text": "Complete a scenario in the Misty Sea"
+      }
+    ]
+  },
+  {
+    "questId": "532",
+    "title": "Helping Hand",
+    "description": "You have never strived to be the center of attention. There is enough selfishness in the world, so the public has plenty of others to look at in abundance. You have always preferred to stay in the background. Everyone in this town strives for lofty and noble goals, while you rejoice simply in being able to help others.",
+    "tasks": [
+      {
+        "id": 1,
+        "text": "Witness 2 other characters complete their personal quests"
+      }
+    ]
+  },
+  {
+    "questId": "533",
+    "title": "The Perfect Poison",
+    "description": "Creating poisons is a special art. If a painter knows many ways to apply paint to canvas, a poison maker knows many ways to poison. Until recently, you were satisfied with previous results, but this time you decided to create a masterpiece. Rumor has it of various bizarre creatures in the vicinity of Gloomhaven. If you can gather a few samples, you will create a poison that will be remembered for generations.",
+    "tasks": [
+      {
+        "id": 1,
+        "text": "Kill 3 Oozes"
+      },
+      {
+        "id": 2,
+        "text": "Kill 3 Lurkers"
+      },
+      {
+        "id": 3,
+        "text": "Kill 3 Spitting Drakes"
+      }
+    ]
+  }
+]

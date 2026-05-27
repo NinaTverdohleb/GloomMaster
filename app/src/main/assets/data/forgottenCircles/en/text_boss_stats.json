@@ -1,0 +1,90 @@
+[
+  {
+    "monsterSlug": "seeley_naberis",
+    "stats": [
+      { "level": 0, "isElite": false,  "textStats": ["Targets = number of characters"] },
+      { "level": 1, "isElite": false,  "textStats": ["Targets = number of characters"] },
+      { "level": 2, "isElite": false,  "textStats": ["Targets = number of characters"] },
+      { "level": 3, "isElite": false,  "textStats": ["Targets = number of characters"] },
+      { "level": 4, "isElite": false,  "textStats": ["Targets = number of characters"] },
+      { "level": 5, "isElite": false,  "textStats": ["Targets = number of characters"] },
+      { "level": 6, "isElite": false,  "textStats": ["Targets = number of characters"] },
+      { "level": 7, "isElite": false,  "textStats": ["Targets = number of characters"] }
+    ]
+  },
+  {
+    "monsterSlug": "shhraelk_the_wise",
+    "stats": [
+      { "level": 0, "isElite": false, "textStats": [ "Shhraelk doubles the values of all heal actions, and targets the Iron Lion with heal actions whenever possible", "If Shhraelk applies Effect #26 or #34, she applies the same effect a second time" ] },
+      { "level": 1, "isElite": false, "textStats": [ "Shhraelk doubles the values of all heal actions, and targets the Iron Lion with heal actions whenever possible", "If Shhraelk applies Effect #26 or #34, she applies the same effect a second time" ] },
+      { "level": 2, "isElite": false, "textStats": [ "Shhraelk doubles the values of all heal actions, and targets the Iron Lion with heal actions whenever possible", "If Shhraelk applies Effect #26 or #34, she applies the same effect a second time" ] },
+      { "level": 3, "isElite": false, "textStats": [ "Shhraelk doubles the values of all heal actions, and targets the Iron Lion with heal actions whenever possible", "If Shhraelk applies Effect #26 or #34, she applies the same effect a second time" ] },
+      { "level": 4, "isElite": false, "textStats": [ "Shhraelk doubles the values of all heal actions, and targets the Iron Lion with heal actions whenever possible", "If Shhraelk applies Effect #26 or #34, she applies the same effect a second time" ] },
+      { "level": 5, "isElite": false, "textStats": [ "Shhraelk doubles the values of all heal actions, and targets the Iron Lion with heal actions whenever possible", "If Shhraelk applies Effect #26 or #34, she applies the same effect a second time" ] },
+      { "level": 6, "isElite": false, "textStats": [ "Shhraelk doubles the values of all heal actions, and targets the Iron Lion with heal actions whenever possible", "If Shhraelk applies Effect #26 or #34, she applies the same effect a second time" ] },
+      { "level": 7, "isElite": false, "textStats": [ "Shhraelk doubles the values of all heal actions, and targets the Iron Lion with heal actions whenever possible", "If Shhraelk applies Effect #26 or #34, she applies the same effect a second time" ] }
+    ]
+  },
+  {
+    "monsterSlug": "the_iron_lion",
+    "stats": [
+      { "level": 0, "isElite": false, "textStats": ["Shield affects self and all allies", "If an ally adjacent to the Iron Lion becomes the target of an attack, the Iron Lion becomes the target of that attack instead.", "In the first cases of equal PC, taking 6 or more damage does not affect the Iron Lion"] },
+      { "level": 1, "isElite": false, "textStats": ["Shield affects self and all allies", "If an ally adjacent to the Iron Lion becomes the target of an attack, the Iron Lion becomes the target of that attack instead.", "In the first cases of equal PC, taking 6 or more damage does not affect the Iron Lion"] },
+      { "level": 2, "isElite": false, "textStats": ["Shield affects self and all allies", "If an ally adjacent to the Iron Lion becomes the target of an attack, the Iron Lion becomes the target of that attack instead.", "In the first cases of equal PC, taking 6 or more damage does not affect the Iron Lion"] },
+      { "level": 3, "isElite": false, "textStats": ["Shield affects self and all allies", "If an ally adjacent to the Iron Lion becomes the target of an attack, the Iron Lion becomes the target of that attack instead.", "In the first cases of equal PC, taking 6 or more damage does not affect the Iron Lion"] },
+      { "level": 4, "isElite": false, "textStats": ["Shield affects self and all allies", "If an ally adjacent to the Iron Lion becomes the target of an attack, the Iron Lion becomes the target of that attack instead.", "In the first cases of equal PC, taking 6 or more damage does not affect the Iron Lion"] },
+      { "level": 5, "isElite": false, "textStats": ["Shield affects self and all allies", "If an ally adjacent to the Iron Lion becomes the target of an attack, the Iron Lion becomes the target of that attack instead.", "In the first cases of equal PC, taking 6 or more damage does not affect the Iron Lion"] },
+      { "level": 6, "isElite": false, "textStats": ["Shield affects self and all allies", "If an ally adjacent to the Iron Lion becomes the target of an attack, the Iron Lion becomes the target of that attack instead.", "In the first cases of equal PC, taking 6 or more damage does not affect the Iron Lion"] },
+      { "level": 7, "isElite": false, "textStats": ["Shield affects self and all allies", "If an ally adjacent to the Iron Lion becomes the target of an attack, the Iron Lion becomes the target of that attack instead.", "In the first cases of equal PC, taking 6 or more damage does not affect the Iron Lion"] }
+    ]
+  },
+  {
+    "monsterSlug": "uyraith_ikkuma",
+    "stats": [
+      { "level": 0, "isElite": false, "textStats": [ "All of Uyraith's summoned creations are powerful if 3 or 4 players are participating", "When a Flame Demon or an Earth Demon is on the battlefield, Uyraith can use #22 and #23 as if they had maximum charge." ] },
+      { "level": 1, "isElite": false, "textStats": [ "All of Uyraith's summoned creations are powerful if 3 or 4 players are participating", "When a Flame Demon or an Earth Demon is on the battlefield, Uyraith can use #22 and #23 as if they had maximum charge." ] },
+      { "level": 2, "isElite": false, "textStats": [ "All of Uyraith's summoned creations are powerful if 3 or 4 players are participating", "When a Flame Demon or an Earth Demon is on the battlefield, Uyraith can use #22 and #23 as if they had maximum charge." ] },
+      { "level": 3, "isElite": false, "textStats": [ "All of Uyraith's summoned creations are powerful if 3 or 4 players are participating", "When a Flame Demon or an Earth Demon is on the battlefield, Uyraith can use #22 and #23 as if they had maximum charge." ] },
+      { "level": 4, "isElite": false, "textStats": [ "All of Uyraith's summoned creations are powerful if 3 or 4 players are participating", "When a Flame Demon or an Earth Demon is on the battlefield, Uyraith can use #22 and #23 as if they had maximum charge." ] },
+      { "level": 5, "isElite": false, "textStats": [ "All of Uyraith's summoned creations are powerful if 3 or 4 players are participating", "When a Flame Demon or an Earth Demon is on the battlefield, Uyraith can use #22 and #23 as if they had maximum charge." ] },
+      { "level": 6, "isElite": false, "textStats": [ "All of Uyraith's summoned creations are powerful if 3 or 4 players are participating", "When a Flame Demon or an Earth Demon is on the battlefield, Uyraith can use #22 and #23 as if they had maximum charge." ] },
+      { "level": 7, "isElite": false, "textStats": [ "All of Uyraith's summoned creations are powerful if 3 or 4 players are participating", "When a Flame Demon or an Earth Demon is on the battlefield, Uyraith can use #22 and #23 as if they had maximum charge." ] }
+    ]
+  },
+  {
+    "monsterSlug": "the_husk",
+    "stats": [
+      { "level": 3, "isElite": false, "textStats": ["All attacks targeting Aesther Ashblade gain Disadvantage"] },
+      { "level": 4, "isElite": false, "textStats": ["All attacks targeting Aesther Ashblade gain Disadvantage"] },
+      { "level": 5, "isElite": false, "textStats": ["All attacks targeting Aesther Ashblade gain Disadvantage"] },
+      { "level": 6, "isElite": false, "textStats": ["All attacks targeting Aesther Ashblade gain Disadvantage"] },
+      { "level": 7, "isElite": false, "textStats": ["All attacks targeting Aesther Ashblade gain Disadvantage"] }
+    ]
+  },
+  {
+    "monsterSlug": "human_commander",
+    "stats": [
+      { "level": 0, "isElite": false, "textStats": ["Special 1: Move +0, Attack +0. Summons City Guard", "Special 2: Summons City Archer. Move -1. Shield 1 on all adjacent allies."] },
+      { "level": 1, "isElite": false, "textStats": ["Special 1: Move +0, Attack +0. Summons City Guard", "Special 2: Summons City Archer. Move -1. Shield 1 on all adjacent allies."] },
+      { "level": 2, "isElite": false, "textStats": ["Special 1: Move +0, Attack +0. Summons City Guard", "Special 2: Summons City Archer. Move -1. Shield 1 on all adjacent allies."] },
+      { "level": 3, "isElite": false, "textStats": ["Special 1: Move +0, Attack +0. Summons City Guard", "Special 2: Summons City Archer. Move -1. Shield 2 on all adjacent allies."] },
+      { "level": 4, "isElite": false, "textStats": ["Special 1: Move +0, Attack +0. Summons City Guard", "Special 2: Summons City Archer. Move -1. Shield 2 on all adjacent allies."] },
+      { "level": 5, "isElite": false, "textStats": ["Special 1: Move +0, Attack +0. Summons City Guard", "Special 2: Summons City Archer. Move -1. Shield 2 on all adjacent allies."] },
+      { "level": 6, "isElite": false, "textStats": ["Special 1: Move +0, Attack +0. Summons City Guard", "Special 2: Summons City Archer. Move -1. Shield 2 on all adjacent allies."] },
+      { "level": 7, "isElite": false, "textStats": ["Special 1: Move +0, Attack +0. Summons City Guard", "Special 2: Summons City Archer. Move -1. Shield 3 on all adjacent allies."] }
+    ]
+  },
+  {
+    "monsterSlug": "valrath_commander",
+    "stats": [
+      { "level": 0, "isElite": false, "textStats": ["Special 1: Summons Valrath Tracker. Move -1. Heal 2 on all adjacent allies.", "Special 2: Move +0, Attack +0. Summons Valrath Savage"] },
+      { "level": 1, "isElite": false, "textStats": ["Special 1: Summons Valrath Tracker. Move -1. Heal 2 on all adjacent allies.", "Special 2: Move +0, Attack +0. Summons Valrath Savage"] },
+      { "level": 2, "isElite": false, "textStats": ["Special 1: Summons Valrath Tracker. Move -1. Heal 3 on all adjacent allies.", "Special 2: Move +0, Attack +0. Summons Valrath Savage"] },
+      { "level": 3, "isElite": false, "textStats": ["Special 1: Summons Valrath Tracker. Move -1. Heal 3 on all adjacent allies.", "Special 2: Move +0, Attack +0. Summons Valrath Savage"] },
+      { "level": 4, "isElite": false, "textStats": ["Special 1: Summons Valrath Tracker. Move -1. Heal 4 on all adjacent allies.", "Special 2: Move +0, Attack +0. Summons Valrath Savage"] },
+      { "level": 5, "isElite": false, "textStats": ["Special 1: Summons Valrath Tracker. Move -1. Heal 4 on all adjacent allies.", "Special 2: Move +0, Attack +0. Summons Valrath Savage"] },
+      { "level": 6, "isElite": false, "textStats": ["Special 1: Summons Valrath Tracker. Move -1. Heal 4 on all adjacent allies.", "Special 2: Move +0, Attack +0. Summons Valrath Savage"] },
+      { "level": 7, "isElite": false, "textStats": ["Special 1: Summons Valrath Tracker. Move -1. Heal 5 on all adjacent allies.", "Special 2: Move +0, Attack +0. Summons Valrath Savage"] }
+    ]
+  }
+]

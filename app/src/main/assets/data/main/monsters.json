@@ -1,6 +1,6 @@
 [
   {
-    "name": "Главарь разбойников",
+    "slug": "bandit_commander",
     "deckName": "boss",
     "isBoss": true,
     "fly": false,
@@ -9,7 +9,7 @@
     "pack": "MAIN"
   },
   {
-    "name": "Ожившие кости",
+    "slug": "living_bones",
     "deckName": "living-bones",
     "isBoss": false,
     "fly": false,
@@ -18,7 +18,7 @@
     "pack": "MAIN"
   },
   {
-    "name": "Разбойник-страж",
+    "slug": "bandit_guard",
     "deckName": "guard",
     "isBoss": false,
     "fly": false,
@@ -27,7 +27,7 @@
     "pack": "MAIN"
   },
   {
-    "name": "Разбойник-лучница",
+    "slug": "bandit_archer",
     "deckName": "archer",
     "isBoss": false,
     "fly": false,
@@ -36,7 +36,7 @@
     "pack": "MAIN"
   },
   {
-    "name": "Оживший труп",
+    "slug": "living_corpse",
     "deckName": "living-corpse",
     "isBoss": false,
     "fly": false,
@@ -45,7 +45,7 @@
     "pack": "MAIN"
   },
   {
-    "name": "Инокс-стражница",
+    "slug": "inox_guard",
     "deckName": "guard",
     "isBoss": false,
     "fly": false,
@@ -54,7 +54,7 @@
     "pack": "MAIN"
   },
   {
-    "name": "Инокс-лучник",
+    "slug": "inox_archer",
     "deckName": "archer",
     "isBoss": false,
     "fly": false,
@@ -63,7 +63,7 @@
     "pack": "MAIN"
   },
   {
-    "name": "Инокс-шаман",
+    "slug": "inox_shaman",
     "deckName": "shaman",
     "isBoss": false,
     "fly": false,
@@ -72,7 +72,7 @@
     "pack": "MAIN"
   },
   {
-    "name": "Культист",
+    "slug": "cultist",
     "deckName": "cultist",
     "isBoss": false,
     "fly": false,
@@ -81,7 +81,7 @@
     "pack": "MAIN"
   },
   {
-    "name": "Земляной демон",
+    "slug": "earth_demon",
     "deckName": "earth-demon",
     "isBoss": false,
     "fly": false,
@@ -90,7 +90,7 @@
     "pack": "MAIN"
   },
   {
-    "name": "Воздушный демон",
+    "slug": "wind_demon",
     "deckName": "wind-demon",
     "isBoss": false,
     "fly": true,
@@ -99,7 +99,7 @@
     "pack": "MAIN"
   },
   {
-    "name": "Оживший дух",
+    "slug": "living_spirit",
     "deckName": "living-spirit",
     "isBoss": false,
     "fly": true,
@@ -108,7 +108,7 @@
     "pack": "MAIN"
   },
   {
-    "name": "Ночной демон",
+    "slug": "night_demon",
     "deckName": "night-demon",
     "isBoss": false,
     "fly": false,
@@ -117,7 +117,7 @@
     "pack": "MAIN"
   },
   {
-    "name": "Огненный демон",
+    "slug": "flame_demon",
     "deckName": "flame-demon",
     "isBoss": false,
     "fly": true,
@@ -126,7 +126,7 @@
     "pack": "MAIN"
   },
   {
-    "name": "Морозный демон",
+    "slug": "frost_demon",
     "deckName": "frost-demon",
     "isBoss": false,
     "fly": false,
@@ -135,7 +135,7 @@
     "pack": "MAIN"
   },
   {
-    "name": "Лесной бес",
+    "slug": "forest_imp",
     "deckName": "imp",
     "isBoss": false,
     "fly": true,
@@ -144,7 +144,7 @@
     "pack": "MAIN"
   },
   {
-    "name": "Пещерный медведь",
+    "slug": "cave_bear",
     "deckName": "cave-bear",
     "isBoss": false,
     "fly": false,
@@ -153,7 +153,7 @@
     "pack": "MAIN"
   },
   {
-    "name": "Инокс-телохранитель - 1",
+    "slug": "inox_bodyguard_the_blade",
     "deckName": "boss",
     "isBoss": true,
     "fly": false,
@@ -162,7 +162,7 @@
     "pack": "MAIN"
   },
   {
-    "name": "Инокс-телохранитель - 2",
+    "slug": "inox_bodyguard_the_axe",
     "deckName": "boss",
     "isBoss": true,
     "fly": false,
@@ -171,7 +171,7 @@
     "pack": "MAIN"
   },
   {
-    "name": "Гончая",
+    "slug": "hound",
     "deckName": "hound",
     "isBoss": false,
     "fly": false,
@@ -180,7 +180,7 @@
     "pack": "MAIN"
   },
   {
-    "name": "Вермлинг-разведчик",
+    "slug": "vermling_scout",
     "deckName": "scout",
     "isBoss": false,
     "fly": false,
@@ -189,7 +189,7 @@
     "pack": "MAIN"
   },
   {
-    "name": "Жестокий надзиратель",
+    "slug": "merciless_overseer",
     "deckName": "boss",
     "isBoss": true,
     "fly": false,
@@ -198,7 +198,7 @@
     "pack": "MAIN"
   },
   {
-    "name": "Солнечный демон",
+    "slug": "sun_demon",
     "deckName": "sun-demon",
     "isBoss": false,
     "fly": true,
@@ -207,7 +207,7 @@
     "pack": "MAIN"
   },
   {
-    "name": "Городской страж",
+    "slug": "city_guard",
     "deckName": "guard",
     "isBoss": false,
     "fly": false,
@@ -216,7 +216,7 @@
     "pack": "MAIN"
   },
   {
-    "name": "Городской лучник",
+    "slug": "city_archer",
     "deckName": "archer",
     "isBoss": false,
     "fly": false,
@@ -225,7 +225,7 @@
     "pack": "MAIN"
   },
   {
-    "name": "Начальник стражи",
+    "slug": "captain_of_the_guard",
     "deckName": "boss",
     "isBoss": true,
     "fly": false,
@@ -234,7 +234,7 @@
     "pack": "MAIN"
   },
   {
-    "name": "Джексера",
+    "slug": "jekserah",
     "deckName": "boss",
     "isBoss": true,
     "fly": false,
@@ -243,7 +243,7 @@
     "pack": "MAIN"
   },
   {
-    "name": "Каменный голем",
+    "slug": "stone_golem",
     "deckName": "stone-golem",
     "isBoss": false,
     "fly": false,
@@ -252,7 +252,7 @@
     "pack": "MAIN"
   },
   {
-    "name": "Шипящий дрейк",
+    "slug": "spitting_drake",
     "deckName": "spitting-drake",
     "isBoss": false,
     "fly": true,
@@ -261,7 +261,7 @@
     "pack": "MAIN"
   },
   {
-    "name": "Саввас Ледяной шторм",
+    "slug": "savvas_icestorm",
     "deckName": "savvas-icestorm",
     "isBoss": false,
     "fly": false,
@@ -270,7 +270,7 @@
     "pack": "MAIN"
   },
   {
-    "name": "Жнец заразитель",
+    "slug": "harrower_infester",
     "deckName": "harrower-infester",
     "isBoss": false,
     "fly": true,
@@ -279,7 +279,7 @@
     "pack": "MAIN"
   },
   {
-    "name": "Вермлинг-шаман",
+    "slug": "vermling_shaman",
     "deckName": "shaman",
     "isBoss": false,
     "fly": false,
@@ -288,7 +288,7 @@
     "pack": "MAIN"
   },
   {
-    "name": "Гигантская гадюка",
+    "slug": "giant_viper",
     "deckName": "giant-viper",
     "isBoss": false,
     "fly": false,
@@ -297,7 +297,7 @@
     "pack": "MAIN"
   },
   {
-    "name": "Слизь",
+    "slug": "ooze",
     "deckName": "ooze",
     "isBoss": false,
     "fly": false,
@@ -306,7 +306,7 @@
     "pack": "MAIN"
   },
   {
-    "name": "Архидемон",
+    "slug": "prime_demon",
     "deckName": "boss",
     "isBoss": true,
     "fly": false,
@@ -315,7 +315,7 @@
     "pack": "MAIN"
   },
   {
-    "name": "Древняя пушка",
+    "slug": "ancient_artillery",
     "deckName": "ancient-artillery",
     "isBoss": false,
     "fly": false,
@@ -324,7 +324,7 @@
     "pack": "MAIN"
   },
   {
-    "name": "Когтистый дрейк",
+    "slug": "rending_drake",
     "deckName": "rending-drake",
     "isBoss": false,
     "fly": false,
@@ -333,7 +333,7 @@
     "pack": "MAIN"
   },
   {
-    "name": "Черный бес",
+    "slug": "black_imp",
     "deckName": "imp",
     "isBoss": false,
     "fly": false,
@@ -342,7 +342,7 @@
     "pack": "MAIN"
   },
   {
-    "name": "Невыносимый ужас",
+    "slug": "deep_terror",
     "deckName": "deep-terror",
     "isBoss": false,
     "fly": false,
@@ -351,7 +351,7 @@
     "pack": "MAIN"
   },
   {
-    "name": "Скрытень",
+    "slug": "lurker",
     "deckName": "lurker",
     "isBoss": false,
     "fly": false,
@@ -360,7 +360,7 @@
     "pack": "MAIN"
   },
   {
-    "name": "Саввас Поток лавы",
+    "slug": "savvas_lavaflow",
     "deckName": "savvas-lavaflow",
     "isBoss": false,
     "fly": false,
@@ -369,7 +369,7 @@
     "pack": "MAIN"
   },
   {
-    "name": "Дрейк-патриарх",
+    "slug": "elder_penn_drake",
     "deckName": "boss",
     "isBoss": true,
     "fly": false,
@@ -378,7 +378,7 @@
     "pack": "MAIN"
   },
   {
-    "name": "Крылатый ужас",
+    "slug": "winged_horror",
     "deckName": "boss",
     "isBoss": true,
     "fly": false,
@@ -387,7 +387,7 @@
     "pack": "MAIN"
   },
   {
-    "name": "Невидящее око",
+    "slug": "the_sightless_eye",
     "deckName": "boss",
     "isBoss": true,
     "fly": false,
@@ -396,16 +396,7 @@
     "pack": "MAIN"
   },
   {
-    "name": "Темный всадник",
-    "deckName": "boss",
-    "isBoss": true,
-    "fly": false,
-    "lifeMultiple": true,
-    "immunity": ["STUN", "IMMOBILIZE", "DISARM", "POISON"],
-    "pack": "MAIN"
-  },
-  {
-    "name": "Мрак",
+    "slug": "the_gloom",
     "deckName": "boss",
     "isBoss": true,
     "fly": false,
@@ -414,16 +405,7 @@
     "pack": "MAIN"
   },
   {
-    "name": "Предатель",
-    "deckName": "boss",
-    "isBoss": true,
-    "fly": false,
-    "lifeMultiple": true,
-    "immunity": ["STUN", "WOUND", "DISARM", "CURSE", "POISON"],
-    "pack": "MAIN"
-  },
-  {
-    "name": "Бесцветный",
+    "slug": "the_colorless",
     "deckName": "boss",
     "isBoss": true,
     "fly": false,
@@ -432,102 +414,21 @@
     "pack": "MAIN"
   },
   {
-    "name": "Эстер-разведчик",
-    "deckName": "scout",
-    "isBoss": false,
-    "fly": false,
-    "lifeMultiple": false,
-    "immunity": [],
-    "pack": "MAIN"
-  },
-  {
-    "name": "Валрат-варвар",
-    "deckName": "savage",
-    "isBoss": false,
-    "fly": false,
-    "lifeMultiple": false,
-    "immunity": [],
-    "pack": "MAIN"
-  },
-  {
-    "name": "Валрат-следопыт",
-    "deckName": "tracker",
-    "isBoss": false,
-    "fly": false,
-    "lifeMultiple": false,
-    "immunity": [],
-    "pack": "MAIN"
-  },
-  {
-    "name": "Полководец людей",
+    "name": "the_dark_rider",
     "deckName": "boss",
     "isBoss": true,
     "fly": false,
     "lifeMultiple": true,
-    "immunity": ["STUN", "DISARM", "POISON", "WOUND", "IMMOBILIZE", "CURSE"],
+    "immunity": ["STUN", "IMMOBILIZE", "DISARM", "POISON"],
     "pack": "MAIN"
   },
   {
-    "name": "Полководец валратов",
+    "name": "the_betrayer",
     "deckName": "boss",
     "isBoss": true,
     "fly": false,
     "lifeMultiple": true,
-    "immunity": ["STUN", "DISARM", "MUDDLE", "WOUND", "IMMOBILIZE", "CURSE"],
+    "immunity": ["STUN", "WOUND", "DISARM", "CURSE", "POISON"],
     "pack": "MAIN"
-  },
-  {
-    "name": "Села Наберис",
-    "deckName": "tracker",
-    "isBoss": true,
-    "fly": false,
-    "lifeMultiple": false,
-    "immunity": ["STUN", "DISARM", "POISON", "MUDDLE", "IMMOBILIZE"],
-    "pack": "FORGOTTEN_CIRCLES"
-  },
-  {
-    "name": "Шрака мудрый",
-    "deckName": "shaman",
-    "isBoss": true,
-    "fly": false,
-    "lifeMultiple": true,
-    "immunity": ["STUN", "WOUND", "DISARM", "PIERCE"],
-    "pack": "FORGOTTEN_CIRCLES"
-  },
-  {
-    "name": "Стальной лев",
-    "deckName": "guard",
-    "isBoss": true,
-    "fly": false,
-    "lifeMultiple": true,
-    "immunity": ["WOUND", "IMMOBILIZE", "MUDDLE", "STUN"],
-    "pack": "FORGOTTEN_CIRCLES"
-  },
-  {
-    "name": "Уйрат Иккума",
-    "deckName": "savvas-lavaflow",
-    "isBoss": true,
-    "fly": false,
-    "lifeMultiple": true,
-    "immunity": ["STUN", "MUDDLE", "POISON", "IMMOBILIZE"],
-    "pack": "FORGOTTEN_CIRCLES"
-  },
-  {
-    "name": "Эстер Пепельный клинок",
-    "deckName": "ashblade",
-    "isBoss": false,
-    "fly": false,
-    "lifeMultiple": false,
-    "immunity": [],
-    "pack": "FORGOTTEN_CIRCLES"
-  },
-  {
-    "name": "Шелуха",
-    "deckName": "ashblade",
-    "isBoss": true,
-    "fly": false,
-    "lifeMultiple": true,
-    "immunity": ["STUN", "DISARM", "IMMOBILIZE"],
-    "pack": "FORGOTTEN_CIRCLES"
   }
 ]

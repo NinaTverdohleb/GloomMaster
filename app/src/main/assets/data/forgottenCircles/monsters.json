@@ -1,0 +1,101 @@
+[
+  {
+    "slug": "aesther_scout",
+    "deckName": "scout",
+    "isBoss": false,
+    "fly": false,
+    "lifeMultiple": false,
+    "immunity": [],
+    "pack": "FORGOTTEN_CIRCLES"
+  },
+  {
+    "slug": "valrath_savage",
+    "deckName": "savage",
+    "isBoss": false,
+    "fly": false,
+    "lifeMultiple": false,
+    "immunity": [],
+    "pack": "FORGOTTEN_CIRCLES"
+  },
+  {
+    "slug": "valrath_tracker",
+    "deckName": "tracker",
+    "isBoss": false,
+    "fly": false,
+    "lifeMultiple": false,
+    "immunity": [],
+    "pack": "FORGOTTEN_CIRCLES"
+  },
+  {
+    "slug": "human_commander",
+    "deckName": "boss",
+    "isBoss": true,
+    "fly": false,
+    "lifeMultiple": true,
+    "immunity": ["STUN", "DISARM", "POISON", "WOUND", "IMMOBILIZE", "CURSE"],
+    "pack": "FORGOTTEN_CIRCLES"
+  },
+  {
+    "slug": "valrath_commander",
+    "deckName": "boss",
+    "isBoss": true,
+    "fly": false,
+    "lifeMultiple": true,
+    "immunity": ["STUN", "DISARM", "MUDDLE", "WOUND", "IMMOBILIZE", "CURSE"],
+    "pack": "FORGOTTEN_CIRCLES"
+  },
+  {
+    "slug": "seeley_naberis",
+    "deckName": "tracker",
+    "isBoss": true,
+    "fly": false,
+    "lifeMultiple": false,
+    "immunity": ["STUN", "DISARM", "POISON", "MUDDLE", "IMMOBILIZE"],
+    "pack": "FORGOTTEN_CIRCLES"
+  },
+  {
+    "slug": "shhraelk_the_wise",
+    "deckName": "shaman",
+    "isBoss": true,
+    "fly": false,
+    "lifeMultiple": true,
+    "immunity": ["STUN", "WOUND", "DISARM", "PIERCE"],
+    "pack": "FORGOTTEN_CIRCLES"
+  },
+  {
+    "slug": "the_iron_lion",
+    "deckName": "guard",
+    "isBoss": true,
+    "fly": false,
+    "lifeMultiple": true,
+    "immunity": ["WOUND", "IMMOBILIZE", "MUDDLE", "STUN"],
+    "pack": "FORGOTTEN_CIRCLES"
+  },
+  {
+    "slug": "uyraith_ikkuma",
+    "deckName": "savvas-lavaflow",
+    "isBoss": true,
+    "fly": false,
+    "lifeMultiple": true,
+    "immunity": ["STUN", "MUDDLE", "POISON", "IMMOBILIZE"],
+    "pack": "FORGOTTEN_CIRCLES"
+  },
+  {
+    "slug": "aesther_ashblade",
+    "deckName": "ashblade",
+    "isBoss": false,
+    "fly": false,
+    "lifeMultiple": false,
+    "immunity": [],
+    "pack": "FORGOTTEN_CIRCLES"
+  },
+  {
+    "slug": "the_husk",
+    "deckName": "ashblade",
+    "isBoss": true,
+    "fly": false,
+    "lifeMultiple": true,
+    "immunity": ["STUN", "DISARM", "IMMOBILIZE"],
+    "pack": "FORGOTTEN_CIRCLES"
+  }
+]

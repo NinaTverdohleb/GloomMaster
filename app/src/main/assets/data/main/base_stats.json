@@ -1,6 +1,6 @@
 [
   {
-    "monsterName": "Ожившие кости",
+    "monsterSlug": "living_bones",
     "stats": [
       { "level": 0, "isElite": false, "life": 5, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "2" }, { "kind": "action", "statType": "ATTACK", "modifier": "1" }, { "kind": "action", "statType": "TARGET", "modifier": "2" }] },
       { "level": 0, "isElite": true, "life": 6, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "4" }, { "kind": "action", "statType": "ATTACK", "modifier": "2" }, { "kind": "action", "statType": "TARGET", "modifier": "2" }] },
@@ -21,7 +21,7 @@
     ]
   },
   {
-    "monsterName": "Разбойник-страж",
+    "monsterSlug": "bandit_guard",
     "stats": [
       { "level": 0, "isElite": false, "life": 5, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "2" }, { "kind": "action", "statType": "ATTACK", "modifier": "2" }] },
       { "level": 0, "isElite": true, "life": 9, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "2" }, { "kind": "action", "statType": "ATTACK", "modifier": "3" }] },
@@ -42,7 +42,7 @@
     ]
   },
   {
-    "monsterName": "Разбойник-лучница",
+    "monsterSlug": "bandit_archer",
     "stats": [
       { "level": 0, "isElite": false, "life": 4, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "2" }, { "kind": "action", "statType": "ATTACK", "modifier": "2" }, { "kind": "action", "statType": "RANGE", "modifier": "3" }] },
       { "level": 0, "isElite": true, "life": 6, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "2" }, { "kind": "action", "statType": "ATTACK", "modifier": "3" }, { "kind": "action", "statType": "RANGE", "modifier": "3" }] },
@@ -63,7 +63,7 @@
     ]
   },
   {
-    "monsterName": "Оживший труп",
+    "monsterSlug": "living_corpse",
     "stats": [
       { "level": 0, "isElite": false, "life": 5, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "1" }, { "kind": "action", "statType": "ATTACK", "modifier": "3" }] },
       { "level": 0, "isElite": true, "life": 10, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "1" }, { "kind": "action", "statType": "ATTACK", "modifier": "3" }] },
@@ -84,7 +84,7 @@
     ]
   },
   {
-    "monsterName": "Инокс-стражница",
+    "monsterSlug": "inox_guard",
     "stats": [
       { "level": 0, "isElite": false, "life": 5, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "2" }, { "kind": "action", "statType": "ATTACK", "modifier": "2" }] },
       { "level": 0, "isElite": true, "life": 9, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "1" }, { "kind": "action", "statType": "ATTACK", "modifier": "3" }, { "kind": "action", "statType": "RETALIATE", "modifier": "1" }] },
@@ -105,7 +105,7 @@
     ]
   },
   {
-    "monsterName": "Инокс-лучник",
+    "monsterSlug": "inox_archer",
     "stats": [
       { "level": 0, "isElite": false, "life": 5, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "2" }, { "kind": "action", "statType": "ATTACK", "modifier": "2" }, { "kind": "action", "statType": "RANGE", "modifier": "2" }] },
       { "level": 0, "isElite": true, "life": 7, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "2" }, { "kind": "action", "statType": "ATTACK", "modifier": "3" }, { "kind": "action", "statType": "RANGE", "modifier": "3" }] },
@@ -126,7 +126,7 @@
     ]
   },
   {
-    "monsterName": "Инокс-шаман",
+    "monsterSlug": "inox_shaman",
     "stats": [
       { "level": 0, "isElite": false, "life": 4, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "1" }, { "kind": "action", "statType": "ATTACK", "modifier": "2" }, { "kind": "action", "statType": "RANGE", "modifier": "3" }] },
       { "level": 0, "isElite": true, "life": 6, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "2" }, { "kind": "action", "statType": "ATTACK", "modifier": "3" }, { "kind": "action", "statType": "RANGE", "modifier": "3" }] },
@@ -147,7 +147,7 @@
     ]
   },
   {
-    "monsterName": "Культист",
+    "monsterSlug": "cultist",
     "stats": [
       { "level": 0, "isElite": false, "life": 4, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "2" }, { "kind": "action", "statType": "ATTACK", "modifier": "1" }] },
       { "level": 0, "isElite": true, "life": 7, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "2" }, { "kind": "action", "statType": "ATTACK", "modifier": "2" }] },
@@ -168,7 +168,7 @@
     ]
   },
   {
-    "monsterName": "Земляной демон",
+    "monsterSlug": "earth_demon",
     "stats": [
       { "level": 0, "isElite": false, "life": 7, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "1" }, { "kind": "action", "statType": "ATTACK", "modifier": "3" }] },
       { "level": 0, "isElite": true, "life": 10, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "2" }, { "kind": "action", "statType": "ATTACK", "modifier": "4" }] },
@@ -189,7 +189,7 @@
     ]
   },
   {
-    "monsterName": "Воздушный демон",
+    "monsterSlug": "wind_demon",
     "stats": [
       { "level": 0, "isElite": false, "life": 3, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "3" }, { "kind": "action", "statType": "ATTACK", "modifier": "2" }, { "kind": "action", "statType": "RANGE", "modifier": "3" }, { "kind": "action", "statType": "SHIELD", "modifier": "1" }] },
       { "level": 0, "isElite": true, "life": 5, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "4" }, { "kind": "action", "statType": "ATTACK", "modifier": "3" }, { "kind": "action", "statType": "RANGE", "modifier": "4" }, { "kind": "action", "statType": "SHIELD", "modifier": "1" }] },
@@ -210,7 +210,7 @@
     ]
   },
   {
-    "monsterName": "Оживший дух",
+    "monsterSlug": "living_spirit",
     "stats": [
       { "level": 0, "isElite": false, "life": 2, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "2" }, { "kind": "action", "statType": "ATTACK", "modifier": "2" }, { "kind": "action", "statType": "RANGE", "modifier": "2" }, { "kind": "action", "statType": "SHIELD", "modifier": "1" }] },
       { "level": 0, "isElite": true, "life": 3, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "3" }, { "kind": "action", "statType": "ATTACK", "modifier": "3" }, { "kind": "action", "statType": "RANGE", "modifier": "3" }, { "kind": "action", "statType": "SHIELD", "modifier": "2" }] },
@@ -231,49 +231,49 @@
     ]
   },
   {
-    "monsterName": "Ночной демон",
+    "monsterSlug": "night_demon",
     "stats": [
-      { "level": 0, "isElite": false, "life": 3, "stats": [{ "kind": "text", "content": "Атаки по демону проходят с помехой" }, { "kind": "action", "statType": "MOVE", "modifier": "3" }, { "kind": "action", "statType": "ATTACK", "modifier": "3" }] },
-      { "level": 0, "isElite": true, "life": 5, "stats": [{ "kind": "text", "content": "Атаки по демону проходят с помехой" }, { "kind": "action", "statType": "MOVE", "modifier": "4" }, { "kind": "action", "statType": "ATTACK", "modifier": "4" }] },
-      { "level": 1, "isElite": false, "life": 5, "stats": [{ "kind": "text", "content": "Атаки по демону проходят с помехой" }, { "kind": "action", "statType": "MOVE", "modifier": "3" }, { "kind": "action", "statType": "ATTACK", "modifier": "3" }] },
-      { "level": 1, "isElite": true, "life": 8, "stats": [{ "kind": "text", "content": "Атаки по демону проходят с помехой" }, { "kind": "action", "statType": "MOVE", "modifier": "4" }, { "kind": "action", "statType": "ATTACK", "modifier": "4" }] },
-      { "level": 2, "isElite": false, "life": 6, "stats": [{ "kind": "text", "content": "Атаки по демону проходят с помехой" }, { "kind": "action", "statType": "MOVE", "modifier": "3" }, { "kind": "action", "statType": "ATTACK", "modifier": "4" }] },
-      { "level": 2, "isElite": true, "life": 11, "stats": [{ "kind": "text", "content": "Атаки по демону проходят с помехой" }, { "kind": "action", "statType": "MOVE", "modifier": "4" }, { "kind": "action", "statType": "ATTACK", "modifier": "4" }] },
-      { "level": 3, "isElite": false, "life": 7, "stats": [{ "kind": "text", "content": "Атаки по демону проходят с помехой" }, { "kind": "action", "statType": "MOVE", "modifier": "3" }, { "kind": "action", "statType": "ATTACK", "modifier": "4" }] },
-      { "level": 3, "isElite": true, "life": 13, "stats": [{ "kind": "text", "content": "Атаки по демону проходят с помехой" }, { "kind": "action", "statType": "MOVE", "modifier": "4" }, { "kind": "action", "statType": "ATTACK", "modifier": "5" }] },
-      { "level": 4, "isElite": false, "life": 8, "stats": [{ "kind": "text", "content": "Атаки по демону проходят с помехой" }, { "kind": "action", "statType": "MOVE", "modifier": "4" }, { "kind": "action", "statType": "ATTACK", "modifier": "5" }] },
-      { "level": 4, "isElite": true, "life": 15, "stats": [{ "kind": "text", "content": "Атаки по демону проходят с помехой" }, { "kind": "action", "statType": "MOVE", "modifier": "5" }, { "kind": "action", "statType": "ATTACK", "modifier": "5" }] },
-      { "level": 5, "isElite": false, "life": 11, "stats": [{ "kind": "text", "content": "Атаки по демону проходят с помехой" }, { "kind": "action", "statType": "MOVE", "modifier": "4" }, { "kind": "action", "statType": "ATTACK", "modifier": "5" }] },
-      { "level": 5, "isElite": true, "life": 17, "stats": [{ "kind": "text", "content": "Атаки по демону проходят с помехой" }, { "kind": "action", "statType": "MOVE", "modifier": "5" }, { "kind": "action", "statType": "ATTACK", "modifier": "6" }] },
-      { "level": 6, "isElite": false, "life": 14, "stats": [{ "kind": "text", "content": "Атаки по демону проходят с помехой" }, { "kind": "action", "statType": "MOVE", "modifier": "4" }, { "kind": "action", "statType": "ATTACK", "modifier": "5" }] },
-      { "level": 6, "isElite": true, "life": 21, "stats": [{ "kind": "text", "content": "Атаки по демону проходят с помехой" }, { "kind": "action", "statType": "MOVE", "modifier": "5" }, { "kind": "action", "statType": "ATTACK", "modifier": "6" }] },
-      { "level": 7, "isElite": false, "life": 15, "stats": [{ "kind": "text", "content": "Атаки по демону проходят с помехой" }, { "kind": "action", "statType": "MOVE", "modifier": "4" }, { "kind": "action", "statType": "ATTACK", "modifier": "6" }] },
-      { "level": 7, "isElite": true, "life": 21, "stats": [{ "kind": "text", "content": "Атаки по демону проходят с помехой" }, { "kind": "action", "statType": "MOVE", "modifier": "5" }, { "kind": "action", "statType": "ATTACK", "modifier": "8" }] }
+      { "level": 0, "isElite": false, "life": 3, "stats": [ { "kind": "action", "statType": "MOVE", "modifier": "3" }, { "kind": "action", "statType": "ATTACK", "modifier": "3" }] },
+      { "level": 0, "isElite": true, "life": 5, "stats": [ { "kind": "action", "statType": "MOVE", "modifier": "4" }, { "kind": "action", "statType": "ATTACK", "modifier": "4" }] },
+      { "level": 1, "isElite": false, "life": 5, "stats": [ { "kind": "action", "statType": "MOVE", "modifier": "3" }, { "kind": "action", "statType": "ATTACK", "modifier": "3" }] },
+      { "level": 1, "isElite": true, "life": 8, "stats": [ { "kind": "action", "statType": "MOVE", "modifier": "4" }, { "kind": "action", "statType": "ATTACK", "modifier": "4" }] },
+      { "level": 2, "isElite": false, "life": 6, "stats": [ { "kind": "action", "statType": "MOVE", "modifier": "3" }, { "kind": "action", "statType": "ATTACK", "modifier": "4" }] },
+      { "level": 2, "isElite": true, "life": 11, "stats": [ { "kind": "action", "statType": "MOVE", "modifier": "4" }, { "kind": "action", "statType": "ATTACK", "modifier": "4" }] },
+      { "level": 3, "isElite": false, "life": 7, "stats": [ { "kind": "action", "statType": "MOVE", "modifier": "3" }, { "kind": "action", "statType": "ATTACK", "modifier": "4" }] },
+      { "level": 3, "isElite": true, "life": 13, "stats": [ { "kind": "action", "statType": "MOVE", "modifier": "4" }, { "kind": "action", "statType": "ATTACK", "modifier": "5" }] },
+      { "level": 4, "isElite": false, "life": 8, "stats": [ { "kind": "action", "statType": "MOVE", "modifier": "4" }, { "kind": "action", "statType": "ATTACK", "modifier": "5" }] },
+      { "level": 4, "isElite": true, "life": 15, "stats": [ { "kind": "action", "statType": "MOVE", "modifier": "5" }, { "kind": "action", "statType": "ATTACK", "modifier": "5" }] },
+      { "level": 5, "isElite": false, "life": 11, "stats": [ { "kind": "action", "statType": "MOVE", "modifier": "4" }, { "kind": "action", "statType": "ATTACK", "modifier": "5" }] },
+      { "level": 5, "isElite": true, "life": 17, "stats": [ { "kind": "action", "statType": "MOVE", "modifier": "5" }, { "kind": "action", "statType": "ATTACK", "modifier": "6" }] },
+      { "level": 6, "isElite": false, "life": 14, "stats": [ { "kind": "action", "statType": "MOVE", "modifier": "4" }, { "kind": "action", "statType": "ATTACK", "modifier": "5" }] },
+      { "level": 6, "isElite": true, "life": 21, "stats": [ { "kind": "action", "statType": "MOVE", "modifier": "5" }, { "kind": "action", "statType": "ATTACK", "modifier": "6" }] },
+      { "level": 7, "isElite": false, "life": 15, "stats": [ { "kind": "action", "statType": "MOVE", "modifier": "4" }, { "kind": "action", "statType": "ATTACK", "modifier": "6" }] },
+      { "level": 7, "isElite": true, "life": 21, "stats": [ { "kind": "action", "statType": "MOVE", "modifier": "5" }, { "kind": "action", "statType": "ATTACK", "modifier": "8" }] }
     ]
   },
   {
-    "monsterName": "Огненный демон",
+    "monsterSlug": "flame_demon",
     "stats": [
       { "level": 0, "isElite": false, "life": 2, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "3" }, { "kind": "action", "statType": "ATTACK", "modifier": "2" }, { "kind": "action", "statType": "RANGE", "modifier": "3" }, { "kind": "action", "statType": "SHIELD", "modifier": "2" }] },
       { "level": 0, "isElite": true, "life": 3, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "3" }, { "kind": "action", "statType": "ATTACK", "modifier": "2" }, { "kind": "action", "statType": "RANGE", "modifier": "3" }, { "kind": "action", "statType": "SHIELD", "modifier": "3" }] },
       { "level": 1, "isElite": false, "life": 2, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "3" }, { "kind": "action", "statType": "ATTACK", "modifier": "2" }, { "kind": "action", "statType": "RANGE", "modifier": "3" }, { "kind": "action", "statType": "SHIELD", "modifier": "3" }] },
-      { "level": 1, "isElite": true, "life": 3, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "3" }, { "kind": "action", "statType": "ATTACK", "modifier": "2" }, { "kind": "action", "statType": "RANGE", "modifier": "4" }, { "kind": "action", "statType": "SHIELD", "modifier": "4" }, { "kind": "text", "content": "Ответный удар 2 с дальностью 2" }] },
+      { "level": 1, "isElite": true, "life": 3, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "3" }, { "kind": "action", "statType": "ATTACK", "modifier": "2" }, { "kind": "action", "statType": "RANGE", "modifier": "4" }, { "kind": "action", "statType": "SHIELD", "modifier": "4" }] },
       { "level": 2, "isElite": false, "life": 3, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "3" }, { "kind": "action", "statType": "ATTACK", "modifier": "3" }, { "kind": "action", "statType": "RANGE", "modifier": "3" }, { "kind": "action", "statType": "SHIELD", "modifier": "3" }] },
-      { "level": 2, "isElite": true, "life": 4, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "3" }, { "kind": "action", "statType": "ATTACK", "modifier": "3" }, { "kind": "action", "statType": "RANGE", "modifier": "4" }, { "kind": "action", "statType": "SHIELD", "modifier": "4" }, { "kind": "text", "content": "Ответный удар 3 с дальностью 2" }] },
-      { "level": 3, "isElite": false, "life": 3, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "3" }, { "kind": "action", "statType": "ATTACK", "modifier": "3" }, { "kind": "action", "statType": "RANGE", "modifier": "4" }, { "kind": "action", "statType": "SHIELD", "modifier": "3" }, { "kind": "text", "content": "Ответный удар 2 с дальностью 2" }] },
-      { "level": 3, "isElite": true, "life": 5, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "3" }, { "kind": "action", "statType": "ATTACK", "modifier": "3" }, { "kind": "action", "statType": "RANGE", "modifier": "5" }, { "kind": "action", "statType": "SHIELD", "modifier": "4" }, { "kind": "text", "content": "Ответный удар 3 с дальностью 3" }] },
-      { "level": 4, "isElite": false, "life": 3, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "4" }, { "kind": "action", "statType": "ATTACK", "modifier": "3" }, { "kind": "action", "statType": "RANGE", "modifier": "4" }, { "kind": "action", "statType": "SHIELD", "modifier": "3" }, { "kind": "text", "content": "Ответный удар 3 с дальностью 2" }] },
-      { "level": 4, "isElite": true, "life": 5, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "4" }, { "kind": "action", "statType": "ATTACK", "modifier": "4" }, { "kind": "action", "statType": "RANGE", "modifier": "5" }, { "kind": "action", "statType": "SHIELD", "modifier": "4" }, { "kind": "text", "content": "Ответный удар 4 с дальностью 3" }] },
-      { "level": 5, "isElite": false, "life": 4, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "4" }, { "kind": "action", "statType": "ATTACK", "modifier": "3" }, { "kind": "action", "statType": "RANGE", "modifier": "4" }, { "kind": "action", "statType": "SHIELD", "modifier": "4" }, { "kind": "text", "content": "Ответный удар 3 с дальностью 2" }] },
-      { "level": 5, "isElite": true, "life": 6, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "4" }, { "kind": "action", "statType": "ATTACK", "modifier": "4" }, { "kind": "action", "statType": "RANGE", "modifier": "5" }, { "kind": "action", "statType": "SHIELD", "modifier": "5" }, { "kind": "text", "content": "Ответный удар 4 с дальностью 3" }] },
-      { "level": 6, "isElite": false, "life": 4, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "4" }, { "kind": "action", "statType": "ATTACK", "modifier": "4" }, { "kind": "action", "statType": "RANGE", "modifier": "4" }, { "kind": "action", "statType": "SHIELD", "modifier": "4" }, { "kind": "text", "content": "Ответный удар 4 с дальностью 2" }] },
-      { "level": 6, "isElite": true, "life": 7, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "4" }, { "kind": "action", "statType": "ATTACK", "modifier": "5" }, { "kind": "action", "statType": "RANGE", "modifier": "5" }, { "kind": "action", "statType": "SHIELD", "modifier": "5" }, { "kind": "text", "content": "Ответный удар 5 с дальностью 3" }] },
-      { "level": 7, "isElite": false, "life": 5, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "4" }, { "kind": "action", "statType": "ATTACK", "modifier": "4" }, { "kind": "action", "statType": "RANGE", "modifier": "5" }, { "kind": "action", "statType": "SHIELD", "modifier": "4" }, { "kind": "text", "content": "Ответный удар 4 с дальностью 3" }] },
-      { "level": 7, "isElite": true, "life": 8, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "4" }, { "kind": "action", "statType": "ATTACK", "modifier": "5" }, { "kind": "action", "statType": "RANGE", "modifier": "6" }, { "kind": "action", "statType": "SHIELD", "modifier": "5" }, { "kind": "text", "content": "Ответный удар 5 с дальностью 4" }] }
+      { "level": 2, "isElite": true, "life": 4, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "3" }, { "kind": "action", "statType": "ATTACK", "modifier": "3" }, { "kind": "action", "statType": "RANGE", "modifier": "4" }, { "kind": "action", "statType": "SHIELD", "modifier": "4" }] },
+      { "level": 3, "isElite": false, "life": 3, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "3" }, { "kind": "action", "statType": "ATTACK", "modifier": "3" }, { "kind": "action", "statType": "RANGE", "modifier": "4" }, { "kind": "action", "statType": "SHIELD", "modifier": "3" }] },
+      { "level": 3, "isElite": true, "life": 5, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "3" }, { "kind": "action", "statType": "ATTACK", "modifier": "3" }, { "kind": "action", "statType": "RANGE", "modifier": "5" }, { "kind": "action", "statType": "SHIELD", "modifier": "4" }] },
+      { "level": 4, "isElite": false, "life": 3, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "4" }, { "kind": "action", "statType": "ATTACK", "modifier": "3" }, { "kind": "action", "statType": "RANGE", "modifier": "4" }, { "kind": "action", "statType": "SHIELD", "modifier": "3" }] },
+      { "level": 4, "isElite": true, "life": 5, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "4" }, { "kind": "action", "statType": "ATTACK", "modifier": "4" }, { "kind": "action", "statType": "RANGE", "modifier": "5" }, { "kind": "action", "statType": "SHIELD", "modifier": "4" }] },
+      { "level": 5, "isElite": false, "life": 4, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "4" }, { "kind": "action", "statType": "ATTACK", "modifier": "3" }, { "kind": "action", "statType": "RANGE", "modifier": "4" }, { "kind": "action", "statType": "SHIELD", "modifier": "4" }] },
+      { "level": 5, "isElite": true, "life": 6, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "4" }, { "kind": "action", "statType": "ATTACK", "modifier": "4" }, { "kind": "action", "statType": "RANGE", "modifier": "5" }, { "kind": "action", "statType": "SHIELD", "modifier": "5" }] },
+      { "level": 6, "isElite": false, "life": 4, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "4" }, { "kind": "action", "statType": "ATTACK", "modifier": "4" }, { "kind": "action", "statType": "RANGE", "modifier": "4" }, { "kind": "action", "statType": "SHIELD", "modifier": "4" }] },
+      { "level": 6, "isElite": true, "life": 7, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "4" }, { "kind": "action", "statType": "ATTACK", "modifier": "5" }, { "kind": "action", "statType": "RANGE", "modifier": "5" }, { "kind": "action", "statType": "SHIELD", "modifier": "5" }] },
+      { "level": 7, "isElite": false, "life": 5, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "4" }, { "kind": "action", "statType": "ATTACK", "modifier": "4" }, { "kind": "action", "statType": "RANGE", "modifier": "5" }, { "kind": "action", "statType": "SHIELD", "modifier": "4" }] },
+      { "level": 7, "isElite": true, "life": 8, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "4" }, { "kind": "action", "statType": "ATTACK", "modifier": "5" }, { "kind": "action", "statType": "RANGE", "modifier": "6" }, { "kind": "action", "statType": "SHIELD", "modifier": "5" }] }
     ]
   },
   {
-    "monsterName": "Морозный демон",
+    "monsterSlug": "frost_demon",
     "stats": [
       { "level": 0, "isElite": false, "life": 5, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "2" }, { "kind": "action", "statType": "ATTACK", "modifier": "3" }] },
       { "level": 0, "isElite": true, "life": 10, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "3" }, { "kind": "action", "statType": "ATTACK", "modifier": "3" }] },
@@ -294,7 +294,7 @@
     ]
   },
   {
-    "monsterName": "Лесной бес",
+    "monsterSlug": "forest_imp",
     "stats": [
       { "level": 0, "isElite": false, "life": 1, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "3" }, { "kind": "action", "statType": "ATTACK", "modifier": "1" }, { "kind": "action", "statType": "RANGE", "modifier": "3" }, { "kind": "action", "statType": "SHIELD", "modifier": "1" }] },
       { "level": 0, "isElite": true, "life": 4, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "3" }, { "kind": "action", "statType": "ATTACK", "modifier": "1" }, { "kind": "action", "statType": "RANGE", "modifier": "3" }, { "kind": "action", "statType": "SHIELD", "modifier": "1" }] },
@@ -315,7 +315,7 @@
     ]
   },
   {
-    "monsterName": "Пещерный медведь",
+    "monsterSlug": "cave_bear",
     "stats": [
       { "level": 0, "isElite": false, "life": 7, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "3" }, { "kind": "action", "statType": "ATTACK", "modifier": "3" }] },
       { "level": 0, "isElite": true, "life": 11, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "3" }, { "kind": "action", "statType": "ATTACK", "modifier": "4" }] },
@@ -336,7 +336,7 @@
     ]
   },
   {
-    "monsterName": "Гончая",
+    "monsterSlug": "hound",
     "stats": [
       { "level": 0, "isElite": false, "life": 4, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "3" }, { "kind": "action", "statType": "ATTACK", "modifier": "2" }] },
       { "level": 0, "isElite": true, "life": 6, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "5" }, { "kind": "action", "statType": "ATTACK", "modifier": "2" }] },
@@ -357,7 +357,7 @@
     ]
   },
   {
-    "monsterName": "Вермлинг-разведчик",
+    "monsterSlug": "vermling_scout",
     "stats": [
       { "level": 0, "isElite": false, "life": 2, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "3" }, { "kind": "action", "statType": "ATTACK", "modifier": "1" }] },
       { "level": 0, "isElite": true, "life": 4, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "3" }, { "kind": "action", "statType": "ATTACK", "modifier": "2" }] },
@@ -378,28 +378,28 @@
     ]
   },
   {
-    "monsterName": "Солнечный демон",
+    "monsterSlug": "sun_demon",
     "stats": [
-      { "level": 0, "isElite": false, "life": 5, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "2" }, { "kind": "action", "statType": "ATTACK", "modifier": "2" }, { "kind": "action", "statType": "SHIELD", "modifier": "1" }, { "kind": "text", "content": "Атакует с преимуществом" }] },
-      { "level": 0, "isElite": true, "life": 9, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "2" }, { "kind": "action", "statType": "ATTACK", "modifier": "3" }, { "kind": "action", "statType": "SHIELD", "modifier": "1" }, { "kind": "text", "content": "Атакует с преимуществом" }] },
-      { "level": 1, "isElite": false, "life": 7, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "2" }, { "kind": "action", "statType": "ATTACK", "modifier": "2" }, { "kind": "action", "statType": "SHIELD", "modifier": "1" }, { "kind": "text", "content": "Атакует с преимуществом" }] },
-      { "level": 1, "isElite": true, "life": 12, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "2" }, { "kind": "action", "statType": "ATTACK", "modifier": "3" }, { "kind": "action", "statType": "SHIELD", "modifier": "1" }, { "kind": "text", "content": "Атакует с преимуществом" }] },
-      { "level": 2, "isElite": false, "life": 9, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "2" }, { "kind": "action", "statType": "ATTACK", "modifier": "2" }, { "kind": "action", "statType": "SHIELD", "modifier": "1" }, { "kind": "text", "content": "Атакует с преимуществом" }] },
-      { "level": 2, "isElite": true, "life": 13, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "2" }, { "kind": "action", "statType": "ATTACK", "modifier": "4" }, { "kind": "action", "statType": "SHIELD", "modifier": "1" }, { "kind": "text", "content": "Атакует с преимуществом" }] },
-      { "level": 3, "isElite": false, "life": 10, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "2" }, { "kind": "action", "statType": "ATTACK", "modifier": "3" }, { "kind": "action", "statType": "SHIELD", "modifier": "1" }, { "kind": "text", "content": "Атакует с преимуществом" }] },
-      { "level": 3, "isElite": true, "life": 15, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "3" }, { "kind": "action", "statType": "ATTACK", "modifier": "4" }, { "kind": "action", "statType": "SHIELD", "modifier": "1" }, { "kind": "text", "content": "Атакует с преимуществом" }] },
-      { "level": 4, "isElite": false, "life": 11, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "3" }, { "kind": "action", "statType": "ATTACK", "modifier": "3" }, { "kind": "action", "statType": "SHIELD", "modifier": "1" }, { "kind": "text", "content": "Атакует с преимуществом" }] },
-      { "level": 4, "isElite": true, "life": 16, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "3" }, { "kind": "action", "statType": "ATTACK", "modifier": "5" }, { "kind": "action", "statType": "SHIELD", "modifier": "1" }, { "kind": "text", "content": "Атакует с преимуществом" }] },
-      { "level": 5, "isElite": false, "life": 11, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "3" }, { "kind": "action", "statType": "ATTACK", "modifier": "3" }, { "kind": "action", "statType": "SHIELD", "modifier": "2" }, { "kind": "text", "content": "Атакует с преимуществом" }] },
-      { "level": 5, "isElite": true, "life": 16, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "3" }, { "kind": "action", "statType": "ATTACK", "modifier": "5" }, { "kind": "action", "statType": "SHIELD", "modifier": "2" }, { "kind": "text", "content": "Атакует с преимуществом" }] },
-      { "level": 6, "isElite": false, "life": 12, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "3" }, { "kind": "action", "statType": "ATTACK", "modifier": "4" }, { "kind": "action", "statType": "SHIELD", "modifier": "2" }, { "kind": "text", "content": "Атакует с преимуществом" }] },
-      { "level": 6, "isElite": true, "life": 18, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "4" }, { "kind": "action", "statType": "ATTACK", "modifier": "5" }, { "kind": "action", "statType": "SHIELD", "modifier": "2" }, { "kind": "text", "content": "Атакует с преимуществом" }] },
-      { "level": 7, "isElite": false, "life": 15, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "3" }, { "kind": "action", "statType": "ATTACK", "modifier": "4" }, { "kind": "action", "statType": "SHIELD", "modifier": "2" }, { "kind": "text", "content": "Атакует с преимуществом" }] },
-      { "level": 7, "isElite": true, "life": 22, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "4" }, { "kind": "action", "statType": "ATTACK", "modifier": "5" }, { "kind": "action", "statType": "SHIELD", "modifier": "2" }, { "kind": "text", "content": "Атакует с преимуществом" }] }
+      { "level": 0, "isElite": false, "life": 5, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "2" }, { "kind": "action", "statType": "ATTACK", "modifier": "2" }, { "kind": "action", "statType": "SHIELD", "modifier": "1" }] },
+      { "level": 0, "isElite": true, "life": 9, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "2" }, { "kind": "action", "statType": "ATTACK", "modifier": "3" }, { "kind": "action", "statType": "SHIELD", "modifier": "1" }] },
+      { "level": 1, "isElite": false, "life": 7, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "2" }, { "kind": "action", "statType": "ATTACK", "modifier": "2" }, { "kind": "action", "statType": "SHIELD", "modifier": "1" }] },
+      { "level": 1, "isElite": true, "life": 12, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "2" }, { "kind": "action", "statType": "ATTACK", "modifier": "3" }, { "kind": "action", "statType": "SHIELD", "modifier": "1" }] },
+      { "level": 2, "isElite": false, "life": 9, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "2" }, { "kind": "action", "statType": "ATTACK", "modifier": "2" }, { "kind": "action", "statType": "SHIELD", "modifier": "1" }] },
+      { "level": 2, "isElite": true, "life": 13, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "2" }, { "kind": "action", "statType": "ATTACK", "modifier": "4" }, { "kind": "action", "statType": "SHIELD", "modifier": "1" }] },
+      { "level": 3, "isElite": false, "life": 10, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "2" }, { "kind": "action", "statType": "ATTACK", "modifier": "3" }, { "kind": "action", "statType": "SHIELD", "modifier": "1" }] },
+      { "level": 3, "isElite": true, "life": 15, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "3" }, { "kind": "action", "statType": "ATTACK", "modifier": "4" }, { "kind": "action", "statType": "SHIELD", "modifier": "1" }] },
+      { "level": 4, "isElite": false, "life": 11, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "3" }, { "kind": "action", "statType": "ATTACK", "modifier": "3" }, { "kind": "action", "statType": "SHIELD", "modifier": "1" }] },
+      { "level": 4, "isElite": true, "life": 16, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "3" }, { "kind": "action", "statType": "ATTACK", "modifier": "5" }, { "kind": "action", "statType": "SHIELD", "modifier": "1" }] },
+      { "level": 5, "isElite": false, "life": 11, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "3" }, { "kind": "action", "statType": "ATTACK", "modifier": "3" }, { "kind": "action", "statType": "SHIELD", "modifier": "2" }] },
+      { "level": 5, "isElite": true, "life": 16, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "3" }, { "kind": "action", "statType": "ATTACK", "modifier": "5" }, { "kind": "action", "statType": "SHIELD", "modifier": "2" }] },
+      { "level": 6, "isElite": false, "life": 12, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "3" }, { "kind": "action", "statType": "ATTACK", "modifier": "4" }, { "kind": "action", "statType": "SHIELD", "modifier": "2" }] },
+      { "level": 6, "isElite": true, "life": 18, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "4" }, { "kind": "action", "statType": "ATTACK", "modifier": "5" }, { "kind": "action", "statType": "SHIELD", "modifier": "2" }] },
+      { "level": 7, "isElite": false, "life": 15, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "3" }, { "kind": "action", "statType": "ATTACK", "modifier": "4" }, { "kind": "action", "statType": "SHIELD", "modifier": "2" }] },
+      { "level": 7, "isElite": true, "life": 22, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "4" }, { "kind": "action", "statType": "ATTACK", "modifier": "5" }, { "kind": "action", "statType": "SHIELD", "modifier": "2" }] }
     ]
   },
   {
-    "monsterName": "Городской страж",
+    "monsterSlug": "city_guard",
     "stats": [
       { "level": 0, "isElite": false, "life": 5, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "2" }, { "kind": "action", "statType": "ATTACK", "modifier": "2" }] },
       { "level": 0, "isElite": true, "life": 6, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "2" }, { "kind": "action", "statType": "ATTACK", "modifier": "3" }, { "kind": "action", "statType": "SHIELD", "modifier": "1" }] },
@@ -420,7 +420,7 @@
     ]
   },
   {
-    "monsterName": "Городской лучник",
+    "monsterSlug": "city_archer",
     "stats": [
       { "level": 0, "isElite": false, "life": 4, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "1" }, { "kind": "action", "statType": "ATTACK", "modifier": "2" }, { "kind": "action", "statType": "RANGE", "modifier": "3" }] },
       { "level": 0, "isElite": true, "life": 6, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "1" }, { "kind": "action", "statType": "ATTACK", "modifier": "3" }, { "kind": "action", "statType": "RANGE", "modifier": "4" }] },
@@ -441,7 +441,7 @@
     ]
   },
   {
-    "monsterName": "Каменный голем",
+    "monsterSlug": "stone_golem",
     "stats": [
       { "level": 0, "isElite": false, "life": 10, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "1" }, { "kind": "action", "statType": "ATTACK", "modifier": "3" }] },
       { "level": 0, "isElite": true, "life": 10, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "2" }, { "kind": "action", "statType": "ATTACK", "modifier": "4" }, { "kind": "action", "statType": "SHIELD", "modifier": "1" }] },
@@ -461,7 +461,7 @@
       { "level": 7, "isElite": true, "life": 21, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "3" }, { "kind": "action", "statType": "ATTACK", "modifier": "7" }, { "kind": "action", "statType": "SHIELD", "modifier": "4" }] }
     ]
   },{
-  "monsterName": "Шипящий дрейк",
+  "monsterSlug": "spitting_drake",
   "stats": [
     { "level": 0, "isElite": false, "life": 5, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "3" }, { "kind": "action", "statType": "ATTACK", "modifier": "3" }, { "kind": "action", "statType": "RANGE", "modifier": "3" }] },
     { "level": 0, "isElite": true, "life": 8, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "4" }, { "kind": "action", "statType": "ATTACK", "modifier": "4" }, { "kind": "action", "statType": "RANGE", "modifier": "4" }] },
@@ -482,7 +482,7 @@
   ]
 },
   {
-    "monsterName": "Саввас Ледяной шторм",
+    "monsterSlug": "savvas_icestorm",
     "stats": [
       { "level": 0, "isElite": false, "life": 7, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "2" }, { "kind": "action", "statType": "ATTACK", "modifier": "2" }, { "kind": "action", "statType": "RANGE", "modifier": "3" }, { "kind": "action", "statType": "PIERCE", "modifier": "3" }] },
       { "level": 0, "isElite": true, "life": 12, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "2" }, { "kind": "action", "statType": "ATTACK", "modifier": "3" }, { "kind": "action", "statType": "RANGE", "modifier": "4" }, { "kind": "action", "statType": "PIERCE", "modifier": "3" }] },
@@ -503,7 +503,7 @@
     ]
   },
   {
-    "monsterName": "Жнец заразитель",
+    "monsterSlug": "harrower_infester",
     "stats": [
       { "level": 0, "isElite": false, "life": 6, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "2" }, { "kind": "action", "statType": "ATTACK", "modifier": "2" }] },
       { "level": 0, "isElite": true, "life": 12, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "2" }, { "kind": "action", "statType": "ATTACK", "modifier": "2" }] },
@@ -524,7 +524,7 @@
     ]
   },
   {
-    "monsterName": "Вермлинг-шаман",
+    "monsterSlug": "vermling_shaman",
     "stats": [
       { "level": 0, "isElite": false, "life": 2, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "2" }, { "kind": "action", "statType": "ATTACK", "modifier": "1" }, { "kind": "action", "statType": "RANGE", "modifier": "3" }, { "kind": "action", "statType": "SHIELD", "modifier": "2" }] },
       { "level": 0, "isElite": true, "life": 3, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "3" }, { "kind": "action", "statType": "ATTACK", "modifier": "2" }, { "kind": "action", "statType": "RANGE", "modifier": "3" }, { "kind": "action", "statType": "SHIELD", "modifier": "2" }] },
@@ -545,7 +545,7 @@
     ]
   },
   {
-    "monsterName": "Гигантская гадюка",
+    "monsterSlug": "giant_viper",
     "stats": [
       { "level": 0, "isElite": false, "life": 2, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "2" }, { "kind": "action", "statType": "ATTACK", "modifier": "1" }, { "kind": "action", "statType": "POISON", "modifier": "" }] },
       { "level": 0, "isElite": true, "life": 3, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "2" }, { "kind": "action", "statType": "ATTACK", "modifier": "2" }, { "kind": "action", "statType": "POISON", "modifier": "" }] },
@@ -566,7 +566,7 @@
     ]
   },
   {
-    "monsterName": "Слизь",
+    "monsterSlug": "ooze",
     "stats": [
       { "level": 0, "isElite": false, "life": 4, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "1" }, { "kind": "action", "statType": "ATTACK", "modifier": "2" }, { "kind": "action", "statType": "RANGE", "modifier": "2" }] },
       { "level": 0, "isElite": true, "life": 8, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "1" }, { "kind": "action", "statType": "ATTACK", "modifier": "2" }, { "kind": "action", "statType": "RANGE", "modifier": "3" }] },
@@ -587,7 +587,7 @@
     ]
   },
   {
-    "monsterName": "Древняя пушка",
+    "monsterSlug": "ancient_artillery",
     "stats": [
       { "level": 0, "isElite": false, "life": 4, "stats": [{ "kind": "action", "statType": "ATTACK", "modifier": "2" }, { "kind": "action", "statType": "RANGE", "modifier": "4" }] },
       { "level": 0, "isElite": true, "life": 7, "stats": [{ "kind": "action", "statType": "ATTACK", "modifier": "3" }, { "kind": "action", "statType": "RANGE", "modifier": "5" }] },
@@ -608,7 +608,7 @@
     ]
   },
   {
-    "monsterName": "Когтистый дрейк",
+    "monsterSlug": "rending_drake",
     "stats": [
       { "level": 0, "isElite": false, "life": 5, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "3" }, { "kind": "action", "statType": "ATTACK", "modifier": "3" }] },
       { "level": 0, "isElite": true, "life": 7, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "4" }, { "kind": "action", "statType": "ATTACK", "modifier": "4" }] },
@@ -629,7 +629,7 @@
     ]
   },
   {
-    "monsterName": "Черный бес",
+    "monsterSlug": "black_imp",
     "stats": [
       { "level": 0, "isElite": false, "life": 3, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "1" }, { "kind": "action", "statType": "ATTACK", "modifier": "1" }, { "kind": "action", "statType": "RANGE", "modifier": "3" }] },
       { "level": 0, "isElite": true, "life": 4, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "1" }, { "kind": "action", "statType": "ATTACK", "modifier": "2" }, { "kind": "action", "statType": "RANGE", "modifier": "3" }, { "kind": "action", "statType": "POISON", "modifier": "" }] },
@@ -638,19 +638,19 @@
       { "level": 2, "isElite": false, "life": 5, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "1" }, { "kind": "action", "statType": "ATTACK", "modifier": "1" }, { "kind": "action", "statType": "RANGE", "modifier": "4" }, { "kind": "action", "statType": "POISON", "modifier": "" }] },
       { "level": 2, "isElite": true, "life": 8, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "1" }, { "kind": "action", "statType": "ATTACK", "modifier": "2" }, { "kind": "action", "statType": "RANGE", "modifier": "4" }, { "kind": "action", "statType": "POISON", "modifier": "" }] },
       { "level": 3, "isElite": false, "life": 5, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "1" }, { "kind": "action", "statType": "ATTACK", "modifier": "2" }, { "kind": "action", "statType": "RANGE", "modifier": "4" }, { "kind": "action", "statType": "POISON", "modifier": "" }] },
-      { "level": 3, "isElite": true, "life": 8, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "1" }, { "kind": "action", "statType": "ATTACK", "modifier": "3" }, { "kind": "action", "statType": "RANGE", "modifier": "4" }, { "kind": "action", "statType": "POISON", "modifier": "" }, { "kind": "text", "content": "Атаки по бесу проходят с помехой" }] },
+      { "level": 3, "isElite": true, "life": 8, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "1" }, { "kind": "action", "statType": "ATTACK", "modifier": "3" }, { "kind": "action", "statType": "RANGE", "modifier": "4" }, { "kind": "action", "statType": "POISON", "modifier": "" }] },
       { "level": 4, "isElite": false, "life": 7, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "1" }, { "kind": "action", "statType": "ATTACK", "modifier": "2" }, { "kind": "action", "statType": "RANGE", "modifier": "4" }, { "kind": "action", "statType": "POISON", "modifier": "" }] },
-      { "level": 4, "isElite": true, "life": 11, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "1" }, { "kind": "action", "statType": "ATTACK", "modifier": "3" }, { "kind": "action", "statType": "RANGE", "modifier": "4" }, { "kind": "action", "statType": "POISON", "modifier": "" }, { "kind": "text", "content": "Атаки по бесу проходят с помехой" }] },
+      { "level": 4, "isElite": true, "life": 11, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "1" }, { "kind": "action", "statType": "ATTACK", "modifier": "3" }, { "kind": "action", "statType": "RANGE", "modifier": "4" }, { "kind": "action", "statType": "POISON", "modifier": "" }] },
       { "level": 5, "isElite": false, "life": 9, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "1" }, { "kind": "action", "statType": "ATTACK", "modifier": "2" }, { "kind": "action", "statType": "RANGE", "modifier": "4" }, { "kind": "action", "statType": "POISON", "modifier": "" }] },
-      { "level": 5, "isElite": true, "life": 12, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "1" }, { "kind": "action", "statType": "ATTACK", "modifier": "3" }, { "kind": "action", "statType": "RANGE", "modifier": "5" }, { "kind": "action", "statType": "POISON", "modifier": "" }, { "kind": "text", "content": "Атаки по бесу проходят с помехой" }] },
+      { "level": 5, "isElite": true, "life": 12, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "1" }, { "kind": "action", "statType": "ATTACK", "modifier": "3" }, { "kind": "action", "statType": "RANGE", "modifier": "5" }, { "kind": "action", "statType": "POISON", "modifier": "" }] },
       { "level": 6, "isElite": false, "life": 10, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "1" }, { "kind": "action", "statType": "ATTACK", "modifier": "3" }, { "kind": "action", "statType": "RANGE", "modifier": "4" }, { "kind": "action", "statType": "POISON", "modifier": "" }] },
-      { "level": 6, "isElite": true, "life": 14, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "1" }, { "kind": "action", "statType": "ATTACK", "modifier": "4" }, { "kind": "action", "statType": "RANGE", "modifier": "5" }, { "kind": "action", "statType": "POISON", "modifier": "" }, { "kind": "text", "content": "Атаки по бесу проходят с помехой" }] },
+      { "level": 6, "isElite": true, "life": 14, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "1" }, { "kind": "action", "statType": "ATTACK", "modifier": "4" }, { "kind": "action", "statType": "RANGE", "modifier": "5" }, { "kind": "action", "statType": "POISON", "modifier": "" }] },
       { "level": 7, "isElite": false, "life": 12, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "1" }, { "kind": "action", "statType": "ATTACK", "modifier": "3" }, { "kind": "action", "statType": "RANGE", "modifier": "4" }, { "kind": "action", "statType": "POISON", "modifier": "" }] },
-      { "level": 7, "isElite": true, "life": 17, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "1" }, { "kind": "action", "statType": "ATTACK", "modifier": "4" }, { "kind": "action", "statType": "RANGE", "modifier": "5" }, { "kind": "action", "statType": "POISON", "modifier": "" }, { "kind": "text", "content": "Атаки по бесу проходят с помехой" }] }
+      { "level": 7, "isElite": true, "life": 17, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "1" }, { "kind": "action", "statType": "ATTACK", "modifier": "4" }, { "kind": "action", "statType": "RANGE", "modifier": "5" }, { "kind": "action", "statType": "POISON", "modifier": "" }] }
     ]
   },
   {
-    "monsterName": "Скрытень",
+    "monsterSlug": "lurker",
     "stats": [
       { "level": 0, "isElite": false, "life": 5, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "2" }, { "kind": "action", "statType": "ATTACK", "modifier": "2" }, { "kind": "action", "statType": "TARGET", "modifier": "2" }] },
       { "level": 0, "isElite": true, "life": 7, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "2" }, { "kind": "action", "statType": "ATTACK", "modifier": "3" }, { "kind": "action", "statType": "TARGET", "modifier": "2" }, { "kind": "action", "statType": "SHIELD", "modifier": "1" }] },
@@ -671,7 +671,7 @@
     ]
   },
   {
-    "monsterName": "Невыносимый ужас",
+    "monsterSlug": "deep_terror",
     "stats": [
       { "level": 0, "isElite": false, "life": 3, "stats": [{ "kind": "action", "statType": "ATTACK", "modifier": "2" }] },
       { "level": 0, "isElite": true, "life": 5, "stats": [{ "kind": "action", "statType": "ATTACK", "modifier": "3" }] },
@@ -692,7 +692,7 @@
     ]
   },
   {
-    "monsterName": "Саввас Поток лавы",
+    "monsterSlug": "savvas_lavaflow",
     "stats": [
       { "level": 0, "isElite": false, "life": 8, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "3" }, { "kind": "action", "statType": "ATTACK", "modifier": "2" }] },
       { "level": 0, "isElite": true, "life": 13, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "3" }, { "kind": "action", "statType": "ATTACK", "modifier": "3" }] },
