@@ -9,9 +9,9 @@ import javax.inject.Inject
 /**
  * Seeds the translation store for every supported language from per-locale dictionary assets.
  * Everything is keyed by a stable id — scenario number, item number, quest id (task texts by
- * "$questId:$taskId"), perk id, and achievement catalog key. The game logic still matches
- * achievements by their canonical (Russian) name; [com.rumpilstilstkin.gloomhavenhelper.data.AchievementKeyIndex]
- * bridges that name to the catalog key at lookup time. Insert uses REPLACE, so re-running is idempotent.
+ * "$questId:$taskId"), perk id, and the achievement/monster catalog key. That same key is the
+ * game-logic and save identity, so reads and writes need no name bridge. Insert uses REPLACE,
+ * so re-running is idempotent.
  */
 class TranslationJsonFiller @Inject constructor(
     private val jsonDataLoader: JsonDataLoader,

@@ -77,7 +77,7 @@ internal fun AchievementsScreen(
             ) {
                 items(
                     items = uiState.achievements,
-                    key = { it.name }
+                    key = { it.key }
                 ) { achievement ->
                     AchievementItem(
                         achievement = achievement,

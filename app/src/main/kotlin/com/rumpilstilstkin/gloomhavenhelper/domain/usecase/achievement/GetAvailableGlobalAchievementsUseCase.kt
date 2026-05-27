@@ -17,8 +17,8 @@ class GetAvailableGlobalAchievementsUseCase @Inject constructor(
                 emptyList()
             } else {
                 val allAchievements = achievementRepository.getGlobalAchievementsByPacks(team.packs.map { it.name })
-                val existingNames = team.globalAchievement.map { it.name }.toSet()
-                allAchievements.filter { it.name !in existingNames }
+                val existingKeys = team.globalAchievement.map { it.key }.toSet()
+                allAchievements.filter { it.key !in existingKeys }
             }
         }
 }

@@ -17,8 +17,6 @@ class QuestJsonFiller @Inject constructor(
 
     private fun PersonalQuestJson.toEntity() = PersonalQuestBd(
         questId = questId,
-        title = title,
-        description = description,
         specialText = specialText,
         characterType = characterType,
         tasks = tasks,

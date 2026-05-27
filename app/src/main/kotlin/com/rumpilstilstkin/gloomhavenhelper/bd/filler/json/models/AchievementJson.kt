@@ -5,16 +5,15 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class AchievementJson(
-    // Stable catalog key. Used as the translation-store key for this achievement; the (Russian)
-    // [name] remains the logic/save identity. Not persisted to the DB.
+    // Stable catalog key — the logic/save identity and the translation-store key. The display
+    // name lives only in the per-locale dictionaries, resolved by this key.
     val key: String,
-    val name: String,
     val pack: String,
     val isGlobal: Boolean,
     val maxRang: Int = 1
 ) {
     fun toEntity() = AchievementBd(
-        name = name,
+        key = key,
         pack = pack,
         isGlobal = isGlobal,
         maxRang = maxRang

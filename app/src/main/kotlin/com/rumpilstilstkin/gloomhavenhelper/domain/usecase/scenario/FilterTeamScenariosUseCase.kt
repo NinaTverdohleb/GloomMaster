@@ -9,7 +9,7 @@ class FilterTeamScenariosUseCase @Inject constructor() {
     @OptIn(ExperimentalCoroutinesApi::class)
     operator fun invoke(team: TeamInfoWithScenario): TeamScenarios {
         val allAchievement = (team.teamAchievement + team.globalAchievement)
-            .map { it.name }
+            .map { it.key }
             .map { it.trim() }
             .filter { it.isNotEmpty() }
             .toSet()

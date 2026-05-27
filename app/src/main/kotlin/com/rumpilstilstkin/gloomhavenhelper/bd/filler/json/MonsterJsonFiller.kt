@@ -47,7 +47,7 @@ class MonsterJsonFiller @Inject constructor(
 
     suspend fun fillStats(version: Int, type: String, pack: String) {
         val allMonsters = monsterDao.getAllMonsters()
-        val nameToId = allMonsters.associate { it.name to it.monsterId }
+        val keyToId = allMonsters.associate { it.key to it.monsterId }
 
         val allStats =
             jsonDataLoader.loadMonsterStats(
@@ -57,14 +57,14 @@ class MonsterJsonFiller @Inject constructor(
             )
 
         allStats
-            .map { it.monsterName }
-            .toSet().forEach { name ->
-                nameToId[name]?.let { monsterDao.deleteStatsByMonsterId(it) }
+            .map { it.monsterKey }
+            .toSet().forEach { key ->
+                keyToId[key]?.let { monsterDao.deleteStatsByMonsterId(it) }
             }
 
         val entities = allStats.flatMap { monsterStat ->
-            val monsterId = nameToId[monsterStat.monsterName]
-                ?: throw IllegalStateException("Monster not found: ${monsterStat.monsterName}")
+            val monsterId = keyToId[monsterStat.monsterKey]
+                ?: throw IllegalStateException("Monster not found: ${monsterStat.monsterKey}")
             monsterStat.stats.map { levelStat ->
                 MonsterStatsBd(
                     monsterId = monsterId,

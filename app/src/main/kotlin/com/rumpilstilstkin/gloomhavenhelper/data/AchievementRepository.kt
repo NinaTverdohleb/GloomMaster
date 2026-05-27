@@ -21,28 +21,28 @@ class AchievementRepository @Inject constructor(
     suspend fun getGlobalAchievements(): List<Achievement> {
         val resolver = translationRepository.resolver(localeSource.current)
         return achievementDao.getGlobalAchievements().map {
-            Achievement(name = it.name, value = 1, maxValue = it.maxRang).localized(resolver)
+            Achievement(key = it.key, value = 1, maxValue = it.maxRang).localized(resolver)
         }
     }
 
     suspend fun getTeamAchievements(): List<Achievement> {
         val resolver = translationRepository.resolver(localeSource.current)
         return achievementDao.getTeamAchievements().map {
-            Achievement(name = it.name, value = 1, maxValue = it.maxRang).localized(resolver)
+            Achievement(key = it.key, value = 1, maxValue = it.maxRang).localized(resolver)
         }
     }
 
     suspend fun getGlobalAchievementsByPacks(packs: List<String>): List<Achievement> {
         val resolver = translationRepository.resolver(localeSource.current)
         return achievementDao.getGlobalAchievementsByPacks(packs).map {
-            Achievement(name = it.name, value = 1, maxValue = it.maxRang).localized(resolver)
+            Achievement(key = it.key, value = 1, maxValue = it.maxRang).localized(resolver)
         }
     }
 
     suspend fun getTeamAchievementsByPacks(packs: List<String>): List<Achievement> {
         val resolver = translationRepository.resolver(localeSource.current)
         return achievementDao.getTeamAchievementsByPacks(packs).map {
-            Achievement(name = it.name, value = 1, maxValue = it.maxRang).localized(resolver)
+            Achievement(key = it.key, value = 1, maxValue = it.maxRang).localized(resolver)
         }
     }
 }

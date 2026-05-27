@@ -1,67 +1,1318 @@
 [
   {
-    "monsterName": "Села Наберис",
+    "monsterKey": "54",
     "stats": [
-      { "level": 0, "isElite": false, "life": 9, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "2" }, { "kind": "action", "statType": "ATTACK", "modifier": "3" }, { "kind": "action", "statType": "RANGE", "modifier": "4" }, { "kind": "action", "statType": "PIERCE", "modifier": "10" }, { "kind": "text", "content": "Цели - количество персонажей" }] },
-      { "level": 1, "isElite": false, "life": 11, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "2" }, { "kind": "action", "statType": "ATTACK", "modifier": "3" }, { "kind": "action", "statType": "RANGE", "modifier": "5" }, { "kind": "action", "statType": "PIERCE", "modifier": "10" }, { "kind": "text", "content": "Цели - количество персонажей" }] },
-      { "level": 2, "isElite": false, "life": 12, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "2" }, { "kind": "action", "statType": "ATTACK", "modifier": "4" }, { "kind": "action", "statType": "RANGE", "modifier": "5" }, { "kind": "action", "statType": "PIERCE", "modifier": "11" }, { "kind": "text", "content": "Цели - количество персонажей" }] },
-      { "level": 3, "isElite": false, "life": 14, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "2" }, { "kind": "action", "statType": "ATTACK", "modifier": "4" }, { "kind": "action", "statType": "RANGE", "modifier": "6" }, { "kind": "action", "statType": "PIERCE", "modifier": "11" }, { "kind": "text", "content": "Цели - количество персонажей" }, { "kind": "action", "statType": "PUSH", "modifier": "1" }] },
-      { "level": 4, "isElite": false, "life": 16, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "3" }, { "kind": "action", "statType": "ATTACK", "modifier": "4" }, { "kind": "action", "statType": "RANGE", "modifier": "7" }, { "kind": "action", "statType": "PIERCE", "modifier": "12" }, { "kind": "text", "content": "Цели - количество персонажей" }, { "kind": "action", "statType": "PUSH", "modifier": "1" }] },
-      { "level": 5, "isElite": false, "life": 18, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "3" }, { "kind": "action", "statType": "ATTACK", "modifier": "5" }, { "kind": "action", "statType": "RANGE", "modifier": "7" }, { "kind": "action", "statType": "PIERCE", "modifier": "12" }, { "kind": "text", "content": "Цели - количество персонажей" }, { "kind": "action", "statType": "PUSH", "modifier": "1" }] },
-      { "level": 6, "isElite": false, "life": 21, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "3" }, { "kind": "action", "statType": "ATTACK", "modifier": "5" }, { "kind": "action", "statType": "RANGE", "modifier": "8" }, { "kind": "action", "statType": "PIERCE", "modifier": "12" }, { "kind": "text", "content": "Цели - количество персонажей" }, { "kind": "action", "statType": "PUSH", "modifier": "2" }] },
-      { "level": 7, "isElite": false, "life": 24, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "3" }, { "kind": "action", "statType": "ATTACK", "modifier": "6" }, { "kind": "action", "statType": "RANGE", "modifier": "8" }, { "kind": "action", "statType": "PIERCE", "modifier": "13" }, { "kind": "text", "content": "Цели - количество персонажей" }, { "kind": "action", "statType": "PUSH", "modifier": "2" }] }
+      {
+        "level": 0,
+        "isElite": false,
+        "life": 9,
+        "stats": [
+          {
+            "kind": "action",
+            "statType": "MOVE",
+            "modifier": "2"
+          },
+          {
+            "kind": "action",
+            "statType": "ATTACK",
+            "modifier": "3"
+          },
+          {
+            "kind": "action",
+            "statType": "RANGE",
+            "modifier": "4"
+          },
+          {
+            "kind": "action",
+            "statType": "PIERCE",
+            "modifier": "10"
+          },
+          {
+            "kind": "text",
+            "content": "Цели - количество персонажей"
+          }
+        ]
+      },
+      {
+        "level": 1,
+        "isElite": false,
+        "life": 11,
+        "stats": [
+          {
+            "kind": "action",
+            "statType": "MOVE",
+            "modifier": "2"
+          },
+          {
+            "kind": "action",
+            "statType": "ATTACK",
+            "modifier": "3"
+          },
+          {
+            "kind": "action",
+            "statType": "RANGE",
+            "modifier": "5"
+          },
+          {
+            "kind": "action",
+            "statType": "PIERCE",
+            "modifier": "10"
+          },
+          {
+            "kind": "text",
+            "content": "Цели - количество персонажей"
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "isElite": false,
+        "life": 12,
+        "stats": [
+          {
+            "kind": "action",
+            "statType": "MOVE",
+            "modifier": "2"
+          },
+          {
+            "kind": "action",
+            "statType": "ATTACK",
+            "modifier": "4"
+          },
+          {
+            "kind": "action",
+            "statType": "RANGE",
+            "modifier": "5"
+          },
+          {
+            "kind": "action",
+            "statType": "PIERCE",
+            "modifier": "11"
+          },
+          {
+            "kind": "text",
+            "content": "Цели - количество персонажей"
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "isElite": false,
+        "life": 14,
+        "stats": [
+          {
+            "kind": "action",
+            "statType": "MOVE",
+            "modifier": "2"
+          },
+          {
+            "kind": "action",
+            "statType": "ATTACK",
+            "modifier": "4"
+          },
+          {
+            "kind": "action",
+            "statType": "RANGE",
+            "modifier": "6"
+          },
+          {
+            "kind": "action",
+            "statType": "PIERCE",
+            "modifier": "11"
+          },
+          {
+            "kind": "text",
+            "content": "Цели - количество персонажей"
+          },
+          {
+            "kind": "action",
+            "statType": "PUSH",
+            "modifier": "1"
+          }
+        ]
+      },
+      {
+        "level": 4,
+        "isElite": false,
+        "life": 16,
+        "stats": [
+          {
+            "kind": "action",
+            "statType": "MOVE",
+            "modifier": "3"
+          },
+          {
+            "kind": "action",
+            "statType": "ATTACK",
+            "modifier": "4"
+          },
+          {
+            "kind": "action",
+            "statType": "RANGE",
+            "modifier": "7"
+          },
+          {
+            "kind": "action",
+            "statType": "PIERCE",
+            "modifier": "12"
+          },
+          {
+            "kind": "text",
+            "content": "Цели - количество персонажей"
+          },
+          {
+            "kind": "action",
+            "statType": "PUSH",
+            "modifier": "1"
+          }
+        ]
+      },
+      {
+        "level": 5,
+        "isElite": false,
+        "life": 18,
+        "stats": [
+          {
+            "kind": "action",
+            "statType": "MOVE",
+            "modifier": "3"
+          },
+          {
+            "kind": "action",
+            "statType": "ATTACK",
+            "modifier": "5"
+          },
+          {
+            "kind": "action",
+            "statType": "RANGE",
+            "modifier": "7"
+          },
+          {
+            "kind": "action",
+            "statType": "PIERCE",
+            "modifier": "12"
+          },
+          {
+            "kind": "text",
+            "content": "Цели - количество персонажей"
+          },
+          {
+            "kind": "action",
+            "statType": "PUSH",
+            "modifier": "1"
+          }
+        ]
+      },
+      {
+        "level": 6,
+        "isElite": false,
+        "life": 21,
+        "stats": [
+          {
+            "kind": "action",
+            "statType": "MOVE",
+            "modifier": "3"
+          },
+          {
+            "kind": "action",
+            "statType": "ATTACK",
+            "modifier": "5"
+          },
+          {
+            "kind": "action",
+            "statType": "RANGE",
+            "modifier": "8"
+          },
+          {
+            "kind": "action",
+            "statType": "PIERCE",
+            "modifier": "12"
+          },
+          {
+            "kind": "text",
+            "content": "Цели - количество персонажей"
+          },
+          {
+            "kind": "action",
+            "statType": "PUSH",
+            "modifier": "2"
+          }
+        ]
+      },
+      {
+        "level": 7,
+        "isElite": false,
+        "life": 24,
+        "stats": [
+          {
+            "kind": "action",
+            "statType": "MOVE",
+            "modifier": "3"
+          },
+          {
+            "kind": "action",
+            "statType": "ATTACK",
+            "modifier": "6"
+          },
+          {
+            "kind": "action",
+            "statType": "RANGE",
+            "modifier": "8"
+          },
+          {
+            "kind": "action",
+            "statType": "PIERCE",
+            "modifier": "13"
+          },
+          {
+            "kind": "text",
+            "content": "Цели - количество персонажей"
+          },
+          {
+            "kind": "action",
+            "statType": "PUSH",
+            "modifier": "2"
+          }
+        ]
+      }
     ]
   },
   {
-    "monsterName": "Шрака мудрый",
+    "monsterKey": "55",
     "stats": [
-      { "level": 0, "isElite": false, "life": 2, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "3" }, { "kind": "action", "statType": "ATTACK", "modifier": "2" }, { "kind": "action", "statType": "SHIELD", "modifier": "2" }, { "kind": "text", "content": "Шрака удваивает показатели всех действий лечения, а в качестве целей действий лечения по возможности выбирает Стального Льва" }, { "kind": "text", "content": "Если Шрака применяет Эффект #26 или #34 он применяет этот же эффект второй раз" }] },
-      { "level": 1, "isElite": false, "life": 2, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "3" }, { "kind": "action", "statType": "ATTACK", "modifier": "2" }, { "kind": "action", "statType": "SHIELD", "modifier": "3" }, { "kind": "text", "content": "Шрака удваивает показатели всех действий лечения, а в качестве целей действий лечения по возможности выбирает Стального Льва" }, { "kind": "text", "content": "Если Шрака применяет Эффект #26 или #34 он применяет этот же эффект второй раз" }] },
-      { "level": 2, "isElite": false, "life": 2, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "3" }, { "kind": "action", "statType": "ATTACK", "modifier": "2" }, { "kind": "action", "statType": "SHIELD", "modifier": "3" }, { "kind": "text", "content": "Шрака удваивает показатели всех действий лечения, а в качестве целей действий лечения по возможности выбирает Стального Льва" }, { "kind": "text", "content": "Если Шрака применяет Эффект #26 или #34 он применяет этот же эффект второй раз" }] },
-      { "level": 3, "isElite": false, "life": 3, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "3" }, { "kind": "action", "statType": "ATTACK", "modifier": "3" }, { "kind": "action", "statType": "SHIELD", "modifier": "3" }, { "kind": "text", "content": "Шрака удваивает показатели всех действий лечения, а в качестве целей действий лечения по возможности выбирает Стального Льва" }, { "kind": "text", "content": "Если Шрака применяет Эффект #26 или #34 он применяет этот же эффект второй раз" }] },
-      { "level": 4, "isElite": false, "life": 3, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "3" }, { "kind": "action", "statType": "ATTACK", "modifier": "3" }, { "kind": "action", "statType": "SHIELD", "modifier": "4" }, { "kind": "action", "statType": "MUDDLE", "modifier": "" }, { "kind": "text", "content": "Шрака удваивает показатели всех действий лечения, а в качестве целей действий лечения по возможности выбирает Стального Льва" }, { "kind": "text", "content": "Если Шрака применяет Эффект #26 или #34 он применяет этот же эффект второй раз" }] },
-      { "level": 5, "isElite": false, "life": 3, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "3" }, { "kind": "action", "statType": "ATTACK", "modifier": "4" }, { "kind": "action", "statType": "SHIELD", "modifier": "4" }, { "kind": "action", "statType": "MUDDLE", "modifier": "" }, { "kind": "text", "content": "Шрака удваивает показатели всех действий лечения, а в качестве целей действий лечения по возможности выбирает Стального Льва" }, { "kind": "text", "content": "Если Шрака применяет Эффект #26 или #34 он применяет этот же эффект второй раз" }] },
-      { "level": 6, "isElite": false, "life": 3, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "3" }, { "kind": "action", "statType": "ATTACK", "modifier": "4" }, { "kind": "action", "statType": "SHIELD", "modifier": "5" }, { "kind": "action", "statType": "MUDDLE", "modifier": "" }, { "kind": "text", "content": "Шрака удваивает показатели всех действий лечения, а в качестве целей действий лечения по возможности выбирает Стального Льва" }, { "kind": "text", "content": "Если Шрака применяет Эффект #26 или #34 он применяет этот же эффект второй раз" }] },
-      { "level": 7, "isElite": false, "life": 4, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "3" }, { "kind": "action", "statType": "ATTACK", "modifier": "4" }, { "kind": "action", "statType": "SHIELD", "modifier": "5" }, { "kind": "action", "statType": "MUDDLE", "modifier": "" }, { "kind": "text", "content": "Шрака удваивает показатели всех действий лечения, а в качестве целей действий лечения по возможности выбирает Стального Льва" }, { "kind": "text", "content": "Если Шрака применяет Эффект #26 или #34 он применяет этот же эффект второй раз" }] }
+      {
+        "level": 0,
+        "isElite": false,
+        "life": 2,
+        "stats": [
+          {
+            "kind": "action",
+            "statType": "MOVE",
+            "modifier": "3"
+          },
+          {
+            "kind": "action",
+            "statType": "ATTACK",
+            "modifier": "2"
+          },
+          {
+            "kind": "action",
+            "statType": "SHIELD",
+            "modifier": "2"
+          },
+          {
+            "kind": "text",
+            "content": "Шрака удваивает показатели всех действий лечения, а в качестве целей действий лечения по возможности выбирает Стального Льва"
+          },
+          {
+            "kind": "text",
+            "content": "Если Шрака применяет Эффект #26 или #34 он применяет этот же эффект второй раз"
+          }
+        ]
+      },
+      {
+        "level": 1,
+        "isElite": false,
+        "life": 2,
+        "stats": [
+          {
+            "kind": "action",
+            "statType": "MOVE",
+            "modifier": "3"
+          },
+          {
+            "kind": "action",
+            "statType": "ATTACK",
+            "modifier": "2"
+          },
+          {
+            "kind": "action",
+            "statType": "SHIELD",
+            "modifier": "3"
+          },
+          {
+            "kind": "text",
+            "content": "Шрака удваивает показатели всех действий лечения, а в качестве целей действий лечения по возможности выбирает Стального Льва"
+          },
+          {
+            "kind": "text",
+            "content": "Если Шрака применяет Эффект #26 или #34 он применяет этот же эффект второй раз"
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "isElite": false,
+        "life": 2,
+        "stats": [
+          {
+            "kind": "action",
+            "statType": "MOVE",
+            "modifier": "3"
+          },
+          {
+            "kind": "action",
+            "statType": "ATTACK",
+            "modifier": "2"
+          },
+          {
+            "kind": "action",
+            "statType": "SHIELD",
+            "modifier": "3"
+          },
+          {
+            "kind": "text",
+            "content": "Шрака удваивает показатели всех действий лечения, а в качестве целей действий лечения по возможности выбирает Стального Льва"
+          },
+          {
+            "kind": "text",
+            "content": "Если Шрака применяет Эффект #26 или #34 он применяет этот же эффект второй раз"
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "isElite": false,
+        "life": 3,
+        "stats": [
+          {
+            "kind": "action",
+            "statType": "MOVE",
+            "modifier": "3"
+          },
+          {
+            "kind": "action",
+            "statType": "ATTACK",
+            "modifier": "3"
+          },
+          {
+            "kind": "action",
+            "statType": "SHIELD",
+            "modifier": "3"
+          },
+          {
+            "kind": "text",
+            "content": "Шрака удваивает показатели всех действий лечения, а в качестве целей действий лечения по возможности выбирает Стального Льва"
+          },
+          {
+            "kind": "text",
+            "content": "Если Шрака применяет Эффект #26 или #34 он применяет этот же эффект второй раз"
+          }
+        ]
+      },
+      {
+        "level": 4,
+        "isElite": false,
+        "life": 3,
+        "stats": [
+          {
+            "kind": "action",
+            "statType": "MOVE",
+            "modifier": "3"
+          },
+          {
+            "kind": "action",
+            "statType": "ATTACK",
+            "modifier": "3"
+          },
+          {
+            "kind": "action",
+            "statType": "SHIELD",
+            "modifier": "4"
+          },
+          {
+            "kind": "action",
+            "statType": "MUDDLE",
+            "modifier": ""
+          },
+          {
+            "kind": "text",
+            "content": "Шрака удваивает показатели всех действий лечения, а в качестве целей действий лечения по возможности выбирает Стального Льва"
+          },
+          {
+            "kind": "text",
+            "content": "Если Шрака применяет Эффект #26 или #34 он применяет этот же эффект второй раз"
+          }
+        ]
+      },
+      {
+        "level": 5,
+        "isElite": false,
+        "life": 3,
+        "stats": [
+          {
+            "kind": "action",
+            "statType": "MOVE",
+            "modifier": "3"
+          },
+          {
+            "kind": "action",
+            "statType": "ATTACK",
+            "modifier": "4"
+          },
+          {
+            "kind": "action",
+            "statType": "SHIELD",
+            "modifier": "4"
+          },
+          {
+            "kind": "action",
+            "statType": "MUDDLE",
+            "modifier": ""
+          },
+          {
+            "kind": "text",
+            "content": "Шрака удваивает показатели всех действий лечения, а в качестве целей действий лечения по возможности выбирает Стального Льва"
+          },
+          {
+            "kind": "text",
+            "content": "Если Шрака применяет Эффект #26 или #34 он применяет этот же эффект второй раз"
+          }
+        ]
+      },
+      {
+        "level": 6,
+        "isElite": false,
+        "life": 3,
+        "stats": [
+          {
+            "kind": "action",
+            "statType": "MOVE",
+            "modifier": "3"
+          },
+          {
+            "kind": "action",
+            "statType": "ATTACK",
+            "modifier": "4"
+          },
+          {
+            "kind": "action",
+            "statType": "SHIELD",
+            "modifier": "5"
+          },
+          {
+            "kind": "action",
+            "statType": "MUDDLE",
+            "modifier": ""
+          },
+          {
+            "kind": "text",
+            "content": "Шрака удваивает показатели всех действий лечения, а в качестве целей действий лечения по возможности выбирает Стального Льва"
+          },
+          {
+            "kind": "text",
+            "content": "Если Шрака применяет Эффект #26 или #34 он применяет этот же эффект второй раз"
+          }
+        ]
+      },
+      {
+        "level": 7,
+        "isElite": false,
+        "life": 4,
+        "stats": [
+          {
+            "kind": "action",
+            "statType": "MOVE",
+            "modifier": "3"
+          },
+          {
+            "kind": "action",
+            "statType": "ATTACK",
+            "modifier": "4"
+          },
+          {
+            "kind": "action",
+            "statType": "SHIELD",
+            "modifier": "5"
+          },
+          {
+            "kind": "action",
+            "statType": "MUDDLE",
+            "modifier": ""
+          },
+          {
+            "kind": "text",
+            "content": "Шрака удваивает показатели всех действий лечения, а в качестве целей действий лечения по возможности выбирает Стального Льва"
+          },
+          {
+            "kind": "text",
+            "content": "Если Шрака применяет Эффект #26 или #34 он применяет этот же эффект второй раз"
+          }
+        ]
+      }
     ]
   },
   {
-    "monsterName": "Стальной лев",
+    "monsterKey": "56",
     "stats": [
-      { "level": 0, "isElite": false, "life": 3, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "3" }, { "kind": "action", "statType": "ATTACK", "modifier": "3" }, { "kind": "action", "statType": "SHIELD", "modifier": "1" }, { "kind": "text", "content": "Шит действует на себя и на всех союзников" }, { "kind": "text", "content": "Если союзник Стального льва на соседней клетке становится целью атаки, вместо этого Стальной лев становиться целью этой атаки." }, { "kind": "text", "content": "В первых случаяъ равных КП, получение 6 и более урона не проходят по Стальному льву" }] },
-      { "level": 1, "isElite": false, "life": 4, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "3" }, { "kind": "action", "statType": "ATTACK", "modifier": "3" }, { "kind": "action", "statType": "SHIELD", "modifier": "2" }, { "kind": "text", "content": "Шит действует на себя и на всех союзников" }, { "kind": "text", "content": "Если союзник Стального льва на соседней клетке становится целью атаки, вместо этого Стальной лев становиться целью этой атаки." }, { "kind": "text", "content": "В первых случаяъ равных КП, получение 6 и более урона не проходят по Стальному льву" }] },
-      { "level": 2, "isElite": false, "life": 5, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "3" }, { "kind": "action", "statType": "ATTACK", "modifier": "3" }, { "kind": "action", "statType": "SHIELD", "modifier": "2" }, { "kind": "text", "content": "Шит действует на себя и на всех союзников" }, { "kind": "text", "content": "Если союзник Стального льва на соседней клетке становится целью атаки, вместо этого Стальной лев становиться целью этой атаки." }, { "kind": "text", "content": "В первых случаяъ равных КП, получение 6 и более урона не проходят по Стальному льву" }] },
-      { "level": 3, "isElite": false, "life": 5, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "3" }, { "kind": "action", "statType": "ATTACK", "modifier": "4" }, { "kind": "action", "statType": "SHIELD", "modifier": "2" }, { "kind": "action", "statType": "RETALIATE", "modifier": "1" }, { "kind": "text", "content": "Шит действует на себя и на всех союзников" }, { "kind": "text", "content": "Если союзник Стального льва на соседней клетке становится целью атаки, вместо этого Стальной лев становиться целью этой атаки." }, { "kind": "text", "content": "В первых случаяъ равных КП, получение 6 и более урона не проходят по Стальному льву" }] },
-      { "level": 4, "isElite": false, "life": 6, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "4" }, { "kind": "action", "statType": "ATTACK", "modifier": "4" }, { "kind": "action", "statType": "SHIELD", "modifier": "2" }, { "kind": "action", "statType": "RETALIATE", "modifier": "2" }, { "kind": "text", "content": "Шит действует на себя и на всех союзников" }, { "kind": "text", "content": "Если союзник Стального льва на соседней клетке становится целью атаки, вместо этого Стальной лев становиться целью этой атаки." }, { "kind": "text", "content": "В первых случаяъ равных КП, получение 6 и более урона не проходят по Стальному льву" }] },
-      { "level": 5, "isElite": false, "life": 7, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "4" }, { "kind": "action", "statType": "ATTACK", "modifier": "4" }, { "kind": "action", "statType": "SHIELD", "modifier": "3" }, { "kind": "action", "statType": "RETALIATE", "modifier": "2" }, { "kind": "text", "content": "Шит действует на себя и на всех союзников" }, { "kind": "text", "content": "Если союзник Стального льва на соседней клетке становится целью атаки, вместо этого Стальной лев становиться целью этой атаки." }, { "kind": "text", "content": "В первых случаяъ равных КП, получение 6 и более урона не проходят по Стальному льву" }] },
-      { "level": 6, "isElite": false, "life": 8, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "4" }, { "kind": "action", "statType": "ATTACK", "modifier": "5" }, { "kind": "action", "statType": "SHIELD", "modifier": "3" }, { "kind": "action", "statType": "RETALIATE", "modifier": "3" }, { "kind": "text", "content": "Шит действует на себя и на всех союзников" }, { "kind": "text", "content": "Если союзник Стального льва на соседней клетке становится целью атаки, вместо этого Стальной лев становиться целью этой атаки." }, { "kind": "text", "content": "В первых случаяъ равных КП, получение 6 и более урона не проходят по Стальному льву" }] },
-      { "level": 7, "isElite": false, "life": 9, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "4" }, { "kind": "action", "statType": "ATTACK", "modifier": "6" }, { "kind": "action", "statType": "SHIELD", "modifier": "3" }, { "kind": "action", "statType": "RETALIATE", "modifier": "3" }, { "kind": "text", "content": "Шит действует на себя и на всех союзников" }, { "kind": "text", "content": "Если союзник Стального льва на соседней клетке становится целью атаки, вместо этого Стальной лев становиться целью этой атаки." }, { "kind": "text", "content": "В первых случаяъ равных КП, получение 6 и более урона не проходят по Стальному льву" }] }
+      {
+        "level": 0,
+        "isElite": false,
+        "life": 3,
+        "stats": [
+          {
+            "kind": "action",
+            "statType": "MOVE",
+            "modifier": "3"
+          },
+          {
+            "kind": "action",
+            "statType": "ATTACK",
+            "modifier": "3"
+          },
+          {
+            "kind": "action",
+            "statType": "SHIELD",
+            "modifier": "1"
+          },
+          {
+            "kind": "text",
+            "content": "Шит действует на себя и на всех союзников"
+          },
+          {
+            "kind": "text",
+            "content": "Если союзник Стального льва на соседней клетке становится целью атаки, вместо этого Стальной лев становиться целью этой атаки."
+          },
+          {
+            "kind": "text",
+            "content": "В первых случаяъ равных КП, получение 6 и более урона не проходят по Стальному льву"
+          }
+        ]
+      },
+      {
+        "level": 1,
+        "isElite": false,
+        "life": 4,
+        "stats": [
+          {
+            "kind": "action",
+            "statType": "MOVE",
+            "modifier": "3"
+          },
+          {
+            "kind": "action",
+            "statType": "ATTACK",
+            "modifier": "3"
+          },
+          {
+            "kind": "action",
+            "statType": "SHIELD",
+            "modifier": "2"
+          },
+          {
+            "kind": "text",
+            "content": "Шит действует на себя и на всех союзников"
+          },
+          {
+            "kind": "text",
+            "content": "Если союзник Стального льва на соседней клетке становится целью атаки, вместо этого Стальной лев становиться целью этой атаки."
+          },
+          {
+            "kind": "text",
+            "content": "В первых случаяъ равных КП, получение 6 и более урона не проходят по Стальному льву"
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "isElite": false,
+        "life": 5,
+        "stats": [
+          {
+            "kind": "action",
+            "statType": "MOVE",
+            "modifier": "3"
+          },
+          {
+            "kind": "action",
+            "statType": "ATTACK",
+            "modifier": "3"
+          },
+          {
+            "kind": "action",
+            "statType": "SHIELD",
+            "modifier": "2"
+          },
+          {
+            "kind": "text",
+            "content": "Шит действует на себя и на всех союзников"
+          },
+          {
+            "kind": "text",
+            "content": "Если союзник Стального льва на соседней клетке становится целью атаки, вместо этого Стальной лев становиться целью этой атаки."
+          },
+          {
+            "kind": "text",
+            "content": "В первых случаяъ равных КП, получение 6 и более урона не проходят по Стальному льву"
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "isElite": false,
+        "life": 5,
+        "stats": [
+          {
+            "kind": "action",
+            "statType": "MOVE",
+            "modifier": "3"
+          },
+          {
+            "kind": "action",
+            "statType": "ATTACK",
+            "modifier": "4"
+          },
+          {
+            "kind": "action",
+            "statType": "SHIELD",
+            "modifier": "2"
+          },
+          {
+            "kind": "action",
+            "statType": "RETALIATE",
+            "modifier": "1"
+          },
+          {
+            "kind": "text",
+            "content": "Шит действует на себя и на всех союзников"
+          },
+          {
+            "kind": "text",
+            "content": "Если союзник Стального льва на соседней клетке становится целью атаки, вместо этого Стальной лев становиться целью этой атаки."
+          },
+          {
+            "kind": "text",
+            "content": "В первых случаяъ равных КП, получение 6 и более урона не проходят по Стальному льву"
+          }
+        ]
+      },
+      {
+        "level": 4,
+        "isElite": false,
+        "life": 6,
+        "stats": [
+          {
+            "kind": "action",
+            "statType": "MOVE",
+            "modifier": "4"
+          },
+          {
+            "kind": "action",
+            "statType": "ATTACK",
+            "modifier": "4"
+          },
+          {
+            "kind": "action",
+            "statType": "SHIELD",
+            "modifier": "2"
+          },
+          {
+            "kind": "action",
+            "statType": "RETALIATE",
+            "modifier": "2"
+          },
+          {
+            "kind": "text",
+            "content": "Шит действует на себя и на всех союзников"
+          },
+          {
+            "kind": "text",
+            "content": "Если союзник Стального льва на соседней клетке становится целью атаки, вместо этого Стальной лев становиться целью этой атаки."
+          },
+          {
+            "kind": "text",
+            "content": "В первых случаяъ равных КП, получение 6 и более урона не проходят по Стальному льву"
+          }
+        ]
+      },
+      {
+        "level": 5,
+        "isElite": false,
+        "life": 7,
+        "stats": [
+          {
+            "kind": "action",
+            "statType": "MOVE",
+            "modifier": "4"
+          },
+          {
+            "kind": "action",
+            "statType": "ATTACK",
+            "modifier": "4"
+          },
+          {
+            "kind": "action",
+            "statType": "SHIELD",
+            "modifier": "3"
+          },
+          {
+            "kind": "action",
+            "statType": "RETALIATE",
+            "modifier": "2"
+          },
+          {
+            "kind": "text",
+            "content": "Шит действует на себя и на всех союзников"
+          },
+          {
+            "kind": "text",
+            "content": "Если союзник Стального льва на соседней клетке становится целью атаки, вместо этого Стальной лев становиться целью этой атаки."
+          },
+          {
+            "kind": "text",
+            "content": "В первых случаяъ равных КП, получение 6 и более урона не проходят по Стальному льву"
+          }
+        ]
+      },
+      {
+        "level": 6,
+        "isElite": false,
+        "life": 8,
+        "stats": [
+          {
+            "kind": "action",
+            "statType": "MOVE",
+            "modifier": "4"
+          },
+          {
+            "kind": "action",
+            "statType": "ATTACK",
+            "modifier": "5"
+          },
+          {
+            "kind": "action",
+            "statType": "SHIELD",
+            "modifier": "3"
+          },
+          {
+            "kind": "action",
+            "statType": "RETALIATE",
+            "modifier": "3"
+          },
+          {
+            "kind": "text",
+            "content": "Шит действует на себя и на всех союзников"
+          },
+          {
+            "kind": "text",
+            "content": "Если союзник Стального льва на соседней клетке становится целью атаки, вместо этого Стальной лев становиться целью этой атаки."
+          },
+          {
+            "kind": "text",
+            "content": "В первых случаяъ равных КП, получение 6 и более урона не проходят по Стальному льву"
+          }
+        ]
+      },
+      {
+        "level": 7,
+        "isElite": false,
+        "life": 9,
+        "stats": [
+          {
+            "kind": "action",
+            "statType": "MOVE",
+            "modifier": "4"
+          },
+          {
+            "kind": "action",
+            "statType": "ATTACK",
+            "modifier": "6"
+          },
+          {
+            "kind": "action",
+            "statType": "SHIELD",
+            "modifier": "3"
+          },
+          {
+            "kind": "action",
+            "statType": "RETALIATE",
+            "modifier": "3"
+          },
+          {
+            "kind": "text",
+            "content": "Шит действует на себя и на всех союзников"
+          },
+          {
+            "kind": "text",
+            "content": "Если союзник Стального льва на соседней клетке становится целью атаки, вместо этого Стальной лев становиться целью этой атаки."
+          },
+          {
+            "kind": "text",
+            "content": "В первых случаяъ равных КП, получение 6 и более урона не проходят по Стальному льву"
+          }
+        ]
+      }
     ]
   },
   {
-    "monsterName": "Уйрат Иккума",
+    "monsterKey": "57",
     "stats": [
-      { "level": 0, "isElite": false, "life": 7, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "3" }, { "kind": "action", "statType": "ATTACK", "modifier": "3" }, { "kind": "text", "content": "Все призванные создания Уйрата мощные, если учавствуют 3 или 4 игрока" }, { "kind": "text", "content": "Когда на игровом поле есть Огненный или Земляной демон, Уйрат может использовать #22 и #23 как если бы они имелт максимальный заряд." }] },
-      { "level": 1, "isElite": false, "life": 8, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "3" }, { "kind": "action", "statType": "ATTACK", "modifier": "3" }, { "kind": "action", "statType": "WOUND", "modifier": "" }, { "kind": "text", "content": "Все призванные создания Уйрата мощные, если учавствуют 3 или 4 игрока" }, { "kind": "text", "content": "Когда на игровом поле есть Огненный или Земляной демон, Уйрат может использовать #22 и #23 как если бы они имелт максимальный заряд." }] },
-      { "level": 2, "isElite": false, "life": 9, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "3" }, { "kind": "action", "statType": "ATTACK", "modifier": "3" }, { "kind": "action", "statType": "POISON", "modifier": "" }, { "kind": "action", "statType": "WOUND", "modifier": "" }, { "kind": "text", "content": "Все призванные создания Уйрата мощные, если учавствуют 3 или 4 игрока" }, { "kind": "text", "content": "Когда на игровом поле есть Огненный или Земляной демон, Уйрат может использовать #22 и #23 как если бы они имелт максимальный заряд." }] },
-      { "level": 3, "isElite": false, "life": 11, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "3" }, { "kind": "action", "statType": "ATTACK", "modifier": "4" }, { "kind": "action", "statType": "POISON", "modifier": "" }, { "kind": "action", "statType": "WOUND", "modifier": "" }, { "kind": "text", "content": "Все призванные создания Уйрата мощные, если учавствуют 3 или 4 игрока" }, { "kind": "text", "content": "Когда на игровом поле есть Огненный или Земляной демон, Уйрат может использовать #22 и #23 как если бы они имелт максимальный заряд." }] },
-      { "level": 4, "isElite": false, "life": 12, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "4" }, { "kind": "action", "statType": "ATTACK", "modifier": "4" }, { "kind": "action", "statType": "POISON", "modifier": "" }, { "kind": "action", "statType": "WOUND", "modifier": "" }, { "kind": "text", "content": "Все призванные создания Уйрата мощные, если учавствуют 3 или 4 игрока" }, { "kind": "text", "content": "Когда на игровом поле есть Огненный или Земляной демон, Уйрат может использовать #22 и #23 как если бы они имелт максимальный заряд." }] },
-      { "level": 5, "isElite": false, "life": 14, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "4" }, { "kind": "action", "statType": "ATTACK", "modifier": "5" }, { "kind": "action", "statType": "POISON", "modifier": "" }, { "kind": "action", "statType": "WOUND", "modifier": "" }, { "kind": "text", "content": "Все призванные создания Уйрата мощные, если учавствуют 3 или 4 игрока" }, { "kind": "text", "content": "Когда на игровом поле есть Огненный или Земляной демон, Уйрат может использовать #22 и #23 как если бы они имелт максимальный заряд." }] },
-      { "level": 6, "isElite": false, "life": 15, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "4" }, { "kind": "action", "statType": "ATTACK", "modifier": "6" }, { "kind": "action", "statType": "POISON", "modifier": "" }, { "kind": "action", "statType": "WOUND", "modifier": "" }, { "kind": "text", "content": "Все призванные создания Уйрата мощные, если учавствуют 3 или 4 игрока" }, { "kind": "text", "content": "Когда на игровом поле есть Огненный или Земляной демон, Уйрат может использовать #22 и #23 как если бы они имелт максимальный заряд." }] },
-      { "level": 7, "isElite": false, "life": 18, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "4" }, { "kind": "action", "statType": "ATTACK", "modifier": "6" }, { "kind": "action", "statType": "POISON", "modifier": "" }, { "kind": "action", "statType": "WOUND", "modifier": "" }, { "kind": "text", "content": "Все призванные создания Уйрата мощные, если учавствуют 3 или 4 игрока" }, { "kind": "text", "content": "Когда на игровом поле есть Огненный или Земляной демон, Уйрат может использовать #22 и #23 как если бы они имелт максимальный заряд." }] }
+      {
+        "level": 0,
+        "isElite": false,
+        "life": 7,
+        "stats": [
+          {
+            "kind": "action",
+            "statType": "MOVE",
+            "modifier": "3"
+          },
+          {
+            "kind": "action",
+            "statType": "ATTACK",
+            "modifier": "3"
+          },
+          {
+            "kind": "text",
+            "content": "Все призванные создания Уйрата мощные, если учавствуют 3 или 4 игрока"
+          },
+          {
+            "kind": "text",
+            "content": "Когда на игровом поле есть Огненный или Земляной демон, Уйрат может использовать #22 и #23 как если бы они имелт максимальный заряд."
+          }
+        ]
+      },
+      {
+        "level": 1,
+        "isElite": false,
+        "life": 8,
+        "stats": [
+          {
+            "kind": "action",
+            "statType": "MOVE",
+            "modifier": "3"
+          },
+          {
+            "kind": "action",
+            "statType": "ATTACK",
+            "modifier": "3"
+          },
+          {
+            "kind": "action",
+            "statType": "WOUND",
+            "modifier": ""
+          },
+          {
+            "kind": "text",
+            "content": "Все призванные создания Уйрата мощные, если учавствуют 3 или 4 игрока"
+          },
+          {
+            "kind": "text",
+            "content": "Когда на игровом поле есть Огненный или Земляной демон, Уйрат может использовать #22 и #23 как если бы они имелт максимальный заряд."
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "isElite": false,
+        "life": 9,
+        "stats": [
+          {
+            "kind": "action",
+            "statType": "MOVE",
+            "modifier": "3"
+          },
+          {
+            "kind": "action",
+            "statType": "ATTACK",
+            "modifier": "3"
+          },
+          {
+            "kind": "action",
+            "statType": "POISON",
+            "modifier": ""
+          },
+          {
+            "kind": "action",
+            "statType": "WOUND",
+            "modifier": ""
+          },
+          {
+            "kind": "text",
+            "content": "Все призванные создания Уйрата мощные, если учавствуют 3 или 4 игрока"
+          },
+          {
+            "kind": "text",
+            "content": "Когда на игровом поле есть Огненный или Земляной демон, Уйрат может использовать #22 и #23 как если бы они имелт максимальный заряд."
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "isElite": false,
+        "life": 11,
+        "stats": [
+          {
+            "kind": "action",
+            "statType": "MOVE",
+            "modifier": "3"
+          },
+          {
+            "kind": "action",
+            "statType": "ATTACK",
+            "modifier": "4"
+          },
+          {
+            "kind": "action",
+            "statType": "POISON",
+            "modifier": ""
+          },
+          {
+            "kind": "action",
+            "statType": "WOUND",
+            "modifier": ""
+          },
+          {
+            "kind": "text",
+            "content": "Все призванные создания Уйрата мощные, если учавствуют 3 или 4 игрока"
+          },
+          {
+            "kind": "text",
+            "content": "Когда на игровом поле есть Огненный или Земляной демон, Уйрат может использовать #22 и #23 как если бы они имелт максимальный заряд."
+          }
+        ]
+      },
+      {
+        "level": 4,
+        "isElite": false,
+        "life": 12,
+        "stats": [
+          {
+            "kind": "action",
+            "statType": "MOVE",
+            "modifier": "4"
+          },
+          {
+            "kind": "action",
+            "statType": "ATTACK",
+            "modifier": "4"
+          },
+          {
+            "kind": "action",
+            "statType": "POISON",
+            "modifier": ""
+          },
+          {
+            "kind": "action",
+            "statType": "WOUND",
+            "modifier": ""
+          },
+          {
+            "kind": "text",
+            "content": "Все призванные создания Уйрата мощные, если учавствуют 3 или 4 игрока"
+          },
+          {
+            "kind": "text",
+            "content": "Когда на игровом поле есть Огненный или Земляной демон, Уйрат может использовать #22 и #23 как если бы они имелт максимальный заряд."
+          }
+        ]
+      },
+      {
+        "level": 5,
+        "isElite": false,
+        "life": 14,
+        "stats": [
+          {
+            "kind": "action",
+            "statType": "MOVE",
+            "modifier": "4"
+          },
+          {
+            "kind": "action",
+            "statType": "ATTACK",
+            "modifier": "5"
+          },
+          {
+            "kind": "action",
+            "statType": "POISON",
+            "modifier": ""
+          },
+          {
+            "kind": "action",
+            "statType": "WOUND",
+            "modifier": ""
+          },
+          {
+            "kind": "text",
+            "content": "Все призванные создания Уйрата мощные, если учавствуют 3 или 4 игрока"
+          },
+          {
+            "kind": "text",
+            "content": "Когда на игровом поле есть Огненный или Земляной демон, Уйрат может использовать #22 и #23 как если бы они имелт максимальный заряд."
+          }
+        ]
+      },
+      {
+        "level": 6,
+        "isElite": false,
+        "life": 15,
+        "stats": [
+          {
+            "kind": "action",
+            "statType": "MOVE",
+            "modifier": "4"
+          },
+          {
+            "kind": "action",
+            "statType": "ATTACK",
+            "modifier": "6"
+          },
+          {
+            "kind": "action",
+            "statType": "POISON",
+            "modifier": ""
+          },
+          {
+            "kind": "action",
+            "statType": "WOUND",
+            "modifier": ""
+          },
+          {
+            "kind": "text",
+            "content": "Все призванные создания Уйрата мощные, если учавствуют 3 или 4 игрока"
+          },
+          {
+            "kind": "text",
+            "content": "Когда на игровом поле есть Огненный или Земляной демон, Уйрат может использовать #22 и #23 как если бы они имелт максимальный заряд."
+          }
+        ]
+      },
+      {
+        "level": 7,
+        "isElite": false,
+        "life": 18,
+        "stats": [
+          {
+            "kind": "action",
+            "statType": "MOVE",
+            "modifier": "4"
+          },
+          {
+            "kind": "action",
+            "statType": "ATTACK",
+            "modifier": "6"
+          },
+          {
+            "kind": "action",
+            "statType": "POISON",
+            "modifier": ""
+          },
+          {
+            "kind": "action",
+            "statType": "WOUND",
+            "modifier": ""
+          },
+          {
+            "kind": "text",
+            "content": "Все призванные создания Уйрата мощные, если учавствуют 3 или 4 игрока"
+          },
+          {
+            "kind": "text",
+            "content": "Когда на игровом поле есть Огненный или Земляной демон, Уйрат может использовать #22 и #23 как если бы они имелт максимальный заряд."
+          }
+        ]
+      }
     ]
   },
   {
-    "monsterName": "Шелуха",
+    "monsterKey": "59",
     "stats": [
-      { "level": 0, "isElite": false, "life": 12, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "3" }, { "kind": "action", "statType": "ATTACK", "modifier": "3" }, { "kind": "action", "statType": "POISON", "modifier": "" }] },
-      { "level": 1, "isElite": false, "life": 14, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "4" }, { "kind": "action", "statType": "ATTACK", "modifier": "3" }, { "kind": "action", "statType": "POISON", "modifier": "" }] },
-      { "level": 2, "isElite": false, "life": 16, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "4" }, { "kind": "action", "statType": "ATTACK", "modifier": "4" }, { "kind": "action", "statType": "POISON", "modifier": "" }] },
-      { "level": 3, "isElite": false, "life": 18, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "4" }, { "kind": "action", "statType": "ATTACK", "modifier": "4" }, { "kind": "action", "statType": "POISON", "modifier": "" }, { "kind": "text", "content": "Все атаки на Эстер Пепельный клинок проводятся с затруднением" }] },
-      { "level": 4, "isElite": false, "life": 21, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "4" }, { "kind": "action", "statType": "ATTACK", "modifier": "5" }, { "kind": "action", "statType": "POISON", "modifier": "" }, { "kind": "text", "content": "Все атаки на Эстер Пепельный клинок проводятся с затруднением" }] },
-      { "level": 5, "isElite": false, "life": 25, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "4" }, { "kind": "action", "statType": "ATTACK", "modifier": "5" }, { "kind": "action", "statType": "POISON", "modifier": "" }, { "kind": "text", "content": "Все атаки на Эстер Пепельный клинок проводятся с затруднением" }] },
-      { "level": 6, "isElite": false, "life": 28, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "4" }, { "kind": "action", "statType": "ATTACK", "modifier": "6" }, { "kind": "action", "statType": "POISON", "modifier": "" }, { "kind": "text", "content": "Все атаки на Эстер Пепельный клинок проводятся с затруднением" }] },
-      { "level": 7, "isElite": false, "life": 33, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "5" }, { "kind": "action", "statType": "ATTACK", "modifier": "6" }, { "kind": "action", "statType": "POISON", "modifier": "" }, { "kind": "text", "content": "Все атаки на Эстер Пепельный клинок проводятся с затруднением" }] }
+      {
+        "level": 0,
+        "isElite": false,
+        "life": 12,
+        "stats": [
+          {
+            "kind": "action",
+            "statType": "MOVE",
+            "modifier": "3"
+          },
+          {
+            "kind": "action",
+            "statType": "ATTACK",
+            "modifier": "3"
+          },
+          {
+            "kind": "action",
+            "statType": "POISON",
+            "modifier": ""
+          }
+        ]
+      },
+      {
+        "level": 1,
+        "isElite": false,
+        "life": 14,
+        "stats": [
+          {
+            "kind": "action",
+            "statType": "MOVE",
+            "modifier": "4"
+          },
+          {
+            "kind": "action",
+            "statType": "ATTACK",
+            "modifier": "3"
+          },
+          {
+            "kind": "action",
+            "statType": "POISON",
+            "modifier": ""
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "isElite": false,
+        "life": 16,
+        "stats": [
+          {
+            "kind": "action",
+            "statType": "MOVE",
+            "modifier": "4"
+          },
+          {
+            "kind": "action",
+            "statType": "ATTACK",
+            "modifier": "4"
+          },
+          {
+            "kind": "action",
+            "statType": "POISON",
+            "modifier": ""
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "isElite": false,
+        "life": 18,
+        "stats": [
+          {
+            "kind": "action",
+            "statType": "MOVE",
+            "modifier": "4"
+          },
+          {
+            "kind": "action",
+            "statType": "ATTACK",
+            "modifier": "4"
+          },
+          {
+            "kind": "action",
+            "statType": "POISON",
+            "modifier": ""
+          },
+          {
+            "kind": "text",
+            "content": "Все атаки на Эстер Пепельный клинок проводятся с затруднением"
+          }
+        ]
+      },
+      {
+        "level": 4,
+        "isElite": false,
+        "life": 21,
+        "stats": [
+          {
+            "kind": "action",
+            "statType": "MOVE",
+            "modifier": "4"
+          },
+          {
+            "kind": "action",
+            "statType": "ATTACK",
+            "modifier": "5"
+          },
+          {
+            "kind": "action",
+            "statType": "POISON",
+            "modifier": ""
+          },
+          {
+            "kind": "text",
+            "content": "Все атаки на Эстер Пепельный клинок проводятся с затруднением"
+          }
+        ]
+      },
+      {
+        "level": 5,
+        "isElite": false,
+        "life": 25,
+        "stats": [
+          {
+            "kind": "action",
+            "statType": "MOVE",
+            "modifier": "4"
+          },
+          {
+            "kind": "action",
+            "statType": "ATTACK",
+            "modifier": "5"
+          },
+          {
+            "kind": "action",
+            "statType": "POISON",
+            "modifier": ""
+          },
+          {
+            "kind": "text",
+            "content": "Все атаки на Эстер Пепельный клинок проводятся с затруднением"
+          }
+        ]
+      },
+      {
+        "level": 6,
+        "isElite": false,
+        "life": 28,
+        "stats": [
+          {
+            "kind": "action",
+            "statType": "MOVE",
+            "modifier": "4"
+          },
+          {
+            "kind": "action",
+            "statType": "ATTACK",
+            "modifier": "6"
+          },
+          {
+            "kind": "action",
+            "statType": "POISON",
+            "modifier": ""
+          },
+          {
+            "kind": "text",
+            "content": "Все атаки на Эстер Пепельный клинок проводятся с затруднением"
+          }
+        ]
+      },
+      {
+        "level": 7,
+        "isElite": false,
+        "life": 33,
+        "stats": [
+          {
+            "kind": "action",
+            "statType": "MOVE",
+            "modifier": "5"
+          },
+          {
+            "kind": "action",
+            "statType": "ATTACK",
+            "modifier": "6"
+          },
+          {
+            "kind": "action",
+            "statType": "POISON",
+            "modifier": ""
+          },
+          {
+            "kind": "text",
+            "content": "Все атаки на Эстер Пепельный клинок проводятся с затруднением"
+          }
+        ]
+      }
     ]
   }
 ]

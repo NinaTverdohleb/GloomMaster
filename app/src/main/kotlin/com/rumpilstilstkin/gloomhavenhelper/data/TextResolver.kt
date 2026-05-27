@@ -14,13 +14,9 @@ class TextResolver(
     private val byKey: Map<String, String>,
     // Canonical Russian source snapshot, used as the release fallback when [byKey] lacks an entry.
     private val fallbackByKey: Map<String, String> = emptyMap(),
-    // Canonical (Russian) achievement name -> stable catalog key. Achievements are keyed in the
-    // store by this stable key, but callers only have the canonical name (the logic identity),
-    // so [resolveAchievement] bridges name -> key before looking up the text.
-    private val achievementKeys: Map<String, String> = emptyMap(),
-    // Canonical (Russian) monster name -> stable catalog key (same bridge rationale as achievements).
-    private val monsterKeys: Map<String, String> = emptyMap(),
-    // Canonical (Russian) embedded stats text -> stable catalog key.
+    // Canonical (Russian) embedded stats text -> stable catalog key. Stats text is the one place
+    // the catalog still carries inline Russian content (it is not a "name"), so it is bridged by
+    // content rather than by an id.
     private val monsterTextKeys: Map<String, String> = emptyMap(),
     // True in debug (surface the key marker on a miss); false in release (fall back to the source).
     private val markMissingKeys: Boolean = true,
@@ -35,21 +31,13 @@ class TextResolver(
     private fun marker(entityType: String, entityKey: String, fieldName: String): String =
         "⟦$entityType:$entityKey:$fieldName⟧"
 
-    /** Display name for an achievement identified by its canonical (Russian) name. */
-    fun resolveAchievement(canonicalName: String): String =
-        resolve(
-            TranslationKeys.ACHIEVEMENT,
-            achievementKeys[canonicalName] ?: canonicalName,
-            TranslationKeys.FIELD_NAME,
-        )
+    /** Display name for an achievement identified by its stable catalog [key]. */
+    fun resolveAchievement(key: String): String =
+        resolve(TranslationKeys.ACHIEVEMENT, key, TranslationKeys.FIELD_NAME)
 
-    /** Display name for a monster identified by its canonical (Russian) name. */
-    fun resolveMonster(canonicalName: String): String =
-        resolve(
-            TranslationKeys.MONSTER,
-            monsterKeys[canonicalName] ?: canonicalName,
-            TranslationKeys.FIELD_NAME,
-        )
+    /** Display name for a monster identified by its stable catalog [key]. */
+    fun resolveMonster(key: String): String =
+        resolve(TranslationKeys.MONSTER, key, TranslationKeys.FIELD_NAME)
 
     /**
      * Display text for ability/special text embedded in monster stats, identified by its canonical

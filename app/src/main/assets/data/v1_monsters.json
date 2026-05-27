@@ -1,17 +1,19 @@
 [
   {
     "key": "1",
-    "name": "Главарь разбойников",
     "deckName": "boss",
     "isBoss": true,
     "fly": false,
     "lifeMultiple": true,
-    "immunity": ["STUN", "IMMOBILIZE", "CURSE"],
+    "immunity": [
+      "STUN",
+      "IMMOBILIZE",
+      "CURSE"
+    ],
     "pack": "MAIN"
   },
   {
     "key": "2",
-    "name": "Ожившие кости",
     "deckName": "living-bones",
     "isBoss": false,
     "fly": false,
@@ -21,7 +23,6 @@
   },
   {
     "key": "3",
-    "name": "Разбойник-страж",
     "deckName": "guard",
     "isBoss": false,
     "fly": false,
@@ -31,7 +32,6 @@
   },
   {
     "key": "4",
-    "name": "Разбойник-лучница",
     "deckName": "archer",
     "isBoss": false,
     "fly": false,
@@ -41,7 +41,6 @@
   },
   {
     "key": "5",
-    "name": "Оживший труп",
     "deckName": "living-corpse",
     "isBoss": false,
     "fly": false,
@@ -51,7 +50,6 @@
   },
   {
     "key": "6",
-    "name": "Инокс-стражница",
     "deckName": "guard",
     "isBoss": false,
     "fly": false,
@@ -61,7 +59,6 @@
   },
   {
     "key": "7",
-    "name": "Инокс-лучник",
     "deckName": "archer",
     "isBoss": false,
     "fly": false,
@@ -71,7 +68,6 @@
   },
   {
     "key": "8",
-    "name": "Инокс-шаман",
     "deckName": "shaman",
     "isBoss": false,
     "fly": false,
@@ -81,7 +77,6 @@
   },
   {
     "key": "9",
-    "name": "Культист",
     "deckName": "cultist",
     "isBoss": false,
     "fly": false,
@@ -91,7 +86,6 @@
   },
   {
     "key": "10",
-    "name": "Земляной демон",
     "deckName": "earth-demon",
     "isBoss": false,
     "fly": false,
@@ -101,7 +95,6 @@
   },
   {
     "key": "11",
-    "name": "Воздушный демон",
     "deckName": "wind-demon",
     "isBoss": false,
     "fly": true,
@@ -111,7 +104,6 @@
   },
   {
     "key": "12",
-    "name": "Оживший дух",
     "deckName": "living-spirit",
     "isBoss": false,
     "fly": true,
@@ -121,7 +113,6 @@
   },
   {
     "key": "13",
-    "name": "Ночной демон",
     "deckName": "night-demon",
     "isBoss": false,
     "fly": false,
@@ -131,7 +122,6 @@
   },
   {
     "key": "14",
-    "name": "Огненный демон",
     "deckName": "flame-demon",
     "isBoss": false,
     "fly": true,
@@ -141,7 +131,6 @@
   },
   {
     "key": "15",
-    "name": "Морозный демон",
     "deckName": "frost-demon",
     "isBoss": false,
     "fly": false,
@@ -151,7 +140,6 @@
   },
   {
     "key": "16",
-    "name": "Лесной бес",
     "deckName": "imp",
     "isBoss": false,
     "fly": true,
@@ -161,7 +149,6 @@
   },
   {
     "key": "17",
-    "name": "Пещерный медведь",
     "deckName": "cave-bear",
     "isBoss": false,
     "fly": false,
@@ -171,27 +158,34 @@
   },
   {
     "key": "18",
-    "name": "Инокс-телохранитель - 1",
     "deckName": "boss",
     "isBoss": true,
     "fly": false,
     "lifeMultiple": true,
-    "immunity": ["DISARM", "MUDDLE", "POISON", "STUN"],
+    "immunity": [
+      "DISARM",
+      "MUDDLE",
+      "POISON",
+      "STUN"
+    ],
     "pack": "MAIN"
   },
   {
     "key": "19",
-    "name": "Инокс-телохранитель - 2",
     "deckName": "boss",
     "isBoss": true,
     "fly": false,
     "lifeMultiple": true,
-    "immunity": ["DISARM", "MUDDLE", "POISON", "STUN"],
+    "immunity": [
+      "DISARM",
+      "MUDDLE",
+      "POISON",
+      "STUN"
+    ],
     "pack": "MAIN"
   },
   {
     "key": "20",
-    "name": "Гончая",
     "deckName": "hound",
     "isBoss": false,
     "fly": false,
@@ -201,7 +195,6 @@
   },
   {
     "key": "21",
-    "name": "Вермлинг-разведчик",
     "deckName": "scout",
     "isBoss": false,
     "fly": false,
@@ -211,17 +204,20 @@
   },
   {
     "key": "22",
-    "name": "Жестокий надзиратель",
     "deckName": "boss",
     "isBoss": true,
     "fly": false,
     "lifeMultiple": true,
-    "immunity": ["STUN", "WOUND", "DISARM", "CURSE"],
+    "immunity": [
+      "STUN",
+      "WOUND",
+      "DISARM",
+      "CURSE"
+    ],
     "pack": "MAIN"
   },
   {
     "key": "23",
-    "name": "Солнечный демон",
     "deckName": "sun-demon",
     "isBoss": false,
     "fly": true,
@@ -231,7 +227,6 @@
   },
   {
     "key": "24",
-    "name": "Городской страж",
     "deckName": "guard",
     "isBoss": false,
     "fly": false,
@@ -241,7 +236,6 @@
   },
   {
     "key": "25",
-    "name": "Городской лучник",
     "deckName": "archer",
     "isBoss": false,
     "fly": false,
@@ -251,27 +245,34 @@
   },
   {
     "key": "26",
-    "name": "Начальник стражи",
     "deckName": "boss",
     "isBoss": true,
     "fly": false,
     "lifeMultiple": true,
-    "immunity": ["STUN", "DISARM", "WOUND", "MUDDLE"],
+    "immunity": [
+      "STUN",
+      "DISARM",
+      "WOUND",
+      "MUDDLE"
+    ],
     "pack": "MAIN"
   },
   {
     "key": "27",
-    "name": "Джексера",
     "deckName": "boss",
     "isBoss": true,
     "fly": false,
     "lifeMultiple": true,
-    "immunity": ["STUN", "DISARM", "CURSE", "WOUND"],
+    "immunity": [
+      "STUN",
+      "DISARM",
+      "CURSE",
+      "WOUND"
+    ],
     "pack": "MAIN"
   },
   {
     "key": "28",
-    "name": "Каменный голем",
     "deckName": "stone-golem",
     "isBoss": false,
     "fly": false,
@@ -281,7 +282,6 @@
   },
   {
     "key": "29",
-    "name": "Шипящий дрейк",
     "deckName": "spitting-drake",
     "isBoss": false,
     "fly": true,
@@ -291,7 +291,6 @@
   },
   {
     "key": "30",
-    "name": "Саввас Ледяной шторм",
     "deckName": "savvas-icestorm",
     "isBoss": false,
     "fly": false,
@@ -301,7 +300,6 @@
   },
   {
     "key": "31",
-    "name": "Жнец заразитель",
     "deckName": "harrower-infester",
     "isBoss": false,
     "fly": true,
@@ -311,7 +309,6 @@
   },
   {
     "key": "32",
-    "name": "Вермлинг-шаман",
     "deckName": "shaman",
     "isBoss": false,
     "fly": false,
@@ -321,7 +318,6 @@
   },
   {
     "key": "33",
-    "name": "Гигантская гадюка",
     "deckName": "giant-viper",
     "isBoss": false,
     "fly": false,
@@ -331,7 +327,6 @@
   },
   {
     "key": "34",
-    "name": "Слизь",
     "deckName": "ooze",
     "isBoss": false,
     "fly": false,
@@ -341,17 +336,22 @@
   },
   {
     "key": "35",
-    "name": "Архидемон",
     "deckName": "boss",
     "isBoss": true,
     "fly": false,
     "lifeMultiple": true,
-    "immunity": ["STUN", "IMMOBILIZE", "DISARM", "MUDDLE", "POISON", "WOUND"],
+    "immunity": [
+      "STUN",
+      "IMMOBILIZE",
+      "DISARM",
+      "MUDDLE",
+      "POISON",
+      "WOUND"
+    ],
     "pack": "MAIN"
   },
   {
     "key": "36",
-    "name": "Древняя пушка",
     "deckName": "ancient-artillery",
     "isBoss": false,
     "fly": false,
@@ -361,7 +361,6 @@
   },
   {
     "key": "37",
-    "name": "Когтистый дрейк",
     "deckName": "rending-drake",
     "isBoss": false,
     "fly": false,
@@ -371,7 +370,6 @@
   },
   {
     "key": "38",
-    "name": "Черный бес",
     "deckName": "imp",
     "isBoss": false,
     "fly": false,
@@ -381,17 +379,20 @@
   },
   {
     "key": "39",
-    "name": "Невыносимый ужас",
     "deckName": "deep-terror",
     "isBoss": false,
     "fly": false,
     "lifeMultiple": false,
-    "immunity": ["STUN", "DISARM", "IMMOBILIZE", "MUDDLE"],
+    "immunity": [
+      "STUN",
+      "DISARM",
+      "IMMOBILIZE",
+      "MUDDLE"
+    ],
     "pack": "MAIN"
   },
   {
     "key": "40",
-    "name": "Скрытень",
     "deckName": "lurker",
     "isBoss": false,
     "fly": false,
@@ -401,7 +402,6 @@
   },
   {
     "key": "41",
-    "name": "Саввас Поток лавы",
     "deckName": "savvas-lavaflow",
     "isBoss": false,
     "fly": false,
@@ -411,77 +411,115 @@
   },
   {
     "key": "42",
-    "name": "Дрейк-патриарх",
     "deckName": "boss",
     "isBoss": true,
     "fly": false,
     "lifeMultiple": true,
-    "immunity": ["STUN", "IMMOBILIZE", "DISARM", "PUSH", "PULL", "POISON", "WOUND"],
+    "immunity": [
+      "STUN",
+      "IMMOBILIZE",
+      "DISARM",
+      "PUSH",
+      "PULL",
+      "POISON",
+      "WOUND"
+    ],
     "pack": "MAIN"
   },
   {
     "key": "43",
-    "name": "Крылатый ужас",
     "deckName": "boss",
     "isBoss": true,
     "fly": false,
     "lifeMultiple": true,
-    "immunity": ["STUN", "DISARM", "CURSE", "MUDDLE", "POISON"],
+    "immunity": [
+      "STUN",
+      "DISARM",
+      "CURSE",
+      "MUDDLE",
+      "POISON"
+    ],
     "pack": "MAIN"
   },
   {
     "key": "44",
-    "name": "Невидящее око",
     "deckName": "boss",
     "isBoss": true,
     "fly": false,
     "lifeMultiple": true,
-    "immunity": ["STUN", "PUSH", "PULL", "DISARM", "CURSE", "MUDDLE"],
+    "immunity": [
+      "STUN",
+      "PUSH",
+      "PULL",
+      "DISARM",
+      "CURSE",
+      "MUDDLE"
+    ],
     "pack": "MAIN"
   },
   {
     "key": "45",
-    "name": "Темный всадник",
     "deckName": "boss",
     "isBoss": true,
     "fly": false,
     "lifeMultiple": true,
-    "immunity": ["STUN", "IMMOBILIZE", "DISARM", "POISON"],
+    "immunity": [
+      "STUN",
+      "IMMOBILIZE",
+      "DISARM",
+      "POISON"
+    ],
     "pack": "MAIN"
   },
   {
     "key": "46",
-    "name": "Мрак",
     "deckName": "boss",
     "isBoss": true,
     "fly": false,
     "lifeMultiple": true,
-    "immunity": ["STUN", "IMMOBILIZE", "DISARM", "CURSE", "MUDDLE", "POISON", "WOUND"],
+    "immunity": [
+      "STUN",
+      "IMMOBILIZE",
+      "DISARM",
+      "CURSE",
+      "MUDDLE",
+      "POISON",
+      "WOUND"
+    ],
     "pack": "MAIN"
   },
   {
     "key": "47",
-    "name": "Предатель",
     "deckName": "boss",
     "isBoss": true,
     "fly": false,
     "lifeMultiple": true,
-    "immunity": ["STUN", "WOUND", "DISARM", "CURSE", "POISON"],
+    "immunity": [
+      "STUN",
+      "WOUND",
+      "DISARM",
+      "CURSE",
+      "POISON"
+    ],
     "pack": "MAIN"
   },
   {
     "key": "48",
-    "name": "Бесцветный",
     "deckName": "boss",
     "isBoss": true,
     "fly": false,
     "lifeMultiple": true,
-    "immunity": ["STUN", "WOUND", "POISON", "CURSE", "MUDDLE"],
+    "immunity": [
+      "STUN",
+      "WOUND",
+      "POISON",
+      "CURSE",
+      "MUDDLE"
+    ],
     "pack": "MAIN"
   },
   {
     "key": "49",
-    "name": "Эстер-разведчик",
     "deckName": "scout",
     "isBoss": false,
     "fly": false,
@@ -491,7 +529,6 @@
   },
   {
     "key": "50",
-    "name": "Валрат-варвар",
     "deckName": "savage",
     "isBoss": false,
     "fly": false,
@@ -501,7 +538,6 @@
   },
   {
     "key": "51",
-    "name": "Валрат-следопыт",
     "deckName": "tracker",
     "isBoss": false,
     "fly": false,
@@ -511,67 +547,95 @@
   },
   {
     "key": "52",
-    "name": "Полководец людей",
     "deckName": "boss",
     "isBoss": true,
     "fly": false,
     "lifeMultiple": true,
-    "immunity": ["STUN", "DISARM", "POISON", "WOUND", "IMMOBILIZE", "CURSE"],
+    "immunity": [
+      "STUN",
+      "DISARM",
+      "POISON",
+      "WOUND",
+      "IMMOBILIZE",
+      "CURSE"
+    ],
     "pack": "MAIN"
   },
   {
     "key": "53",
-    "name": "Полководец валратов",
     "deckName": "boss",
     "isBoss": true,
     "fly": false,
     "lifeMultiple": true,
-    "immunity": ["STUN", "DISARM", "MUDDLE", "WOUND", "IMMOBILIZE", "CURSE"],
+    "immunity": [
+      "STUN",
+      "DISARM",
+      "MUDDLE",
+      "WOUND",
+      "IMMOBILIZE",
+      "CURSE"
+    ],
     "pack": "MAIN"
   },
   {
     "key": "54",
-    "name": "Села Наберис",
     "deckName": "tracker",
     "isBoss": true,
     "fly": false,
     "lifeMultiple": false,
-    "immunity": ["STUN", "DISARM", "POISON", "MUDDLE", "IMMOBILIZE"],
+    "immunity": [
+      "STUN",
+      "DISARM",
+      "POISON",
+      "MUDDLE",
+      "IMMOBILIZE"
+    ],
     "pack": "FORGOTTEN_CIRCLES"
   },
   {
     "key": "55",
-    "name": "Шрака мудрый",
     "deckName": "shaman",
     "isBoss": true,
     "fly": false,
     "lifeMultiple": true,
-    "immunity": ["STUN", "WOUND", "DISARM", "PIERCE"],
+    "immunity": [
+      "STUN",
+      "WOUND",
+      "DISARM",
+      "PIERCE"
+    ],
     "pack": "FORGOTTEN_CIRCLES"
   },
   {
     "key": "56",
-    "name": "Стальной лев",
     "deckName": "guard",
     "isBoss": true,
     "fly": false,
     "lifeMultiple": true,
-    "immunity": ["WOUND", "IMMOBILIZE", "MUDDLE", "STUN"],
+    "immunity": [
+      "WOUND",
+      "IMMOBILIZE",
+      "MUDDLE",
+      "STUN"
+    ],
     "pack": "FORGOTTEN_CIRCLES"
   },
   {
     "key": "57",
-    "name": "Уйрат Иккума",
     "deckName": "savvas-lavaflow",
     "isBoss": true,
     "fly": false,
     "lifeMultiple": true,
-    "immunity": ["STUN", "MUDDLE", "POISON", "IMMOBILIZE"],
+    "immunity": [
+      "STUN",
+      "MUDDLE",
+      "POISON",
+      "IMMOBILIZE"
+    ],
     "pack": "FORGOTTEN_CIRCLES"
   },
   {
     "key": "58",
-    "name": "Эстер Пепельный клинок",
     "deckName": "ashblade",
     "isBoss": false,
     "fly": false,
@@ -581,12 +645,15 @@
   },
   {
     "key": "59",
-    "name": "Шелуха",
     "deckName": "ashblade",
     "isBoss": true,
     "fly": false,
     "lifeMultiple": true,
-    "immunity": ["STUN", "DISARM", "IMMOBILIZE"],
+    "immunity": [
+      "STUN",
+      "DISARM",
+      "IMMOBILIZE"
+    ],
     "pack": "FORGOTTEN_CIRCLES"
   }
 ]

@@ -8,7 +8,8 @@ import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterStatTyp
 @Entity
 data class MonsterBd(
     @PrimaryKey(autoGenerate = true) val monsterId: Int = 0,
-    val name: String,
+    // Stable catalog key — the logic/save identity. Display name resolved from the translation store.
+    val key: String,
     val deckName: String,
     val isBoss: Boolean,
     val fly: Boolean = false,

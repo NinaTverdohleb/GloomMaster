@@ -22,6 +22,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.rumpilstilstkin.gloomhavenhelper.R
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.ShortScenarioUI
+import com.rumpilstilstkin.gloomhavenhelper.screens.models.toHumanReadable
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomAlertDialog
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomToolbarTitle
 import com.rumpilstilstkin.gloomhavenhelper.ui.scenario.ScenarioInfoCardItem
@@ -115,7 +116,10 @@ private fun AddScenarioConfirmDialog(
             )
             if (scenario.scenarioRequirements.isNotBlank()) {
                 Text(
-                    text = stringResource(R.string.requirements_format, scenario.scenarioRequirements),
+                    text = stringResource(
+                        R.string.requirements_format,
+                        scenario.scenarioRequirements.toHumanReadable(scenario.requirementAchievementNames),
+                    ),
                     style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                     modifier = Modifier.padding(top = 8.dp)

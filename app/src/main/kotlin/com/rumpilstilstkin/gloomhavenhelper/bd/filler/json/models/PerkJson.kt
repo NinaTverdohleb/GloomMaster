@@ -10,5 +10,7 @@ data class CharacterPerksJson(
 
 @Serializable
 data class PerkJson(
-    val text: String
+    // Empty in the canonical catalog (the entry only fixes the perk's position/count); populated
+    // in the per-locale dictionaries, where the flattened 1-based index is the perk's id.
+    val text: String = ""
 )

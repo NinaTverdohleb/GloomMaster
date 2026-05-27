@@ -17,12 +17,11 @@ fun MonsterAbilityCardBd.toDomain(): MonsterCard = MonsterCard(
 
 /**
  * Localizes a monster for the active locale: sets the display-only [Monster.displayName] from the
- * canonical (Russian) [Monster.name] via the store's stable monster key, and localizes the
- * ability/special text embedded in its stats. The canonical name is untouched, so scenario monster
- * lists and saved game state stay language-independent.
+ * stable [Monster.key], and localizes the ability/special text embedded in its stats. The key is
+ * untouched, so scenario monster lists and saved game state stay language-independent.
  */
 fun Monster.localized(resolver: TextResolver): Monster = copy(
-    displayName = resolver.resolveMonster(name),
+    displayName = resolver.resolveMonster(key),
     stats = stats.localizedActions(resolver),
     eliteStats = eliteStats.localizedActions(resolver),
 )

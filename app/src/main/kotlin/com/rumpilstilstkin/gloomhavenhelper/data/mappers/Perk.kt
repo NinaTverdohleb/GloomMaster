@@ -7,15 +7,17 @@ import com.rumpilstilstkin.gloomhavenhelper.domain.entity.CharacterClassType
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.Perk
 import com.rumpilstilstkin.gloomhavenhelper.localization.TranslationKeys
 
+// [Perk.text] is display-only and always populated by [localized]; it starts blank because the
+// canonical perk text no longer lives in the catalog.
 fun PerkBd.toDomain() = Perk(
     id = this.perkId,
-    text = this.text,
+    text = "",
     characterType = CharacterClassType.valueOf(this.characterType),
 )
 
 fun CharacterPerkDetailsBd.toDomain() = Perk(
     id = this.perk.perkId,
-    text = this.perk.text,
+    text = "",
     characterType = CharacterClassType.valueOf(this.perk.characterType),
     characterPerkId = this.characterPerk.id
 )

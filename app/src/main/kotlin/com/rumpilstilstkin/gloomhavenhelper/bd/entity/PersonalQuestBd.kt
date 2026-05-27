@@ -9,8 +9,6 @@ import com.rumpilstilstkin.gloomhavenhelper.domain.entity.quest.CharacterTaskIte
 data class PersonalQuestBd(
     @PrimaryKey
     val questId: String,
-    val title: String,
-    val description: String,
     val specialText: String,
     val characterType: String?,
     val tasks: List<CharacterTaskItem>,

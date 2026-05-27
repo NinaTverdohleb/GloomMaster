@@ -6,7 +6,7 @@ import kotlinx.serialization.Transient
 @Serializable
 data class Monster(
     val id: Int,
-    val name: String,
+    val key: String,
     val life: Int,
     val stats: List<MonsterAction>,
     val eliteLife: Int,
@@ -18,10 +18,10 @@ data class Monster(
     val isFly: Boolean,
     val level: Int,
     val lifeMultiple: Boolean,
-    // Canonical [name] is the identity: it is matched by scenario monster lists and persisted in
-    // the active-scenario game state, so it must never change with language. [displayName] is the
-    // display-only localized text, defaults to [name], and is @Transient so it is never serialized.
-    @Transient val displayName: String = name,
+    // [key] is the stable catalog identity: it is matched by scenario monster lists and persisted
+    // in the active-scenario game state, so it is language-independent. [displayName] is the
+    // display-only localized text, defaults to [key], and is @Transient so it is never serialized.
+    @Transient val displayName: String = key,
 )
 
 

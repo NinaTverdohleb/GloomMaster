@@ -22,8 +22,6 @@ import javax.inject.Singleton
 @Singleton
 class TranslationRepository @Inject constructor(
     private val translationDao: TranslationDao,
-    private val achievementKeyIndex: AchievementKeyIndex,
-    private val monsterKeyIndex: MonsterKeyIndex,
     private val monsterTextKeyIndex: MonsterTextKeyIndex,
 ) {
     /** One-off snapshot resolver, for suspend (non-stream) reads. */
@@ -49,8 +47,6 @@ class TranslationRepository @Inject constructor(
         TextResolver(
             byKey = active.toByKey(),
             fallbackByKey = fallback.toByKey(),
-            achievementKeys = achievementKeyIndex.byName,
-            monsterKeys = monsterKeyIndex.byName,
             monsterTextKeys = monsterTextKeyIndex.byContent,
             markMissingKeys = BuildConfig.DEBUG,
         )

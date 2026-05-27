@@ -10,18 +10,17 @@ object TranslationKeys {
     const val QUEST = "quest"
     const val PERK = "perk"
 
-    // Achievement translations are keyed by a stable catalog key (see AchievementKeyIndex), not
-    // by the Russian name. Scenario unlock logic + saved progress still match by the canonical
-    // (Russian) name; that name is bridged to the key at lookup time.
+    // Achievements are identified by a stable catalog key everywhere — scenario unlock logic,
+    // saved progress, and the translation store all use it. The display name lives only here.
     const val ACHIEVEMENT = "achievement"
 
-    // Monster names are keyed by a stable catalog key (see MonsterKeyIndex). The canonical
-    // (Russian) name stays the game-logic/save identity (scenario monster lists, active-play
-    // game state); that name is bridged to the key at lookup time.
+    // Monsters are identified by a stable catalog key everywhere — scenario monster lists,
+    // active-play game state, and the translation store. The display name lives only here.
     const val MONSTER = "monster"
 
     // Ability/special text embedded in monster stats, deduplicated and keyed by a stable catalog
-    // key (see MonsterTextKeyIndex). The canonical Russian text is bridged to the key at lookup.
+    // key (see MonsterTextKeyIndex). This is the one place the catalog still carries inline Russian
+    // content (it is not a "name"), so it is bridged by content at lookup time.
     const val MONSTER_TEXT = "monster_text"
 
     // Per-task quest text, keyed by "$questId:$taskId" so each task stays addressable

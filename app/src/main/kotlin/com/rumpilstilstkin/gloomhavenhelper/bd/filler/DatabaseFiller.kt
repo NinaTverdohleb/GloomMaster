@@ -2,6 +2,7 @@ package com.rumpilstilstkin.gloomhavenhelper.bd.filler
 
 import android.content.SharedPreferences
 import androidx.core.content.edit
+import com.rumpilstilstkin.gloomhavenhelper.bd.dao.AchievementDao
 import com.rumpilstilstkin.gloomhavenhelper.bd.filler.json.AchievementJsonFiller
 import com.rumpilstilstkin.gloomhavenhelper.bd.filler.json.GameLevelInfoJsonFiller
 import com.rumpilstilstkin.gloomhavenhelper.bd.filler.json.GoodJsonFiller
@@ -22,6 +23,7 @@ class DatabaseFiller @Inject constructor(
     private val questJsonFiller: QuestJsonFiller,
     private val monsterJsonFiller: MonsterJsonFiller,
     private val translationJsonFiller: TranslationJsonFiller,
+    private val achievementDao: AchievementDao,
 ) {
     suspend fun fillDatabase() {
         var version = preferences.getInt(PREFS_VERSION, 0)
@@ -67,6 +69,16 @@ class DatabaseFiller @Inject constructor(
             // Re-seed: monster names and embedded stats text were added to the translation store,
             // so existing installs must rebuild it. fill() clears and re-inserts every locale.
             11 -> translationJsonFiller.fill()
+            // Catalog rebuilt from scratch: display names removed from the asset data and the
+            // achievement/monster/scenario references rekeyed to stable catalog keys. The Room
+            // schema is destructively recreated (see fallbackToDestructiveMigration), so on an
+            // upgrade the catalog tables come back empty while this filler pref persists — and the
+            // loop runs only this step, never fillV1. Reseed the catalog when empty, and always
+            // rebuild the translation store so its keys match the new catalog.
+            12 -> {
+                if (achievementDao.count() == 0) fillV1()
+                translationJsonFiller.fill()
+            }
             else -> {}
         }
     }
@@ -103,7 +115,7 @@ class DatabaseFiller @Inject constructor(
     }
 
     companion object {
-        private const val VERSION = 12
+        private const val VERSION = 13
         private const val PREFS_VERSION = "filler_version"
     }
 }

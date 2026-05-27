@@ -86,7 +86,7 @@ object ScenarioStateMapper {
     fun stateForSave(state: ScenarioLogicState) =
         ScenarioGameState(
             name = state.scenarioInfo.name,
-            monsterNames = state.scenarioInfo.monsters.map { it.name },
+            monsterNames = state.scenarioInfo.monsters.map { it.key },
             round = state.round,
             availableCards = state.cardDeck.getCards().map { it.cardId },
             activeMonsters = state.activeMonsters.map { monsterItem ->

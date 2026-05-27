@@ -7,10 +7,10 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class MonsterJson(
-    // Stable catalog key. Used as the translation-store key for this monster's name; the (Russian)
-    // [name] remains the logic/save identity. Not persisted to the DB.
+    // Stable catalog key — the logic/save identity (scenario monster lists, active-play game
+    // state) and the translation-store key. The display name lives only in the per-locale
+    // dictionaries, resolved by this key.
     val key: String,
-    val name: String,
     val deckName: String,
     val isBoss: Boolean,
     val fly: Boolean = false,
@@ -19,7 +19,7 @@ data class MonsterJson(
     val pack: String
 ){
     fun toEntity() = MonsterBd(
-        name = name,
+        key = key,
         deckName = deckName,
         isBoss = isBoss,
         fly = fly,
@@ -31,7 +31,7 @@ data class MonsterJson(
 
 @Serializable
 data class MonsterStatsJson(
-    val monsterName: String,
+    val monsterKey: String,
     val stats: List<MonsterLevelStatsJson>
 )
 

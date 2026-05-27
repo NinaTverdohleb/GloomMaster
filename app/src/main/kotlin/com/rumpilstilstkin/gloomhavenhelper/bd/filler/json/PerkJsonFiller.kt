@@ -11,9 +11,8 @@ class PerkJsonFiller @Inject constructor(
     suspend fun fill(version: Int) {
         val characterPerks = jsonDataLoader.loadPerks(version)
         val entities = characterPerks.flatMap { characterPerk ->
-            characterPerk.perks.map { perk ->
+            characterPerk.perks.map {
                 PerkBd(
-                    text = perk.text,
                     characterType = characterPerk.characterType
                 )
             }

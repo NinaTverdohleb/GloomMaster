@@ -52,31 +52,29 @@ class TextResolverTest {
     }
 
     @Test
-    fun `resolveAchievement bridges the canonical name to its catalog key`() {
+    fun `resolveAchievement resolves by catalog key`() {
         val resolver = TextResolver(
             byKey = mapOf(
                 TextResolver.key(TranslationKeys.ACHIEVEMENT, "city_rule_economy", TranslationKeys.FIELD_NAME)
                     to "City Rule: Economy",
             ),
-            achievementKeys = mapOf("Управление городом: Экономика" to "city_rule_economy"),
         )
 
-        assertEquals("City Rule: Economy", resolver.resolveAchievement("Управление городом: Экономика"))
+        assertEquals("City Rule: Economy", resolver.resolveAchievement("city_rule_economy"))
     }
 
     @Test
-    fun `resolveAchievement falls back to the russian source name in release`() {
+    fun `resolveAchievement falls back to the russian source in release`() {
         val resolver = TextResolver(
             byKey = emptyMap(),
             fallbackByKey = mapOf(
                 TextResolver.key(TranslationKeys.ACHIEVEMENT, "city_rule_economy", TranslationKeys.FIELD_NAME)
                     to "Управление городом: Экономика",
             ),
-            achievementKeys = mapOf("Управление городом: Экономика" to "city_rule_economy"),
             markMissingKeys = false,
         )
 
-        assertEquals("Управление городом: Экономика", resolver.resolveAchievement("Управление городом: Экономика"))
+        assertEquals("Управление городом: Экономика", resolver.resolveAchievement("city_rule_economy"))
     }
 
     @Test

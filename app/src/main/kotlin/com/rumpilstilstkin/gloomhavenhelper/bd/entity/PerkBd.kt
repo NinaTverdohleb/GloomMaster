@@ -14,6 +14,5 @@ import androidx.room.PrimaryKey
 )
 data class PerkBd(
     @PrimaryKey(autoGenerate = true) val perkId: Int = 0,
-    @ColumnInfo(name = "text") val text: String,
     @ColumnInfo(name = "characterType") val characterType: String,
 )

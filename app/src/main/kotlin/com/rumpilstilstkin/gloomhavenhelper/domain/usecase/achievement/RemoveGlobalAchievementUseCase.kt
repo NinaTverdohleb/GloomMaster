@@ -10,7 +10,7 @@ class RemoveGlobalAchievementUseCase @Inject constructor(
 ) {
     suspend operator fun invoke(achievement: Achievement) {
         val team = teamRepository.currentTeam.first() ?: return
-        val updatedAchievements = team.globalAchievement.filter { it.name != achievement.name }
+        val updatedAchievements = team.globalAchievement.filter { it.key != achievement.key }
         teamRepository.updateTeam(team.copy(globalAchievement = updatedAchievements))
     }
 }

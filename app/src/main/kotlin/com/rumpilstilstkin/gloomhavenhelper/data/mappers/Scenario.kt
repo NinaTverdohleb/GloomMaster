@@ -8,15 +8,17 @@ import com.rumpilstilstkin.gloomhavenhelper.domain.entity.ScenarioInfo
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.ScenarioShortInfo
 import com.rumpilstilstkin.gloomhavenhelper.localization.TranslationKeys
 
+// scenarioName/location are display-only and always populated by [localized]; they start blank
+// because the canonical (display) text no longer lives in the catalog.
 fun ScenarioBd.toDomain() = ScenarioInfo(
     scenarioNumber = this.scenarioNumber,
-    scenarioName = this.name,
+    scenarioName = "",
     scenarioRequirements = LogicalCondition(this.requirements),
     newScenario = this.newScenarios.split(",")
         .mapNotNull { if (it.isNotBlank()) it.trim().toInt() else null },
     teamAchievements = this.teamAchievement.split(","),
     globalAchievements = this.globalAchievement.split(","),
-    location = this.location,
+    location = "",
     pack = PackType.valueOf(this.pack),
     monsters = this.monsters
 )
@@ -25,9 +27,9 @@ fun ScenarioBd.toShortDomain(
     isCompleted: Boolean
 ) = ScenarioShortInfo(
     scenarioNumber = this.scenarioNumber,
-    scenarioName = this.name,
+    scenarioName = "",
     scenarioRequirements = LogicalCondition(this.requirements),
-    location = this.location,
+    location = "",
     pack = PackType.valueOf(this.pack),
     isCompleted = isCompleted,
     monsters = this.monsters
@@ -36,32 +38,31 @@ fun ScenarioBd.toShortDomain(
 /**
  * Replaces display-only [ScenarioShortInfo.scenarioName] and [ScenarioShortInfo.location] with
  * text for the active locale, both keyed by scenario number. Logic fields (requirements,
- * achievements, monsters) keep their canonical values, so scenario unlock evaluation is
+ * achievements, monsters) keep their stable-key values, so scenario unlock evaluation is
  * unaffected by language.
  */
 fun ScenarioShortInfo.localized(resolver: TextResolver) = copy(
     scenarioName = resolver.resolveScenarioName(scenarioNumber),
-    location = resolver.resolveScenarioLocation(scenarioNumber, location),
+    location = resolver.resolveScenarioLocation(scenarioNumber),
     requirementAchievementNames = resolver.resolveRequirementNames(scenarioRequirements),
 )
 
 fun ScenarioInfo.localized(resolver: TextResolver) = copy(
     scenarioName = resolver.resolveScenarioName(scenarioNumber),
-    location = resolver.resolveScenarioLocation(scenarioNumber, location),
+    location = resolver.resolveScenarioLocation(scenarioNumber),
     requirementAchievementNames = resolver.resolveRequirementNames(scenarioRequirements),
 )
 
 private fun TextResolver.resolveScenarioName(scenarioNumber: Int): String =
     resolve(TranslationKeys.SCENARIO, scenarioNumber.toString(), TranslationKeys.FIELD_NAME)
 
-private fun TextResolver.resolveScenarioLocation(scenarioNumber: Int, canonical: String): String =
-    if (canonical.isBlank()) canonical
-    else resolve(TranslationKeys.SCENARIO, scenarioNumber.toString(), TranslationKeys.FIELD_LOCATION)
+private fun TextResolver.resolveScenarioLocation(scenarioNumber: Int): String =
+    resolve(TranslationKeys.SCENARIO, scenarioNumber.toString(), TranslationKeys.FIELD_LOCATION)
 
 /**
  * Resolves each achievement reference in a requirement expression to its localized display name,
- * keyed by canonical name. Evaluation still runs on the canonical keys, so unlock results are
- * language-independent; this map is display-only.
+ * keyed by the achievement's stable key. Evaluation still runs on those keys, so unlock results
+ * are language-independent; this map is display-only.
  */
 private fun TextResolver.resolveRequirementNames(requirements: LogicalCondition): Map<String, String> =
     requirements.achievementKeys.associateWith { resolveAchievement(it) }

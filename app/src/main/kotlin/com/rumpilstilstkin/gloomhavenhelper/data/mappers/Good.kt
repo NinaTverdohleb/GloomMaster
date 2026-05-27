@@ -8,10 +8,12 @@ import com.rumpilstilstkin.gloomhavenhelper.domain.entity.GoodType
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.PackType
 import com.rumpilstilstkin.gloomhavenhelper.localization.TranslationKeys
 
+// [Good.name] is display-only and always populated by [localized]; it starts blank because the
+// canonical (display) name no longer lives in the catalog.
 fun GoodBd.toDomain() = Good(
     id = this.goodId,
     number = this.number,
-    name = this.name,
+    name = "",
     type = GoodType.valueOf(this.type),
     cost = this.cost,
     image = this.image,
@@ -21,7 +23,7 @@ fun GoodBd.toDomain() = Good(
 fun CharacterGoodDetailsBd.toDomain() = Good(
     id = this.good.goodId,
     number = this.good.number,
-    name = this.good.name,
+    name = "",
     type = GoodType.valueOf(this.good.type),
     cost = this.good.cost,
     characterGoodId = this.characterGood.id,

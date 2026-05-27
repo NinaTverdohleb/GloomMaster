@@ -1,86 +1,1510 @@
 [
   {
-    "monsterName": "Эстер-разведчик",
+    "monsterKey": "49",
     "stats": [
-      { "level": 0, "isElite": false, "life": 8, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "3" }, { "kind": "action", "statType": "ATTACK", "modifier": "2" }] },
-      { "level": 0, "isElite": true, "life": 13, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "3" }, { "kind": "action", "statType": "ATTACK", "modifier": "3" }] },
-      { "level": 1, "isElite": false, "life": 9, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "3" }, { "kind": "action", "statType": "ATTACK", "modifier": "3" }] },
-      { "level": 1, "isElite": true, "life": 14, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "4" }, { "kind": "action", "statType": "ATTACK", "modifier": "3" }, { "kind": "action", "statType": "MUDDLE", "modifier": "" }] },
-      { "level": 2, "isElite": false, "life": 12, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "3" }, { "kind": "action", "statType": "ATTACK", "modifier": "3" }] },
-      { "level": 2, "isElite": true, "life": 17, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "4" }, { "kind": "action", "statType": "ATTACK", "modifier": "3" }, { "kind": "action", "statType": "MUDDLE", "modifier": "" }] },
-      { "level": 3, "isElite": false, "life": 14, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "4" }, { "kind": "action", "statType": "ATTACK", "modifier": "3" }, { "kind": "action", "statType": "MUDDLE", "modifier": "" }] },
-      { "level": 3, "isElite": true, "life": 19, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "4" }, { "kind": "action", "statType": "ATTACK", "modifier": "4" }, { "kind": "action", "statType": "MUDDLE", "modifier": "" }, { "kind": "action", "statType": "CURSE", "modifier": "" }] },
-      { "level": 4, "isElite": false, "life": 16, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "4" }, { "kind": "action", "statType": "ATTACK", "modifier": "4" }, { "kind": "action", "statType": "MUDDLE", "modifier": "" }] },
-      { "level": 4, "isElite": true, "life": 23, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "4" }, { "kind": "action", "statType": "ATTACK", "modifier": "4" }, { "kind": "action", "statType": "MUDDLE", "modifier": "" }, { "kind": "action", "statType": "CURSE", "modifier": "" }] },
-      { "level": 5, "isElite": false, "life": 18, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "4" }, { "kind": "action", "statType": "ATTACK", "modifier": "4" }, { "kind": "action", "statType": "MUDDLE", "modifier": "" }, { "kind": "action", "statType": "CURSE", "modifier": "" }] },
-      { "level": 5, "isElite": true, "life": 26, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "4" }, { "kind": "action", "statType": "ATTACK", "modifier": "5" }, { "kind": "action", "statType": "MUDDLE", "modifier": "" }, { "kind": "action", "statType": "CURSE", "modifier": "" }] },
-      { "level": 6, "isElite": false, "life": 21, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "4" }, { "kind": "action", "statType": "ATTACK", "modifier": "4" }, { "kind": "action", "statType": "MUDDLE", "modifier": "" }, { "kind": "action", "statType": "CURSE", "modifier": "" }] },
-      { "level": 6, "isElite": true, "life": 29, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "5" }, { "kind": "action", "statType": "ATTACK", "modifier": "5" }, { "kind": "action", "statType": "MUDDLE", "modifier": "" }, { "kind": "action", "statType": "CURSE", "modifier": "" }] },
-      { "level": 7, "isElite": false, "life": 24, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "5" }, { "kind": "action", "statType": "ATTACK", "modifier": "4" }, { "kind": "action", "statType": "MUDDLE", "modifier": "" }, { "kind": "action", "statType": "CURSE", "modifier": "" }] },
-      { "level": 7, "isElite": true, "life": 33, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "5" }, { "kind": "action", "statType": "ATTACK", "modifier": "6" }, { "kind": "action", "statType": "MUDDLE", "modifier": "" }, { "kind": "action", "statType": "CURSE", "modifier": "" }] }
+      {
+        "level": 0,
+        "isElite": false,
+        "life": 8,
+        "stats": [
+          {
+            "kind": "action",
+            "statType": "MOVE",
+            "modifier": "3"
+          },
+          {
+            "kind": "action",
+            "statType": "ATTACK",
+            "modifier": "2"
+          }
+        ]
+      },
+      {
+        "level": 0,
+        "isElite": true,
+        "life": 13,
+        "stats": [
+          {
+            "kind": "action",
+            "statType": "MOVE",
+            "modifier": "3"
+          },
+          {
+            "kind": "action",
+            "statType": "ATTACK",
+            "modifier": "3"
+          }
+        ]
+      },
+      {
+        "level": 1,
+        "isElite": false,
+        "life": 9,
+        "stats": [
+          {
+            "kind": "action",
+            "statType": "MOVE",
+            "modifier": "3"
+          },
+          {
+            "kind": "action",
+            "statType": "ATTACK",
+            "modifier": "3"
+          }
+        ]
+      },
+      {
+        "level": 1,
+        "isElite": true,
+        "life": 14,
+        "stats": [
+          {
+            "kind": "action",
+            "statType": "MOVE",
+            "modifier": "4"
+          },
+          {
+            "kind": "action",
+            "statType": "ATTACK",
+            "modifier": "3"
+          },
+          {
+            "kind": "action",
+            "statType": "MUDDLE",
+            "modifier": ""
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "isElite": false,
+        "life": 12,
+        "stats": [
+          {
+            "kind": "action",
+            "statType": "MOVE",
+            "modifier": "3"
+          },
+          {
+            "kind": "action",
+            "statType": "ATTACK",
+            "modifier": "3"
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "isElite": true,
+        "life": 17,
+        "stats": [
+          {
+            "kind": "action",
+            "statType": "MOVE",
+            "modifier": "4"
+          },
+          {
+            "kind": "action",
+            "statType": "ATTACK",
+            "modifier": "3"
+          },
+          {
+            "kind": "action",
+            "statType": "MUDDLE",
+            "modifier": ""
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "isElite": false,
+        "life": 14,
+        "stats": [
+          {
+            "kind": "action",
+            "statType": "MOVE",
+            "modifier": "4"
+          },
+          {
+            "kind": "action",
+            "statType": "ATTACK",
+            "modifier": "3"
+          },
+          {
+            "kind": "action",
+            "statType": "MUDDLE",
+            "modifier": ""
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "isElite": true,
+        "life": 19,
+        "stats": [
+          {
+            "kind": "action",
+            "statType": "MOVE",
+            "modifier": "4"
+          },
+          {
+            "kind": "action",
+            "statType": "ATTACK",
+            "modifier": "4"
+          },
+          {
+            "kind": "action",
+            "statType": "MUDDLE",
+            "modifier": ""
+          },
+          {
+            "kind": "action",
+            "statType": "CURSE",
+            "modifier": ""
+          }
+        ]
+      },
+      {
+        "level": 4,
+        "isElite": false,
+        "life": 16,
+        "stats": [
+          {
+            "kind": "action",
+            "statType": "MOVE",
+            "modifier": "4"
+          },
+          {
+            "kind": "action",
+            "statType": "ATTACK",
+            "modifier": "4"
+          },
+          {
+            "kind": "action",
+            "statType": "MUDDLE",
+            "modifier": ""
+          }
+        ]
+      },
+      {
+        "level": 4,
+        "isElite": true,
+        "life": 23,
+        "stats": [
+          {
+            "kind": "action",
+            "statType": "MOVE",
+            "modifier": "4"
+          },
+          {
+            "kind": "action",
+            "statType": "ATTACK",
+            "modifier": "4"
+          },
+          {
+            "kind": "action",
+            "statType": "MUDDLE",
+            "modifier": ""
+          },
+          {
+            "kind": "action",
+            "statType": "CURSE",
+            "modifier": ""
+          }
+        ]
+      },
+      {
+        "level": 5,
+        "isElite": false,
+        "life": 18,
+        "stats": [
+          {
+            "kind": "action",
+            "statType": "MOVE",
+            "modifier": "4"
+          },
+          {
+            "kind": "action",
+            "statType": "ATTACK",
+            "modifier": "4"
+          },
+          {
+            "kind": "action",
+            "statType": "MUDDLE",
+            "modifier": ""
+          },
+          {
+            "kind": "action",
+            "statType": "CURSE",
+            "modifier": ""
+          }
+        ]
+      },
+      {
+        "level": 5,
+        "isElite": true,
+        "life": 26,
+        "stats": [
+          {
+            "kind": "action",
+            "statType": "MOVE",
+            "modifier": "4"
+          },
+          {
+            "kind": "action",
+            "statType": "ATTACK",
+            "modifier": "5"
+          },
+          {
+            "kind": "action",
+            "statType": "MUDDLE",
+            "modifier": ""
+          },
+          {
+            "kind": "action",
+            "statType": "CURSE",
+            "modifier": ""
+          }
+        ]
+      },
+      {
+        "level": 6,
+        "isElite": false,
+        "life": 21,
+        "stats": [
+          {
+            "kind": "action",
+            "statType": "MOVE",
+            "modifier": "4"
+          },
+          {
+            "kind": "action",
+            "statType": "ATTACK",
+            "modifier": "4"
+          },
+          {
+            "kind": "action",
+            "statType": "MUDDLE",
+            "modifier": ""
+          },
+          {
+            "kind": "action",
+            "statType": "CURSE",
+            "modifier": ""
+          }
+        ]
+      },
+      {
+        "level": 6,
+        "isElite": true,
+        "life": 29,
+        "stats": [
+          {
+            "kind": "action",
+            "statType": "MOVE",
+            "modifier": "5"
+          },
+          {
+            "kind": "action",
+            "statType": "ATTACK",
+            "modifier": "5"
+          },
+          {
+            "kind": "action",
+            "statType": "MUDDLE",
+            "modifier": ""
+          },
+          {
+            "kind": "action",
+            "statType": "CURSE",
+            "modifier": ""
+          }
+        ]
+      },
+      {
+        "level": 7,
+        "isElite": false,
+        "life": 24,
+        "stats": [
+          {
+            "kind": "action",
+            "statType": "MOVE",
+            "modifier": "5"
+          },
+          {
+            "kind": "action",
+            "statType": "ATTACK",
+            "modifier": "4"
+          },
+          {
+            "kind": "action",
+            "statType": "MUDDLE",
+            "modifier": ""
+          },
+          {
+            "kind": "action",
+            "statType": "CURSE",
+            "modifier": ""
+          }
+        ]
+      },
+      {
+        "level": 7,
+        "isElite": true,
+        "life": 33,
+        "stats": [
+          {
+            "kind": "action",
+            "statType": "MOVE",
+            "modifier": "5"
+          },
+          {
+            "kind": "action",
+            "statType": "ATTACK",
+            "modifier": "6"
+          },
+          {
+            "kind": "action",
+            "statType": "MUDDLE",
+            "modifier": ""
+          },
+          {
+            "kind": "action",
+            "statType": "CURSE",
+            "modifier": ""
+          }
+        ]
+      }
     ]
   },
   {
-    "monsterName": "Валрат-варвар",
+    "monsterKey": "50",
     "stats": [
-      { "level": 0, "isElite": false, "life": 6, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "2" }, { "kind": "action", "statType": "ATTACK", "modifier": "2" }] },
-      { "level": 0, "isElite": true, "life": 10, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "2" }, { "kind": "action", "statType": "ATTACK", "modifier": "3" }] },
-      { "level": 1, "isElite": false, "life": 6, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "2" }, { "kind": "action", "statType": "ATTACK", "modifier": "2" }, { "kind": "action", "statType": "SHIELD", "modifier": "1" }] },
-      { "level": 1, "isElite": true, "life": 12, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "2" }, { "kind": "action", "statType": "ATTACK", "modifier": "3" }] },
-      { "level": 2, "isElite": false, "life": 8, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "3" }, { "kind": "action", "statType": "ATTACK", "modifier": "2" }, { "kind": "action", "statType": "SHIELD", "modifier": "1" }] },
-      { "level": 2, "isElite": true, "life": 14, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "2" }, { "kind": "action", "statType": "ATTACK", "modifier": "4" }] },
-      { "level": 3, "isElite": false, "life": 10, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "3" }, { "kind": "action", "statType": "ATTACK", "modifier": "2" }, { "kind": "action", "statType": "SHIELD", "modifier": "1" }] },
-      { "level": 3, "isElite": true, "life": 16, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "2" }, { "kind": "action", "statType": "ATTACK", "modifier": "4" }, { "kind": "text", "content": "Все союзники на соседних клетка добавляют +1 ко всем атакам" }] },
-      { "level": 4, "isElite": false, "life": 10, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "3" }, { "kind": "action", "statType": "ATTACK", "modifier": "2" }, { "kind": "action", "statType": "SHIELD", "modifier": "2" }] },
-      { "level": 4, "isElite": true, "life": 18, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "3" }, { "kind": "action", "statType": "ATTACK", "modifier": "4" }, { "kind": "text", "content": "Все союзники на соседних клетка добавляют +1 ко всем атакам" }] },
-      { "level": 5, "isElite": false, "life": 11, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "3" }, { "kind": "action", "statType": "ATTACK", "modifier": "3" }, { "kind": "action", "statType": "SHIELD", "modifier": "2" }] },
-      { "level": 5, "isElite": true, "life": 21, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "3" }, { "kind": "action", "statType": "ATTACK", "modifier": "5" }, { "kind": "text", "content": "Все союзники на соседних клетка добавляют +2 ко всем атакам" }] },
-      { "level": 6, "isElite": false, "life": 12, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "4" }, { "kind": "action", "statType": "ATTACK", "modifier": "3" }, { "kind": "action", "statType": "SHIELD", "modifier": "2" }] },
-      { "level": 6, "isElite": true, "life": 24, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "3" }, { "kind": "action", "statType": "ATTACK", "modifier": "5" }, { "kind": "text", "content": "Все союзники на соседних клетка добавляют +2 ко всем атакам" }] },
-      { "level": 7, "isElite": false, "life": 14, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "4" }, { "kind": "action", "statType": "ATTACK", "modifier": "3" }, { "kind": "action", "statType": "SHIELD", "modifier": "3" }] },
-      { "level": 7, "isElite": true, "life": 28, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "3" }, { "kind": "action", "statType": "ATTACK", "modifier": "6" }, { "kind": "text", "content": "Все союзники на соседних клетка добавляют +2 ко всем атакам" }] }
+      {
+        "level": 0,
+        "isElite": false,
+        "life": 6,
+        "stats": [
+          {
+            "kind": "action",
+            "statType": "MOVE",
+            "modifier": "2"
+          },
+          {
+            "kind": "action",
+            "statType": "ATTACK",
+            "modifier": "2"
+          }
+        ]
+      },
+      {
+        "level": 0,
+        "isElite": true,
+        "life": 10,
+        "stats": [
+          {
+            "kind": "action",
+            "statType": "MOVE",
+            "modifier": "2"
+          },
+          {
+            "kind": "action",
+            "statType": "ATTACK",
+            "modifier": "3"
+          }
+        ]
+      },
+      {
+        "level": 1,
+        "isElite": false,
+        "life": 6,
+        "stats": [
+          {
+            "kind": "action",
+            "statType": "MOVE",
+            "modifier": "2"
+          },
+          {
+            "kind": "action",
+            "statType": "ATTACK",
+            "modifier": "2"
+          },
+          {
+            "kind": "action",
+            "statType": "SHIELD",
+            "modifier": "1"
+          }
+        ]
+      },
+      {
+        "level": 1,
+        "isElite": true,
+        "life": 12,
+        "stats": [
+          {
+            "kind": "action",
+            "statType": "MOVE",
+            "modifier": "2"
+          },
+          {
+            "kind": "action",
+            "statType": "ATTACK",
+            "modifier": "3"
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "isElite": false,
+        "life": 8,
+        "stats": [
+          {
+            "kind": "action",
+            "statType": "MOVE",
+            "modifier": "3"
+          },
+          {
+            "kind": "action",
+            "statType": "ATTACK",
+            "modifier": "2"
+          },
+          {
+            "kind": "action",
+            "statType": "SHIELD",
+            "modifier": "1"
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "isElite": true,
+        "life": 14,
+        "stats": [
+          {
+            "kind": "action",
+            "statType": "MOVE",
+            "modifier": "2"
+          },
+          {
+            "kind": "action",
+            "statType": "ATTACK",
+            "modifier": "4"
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "isElite": false,
+        "life": 10,
+        "stats": [
+          {
+            "kind": "action",
+            "statType": "MOVE",
+            "modifier": "3"
+          },
+          {
+            "kind": "action",
+            "statType": "ATTACK",
+            "modifier": "2"
+          },
+          {
+            "kind": "action",
+            "statType": "SHIELD",
+            "modifier": "1"
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "isElite": true,
+        "life": 16,
+        "stats": [
+          {
+            "kind": "action",
+            "statType": "MOVE",
+            "modifier": "2"
+          },
+          {
+            "kind": "action",
+            "statType": "ATTACK",
+            "modifier": "4"
+          },
+          {
+            "kind": "text",
+            "content": "Все союзники на соседних клетка добавляют +1 ко всем атакам"
+          }
+        ]
+      },
+      {
+        "level": 4,
+        "isElite": false,
+        "life": 10,
+        "stats": [
+          {
+            "kind": "action",
+            "statType": "MOVE",
+            "modifier": "3"
+          },
+          {
+            "kind": "action",
+            "statType": "ATTACK",
+            "modifier": "2"
+          },
+          {
+            "kind": "action",
+            "statType": "SHIELD",
+            "modifier": "2"
+          }
+        ]
+      },
+      {
+        "level": 4,
+        "isElite": true,
+        "life": 18,
+        "stats": [
+          {
+            "kind": "action",
+            "statType": "MOVE",
+            "modifier": "3"
+          },
+          {
+            "kind": "action",
+            "statType": "ATTACK",
+            "modifier": "4"
+          },
+          {
+            "kind": "text",
+            "content": "Все союзники на соседних клетка добавляют +1 ко всем атакам"
+          }
+        ]
+      },
+      {
+        "level": 5,
+        "isElite": false,
+        "life": 11,
+        "stats": [
+          {
+            "kind": "action",
+            "statType": "MOVE",
+            "modifier": "3"
+          },
+          {
+            "kind": "action",
+            "statType": "ATTACK",
+            "modifier": "3"
+          },
+          {
+            "kind": "action",
+            "statType": "SHIELD",
+            "modifier": "2"
+          }
+        ]
+      },
+      {
+        "level": 5,
+        "isElite": true,
+        "life": 21,
+        "stats": [
+          {
+            "kind": "action",
+            "statType": "MOVE",
+            "modifier": "3"
+          },
+          {
+            "kind": "action",
+            "statType": "ATTACK",
+            "modifier": "5"
+          },
+          {
+            "kind": "text",
+            "content": "Все союзники на соседних клетка добавляют +2 ко всем атакам"
+          }
+        ]
+      },
+      {
+        "level": 6,
+        "isElite": false,
+        "life": 12,
+        "stats": [
+          {
+            "kind": "action",
+            "statType": "MOVE",
+            "modifier": "4"
+          },
+          {
+            "kind": "action",
+            "statType": "ATTACK",
+            "modifier": "3"
+          },
+          {
+            "kind": "action",
+            "statType": "SHIELD",
+            "modifier": "2"
+          }
+        ]
+      },
+      {
+        "level": 6,
+        "isElite": true,
+        "life": 24,
+        "stats": [
+          {
+            "kind": "action",
+            "statType": "MOVE",
+            "modifier": "3"
+          },
+          {
+            "kind": "action",
+            "statType": "ATTACK",
+            "modifier": "5"
+          },
+          {
+            "kind": "text",
+            "content": "Все союзники на соседних клетка добавляют +2 ко всем атакам"
+          }
+        ]
+      },
+      {
+        "level": 7,
+        "isElite": false,
+        "life": 14,
+        "stats": [
+          {
+            "kind": "action",
+            "statType": "MOVE",
+            "modifier": "4"
+          },
+          {
+            "kind": "action",
+            "statType": "ATTACK",
+            "modifier": "3"
+          },
+          {
+            "kind": "action",
+            "statType": "SHIELD",
+            "modifier": "3"
+          }
+        ]
+      },
+      {
+        "level": 7,
+        "isElite": true,
+        "life": 28,
+        "stats": [
+          {
+            "kind": "action",
+            "statType": "MOVE",
+            "modifier": "3"
+          },
+          {
+            "kind": "action",
+            "statType": "ATTACK",
+            "modifier": "6"
+          },
+          {
+            "kind": "text",
+            "content": "Все союзники на соседних клетка добавляют +2 ко всем атакам"
+          }
+        ]
+      }
     ]
   },
   {
-    "monsterName": "Валрат-следопыт",
+    "monsterKey": "51",
     "stats": [
-      { "level": 0, "isElite": false, "life": 5, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "2" }, { "kind": "action", "statType": "ATTACK", "modifier": "2" }, { "kind": "action", "statType": "RANGE", "modifier": "2" }] },
-      { "level": 0, "isElite": true, "life": 9, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "2" }, { "kind": "action", "statType": "ATTACK", "modifier": "3" }, { "kind": "action", "statType": "RANGE", "modifier": "4" }] },
-      { "level": 1, "isElite": false, "life": 6, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "3" }, { "kind": "action", "statType": "ATTACK", "modifier": "2" }, { "kind": "action", "statType": "RANGE", "modifier": "2" }] },
-      { "level": 1, "isElite": true, "life": 11, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "2" }, { "kind": "action", "statType": "ATTACK", "modifier": "3" }, { "kind": "action", "statType": "RANGE", "modifier": "5" }, { "kind": "action", "statType": "PIERCE", "modifier": "1" }] },
-      { "level": 2, "isElite": false, "life": 7, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "3" }, { "kind": "action", "statType": "ATTACK", "modifier": "3" }, { "kind": "action", "statType": "RANGE", "modifier": "2" }] },
-      { "level": 2, "isElite": true, "life": 12, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "2" }, { "kind": "action", "statType": "ATTACK", "modifier": "4" }, { "kind": "action", "statType": "RANGE", "modifier": "5" }, { "kind": "action", "statType": "PIERCE", "modifier": "1" }] },
-      { "level": 3, "isElite": false, "life": 8, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "3" }, { "kind": "action", "statType": "ATTACK", "modifier": "3" }, { "kind": "action", "statType": "RANGE", "modifier": "3" }, { "kind": "text", "content": "Преимущество" }] },
-      { "level": 3, "isElite": true, "life": 14, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "2" }, { "kind": "action", "statType": "ATTACK", "modifier": "4" }, { "kind": "action", "statType": "RANGE", "modifier": "6" }, { "kind": "action", "statType": "PIERCE", "modifier": "1" }, { "kind": "action", "statType": "PUSH", "modifier": "1" }] },
-      { "level": 4, "isElite": false, "life": 10, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "4" }, { "kind": "action", "statType": "ATTACK", "modifier": "3" }, { "kind": "action", "statType": "RANGE", "modifier": "3" }, { "kind": "text", "content": "Преимущество" }] },
-      { "level": 4, "isElite": true, "life": 16, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "3" }, { "kind": "action", "statType": "ATTACK", "modifier": "4" }, { "kind": "action", "statType": "RANGE", "modifier": "7" }, { "kind": "action", "statType": "PIERCE", "modifier": "2" }, { "kind": "action", "statType": "PUSH", "modifier": "1" }] },
-      { "level": 5, "isElite": false, "life": 12, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "4" }, { "kind": "action", "statType": "ATTACK", "modifier": "4" }, { "kind": "action", "statType": "RANGE", "modifier": "3" }, { "kind": "text", "content": "Преимущество" }] },
-      { "level": 5, "isElite": true, "life": 18, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "3" }, { "kind": "action", "statType": "ATTACK", "modifier": "5" }, { "kind": "action", "statType": "RANGE", "modifier": "7" }, { "kind": "action", "statType": "PIERCE", "modifier": "2" }, { "kind": "action", "statType": "PUSH", "modifier": "1" }] },
-      { "level": 6, "isElite": false, "life": 14, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "4" }, { "kind": "action", "statType": "ATTACK", "modifier": "4" }, { "kind": "action", "statType": "RANGE", "modifier": "4" }, { "kind": "text", "content": "Преимущество" }] },
-      { "level": 6, "isElite": true, "life": 21, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "3" }, { "kind": "action", "statType": "ATTACK", "modifier": "5" }, { "kind": "action", "statType": "RANGE", "modifier": "8" }, { "kind": "action", "statType": "PIERCE", "modifier": "2" }, { "kind": "action", "statType": "PUSH", "modifier": "2" }] },
-      { "level": 7, "isElite": false, "life": 17, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "5" }, { "kind": "action", "statType": "ATTACK", "modifier": "4" }, { "kind": "action", "statType": "RANGE", "modifier": "4" }, { "kind": "text", "content": "Преимущество" }] },
-      { "level": 7, "isElite": true, "life": 24, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "3" }, { "kind": "action", "statType": "ATTACK", "modifier": "6" }, { "kind": "action", "statType": "RANGE", "modifier": "8" }, { "kind": "action", "statType": "PIERCE", "modifier": "3" }, { "kind": "action", "statType": "PUSH", "modifier": "2" }] }
+      {
+        "level": 0,
+        "isElite": false,
+        "life": 5,
+        "stats": [
+          {
+            "kind": "action",
+            "statType": "MOVE",
+            "modifier": "2"
+          },
+          {
+            "kind": "action",
+            "statType": "ATTACK",
+            "modifier": "2"
+          },
+          {
+            "kind": "action",
+            "statType": "RANGE",
+            "modifier": "2"
+          }
+        ]
+      },
+      {
+        "level": 0,
+        "isElite": true,
+        "life": 9,
+        "stats": [
+          {
+            "kind": "action",
+            "statType": "MOVE",
+            "modifier": "2"
+          },
+          {
+            "kind": "action",
+            "statType": "ATTACK",
+            "modifier": "3"
+          },
+          {
+            "kind": "action",
+            "statType": "RANGE",
+            "modifier": "4"
+          }
+        ]
+      },
+      {
+        "level": 1,
+        "isElite": false,
+        "life": 6,
+        "stats": [
+          {
+            "kind": "action",
+            "statType": "MOVE",
+            "modifier": "3"
+          },
+          {
+            "kind": "action",
+            "statType": "ATTACK",
+            "modifier": "2"
+          },
+          {
+            "kind": "action",
+            "statType": "RANGE",
+            "modifier": "2"
+          }
+        ]
+      },
+      {
+        "level": 1,
+        "isElite": true,
+        "life": 11,
+        "stats": [
+          {
+            "kind": "action",
+            "statType": "MOVE",
+            "modifier": "2"
+          },
+          {
+            "kind": "action",
+            "statType": "ATTACK",
+            "modifier": "3"
+          },
+          {
+            "kind": "action",
+            "statType": "RANGE",
+            "modifier": "5"
+          },
+          {
+            "kind": "action",
+            "statType": "PIERCE",
+            "modifier": "1"
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "isElite": false,
+        "life": 7,
+        "stats": [
+          {
+            "kind": "action",
+            "statType": "MOVE",
+            "modifier": "3"
+          },
+          {
+            "kind": "action",
+            "statType": "ATTACK",
+            "modifier": "3"
+          },
+          {
+            "kind": "action",
+            "statType": "RANGE",
+            "modifier": "2"
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "isElite": true,
+        "life": 12,
+        "stats": [
+          {
+            "kind": "action",
+            "statType": "MOVE",
+            "modifier": "2"
+          },
+          {
+            "kind": "action",
+            "statType": "ATTACK",
+            "modifier": "4"
+          },
+          {
+            "kind": "action",
+            "statType": "RANGE",
+            "modifier": "5"
+          },
+          {
+            "kind": "action",
+            "statType": "PIERCE",
+            "modifier": "1"
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "isElite": false,
+        "life": 8,
+        "stats": [
+          {
+            "kind": "action",
+            "statType": "MOVE",
+            "modifier": "3"
+          },
+          {
+            "kind": "action",
+            "statType": "ATTACK",
+            "modifier": "3"
+          },
+          {
+            "kind": "action",
+            "statType": "RANGE",
+            "modifier": "3"
+          },
+          {
+            "kind": "text",
+            "content": "Преимущество"
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "isElite": true,
+        "life": 14,
+        "stats": [
+          {
+            "kind": "action",
+            "statType": "MOVE",
+            "modifier": "2"
+          },
+          {
+            "kind": "action",
+            "statType": "ATTACK",
+            "modifier": "4"
+          },
+          {
+            "kind": "action",
+            "statType": "RANGE",
+            "modifier": "6"
+          },
+          {
+            "kind": "action",
+            "statType": "PIERCE",
+            "modifier": "1"
+          },
+          {
+            "kind": "action",
+            "statType": "PUSH",
+            "modifier": "1"
+          }
+        ]
+      },
+      {
+        "level": 4,
+        "isElite": false,
+        "life": 10,
+        "stats": [
+          {
+            "kind": "action",
+            "statType": "MOVE",
+            "modifier": "4"
+          },
+          {
+            "kind": "action",
+            "statType": "ATTACK",
+            "modifier": "3"
+          },
+          {
+            "kind": "action",
+            "statType": "RANGE",
+            "modifier": "3"
+          },
+          {
+            "kind": "text",
+            "content": "Преимущество"
+          }
+        ]
+      },
+      {
+        "level": 4,
+        "isElite": true,
+        "life": 16,
+        "stats": [
+          {
+            "kind": "action",
+            "statType": "MOVE",
+            "modifier": "3"
+          },
+          {
+            "kind": "action",
+            "statType": "ATTACK",
+            "modifier": "4"
+          },
+          {
+            "kind": "action",
+            "statType": "RANGE",
+            "modifier": "7"
+          },
+          {
+            "kind": "action",
+            "statType": "PIERCE",
+            "modifier": "2"
+          },
+          {
+            "kind": "action",
+            "statType": "PUSH",
+            "modifier": "1"
+          }
+        ]
+      },
+      {
+        "level": 5,
+        "isElite": false,
+        "life": 12,
+        "stats": [
+          {
+            "kind": "action",
+            "statType": "MOVE",
+            "modifier": "4"
+          },
+          {
+            "kind": "action",
+            "statType": "ATTACK",
+            "modifier": "4"
+          },
+          {
+            "kind": "action",
+            "statType": "RANGE",
+            "modifier": "3"
+          },
+          {
+            "kind": "text",
+            "content": "Преимущество"
+          }
+        ]
+      },
+      {
+        "level": 5,
+        "isElite": true,
+        "life": 18,
+        "stats": [
+          {
+            "kind": "action",
+            "statType": "MOVE",
+            "modifier": "3"
+          },
+          {
+            "kind": "action",
+            "statType": "ATTACK",
+            "modifier": "5"
+          },
+          {
+            "kind": "action",
+            "statType": "RANGE",
+            "modifier": "7"
+          },
+          {
+            "kind": "action",
+            "statType": "PIERCE",
+            "modifier": "2"
+          },
+          {
+            "kind": "action",
+            "statType": "PUSH",
+            "modifier": "1"
+          }
+        ]
+      },
+      {
+        "level": 6,
+        "isElite": false,
+        "life": 14,
+        "stats": [
+          {
+            "kind": "action",
+            "statType": "MOVE",
+            "modifier": "4"
+          },
+          {
+            "kind": "action",
+            "statType": "ATTACK",
+            "modifier": "4"
+          },
+          {
+            "kind": "action",
+            "statType": "RANGE",
+            "modifier": "4"
+          },
+          {
+            "kind": "text",
+            "content": "Преимущество"
+          }
+        ]
+      },
+      {
+        "level": 6,
+        "isElite": true,
+        "life": 21,
+        "stats": [
+          {
+            "kind": "action",
+            "statType": "MOVE",
+            "modifier": "3"
+          },
+          {
+            "kind": "action",
+            "statType": "ATTACK",
+            "modifier": "5"
+          },
+          {
+            "kind": "action",
+            "statType": "RANGE",
+            "modifier": "8"
+          },
+          {
+            "kind": "action",
+            "statType": "PIERCE",
+            "modifier": "2"
+          },
+          {
+            "kind": "action",
+            "statType": "PUSH",
+            "modifier": "2"
+          }
+        ]
+      },
+      {
+        "level": 7,
+        "isElite": false,
+        "life": 17,
+        "stats": [
+          {
+            "kind": "action",
+            "statType": "MOVE",
+            "modifier": "5"
+          },
+          {
+            "kind": "action",
+            "statType": "ATTACK",
+            "modifier": "4"
+          },
+          {
+            "kind": "action",
+            "statType": "RANGE",
+            "modifier": "4"
+          },
+          {
+            "kind": "text",
+            "content": "Преимущество"
+          }
+        ]
+      },
+      {
+        "level": 7,
+        "isElite": true,
+        "life": 24,
+        "stats": [
+          {
+            "kind": "action",
+            "statType": "MOVE",
+            "modifier": "3"
+          },
+          {
+            "kind": "action",
+            "statType": "ATTACK",
+            "modifier": "6"
+          },
+          {
+            "kind": "action",
+            "statType": "RANGE",
+            "modifier": "8"
+          },
+          {
+            "kind": "action",
+            "statType": "PIERCE",
+            "modifier": "3"
+          },
+          {
+            "kind": "action",
+            "statType": "PUSH",
+            "modifier": "2"
+          }
+        ]
+      }
     ]
   },
   {
-    "monsterName": "Эстер Пепельный клинок",
+    "monsterKey": "58",
     "stats": [
-      { "level": 0, "isElite": false, "life": 8, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "3" }, { "kind": "action", "statType": "ATTACK", "modifier": "2" }] },
-      { "level": 0, "isElite": true, "life": 12, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "3" }, { "kind": "action", "statType": "ATTACK", "modifier": "3" }, { "kind": "action", "statType": "POISON", "modifier": "" }] },
-      { "level": 1, "isElite": false, "life": 9, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "3" }, { "kind": "action", "statType": "ATTACK", "modifier": "3" }] },
-      { "level": 1, "isElite": true, "life": 14, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "4" }, { "kind": "action", "statType": "ATTACK", "modifier": "3" }, { "kind": "action", "statType": "POISON", "modifier": "" }] },
-      { "level": 2, "isElite": false, "life": 13, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "3" }, { "kind": "action", "statType": "ATTACK", "modifier": "3" }] },
-      { "level": 2, "isElite": true, "life": 16, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "4" }, { "kind": "action", "statType": "ATTACK", "modifier": "4" }, { "kind": "action", "statType": "POISON", "modifier": "" }] },
-      { "level": 3, "isElite": false, "life": 15, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "3" }, { "kind": "action", "statType": "ATTACK", "modifier": "3" }, { "kind": "action", "statType": "POISON", "modifier": "" }] },
-      { "level": 3, "isElite": true, "life": 18, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "4" }, { "kind": "action", "statType": "ATTACK", "modifier": "4" }, { "kind": "action", "statType": "POISON", "modifier": "" }, { "kind": "text", "content": "Все атаки на Эстер Пепельный клинок проводятся с затруднением" }] },
-      { "level": 4, "isElite": false, "life": 15, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "4" }, { "kind": "action", "statType": "ATTACK", "modifier": "4" }, { "kind": "action", "statType": "POISON", "modifier": "" }] },
-      { "level": 4, "isElite": true, "life": 21, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "4" }, { "kind": "action", "statType": "ATTACK", "modifier": "5" }, { "kind": "action", "statType": "POISON", "modifier": "" }, { "kind": "text", "content": "Все атаки на Эстер Пепельный клинок проводятся с затруднением" }] },
-      { "level": 5, "isElite": false, "life": 18, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "4" }, { "kind": "action", "statType": "ATTACK", "modifier": "4" }, { "kind": "action", "statType": "POISON", "modifier": "" }] },
-      { "level": 5, "isElite": true, "life": 25, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "4" }, { "kind": "action", "statType": "ATTACK", "modifier": "5" }, { "kind": "action", "statType": "POISON", "modifier": "" }, { "kind": "text", "content": "Все атаки на Эстер Пепельный клинок проводятся с затруднением" }] },
-      { "level": 6, "isElite": false, "life": 21, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "4" }, { "kind": "action", "statType": "ATTACK", "modifier": "4" }, { "kind": "action", "statType": "POISON", "modifier": "" }] },
-      { "level": 6, "isElite": true, "life": 28, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "4" }, { "kind": "action", "statType": "ATTACK", "modifier": "6" }, { "kind": "action", "statType": "POISON", "modifier": "" }, { "kind": "text", "content": "Все атаки на Эстер Пепельный клинок проводятся с затруднением" }] },
-      { "level": 7, "isElite": false, "life": 24, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "4" }, { "kind": "action", "statType": "ATTACK", "modifier": "5" }, { "kind": "action", "statType": "POISON", "modifier": "" }] },
-      { "level": 7, "isElite": true, "life": 33, "stats": [{ "kind": "action", "statType": "MOVE", "modifier": "5" }, { "kind": "action", "statType": "ATTACK", "modifier": "6" }, { "kind": "action", "statType": "POISON", "modifier": "" }, { "kind": "text", "content": "Все атаки на Эстер Пепельный клинок проводятся с затруднением" }] }
+      {
+        "level": 0,
+        "isElite": false,
+        "life": 8,
+        "stats": [
+          {
+            "kind": "action",
+            "statType": "MOVE",
+            "modifier": "3"
+          },
+          {
+            "kind": "action",
+            "statType": "ATTACK",
+            "modifier": "2"
+          }
+        ]
+      },
+      {
+        "level": 0,
+        "isElite": true,
+        "life": 12,
+        "stats": [
+          {
+            "kind": "action",
+            "statType": "MOVE",
+            "modifier": "3"
+          },
+          {
+            "kind": "action",
+            "statType": "ATTACK",
+            "modifier": "3"
+          },
+          {
+            "kind": "action",
+            "statType": "POISON",
+            "modifier": ""
+          }
+        ]
+      },
+      {
+        "level": 1,
+        "isElite": false,
+        "life": 9,
+        "stats": [
+          {
+            "kind": "action",
+            "statType": "MOVE",
+            "modifier": "3"
+          },
+          {
+            "kind": "action",
+            "statType": "ATTACK",
+            "modifier": "3"
+          }
+        ]
+      },
+      {
+        "level": 1,
+        "isElite": true,
+        "life": 14,
+        "stats": [
+          {
+            "kind": "action",
+            "statType": "MOVE",
+            "modifier": "4"
+          },
+          {
+            "kind": "action",
+            "statType": "ATTACK",
+            "modifier": "3"
+          },
+          {
+            "kind": "action",
+            "statType": "POISON",
+            "modifier": ""
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "isElite": false,
+        "life": 13,
+        "stats": [
+          {
+            "kind": "action",
+            "statType": "MOVE",
+            "modifier": "3"
+          },
+          {
+            "kind": "action",
+            "statType": "ATTACK",
+            "modifier": "3"
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "isElite": true,
+        "life": 16,
+        "stats": [
+          {
+            "kind": "action",
+            "statType": "MOVE",
+            "modifier": "4"
+          },
+          {
+            "kind": "action",
+            "statType": "ATTACK",
+            "modifier": "4"
+          },
+          {
+            "kind": "action",
+            "statType": "POISON",
+            "modifier": ""
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "isElite": false,
+        "life": 15,
+        "stats": [
+          {
+            "kind": "action",
+            "statType": "MOVE",
+            "modifier": "3"
+          },
+          {
+            "kind": "action",
+            "statType": "ATTACK",
+            "modifier": "3"
+          },
+          {
+            "kind": "action",
+            "statType": "POISON",
+            "modifier": ""
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "isElite": true,
+        "life": 18,
+        "stats": [
+          {
+            "kind": "action",
+            "statType": "MOVE",
+            "modifier": "4"
+          },
+          {
+            "kind": "action",
+            "statType": "ATTACK",
+            "modifier": "4"
+          },
+          {
+            "kind": "action",
+            "statType": "POISON",
+            "modifier": ""
+          },
+          {
+            "kind": "text",
+            "content": "Все атаки на Эстер Пепельный клинок проводятся с затруднением"
+          }
+        ]
+      },
+      {
+        "level": 4,
+        "isElite": false,
+        "life": 15,
+        "stats": [
+          {
+            "kind": "action",
+            "statType": "MOVE",
+            "modifier": "4"
+          },
+          {
+            "kind": "action",
+            "statType": "ATTACK",
+            "modifier": "4"
+          },
+          {
+            "kind": "action",
+            "statType": "POISON",
+            "modifier": ""
+          }
+        ]
+      },
+      {
+        "level": 4,
+        "isElite": true,
+        "life": 21,
+        "stats": [
+          {
+            "kind": "action",
+            "statType": "MOVE",
+            "modifier": "4"
+          },
+          {
+            "kind": "action",
+            "statType": "ATTACK",
+            "modifier": "5"
+          },
+          {
+            "kind": "action",
+            "statType": "POISON",
+            "modifier": ""
+          },
+          {
+            "kind": "text",
+            "content": "Все атаки на Эстер Пепельный клинок проводятся с затруднением"
+          }
+        ]
+      },
+      {
+        "level": 5,
+        "isElite": false,
+        "life": 18,
+        "stats": [
+          {
+            "kind": "action",
+            "statType": "MOVE",
+            "modifier": "4"
+          },
+          {
+            "kind": "action",
+            "statType": "ATTACK",
+            "modifier": "4"
+          },
+          {
+            "kind": "action",
+            "statType": "POISON",
+            "modifier": ""
+          }
+        ]
+      },
+      {
+        "level": 5,
+        "isElite": true,
+        "life": 25,
+        "stats": [
+          {
+            "kind": "action",
+            "statType": "MOVE",
+            "modifier": "4"
+          },
+          {
+            "kind": "action",
+            "statType": "ATTACK",
+            "modifier": "5"
+          },
+          {
+            "kind": "action",
+            "statType": "POISON",
+            "modifier": ""
+          },
+          {
+            "kind": "text",
+            "content": "Все атаки на Эстер Пепельный клинок проводятся с затруднением"
+          }
+        ]
+      },
+      {
+        "level": 6,
+        "isElite": false,
+        "life": 21,
+        "stats": [
+          {
+            "kind": "action",
+            "statType": "MOVE",
+            "modifier": "4"
+          },
+          {
+            "kind": "action",
+            "statType": "ATTACK",
+            "modifier": "4"
+          },
+          {
+            "kind": "action",
+            "statType": "POISON",
+            "modifier": ""
+          }
+        ]
+      },
+      {
+        "level": 6,
+        "isElite": true,
+        "life": 28,
+        "stats": [
+          {
+            "kind": "action",
+            "statType": "MOVE",
+            "modifier": "4"
+          },
+          {
+            "kind": "action",
+            "statType": "ATTACK",
+            "modifier": "6"
+          },
+          {
+            "kind": "action",
+            "statType": "POISON",
+            "modifier": ""
+          },
+          {
+            "kind": "text",
+            "content": "Все атаки на Эстер Пепельный клинок проводятся с затруднением"
+          }
+        ]
+      },
+      {
+        "level": 7,
+        "isElite": false,
+        "life": 24,
+        "stats": [
+          {
+            "kind": "action",
+            "statType": "MOVE",
+            "modifier": "4"
+          },
+          {
+            "kind": "action",
+            "statType": "ATTACK",
+            "modifier": "5"
+          },
+          {
+            "kind": "action",
+            "statType": "POISON",
+            "modifier": ""
+          }
+        ]
+      },
+      {
+        "level": 7,
+        "isElite": true,
+        "life": 33,
+        "stats": [
+          {
+            "kind": "action",
+            "statType": "MOVE",
+            "modifier": "5"
+          },
+          {
+            "kind": "action",
+            "statType": "ATTACK",
+            "modifier": "6"
+          },
+          {
+            "kind": "action",
+            "statType": "POISON",
+            "modifier": ""
+          },
+          {
+            "kind": "text",
+            "content": "Все атаки на Эстер Пепельный клинок проводятся с затруднением"
+          }
+        ]
+      }
     ]
   }
 ]

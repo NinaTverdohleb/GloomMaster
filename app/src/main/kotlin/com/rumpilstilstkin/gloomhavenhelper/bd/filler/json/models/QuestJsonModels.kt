@@ -6,8 +6,6 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class PersonalQuestJson(
     val questId: String,
-    val title: String,
-    val description: String,
     val specialText: String = "",
     val characterType: String? = null,
     val pack: String = "MAIN",

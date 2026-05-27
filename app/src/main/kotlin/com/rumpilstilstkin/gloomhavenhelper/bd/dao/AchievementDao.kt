@@ -10,6 +10,9 @@ interface AchievementDao {
     @Query("SELECT * FROM AchievementBd")
     suspend fun getAll(): List<AchievementBd>
 
+    @Query("SELECT COUNT(*) FROM AchievementBd")
+    suspend fun count(): Int
+
     @Query("SELECT * FROM AchievementBd WHERE isGlobal = 1")
     suspend fun getGlobalAchievements(): List<AchievementBd>
 

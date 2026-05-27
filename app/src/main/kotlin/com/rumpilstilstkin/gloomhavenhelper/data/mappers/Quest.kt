@@ -13,10 +13,12 @@ fun CharacterPersonalQuestDetailsBd.toDomain() =
         tasks = this.characterPersonalTask.tasks
     )
 
+// title/descriptions are display-only and always populated by [localized]; they start blank
+// because the canonical quest title/description no longer live in the catalog.
 fun PersonalQuestBd.toDomain() = CharacterPersonalQuest(
     questId = this.questId,
-    title = this.title,
-    descriptions = this.description,
+    title = "",
+    descriptions = "",
     tasks = this.tasks,
     reward = QuestReward(
         classType = this.characterType?.let { com.rumpilstilstkin.gloomhavenhelper.domain.entity.CharacterClassType.valueOf(it) },

@@ -17,8 +17,8 @@ class GetAvailableTeamAchievementsUseCase @Inject constructor(
                 emptyList()
             } else {
                 val allAchievements = achievementRepository.getTeamAchievementsByPacks(team.packs.map { it.name })
-                val existingNames = team.teamAchievement.map { it.name }.toSet()
-                allAchievements.filter { it.name !in existingNames }
+                val existingKeys = team.teamAchievement.map { it.key }.toSet()
+                allAchievements.filter { it.key !in existingKeys }
             }
         }
 }

@@ -1,73 +1,363 @@
 [
-  {"key": "1", "name": "Возможость улучшений", "pack": "MAIN", "isGlobal": true},
-  {"key": "2", "name": "Сбежавшая торговка", "pack": "MAIN", "isGlobal": true},
-  {"key": "3", "name": "Древняя технология", "pack": "MAIN", "isGlobal": true, "maxRang": 5},
-  {"key": "4", "name": "Помощь дрейку", "pack": "MAIN", "isGlobal": true},
-  {"key": "5", "name": "Подводное дыхание", "pack": "MAIN", "isGlobal": true},
-  {"key": "6", "name": "На грани тьмы", "pack": "MAIN", "isGlobal": true},
-  {"key": "7", "name": "Портал обезврежен", "pack": "MAIN", "isGlobal": true},
-  {"key": "8", "name": "Голос освобожден", "pack": "MAIN", "isGlobal": true},
-  {"key": "9", "name": "Конец упадка", "pack": "MAIN", "isGlobal": true, "maxRang": 3},
-  {"key": "10", "name": "Конец вторжения", "pack": "MAIN", "isGlobal": true},
-  {"key": "11", "name": "Конец эпохи Мрака", "pack": "MAIN", "isGlobal": true},
-  {"key": "12", "name": "Уничтожение порядка", "pack": "MAIN", "isGlobal": true},
-  {"key": "13", "name": "Городское правление: демоны", "pack": "MAIN", "isGlobal": true},
-  {"key": "14", "name": "Артефакт: найден", "pack": "MAIN", "isGlobal": true},
-  {"key": "15", "name": "Артефакт: потерян", "pack": "MAIN", "isGlobal": true},
-  {"key": "16", "name": "Артефакт: очищен", "pack": "MAIN", "isGlobal": true},
-  {"key": "17", "name": "Вторжение мертвецов", "pack": "MAIN", "isGlobal": true},
-  {"key": "18", "name": "Убийство дрейка", "pack": "MAIN", "isGlobal": true},
-  {"key": "19", "name": "Голос умолк", "pack": "MAIN", "isGlobal": true},
-  {"key": "20", "name": "Городское правление: военные", "pack": "MAIN", "isGlobal": true},
-  {"key": "21", "name": "Городское правление: торговцы", "pack": "MAIN", "isGlobal": true},
-  {"key": "22", "name": "Путь через портал", "pack": "FORGOTTEN_CIRCLES", "isGlobal": true},
-  {"key": "23", "name": "Разорванные узы", "pack": "FORGOTTEN_CIRCLES", "isGlobal": true},
-  {"key": "24", "name": "Знание-сила", "pack": "FORGOTTEN_CIRCLES", "isGlobal": true, "maxRang": 4},
-  {"key": "25", "name": "Устранение угрозы", "pack": "FORGOTTEN_CIRCLES", "isGlobal": true, "maxRang": 4},
-  {"key": "26", "name": "Части артефакта", "pack": "FORGOTTEN_CIRCLES", "isGlobal": true, "maxRang": 3},
-  {"key": "27", "name": "Торжество технологий", "pack": "FORGOTTEN_CIRCLES", "isGlobal": true, "maxRang": 3},
-  {"key": "28", "name": "Первые шаги", "pack": "MAIN", "isGlobal": false},
-  {"key": "29", "name": "Планы Джексеры", "pack": "MAIN", "isGlobal": false},
-  {"key": "30", "name": "Задание демона", "pack": "MAIN", "isGlobal": false},
-  {"key": "31", "name": "Карта сокровищ", "pack": "MAIN", "isGlobal": false},
-  {"key": "32", "name": "Путь через руины", "pack": "MAIN", "isGlobal": false},
-  {"key": "33", "name": "Приглашение", "pack": "MAIN", "isGlobal": false},
-  {"key": "34", "name": "По следам", "pack": "MAIN", "isGlobal": false},
-  {"key": "35", "name": "Кадило Каменолома", "pack": "MAIN", "isGlobal": false},
-  {"key": "36", "name": "Темная награда", "pack": "MAIN", "isGlobal": false},
-  {"key": "37", "name": "Веление Голоса", "pack": "MAIN", "isGlobal": false},
-  {"key": "38", "name": "Предложение дрейка", "pack": "MAIN", "isGlobal": false},
-  {"key": "39", "name": "Путь через впадину", "pack": "MAIN", "isGlobal": false},
-  {"key": "40", "name": "Голос и скипитер", "pack": "MAIN", "isGlobal": false},
-  {"key": "41", "name": "Сокровище голоса", "pack": "MAIN", "isGlobal": false},
-  {"key": "42", "name": "Сокровище дрейка", "pack": "MAIN", "isGlobal": false},
-  {"key": "43", "name": "Помощь Красношипа", "pack": "MAIN", "isGlobal": false},
-  {"key": "44", "name": "Путь через пропасть", "pack": "MAIN", "isGlobal": false},
-  {"key": "45", "name": "Источник отравы", "pack": "MAIN", "isGlobal": false},
-  {"key": "46", "name": "Путь через жилище", "pack": "MAIN", "isGlobal": false},
-  {"key": "47", "name": "Морской конвой", "pack": "MAIN", "isGlobal": false},
-  {"key": "48", "name": "Гробокопатели", "pack": "MAIN", "isGlobal": false},
-  {"key": "49", "name": "Сомнительный помощник", "pack": "MAIN", "isGlobal": false},
-  {"key": "50", "name": "Дурное знамение", "pack": "MAIN", "isGlobal": false},
-  {"key": "51", "name": "Дрожь земли", "pack": "MAIN", "isGlobal": false},
-  {"key": "52", "name": "Посох воды", "pack": "MAIN", "isGlobal": false},
-  {"key": "53", "name": "Син-Ра", "pack": "MAIN", "isGlobal": false},
-  {"key": "54", "name": "Возвращение долга", "pack": "MAIN", "isGlobal": false},
-  {"key": "55", "name": "Личное задание: Последователь зорна", "pack": "MAIN", "isGlobal": false},
-  {"key": "56", "name": "Посох Зорна находится в инвентаре", "pack": "MAIN", "isGlobal": false},
-  {"key": "57", "name": "Личное задание: Возвращение леса", "pack": "MAIN", "isGlobal": false},
-  {"key": "58", "name": "Личное задание: Месть", "pack": "MAIN", "isGlobal": false},
-  {"key": "59", "name": "Личное задание: В Поисках лекарства", "pack": "MAIN", "isGlobal": false},
-  {"key": "60", "name": "Личное задание: Грехопадение", "pack": "MAIN", "isGlobal": false},
-  {"key": "61", "name": "Храбрость", "pack": "MAIN", "isGlobal": false},
-  {"key": "62", "name": "Помощь Диамаре", "pack": "FORGOTTEN_CIRCLES", "isGlobal": false},
-  {"key": "63", "name": "Охота на охотников", "pack": "FORGOTTEN_CIRCLES", "isGlobal": false},
-  {"key": "64", "name": "Красота - это свобода", "pack": "FORGOTTEN_CIRCLES", "isGlobal": false},
-  {"key": "65", "name": "Хранители", "pack": "FORGOTTEN_CIRCLES", "isGlobal": false},
-  {"key": "66", "name": "Охрана", "pack": "FORGOTTEN_CIRCLES", "isGlobal": false},
-  {"key": "67", "name": "Преследуемая жертва", "pack": "FORGOTTEN_CIRCLES", "isGlobal": false},
-  {"key": "68", "name": "Межпространственное равновесие", "pack": "FORGOTTEN_CIRCLES", "isGlobal": false},
-  {"key": "69", "name": "Помощь Зангроту", "pack": "FORGOTTEN_CIRCLES", "isGlobal": false},
-  {"key": "70", "name": "Ангелы смерти", "pack": "FORGOTTEN_CIRCLES", "isGlobal": false},
-  {"key": "71", "name": "Охота на охотника", "pack": "FORGOTTEN_CIRCLES", "isGlobal": false}
+  {
+    "key": "1",
+    "pack": "MAIN",
+    "isGlobal": true
+  },
+  {
+    "key": "2",
+    "pack": "MAIN",
+    "isGlobal": true
+  },
+  {
+    "key": "3",
+    "pack": "MAIN",
+    "isGlobal": true,
+    "maxRang": 5
+  },
+  {
+    "key": "4",
+    "pack": "MAIN",
+    "isGlobal": true
+  },
+  {
+    "key": "5",
+    "pack": "MAIN",
+    "isGlobal": true
+  },
+  {
+    "key": "6",
+    "pack": "MAIN",
+    "isGlobal": true
+  },
+  {
+    "key": "7",
+    "pack": "MAIN",
+    "isGlobal": true
+  },
+  {
+    "key": "8",
+    "pack": "MAIN",
+    "isGlobal": true
+  },
+  {
+    "key": "9",
+    "pack": "MAIN",
+    "isGlobal": true,
+    "maxRang": 3
+  },
+  {
+    "key": "10",
+    "pack": "MAIN",
+    "isGlobal": true
+  },
+  {
+    "key": "11",
+    "pack": "MAIN",
+    "isGlobal": true
+  },
+  {
+    "key": "12",
+    "pack": "MAIN",
+    "isGlobal": true
+  },
+  {
+    "key": "13",
+    "pack": "MAIN",
+    "isGlobal": true
+  },
+  {
+    "key": "14",
+    "pack": "MAIN",
+    "isGlobal": true
+  },
+  {
+    "key": "15",
+    "pack": "MAIN",
+    "isGlobal": true
+  },
+  {
+    "key": "16",
+    "pack": "MAIN",
+    "isGlobal": true
+  },
+  {
+    "key": "17",
+    "pack": "MAIN",
+    "isGlobal": true
+  },
+  {
+    "key": "18",
+    "pack": "MAIN",
+    "isGlobal": true
+  },
+  {
+    "key": "19",
+    "pack": "MAIN",
+    "isGlobal": true
+  },
+  {
+    "key": "20",
+    "pack": "MAIN",
+    "isGlobal": true
+  },
+  {
+    "key": "21",
+    "pack": "MAIN",
+    "isGlobal": true
+  },
+  {
+    "key": "22",
+    "pack": "FORGOTTEN_CIRCLES",
+    "isGlobal": true
+  },
+  {
+    "key": "23",
+    "pack": "FORGOTTEN_CIRCLES",
+    "isGlobal": true
+  },
+  {
+    "key": "24",
+    "pack": "FORGOTTEN_CIRCLES",
+    "isGlobal": true,
+    "maxRang": 4
+  },
+  {
+    "key": "25",
+    "pack": "FORGOTTEN_CIRCLES",
+    "isGlobal": true,
+    "maxRang": 4
+  },
+  {
+    "key": "26",
+    "pack": "FORGOTTEN_CIRCLES",
+    "isGlobal": true,
+    "maxRang": 3
+  },
+  {
+    "key": "27",
+    "pack": "FORGOTTEN_CIRCLES",
+    "isGlobal": true,
+    "maxRang": 3
+  },
+  {
+    "key": "28",
+    "pack": "MAIN",
+    "isGlobal": false
+  },
+  {
+    "key": "29",
+    "pack": "MAIN",
+    "isGlobal": false
+  },
+  {
+    "key": "30",
+    "pack": "MAIN",
+    "isGlobal": false
+  },
+  {
+    "key": "31",
+    "pack": "MAIN",
+    "isGlobal": false
+  },
+  {
+    "key": "32",
+    "pack": "MAIN",
+    "isGlobal": false
+  },
+  {
+    "key": "33",
+    "pack": "MAIN",
+    "isGlobal": false
+  },
+  {
+    "key": "34",
+    "pack": "MAIN",
+    "isGlobal": false
+  },
+  {
+    "key": "35",
+    "pack": "MAIN",
+    "isGlobal": false
+  },
+  {
+    "key": "36",
+    "pack": "MAIN",
+    "isGlobal": false
+  },
+  {
+    "key": "37",
+    "pack": "MAIN",
+    "isGlobal": false
+  },
+  {
+    "key": "38",
+    "pack": "MAIN",
+    "isGlobal": false
+  },
+  {
+    "key": "39",
+    "pack": "MAIN",
+    "isGlobal": false
+  },
+  {
+    "key": "40",
+    "pack": "MAIN",
+    "isGlobal": false
+  },
+  {
+    "key": "41",
+    "pack": "MAIN",
+    "isGlobal": false
+  },
+  {
+    "key": "42",
+    "pack": "MAIN",
+    "isGlobal": false
+  },
+  {
+    "key": "43",
+    "pack": "MAIN",
+    "isGlobal": false
+  },
+  {
+    "key": "44",
+    "pack": "MAIN",
+    "isGlobal": false
+  },
+  {
+    "key": "45",
+    "pack": "MAIN",
+    "isGlobal": false
+  },
+  {
+    "key": "46",
+    "pack": "MAIN",
+    "isGlobal": false
+  },
+  {
+    "key": "47",
+    "pack": "MAIN",
+    "isGlobal": false
+  },
+  {
+    "key": "48",
+    "pack": "MAIN",
+    "isGlobal": false
+  },
+  {
+    "key": "49",
+    "pack": "MAIN",
+    "isGlobal": false
+  },
+  {
+    "key": "50",
+    "pack": "MAIN",
+    "isGlobal": false
+  },
+  {
+    "key": "51",
+    "pack": "MAIN",
+    "isGlobal": false
+  },
+  {
+    "key": "52",
+    "pack": "MAIN",
+    "isGlobal": false
+  },
+  {
+    "key": "53",
+    "pack": "MAIN",
+    "isGlobal": false
+  },
+  {
+    "key": "54",
+    "pack": "MAIN",
+    "isGlobal": false
+  },
+  {
+    "key": "55",
+    "pack": "MAIN",
+    "isGlobal": false
+  },
+  {
+    "key": "56",
+    "pack": "MAIN",
+    "isGlobal": false
+  },
+  {
+    "key": "57",
+    "pack": "MAIN",
+    "isGlobal": false
+  },
+  {
+    "key": "58",
+    "pack": "MAIN",
+    "isGlobal": false
+  },
+  {
+    "key": "59",
+    "pack": "MAIN",
+    "isGlobal": false
+  },
+  {
+    "key": "60",
+    "pack": "MAIN",
+    "isGlobal": false
+  },
+  {
+    "key": "61",
+    "pack": "MAIN",
+    "isGlobal": false
+  },
+  {
+    "key": "62",
+    "pack": "FORGOTTEN_CIRCLES",
+    "isGlobal": false
+  },
+  {
+    "key": "63",
+    "pack": "FORGOTTEN_CIRCLES",
+    "isGlobal": false
+  },
+  {
+    "key": "64",
+    "pack": "FORGOTTEN_CIRCLES",
+    "isGlobal": false
+  },
+  {
+    "key": "65",
+    "pack": "FORGOTTEN_CIRCLES",
+    "isGlobal": false
+  },
+  {
+    "key": "66",
+    "pack": "FORGOTTEN_CIRCLES",
+    "isGlobal": false
+  },
+  {
+    "key": "67",
+    "pack": "FORGOTTEN_CIRCLES",
+    "isGlobal": false
+  },
+  {
+    "key": "68",
+    "pack": "FORGOTTEN_CIRCLES",
+    "isGlobal": false
+  },
+  {
+    "key": "69",
+    "pack": "FORGOTTEN_CIRCLES",
+    "isGlobal": false
+  },
+  {
+    "key": "70",
+    "pack": "FORGOTTEN_CIRCLES",
+    "isGlobal": false
+  },
+  {
+    "key": "71",
+    "pack": "FORGOTTEN_CIRCLES",
+    "isGlobal": false
+  }
 ]

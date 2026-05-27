@@ -42,15 +42,15 @@ class MonsterRepository @Inject constructor(
     }
 
     suspend fun getMonstersForPacks(packs: List<String>): List<String> =
-        monsterDao.getMonstersByPacks(packs).map { monster -> monster.name }
+        monsterDao.getMonstersByPacks(packs).map { monster -> monster.key }
 
     /**
-     * Pairs each canonical (Russian) monster name with its display name for the active locale.
-     * The canonical name stays the selection/persistence identity in the scenario constructor.
+     * Pairs each monster catalog key with its display name for the active locale. The key stays
+     * the selection/persistence identity in the scenario constructor.
      */
-    suspend fun localizeMonsterNames(names: List<String>): List<MonsterChoice> {
+    suspend fun localizeMonsterNames(keys: List<String>): List<MonsterChoice> {
         val resolver = translationRepository.resolver(localeSource.current)
-        return names.map { MonsterChoice(name = it, displayName = resolver.resolveMonster(it)) }
+        return keys.map { MonsterChoice(name = it, displayName = resolver.resolveMonster(it)) }
     }
 
 
@@ -60,8 +60,8 @@ class MonsterRepository @Inject constructor(
     ): List<Monster> {
         val resolver = translationRepository.resolver(localeSource.current)
         return names
-            .map { monsterName ->
-                val monster = monsterDao.getMonsterByName(monsterName)
+            .map { monsterKey ->
+                val monster = monsterDao.getMonsterByKey(monsterKey)
                 val regularStats = monsterDao.getStats(
                     monsterId = monster.monsterId,
                     level = level,
@@ -79,7 +79,7 @@ class MonsterRepository @Inject constructor(
                 val cards = monsterDao.getCardsByDeckName(monster.deckName)
                 Monster(
                     id = monster.monsterId,
-                    name = monster.name,
+                    key = monster.key,
                     life = regularStats.life,
                     stats = regularStats.stats,
                     eliteLife = eliteStats?.life ?: 0,

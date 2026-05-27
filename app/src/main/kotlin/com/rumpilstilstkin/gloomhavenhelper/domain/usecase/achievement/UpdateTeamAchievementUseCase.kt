@@ -10,7 +10,7 @@ class UpdateTeamAchievementUseCase @Inject constructor(
 ) {
     suspend operator fun invoke(achievement: Achievement) {
         val team = teamRepository.currentTeam.first() ?: return
-        val updatedAchievements = team.teamAchievement.filter { it.name != achievement.name } + achievement
+        val updatedAchievements = team.teamAchievement.filter { it.key != achievement.key } + achievement
         teamRepository.updateTeam(team.copy(teamAchievement = updatedAchievements))
     }
 }

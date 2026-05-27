@@ -18,8 +18,8 @@ interface MonsterDao {
     @Query("SELECT * FROM MonsterBd WHERE monsterId = :id")
     suspend fun getMonsterById(id: Int): MonsterBd
 
-    @Query("SELECT * FROM MonsterBd WHERE name = :name")
-    suspend fun getMonsterByName(name: String): MonsterBd
+    @Query("SELECT * FROM MonsterBd WHERE key = :key")
+    suspend fun getMonsterByKey(key: String): MonsterBd
 
     @Query("SELECT * FROM MonsterBd WHERE pack IN (:packs)")
     suspend fun getMonstersByPacks(packs: List<String>): List<MonsterBd>

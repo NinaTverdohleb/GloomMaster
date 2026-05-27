@@ -6,7 +6,6 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class GoodJson(
     val number: Int,
-    val name: String,
     val type: String,
     val image: String,
     val cost: Int,
@@ -16,7 +15,6 @@ data class GoodJson(
 ){
     fun toEntity() = GoodBd(
         number = number,
-        name = name,
         type = type,
         image = image,
         cost = cost,
