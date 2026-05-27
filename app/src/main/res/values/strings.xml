@@ -101,7 +101,10 @@
     <string name="stat_exp_reward">Completion XP: %1$d</string>
     <string name="stat_gold_reward">Gold per Token: %1$d</string>
     <string name="stat_trap_damage">Trap Damage: %1$d</string>
-    <string name="gold_format">%1$d Gold</string>
+    <plurals name="gold_amount">
+        <item quantity="one">%1$d Gold</item>
+        <item quantity="other">%1$d Gold</item>
+    </plurals>
     <string name="add_enemy">+ Add Enemy</string>
     <string name="search_hint">Name or number</string>
     <string name="selected_goods">Selected Items</string>

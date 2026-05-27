@@ -14,6 +14,14 @@ object SupportedLanguages {
     const val DEFAULT = "en"
 
     /**
+     * Canonical source locale for *text*. The Russian dictionaries are the complete source every
+     * other language is translated from, so release builds fall back to this locale's text when a
+     * translation is missing — production users never see a raw key marker. (Debug builds keep the
+     * marker as a QA signal.) See [com.rumpilstilstkin.gloomhavenhelper.data.TextResolver].
+     */
+    const val SOURCE_LOCALE = "ru"
+
+    /**
      * Locale whose card/goods artwork lives in the flat `image/<category>/` asset folders
      * (the original Russian art). Localized art for any other locale lives under
      * `image/<locale>/<category>/`; when a localized file is absent, image resolution falls

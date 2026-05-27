@@ -4,11 +4,16 @@ import com.rumpilstilstkin.gloomhavenhelper.localization.TranslationKeys
 
 /**
  * Resolves display text for one locale from a pre-loaded snapshot of the translation store.
- * A missing entry renders a visible key marker (rather than a blank) so untranslated content
- * is obvious on screen and easy to report.
+ *
+ * Missing-text policy: when the active locale has no entry, debug builds render a visible key
+ * marker (so untranslated content is obvious on screen and easy to report), while release builds
+ * fall back to [fallbackByKey] — the canonical Russian source — so production users never see a
+ * raw key. The marker is only a last resort in release, when even the source is missing.
  */
 class TextResolver(
     private val byKey: Map<String, String>,
+    // Canonical Russian source snapshot, used as the release fallback when [byKey] lacks an entry.
+    private val fallbackByKey: Map<String, String> = emptyMap(),
     // Canonical (Russian) achievement name -> stable catalog key. Achievements are keyed in the
     // store by this stable key, but callers only have the canonical name (the logic identity),
     // so [resolveAchievement] bridges name -> key before looking up the text.
@@ -17,10 +22,18 @@ class TextResolver(
     private val monsterKeys: Map<String, String> = emptyMap(),
     // Canonical (Russian) embedded stats text -> stable catalog key.
     private val monsterTextKeys: Map<String, String> = emptyMap(),
+    // True in debug (surface the key marker on a miss); false in release (fall back to the source).
+    private val markMissingKeys: Boolean = true,
 ) {
-    fun resolve(entityType: String, entityKey: String, fieldName: String): String =
-        byKey[key(entityType, entityKey, fieldName)]
-            ?: "⟦$entityType:$entityKey:$fieldName⟧"
+    fun resolve(entityType: String, entityKey: String, fieldName: String): String {
+        val compositeKey = key(entityType, entityKey, fieldName)
+        byKey[compositeKey]?.let { return it }
+        if (markMissingKeys) return marker(entityType, entityKey, fieldName)
+        return fallbackByKey[compositeKey] ?: marker(entityType, entityKey, fieldName)
+    }
+
+    private fun marker(entityType: String, entityKey: String, fieldName: String): String =
+        "⟦$entityType:$entityKey:$fieldName⟧"
 
     /** Display name for an achievement identified by its canonical (Russian) name. */
     fun resolveAchievement(canonicalName: String): String =

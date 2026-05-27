@@ -101,7 +101,12 @@
     <string name="stat_exp_reward">%1$d - Опыт за прохождение</string>
     <string name="stat_gold_reward">%1$d - Золотых за монету</string>
     <string name="stat_trap_damage">%1$d - Урон от повреждающей ловушки</string>
-    <string name="gold_format">%1$d Золотых</string>
+    <plurals name="gold_amount">
+        <item quantity="one">%1$d Золотой</item>
+        <item quantity="few">%1$d Золотых</item>
+        <item quantity="many">%1$d Золотых</item>
+        <item quantity="other">%1$d Золотых</item>
+    </plurals>
     <string name="add_enemy">+ Добавить врага</string>
     <string name="search_hint">Название или номер</string>
     <string name="selected_goods">Выбранные товары</string>
