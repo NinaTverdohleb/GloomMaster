@@ -12,6 +12,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
 import com.rumpilstilstkin.gloomhavenhelper.R
+import com.rumpilstilstkin.gloomhavenhelper.localization.rememberLocalizedAsset
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.MonsterAbilityCard
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
 
@@ -33,7 +34,7 @@ fun MonsterActionCard(
         } else {
             AsyncImage(
                 modifier= Modifier.size(width = 360.dp, height = 280.dp),
-                model = card.imagePath,
+                model = rememberLocalizedAsset(card.imagePath),
                 contentDescription = null
             )
         }

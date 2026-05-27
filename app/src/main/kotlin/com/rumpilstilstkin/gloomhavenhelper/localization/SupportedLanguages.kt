@@ -14,6 +14,14 @@ object SupportedLanguages {
     const val DEFAULT = "en"
 
     /**
+     * Locale whose card/goods artwork lives in the flat `image/<category>/` asset folders
+     * (the original Russian art). Localized art for any other locale lives under
+     * `image/<locale>/<category>/`; when a localized file is absent, image resolution falls
+     * back to this locale's flat folder. See [LocalizedImageResolver].
+     */
+    const val FALLBACK_IMAGE_LOCALE = "ru"
+
+    /**
      * Maps a persisted language selection to the content locale used for translation lookup.
      * [languageTag] is null for "follow system", in which case [systemLanguage] is mapped to
      * the supported set, defaulting to [DEFAULT] when unsupported.

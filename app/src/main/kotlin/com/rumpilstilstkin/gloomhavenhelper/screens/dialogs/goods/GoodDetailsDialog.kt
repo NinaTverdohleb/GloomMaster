@@ -12,6 +12,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
 import com.rumpilstilstkin.gloomhavenhelper.R
+import com.rumpilstilstkin.gloomhavenhelper.localization.rememberLocalizedAsset
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomAlertDialog
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomAlertDialogCustomActions
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
@@ -39,7 +40,7 @@ fun GoodDetailsDialog(
                         width = 240.dp,
                         height = 350.dp
                     ),
-                    model = imagePath,
+                    model = rememberLocalizedAsset(imagePath),
                     contentDescription = null
                 )
             }
@@ -74,7 +75,7 @@ fun GoodDetailsDialogCustomActions(
                         width = 240.dp,
                         height = 350.dp
                     ),
-                    model = imagePath,
+                    model = rememberLocalizedAsset(imagePath),
                     contentDescription = null
                 )
             }
