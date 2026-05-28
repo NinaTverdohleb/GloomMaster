@@ -1,6 +1,6 @@
 [
   {
-    "monsterKey": "54",
+    "monsterKey": "sela_naberis",
     "stats": [
       {
         "level": 0,
@@ -278,7 +278,7 @@
     ]
   },
   {
-    "monsterKey": "55",
+    "monsterKey": "shraka_the_wise",
     "stats": [
       {
         "level": 0,
@@ -543,7 +543,7 @@
     ]
   },
   {
-    "monsterKey": "56",
+    "monsterKey": "steel_lion",
     "stats": [
       {
         "level": 0,
@@ -845,7 +845,7 @@
     ]
   },
   {
-    "monsterKey": "57",
+    "monsterKey": "uyrat_ikkuma",
     "stats": [
       {
         "level": 0,
@@ -1115,7 +1115,7 @@
     ]
   },
   {
-    "monsterKey": "59",
+    "monsterKey": "husk",
     "stats": [
       {
         "level": 0,

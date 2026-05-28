@@ -2,6 +2,7 @@ package com.rumpilstilstkin.gloomhavenhelper.domain.entity
 
 data class Good(
     val id: Int,
+    val key: String,
     val number: Int,
     val name: String,
     val type: GoodType,

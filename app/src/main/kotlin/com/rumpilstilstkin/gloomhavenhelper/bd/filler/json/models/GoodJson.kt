@@ -5,6 +5,9 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class GoodJson(
+    // Stable catalog key (snake_case slug of the English name) — the translation-store key. The
+    // numeric [number] is kept as the in-game item card number for display, sort and search.
+    val key: String,
     val number: Int,
     val type: String,
     val image: String,
@@ -14,6 +17,7 @@ data class GoodJson(
     val isDrawing: Boolean = false
 ){
     fun toEntity() = GoodBd(
+        key = key,
         number = number,
         type = type,
         image = image,

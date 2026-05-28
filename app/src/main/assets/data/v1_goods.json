@@ -1,5 +1,6 @@
 [
   {
+    "key": "boots_of_striding",
     "number": 1,
     "type": "Foot",
     "image": "item_1.webp",
@@ -8,6 +9,7 @@
     "count": 2
   },
   {
+    "key": "winged_shoes",
     "number": 2,
     "type": "Foot",
     "image": "item_2.webp",
@@ -16,6 +18,7 @@
     "count": 2
   },
   {
+    "key": "hide_armor",
     "number": 3,
     "type": "Body",
     "image": "item_3.webp",
@@ -24,6 +27,7 @@
     "count": 2
   },
   {
+    "key": "leather_armor",
     "number": 4,
     "type": "Body",
     "image": "item_4.webp",
@@ -32,6 +36,7 @@
     "count": 3
   },
   {
+    "key": "cloak_of_invisibility",
     "number": 5,
     "type": "Body",
     "image": "item_5.webp",
@@ -40,6 +45,7 @@
     "count": 2
   },
   {
+    "key": "eagle_eye_goggles",
     "number": 6,
     "type": "Head",
     "image": "item_6.webp",
@@ -48,6 +54,7 @@
     "count": 1
   },
   {
+    "key": "iron_helmet",
     "number": 7,
     "type": "Head",
     "image": "item_7.webp",
@@ -56,6 +63,7 @@
     "count": 2
   },
   {
+    "key": "heater_shield",
     "number": 8,
     "type": "Arm",
     "image": "item_8.webp",
@@ -64,6 +72,7 @@
     "count": 2
   },
   {
+    "key": "piercing_bow",
     "number": 9,
     "type": "DoubleArm",
     "image": "item_9.webp",
@@ -72,6 +81,7 @@
     "count": 2
   },
   {
+    "key": "war_hammer",
     "number": 10,
     "type": "DoubleArm",
     "image": "item_10.webp",
@@ -80,6 +90,7 @@
     "count": 2
   },
   {
+    "key": "poison_dagger",
     "number": 11,
     "type": "Arm",
     "image": "item_11.webp",
@@ -88,6 +99,7 @@
     "count": 2
   },
   {
+    "key": "minor_healing_potion",
     "number": 12,
     "type": "SmallThing",
     "image": "item_12.webp",
@@ -96,6 +108,7 @@
     "count": 4
   },
   {
+    "key": "minor_stamina_potion",
     "number": 13,
     "type": "SmallThing",
     "image": "item_13.webp",
@@ -104,6 +117,7 @@
     "count": 4
   },
   {
+    "key": "minor_power_potion",
     "number": 14,
     "type": "SmallThing",
     "image": "item_14.webp",
@@ -112,6 +126,7 @@
     "count": 4
   },
   {
+    "key": "boots_of_speed",
     "number": 15,
     "type": "Foot",
     "image": "item_15.webp",
@@ -120,6 +135,7 @@
     "count": 2
   },
   {
+    "key": "pocketed_cloak",
     "number": 16,
     "type": "Body",
     "image": "item_16.webp",
@@ -128,6 +144,7 @@
     "count": 2
   },
   {
+    "key": "talisman_of_inspiration",
     "number": 17,
     "type": "Head",
     "image": "item_17.webp",
@@ -136,6 +153,7 @@
     "count": 2
   },
   {
+    "key": "battle_axe",
     "number": 18,
     "type": "Arm",
     "image": "item_18.webp",
@@ -144,6 +162,7 @@
     "count": 2
   },
   {
+    "key": "weighted_net",
     "number": 19,
     "type": "DoubleArm",
     "image": "item_19.webp",
@@ -152,6 +171,7 @@
     "count": 2
   },
   {
+    "key": "minor_mana_potion",
     "number": 20,
     "type": "SmallThing",
     "image": "item_20.webp",
@@ -160,6 +180,7 @@
     "count": 4
   },
   {
+    "key": "blinding_dust",
     "number": 21,
     "type": "SmallThing",
     "image": "item_21.webp",
@@ -168,6 +189,7 @@
     "count": 2
   },
   {
+    "key": "heavy_greaves",
     "number": 22,
     "type": "Foot",
     "image": "item_22.webp",
@@ -176,6 +198,7 @@
     "count": 2
   },
   {
+    "key": "chainmail",
     "number": 23,
     "type": "Body",
     "image": "item_23.webp",
@@ -184,6 +207,7 @@
     "count": 2
   },
   {
+    "key": "amulet_of_life",
     "number": 24,
     "type": "Head",
     "image": "item_24.webp",
@@ -192,6 +216,7 @@
     "count": 2
   },
   {
+    "key": "serrated_sword",
     "number": 25,
     "type": "Arm",
     "image": "item_25.webp",
@@ -200,6 +225,7 @@
     "count": 2
   },
   {
+    "key": "long_spear",
     "number": 26,
     "type": "DoubleArm",
     "image": "item_26.webp",
@@ -208,6 +234,7 @@
     "count": 2
   },
   {
+    "key": "major_healing_potion",
     "number": 27,
     "type": "SmallThing",
     "image": "item_27.webp",
@@ -216,6 +243,7 @@
     "count": 4
   },
   {
+    "key": "moon_earring",
     "number": 28,
     "type": "SmallThing",
     "image": "item_28.webp",
@@ -224,6 +252,7 @@
     "count": 2
   },
   {
+    "key": "comfortable_shoes",
     "number": 29,
     "type": "Foot",
     "image": "item_29.webp",
@@ -232,6 +261,7 @@
     "count": 2
   },
   {
+    "key": "studded_armor",
     "number": 30,
     "type": "Body",
     "image": "item_30.webp",
@@ -240,6 +270,7 @@
     "count": 2
   },
   {
+    "key": "hawk_helm",
     "number": 31,
     "type": "Head",
     "image": "item_31.webp",
@@ -248,6 +279,7 @@
     "count": 2
   },
   {
+    "key": "siege_shield",
     "number": 32,
     "type": "Arm",
     "image": "item_32.webp",
@@ -256,6 +288,7 @@
     "count": 2
   },
   {
+    "key": "incendiary_bomb",
     "number": 33,
     "type": "SmallThing",
     "image": "item_33.webp",
@@ -264,6 +297,7 @@
     "count": 2
   },
   {
+    "key": "major_stamina_potion",
     "number": 34,
     "type": "SmallThing",
     "image": "item_34.webp",
@@ -272,6 +306,7 @@
     "count": 4
   },
   {
+    "key": "falcon_figurine",
     "number": 35,
     "type": "SmallThing",
     "image": "item_35.webp",
@@ -280,6 +315,7 @@
     "count": 2
   },
   {
+    "key": "boots_of_swiftness",
     "number": 36,
     "type": "Foot",
     "image": "item_36.webp",
@@ -288,6 +324,7 @@
     "count": 1
   },
   {
+    "key": "robe_of_embodiment",
     "number": 37,
     "type": "Body",
     "image": "item_37.webp",
@@ -296,6 +333,7 @@
     "count": 2
   },
   {
+    "key": "heavy_helmet",
     "number": 38,
     "type": "Head",
     "image": "item_38.webp",
@@ -304,6 +342,7 @@
     "count": 2
   },
   {
+    "key": "chain_hook",
     "number": 39,
     "type": "DoubleArm",
     "image": "item_39.webp",
@@ -312,6 +351,7 @@
     "count": 2
   },
   {
+    "key": "utility_dagger",
     "number": 40,
     "type": "Arm",
     "image": "item_40.webp",
@@ -320,6 +360,7 @@
     "count": 1
   },
   {
+    "key": "major_power_potion",
     "number": 41,
     "type": "SmallThing",
     "image": "item_41.webp",
@@ -328,6 +369,7 @@
     "count": 4
   },
   {
+    "key": "ring_of_haste",
     "number": 42,
     "type": "SmallThing",
     "image": "item_42.webp",
@@ -336,6 +378,7 @@
     "count": 2
   },
   {
+    "key": "boots_of_agility",
     "number": 43,
     "type": "Foot",
     "image": "item_43.webp",
@@ -344,6 +387,7 @@
     "count": 2
   },
   {
+    "key": "brigandine",
     "number": 44,
     "type": "Body",
     "image": "item_44.webp",
@@ -352,6 +396,7 @@
     "count": 2
   },
   {
+    "key": "pendant_of_dark_pacts",
     "number": 45,
     "type": "Head",
     "image": "item_45.webp",
@@ -360,6 +405,7 @@
     "count": 2
   },
   {
+    "key": "spiked_shield",
     "number": 46,
     "type": "Arm",
     "image": "item_46.webp",
@@ -368,6 +414,7 @@
     "count": 2
   },
   {
+    "key": "harvesting_scythe",
     "number": 47,
     "type": "DoubleArm",
     "image": "item_47.webp",
@@ -376,6 +423,7 @@
     "count": 2
   },
   {
+    "key": "major_mana_potion",
     "number": 48,
     "type": "SmallThing",
     "image": "item_48.webp",
@@ -384,6 +432,7 @@
     "count": 4
   },
   {
+    "key": "sun_earring",
     "number": 49,
     "type": "SmallThing",
     "image": "item_49.webp",
@@ -392,6 +441,7 @@
     "count": 2
   },
   {
+    "key": "steel_sabatons",
     "number": 50,
     "type": "Foot",
     "image": "item_50.webp",
@@ -400,6 +450,7 @@
     "count": 2
   },
   {
+    "key": "shadow_armor",
     "number": 51,
     "type": "Body",
     "image": "item_51.webp",
@@ -408,6 +459,7 @@
     "count": 2
   },
   {
+    "key": "protective_amulet",
     "number": 52,
     "type": "Head",
     "image": "item_52.webp",
@@ -416,6 +468,7 @@
     "count": 2
   },
   {
+    "key": "black_knife",
     "number": 53,
     "type": "Arm",
     "image": "item_53.webp",
@@ -424,6 +477,7 @@
     "count": 2
   },
   {
+    "key": "staff_of_supremacy",
     "number": 54,
     "type": "DoubleArm",
     "image": "item_54.webp",
@@ -432,6 +486,7 @@
     "count": 2
   },
   {
+    "key": "superior_healing_potion",
     "number": 55,
     "type": "SmallThing",
     "image": "item_55.webp",
@@ -440,6 +495,7 @@
     "count": 4
   },
   {
+    "key": "ring_of_brutality",
     "number": 56,
     "type": "SmallThing",
     "image": "item_56.webp",
@@ -448,6 +504,7 @@
     "count": 2
   },
   {
+    "key": "sandals_of_serenity",
     "number": 57,
     "type": "Foot",
     "image": "item_57.webp",
@@ -456,6 +513,7 @@
     "count": 2
   },
   {
+    "key": "cloak_of_transparency",
     "number": 58,
     "type": "Body",
     "image": "item_58.webp",
@@ -464,6 +522,7 @@
     "count": 2
   },
   {
+    "key": "telescopic_lens",
     "number": 59,
     "type": "Head",
     "image": "item_59.webp",
@@ -472,6 +531,7 @@
     "count": 2
   },
   {
+    "key": "unstable_explosives",
     "number": 60,
     "type": "Arm",
     "image": "item_60.webp",
@@ -480,6 +540,7 @@
     "count": 2
   },
   {
+    "key": "ornate_shield",
     "number": 61,
     "type": "DoubleArm",
     "image": "item_61.webp",
@@ -488,6 +549,7 @@
     "count": 2
   },
   {
+    "key": "doom_dust",
     "number": 62,
     "type": "SmallThing",
     "image": "item_62.webp",
@@ -496,6 +558,7 @@
     "count": 2
   },
   {
+    "key": "lucky_eye",
     "number": 63,
     "type": "SmallThing",
     "image": "item_63.webp",
@@ -504,6 +567,7 @@
     "count": 2
   },
   {
+    "key": "boots_of_sprinting",
     "number": 64,
     "type": "Foot",
     "image": "item_64.webp",
@@ -512,6 +576,7 @@
     "count": 2
   },
   {
+    "key": "plate_armor",
     "number": 65,
     "type": "Body",
     "image": "item_65.webp",
@@ -520,6 +585,7 @@
     "count": 2
   },
   {
+    "key": "mask_of_terror",
     "number": 66,
     "type": "Head",
     "image": "item_66.webp",
@@ -528,6 +594,7 @@
     "count": 2
   },
   {
+    "key": "balanced_blade",
     "number": 67,
     "type": "Arm",
     "image": "item_67.webp",
@@ -536,6 +603,7 @@
     "count": 2
   },
   {
+    "key": "halberd",
     "number": 68,
     "type": "DoubleArm",
     "image": "item_68.webp",
@@ -544,6 +612,7 @@
     "count": 2
   },
   {
+    "key": "star_earring",
     "number": 69,
     "type": "SmallThing",
     "image": "item_69.webp",
@@ -552,6 +621,7 @@
     "count": 2
   },
   {
+    "key": "ring_of_second_chance",
     "number": 70,
     "type": "SmallThing",
     "image": "item_70.webp",
@@ -560,6 +630,7 @@
     "count": 2
   },
   {
+    "key": "boots_of_levitation",
     "number": 71,
     "type": "Foot",
     "image": "item_71.webp",
@@ -569,6 +640,7 @@
     "isDrawing": true
   },
   {
+    "key": "boots_of_fortune",
     "number": 72,
     "type": "Foot",
     "image": "item_72.webp",
@@ -578,6 +650,7 @@
     "isDrawing": true
   },
   {
+    "key": "shimmering_cloak",
     "number": 73,
     "type": "Body",
     "image": "item_73.webp",
@@ -587,6 +660,7 @@
     "isDrawing": true
   },
   {
+    "key": "bladed_armor",
     "number": 74,
     "type": "Body",
     "image": "item_74.webp",
@@ -596,6 +670,7 @@
     "isDrawing": true
   },
   {
+    "key": "elemental_bracelet",
     "number": 75,
     "type": "Head",
     "image": "item_75.webp",
@@ -605,6 +680,7 @@
     "isDrawing": true
   },
   {
+    "key": "chainmail_hood",
     "number": 76,
     "type": "Head",
     "image": "item_76.webp",
@@ -614,6 +690,7 @@
     "isDrawing": true
   },
   {
+    "key": "chilling_blade",
     "number": 77,
     "type": "Arm",
     "image": "item_77.webp",
@@ -623,6 +700,7 @@
     "isDrawing": true
   },
   {
+    "key": "storm_blade",
     "number": 78,
     "type": "Arm",
     "image": "item_78.webp",
@@ -632,6 +710,7 @@
     "isDrawing": true
   },
   {
+    "key": "infernal_blade",
     "number": 79,
     "type": "Arm",
     "image": "item_79.webp",
@@ -641,6 +720,7 @@
     "isDrawing": true
   },
   {
+    "key": "tremor_blade",
     "number": 80,
     "type": "Arm",
     "image": "item_80.webp",
@@ -650,6 +730,7 @@
     "isDrawing": true
   },
   {
+    "key": "radiant_blade",
     "number": 81,
     "type": "Arm",
     "image": "item_81.webp",
@@ -659,6 +740,7 @@
     "isDrawing": true
   },
   {
+    "key": "night_blade",
     "number": 82,
     "type": "Arm",
     "image": "item_82.webp",
@@ -668,6 +750,7 @@
     "isDrawing": true
   },
   {
+    "key": "wand_of_frost",
     "number": 83,
     "type": "Arm",
     "image": "item_83.webp",
@@ -677,6 +760,7 @@
     "isDrawing": true
   },
   {
+    "key": "wand_of_storms",
     "number": 84,
     "type": "Arm",
     "image": "item_84.webp",
@@ -686,6 +770,7 @@
     "isDrawing": true
   },
   {
+    "key": "wand_of_the_inferno",
     "number": 85,
     "type": "Arm",
     "image": "item_85.webp",
@@ -695,6 +780,7 @@
     "isDrawing": true
   },
   {
+    "key": "wand_of_earthquake",
     "number": 86,
     "type": "Arm",
     "image": "item_86.webp",
@@ -704,6 +790,7 @@
     "isDrawing": true
   },
   {
+    "key": "wand_of_radiance",
     "number": 87,
     "type": "Arm",
     "image": "item_87.webp",
@@ -713,6 +800,7 @@
     "isDrawing": true
   },
   {
+    "key": "wand_of_darkness",
     "number": 88,
     "type": "Arm",
     "image": "item_88.webp",
@@ -722,6 +810,7 @@
     "isDrawing": true
   },
   {
+    "key": "minor_restoration_potion",
     "number": 89,
     "type": "SmallThing",
     "image": "item_89.webp",
@@ -731,6 +820,7 @@
     "isDrawing": true
   },
   {
+    "key": "major_restoration_potion",
     "number": 90,
     "type": "SmallThing",
     "image": "item_90.webp",
@@ -740,6 +830,7 @@
     "isDrawing": true
   },
   {
+    "key": "steel_ring",
     "number": 91,
     "type": "SmallThing",
     "image": "item_91.webp",
@@ -749,6 +840,7 @@
     "isDrawing": true
   },
   {
+    "key": "ring_of_suppression",
     "number": 92,
     "type": "SmallThing",
     "image": "item_92.webp",
@@ -758,6 +850,7 @@
     "isDrawing": true
   },
   {
+    "key": "scroll_of_power",
     "number": 93,
     "type": "SmallThing",
     "image": "item_93.webp",
@@ -767,6 +860,7 @@
     "isDrawing": true
   },
   {
+    "key": "scroll_of_healing",
     "number": 94,
     "type": "SmallThing",
     "image": "item_94.webp",
@@ -776,6 +870,7 @@
     "isDrawing": true
   },
   {
+    "key": "scroll_of_stamina",
     "number": 95,
     "type": "SmallThing",
     "image": "item_95.webp",
@@ -785,6 +880,7 @@
     "isDrawing": true
   },
   {
+    "key": "rocket_boots",
     "number": 96,
     "type": "Foot",
     "image": "item_96.webp",
@@ -793,6 +889,7 @@
     "count": 2
   },
   {
+    "key": "footwraps_of_stamina",
     "number": 97,
     "type": "Foot",
     "image": "item_97.webp",
@@ -801,6 +898,7 @@
     "count": 1
   },
   {
+    "key": "drakescale_boots",
     "number": 98,
     "type": "Foot",
     "image": "item_98.webp",
@@ -809,6 +907,7 @@
     "count": 1
   },
   {
+    "key": "lava_boots",
     "number": 99,
     "type": "Foot",
     "image": "item_99.webp",
@@ -817,6 +916,7 @@
     "count": 1
   },
   {
+    "key": "robe_of_summoning",
     "number": 100,
     "type": "Body",
     "image": "item_100.webp",
@@ -825,6 +925,7 @@
     "count": 1
   },
   {
+    "key": "second_skin",
     "number": 101,
     "type": "Body",
     "image": "item_101.webp",
@@ -833,6 +934,7 @@
     "count": 1
   },
   {
+    "key": "robe_of_sacrifice",
     "number": 102,
     "type": "Body",
     "image": "item_102.webp",
@@ -841,6 +943,7 @@
     "count": 1
   },
   {
+    "key": "drakescale_armor",
     "number": 103,
     "type": "Body",
     "image": "item_103.webp",
@@ -849,6 +952,7 @@
     "count": 1
   },
   {
+    "key": "steam_armor",
     "number": 104,
     "type": "Body",
     "image": "item_104.webp",
@@ -857,6 +961,7 @@
     "count": 1
   },
   {
+    "key": "moth_eaten_shawl",
     "number": 105,
     "type": "Body",
     "image": "item_105.webp",
@@ -865,6 +970,7 @@
     "count": 1
   },
   {
+    "key": "tooth_necklace",
     "number": 106,
     "type": "Head",
     "image": "item_106.webp",
@@ -873,6 +979,7 @@
     "count": 1
   },
   {
+    "key": "horned_helm",
     "number": 107,
     "type": "Head",
     "image": "item_107.webp",
@@ -881,6 +988,7 @@
     "count": 2
   },
   {
+    "key": "drakescale_helm",
     "number": 108,
     "type": "Head",
     "image": "item_108.webp",
@@ -889,6 +997,7 @@
     "count": 1
   },
   {
+    "key": "thiefs_hood",
     "number": 109,
     "type": "Head",
     "image": "item_109.webp",
@@ -897,6 +1006,7 @@
     "count": 1
   },
   {
+    "key": "mountain_helm",
     "number": 110,
     "type": "Head",
     "image": "item_110.webp",
@@ -905,6 +1015,7 @@
     "count": 1
   },
   {
+    "key": "wave_crest",
     "number": 111,
     "type": "Head",
     "image": "item_111.webp",
@@ -913,6 +1024,7 @@
     "count": 1
   },
   {
+    "key": "ancient_drill",
     "number": 112,
     "type": "DoubleArm",
     "image": "item_112.webp",
@@ -921,6 +1033,7 @@
     "count": 2
   },
   {
+    "key": "axe_of_skull_blight",
     "number": 113,
     "type": "DoubleArm",
     "image": "item_113.webp",
@@ -929,6 +1042,7 @@
     "count": 1
   },
   {
+    "key": "staff_of_xorn",
     "number": 114,
     "type": "DoubleArm",
     "image": "item_114.webp",
@@ -937,6 +1051,7 @@
     "count": 1
   },
   {
+    "key": "mountain_hammer",
     "number": 115,
     "type": "DoubleArm",
     "image": "item_115.webp",
@@ -945,6 +1060,7 @@
     "count": 1
   },
   {
+    "key": "flaming_sword",
     "number": 116,
     "type": "Arm",
     "image": "item_116.webp",
@@ -953,6 +1069,7 @@
     "count": 2
   },
   {
+    "key": "blood_axe",
     "number": 117,
     "type": "Arm",
     "image": "item_117.webp",
@@ -961,6 +1078,7 @@
     "count": 2
   },
   {
+    "key": "elemental_staff",
     "number": 118,
     "type": "DoubleArm",
     "image": "item_118.webp",
@@ -969,6 +1087,7 @@
     "count": 2
   },
   {
+    "key": "skull_of_hatred",
     "number": 119,
     "type": "Arm",
     "image": "item_119.webp",
@@ -977,6 +1096,7 @@
     "count": 1
   },
   {
+    "key": "staff_of_summoning",
     "number": 120,
     "type": "DoubleArm",
     "image": "item_120.webp",
@@ -985,6 +1105,7 @@
     "count": 1
   },
   {
+    "key": "orb_of_dawn",
     "number": 121,
     "type": "Arm",
     "image": "item_121.webp",
@@ -993,6 +1114,7 @@
     "count": 1
   },
   {
+    "key": "orb_of_dusk",
     "number": 122,
     "type": "Arm",
     "image": "item_122.webp",
@@ -1001,6 +1123,7 @@
     "count": 1
   },
   {
+    "key": "ring_of_skulls",
     "number": 123,
     "type": "SmallThing",
     "image": "item_123.webp",
@@ -1009,6 +1132,7 @@
     "count": 2
   },
   {
+    "key": "compass_of_doom",
     "number": 124,
     "type": "SmallThing",
     "image": "item_124.webp",
@@ -1017,6 +1141,7 @@
     "count": 1
   },
   {
+    "key": "strange_mechanism",
     "number": 125,
     "type": "SmallThing",
     "image": "item_125.webp",
@@ -1025,6 +1150,7 @@
     "count": 1
   },
   {
+    "key": "controlled_spider",
     "number": 126,
     "type": "SmallThing",
     "image": "item_126.webp",
@@ -1033,6 +1159,7 @@
     "count": 1
   },
   {
+    "key": "giant_controlled_spider",
     "number": 127,
     "type": "SmallThing",
     "image": "item_127.webp",
@@ -1041,6 +1168,7 @@
     "count": 1
   },
   {
+    "key": "black_censer",
     "number": 128,
     "type": "SmallThing",
     "image": "item_128.webp",
@@ -1049,6 +1177,7 @@
     "count": 1
   },
   {
+    "key": "black_card",
     "number": 129,
     "type": "SmallThing",
     "image": "item_129.webp",
@@ -1057,6 +1186,7 @@
     "count": 1
   },
   {
+    "key": "woven_ring",
     "number": 130,
     "type": "SmallThing",
     "image": "item_130.webp",
@@ -1065,6 +1195,7 @@
     "count": 1
   },
   {
+    "key": "traitors_heart",
     "number": 131,
     "type": "SmallThing",
     "image": "item_131.webp",
@@ -1073,6 +1204,7 @@
     "count": 1
   },
   {
+    "key": "energy_core",
     "number": 132,
     "type": "SmallThing",
     "image": "item_132.webp",
@@ -1081,6 +1213,7 @@
     "count": 1
   },
   {
+    "key": "resonant_crystal",
     "number": 133,
     "type": "SmallThing",
     "image": "item_133.webp",
@@ -1089,6 +1222,7 @@
     "count": 1
   },
   {
+    "key": "ring_of_duality",
     "number": 152,
     "type": "SmallThing",
     "image": "item_152.webp",
@@ -1097,6 +1231,7 @@
     "count": 1
   },
   {
+    "key": "minor_antidote",
     "number": 153,
     "type": "SmallThing",
     "image": "item_153.webp",
@@ -1105,6 +1240,7 @@
     "count": 2
   },
   {
+    "key": "major_antidote",
     "number": 154,
     "type": "SmallThing",
     "image": "item_154.webp",
@@ -1113,6 +1249,7 @@
     "count": 2
   },
   {
+    "key": "warding_armor",
     "number": 155,
     "type": "Body",
     "image": "item_155.webp",
@@ -1121,6 +1258,7 @@
     "count": 1
   },
   {
+    "key": "elemental_claymore",
     "number": 156,
     "type": "DoubleArm",
     "image": "item_156.webp",
@@ -1129,6 +1267,7 @@
     "count": 2
   },
   {
+    "key": "ancient_bow",
     "number": 157,
     "type": "DoubleArm",
     "image": "item_157.webp",
@@ -1137,6 +1276,7 @@
     "count": 2
   },
   {
+    "key": "mending_greaves",
     "number": 158,
     "type": "Foot",
     "image": "item_158.webp",
@@ -1145,6 +1285,7 @@
     "count": 2
   },
   {
+    "key": "scroll_of_agility",
     "number": 159,
     "type": "SmallThing",
     "image": "item_159.webp",
@@ -1153,6 +1294,7 @@
     "count": 2
   },
   {
+    "key": "pickpockets_dagger",
     "number": 160,
     "type": "Arm",
     "image": "item_160.webp",
@@ -1161,6 +1303,7 @@
     "count": 1
   },
   {
+    "key": "throwing_axe",
     "number": 161,
     "type": "Arm",
     "image": "item_161.webp",
@@ -1169,6 +1312,7 @@
     "count": 2
   },
   {
+    "key": "portal_generator",
     "number": 162,
     "type": "SmallThing",
     "image": "item_162.webp",
@@ -1177,6 +1321,7 @@
     "count": 1
   },
   {
+    "key": "crystal_tiara",
     "number": 163,
     "type": "Head",
     "image": "item_163.webp",
@@ -1185,6 +1330,7 @@
     "count": 1
   },
   {
+    "key": "chalice_of_prophecy",
     "number": 164,
     "type": "DoubleArm",
     "image": "item_164.webp",

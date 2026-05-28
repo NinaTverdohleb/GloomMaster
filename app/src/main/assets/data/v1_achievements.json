@@ -1,362 +1,362 @@
 [
   {
-    "key": "1",
+    "key": "the_power_of_enhancement",
     "pack": "MAIN",
     "isGlobal": true
   },
   {
-    "key": "2",
+    "key": "the_merchant_flees",
     "pack": "MAIN",
     "isGlobal": true
   },
   {
-    "key": "3",
+    "key": "ancient_technology",
     "pack": "MAIN",
     "isGlobal": true,
     "maxRang": 5
   },
   {
-    "key": "4",
+    "key": "the_drake_aided",
     "pack": "MAIN",
     "isGlobal": true
   },
   {
-    "key": "5",
+    "key": "water_breathing",
     "pack": "MAIN",
     "isGlobal": true
   },
   {
-    "key": "6",
+    "key": "the_edge_of_darkness",
     "pack": "MAIN",
     "isGlobal": true
   },
   {
-    "key": "7",
+    "key": "the_portal_neutralized",
     "pack": "MAIN",
     "isGlobal": true
   },
   {
-    "key": "8",
+    "key": "the_voice_freed",
     "pack": "MAIN",
     "isGlobal": true
   },
   {
-    "key": "9",
+    "key": "the_end_of_corruption",
     "pack": "MAIN",
     "isGlobal": true,
     "maxRang": 3
   },
   {
-    "key": "10",
+    "key": "the_end_of_the_invasion",
     "pack": "MAIN",
     "isGlobal": true
   },
   {
-    "key": "11",
+    "key": "the_end_of_the_gloom",
     "pack": "MAIN",
     "isGlobal": true
   },
   {
-    "key": "12",
+    "key": "destruction_of_the_order",
     "pack": "MAIN",
     "isGlobal": true
   },
   {
-    "key": "13",
+    "key": "city_rule_demonic",
     "pack": "MAIN",
     "isGlobal": true
   },
   {
-    "key": "14",
+    "key": "the_artifact_recovered",
     "pack": "MAIN",
     "isGlobal": true
   },
   {
-    "key": "15",
+    "key": "the_artifact_lost",
     "pack": "MAIN",
     "isGlobal": true
   },
   {
-    "key": "16",
+    "key": "the_artifact_cleansed",
     "pack": "MAIN",
     "isGlobal": true
   },
   {
-    "key": "17",
+    "key": "the_dead_invade",
     "pack": "MAIN",
     "isGlobal": true
   },
   {
-    "key": "18",
+    "key": "the_drake_slain",
     "pack": "MAIN",
     "isGlobal": true
   },
   {
-    "key": "19",
+    "key": "the_voice_silenced",
     "pack": "MAIN",
     "isGlobal": true
   },
   {
-    "key": "20",
+    "key": "city_rule_militaristic",
     "pack": "MAIN",
     "isGlobal": true
   },
   {
-    "key": "21",
+    "key": "city_rule_economic",
     "pack": "MAIN",
     "isGlobal": true
   },
   {
-    "key": "22",
+    "key": "a_path_through_the_portal",
     "pack": "FORGOTTEN_CIRCLES",
     "isGlobal": true
   },
   {
-    "key": "23",
+    "key": "broken_ties",
     "pack": "FORGOTTEN_CIRCLES",
     "isGlobal": true
   },
   {
-    "key": "24",
+    "key": "knowledge_is_power",
     "pack": "FORGOTTEN_CIRCLES",
     "isGlobal": true,
     "maxRang": 4
   },
   {
-    "key": "25",
+    "key": "eliminating_the_threat",
     "pack": "FORGOTTEN_CIRCLES",
     "isGlobal": true,
     "maxRang": 4
   },
   {
-    "key": "26",
+    "key": "pieces_of_the_artifact",
     "pack": "FORGOTTEN_CIRCLES",
     "isGlobal": true,
     "maxRang": 3
   },
   {
-    "key": "27",
+    "key": "the_triumph_of_technology",
     "pack": "FORGOTTEN_CIRCLES",
     "isGlobal": true,
     "maxRang": 3
   },
   {
-    "key": "28",
+    "key": "first_steps",
     "pack": "MAIN",
     "isGlobal": false
   },
   {
-    "key": "29",
+    "key": "jekserahs_plans",
     "pack": "MAIN",
     "isGlobal": false
   },
   {
-    "key": "30",
+    "key": "a_demons_errand",
     "pack": "MAIN",
     "isGlobal": false
   },
   {
-    "key": "31",
+    "key": "treasure_map",
     "pack": "MAIN",
     "isGlobal": false
   },
   {
-    "key": "32",
+    "key": "a_path_through_the_ruins",
     "pack": "MAIN",
     "isGlobal": false
   },
   {
-    "key": "33",
+    "key": "an_invitation",
     "pack": "MAIN",
     "isGlobal": false
   },
   {
-    "key": "34",
+    "key": "on_the_trail",
     "pack": "MAIN",
     "isGlobal": false
   },
   {
-    "key": "35",
+    "key": "the_stonebreakers_censer",
     "pack": "MAIN",
     "isGlobal": false
   },
   {
-    "key": "36",
+    "key": "a_dark_bounty",
     "pack": "MAIN",
     "isGlobal": false
   },
   {
-    "key": "37",
+    "key": "the_voices_command",
     "pack": "MAIN",
     "isGlobal": false
   },
   {
-    "key": "38",
+    "key": "the_drakes_offer",
     "pack": "MAIN",
     "isGlobal": false
   },
   {
-    "key": "39",
+    "key": "a_path_through_the_hollow",
     "pack": "MAIN",
     "isGlobal": false
   },
   {
-    "key": "40",
+    "key": "the_voice_and_the_scepter",
     "pack": "MAIN",
     "isGlobal": false
   },
   {
-    "key": "41",
+    "key": "the_voices_treasure",
     "pack": "MAIN",
     "isGlobal": false
   },
   {
-    "key": "42",
+    "key": "the_drakes_treasure",
     "pack": "MAIN",
     "isGlobal": false
   },
   {
-    "key": "43",
+    "key": "redthorns_aid",
     "pack": "MAIN",
     "isGlobal": false
   },
   {
-    "key": "44",
+    "key": "a_path_through_the_chasm",
     "pack": "MAIN",
     "isGlobal": false
   },
   {
-    "key": "45",
+    "key": "the_source_of_the_poison",
     "pack": "MAIN",
     "isGlobal": false
   },
   {
-    "key": "46",
+    "key": "a_path_through_the_dwelling",
     "pack": "MAIN",
     "isGlobal": false
   },
   {
-    "key": "47",
+    "key": "the_sea_convoy",
     "pack": "MAIN",
     "isGlobal": false
   },
   {
-    "key": "48",
+    "key": "the_gravediggers",
     "pack": "MAIN",
     "isGlobal": false
   },
   {
-    "key": "49",
+    "key": "a_dubious_ally",
     "pack": "MAIN",
     "isGlobal": false
   },
   {
-    "key": "50",
+    "key": "a_bad_omen",
     "pack": "MAIN",
     "isGlobal": false
   },
   {
-    "key": "51",
+    "key": "tremors_in_the_earth",
     "pack": "MAIN",
     "isGlobal": false
   },
   {
-    "key": "52",
+    "key": "the_staff_of_water",
     "pack": "MAIN",
     "isGlobal": false
   },
   {
-    "key": "53",
+    "key": "sin_ra",
     "pack": "MAIN",
     "isGlobal": false
   },
   {
-    "key": "54",
+    "key": "repaying_a_debt",
     "pack": "MAIN",
     "isGlobal": false
   },
   {
-    "key": "55",
+    "key": "personal_quest_follower_of_zorn",
     "pack": "MAIN",
     "isGlobal": false
   },
   {
-    "key": "56",
+    "key": "the_staff_of_zorn_in_inventory",
     "pack": "MAIN",
     "isGlobal": false
   },
   {
-    "key": "57",
+    "key": "personal_quest_return_of_the_forest",
     "pack": "MAIN",
     "isGlobal": false
   },
   {
-    "key": "58",
+    "key": "personal_quest_vengeance",
     "pack": "MAIN",
     "isGlobal": false
   },
   {
-    "key": "59",
+    "key": "personal_quest_in_search_of_a_cure",
     "pack": "MAIN",
     "isGlobal": false
   },
   {
-    "key": "60",
+    "key": "personal_quest_the_fall",
     "pack": "MAIN",
     "isGlobal": false
   },
   {
-    "key": "61",
+    "key": "bravery",
     "pack": "MAIN",
     "isGlobal": false
   },
   {
-    "key": "62",
+    "key": "aiding_diamara",
     "pack": "FORGOTTEN_CIRCLES",
     "isGlobal": false
   },
   {
-    "key": "63",
+    "key": "hunting_the_hunters",
     "pack": "FORGOTTEN_CIRCLES",
     "isGlobal": false
   },
   {
-    "key": "64",
+    "key": "beauty_is_freedom",
     "pack": "FORGOTTEN_CIRCLES",
     "isGlobal": false
   },
   {
-    "key": "65",
+    "key": "the_keepers",
     "pack": "FORGOTTEN_CIRCLES",
     "isGlobal": false
   },
   {
-    "key": "66",
+    "key": "the_guards",
     "pack": "FORGOTTEN_CIRCLES",
     "isGlobal": false
   },
   {
-    "key": "67",
+    "key": "the_hunted_prey",
     "pack": "FORGOTTEN_CIRCLES",
     "isGlobal": false
   },
   {
-    "key": "68",
+    "key": "interdimensional_balance",
     "pack": "FORGOTTEN_CIRCLES",
     "isGlobal": false
   },
   {
-    "key": "69",
+    "key": "aiding_zangrot",
     "pack": "FORGOTTEN_CIRCLES",
     "isGlobal": false
   },
   {
-    "key": "70",
+    "key": "angels_of_death",
     "pack": "FORGOTTEN_CIRCLES",
     "isGlobal": false
   },
   {
-    "key": "71",
+    "key": "hunting_the_hunter",
     "pack": "FORGOTTEN_CIRCLES",
     "isGlobal": false
   }

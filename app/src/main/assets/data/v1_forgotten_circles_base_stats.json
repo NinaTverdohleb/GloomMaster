@@ -1,6 +1,6 @@
 [
   {
-    "monsterKey": "49",
+    "monsterKey": "aesther_scout",
     "stats": [
       {
         "level": 0,
@@ -377,7 +377,7 @@
     ]
   },
   {
-    "monsterKey": "50",
+    "monsterKey": "valrath_savage",
     "stats": [
       {
         "level": 0,
@@ -709,7 +709,7 @@
     ]
   },
   {
-    "monsterKey": "51",
+    "monsterKey": "valrath_tracker",
     "stats": [
       {
         "level": 0,
@@ -1146,7 +1146,7 @@
     ]
   },
   {
-    "monsterKey": "58",
+    "monsterKey": "aesther_ashblade",
     "stats": [
       {
         "level": 0,

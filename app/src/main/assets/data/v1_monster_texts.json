@@ -1,202 +1,202 @@
 [
   {
-    "key": "1",
+    "key": "attacks_against_the_demon_are_made_with_disadvantage",
     "text": "Атаки по демону проходят с помехой"
   },
   {
-    "key": "2",
+    "key": "retaliate_2_with_range_2",
     "text": "Ответный удар 2 с дальностью 2"
   },
   {
-    "key": "3",
+    "key": "retaliate_3_with_range_2",
     "text": "Ответный удар 3 с дальностью 2"
   },
   {
-    "key": "4",
+    "key": "retaliate_3_with_range_3",
     "text": "Ответный удар 3 с дальностью 3"
   },
   {
-    "key": "5",
+    "key": "retaliate_4_with_range_3",
     "text": "Ответный удар 4 с дальностью 3"
   },
   {
-    "key": "6",
+    "key": "retaliate_4_with_range_2",
     "text": "Ответный удар 4 с дальностью 2"
   },
   {
-    "key": "7",
+    "key": "retaliate_5_with_range_3",
     "text": "Ответный удар 5 с дальностью 3"
   },
   {
-    "key": "8",
+    "key": "retaliate_5_with_range_4",
     "text": "Ответный удар 5 с дальностью 4"
   },
   {
-    "key": "9",
+    "key": "attacks_with_advantage",
     "text": "Атакует с преимуществом"
   },
   {
-    "key": "10",
+    "key": "attacks_against_the_imp_are_made_with_disadvantage",
     "text": "Атаки по бесу проходят с помехой"
   },
   {
-    "key": "11",
+    "key": "ability_1_moves_to_the_door_and_opens_the_room",
     "text": "Способность 1: Перемещается к двери и открывает комнату"
   },
   {
-    "key": "12",
+    "key": "ability_2_summons_living_bones",
     "text": "Способность 2: Призывает Ожившие кости"
   },
   {
-    "key": "13",
+    "key": "ability_1_move_1_attack_1_as_an_area_attack_30",
     "text": "Способность 1: Движение -1, Атака -1 по площади #30"
   },
   {
-    "key": "14",
+    "key": "ability_2_move_0_attack_0_retaliate_4",
     "text": "Способность 2: Движение +0, Атака +0, Ответный удар 4"
   },
   {
-    "key": "15",
+    "key": "ability_1_all_scouts_act_again",
     "text": "Способность 1: все разведчики ходят еще раз"
   },
   {
-    "key": "16",
+    "key": "ability_2_summons_a_vermling_scout",
     "text": "Способность 2: Призывает вермлинга разведчика"
   },
   {
-    "key": "17",
+    "key": "v_number_of_scouts_on_the_map",
     "text": "V = количество разведчиков на карте"
   },
   {
-    "key": "18",
+    "key": "ability_1_heals_2_to_itself_and_all_allies",
     "text": "Способность 1: Лечит на 2 себя и всех союзников"
   },
   {
-    "key": "19",
+    "key": "ability_2_all_allies_gain_1_to_all_attacks_for_the_entire_round_attacks_1",
     "text": "Способность 2: Все союзники получают + 1 ко всем атакам на весь раунд. Атакует +1."
   },
   {
-    "key": "20",
+    "key": "ability_1_summons_living_bones_attacks_1_all_adjacent_enemies",
     "text": "Способность 1: Призывает Ожившие кости, атакует -1 всех соседних врагов"
   },
   {
-    "key": "21",
+    "key": "ability_2_summons_a_living_corpse_moves_1_attacks_2",
     "text": "Способность 2: Призывает Оживший труп, двигается -1, атакует +2"
   },
   {
-    "key": "22",
+    "key": "ability_1_the_altar_moves_summons_a_demon_move_2_attack_1",
     "text": "Способность 1: Алтарь двигается, призывает демона, движение +2, атака -1"
   },
   {
-    "key": "23",
+    "key": "ability_2_the_altar_moves_summons_a_demon_move_2_attack_1",
     "text": "Способность 2: Алтарь двигается, призывает демона, движение +2, атака -1"
   },
   {
-    "key": "24",
+    "key": "ability_1_attack_0_31",
     "text": "Способность 1: Атака +0 #31"
   },
   {
-    "key": "25",
+    "key": "ability_2_moves_and_summons_2_zephyrs",
     "text": "Способность 2: Двишается и призывает 2 зефира"
   },
   {
-    "key": "26",
+    "key": "ability_1_attacks_1_all_adjacent_enemies_attacks_0_range_3_eggs_hatch",
     "text": "Способность 1: Атакует -1 все рядомстоящие враги, Атакует +0 дальность 3, Вылупляются яйца"
   },
   {
-    "key": "27",
+    "key": "ability_2_summons_a_clutch_of_eggs_moves_1_attacks_0",
     "text": "Способность 2: Призывает КП яиц, двигается -1, атакует +0"
   },
   {
-    "key": "28",
+    "key": "ability_1_summons_a_deep_terror_attacks_3_32",
     "text": "Способность 1: Призывает Невыносимый ужас, атакует -3 #32"
   },
   {
-    "key": "29",
+    "key": "ability_2_summons_a_deep_terror_attacks_2_33",
     "text": "Способность 2: Призывает Невыносимый ужас, атакует -2 #33"
   },
   {
-    "key": "30",
+    "key": "ability_1_move_2_attack_0",
     "text": "Способность 1: Движение +2, Атака +0"
   },
   {
-    "key": "31",
+    "key": "ability_2_move_0_summons_an_imp_attack_1",
     "text": "Способность 2: Движение +0, Призывает беса, Атака -1"
   },
   {
-    "key": "32",
+    "key": "x_number_of_hexes_moved_before_the_attack",
     "text": "X = Количество пройденых клеток перед ударом"
   },
   {
-    "key": "33",
+    "key": "ability_1_move_9_attack_9",
     "text": "Способность 1: Движение +9, Атака +9"
   },
   {
-    "key": "34",
+    "key": "ability_2_teleport_attack_1_range_5_25_14_10",
     "text": "Способность 2: Телепорт, Атака +1 дальность 5 #25 #14 #10"
   },
   {
-    "key": "35",
+    "key": "ability_1_summons_a_giant_viper_and_inflicts_terror",
     "text": "Способность 1: Призывает гигантскую гадюку и вызывает ужас"
   },
   {
-    "key": "36",
+    "key": "ability_2_mind_control",
     "text": "Способность 2: Контроль разума"
   },
   {
-    "key": "37",
+    "key": "ability_1_spends_20_and_summons_a_night_demon_applies_24_to_itself",
     "text": "Способность 1: Тратит #20 и призывает ночного демона, накладывает #24 на себя"
   },
   {
-    "key": "38",
+    "key": "ability_2_spends_19_summons_a_sun_demon_heals_itself_4_shield_1",
     "text": "Способность 2: Тратит #19 призывает солнечного демона, Лечит себя на 4, Щит 1"
   },
   {
-    "key": "39",
+    "key": "all_allies_on_adjacent_hexes_add_1_to_all_attacks",
     "text": "Все союзники на соседних клетка добавляют +1 ко всем атакам"
   },
   {
-    "key": "40",
+    "key": "all_allies_on_adjacent_hexes_add_2_to_all_attacks",
     "text": "Все союзники на соседних клетка добавляют +2 ко всем атакам"
   },
   {
-    "key": "41",
+    "key": "advantage",
     "text": "Преимущество"
   },
   {
-    "key": "42",
+    "key": "all_attacks_against_the_aesther_ashblade_are_made_with_disadvantage",
     "text": "Все атаки на Эстер Пепельный клинок проводятся с затруднением"
   },
   {
-    "key": "43",
+    "key": "targets_number_of_characters",
     "text": "Цели - количество персонажей"
   },
   {
-    "key": "44",
+    "key": "shraka_doubles_the_values_of_all_heal_actions_and_whenever_possible_targets_the_steel_lion_with_heal_actions",
     "text": "Шрака удваивает показатели всех действий лечения, а в качестве целей действий лечения по возможности выбирает Стального Льва"
   },
   {
-    "key": "45",
+    "key": "if_shraka_applies_effect_26_or_34_it_applies_that_same_effect_a_second_time",
     "text": "Если Шрака применяет Эффект #26 или #34 он применяет этот же эффект второй раз"
   },
   {
-    "key": "46",
+    "key": "shield_applies_to_itself_and_all_allies",
     "text": "Шит действует на себя и на всех союзников"
   },
   {
-    "key": "47",
+    "key": "if_an_ally_of_the_steel_lion_on_an_adjacent_hex_becomes_the_target_of_an_attack_the_steel_lion_becomes_the_target_of_that_attack_instead",
     "text": "Если союзник Стального льва на соседней клетке становится целью атаки, вместо этого Стальной лев становиться целью этой атаки."
   },
   {
-    "key": "48",
+    "key": "in_cases_of_equal_hp_the_steel_lion_does_not_take_damage_of_6_or_more",
     "text": "В первых случаяъ равных КП, получение 6 и более урона не проходят по Стальному льву"
   },
   {
-    "key": "49",
+    "key": "all_creatures_summoned_by_uyrat_are_elite_when_3_or_4_players_are_playing",
     "text": "Все призванные создания Уйрата мощные, если учавствуют 3 или 4 игрока"
   },
   {
-    "key": "50",
+    "key": "when_a_flame_demon_or_earth_demon_is_on_the_board_uyrat_may_use_22_and_23_as_if_they_had_maximum_charge",
     "text": "Когда на игровом поле есть Огненный или Земляной демон, Уйрат может использовать #22 и #23 как если бы они имелт максимальный заряд."
   }
 ]

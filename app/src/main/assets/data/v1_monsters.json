@@ -1,6 +1,6 @@
 [
   {
-    "key": "1",
+    "key": "bandit_commander",
     "deckName": "boss",
     "isBoss": true,
     "fly": false,
@@ -13,7 +13,7 @@
     "pack": "MAIN"
   },
   {
-    "key": "2",
+    "key": "living_bones",
     "deckName": "living-bones",
     "isBoss": false,
     "fly": false,
@@ -22,7 +22,7 @@
     "pack": "MAIN"
   },
   {
-    "key": "3",
+    "key": "bandit_guard",
     "deckName": "guard",
     "isBoss": false,
     "fly": false,
@@ -31,7 +31,7 @@
     "pack": "MAIN"
   },
   {
-    "key": "4",
+    "key": "bandit_archer",
     "deckName": "archer",
     "isBoss": false,
     "fly": false,
@@ -40,7 +40,7 @@
     "pack": "MAIN"
   },
   {
-    "key": "5",
+    "key": "living_corpse",
     "deckName": "living-corpse",
     "isBoss": false,
     "fly": false,
@@ -49,7 +49,7 @@
     "pack": "MAIN"
   },
   {
-    "key": "6",
+    "key": "inox_guard",
     "deckName": "guard",
     "isBoss": false,
     "fly": false,
@@ -58,7 +58,7 @@
     "pack": "MAIN"
   },
   {
-    "key": "7",
+    "key": "inox_archer",
     "deckName": "archer",
     "isBoss": false,
     "fly": false,
@@ -67,7 +67,7 @@
     "pack": "MAIN"
   },
   {
-    "key": "8",
+    "key": "inox_shaman",
     "deckName": "shaman",
     "isBoss": false,
     "fly": false,
@@ -76,7 +76,7 @@
     "pack": "MAIN"
   },
   {
-    "key": "9",
+    "key": "cultist",
     "deckName": "cultist",
     "isBoss": false,
     "fly": false,
@@ -85,7 +85,7 @@
     "pack": "MAIN"
   },
   {
-    "key": "10",
+    "key": "earth_demon",
     "deckName": "earth-demon",
     "isBoss": false,
     "fly": false,
@@ -94,7 +94,7 @@
     "pack": "MAIN"
   },
   {
-    "key": "11",
+    "key": "wind_demon",
     "deckName": "wind-demon",
     "isBoss": false,
     "fly": true,
@@ -103,7 +103,7 @@
     "pack": "MAIN"
   },
   {
-    "key": "12",
+    "key": "living_spirit",
     "deckName": "living-spirit",
     "isBoss": false,
     "fly": true,
@@ -112,7 +112,7 @@
     "pack": "MAIN"
   },
   {
-    "key": "13",
+    "key": "night_demon",
     "deckName": "night-demon",
     "isBoss": false,
     "fly": false,
@@ -121,7 +121,7 @@
     "pack": "MAIN"
   },
   {
-    "key": "14",
+    "key": "flame_demon",
     "deckName": "flame-demon",
     "isBoss": false,
     "fly": true,
@@ -130,7 +130,7 @@
     "pack": "MAIN"
   },
   {
-    "key": "15",
+    "key": "frost_demon",
     "deckName": "frost-demon",
     "isBoss": false,
     "fly": false,
@@ -139,7 +139,7 @@
     "pack": "MAIN"
   },
   {
-    "key": "16",
+    "key": "forest_imp",
     "deckName": "imp",
     "isBoss": false,
     "fly": true,
@@ -148,7 +148,7 @@
     "pack": "MAIN"
   },
   {
-    "key": "17",
+    "key": "cave_bear",
     "deckName": "cave-bear",
     "isBoss": false,
     "fly": false,
@@ -157,7 +157,7 @@
     "pack": "MAIN"
   },
   {
-    "key": "18",
+    "key": "inox_bodyguard_1",
     "deckName": "boss",
     "isBoss": true,
     "fly": false,
@@ -171,7 +171,7 @@
     "pack": "MAIN"
   },
   {
-    "key": "19",
+    "key": "inox_bodyguard_2",
     "deckName": "boss",
     "isBoss": true,
     "fly": false,
@@ -185,7 +185,7 @@
     "pack": "MAIN"
   },
   {
-    "key": "20",
+    "key": "hound",
     "deckName": "hound",
     "isBoss": false,
     "fly": false,
@@ -194,7 +194,7 @@
     "pack": "MAIN"
   },
   {
-    "key": "21",
+    "key": "vermling_scout",
     "deckName": "scout",
     "isBoss": false,
     "fly": false,
@@ -203,7 +203,7 @@
     "pack": "MAIN"
   },
   {
-    "key": "22",
+    "key": "merciless_overseer",
     "deckName": "boss",
     "isBoss": true,
     "fly": false,
@@ -217,7 +217,7 @@
     "pack": "MAIN"
   },
   {
-    "key": "23",
+    "key": "sun_demon",
     "deckName": "sun-demon",
     "isBoss": false,
     "fly": true,
@@ -226,7 +226,7 @@
     "pack": "MAIN"
   },
   {
-    "key": "24",
+    "key": "city_guard",
     "deckName": "guard",
     "isBoss": false,
     "fly": false,
@@ -235,7 +235,7 @@
     "pack": "MAIN"
   },
   {
-    "key": "25",
+    "key": "city_archer",
     "deckName": "archer",
     "isBoss": false,
     "fly": false,
@@ -244,7 +244,7 @@
     "pack": "MAIN"
   },
   {
-    "key": "26",
+    "key": "captain_of_the_guard",
     "deckName": "boss",
     "isBoss": true,
     "fly": false,
@@ -258,7 +258,7 @@
     "pack": "MAIN"
   },
   {
-    "key": "27",
+    "key": "jekserah",
     "deckName": "boss",
     "isBoss": true,
     "fly": false,
@@ -272,7 +272,7 @@
     "pack": "MAIN"
   },
   {
-    "key": "28",
+    "key": "stone_golem",
     "deckName": "stone-golem",
     "isBoss": false,
     "fly": false,
@@ -281,7 +281,7 @@
     "pack": "MAIN"
   },
   {
-    "key": "29",
+    "key": "spitting_drake",
     "deckName": "spitting-drake",
     "isBoss": false,
     "fly": true,
@@ -290,7 +290,7 @@
     "pack": "MAIN"
   },
   {
-    "key": "30",
+    "key": "savvas_icestorm",
     "deckName": "savvas-icestorm",
     "isBoss": false,
     "fly": false,
@@ -299,7 +299,7 @@
     "pack": "MAIN"
   },
   {
-    "key": "31",
+    "key": "harrower_infester",
     "deckName": "harrower-infester",
     "isBoss": false,
     "fly": true,
@@ -308,7 +308,7 @@
     "pack": "MAIN"
   },
   {
-    "key": "32",
+    "key": "vermling_shaman",
     "deckName": "shaman",
     "isBoss": false,
     "fly": false,
@@ -317,7 +317,7 @@
     "pack": "MAIN"
   },
   {
-    "key": "33",
+    "key": "giant_viper",
     "deckName": "giant-viper",
     "isBoss": false,
     "fly": false,
@@ -326,7 +326,7 @@
     "pack": "MAIN"
   },
   {
-    "key": "34",
+    "key": "ooze",
     "deckName": "ooze",
     "isBoss": false,
     "fly": false,
@@ -335,7 +335,7 @@
     "pack": "MAIN"
   },
   {
-    "key": "35",
+    "key": "prime_demon",
     "deckName": "boss",
     "isBoss": true,
     "fly": false,
@@ -351,7 +351,7 @@
     "pack": "MAIN"
   },
   {
-    "key": "36",
+    "key": "ancient_artillery",
     "deckName": "ancient-artillery",
     "isBoss": false,
     "fly": false,
@@ -360,7 +360,7 @@
     "pack": "MAIN"
   },
   {
-    "key": "37",
+    "key": "rending_drake",
     "deckName": "rending-drake",
     "isBoss": false,
     "fly": false,
@@ -369,7 +369,7 @@
     "pack": "MAIN"
   },
   {
-    "key": "38",
+    "key": "black_imp",
     "deckName": "imp",
     "isBoss": false,
     "fly": false,
@@ -378,7 +378,7 @@
     "pack": "MAIN"
   },
   {
-    "key": "39",
+    "key": "deep_terror",
     "deckName": "deep-terror",
     "isBoss": false,
     "fly": false,
@@ -392,7 +392,7 @@
     "pack": "MAIN"
   },
   {
-    "key": "40",
+    "key": "lurker",
     "deckName": "lurker",
     "isBoss": false,
     "fly": false,
@@ -401,7 +401,7 @@
     "pack": "MAIN"
   },
   {
-    "key": "41",
+    "key": "savvas_lavaflow",
     "deckName": "savvas-lavaflow",
     "isBoss": false,
     "fly": false,
@@ -410,7 +410,7 @@
     "pack": "MAIN"
   },
   {
-    "key": "42",
+    "key": "elder_drake",
     "deckName": "boss",
     "isBoss": true,
     "fly": false,
@@ -427,7 +427,7 @@
     "pack": "MAIN"
   },
   {
-    "key": "43",
+    "key": "winged_horror",
     "deckName": "boss",
     "isBoss": true,
     "fly": false,
@@ -442,7 +442,7 @@
     "pack": "MAIN"
   },
   {
-    "key": "44",
+    "key": "the_sightless_eye",
     "deckName": "boss",
     "isBoss": true,
     "fly": false,
@@ -458,7 +458,7 @@
     "pack": "MAIN"
   },
   {
-    "key": "45",
+    "key": "dark_rider",
     "deckName": "boss",
     "isBoss": true,
     "fly": false,
@@ -472,7 +472,7 @@
     "pack": "MAIN"
   },
   {
-    "key": "46",
+    "key": "the_gloom",
     "deckName": "boss",
     "isBoss": true,
     "fly": false,
@@ -489,7 +489,7 @@
     "pack": "MAIN"
   },
   {
-    "key": "47",
+    "key": "the_betrayer",
     "deckName": "boss",
     "isBoss": true,
     "fly": false,
@@ -504,7 +504,7 @@
     "pack": "MAIN"
   },
   {
-    "key": "48",
+    "key": "the_colorless",
     "deckName": "boss",
     "isBoss": true,
     "fly": false,
@@ -519,7 +519,7 @@
     "pack": "MAIN"
   },
   {
-    "key": "49",
+    "key": "aesther_scout",
     "deckName": "scout",
     "isBoss": false,
     "fly": false,
@@ -528,7 +528,7 @@
     "pack": "MAIN"
   },
   {
-    "key": "50",
+    "key": "valrath_savage",
     "deckName": "savage",
     "isBoss": false,
     "fly": false,
@@ -537,7 +537,7 @@
     "pack": "MAIN"
   },
   {
-    "key": "51",
+    "key": "valrath_tracker",
     "deckName": "tracker",
     "isBoss": false,
     "fly": false,
@@ -546,7 +546,7 @@
     "pack": "MAIN"
   },
   {
-    "key": "52",
+    "key": "human_commander",
     "deckName": "boss",
     "isBoss": true,
     "fly": false,
@@ -562,7 +562,7 @@
     "pack": "MAIN"
   },
   {
-    "key": "53",
+    "key": "valrath_commander",
     "deckName": "boss",
     "isBoss": true,
     "fly": false,
@@ -578,7 +578,7 @@
     "pack": "MAIN"
   },
   {
-    "key": "54",
+    "key": "sela_naberis",
     "deckName": "tracker",
     "isBoss": true,
     "fly": false,
@@ -593,7 +593,7 @@
     "pack": "FORGOTTEN_CIRCLES"
   },
   {
-    "key": "55",
+    "key": "shraka_the_wise",
     "deckName": "shaman",
     "isBoss": true,
     "fly": false,
@@ -607,7 +607,7 @@
     "pack": "FORGOTTEN_CIRCLES"
   },
   {
-    "key": "56",
+    "key": "steel_lion",
     "deckName": "guard",
     "isBoss": true,
     "fly": false,
@@ -621,7 +621,7 @@
     "pack": "FORGOTTEN_CIRCLES"
   },
   {
-    "key": "57",
+    "key": "uyrat_ikkuma",
     "deckName": "savvas-lavaflow",
     "isBoss": true,
     "fly": false,
@@ -635,7 +635,7 @@
     "pack": "FORGOTTEN_CIRCLES"
   },
   {
-    "key": "58",
+    "key": "aesther_ashblade",
     "deckName": "ashblade",
     "isBoss": false,
     "fly": false,
@@ -644,7 +644,7 @@
     "pack": "FORGOTTEN_CIRCLES"
   },
   {
-    "key": "59",
+    "key": "husk",
     "deckName": "ashblade",
     "isBoss": true,
     "fly": false,

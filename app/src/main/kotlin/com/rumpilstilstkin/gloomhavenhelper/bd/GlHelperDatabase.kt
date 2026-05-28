@@ -79,7 +79,7 @@ import com.rumpilstilstkin.gloomhavenhelper.bd.typeconverters.StringListTypeConv
         ScenarioGameStateBd::class,
         TranslationBd::class
     ],
-    version = 4
+    version = 5
 )
 abstract class GlHelperDatabase : RoomDatabase() {
     abstract fun characterDao(): CharacterDao
@@ -111,8 +111,9 @@ fun createGlHelperDatabase(
     )
         .addMigrations(*ALL_MIGRATIONS)
         // v4 rebuilt the catalog from scratch (display names removed; achievement/monster/scenario
-        // refs rekeyed to stable catalog keys). Old data is intentionally discarded — the catalog is
-        // reseeded by DatabaseFiller and the translation store rebuilt. No 3->4 migration is provided.
+        // refs rekeyed to stable catalog keys). v5 added GoodBd.key (item catalog slug, the goods
+        // translation-store key). Old data is intentionally discarded — the catalog is reseeded by
+        // DatabaseFiller and the translation store rebuilt. No incremental migrations are provided.
         .fallbackToDestructiveMigration(dropAllTables = true)
         .build()
 

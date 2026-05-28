@@ -79,6 +79,15 @@ class DatabaseFiller @Inject constructor(
                 if (achievementDao.count() == 0) fillV1()
                 translationJsonFiller.fill()
             }
+            // v5 added GoodBd.key (item catalog slug) and re-keyed the goods translation dictionaries
+            // from item number to that slug. The Room schema is destructively recreated (see
+            // fallbackToDestructiveMigration), so on upgrade the catalog tables come back empty while
+            // this filler pref persists. Reseed the catalog when empty, and always rebuild the
+            // translation store so the goods keys match the new catalog.
+            13 -> {
+                if (achievementDao.count() == 0) fillV1()
+                translationJsonFiller.fill()
+            }
             else -> {}
         }
     }
@@ -115,7 +124,7 @@ class DatabaseFiller @Inject constructor(
     }
 
     companion object {
-        private const val VERSION = 13
+        private const val VERSION = 14
         private const val PREFS_VERSION = "filler_version"
     }
 }

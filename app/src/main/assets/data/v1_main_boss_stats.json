@@ -1,6 +1,6 @@
 [
   {
-    "monsterKey": "1",
+    "monsterKey": "bandit_commander",
     "stats": [
       {
         "level": 0,
@@ -205,7 +205,7 @@
     ]
   },
   {
-    "monsterKey": "18",
+    "monsterKey": "inox_bodyguard_1",
     "stats": [
       {
         "level": 0,
@@ -410,7 +410,7 @@
     ]
   },
   {
-    "monsterKey": "19",
+    "monsterKey": "inox_bodyguard_2",
     "stats": [
       {
         "level": 0,
@@ -615,7 +615,7 @@
     ]
   },
   {
-    "monsterKey": "22",
+    "monsterKey": "merciless_overseer",
     "stats": [
       {
         "level": 0,
@@ -852,7 +852,7 @@
     ]
   },
   {
-    "monsterKey": "26",
+    "monsterKey": "captain_of_the_guard",
     "stats": [
       {
         "level": 0,
@@ -1057,7 +1057,7 @@
     ]
   },
   {
-    "monsterKey": "27",
+    "monsterKey": "jekserah",
     "stats": [
       {
         "level": 0,
@@ -1262,7 +1262,7 @@
     ]
   },
   {
-    "monsterKey": "35",
+    "monsterKey": "prime_demon",
     "stats": [
       {
         "level": 0,
@@ -1467,7 +1467,7 @@
     ]
   },
   {
-    "monsterKey": "42",
+    "monsterKey": "elder_drake",
     "stats": [
       {
         "level": 0,
@@ -1632,7 +1632,7 @@
     ]
   },
   {
-    "monsterKey": "43",
+    "monsterKey": "winged_horror",
     "stats": [
       {
         "level": 0,
@@ -1837,7 +1837,7 @@
     ]
   },
   {
-    "monsterKey": "44",
+    "monsterKey": "the_sightless_eye",
     "stats": [
       {
         "level": 0,
@@ -2042,7 +2042,7 @@
     ]
   },
   {
-    "monsterKey": "45",
+    "monsterKey": "dark_rider",
     "stats": [
       {
         "level": 0,
@@ -2279,7 +2279,7 @@
     ]
   },
   {
-    "monsterKey": "46",
+    "monsterKey": "the_gloom",
     "stats": [
       {
         "level": 0,
@@ -2484,7 +2484,7 @@
     ]
   },
   {
-    "monsterKey": "47",
+    "monsterKey": "the_betrayer",
     "stats": [
       {
         "level": 0,
@@ -2729,7 +2729,7 @@
     ]
   },
   {
-    "monsterKey": "48",
+    "monsterKey": "the_colorless",
     "stats": [
       {
         "level": 0,

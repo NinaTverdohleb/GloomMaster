@@ -8,7 +8,7 @@ import javax.inject.Inject
 
 /**
  * Seeds the translation store for every supported language from per-locale dictionary assets.
- * Everything is keyed by a stable id — scenario number, item number, quest id (task texts by
+ * Everything is keyed by a stable id — scenario number, item key, quest id (task texts by
  * "$questId:$taskId"), perk id, and the achievement/monster catalog key. That same key is the
  * game-logic and save identity, so reads and writes need no name bridge. Insert uses REPLACE,
  * so re-running is idempotent.
@@ -27,8 +27,8 @@ class TranslationJsonFiller @Inject constructor(
                         add(translation(TranslationKeys.SCENARIO, number, TranslationKeys.FIELD_LOCATION, locale, text.location))
                     }
                 }
-                jsonDataLoader.loadGoodTranslations(locale).forEach { (number, name) ->
-                    add(translation(TranslationKeys.GOOD, number, TranslationKeys.FIELD_NAME, locale, name))
+                jsonDataLoader.loadGoodTranslations(locale).forEach { (key, name) ->
+                    add(translation(TranslationKeys.GOOD, key, TranslationKeys.FIELD_NAME, locale, name))
                 }
                 jsonDataLoader.loadQuestTranslations(locale).forEach { (questId, quest) ->
                     add(translation(TranslationKeys.QUEST, questId, TranslationKeys.FIELD_TITLE, locale, quest.title))

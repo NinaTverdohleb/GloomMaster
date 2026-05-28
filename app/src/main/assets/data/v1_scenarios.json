@@ -2,35 +2,35 @@
   {
     "scenarioNumber": 1,
     "newScenarios": "2",
-    "teamAchievement": "28",
+    "teamAchievement": "first_steps",
     "monsters": [
-      "3",
-      "4",
-      "2"
+      "bandit_guard",
+      "bandit_archer",
+      "living_bones"
     ],
     "pack": "MAIN"
   },
   {
     "scenarioNumber": 2,
     "newScenarios": "3, 4",
-    "requirements": "28",
+    "requirements": "first_steps",
     "monsters": [
-      "4",
-      "2",
-      "5",
-      "1"
+      "bandit_archer",
+      "living_bones",
+      "living_corpse",
+      "bandit_commander"
     ],
     "pack": "MAIN"
   },
   {
     "scenarioNumber": 3,
     "newScenarios": "8, 9",
-    "requirements": "!2",
-    "teamAchievement": "29",
+    "requirements": "!the_merchant_flees",
+    "teamAchievement": "jekserahs_plans",
     "monsters": [
-      "6",
-      "7",
-      "8"
+      "inox_guard",
+      "inox_archer",
+      "inox_shaman"
     ],
     "pack": "MAIN"
   },
@@ -38,11 +38,11 @@
     "scenarioNumber": 4,
     "newScenarios": "5, 6",
     "monsters": [
-      "4",
-      "2",
-      "9",
-      "10",
-      "11"
+      "bandit_archer",
+      "living_bones",
+      "cultist",
+      "earth_demon",
+      "wind_demon"
     ],
     "pack": "MAIN"
   },
@@ -50,100 +50,100 @@
     "scenarioNumber": 5,
     "newScenarios": "10, 14, 19",
     "monsters": [
-      "2",
-      "9",
-      "13",
-      "14",
-      "15"
+      "living_bones",
+      "cultist",
+      "night_demon",
+      "flame_demon",
+      "frost_demon"
     ],
     "pack": "MAIN"
   },
   {
     "scenarioNumber": 6,
     "newScenarios": "8",
-    "teamAchievement": "29, 36",
+    "teamAchievement": "jekserahs_plans, a_dark_bounty",
     "monsters": [
-      "12",
-      "5",
-      "2"
+      "living_spirit",
+      "living_corpse",
+      "living_bones"
     ],
     "pack": "MAIN"
   },
   {
     "scenarioNumber": 7,
     "newScenarios": "20",
-    "requirements": "1&&2",
+    "requirements": "the_power_of_enhancement&&the_merchant_flees",
     "monsters": [
-      "16",
-      "17",
-      "8",
-      "10"
+      "forest_imp",
+      "cave_bear",
+      "inox_shaman",
+      "earth_demon"
     ],
     "pack": "MAIN"
   },
   {
     "scenarioNumber": 8,
     "newScenarios": "7, 13, 14",
-    "requirements": "29&& !17",
-    "globalAchievement": "2",
+    "requirements": "jekserahs_plans&& !the_dead_invade",
+    "globalAchievement": "the_merchant_flees",
     "monsters": [
-      "2",
-      "5",
-      "18",
-      "19"
+      "living_bones",
+      "living_corpse",
+      "inox_bodyguard_1",
+      "inox_bodyguard_2"
     ],
     "pack": "MAIN"
   },
   {
     "scenarioNumber": 9,
     "newScenarios": "11, 12",
-    "requirements": "!2",
-    "globalAchievement": "17",
+    "requirements": "!the_merchant_flees",
+    "globalAchievement": "the_dead_invade",
     "monsters": [
-      "20",
-      "21",
-      "22"
+      "hound",
+      "vermling_scout",
+      "merciless_overseer"
     ],
     "pack": "MAIN"
   },
   {
     "scenarioNumber": 10,
     "newScenarios": "21, 22",
-    "requirements": "!7",
-    "teamAchievement": "30",
+    "requirements": "!the_portal_neutralized",
+    "teamAchievement": "a_demons_errand",
     "monsters": [
-      "14",
-      "10",
-      "23"
+      "flame_demon",
+      "earth_demon",
+      "sun_demon"
     ],
     "pack": "MAIN"
   },
   {
     "scenarioNumber": 11,
     "newScenarios": "16, 18",
-    "requirements": "!10",
-    "globalAchievement": "21, 10",
+    "requirements": "!the_end_of_the_invasion",
+    "globalAchievement": "city_rule_economic, the_end_of_the_invasion",
     "monsters": [
-      "2",
-      "5",
-      "24",
-      "25",
-      "26"
+      "living_bones",
+      "living_corpse",
+      "city_guard",
+      "city_archer",
+      "captain_of_the_guard"
     ],
     "pack": "MAIN"
   },
   {
     "scenarioNumber": 12,
     "newScenarios": "16, 18, 28",
-    "requirements": "!10",
-    "globalAchievement": "10",
+    "requirements": "!the_end_of_the_invasion",
+    "globalAchievement": "the_end_of_the_invasion",
     "monsters": [
-      "2",
-      "5",
-      "9",
-      "24",
-      "25",
-      "27"
+      "living_bones",
+      "living_corpse",
+      "cultist",
+      "city_guard",
+      "city_archer",
+      "jekserah"
     ],
     "pack": "MAIN"
   },
@@ -151,31 +151,31 @@
     "scenarioNumber": 13,
     "newScenarios": "15, 17, 20",
     "monsters": [
-      "28",
-      "17",
-      "12",
-      "29"
+      "stone_golem",
+      "cave_bear",
+      "living_spirit",
+      "spitting_drake"
     ],
     "pack": "MAIN"
   },
   {
     "scenarioNumber": 14,
-    "globalAchievement": "1",
+    "globalAchievement": "the_power_of_enhancement",
     "monsters": [
-      "20",
-      "12",
-      "15"
+      "hound",
+      "living_spirit",
+      "frost_demon"
     ],
     "pack": "MAIN"
   },
   {
     "scenarioNumber": 15,
     "monsters": [
-      "28",
-      "30",
-      "11",
-      "15",
-      "31"
+      "stone_golem",
+      "savvas_icestorm",
+      "wind_demon",
+      "frost_demon",
+      "harrower_infester"
     ],
     "pack": "MAIN"
   },
@@ -183,19 +183,19 @@
     "scenarioNumber": 16,
     "newScenarios": "24, 25",
     "monsters": [
-      "10",
-      "11",
-      "6",
-      "7"
+      "earth_demon",
+      "wind_demon",
+      "inox_guard",
+      "inox_archer"
     ],
     "pack": "MAIN"
   },
   {
     "scenarioNumber": 17,
     "monsters": [
-      "21",
-      "32",
-      "17"
+      "vermling_scout",
+      "vermling_shaman",
+      "cave_bear"
     ],
     "pack": "MAIN"
   },
@@ -203,911 +203,911 @@
     "scenarioNumber": 18,
     "newScenarios": "14, 23, 26, 43",
     "monsters": [
-      "21",
-      "33",
-      "34"
+      "vermling_scout",
+      "giant_viper",
+      "ooze"
     ],
     "pack": "MAIN"
   },
   {
     "scenarioNumber": 19,
     "newScenarios": "27",
-    "requirements": "1",
-    "teamAchievement": "35",
+    "requirements": "the_power_of_enhancement",
+    "teamAchievement": "the_stonebreakers_censer",
     "monsters": [
-      "9",
-      "2",
-      "12",
-      "5"
+      "cultist",
+      "living_bones",
+      "living_spirit",
+      "living_corpse"
     ],
     "pack": "MAIN"
   },
   {
     "scenarioNumber": 20,
     "newScenarios": "16, 18, 28",
-    "requirements": "2",
+    "requirements": "the_merchant_flees",
     "monsters": [
-      "9",
-      "2",
-      "13",
-      "5",
-      "27"
+      "cultist",
+      "living_bones",
+      "night_demon",
+      "living_corpse",
+      "jekserah"
     ],
     "pack": "MAIN"
   },
   {
     "scenarioNumber": 21,
-    "requirements": "!7",
-    "globalAchievement": "7, 14",
+    "requirements": "!the_portal_neutralized",
+    "globalAchievement": "the_portal_neutralized, the_artifact_recovered",
     "monsters": [
-      "23",
-      "15",
-      "13",
-      "11",
-      "10",
-      "14",
-      "35"
+      "sun_demon",
+      "frost_demon",
+      "night_demon",
+      "wind_demon",
+      "earth_demon",
+      "flame_demon",
+      "prime_demon"
     ],
     "pack": "MAIN"
   },
   {
     "scenarioNumber": 22,
     "newScenarios": "31, 35, 36",
-    "requirements": "30||34",
-    "globalAchievement": "14",
+    "requirements": "a_demons_errand||on_the_trail",
+    "globalAchievement": "the_artifact_recovered",
     "monsters": [
-      "2",
-      "9",
-      "15",
-      "11",
-      "10",
-      "14"
+      "living_bones",
+      "cultist",
+      "frost_demon",
+      "wind_demon",
+      "earth_demon",
+      "flame_demon"
     ],
     "pack": "MAIN"
   },
   {
     "scenarioNumber": 23,
     "newScenarios": "26",
-    "teamAchievement": "32",
-    "globalAchievement": "3",
+    "teamAchievement": "a_path_through_the_ruins",
+    "globalAchievement": "ancient_technology",
     "monsters": [
-      "28",
-      "36",
-      "2",
-      "12"
+      "stone_golem",
+      "ancient_artillery",
+      "living_bones",
+      "living_spirit"
     ],
     "pack": "MAIN"
   },
   {
     "scenarioNumber": 24,
     "newScenarios": "30, 32",
-    "teamAchievement": "37",
+    "teamAchievement": "the_voices_command",
     "monsters": [
-      "37",
-      "34",
-      "12"
+      "rending_drake",
+      "ooze",
+      "living_spirit"
     ],
     "pack": "MAIN"
   },
   {
     "scenarioNumber": 25,
     "newScenarios": "33, 34",
-    "teamAchievement": "38",
+    "teamAchievement": "the_drakes_offer",
     "monsters": [
-      "37",
-      "29",
-      "20"
+      "rending_drake",
+      "spitting_drake",
+      "hound"
     ],
     "pack": "MAIN"
   },
   {
     "scenarioNumber": 26,
     "newScenarios": "22",
-    "requirements": "5||32",
-    "teamAchievement": "34",
+    "requirements": "water_breathing||a_path_through_the_ruins",
+    "teamAchievement": "on_the_trail",
     "monsters": [
-      "5",
-      "34",
-      "13",
-      "38"
+      "living_corpse",
+      "ooze",
+      "night_demon",
+      "black_imp"
     ],
     "pack": "MAIN"
   },
   {
     "scenarioNumber": 27,
-    "requirements": "!15&&35",
-    "globalAchievement": "7",
+    "requirements": "!the_artifact_lost&&the_stonebreakers_censer",
+    "globalAchievement": "the_portal_neutralized",
     "monsters": [
-      "13",
-      "11",
-      "15",
-      "23",
-      "10",
-      "14"
+      "night_demon",
+      "wind_demon",
+      "frost_demon",
+      "sun_demon",
+      "earth_demon",
+      "flame_demon"
     ],
     "pack": "MAIN"
   },
   {
     "scenarioNumber": 28,
     "newScenarios": "29",
-    "requirements": "36",
-    "teamAchievement": "33",
+    "requirements": "a_dark_bounty",
+    "teamAchievement": "an_invitation",
     "monsters": [
-      "13",
-      "5",
-      "2",
-      "23",
-      "9"
+      "night_demon",
+      "living_corpse",
+      "living_bones",
+      "sun_demon",
+      "cultist"
     ],
     "pack": "MAIN"
   },
   {
     "scenarioNumber": 29,
-    "requirements": "33",
-    "globalAchievement": "6",
+    "requirements": "an_invitation",
+    "globalAchievement": "the_edge_of_darkness",
     "monsters": [
-      "2",
-      "12",
-      "5",
-      "38"
+      "living_bones",
+      "living_spirit",
+      "living_corpse",
+      "black_imp"
     ],
     "pack": "MAIN"
   },
   {
     "scenarioNumber": 30,
     "newScenarios": "42",
-    "requirements": "37",
-    "teamAchievement": "40",
+    "requirements": "the_voices_command",
+    "teamAchievement": "the_voice_and_the_scepter",
     "monsters": [
-      "34",
-      "40",
-      "39"
+      "ooze",
+      "lurker",
+      "deep_terror"
     ],
     "pack": "MAIN"
   },
   {
     "scenarioNumber": 31,
     "newScenarios": "37, 38, 39, 43",
-    "requirements": "1&&14",
-    "globalAchievement": "16",
+    "requirements": "the_power_of_enhancement&&the_artifact_recovered",
+    "globalAchievement": "the_artifact_cleansed",
     "monsters": [
-      "38",
-      "13",
-      "39"
+      "black_imp",
+      "night_demon",
+      "deep_terror"
     ],
     "pack": "MAIN"
   },
   {
     "scenarioNumber": 32,
     "newScenarios": "33, 40",
-    "requirements": "37",
+    "requirements": "the_voices_command",
     "monsters": [
-      "31",
-      "33",
-      "39",
-      "38"
+      "harrower_infester",
+      "giant_viper",
+      "deep_terror",
+      "black_imp"
     ],
     "pack": "MAIN"
   },
   {
     "scenarioNumber": 33,
-    "requirements": "37||38",
-    "teamAchievement": "41, 42",
+    "requirements": "the_voices_command||the_drakes_offer",
+    "teamAchievement": "the_voices_treasure, the_drakes_treasure",
     "monsters": [
-      "30",
-      "41",
-      "11",
-      "15",
-      "14",
-      "10"
+      "savvas_icestorm",
+      "savvas_lavaflow",
+      "wind_demon",
+      "frost_demon",
+      "flame_demon",
+      "earth_demon"
     ],
     "pack": "MAIN"
   },
   {
     "scenarioNumber": 34,
-    "requirements": "38&& !4",
-    "teamAchievement": "(-)38",
-    "globalAchievement": "18",
+    "requirements": "the_drakes_offer&& !the_drake_aided",
+    "teamAchievement": "(-)the_drakes_offer",
+    "globalAchievement": "the_drake_slain",
     "monsters": [
-      "37",
-      "29",
-      "42"
+      "rending_drake",
+      "spitting_drake",
+      "elder_drake"
     ],
     "pack": "MAIN"
   },
   {
     "scenarioNumber": 35,
     "newScenarios": "45",
-    "requirements": "30&& !7",
-    "teamAchievement": "(-)30",
-    "globalAchievement": "13, 15",
+    "requirements": "a_demons_errand&& !the_portal_neutralized",
+    "teamAchievement": "(-)a_demons_errand",
+    "globalAchievement": "city_rule_demonic, the_artifact_lost",
     "monsters": [
-      "24",
-      "25",
-      "11",
-      "15",
-      "14",
-      "10",
-      "26"
+      "city_guard",
+      "city_archer",
+      "wind_demon",
+      "frost_demon",
+      "flame_demon",
+      "earth_demon",
+      "captain_of_the_guard"
     ],
     "pack": "MAIN"
   },
   {
     "scenarioNumber": 36,
-    "requirements": "30&& !7",
-    "teamAchievement": "(-)30",
-    "globalAchievement": "7",
+    "requirements": "a_demons_errand&& !the_portal_neutralized",
+    "teamAchievement": "(-)a_demons_errand",
+    "globalAchievement": "the_portal_neutralized",
     "monsters": [
-      "25",
-      "11",
-      "15",
-      "14",
-      "10",
-      "35"
+      "city_archer",
+      "wind_demon",
+      "frost_demon",
+      "flame_demon",
+      "earth_demon",
+      "prime_demon"
     ],
     "pack": "MAIN"
   },
   {
     "scenarioNumber": 37,
     "newScenarios": "47",
-    "requirements": "5",
-    "teamAchievement": "39",
+    "requirements": "water_breathing",
+    "teamAchievement": "a_path_through_the_hollow",
     "monsters": [
-      "40",
-      "39",
-      "31"
+      "lurker",
+      "deep_terror",
+      "harrower_infester"
     ],
     "pack": "MAIN"
   },
   {
     "scenarioNumber": 38,
     "newScenarios": "44, 48",
-    "teamAchievement": "43",
+    "teamAchievement": "redthorns_aid",
     "monsters": [
-      "6",
-      "7",
-      "8",
-      "28"
+      "inox_guard",
+      "inox_archer",
+      "inox_shaman",
+      "stone_golem"
     ],
     "pack": "MAIN"
   },
   {
     "scenarioNumber": 39,
     "newScenarios": "15, 46",
-    "teamAchievement": "44",
+    "teamAchievement": "a_path_through_the_chasm",
     "monsters": [
-      "17",
-      "15",
-      "29",
-      "9",
-      "2"
+      "cave_bear",
+      "frost_demon",
+      "spitting_drake",
+      "cultist",
+      "living_bones"
     ],
     "pack": "MAIN"
   },
   {
     "scenarioNumber": 40,
     "newScenarios": "41",
-    "requirements": "37&&41",
-    "globalAchievement": "3",
+    "requirements": "the_voices_command&&the_voices_treasure",
+    "globalAchievement": "ancient_technology",
     "monsters": [
-      "17",
-      "5",
-      "16",
-      "28",
-      "14"
+      "cave_bear",
+      "living_corpse",
+      "forest_imp",
+      "stone_golem",
+      "flame_demon"
     ],
     "pack": "MAIN"
   },
   {
     "scenarioNumber": 41,
-    "requirements": "37",
-    "globalAchievement": "8",
+    "requirements": "the_voices_command",
+    "globalAchievement": "the_voice_freed",
     "monsters": [
-      "36",
-      "5",
-      "12",
-      "28"
+      "ancient_artillery",
+      "living_corpse",
+      "living_spirit",
+      "stone_golem"
     ],
     "pack": "MAIN"
   },
   {
     "scenarioNumber": 42,
-    "requirements": "40&& !8",
-    "teamAchievement": "(-)37",
-    "globalAchievement": "19",
+    "requirements": "the_voice_and_the_scepter&& !the_voice_freed",
+    "teamAchievement": "(-)the_voices_command",
+    "globalAchievement": "the_voice_silenced",
     "monsters": [
-      "11",
-      "13",
-      "12"
+      "wind_demon",
+      "night_demon",
+      "living_spirit"
     ],
     "pack": "MAIN"
   },
   {
     "scenarioNumber": 43,
-    "requirements": "1",
-    "globalAchievement": "5",
+    "requirements": "the_power_of_enhancement",
+    "globalAchievement": "water_breathing",
     "monsters": [
-      "37",
-      "29",
-      "14"
+      "rending_drake",
+      "spitting_drake",
+      "flame_demon"
     ],
     "pack": "MAIN"
   },
   {
     "scenarioNumber": 44,
-    "requirements": "43",
+    "requirements": "redthorns_aid",
     "monsters": [
-      "6",
-      "7",
-      "8",
-      "20"
+      "inox_guard",
+      "inox_archer",
+      "inox_shaman",
+      "hound"
     ],
     "pack": "MAIN"
   },
   {
     "scenarioNumber": 45,
     "newScenarios": "49, 50",
-    "requirements": "13",
+    "requirements": "city_rule_demonic",
     "monsters": [
-      "24",
-      "25",
-      "20"
+      "city_guard",
+      "city_archer",
+      "hound"
     ],
     "pack": "MAIN"
   },
   {
     "scenarioNumber": 46,
     "newScenarios": "51",
-    "requirements": "44",
-    "globalAchievement": "9",
+    "requirements": "a_path_through_the_chasm",
+    "globalAchievement": "the_end_of_corruption",
     "monsters": [
-      "13",
-      "15",
-      "11",
-      "30",
-      "43"
+      "night_demon",
+      "frost_demon",
+      "wind_demon",
+      "savvas_icestorm",
+      "winged_horror"
     ],
     "pack": "MAIN"
   },
   {
     "scenarioNumber": 47,
     "newScenarios": "51",
-    "requirements": "39",
-    "globalAchievement": "9",
+    "requirements": "a_path_through_the_hollow",
+    "globalAchievement": "the_end_of_corruption",
     "monsters": [
-      "40",
-      "39",
-      "44",
-      "31"
+      "lurker",
+      "deep_terror",
+      "the_sightless_eye",
+      "harrower_infester"
     ],
     "pack": "MAIN"
   },
   {
     "scenarioNumber": 48,
     "newScenarios": "51",
-    "requirements": "43",
-    "globalAchievement": "9",
+    "requirements": "redthorns_aid",
+    "globalAchievement": "the_end_of_corruption",
     "monsters": [
-      "16",
-      "10",
-      "31",
-      "45"
+      "forest_imp",
+      "earth_demon",
+      "harrower_infester",
+      "dark_rider"
     ],
     "pack": "MAIN"
   },
   {
     "scenarioNumber": 49,
-    "requirements": "13",
-    "globalAchievement": "12",
+    "requirements": "city_rule_demonic",
+    "globalAchievement": "destruction_of_the_order",
     "monsters": [
-      "33",
-      "24",
-      "25",
-      "36"
+      "giant_viper",
+      "city_guard",
+      "city_archer",
+      "ancient_artillery"
     ],
     "pack": "MAIN"
   },
   {
     "scenarioNumber": 50,
-    "requirements": "13&& !12",
-    "globalAchievement": "20",
+    "requirements": "city_rule_demonic&& !destruction_of_the_order",
+    "globalAchievement": "city_rule_militaristic",
     "monsters": [
-      "13",
-      "23",
-      "10",
-      "11"
+      "night_demon",
+      "sun_demon",
+      "earth_demon",
+      "wind_demon"
     ],
     "pack": "MAIN"
   },
   {
     "scenarioNumber": 51,
     "newScenarios": "96",
-    "requirements": "9",
-    "globalAchievement": "11",
+    "requirements": "the_end_of_corruption",
+    "globalAchievement": "the_end_of_the_gloom",
     "monsters": [
-      "46"
+      "the_gloom"
     ],
     "pack": "MAIN"
   },
   {
     "scenarioNumber": 52,
     "newScenarios": "53",
-    "requirements": "55",
+    "requirements": "personal_quest_follower_of_zorn",
     "monsters": [
-      "29",
-      "34",
-      "21",
-      "32",
-      "5"
+      "spitting_drake",
+      "ooze",
+      "vermling_scout",
+      "vermling_shaman",
+      "living_corpse"
     ],
     "pack": "MAIN"
   },
   {
     "scenarioNumber": 53,
     "newScenarios": "54",
-    "requirements": "55",
+    "requirements": "personal_quest_follower_of_zorn",
     "monsters": [
-      "34",
-      "5",
-      "12",
-      "2",
-      "33"
+      "ooze",
+      "living_corpse",
+      "living_spirit",
+      "living_bones",
+      "giant_viper"
     ],
     "pack": "MAIN"
   },
   {
     "scenarioNumber": 54,
-    "requirements": "55&&56",
+    "requirements": "personal_quest_follower_of_zorn&&the_staff_of_zorn_in_inventory",
     "monsters": [
-      "17",
-      "12",
-      "15",
-      "31"
+      "cave_bear",
+      "living_spirit",
+      "frost_demon",
+      "harrower_infester"
     ],
     "pack": "MAIN"
   },
   {
     "scenarioNumber": 55,
     "newScenarios": "56",
-    "requirements": "57",
+    "requirements": "personal_quest_return_of_the_forest",
     "monsters": [],
     "pack": "MAIN"
   },
   {
     "scenarioNumber": 56,
-    "requirements": "57",
+    "requirements": "personal_quest_return_of_the_forest",
     "monsters": [
-      "20",
-      "4",
-      "37",
-      "3"
+      "hound",
+      "bandit_archer",
+      "rending_drake",
+      "bandit_guard"
     ],
     "pack": "MAIN"
   },
   {
     "scenarioNumber": 57,
     "newScenarios": "58",
-    "requirements": "58",
+    "requirements": "personal_quest_vengeance",
     "monsters": [
-      "20",
-      "24",
-      "25",
-      "31"
+      "hound",
+      "city_guard",
+      "city_archer",
+      "harrower_infester"
     ],
     "pack": "MAIN"
   },
   {
     "scenarioNumber": 58,
-    "requirements": "58",
+    "requirements": "personal_quest_vengeance",
     "monsters": [
-      "10",
-      "24",
-      "38",
-      "31"
+      "earth_demon",
+      "city_guard",
+      "black_imp",
+      "harrower_infester"
     ],
     "pack": "MAIN"
   },
   {
     "scenarioNumber": 59,
     "newScenarios": "60",
-    "requirements": "59",
+    "requirements": "personal_quest_in_search_of_a_cure",
     "monsters": [
-      "20",
-      "17",
-      "16"
+      "hound",
+      "cave_bear",
+      "forest_imp"
     ],
     "pack": "MAIN"
   },
   {
     "scenarioNumber": 60,
-    "requirements": "59",
+    "requirements": "personal_quest_in_search_of_a_cure",
     "monsters": [
-      "20",
-      "33",
-      "34",
-      "37",
-      "29"
+      "hound",
+      "giant_viper",
+      "ooze",
+      "rending_drake",
+      "spitting_drake"
     ],
     "pack": "MAIN"
   },
   {
     "scenarioNumber": 61,
     "newScenarios": "62",
-    "requirements": "60",
+    "requirements": "personal_quest_the_fall",
     "monsters": [
-      "34",
-      "33",
-      "15",
-      "14"
+      "ooze",
+      "giant_viper",
+      "frost_demon",
+      "flame_demon"
     ],
     "pack": "MAIN"
   },
   {
     "scenarioNumber": 62,
-    "requirements": "60",
+    "requirements": "personal_quest_the_fall",
     "monsters": [
-      "12",
-      "2"
+      "living_spirit",
+      "living_bones"
     ],
     "pack": "MAIN"
   },
   {
     "scenarioNumber": 63,
     "monsters": [
-      "21",
-      "14",
-      "6",
-      "7"
+      "vermling_scout",
+      "flame_demon",
+      "inox_guard",
+      "inox_archer"
     ],
     "pack": "MAIN"
   },
   {
     "scenarioNumber": 64,
-    "requirements": "5",
+    "requirements": "water_breathing",
     "monsters": [
-      "34",
-      "16",
-      "37"
+      "ooze",
+      "forest_imp",
+      "rending_drake"
     ],
     "pack": "MAIN"
   },
   {
     "scenarioNumber": 65,
-    "globalAchievement": "3",
+    "globalAchievement": "ancient_technology",
     "monsters": [
-      "21",
-      "20",
-      "8"
+      "vermling_scout",
+      "hound",
+      "inox_shaman"
     ],
     "pack": "MAIN"
   },
   {
     "scenarioNumber": 66,
-    "globalAchievement": "3",
+    "globalAchievement": "ancient_technology",
     "monsters": [
-      "34",
-      "36",
-      "28",
-      "12"
+      "ooze",
+      "ancient_artillery",
+      "stone_golem",
+      "living_spirit"
     ],
     "pack": "MAIN"
   },
   {
     "scenarioNumber": 67,
-    "globalAchievement": "3",
+    "globalAchievement": "ancient_technology",
     "monsters": [
-      "16",
-      "17",
-      "28"
+      "forest_imp",
+      "cave_bear",
+      "stone_golem"
     ],
     "pack": "MAIN"
   },
   {
     "scenarioNumber": 68,
     "monsters": [
-      "37",
-      "38",
-      "33",
-      "5"
+      "rending_drake",
+      "black_imp",
+      "giant_viper",
+      "living_corpse"
     ],
     "pack": "MAIN"
   },
   {
     "scenarioNumber": 69,
     "monsters": [
-      "21",
-      "32",
-      "16",
-      "28",
-      "12"
+      "vermling_scout",
+      "vermling_shaman",
+      "forest_imp",
+      "stone_golem",
+      "living_spirit"
     ],
     "pack": "MAIN"
   },
   {
     "scenarioNumber": 70,
     "monsters": [
-      "13",
-      "11",
-      "12"
+      "night_demon",
+      "wind_demon",
+      "living_spirit"
     ],
     "pack": "MAIN"
   },
   {
     "scenarioNumber": 71,
     "monsters": [
-      "29",
-      "11",
-      "23"
+      "spitting_drake",
+      "wind_demon",
+      "sun_demon"
     ],
     "pack": "MAIN"
   },
   {
     "scenarioNumber": 72,
     "monsters": [
-      "34",
-      "33",
-      "16"
+      "ooze",
+      "giant_viper",
+      "forest_imp"
     ],
     "pack": "MAIN"
   },
   {
     "scenarioNumber": 73,
     "monsters": [
-      "36",
-      "8",
-      "6",
-      "7",
-      "20"
+      "ancient_artillery",
+      "inox_shaman",
+      "inox_guard",
+      "inox_archer",
+      "hound"
     ],
     "pack": "MAIN"
   },
   {
     "scenarioNumber": 74,
-    "requirements": "47",
+    "requirements": "the_sea_convoy",
     "monsters": [
-      "3",
-      "4",
-      "40",
-      "39"
+      "bandit_guard",
+      "bandit_archer",
+      "lurker",
+      "deep_terror"
     ],
     "pack": "MAIN"
   },
   {
     "scenarioNumber": 75,
-    "requirements": "48",
+    "requirements": "the_gravediggers",
     "monsters": [
-      "12",
-      "5",
-      "2"
+      "living_spirit",
+      "living_corpse",
+      "living_bones"
     ],
     "pack": "MAIN"
   },
   {
     "scenarioNumber": 76,
-    "requirements": "61",
+    "requirements": "bravery",
     "monsters": [
-      "33",
-      "13",
-      "2",
-      "31"
+      "giant_viper",
+      "night_demon",
+      "living_bones",
+      "harrower_infester"
     ],
     "pack": "MAIN"
   },
   {
     "scenarioNumber": 77,
     "monsters": [
-      "20",
-      "24",
-      "25",
-      "28"
+      "hound",
+      "city_guard",
+      "city_archer",
+      "stone_golem"
     ],
     "pack": "MAIN"
   },
   {
     "scenarioNumber": 78,
     "monsters": [
-      "3",
-      "4",
-      "9",
-      "2",
-      "38"
+      "bandit_guard",
+      "bandit_archer",
+      "cultist",
+      "living_bones",
+      "black_imp"
     ],
     "pack": "MAIN"
   },
   {
     "scenarioNumber": 79,
-    "requirements": "49",
+    "requirements": "a_dubious_ally",
     "monsters": [
-      "28",
-      "33",
-      "47"
+      "stone_golem",
+      "giant_viper",
+      "the_betrayer"
     ],
     "pack": "MAIN"
   },
   {
     "scenarioNumber": 80,
     "monsters": [
-      "20",
-      "24",
-      "25",
-      "36"
+      "hound",
+      "city_guard",
+      "city_archer",
+      "ancient_artillery"
     ],
     "pack": "MAIN"
   },
   {
     "scenarioNumber": 81,
     "monsters": [
-      "13",
-      "23",
-      "28",
-      "36",
-      "48"
+      "night_demon",
+      "sun_demon",
+      "stone_golem",
+      "ancient_artillery",
+      "the_colorless"
     ],
     "pack": "MAIN"
   },
   {
     "scenarioNumber": 82,
     "monsters": [
-      "10",
-      "14",
-      "28"
+      "earth_demon",
+      "flame_demon",
+      "stone_golem"
     ],
     "pack": "MAIN"
   },
   {
     "scenarioNumber": 83,
-    "requirements": "50",
+    "requirements": "a_bad_omen",
     "monsters": [
-      "20",
-      "9",
-      "2",
-      "12",
-      "14"
+      "hound",
+      "cultist",
+      "living_bones",
+      "living_spirit",
+      "flame_demon"
     ],
     "pack": "MAIN"
   },
   {
     "scenarioNumber": 84,
-    "requirements": "51",
+    "requirements": "tremors_in_the_earth",
     "monsters": [
-      "10",
-      "14",
-      "15"
+      "earth_demon",
+      "flame_demon",
+      "frost_demon"
     ],
     "pack": "MAIN"
   },
   {
     "scenarioNumber": 85,
     "monsters": [
-      "13",
-      "23",
-      "20",
-      "38"
+      "night_demon",
+      "sun_demon",
+      "hound",
+      "black_imp"
     ],
     "pack": "MAIN"
   },
   {
     "scenarioNumber": 86,
     "newScenarios": "87",
-    "teamAchievement": "45",
+    "teamAchievement": "the_source_of_the_poison",
     "monsters": [
-      "17",
-      "32",
-      "21",
-      "40"
+      "cave_bear",
+      "vermling_shaman",
+      "vermling_scout",
+      "lurker"
     ],
     "pack": "MAIN"
   },
   {
     "scenarioNumber": 87,
-    "requirements": "45",
+    "requirements": "the_source_of_the_poison",
     "monsters": [
-      "40",
-      "39",
-      "34",
-      "38"
+      "lurker",
+      "deep_terror",
+      "ooze",
+      "black_imp"
     ],
     "pack": "MAIN"
   },
   {
     "scenarioNumber": 88,
-    "requirements": "5&&52",
+    "requirements": "water_breathing&&the_staff_of_water",
     "monsters": [
-      "15",
-      "34",
-      "40"
+      "frost_demon",
+      "ooze",
+      "lurker"
     ],
     "pack": "MAIN"
   },
   {
     "scenarioNumber": 89,
-    "requirements": "53",
+    "requirements": "sin_ra",
     "monsters": [
-      "3",
-      "4",
-      "9",
-      "33"
+      "bandit_guard",
+      "bandit_archer",
+      "cultist",
+      "giant_viper"
     ],
     "pack": "MAIN"
   },
   {
     "scenarioNumber": 90,
     "monsters": [
-      "10",
-      "11",
-      "13",
-      "12"
+      "earth_demon",
+      "wind_demon",
+      "night_demon",
+      "living_spirit"
     ],
     "pack": "MAIN"
   },
   {
     "scenarioNumber": 91,
     "monsters": [
-      "3",
-      "4",
-      "17",
-      "12",
-      "20"
+      "bandit_guard",
+      "bandit_archer",
+      "cave_bear",
+      "living_spirit",
+      "hound"
     ],
     "pack": "MAIN"
   },
   {
     "scenarioNumber": 92,
-    "requirements": "54",
+    "requirements": "repaying_a_debt",
     "monsters": [
-      "3",
-      "4",
-      "24",
-      "25",
-      "10",
-      "14",
-      "6",
-      "41"
+      "bandit_guard",
+      "bandit_archer",
+      "city_guard",
+      "city_archer",
+      "earth_demon",
+      "flame_demon",
+      "inox_guard",
+      "savvas_lavaflow"
     ],
     "pack": "MAIN"
   },
   {
     "scenarioNumber": 93,
-    "requirements": "31",
+    "requirements": "treasure_map",
     "monsters": [
-      "40",
-      "15",
-      "12"
+      "lurker",
+      "frost_demon",
+      "living_spirit"
     ],
     "pack": "MAIN"
   },
   {
     "scenarioNumber": 94,
     "newScenarios": "95",
-    "teamAchievement": "46",
+    "teamAchievement": "a_path_through_the_dwelling",
     "monsters": [
-      "17",
-      "20",
-      "21",
-      "32"
+      "cave_bear",
+      "hound",
+      "vermling_scout",
+      "vermling_shaman"
     ],
     "pack": "MAIN"
   },
   {
     "scenarioNumber": 95,
-    "requirements": "46",
+    "requirements": "a_path_through_the_dwelling",
     "monsters": [
-      "10",
-      "14",
-      "39",
-      "41"
+      "earth_demon",
+      "flame_demon",
+      "deep_terror",
+      "savvas_lavaflow"
     ],
     "pack": "MAIN"
   },
   {
     "scenarioNumber": 96,
     "newScenarios": "97",
-    "requirements": "11",
+    "requirements": "the_end_of_the_gloom",
     "monsters": [
-      "10",
-      "14",
-      "15",
-      "11"
+      "earth_demon",
+      "flame_demon",
+      "frost_demon",
+      "wind_demon"
     ],
     "pack": "FORGOTTEN_CIRCLES"
   },
@@ -1115,40 +1115,40 @@
     "scenarioNumber": 97,
     "newScenarios": "98, 99, 100, 101",
     "monsters": [
-      "38",
-      "2",
-      "5",
-      "49",
-      "39"
+      "black_imp",
+      "living_bones",
+      "living_corpse",
+      "aesther_scout",
+      "deep_terror"
     ],
     "pack": "FORGOTTEN_CIRCLES"
   },
   {
     "scenarioNumber": 98,
     "monsters": [
-      "36",
-      "4",
-      "3",
-      "29"
+      "ancient_artillery",
+      "bandit_archer",
+      "bandit_guard",
+      "spitting_drake"
     ],
     "pack": "FORGOTTEN_CIRCLES"
   },
   {
     "scenarioNumber": 99,
     "monsters": [
-      "38",
-      "9",
-      "39",
-      "50"
+      "black_imp",
+      "cultist",
+      "deep_terror",
+      "valrath_savage"
     ],
     "pack": "FORGOTTEN_CIRCLES"
   },
   {
     "scenarioNumber": 100,
-    "globalAchievement": "24",
+    "globalAchievement": "knowledge_is_power",
     "monsters": [
-      "28",
-      "12"
+      "stone_golem",
+      "living_spirit"
     ],
     "pack": "FORGOTTEN_CIRCLES"
   },
@@ -1156,136 +1156,136 @@
     "scenarioNumber": 101,
     "newScenarios": "108, 109",
     "monsters": [
-      "37",
-      "29",
-      "2",
-      "5"
+      "rending_drake",
+      "spitting_drake",
+      "living_bones",
+      "living_corpse"
     ],
     "pack": "FORGOTTEN_CIRCLES"
   },
   {
     "scenarioNumber": 102,
-    "requirements": "24",
+    "requirements": "knowledge_is_power",
     "monsters": [],
     "pack": "FORGOTTEN_CIRCLES"
   },
   {
     "scenarioNumber": 103,
-    "requirements": "24",
+    "requirements": "knowledge_is_power",
     "monsters": [],
     "pack": "FORGOTTEN_CIRCLES"
   },
   {
     "scenarioNumber": 104,
-    "requirements": "24",
+    "requirements": "knowledge_is_power",
     "monsters": [
-      "31",
-      "40",
-      "23",
-      "29"
+      "harrower_infester",
+      "lurker",
+      "sun_demon",
+      "spitting_drake"
     ],
     "pack": "FORGOTTEN_CIRCLES"
   },
   {
     "scenarioNumber": 105,
-    "requirements": "24&& !63",
+    "requirements": "knowledge_is_power&& !hunting_the_hunters",
     "monsters": [
-      "3",
-      "51",
-      "20",
-      "50"
+      "bandit_guard",
+      "valrath_tracker",
+      "hound",
+      "valrath_savage"
     ],
     "pack": "FORGOTTEN_CIRCLES"
   },
   {
     "scenarioNumber": 106,
-    "requirements": "24",
+    "requirements": "knowledge_is_power",
     "monsters": [
-      "49",
-      "36",
-      "10",
-      "14",
-      "41",
-      "15",
-      "11",
-      "30"
+      "aesther_scout",
+      "ancient_artillery",
+      "earth_demon",
+      "flame_demon",
+      "savvas_lavaflow",
+      "frost_demon",
+      "wind_demon",
+      "savvas_icestorm"
     ],
     "pack": "FORGOTTEN_CIRCLES"
   },
   {
     "scenarioNumber": 107,
-    "requirements": "24",
+    "requirements": "knowledge_is_power",
     "monsters": [],
     "pack": "FORGOTTEN_CIRCLES"
   },
   {
     "scenarioNumber": 108,
-    "requirements": "24",
+    "requirements": "knowledge_is_power",
     "monsters": [
-      "25",
-      "24",
-      "52",
-      "53",
-      "50",
-      "51"
+      "city_archer",
+      "city_guard",
+      "human_commander",
+      "valrath_commander",
+      "valrath_savage",
+      "valrath_tracker"
     ],
     "pack": "FORGOTTEN_CIRCLES"
   },
   {
     "scenarioNumber": 109,
-    "requirements": "24",
+    "requirements": "knowledge_is_power",
     "monsters": [
-      "25",
-      "24",
-      "50",
-      "51"
+      "city_archer",
+      "city_guard",
+      "valrath_savage",
+      "valrath_tracker"
     ],
     "pack": "FORGOTTEN_CIRCLES"
   },
   {
     "scenarioNumber": 110,
     "monsters": [
-      "10",
-      "56",
-      "14",
-      "57",
-      "54",
-      "55"
+      "earth_demon",
+      "steel_lion",
+      "flame_demon",
+      "uyrat_ikkuma",
+      "sela_naberis",
+      "shraka_the_wise"
     ],
     "pack": "FORGOTTEN_CIRCLES"
   },
   {
     "scenarioNumber": 111,
     "monsters": [
-      "58",
-      "49",
-      "38",
-      "13",
-      "59"
+      "aesther_ashblade",
+      "aesther_scout",
+      "black_imp",
+      "night_demon",
+      "husk"
     ],
     "pack": "FORGOTTEN_CIRCLES"
   },
   {
     "scenarioNumber": 112,
     "monsters": [
-      "36",
-      "2",
-      "28"
+      "ancient_artillery",
+      "living_bones",
+      "stone_golem"
     ],
     "pack": "FORGOTTEN_CIRCLES"
   },
   {
     "scenarioNumber": 113,
     "monsters": [
-      "28"
+      "stone_golem"
     ],
     "pack": "FORGOTTEN_CIRCLES"
   },
   {
     "scenarioNumber": 114,
     "monsters": [
-      "58",
-      "49"
+      "aesther_ashblade",
+      "aesther_scout"
     ],
     "pack": "FORGOTTEN_CIRCLES"
   },

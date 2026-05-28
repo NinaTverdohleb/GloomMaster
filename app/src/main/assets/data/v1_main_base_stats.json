@@ -1,6 +1,6 @@
 [
   {
-    "monsterKey": "2",
+    "monsterKey": "living_bones",
     "stats": [
       {
         "level": 0,
@@ -427,7 +427,7 @@
     ]
   },
   {
-    "monsterKey": "3",
+    "monsterKey": "bandit_guard",
     "stats": [
       {
         "level": 0,
@@ -759,7 +759,7 @@
     ]
   },
   {
-    "monsterKey": "4",
+    "monsterKey": "bandit_archer",
     "stats": [
       {
         "level": 0,
@@ -1136,7 +1136,7 @@
     ]
   },
   {
-    "monsterKey": "5",
+    "monsterKey": "living_corpse",
     "stats": [
       {
         "level": 0,
@@ -1443,7 +1443,7 @@
     ]
   },
   {
-    "monsterKey": "6",
+    "monsterKey": "inox_guard",
     "stats": [
       {
         "level": 0,
@@ -1780,7 +1780,7 @@
     ]
   },
   {
-    "monsterKey": "7",
+    "monsterKey": "inox_archer",
     "stats": [
       {
         "level": 0,
@@ -2167,7 +2167,7 @@
     ]
   },
   {
-    "monsterKey": "8",
+    "monsterKey": "inox_shaman",
     "stats": [
       {
         "level": 0,
@@ -2524,7 +2524,7 @@
     ]
   },
   {
-    "monsterKey": "9",
+    "monsterKey": "cultist",
     "stats": [
       {
         "level": 0,
@@ -2841,7 +2841,7 @@
     ]
   },
   {
-    "monsterKey": "10",
+    "monsterKey": "earth_demon",
     "stats": [
       {
         "level": 0,
@@ -3158,7 +3158,7 @@
     ]
   },
   {
-    "monsterKey": "11",
+    "monsterKey": "wind_demon",
     "stats": [
       {
         "level": 0,
@@ -3615,7 +3615,7 @@
     ]
   },
   {
-    "monsterKey": "12",
+    "monsterKey": "living_spirit",
     "stats": [
       {
         "level": 0,
@@ -4052,7 +4052,7 @@
     ]
   },
   {
-    "monsterKey": "13",
+    "monsterKey": "night_demon",
     "stats": [
       {
         "level": 0,
@@ -4393,7 +4393,7 @@
     ]
   },
   {
-    "monsterKey": "14",
+    "monsterKey": "flame_demon",
     "stats": [
       {
         "level": 0,
@@ -4878,7 +4878,7 @@
     ]
   },
   {
-    "monsterKey": "15",
+    "monsterKey": "frost_demon",
     "stats": [
       {
         "level": 0,
@@ -5225,7 +5225,7 @@
     ]
   },
   {
-    "monsterKey": "16",
+    "monsterKey": "forest_imp",
     "stats": [
       {
         "level": 0,
@@ -5707,7 +5707,7 @@
     ]
   },
   {
-    "monsterKey": "17",
+    "monsterKey": "cave_bear",
     "stats": [
       {
         "level": 0,
@@ -6019,7 +6019,7 @@
     ]
   },
   {
-    "monsterKey": "20",
+    "monsterKey": "hound",
     "stats": [
       {
         "level": 0,
@@ -6366,7 +6366,7 @@
     ]
   },
   {
-    "monsterKey": "21",
+    "monsterKey": "vermling_scout",
     "stats": [
       {
         "level": 0,
@@ -6643,7 +6643,7 @@
     ]
   },
   {
-    "monsterKey": "23",
+    "monsterKey": "sun_demon",
     "stats": [
       {
         "level": 0,
@@ -7064,7 +7064,7 @@
     ]
   },
   {
-    "monsterKey": "24",
+    "monsterKey": "city_guard",
     "stats": [
       {
         "level": 0,
@@ -7441,7 +7441,7 @@
     ]
   },
   {
-    "monsterKey": "25",
+    "monsterKey": "city_archer",
     "stats": [
       {
         "level": 0,
@@ -7893,7 +7893,7 @@
     ]
   },
   {
-    "monsterKey": "28",
+    "monsterKey": "stone_golem",
     "stats": [
       {
         "level": 0,
@@ -8245,7 +8245,7 @@
     ]
   },
   {
-    "monsterKey": "29",
+    "monsterKey": "spitting_drake",
     "stats": [
       {
         "level": 0,
@@ -8667,7 +8667,7 @@
     ]
   },
   {
-    "monsterKey": "30",
+    "monsterKey": "savvas_icestorm",
     "stats": [
       {
         "level": 0,
@@ -9164,7 +9164,7 @@
     ]
   },
   {
-    "monsterKey": "31",
+    "monsterKey": "harrower_infester",
     "stats": [
       {
         "level": 0,
@@ -9511,7 +9511,7 @@
     ]
   },
   {
-    "monsterKey": "32",
+    "monsterKey": "vermling_shaman",
     "stats": [
       {
         "level": 0,
@@ -9988,7 +9988,7 @@
     ]
   },
   {
-    "monsterKey": "33",
+    "monsterKey": "giant_viper",
     "stats": [
       {
         "level": 0,
@@ -10345,7 +10345,7 @@
     ]
   },
   {
-    "monsterKey": "34",
+    "monsterKey": "ooze",
     "stats": [
       {
         "level": 0,
@@ -10812,7 +10812,7 @@
     ]
   },
   {
-    "monsterKey": "36",
+    "monsterKey": "ancient_artillery",
     "stats": [
       {
         "level": 0,
@@ -11109,7 +11109,7 @@
     ]
   },
   {
-    "monsterKey": "37",
+    "monsterKey": "rending_drake",
     "stats": [
       {
         "level": 0,
@@ -11456,7 +11456,7 @@
     ]
   },
   {
-    "monsterKey": "38",
+    "monsterKey": "black_imp",
     "stats": [
       {
         "level": 0,
@@ -11908,7 +11908,7 @@
     ]
   },
   {
-    "monsterKey": "40",
+    "monsterKey": "lurker",
     "stats": [
       {
         "level": 0,
@@ -12395,7 +12395,7 @@
     ]
   },
   {
-    "monsterKey": "39",
+    "monsterKey": "deep_terror",
     "stats": [
       {
         "level": 0,
@@ -12662,7 +12662,7 @@
     ]
   },
   {
-    "monsterKey": "41",
+    "monsterKey": "savvas_lavaflow",
     "stats": [
       {
         "level": 0,
