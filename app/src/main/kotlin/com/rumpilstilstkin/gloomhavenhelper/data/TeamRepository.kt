@@ -12,7 +12,6 @@ import com.rumpilstilstkin.gloomhavenhelper.domain.entity.PackType
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.ShortTeamInfo
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.Team
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.TeamInfoForSave
-import com.rumpilstilstkin.gloomhavenhelper.domain.entity.TeamInfoWithScenario
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
@@ -31,7 +30,6 @@ class TeamRepository @Inject constructor(
     private val currentTeamDatasource: CurrentTeamDatasource,
     private val teamDao: TeamDao,
     private val characterDao: CharacterDao,
-    private val scenarioRepository: ScenarioRepository,
     private val scenarioGameStateRepository: ScenarioGameStateRepository
 ) {
     private val _currentTeam: MutableStateFlow<Result<Int>> =
@@ -60,15 +58,8 @@ class TeamRepository @Inject constructor(
         }
     }
 
-    suspend fun getTeamWithScenarioFlow(id: Int): Flow<TeamInfoWithScenario> {
-        return teamDao.getTeamFlow(id)
-            .combine(scenarioRepository.getTeamScenariosFlow(id)) { team, scenarios ->
-                team.toDomain(scenarios)
-            }
-    }
-
     suspend fun setCurrentTeam(teamId: Int) {
-        currentTeamDatasource.saveCurrentTeam(teamId)
+        currentTeamDatasource.currentTeam = teamId
         scenarioGameStateRepository.delete()
         updateCurrentTeam()
     }
@@ -132,7 +123,7 @@ class TeamRepository @Inject constructor(
     }
 
     private suspend fun updateCurrentTeam() {
-        val currentTeamId = currentTeamDatasource.getCurrentTeam()
+        val currentTeamId = currentTeamDatasource.currentTeam
         val team = teamDao.findById(currentTeamId)
         if (currentTeamId != CurrentTeamDatasource.EMPTY_TEAM && team != null) {
             _currentTeam.emit(

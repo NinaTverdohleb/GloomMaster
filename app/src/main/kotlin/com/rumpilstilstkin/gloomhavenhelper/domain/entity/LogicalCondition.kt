@@ -1,5 +1,8 @@
 package com.rumpilstilstkin.gloomhavenhelper.domain.entity
 
+import androidx.compose.ui.res.stringResource
+import com.rumpilstilstkin.gloomhavenhelper.R
+
 class LogicalCondition(val condition: String) {
     val rpnQueue: List<String> = parseToRpn(condition)
 
@@ -76,5 +79,19 @@ class LogicalCondition(val condition: String) {
     companion object {
         private val PRECEDENCE = mapOf("!" to 3, "&&" to 2, "||" to 1)
         private val TOKEN_PATTERN = Regex("""(\|\||&&|!|\(|\)|[^!&|()]+)""")
+
+        fun createWithDictionary(conditions: String, dictionary: Map<String, String>): LogicalCondition {
+            val newConditions = TOKEN_PATTERN.replace(conditions) { matchResult ->
+                val rawToken = matchResult.value
+                val trimmedKey = rawToken.trim()
+
+                if (dictionary.containsKey(trimmedKey)) {
+                    rawToken.replaceFirst(trimmedKey, dictionary.getValue(trimmedKey))
+                } else {
+                    rawToken
+                }
+            }
+            return LogicalCondition(newConditions)
+        }
     }
 }

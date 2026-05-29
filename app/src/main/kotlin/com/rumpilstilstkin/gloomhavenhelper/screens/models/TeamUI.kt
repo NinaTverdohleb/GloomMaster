@@ -2,6 +2,7 @@ package com.rumpilstilstkin.gloomhavenhelper.screens.models
 
 import androidx.compose.runtime.Immutable
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.Achievement
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.AchievementWithName
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.Prosperity
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.persistentListOf
@@ -14,8 +15,8 @@ data class TeamUI(
     val teamReputation: Int,
     val prosperity: Prosperity,
     val shopDiscount: Int,
-    val teamAchievements: ImmutableList<Achievement>,
-    val globalAchievements: ImmutableList<Achievement>,
+    val teamAchievements: ImmutableList<AchievementWithName>,
+    val globalAchievements: ImmutableList<AchievementWithName>,
     val teamScenario: ImmutableList<ShortScenarioUI>,
     val characters: ImmutableList<CharacterUI>,
     val canAddCharacter: Boolean = false,
@@ -31,12 +32,12 @@ data class TeamUI(
             teamReputation = 1,
             prosperity = Prosperity.fixture(),
             teamAchievements = persistentListOf(
-                Achievement.fixture("Achievement 1"),
-                Achievement.fixture("Achievement 2")
+                AchievementWithName.fixture("Achievement 1"),
+                AchievementWithName.fixture("Achievement 2")
             ),
             globalAchievements = persistentListOf(
-                Achievement.fixture("Achievement 1"),
-                Achievement.fixture("Achievement 2")
+                AchievementWithName.fixture("Achievement 1"),
+                AchievementWithName.fixture("Achievement 2")
             ),
             shopDiscount = 0,
             teamScenario = persistentListOf(

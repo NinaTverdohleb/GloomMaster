@@ -1,14 +1,11 @@
 package com.rumpilstilstkin.gloomhavenhelper.domain.entity
 
-import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterAction
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterStatType
-import com.rumpilstilstkin.gloomhavenhelper.screens.models.EffectItem
 import kotlinx.serialization.Serializable
 
 @Serializable
 data class ScenarioGameState(
     val scenarioNumber: Int?,
-    val name: String,
     val monsterNames: List<String>,
     val round: Int,
     val availableCards: List<Int>,
@@ -24,7 +21,7 @@ data class ScenarioGameStateMagic(
 
 @Serializable
 data class ScenarioGameStateMonsterItem(
-    val id: Int,
+    val slug: String,
     val currentCard: Int? = null,
     val units: List<ScenarioGameStateMonsterUnit> = listOf(),
 )

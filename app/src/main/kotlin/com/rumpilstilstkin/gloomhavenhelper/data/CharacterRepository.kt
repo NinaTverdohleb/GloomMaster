@@ -2,7 +2,6 @@ package com.rumpilstilstkin.gloomhavenhelper.data
 
 import com.rumpilstilstkin.gloomhavenhelper.bd.dao.CharacterDao
 import com.rumpilstilstkin.gloomhavenhelper.bd.dao.CharacterPerksDao
-import com.rumpilstilstkin.gloomhavenhelper.bd.dao.CharacterPersonalQuestDao
 import com.rumpilstilstkin.gloomhavenhelper.bd.dao.TeamDao
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.CharacterPerkBd
 import com.rumpilstilstkin.gloomhavenhelper.data.mappers.toBd
@@ -24,24 +23,29 @@ class CharacterRepository @Inject constructor(
     private val characterDao: CharacterDao,
     private val teamDao: TeamDao,
     private val characterPerksDao: CharacterPerksDao,
-    private val characterQuestDao: CharacterPersonalQuestDao
 ) {
 
     suspend fun addCharacterPerk(characterId: Int, perkId: Int) {
         characterPerksDao.insert(CharacterPerkBd(characterId = characterId, perkId = perkId))
     }
 
-    suspend fun deleteCharacterPerk(characterPerkId: Int) {
-        characterPerksDao.deleteById(characterPerkId)
+    suspend fun deleteCharacterPerk(characterId: Int, perkId: Int) {
+        characterPerksDao.deleteById(characterId = characterId, perkId = perkId)
     }
 
-    fun getCharacterPerksFlow(characterId: Int) =
-        characterPerksDao.getCharacterPerksFlow(characterId).map { perks ->
+    fun getCharacterPerksFlow(characterId: Int, locale: String) =
+        characterPerksDao.getCharacterPerksFlow(
+            characterId = characterId,
+            targetLocale = locale,
+            defaultLocale = LocaleRepository.DEFAULT_LOCALE
+        ).map { perks ->
             perks.map { it.toDomain() }
         }
 
     suspend fun getCharacterPerks(characterId: Int): List<Int> =
-        characterPerksDao.getCharacterPerks(characterId).map { it.perk.perkId }
+        characterPerksDao.getCharacterPerks(
+            characterId = characterId,
+        ).map { it.perkId }
 
     fun getCharacterByTeamId(teamId: Int): Flow<List<CharacterInfo>> =
         characterDao.findByTeamIdFlow(teamId).map { list ->
@@ -76,9 +80,6 @@ class CharacterRepository @Inject constructor(
             }
             character?.toDomain(team)
         }
-
-    fun getCharacterPersonalQuestFlow(characterId: Int) =
-        characterQuestDao.getCharacterPersonalQuestFlow(characterId).map { it?.toDomain() }
 
     suspend fun getCharacterById(id: Int): CharacterShortInfo? =
         characterDao.getCharacterById(id)?.toShortDomain()

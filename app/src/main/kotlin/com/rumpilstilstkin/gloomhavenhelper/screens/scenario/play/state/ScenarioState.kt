@@ -26,16 +26,16 @@ data class ScenarioLogicState(
 
     fun toUIState(): ScenarioStateUi = ScenarioStateMapper.toUiState(this)
 
-    fun addMonster(monsterIds: List<Int>): ScenarioLogicState {
-        val newMonsterItems = monsterIds.map { monsterId ->
-            val monster = scenarioInfo.monsters.first { it.id == monsterId }
+    fun addMonster(monsterSlugs: List<String>): ScenarioLogicState {
+        val newMonsterItems = monsterSlugs.map { monsterSlug ->
+            val monster = scenarioInfo.monsters.first { it.slug == monsterSlug }
             val units = if (monster.isBoss) {
                 persistentListOf(MonsterUnit.createBoss(monster, scenarioInfo.gamersCount))
             } else {
                 persistentListOf()
             }
             MonsterItem(
-                id = monster.id,
+                slug = monster.slug,
                 isFly = monster.isFly,
                 name = monster.name,
                 currentCard = null,
@@ -52,27 +52,27 @@ data class ScenarioLogicState(
         return state
     }
 
-    fun removeMonster(monsterId: Int): ScenarioLogicState =
+    fun removeMonster(monsterSlug: String): ScenarioLogicState =
         this.copy(
-            activeMonsters = activeMonsters.filter { it.id != monsterId }.toImmutableList()
+            activeMonsters = activeMonsters.filter { it.slug != monsterSlug }.toImmutableList()
         )
 
-    fun addUnits(numbers: List<Int>, monsterId: Int, isSpecial: Boolean): ScenarioLogicState {
-        val monster = scenarioInfo.monsters.first { it.id == monsterId }
+    fun addUnits(numbers: List<Int>, monsterSlug: String, isSpecial: Boolean): ScenarioLogicState {
+        val monster = scenarioInfo.monsters.first { it.slug == monsterSlug }
         val newUnits = numbers.map { number ->
             MonsterUnit.create(monster, number, isSpecial)
         }
         return copy(
             activeMonsters = activeMonsters
-                .updateMonster(monsterId) { it.addUnits(newUnits) }
+                .updateMonster(monsterSlug) { it.addUnits(newUnits) }
                 .toImmutableList()
         )
     }
 
-    fun removeUnit(number: Int, monsterId: Int): ScenarioLogicState =
+    fun removeUnit(number: Int, monsterSlug: String): ScenarioLogicState =
         copy(
             activeMonsters = activeMonsters
-                .updateMonster(monsterId) { it.filterUnits { unit -> unit.number != number } }
+                .updateMonster(monsterSlug) { it.filterUnits { unit -> unit.number != number } }
                 .toImmutableList()
         )
 
@@ -88,10 +88,10 @@ data class ScenarioLogicState(
         )
     }
 
-    fun updateUnitStats(monsterId: Int, number: Int, stats: MonsterStats): ScenarioLogicState =
+    fun updateUnitStats(monsterSlug: String, number: Int, stats: MonsterStats): ScenarioLogicState =
         copy(
             activeMonsters = activeMonsters
-                .updateMonster(monsterId) { monster ->
+                .updateMonster(monsterSlug) { monster ->
                     monster.updateUnit(number) { unit ->
                         unit.copy(
                             stats = stats.stats.map { EffectItem.fromCardAction(it) }
@@ -105,19 +105,19 @@ data class ScenarioLogicState(
                 .toImmutableList()
         )
 
-    fun updateUnitLife(monsterId: Int, number: Int, newValue: Int): ScenarioLogicState =
+    fun updateUnitLife(monsterSlug: String, number: Int, newValue: Int): ScenarioLogicState =
         copy(
             activeMonsters = activeMonsters
-                .updateMonster(monsterId) { monster ->
+                .updateMonster(monsterSlug) { monster ->
                     monster.updateUnit(number) { it.copy(currentLife = newValue) }
                 }
                 .toImmutableList()
         )
 
-    fun addEffect(monsterId: Int, number: Int, effect: ActionUi): ScenarioLogicState =
+    fun addEffect(monsterSlug: String, number: Int, effect: ActionUi): ScenarioLogicState =
         copy(
             activeMonsters = activeMonsters
-                .updateMonster(monsterId) { monster ->
+                .updateMonster(monsterSlug) { monster ->
                     monster.updateUnit(number) { unit ->
                         val newEffects = if (unit.effects.contains(effect)) {
                             unit.effects - effect
@@ -132,12 +132,12 @@ data class ScenarioLogicState(
 
     private fun updateMonsterCard(monster: MonsterItem): ScenarioLogicState {
         if (round == 0) return this
-        val monster = scenarioInfo.monsters.first { it.id == monster.id }
+        val monster = scenarioInfo.monsters.first { it.slug == monster.slug }
         val drawResult = cardDeck.drawCard(monster.deckName)
 
         return copy(
             activeMonsters = activeMonsters
-                .updateMonster(monster.id) { m ->
+                .updateMonster(monster.slug) { m ->
                     m.copy(currentCard = drawResult.card?.let {
                         MonsterAbilityCard.createFromMonsterCard(
                             it

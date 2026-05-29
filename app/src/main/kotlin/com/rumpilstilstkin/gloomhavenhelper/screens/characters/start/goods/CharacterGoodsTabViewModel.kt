@@ -45,15 +45,16 @@ class CharacterItemsTabViewModel @AssistedInject constructor(
             when (action) {
                 is CharacterItemsTabActions.DeleteGood -> {
                     deleteCharacterGoodsUseCase(
-                        goodId = action.goodId,
+                        goodNumber = action.goodNumber,
                         characterId = id
                     )
                 }
 
                 is CharacterItemsTabActions.SellGood -> {
                     sellGoodCharacterUseCase(
-                        goodId = action.goodId,
-                        characterId = id
+                        goodNumber = action.goodNumber,
+                        characterId = id,
+                        cost = action.cost
                     )
                 }
 

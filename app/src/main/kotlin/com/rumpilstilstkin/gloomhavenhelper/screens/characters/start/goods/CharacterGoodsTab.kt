@@ -40,7 +40,7 @@ fun CharacterItemsTabScreen(
     goods: List<GoodUi>,
     deleteGood: (Int) -> Unit,
     addGoods: () -> Unit,
-    sellGood: (Int) -> Unit
+    sellGood: (number: Int, cost: Int) -> Unit
 ) {
     Column(
         modifier = Modifier
@@ -96,7 +96,7 @@ fun CharacterItemsTabScreen(
                             contentColor = MaterialTheme.colorScheme.error,
                         ),
                         onClick = {
-                            deleteGood(good.id)
+                            deleteGood(good.number)
                             selectedGood = null
                         }
                     ) {
@@ -111,7 +111,7 @@ fun CharacterItemsTabScreen(
                             contentColor = MaterialTheme.colorScheme.onSurface,
                         ),
                         onClick = {
-                            sellGood(good.id)
+                            sellGood(good.number, good.cost)
                             selectedGood = null
                         }
                     ) {
@@ -130,7 +130,6 @@ private fun CharacterItemsTabPreview() {
         CharacterItemsTabScreen(
             goods = listOf(
                 GoodUi(
-                    id = 1,
                     number = 1,
                     name = "Boots of Striding",
                     typeImage = GloomhavenIcons.GoodTypes.Foot,
@@ -138,7 +137,6 @@ private fun CharacterItemsTabPreview() {
                     image = ""
                 ),
                 GoodUi(
-                    id = 1,
                     number = 2,
                     name = "Weighted Net",
                     typeImage = GloomhavenIcons.GoodTypes.Arm,
@@ -148,7 +146,7 @@ private fun CharacterItemsTabPreview() {
             ),
             deleteGood = {},
             addGoods = {},
-            sellGood = {},
+            sellGood = {_, _ ->},
         )
     }
 }

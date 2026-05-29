@@ -4,7 +4,6 @@ import androidx.compose.runtime.Immutable
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.Monster
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterAction
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterCard
-import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterStatType
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.toImmutableList
@@ -13,7 +12,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 @Immutable
 data class MonsterItem(
-    val id: Int,
+    val slug: String,
     val name: String,
     val isFly: Boolean,
     val currentCard: MonsterAbilityCard? = null,
@@ -22,12 +21,12 @@ data class MonsterItem(
 ) {
     companion object {
         fun fixture(
-            id: Int = 1,
+            slug: String = "1",
             name: String = "Name",
             isBoss: Boolean = false,
             isFly: Boolean = false,
         ) = MonsterItem(
-            id = id,
+            slug = slug,
             name = name,
             currentCard = null,
             isBoss = isBoss,

@@ -13,7 +13,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.rumpilstilstkin.gloomhavenhelper.R
-import com.rumpilstilstkin.gloomhavenhelper.domain.entity.Achievement
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.AchievementWithName
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomCard
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
 import kotlinx.collections.immutable.ImmutableList
@@ -21,7 +21,7 @@ import kotlinx.collections.immutable.persistentListOf
 
 @Composable
 internal fun GlobalAchievement(
-    globalAchievements: ImmutableList<Achievement>,
+    globalAchievements: ImmutableList<AchievementWithName>,
     modifier: Modifier = Modifier,
     clickGlobalAchievement: () -> Unit
 ) = GloomCard(
@@ -52,7 +52,7 @@ internal fun GlobalAchievement(
 
 @Composable
 internal fun TeamAchievement(
-    teamAchievements: ImmutableList<Achievement>,
+    teamAchievements: ImmutableList<AchievementWithName>,
     modifier: Modifier = Modifier,
     clickTeamAchievement: () -> Unit
 ) = GloomCard(
@@ -88,8 +88,8 @@ private fun GlobalAchievementPreview() {
         GlobalAchievement(
             modifier = Modifier.fillMaxWidth(),
             globalAchievements = persistentListOf(
-                Achievement.fixture("City Rule: Militaristic"),
-                Achievement.fixture("The Voice: Silenced", value = 2)
+                AchievementWithName.fixture("City Rule: Militaristic"),
+                AchievementWithName.fixture("The Voice: Silenced", value = 2)
             ),
             clickGlobalAchievement = {}
         )
@@ -103,8 +103,8 @@ private fun TeamAchievementPreview() {
         TeamAchievement(
             modifier = Modifier.fillMaxWidth(),
             teamAchievements = persistentListOf(
-                Achievement.fixture("City Rule: Militaristic"),
-                Achievement.fixture("The Voice", value = 2, maxValue = 3),
+                AchievementWithName.fixture("City Rule: Militaristic"),
+                AchievementWithName.fixture("The Voice", value = 2, maxValue = 3),
             ),
             clickTeamAchievement = {}
         )

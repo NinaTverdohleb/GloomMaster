@@ -10,3 +10,9 @@ data class CharacterPersonalQuest(
     val reward: QuestReward,
     val tasks: List<CharacterTaskItem>
 )
+
+@Serializable
+data class CharacterPersonalQuestShort(
+    val questId: String,
+    val tasks: List<CharacterTaskItem>
+)

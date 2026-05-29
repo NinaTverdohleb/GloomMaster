@@ -5,12 +5,13 @@ import com.rumpilstilstkin.gloomhavenhelper.domain.entity.Achievement
 import kotlinx.coroutines.flow.first
 import javax.inject.Inject
 
-class RemoveTeamAchievementUseCase @Inject constructor(
+class UpdateAchievementUseCase @Inject constructor(
     private val teamRepository: TeamRepository,
 ) {
     suspend operator fun invoke(achievement: Achievement) {
         val team = teamRepository.currentTeam.first() ?: return
-        val updatedAchievements = team.teamAchievement.filter { it.name != achievement.name }
-        teamRepository.updateTeam(team.copy(teamAchievement = updatedAchievements))
+        val updatedAchievements =
+            team.achievements.filter { it.slug != achievement.slug } + achievement
+        teamRepository.updateTeam(team.copy(achievements = updatedAchievements))
     }
 }

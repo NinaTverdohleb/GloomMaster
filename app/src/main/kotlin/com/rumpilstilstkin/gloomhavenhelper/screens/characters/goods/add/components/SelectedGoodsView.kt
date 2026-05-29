@@ -79,7 +79,6 @@ private fun SelectedGoodsViewPreview() {
         SelectedGoodsView(
             selectedGoods = persistentListOf(
                 GoodUi(
-                    id = 1,
                     number = 1,
                     name = "Boots of Striding",
                     typeImage = GloomhavenIcons.GoodTypes.Foot,
@@ -87,7 +86,6 @@ private fun SelectedGoodsViewPreview() {
                     image = ""
                 ),
                 GoodUi(
-                    id = 2,
                     number = 1,
                     name = "Boots of Striding",
                     typeImage = GloomhavenIcons.GoodTypes.Foot,

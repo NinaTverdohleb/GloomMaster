@@ -41,38 +41,38 @@ fun ScenarioRoute(
         addMonster = { viewModel.onAction(ScenarioActions.OpenMonstersDialog) },
         back = { navController.popBackStack() },
         complete = { viewModel.onAction(ScenarioActions.CompleteScenario) },
-        deleteMonster = { monsterId -> viewModel.onAction(ScenarioActions.RemoveMonster(monsterId)) },
-        deleteUnit = { unitNumber, monsterId ->
+        deleteMonster = { monsterSlug -> viewModel.onAction(ScenarioActions.RemoveMonster(monsterSlug)) },
+        deleteUnit = { unitNumber, monsterSlug ->
             viewModel.onAction(
                 ScenarioActions.RemoveUnit(
                     number = unitNumber,
-                    monsterId = monsterId
+                    monsterSlug = monsterSlug
                 )
             )
         },
-        updateUnitLife = { unitNumber, monsterId, life ->
+        updateUnitLife = { unitNumber, monsterSlug, life ->
             viewModel.onAction(
                 ScenarioActions.UpdateUnitLife(
                     unitNumber = unitNumber,
-                    monsterId = monsterId,
+                    monsterSlug = monsterSlug,
                     newValue = life
                 )
             )
         },
-        switchUnitEffect = { unitNumber, monsterId, effect ->
+        switchUnitEffect = { unitNumber, monsterSlug, effect ->
             viewModel.onAction(
                 ScenarioActions.SwitchUnitEffect(
                     unitNumber = unitNumber,
-                    monsterId = monsterId,
+                    monsterSlug = monsterSlug,
                     effect = effect
                 )
             )
         },
-        addMonsterUnit = { unitNumbers, monsterId, isElite ->
+        addMonsterUnit = { unitNumbers, monsterSlug, isElite ->
             viewModel.onAction(
                 ScenarioActions.AddUnits(
                     numbers = unitNumbers,
-                    monsterId = monsterId,
+                    monsterSlug = monsterSlug,
                     isElite = isElite
                 )
             )
@@ -83,10 +83,10 @@ fun ScenarioRoute(
         clickMagic = { magic ->
             viewModel.onAction(ScenarioActions.UpdateMagic((magic)))
         },
-        changeUnitLevel = { monsterId, unit, level ->
+        changeUnitLevel = { monsterSlug, unit, level ->
             viewModel.onAction(
                 ScenarioActions.UpdateUnitLevel(
-                    monsterId = monsterId,
+                    monsterSlug = monsterSlug,
                     unitNumber = unit.number,
                     level = level,
                     isElite = unit.isSpecial

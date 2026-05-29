@@ -1,5 +1,6 @@
 package com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario
 
+import com.rumpilstilstkin.gloomhavenhelper.data.ScenarioRepository
 import com.rumpilstilstkin.gloomhavenhelper.data.TeamRepository
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.TeamScenarios
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -11,6 +12,7 @@ import javax.inject.Inject
 
 class GetTeamScenariosUseCase @Inject constructor(
     private val teamRepository: TeamRepository,
+    private val scenarioRepository: ScenarioRepository,
     private val filterTeamScenariosUseCase: FilterTeamScenariosUseCase
 ) {
     @OptIn(ExperimentalCoroutinesApi::class)
@@ -19,8 +21,8 @@ class GetTeamScenariosUseCase @Inject constructor(
             if (team == null) {
                 flowOf(TeamScenarios(emptyList(), emptyList(), emptyList()))
             } else {
-                teamRepository.getTeamWithScenarioFlow(team.teamId).map { teamInfoWithScenario ->
-                    filterTeamScenariosUseCase(teamInfoWithScenario)
+                scenarioRepository.getTeamScenariosFlow(team.teamId).map { scenarios ->
+                    filterTeamScenariosUseCase(team.achievements, scenarios)
                 }
             }
         }

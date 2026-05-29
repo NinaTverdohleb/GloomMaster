@@ -2,7 +2,6 @@ package com.rumpilstilstkin.gloomhavenhelper.data.datasource
 
 import android.content.ComponentCallbacks2
 import android.content.Context
-import android.content.SharedPreferences
 import android.content.res.Configuration
 import androidx.core.os.ConfigurationCompat
 import dagger.hilt.android.qualifiers.ApplicationContext

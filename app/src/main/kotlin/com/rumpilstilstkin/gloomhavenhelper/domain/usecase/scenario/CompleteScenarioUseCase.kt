@@ -14,17 +14,17 @@ class CompleteScenarioUseCase @Inject constructor(
     suspend operator fun invoke(scenarioNumber: Int) {
         teamRepository.currentTeam.first()?.let { team ->
             val oldScenarios = scenarioRepository.getAllTeamScenarios(team.teamId)
-            scenarioRepository.getScenario(scenarioNumber).let { scenario ->
+            scenarioRepository.getShortScenario(scenarioNumber).let { scenario ->
                 val newScenario =
-                    scenario.newScenario.map { scenarioRepository.getScenario(it) }
+                    scenario.newScenario.map { scenarioRepository.getShortScenario(it) }
                         .filter { newScenario ->
                             oldScenarios.none { oldScenario -> oldScenario.scenarioNumber == newScenario.scenarioNumber }
                                     && newScenario.pack in team.packs.toSet()
                         }
                 scenarioRepository.completeTeamScenario(team.teamId, scenarioNumber)
                 scenarioGameStateRepository.delete()
-                newScenario.forEach {
-                    scenarioRepository.saveTeamScenario(it, team.teamId)
+                newScenario.forEach { scenario ->
+                    scenarioRepository.saveTeamScenario(scenario.scenarioNumber, team.teamId)
                 }
             }
         }

@@ -33,7 +33,7 @@ class CharacterPerksTabViewModel @AssistedInject constructor(
         combine(
             logicState,
             getCharacterPerksInfoUseCase(id)
-        ){ state, info ->
+        ) { state, info ->
             CharacterPerksScreenStateUi(
                 characterPerks = info.characterPerks.map { perk -> perk.toUi() }.sortedBy { id }
                     .toImmutableList(),
@@ -42,26 +42,28 @@ class CharacterPerksTabViewModel @AssistedInject constructor(
                 avaliablePerksCount = info.avaliablePerksCount,
                 showAddPerksDialog = state.showAddPerksDialog,
             )
-    }.stateIn(
-        scope = viewModelScope,
-        initialValue = CharacterPerksScreenStateUi(),
-        started = SharingStarted.WhileSubscribed(100),
-    )
+        }.stateIn(
+            scope = viewModelScope,
+            initialValue = CharacterPerksScreenStateUi(),
+            started = SharingStarted.WhileSubscribed(100),
+        )
 
     fun onAction(action: CharacterPerksTabActions) {
         viewModelScope.launch {
             when (action) {
                 is CharacterPerksTabActions.DeletePerk -> {
-                    deleteCharacterPerksUseCase(action.characterPerkId)
+                    deleteCharacterPerksUseCase(perkId = action.perkId, characterId = id)
                 }
 
                 is CharacterPerksTabActions.AddPerks -> {
                     logicState.update { it.copy(showAddPerksDialog = false) }
                     addCharacterPerksUseCase(perksIds = action.perks, characterId = id)
                 }
+
                 CharacterPerksTabActions.CloseAddPerkDialog -> {
                     logicState.update { it.copy(showAddPerksDialog = false) }
                 }
+
                 CharacterPerksTabActions.OpenAddPerkDialog -> {
                     logicState.update { it.copy(showAddPerksDialog = true) }
                 }
@@ -76,8 +78,8 @@ class CharacterPerksTabViewModel @AssistedInject constructor(
 }
 
 sealed interface CharacterPerksTabActions {
-    data class DeletePerk(val characterPerkId: Int) : CharacterPerksTabActions
+    data class DeletePerk(val perkId: Int) : CharacterPerksTabActions
     data class AddPerks(val perks: List<Int>) : CharacterPerksTabActions
     data object CloseAddPerkDialog : CharacterPerksTabActions
-    data object OpenAddPerkDialog  : CharacterPerksTabActions
+    data object OpenAddPerkDialog : CharacterPerksTabActions
 }

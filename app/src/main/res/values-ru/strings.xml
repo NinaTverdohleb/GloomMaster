@@ -147,7 +147,7 @@
     <string name="selected_label">Выбранные</string>
     <string name="available_label">Доступные</string>
     <string name="delete_achievement_title">Удалить достижение?</string>
-    <string name="delete_achievement_warning">Вы уверены, что хотите удалить достижение «%1$s»?</string>
+    <string name="delete_achievement_warning">Вы уверены, что хотите удалить достижение?</string>
     <string name="add_achievement_title">Добавить достижение</string>
     <string name="add_achievement_button">Добавить достижение</string>
     <string name="add_goods_to_shop_title">Добавить товары</string>

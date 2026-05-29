@@ -3,11 +3,8 @@ package com.rumpilstilstkin.gloomhavenhelper.screens.teem.achievement.global
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.achievement.GetAvailableGlobalAchievementsUseCase
-import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.achievement.UpdateTeamAchievementUseCase
-import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.achievement.GetAvailableTeamAchievementsUseCase
-import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.achievement.RemoveGlobalAchievementUseCase
-import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.achievement.RemoveTeamAchievementUseCase
-import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.achievement.UpdateGlobalAchievementUseCase
+import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.achievement.RemoveAchievementUseCase
+import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.achievement.UpdateAchievementUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.team.GetCurrentTeamShortInfoUseCase
 import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEvent
 import com.rumpilstilstkin.gloomhavenhelper.screens.teem.achievement.AchievementsAction
@@ -31,8 +28,8 @@ import javax.inject.Inject
 class GlobalAchievementsViewModel @Inject constructor(
     getCurrentTeamShortInfoUseCase: GetCurrentTeamShortInfoUseCase,
     getAvailableAchievementsUseCase: GetAvailableGlobalAchievementsUseCase,
-    private val updateAchievementUseCase: UpdateGlobalAchievementUseCase,
-    private val removeAchievementUseCase: RemoveGlobalAchievementUseCase,
+    private val updateAchievementUseCase: UpdateAchievementUseCase,
+    private val removeAchievementUseCase: RemoveAchievementUseCase,
 ) : ViewModel() {
 
     private val _navigationEvents = MutableSharedFlow<GlHelperEvent>()
@@ -46,7 +43,7 @@ class GlobalAchievementsViewModel @Inject constructor(
         logicState,
     ) { team, availableAchievements, logic ->
         AchievementsStateUi(
-            achievements = team?.globalAchievement?.toImmutableList() ?: persistentListOf(),
+            achievements = team?.achievements?.toImmutableList() ?: persistentListOf(),
             availableAchievements = availableAchievements.toImmutableList(),
             showAddDialog = logic.showAddDialog,
             achievementToDelete = logic.achievementToDelete,
@@ -69,12 +66,12 @@ class GlobalAchievementsViewModel @Inject constructor(
                 }
 
                 is AchievementsAction.AddAchievement -> {
-                    updateAchievementUseCase(action.achievement)
+                    updateAchievementUseCase(action.achievement.toAchievement())
                     logicState.update { it.copy(showAddDialog = false) }
                 }
 
                 is AchievementsAction.ShowDeleteConfirmDialog -> {
-                    logicState.update { it.copy(achievementToDelete = action.achievement) }
+                    logicState.update { it.copy(achievementToDelete = action.achievementSlug) }
                 }
 
                 is AchievementsAction.DismissDeleteConfirmDialog -> {
@@ -93,7 +90,9 @@ class GlobalAchievementsViewModel @Inject constructor(
                 }
 
                 is AchievementsAction.UpdateAchievement -> {
-                    updateAchievementUseCase(action.achievement.copy(value = action.value))
+                    updateAchievementUseCase(
+                        action.achievement.copy(value = action.value).toAchievement()
+                    )
                 }
             }
         }

@@ -7,8 +7,10 @@ class DeleteCharacterPerkUseCase @Inject constructor(
     private val characterRepository: CharacterRepository
 ) {
 
-    suspend operator fun invoke(characterPerkId: Int) {
-        characterRepository.deleteCharacterPerk(characterPerkId)
+    suspend operator fun invoke(characterId: Int, perkId: Int) {
+        characterRepository.deleteCharacterPerk(
+            characterId = characterId, perkId = perkId
+        )
     }
 
 }

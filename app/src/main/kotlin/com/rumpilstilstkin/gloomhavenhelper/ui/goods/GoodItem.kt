@@ -90,7 +90,6 @@ private fun GoodItemPreview() {
     GloomhavenMasterTheme {
         GoodItem(
             good = GoodUi(
-                id = 1,
                 number = 1,
                 name = "Boots of Striding",
                 typeImage = GloomhavenIcons.GoodTypes.Foot,

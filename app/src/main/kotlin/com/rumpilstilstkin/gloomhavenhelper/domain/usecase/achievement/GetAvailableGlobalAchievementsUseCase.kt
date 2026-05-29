@@ -3,7 +3,9 @@ package com.rumpilstilstkin.gloomhavenhelper.domain.usecase.achievement
 import com.rumpilstilstkin.gloomhavenhelper.data.AchievementRepository
 import com.rumpilstilstkin.gloomhavenhelper.data.TeamRepository
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.Achievement
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.AchievementWithName
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
@@ -11,14 +13,25 @@ class GetAvailableGlobalAchievementsUseCase @Inject constructor(
     private val teamRepository: TeamRepository,
     private val achievementRepository: AchievementRepository,
 ) {
-    operator fun invoke(): Flow<List<Achievement>> =
-        teamRepository.currentTeam.map { team ->
+    operator fun invoke(): Flow<List<AchievementWithName>> =
+        teamRepository.currentTeam.combine(achievementRepository.dictionary) { team, dictionary ->
             if (team == null) {
                 emptyList()
             } else {
-                val allAchievements = achievementRepository.getGlobalAchievementsByPacks(team.packs.map { it.name })
-                val existingNames = team.globalAchievement.map { it.name }.toSet()
-                allAchievements.filter { it.name !in existingNames }
+                val allAchievements =
+                    achievementRepository.getGlobalAchievementsByPacks(team.packs.map { it.name })
+                val existingNames = team.achievements.map { it.slug }.toSet()
+                allAchievements
+                    .filter { it.slug !in existingNames }
+                    .map { achievement ->
+                        AchievementWithName(
+                            slug = achievement.slug,
+                            name = dictionary[achievement.slug] ?: "",
+                            value = achievement.value,
+                            maxValue = achievement.maxValue,
+                            isGlobal = achievement.isGlobal
+                        )
+                    }
             }
         }
 }

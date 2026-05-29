@@ -1,6 +1,7 @@
 package com.rumpilstilstkin.gloomhavenhelper.domain.usecase.goods
 
 import com.rumpilstilstkin.gloomhavenhelper.data.GoodsRepository
+import com.rumpilstilstkin.gloomhavenhelper.data.LocaleRepository
 import com.rumpilstilstkin.gloomhavenhelper.data.TeamRepository
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.Good
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -13,15 +14,18 @@ import javax.inject.Inject
 class GetAvaliableGoodsForTeamUseCase @Inject constructor(
     private val teamRepository: TeamRepository,
     private val goodsRepository: GoodsRepository,
+    private val localeRepository: LocaleRepository
 ) {
     @OptIn(ExperimentalCoroutinesApi::class)
     operator fun invoke(): Flow<List<Good>> =
-        teamRepository.currentTeam
-            .flatMapLatest { team ->
-                team?.let {
-                    val allGoods = goodsRepository.getGoods(team.packs.toSet())
-                    goodsRepository.getGoodsForTeam(team.teamId)
-                        .map { goods -> (allGoods - goods.toSet()) }
-                } ?: flowOf(emptyList())
-            }
+        localeRepository.observeLocale.flatMapLatest { locale ->
+            teamRepository.currentTeam
+                .flatMapLatest { team ->
+                    team?.let {
+                        val allGoods = goodsRepository.getGoods(team.packs.toSet(), locale)
+                        goodsRepository.getGoodsForTeam(team.teamId, locale)
+                            .map { goods -> (allGoods - goods.toSet()) }
+                    } ?: flowOf(emptyList())
+                }
+        }
 }

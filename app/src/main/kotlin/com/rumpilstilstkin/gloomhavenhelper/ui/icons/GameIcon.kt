@@ -6,7 +6,7 @@ import com.rumpilstilstkin.gloomhavenhelper.R
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.IconCode
 import java.util.EnumSet
 
-enum class GameIcon(val textCode: IconCode, @StringRes val titleRes: Int, val imageRes: Int, val color: Color) {
+enum class GameIcon(val textCode: IconCode, @param:StringRes val titleRes: Int, val imageRes: Int, val color: Color) {
     SUN(textCode = IconCode.SUN, titleRes = R.string.icon_light, imageRes = R.drawable.ic_magic_sun, color = Color(0xFFD2A21E)),
     MOON(textCode = IconCode.MOON, titleRes = R.string.icon_light, imageRes = R.drawable.ic_magic_moon, color = Color(0xFF324C5C)),
     FIRE(textCode = IconCode.FIRE, titleRes = R.string.icon_light, imageRes = R.drawable.ic_magic_fire, color = Color(0xFFBF3A0A)),

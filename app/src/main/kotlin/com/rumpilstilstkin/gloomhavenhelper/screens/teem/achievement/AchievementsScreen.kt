@@ -28,6 +28,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.rumpilstilstkin.gloomhavenhelper.R
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.Achievement
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.AchievementWithName
 import com.rumpilstilstkin.gloomhavenhelper.screens.teem.achievement.components.AddAchievementDialog
 import com.rumpilstilstkin.gloomhavenhelper.screens.teem.achievement.components.DeleteAchievementConfirmDialog
 import com.rumpilstilstkin.gloomhavenhelper.screens.teem.achievement.components.EmptyAchievements
@@ -44,12 +45,12 @@ internal fun AchievementsScreen(
     title: String,
     showAddDialog: () -> Unit,
     dismissAddDialog: () -> Unit,
-    addAchievement: (Achievement) -> Unit,
-    showDeleteDialog: (Achievement) -> Unit,
+    addAchievement: (AchievementWithName) -> Unit,
+    showDeleteDialog: (String) -> Unit,
     dismissDeleteDialog: () -> Unit,
     confirmDelete: () -> Unit,
     back: () -> Unit,
-    updateAchievement: (Int, Achievement) -> Unit,
+    updateAchievement: (Int, AchievementWithName) -> Unit,
 ) = Scaffold(
     topBar = {
         GloomToolbarTitle(
@@ -81,7 +82,7 @@ internal fun AchievementsScreen(
                 ) { achievement ->
                     AchievementItem(
                         achievement = achievement,
-                        delete = { showDeleteDialog(achievement) },
+                        delete = { showDeleteDialog(achievement.slug) },
                         changeValue = { updateAchievement(it, achievement) }
                     )
                 }
@@ -112,7 +113,6 @@ internal fun AchievementsScreen(
 
     uiState.achievementToDelete?.let { achievement ->
         DeleteAchievementConfirmDialog(
-            achievementName = achievement.name,
             onDismiss = dismissDeleteDialog,
             onConfirm = confirmDelete,
         )
@@ -121,7 +121,7 @@ internal fun AchievementsScreen(
 
 @Composable
 private fun AchievementItem(
-    achievement: Achievement,
+    achievement: AchievementWithName,
     delete: () -> Unit,
     changeValue: (Int) -> Unit,
 ) {
@@ -168,12 +168,12 @@ private fun AchievementsScreenPreview() {
             title = "Party Achievements",
             uiState = AchievementsStateUi(
                 achievements = persistentListOf(
-                    Achievement.fixture("First Steps"),
-                    Achievement.fixture("Jekserah's Plans"),
-                    Achievement.fixture("Ancient Technology", maxValue = 3),
+                    AchievementWithName.fixture("First Steps"),
+                    AchievementWithName.fixture("Jekserah's Plans"),
+                    AchievementWithName.fixture("Ancient Technology", maxValue = 3),
                 ),
                 availableAchievements = persistentListOf(
-                    Achievement.fixture("Treasure Map"),
+                    AchievementWithName.fixture("Treasure Map"),
                 ),
             ),
             showAddDialog = {},

@@ -6,10 +6,10 @@ data class TeamInfo(
     val id: Int,
     val name: String,
     val level: Int,
-    val teamAchievement: List<Achievement>,
-    val globalAchievement: List<Achievement>,
+    val teamAchievement: List<AchievementWithName>,
+    val globalAchievement: List<AchievementWithName>,
     val reputation: Int,
-    val activeScenario: List<ScenarioShortInfo>,
+    val activeScenario: List<ScenarioInfoWithName>,
     val aliveCharacters: List<CharacterInfo>,
     val shopDiscount: Int,
     val prosperity: Prosperity,
@@ -47,11 +47,40 @@ data class Team(
 )
 
 @Serializable
+data class ShortTeamInfoWithTranslations(
+    val teamId: Int,
+    val name: String,
+    val achievements: List<AchievementWithName>,
+    val aliveCharacterIds: List<Int>,
+    val reputation: Int,
+    val prosperity: Int,
+    val packs: List<PackType>,
+    val churchValue: Int,
+    val difficultyLevel: DifficultyLevel = DifficultyLevel.NORMAL,
+){
+    companion object {
+        fun fixture(
+            teamId: Int = 1,
+            teamName: String = "Name"
+        ) = ShortTeamInfoWithTranslations(
+            teamId = teamId,
+            name = teamName,
+            achievements = listOf(AchievementWithName.fixture("Achievement 1"), AchievementWithName.fixture("Achievement 2")),
+            reputation = 10,
+            prosperity = 20,
+            packs = listOf(PackType.MAIN),
+            aliveCharacterIds = listOf(1, 2, 3),
+            churchValue = 100,
+            difficultyLevel = DifficultyLevel.NORMAL
+        )
+    }
+}
+
+@Serializable
 data class ShortTeamInfo(
     val teamId: Int,
     val name: String,
-    val teamAchievement: List<Achievement>,
-    val globalAchievement: List<Achievement>,
+    val achievements: List<Achievement>,
     val aliveCharacterIds: List<Int>,
     val reputation: Int,
     val prosperity: Int,
@@ -66,8 +95,7 @@ data class ShortTeamInfo(
         ) = ShortTeamInfo(
             teamId = teamId,
             name = teamName,
-            teamAchievement = listOf(Achievement.fixture("Achievement 1"), Achievement.fixture("Achievement 2")),
-            globalAchievement = listOf(Achievement.fixture("Achievement 1"), Achievement.fixture("Achievement 2")),
+            achievements = listOf(Achievement.fixture("Achievement 1"), Achievement.fixture("Achievement 2")),
             reputation = 10,
             prosperity = 20,
             packs = listOf(PackType.MAIN),
@@ -77,19 +105,6 @@ data class ShortTeamInfo(
         )
     }
 }
-
-data class TeamInfoWithScenario(
-    val teamId: Int,
-    val name: String,
-    val teamAchievement: List<Achievement> ,
-    val globalAchievement: List<Achievement> ,
-    val reputation: Int,
-    val prosperity: Int,
-    val scenario: List<ScenarioShortInfo>,
-    val packs: List<PackType>,
-    val churchValue: Int,
-    val difficultyLevel: DifficultyLevel = DifficultyLevel.NORMAL,
-)
 
 data class TeamInfoForSave(
     val name: String,

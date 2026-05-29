@@ -6,18 +6,16 @@ import javax.inject.Inject
 
 class SellGoodCharacterUseCase @Inject constructor(
     private val characterRepository: CharacterRepository,
-    private val goodsRepository: GoodsRepository,
     private val deleteCharacterGoodsUseCase: DeleteCharacterGoodsUseCase,
 ) {
 
-    suspend operator fun invoke(goodId: Int, characterId: Int): Result<Unit> {
+    suspend operator fun invoke(goodNumber: Int, characterId: Int, cost: Int): Result<Unit> {
         return characterRepository.getCharacterById(characterId)?.let { character ->
-            val good = goodsRepository.getGood(goodId) ?: return Result.failure(Exception())
             deleteCharacterGoodsUseCase(
-                goodId = goodId,
+                goodNumber = goodNumber,
                 characterId = characterId
             )
-            characterRepository.updateGold(characterId, character.goldCount + good.cost.div(2))
+            characterRepository.updateGold(characterId, character.goldCount + cost.div(2))
             Result.success(Unit)
         } ?: return Result.failure(Exception())
     }

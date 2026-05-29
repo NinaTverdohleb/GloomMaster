@@ -4,7 +4,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class Monster(
-    val id: Int,
+    val slug: String,
     val name: String,
     val life: Int,
     val stats: List<MonsterAction>,
@@ -21,7 +21,7 @@ data class Monster(
 
 
 data class MonsterStats(
-    val monsterId: Int,
+    val monsterSlug: String,
     val level: Int,
     val isElite: Boolean,
     val life: Int,

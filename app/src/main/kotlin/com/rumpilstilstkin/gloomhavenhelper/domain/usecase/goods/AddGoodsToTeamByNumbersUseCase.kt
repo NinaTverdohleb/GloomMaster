@@ -8,7 +8,6 @@ class AddGoodsToTeamByNumbersUseCase @Inject constructor(
 ) {
 
     suspend operator fun invoke(teamId: Int, goodNumbers: List<Int>) {
-        val goodIds = goodsRepository.getGoodsByNumbers(goodNumbers).map { it.id }
-        goodsRepository.addGoodsToTeam(teamId, goodIds)
+        goodsRepository.addGoodsToTeam(teamId, goodNumbers)
     }
 }
