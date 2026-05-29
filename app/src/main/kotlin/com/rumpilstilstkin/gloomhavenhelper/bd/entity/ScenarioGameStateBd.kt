@@ -7,7 +7,7 @@ import com.rumpilstilstkin.gloomhavenhelper.domain.entity.ScenarioGameStateMonst
 
 @Entity
 data class ScenarioGameStateBd(
-    @PrimaryKey val name: String,
+    @PrimaryKey(autoGenerate = true) val id: Int = 0,
     val scenarioNumber: Int?,
     val monsterNames: List<String>,
     val round: Int = 0,

@@ -37,7 +37,7 @@ data class CharacterPersonalQuestBd(
 )
 
 data class CharacterPersonalQuestDetailsBd(
-    @Embedded val characterPersonalTask: CharacterPersonalQuestBd,
+    @Embedded val characterPersonalQuest: CharacterPersonalQuestBd,
     @Relation(
         parentColumn = "questId",
         entityColumn = "questId"

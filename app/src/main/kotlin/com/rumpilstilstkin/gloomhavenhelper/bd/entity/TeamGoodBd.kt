@@ -8,7 +8,7 @@ import androidx.room.Index
 import androidx.room.Relation
 
 @Entity(
-    primaryKeys = ["teamId", "goodId"],
+    primaryKeys = ["teamId", "goodNumber"],
     foreignKeys = [
         ForeignKey(
             entity = TeamBd::class,
@@ -17,21 +17,8 @@ import androidx.room.Relation
             onDelete = CASCADE
         )
     ],
-    indices = [
-        Index("teamId"),
-        Index("goodId"),
-    ]
 )
 data class TeamGoodBd(
     val teamId: Int,
-    val goodId: Int,
-)
-
-data class TeamGoodBdDetailsBd(
-    @Embedded val teamGood: TeamGoodBd,
-    @Relation(
-        parentColumn = "goodId",
-        entityColumn = "goodId"
-    )
-    val good: GoodBd
+    val goodNumber: Int,
 )

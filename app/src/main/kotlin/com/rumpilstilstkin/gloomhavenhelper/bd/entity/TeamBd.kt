@@ -8,8 +8,7 @@ import com.rumpilstilstkin.gloomhavenhelper.domain.entity.Achievement
 data class TeamBd(
     @PrimaryKey(autoGenerate = true) val teamId: Int = 0,
     val name: String,
-    val teamAchievement: List<Achievement> = emptyList(),
-    val globalAchievement: List<Achievement> = emptyList(),
+    val achievements: List<Achievement> = emptyList(),
     val reputation: Int = 0,
     val prosperity: Int = 0,
     val churchValue: Int = 100,

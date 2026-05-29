@@ -7,23 +7,45 @@ import androidx.room.Index
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterAction
 
 @Entity(
-    primaryKeys = ["monsterId", "scenarioLevel", "isElite"],
+    primaryKeys = ["monsterSlug", "scenarioLevel", "isElite"],
     foreignKeys = [
         ForeignKey(
             entity = MonsterBd::class,
-            parentColumns = arrayOf("monsterId"),
-            childColumns = arrayOf("monsterId"),
+            parentColumns = arrayOf("slug"),
+            childColumns = arrayOf("monsterSlug"),
             onDelete = CASCADE
         )
     ],
     indices = [
-        Index("monsterId")
+        Index("monsterSlug")
     ]
 )
 data class MonsterStatsBd(
-    val monsterId: Int,
+    val monsterSlug: String,
     val scenarioLevel: Int,
     val isElite: Boolean,
     val life: Int,
+    val stats: List<MonsterAction>,
+)
+
+@Entity(
+    primaryKeys = ["monsterSlug", "scenarioLevel", "isElite", "locale"],
+    foreignKeys = [
+        ForeignKey(
+            entity = MonsterBd::class,
+            parentColumns = arrayOf("slug"),
+            childColumns = arrayOf("monsterSlug"),
+            onDelete = CASCADE
+        )
+    ],
+    indices = [
+        Index("monsterSlug")
+    ]
+)
+data class MonsterTextStatsBd(
+    val locale: String,
+    val monsterSlug: String,
+    val scenarioLevel: Int,
+    val isElite: Boolean,
     val stats: List<MonsterAction>,
 )

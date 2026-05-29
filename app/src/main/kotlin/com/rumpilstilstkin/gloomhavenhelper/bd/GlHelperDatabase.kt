@@ -12,6 +12,7 @@ import com.rumpilstilstkin.gloomhavenhelper.bd.dao.CharacterPerksDao
 import com.rumpilstilstkin.gloomhavenhelper.bd.dao.CharacterPersonalQuestDao
 import com.rumpilstilstkin.gloomhavenhelper.bd.dao.GameLevelInfoDao
 import com.rumpilstilstkin.gloomhavenhelper.bd.dao.GoodsDao
+import com.rumpilstilstkin.gloomhavenhelper.bd.dao.LocationsDao
 import com.rumpilstilstkin.gloomhavenhelper.bd.dao.MonsterDao
 import com.rumpilstilstkin.gloomhavenhelper.bd.dao.PerksDao
 import com.rumpilstilstkin.gloomhavenhelper.bd.dao.PersonalQuestDao
@@ -22,19 +23,29 @@ import com.rumpilstilstkin.gloomhavenhelper.bd.dao.TeamDao
 import com.rumpilstilstkin.gloomhavenhelper.bd.dao.TeamGoodDao
 import com.rumpilstilstkin.gloomhavenhelper.bd.dao.TeamScenarioDao
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.AchievementBd
+import com.rumpilstilstkin.gloomhavenhelper.bd.entity.AchievementTranslateBd
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.CharacterBd
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.CharacterGoodBd
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.CharacterPerkBd
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.CharacterPersonalQuestBd
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.GameLevelInfoBd
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.GoodBd
+import com.rumpilstilstkin.gloomhavenhelper.bd.entity.GoodTranslationsBd
+import com.rumpilstilstkin.gloomhavenhelper.bd.entity.LocationBd
+import com.rumpilstilstkin.gloomhavenhelper.bd.entity.LocationTranslateBd
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.MonsterAbilityCardBd
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.MonsterBd
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.MonsterStatsBd
+import com.rumpilstilstkin.gloomhavenhelper.bd.entity.MonsterTextStatsBd
+import com.rumpilstilstkin.gloomhavenhelper.bd.entity.MonsterTranslationsBd
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.PerkBd
+import com.rumpilstilstkin.gloomhavenhelper.bd.entity.PerkTranslationBd
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.PersonalQuestBd
+import com.rumpilstilstkin.gloomhavenhelper.bd.entity.PersonalQuestTaskTranslationsBd
+import com.rumpilstilstkin.gloomhavenhelper.bd.entity.PersonalQuestTranslationsBd
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.ScenarioBd
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.ScenarioGameStateBd
+import com.rumpilstilstkin.gloomhavenhelper.bd.entity.ScenarioTranslationsBd
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.TeamBd
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.TeamCharacterClassBd
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.TeamGoodBd
@@ -61,20 +72,30 @@ import com.rumpilstilstkin.gloomhavenhelper.bd.typeconverters.StringListTypeConv
         CharacterBd::class,
         GameLevelInfoBd::class,
         ScenarioBd::class,
+        ScenarioTranslationsBd::class,
         TeamScenarioBd::class,
         GoodBd::class,
+        GoodTranslationsBd::class,
         CharacterGoodBd::class,
         CharacterPerkBd::class,
         PerkBd::class,
+        PerkTranslationBd::class,
         PersonalQuestBd::class,
+        PersonalQuestTranslationsBd::class,
+        PersonalQuestTaskTranslationsBd::class,
         CharacterPersonalQuestBd::class,
         MonsterBd::class,
+        MonsterTranslationsBd::class,
         MonsterStatsBd::class,
         MonsterAbilityCardBd::class,
         TeamCharacterClassBd::class,
         TeamGoodBd::class,
         AchievementBd::class,
-        ScenarioGameStateBd::class
+        AchievementTranslateBd::class,
+        ScenarioGameStateBd::class,
+        LocationBd::class,
+        LocationTranslateBd::class,
+        MonsterTextStatsBd::class
     ],
     version = 2
 )
@@ -95,6 +116,7 @@ abstract class GlHelperDatabase : RoomDatabase() {
     abstract fun teamGoodDao(): TeamGoodDao
     abstract fun achievementDao(): AchievementDao
     abstract fun scenarioGameStateDao(): ScenarioGameStateDao
+    abstract fun locationsDao(): LocationsDao
 }
 
 fun createGlHelperDatabase(
@@ -105,6 +127,7 @@ fun createGlHelperDatabase(
         GlHelperDatabase::class.java,
         DATABASE_NAME
     )
+        //.fallbackToDestructiveMigration(true)
         .addMigrations(*ALL_MIGRATIONS)
         .build()
 
