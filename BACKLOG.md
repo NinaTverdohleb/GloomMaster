@@ -19,6 +19,20 @@
 
 ---
 
+## Database & Localization
+
+### 📦 LOC-003: Tests for locale-fallback queries
+**Priority:** 🟡 Medium
+
+The `COALESCE(target, default, <id>)` + correlated `NOT EXISTS` pattern is easy to get wrong (a wrong-table subquery and an `AND`/`OR` precedence bug were both found and fixed during review). No tests guard it.
+
+**Tasks:**
+- [ ] In-memory DB DAO tests: seed target + default locale rows, assert resolution
+- [ ] Assert fallback to default locale when target is missing
+- [ ] Assert fallback to the stable id when neither locale has a row
+
+---
+
 ## Architecture
 
 ### 🏗️ ARCH-001: Split CharacterRepository
@@ -87,18 +101,6 @@ Auto-calculate and distribute rewards after scenario completion.
 
 ---
 
-### ✨ FEAT-002: Database Export/Import
-**Priority:** 🟢 Low
-
-**Tasks:**
-- [ ] Create `DatabaseBackupManager` class
-- [ ] Implement JSON export of all tables
-- [ ] Implement JSON import with validation
-- [ ] Add UI for export/import in settings
-- [ ] Handle version compatibility
-
----
-
 ### ✨ FEAT-003: Cloud Sync/Backup
 **Priority:** 🟢 Low
 
@@ -112,6 +114,17 @@ Auto-calculate and distribute rewards after scenario completion.
 ---
 
 ## Code Quality
+
+### 🔧 REF-002: Push pack filtering into SQL in `GoodsRepository.getGoods`
+**Priority:** 🟢 Low
+
+`getGoods` loads the whole goods table (double-joined for translations) then filters `packs` in Kotlin. A `getAllByPack` SQL query already exists but is unused.
+
+**Tasks:**
+- [ ] Use `getAllByPack` (or add an `IN (:packs)` variant) so the filter runs in SQL
+- [ ] Remove the unused query if superseded
+
+---
 
 ### 🔧 REF-001: Unify State Class Patterns
 **Priority:** 🟢 Low
@@ -129,11 +142,11 @@ Mixed patterns for UI state: `sealed interface`, `sealed class`, `data class`.
 
 | Priority | Count |
 |----------|-------|
-| 🔴 Critical | 0 |
-| 🟠 High | 2 |
-| 🟡 Medium | 2 |
-| 🟢 Low | 3 |
-| **Total** | **7** |
+| 🔴 Critical | 0     |
+| 🟠 High | 2     |
+| 🟡 Medium | 3     |
+| 🟢 Low | 3     |
+| **Total** | **8** |
 
 ## Recommended Execution Order
 
@@ -142,10 +155,11 @@ Mixed patterns for UI state: `sealed interface`, `sealed class`, `data class`.
 2. ARCH-001: Split CharacterRepository
 
 ### Phase 2: Quality (Medium Priority)
-3. ARCH-005: Implement caching strategy
-4. FEAT-001: Scenario rewards distribution
+3. LOC-003: Tests for locale-fallback queries
+4. ARCH-005: Implement caching strategy
+5. FEAT-001: Scenario rewards distribution
 
 ### Phase 3: Enhancement (Low Priority)
-5. REF-001: Unify state class patterns
-6. FEAT-002: Database export/import
-7. FEAT-003: Cloud sync
+6. REF-002: Push pack filtering into SQL
+7. REF-001: Unify state class patterns
+9. FEAT-003: Cloud sync
