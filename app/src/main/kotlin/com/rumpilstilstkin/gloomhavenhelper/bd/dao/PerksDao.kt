@@ -4,9 +4,8 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Transaction
-import com.rumpilstilstkin.gloomhavenhelper.bd.entity.CharacterGoodDetailsBd
-import com.rumpilstilstkin.gloomhavenhelper.bd.entity.GoodBd
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.PerkBd
+import com.rumpilstilstkin.gloomhavenhelper.bd.entity.PerkTranslationBd
 
 @Dao
 interface PerksDao {
@@ -14,8 +13,30 @@ interface PerksDao {
     @Insert
     suspend fun insertAll(vararg users: PerkBd)
 
-    @Transaction
-    @Query("SELECT * FROM PerkBd WHERE characterType = :characterType")
-    suspend fun getPerksByCharacterClass(characterType: String): List<PerkBd>
+    @Insert
+    suspend fun insert(perk: PerkBd): Long
+
+    @Insert
+    suspend fun insertAll(vararg translations: PerkTranslationBd)
+
+    @Query(
+        """
+        SELECT * FROM PerkTranslationBd as t
+            WHERE characterType = :characterType 
+            AND (t.locale = :targetLocale
+              OR (
+                  t.locale = :defaultLocale
+                  AND NOT EXISTS (
+                      SELECT 1 FROM PerkTranslationBd
+                      WHERE characterType = t.characterType AND locale = :targetLocale
+                  )
+              ))
+        """
+    )
+    suspend fun getPerksByCharacterClass(
+        characterType: String,
+        targetLocale: String,
+        defaultLocale: String
+    ): List<PerkTranslationBd>
 
 }

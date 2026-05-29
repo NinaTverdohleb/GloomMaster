@@ -1,13 +1,15 @@
 package com.rumpilstilstkin.gloomhavenhelper.bd.filler.json.models
 
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.MonsterBd
+import com.rumpilstilstkin.gloomhavenhelper.bd.entity.MonsterTextStatsBd
+import com.rumpilstilstkin.gloomhavenhelper.bd.entity.MonsterTranslationsBd
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterAction
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterStatType
 import kotlinx.serialization.Serializable
 
 @Serializable
 data class MonsterJson(
-    val name: String,
+    val slug: String,
     val deckName: String,
     val isBoss: Boolean,
     val fly: Boolean = false,
@@ -16,7 +18,7 @@ data class MonsterJson(
     val pack: String
 ){
     fun toEntity() = MonsterBd(
-        name = name,
+        slug = slug,
         deckName = deckName,
         isBoss = isBoss,
         fly = fly,
@@ -27,8 +29,20 @@ data class MonsterJson(
 }
 
 @Serializable
+data class MonsterTranslationJson(
+    val slug: String,
+    val name: String
+) {
+    fun toEntity(locale: String) = MonsterTranslationsBd(
+        slug = slug,
+        locale = locale,
+        name = name
+    )
+}
+
+@Serializable
 data class MonsterStatsJson(
-    val monsterName: String,
+    val monsterSlug: String,
     val stats: List<MonsterLevelStatsJson>
 )
 
@@ -41,15 +55,14 @@ data class MonsterLevelStatsJson(
 )
 
 @Serializable
-data class AbilityDeckJson(
-    val deckName: String,
-    val cards: List<AbilityCardJson>
+data class MonsterTranslationStatsJson(
+    val monsterSlug: String,
+    val stats: List<MonsterLevelTranslationStatsJson>
 )
 
 @Serializable
-data class AbilityCardJson(
-    val initiative: Int,
-    val imageName: String? = null,
-    val actions: List<MonsterAction>? = null,
-    val needsShuffle: Boolean = false
+data class MonsterLevelTranslationStatsJson(
+    val level: Int,
+    val isElite: Boolean,
+    val stats: List<String>
 )

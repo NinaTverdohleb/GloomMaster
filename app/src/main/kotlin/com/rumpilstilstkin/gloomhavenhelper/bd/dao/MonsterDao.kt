@@ -7,6 +7,9 @@ import androidx.room.Query
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.MonsterAbilityCardBd
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.MonsterBd
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.MonsterStatsBd
+import com.rumpilstilstkin.gloomhavenhelper.bd.entity.MonsterTextStatsBd
+import com.rumpilstilstkin.gloomhavenhelper.bd.entity.MonsterTranslationsBd
+import com.rumpilstilstkin.gloomhavenhelper.bd.entity.MonsterWithNameBd
 
 @Dao
 interface MonsterDao {
@@ -15,11 +18,22 @@ interface MonsterDao {
     @Query("SELECT * FROM MonsterBd")
     suspend fun getAllMonsters(): List<MonsterBd>
 
-    @Query("SELECT * FROM MonsterBd WHERE monsterId = :id")
-    suspend fun getMonsterById(id: Int): MonsterBd
-
-    @Query("SELECT * FROM MonsterBd WHERE name = :name")
-    suspend fun getMonsterByName(name: String): MonsterBd
+    @Query(
+        """
+            SELECT 
+                g.*, 
+                COALESCE(t1.name, t2.name, 'not found') AS name
+            FROM MonsterBd g
+            LEFT JOIN MonsterTranslationsBd t1 ON g.slug = t1.slug AND t1.locale = :targetLocale
+            LEFT JOIN MonsterTranslationsBd t2 ON g.slug = t2.slug AND t2.locale = :defaultLocale
+            WHERE g.slug = :slug
+         """
+    )
+    suspend fun getMonsterBySlug(
+        slug: String,
+        targetLocale: String,
+        defaultLocale: String
+    ): MonsterWithNameBd
 
     @Query("SELECT * FROM MonsterBd WHERE pack IN (:packs)")
     suspend fun getMonstersByPacks(packs: List<String>): List<MonsterBd>
@@ -30,13 +44,40 @@ interface MonsterDao {
     @Insert
     suspend fun insertMonsters(vararg monsters: MonsterBd)
 
+    @Insert
+    suspend fun insertTranslations(vararg translations: MonsterTranslationsBd)
+
+    @Insert
+    suspend fun insertTranslations(vararg translations: MonsterTextStatsBd)
+
     @Query("DELETE FROM MonsterBd")
     suspend fun deleteAllMonsters()
 
     // Monster Stats
 
-    @Query("SELECT * FROM MonsterStatsBd WHERE monsterId = :monsterId AND scenarioLevel = :level AND isElite = :isElite")
-    suspend fun getStats(monsterId: Int, level: Int, isElite: Boolean): MonsterStatsBd
+    @Query("SELECT * FROM MonsterStatsBd WHERE monsterSlug = :monster AND scenarioLevel = :level AND isElite = :isElite")
+    suspend fun getStats(monster: String, level: Int, isElite: Boolean): MonsterStatsBd
+
+    @Query(
+        """
+            SELECT * FROM MonsterTextStatsBd AS t
+            WHERE monsterSlug = :monster AND scenarioLevel = :level AND isElite = :isElite AND locale = :targetLocale
+              OR (
+                  t.locale = :defaultLocale
+                  AND NOT EXISTS (
+                      SELECT 1 FROM PerkTranslationBd
+                      WHERE monsterSlug = t.monsterSlug AND scenarioLevel = t.scenarioLevel AND isElite = t.isElite AND locale = :targetLocale
+                  )
+              )
+            """
+    )
+    suspend fun getTextStats(
+        monster: String,
+        level: Int,
+        isElite: Boolean,
+        targetLocale: String,
+        defaultLocale: String
+    ): MonsterTextStatsBd?
 
     @Insert
     suspend fun insertStats(stats: MonsterStatsBd)
@@ -44,11 +85,14 @@ interface MonsterDao {
     @Insert
     suspend fun insertAllStats(vararg stats: MonsterStatsBd)
 
+    @Insert
+    suspend fun insertAllTextStats(vararg stats: MonsterTextStatsBd)
+
     @Query("DELETE FROM MonsterStatsBd")
     suspend fun deleteAllStats()
 
-    @Query("DELETE FROM MonsterStatsBd WHERE monsterId = :monsterId")
-    suspend fun deleteStatsByMonsterId(monsterId: Int)
+    @Query("DELETE FROM MonsterStatsBd WHERE monsterSlug = :slug")
+    suspend fun deleteStatsByMonsterSlug(slug: Int)
 
     // Monster Ability Cards
     @Query("SELECT * FROM MonsterAbilityCardBd WHERE deckName = :deckName")

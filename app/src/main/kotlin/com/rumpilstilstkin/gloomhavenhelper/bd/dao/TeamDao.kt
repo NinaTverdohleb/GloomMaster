@@ -1,14 +1,11 @@
 package com.rumpilstilstkin.gloomhavenhelper.bd.dao
 
 import androidx.room.Dao
-import androidx.room.Delete
-import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Transaction
 import androidx.room.Update
 import androidx.room.Upsert
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.TeamBd
-import com.rumpilstilstkin.gloomhavenhelper.bd.entity.TeamWithScenariosBd
 import kotlinx.coroutines.flow.Flow
 
 @Dao
@@ -34,14 +31,6 @@ interface TeamDao {
 
     @Update
     suspend fun update(team: TeamBd)
-
-    @Transaction
-    @Query("SELECT * FROM TeamBd WHERE teamId = :id LIMIT 1")
-    fun getTeamWithScenariosFlow(id: Int): Flow<TeamWithScenariosBd>
-
-    @Transaction
-    @Query("SELECT * FROM TeamBd WHERE teamId = :id LIMIT 1")
-    suspend fun getTeamWithScenarios(id: Int): TeamWithScenariosBd
 
     @Transaction
     @Query("UPDATE TeamBd SET reputation=:reputation WHERE teamId = :id")

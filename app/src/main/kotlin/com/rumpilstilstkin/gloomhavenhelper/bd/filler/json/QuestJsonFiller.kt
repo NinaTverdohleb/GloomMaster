@@ -1,27 +1,30 @@
 package com.rumpilstilstkin.gloomhavenhelper.bd.filler.json
 
 import com.rumpilstilstkin.gloomhavenhelper.bd.dao.PersonalQuestDao
-import com.rumpilstilstkin.gloomhavenhelper.bd.entity.PersonalQuestBd
 import com.rumpilstilstkin.gloomhavenhelper.bd.filler.json.models.PersonalQuestJson
+import com.rumpilstilstkin.gloomhavenhelper.bd.filler.json.models.PersonalQuestTranslationJson
 import javax.inject.Inject
 
 class QuestJsonFiller @Inject constructor(
     private val jsonDataLoader: JsonDataLoader,
     private val personalQuestDao: PersonalQuestDao
 ) {
-    suspend fun fill(version: Int) {
-        val quests = jsonDataLoader.loadQuests(version)
+    suspend fun fill(pack: String) {
+        val file = "quests.json"
+        val quests = jsonDataLoader.loadDictionaryList<PersonalQuestJson>(file, pack)
         val entities = quests.map { it.toEntity() }
         personalQuestDao.insertAll(*entities.toTypedArray())
-    }
 
-    private fun PersonalQuestJson.toEntity() = PersonalQuestBd(
-        questId = questId,
-        title = title,
-        description = description,
-        specialText = specialText,
-        characterType = characterType,
-        tasks = tasks,
-        pack = pack
-    )
+        jsonDataLoader.getLocalesForPack(pack).forEach { locale ->
+            val translations =
+                jsonDataLoader.loadDictionaryList<PersonalQuestTranslationJson>(file, "$pack/$locale")
+            val questTranslations = translations.map { it.toEntity(locale) }
+            personalQuestDao.insertTranslations(*questTranslations.toTypedArray())
+
+            val taskTranslations = translations.flatMap { quest ->
+                quest.tasks.map { task -> task.toEntity(quest.questId, locale) }
+            }
+            personalQuestDao.insertTaskTranslations(*taskTranslations.toTypedArray())
+        }
+    }
 }

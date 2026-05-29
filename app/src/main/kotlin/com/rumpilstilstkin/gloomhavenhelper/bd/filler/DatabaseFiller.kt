@@ -5,6 +5,7 @@ import androidx.core.content.edit
 import com.rumpilstilstkin.gloomhavenhelper.bd.filler.json.AchievementJsonFiller
 import com.rumpilstilstkin.gloomhavenhelper.bd.filler.json.GameLevelInfoJsonFiller
 import com.rumpilstilstkin.gloomhavenhelper.bd.filler.json.GoodJsonFiller
+import com.rumpilstilstkin.gloomhavenhelper.bd.filler.json.LocationJsonFiller
 import com.rumpilstilstkin.gloomhavenhelper.bd.filler.json.MonsterJsonFiller
 import com.rumpilstilstkin.gloomhavenhelper.bd.filler.json.PerkJsonFiller
 import com.rumpilstilstkin.gloomhavenhelper.bd.filler.json.QuestJsonFiller
@@ -20,6 +21,7 @@ class DatabaseFiller @Inject constructor(
     private val perkJsonFiller: PerkJsonFiller,
     private val questJsonFiller: QuestJsonFiller,
     private val monsterJsonFiller: MonsterJsonFiller,
+    private val locationJsonFiller: LocationJsonFiller,
 ) {
     suspend fun fillDatabase() {
         var version = preferences.getInt(PREFS_VERSION, 0)
@@ -30,56 +32,43 @@ class DatabaseFiller @Inject constructor(
         preferences.edit { putInt(PREFS_VERSION, VERSION) }
     }
 
-    // TODO create effective fun for fix dictionary and don't do anything if dictionary is correct
     private suspend fun update(version: Int) {
         when (version) {
-            0 -> fillV1()
-            1 -> monsterJsonFiller.fixLivingSpiritDeck()
-            2 -> scenarioJsonFiller.fixScenario21()
-            3 -> {
-                monsterJsonFiller.fillStats(
-                    version = 1,
-                    pack = "main",
-                    type = "base"
-                )
+            4 -> {
+                fillMain()
+                fillForgottenCircles()
             }
             else -> {}
         }
     }
 
-    private suspend fun fillV1() {
-        gameLevelInfoJsonFiller.fill(1)
-        scenarioJsonFiller.fill(1)
-        goodJsonFiller.fill(1)
-        perkJsonFiller.fill(1)
-        questJsonFiller.fill(1)
-        monsterJsonFiller.fillDecks(1)
-        monsterJsonFiller.fillMonsters(1)
-        monsterJsonFiller.fillStats(
-            version = 1,
-            pack = "main",
-            type = "base"
-        )
-        monsterJsonFiller.fillStats(
-            version = 1,
-            pack = "main",
-            type = "boss"
-        )
-        monsterJsonFiller.fillStats(
-            version = 1,
-            pack = "forgotten_circles",
-            type = "base"
-        )
-        monsterJsonFiller.fillStats(
-            version = 1,
-            pack = "forgotten_circles",
-            type = "boss"
-        )
-        achievementJsonFiller.fill(1)
+    private suspend fun fillMain() {
+        val pack = "main"
+        gameLevelInfoJsonFiller.fill(pack)
+        scenarioJsonFiller.fill(pack)
+        goodJsonFiller.fill(pack)
+        locationJsonFiller.fill(pack)
+        achievementJsonFiller.fill(pack)
+        perkJsonFiller.fill(pack)
+        questJsonFiller.fill(pack)
+        monsterJsonFiller.fillDecks(pack)
+        monsterJsonFiller.fillMonsters(pack)
+        monsterJsonFiller.fillStats(pack)
+    }
+
+    private suspend fun fillForgottenCircles() {
+        val pack = "forgottenCircles"
+        scenarioJsonFiller.fill(pack)
+        goodJsonFiller.fill(pack)
+        perkJsonFiller.fill(pack)
+        monsterJsonFiller.fillDecks(pack)
+        monsterJsonFiller.fillMonsters(pack)
+        monsterJsonFiller.fillStats(pack)
+        achievementJsonFiller.fill(pack)
     }
 
     companion object {
-        private const val VERSION = 4
+        private const val VERSION = 5
         private const val PREFS_VERSION = "filler_version"
     }
 }
