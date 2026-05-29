@@ -17,9 +17,6 @@ interface ScenarioGameStateDao {
     @Query("SELECT * FROM ScenarioGameStateBd LIMIT 1")
     fun getFlow(): Flow<ScenarioGameStateBd?>
 
-    @Query("SELECT * FROM ScenarioGameStateBd WHERE name = :name LIMIT 1")
-    suspend fun getByName(name: String): ScenarioGameStateBd?
-
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(state: ScenarioGameStateBd)
 

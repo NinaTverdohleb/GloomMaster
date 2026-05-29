@@ -5,15 +5,60 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.ScenarioBd
+import com.rumpilstilstkin.gloomhavenhelper.bd.entity.ScenarioTranslationsBd
+import com.rumpilstilstkin.gloomhavenhelper.bd.entity.ScenarioWithNameBd
 
 @Dao
 interface ScenarioDao {
-    @Query("SELECT * FROM ScenarioBd")
-    suspend fun getAll(): List<ScenarioBd>
+    @Query(
+        """
+        SELECT 
+            a.scenarioNumber, 
+            a.newScenarios, 
+            a.requirements, 
+            a.monsters, 
+            COALESCE(l1.name, l2.name, 'not found') AS locationName ,
+            a.pack, 
+            COALESCE(t1.name, t2.name, 'not found') AS name 
+        FROM ScenarioBd a
+        LEFT JOIN ScenarioTranslationsBd t1 ON a.scenarioNumber = t1.scenarioNumber AND t1.locale = :targetLocale
+        LEFT JOIN ScenarioTranslationsBd t2 ON a.scenarioNumber = t2.scenarioNumber AND t2.locale = :defaultLocale
+        LEFT JOIN LocationTranslateBd l1 ON a.location =  l1.slug AND l1.locale = :targetLocale
+        LEFT JOIN LocationTranslateBd l2 ON a.location = l2.slug AND l2.locale = :defaultLocale
+    """
+    )
+    suspend fun getAll(targetLocale: String, defaultLocale: String): List<ScenarioWithNameBd>
 
     @Query("SELECT * FROM ScenarioBd WHERE scenarioNumber = :scenarioNumber LIMIT 1")
     suspend fun getScenario(scenarioNumber: Int): ScenarioBd
 
+    @Query(
+        """
+        SELECT 
+            a.scenarioNumber, 
+            a.newScenarios, 
+            a.requirements, 
+            a.monsters, 
+            COALESCE(l1.name, l2.name, 'not found') AS locationName ,
+            a.pack, 
+            COALESCE(t1.name, t2.name, 'not found') AS name 
+        FROM ScenarioBd a
+        LEFT JOIN ScenarioTranslationsBd t1 ON a.scenarioNumber = t1.scenarioNumber AND t1.locale = :targetLocale
+        LEFT JOIN ScenarioTranslationsBd t2 ON a.scenarioNumber = t2.scenarioNumber AND t2.locale = :defaultLocale
+        LEFT JOIN LocationTranslateBd l1 ON a.location =  l1.slug AND l1.locale = :targetLocale
+        LEFT JOIN LocationTranslateBd l2 ON a.location = l2.slug AND l2.locale = :defaultLocale
+        WHERE a.scenarioNumber = :scenarioNumber LIMIT 1
+    """
+    )
+    suspend fun getScenarioWithName(
+        scenarioNumber: Int,
+        targetLocale: String,
+        defaultLocale: String
+    ): ScenarioWithNameBd
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(vararg scenarios: ScenarioBd)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertAll(vararg translations: ScenarioTranslationsBd)
 }

@@ -5,10 +5,17 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class CharacterPerksJson(
     val characterType: String,
-    val perks: List<PerkJson>
+    val perksCount: Int
 )
 
 @Serializable
-data class PerkJson(
+data class PerkTranslationGroupJson(
+    val characterType: String,
+    val perks: List<PerkTranslationItemJson>
+)
+
+@Serializable
+data class PerkTranslationItemJson(
+    val id: Int,
     val text: String
 )

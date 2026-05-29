@@ -2,6 +2,13 @@ package com.rumpilstilstkin.gloomhavenhelper.bd.filler.json
 
 import com.rumpilstilstkin.gloomhavenhelper.bd.dao.MonsterDao
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.MonsterStatsBd
+import com.rumpilstilstkin.gloomhavenhelper.bd.entity.MonsterTextStatsBd
+import com.rumpilstilstkin.gloomhavenhelper.bd.filler.json.models.DeckJson
+import com.rumpilstilstkin.gloomhavenhelper.bd.filler.json.models.MonsterJson
+import com.rumpilstilstkin.gloomhavenhelper.bd.filler.json.models.MonsterStatsJson
+import com.rumpilstilstkin.gloomhavenhelper.bd.filler.json.models.MonsterTranslationJson
+import com.rumpilstilstkin.gloomhavenhelper.bd.filler.json.models.MonsterTranslationStatsJson
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterAction
 import javax.inject.Inject
 
 class MonsterJsonFiller @Inject constructor(
@@ -9,65 +16,41 @@ class MonsterJsonFiller @Inject constructor(
     private val monsterDao: MonsterDao
 ) {
     suspend fun fillDecks(
-        version: Int
+        pack: String
     ) {
-        val decks = jsonDataLoader.loadMonsterDeck(version)
+        val decks = jsonDataLoader.loadDictionaryList<DeckJson>("ability_decks.json", pack)
         decks.forEach { deck ->
             val entities = deck.toEntity()
             monsterDao.insertCards(*entities.toTypedArray())
         }
     }
 
-    suspend fun fillMonsters(version: Int) {
-        val monsters = jsonDataLoader.loadMonsters(version)
+    suspend fun fillMonsters(pack: String) {
+        val file = "monsters.json"
+        val monsters = jsonDataLoader.loadDictionaryList<MonsterJson>(file, pack)
         val entities = monsters.map { it.toEntity() }
         monsterDao.insertMonsters(*entities.toTypedArray())
-    }
 
-    // for old versions
-    suspend fun fixLivingSpiritDeck() {
-        val cards = monsterDao.getCardsByDeckName("living-spirit")
-        val newCards = cards.map { card ->
-            val initiative = when (card.imageName) {
-                "ic_deck_ma_ls_1.webp" -> 75
-                "ic_deck_ma_ls_2.webp" -> 55
-                "ic_deck_ma_ls_3.webp" -> 67
-                "ic_deck_ma_ls_4.webp" -> 48
-                "ic_deck_ma_ls_5.webp" -> 22
-                "ic_deck_ma_ls_6.webp" -> 33
-                "ic_deck_ma_ls_7.webp" -> 48
-                "ic_deck_ma_ls_8.webp" -> 61
-                else -> card.initiative
-            }
-            card.copy(initiative = initiative)
+        jsonDataLoader.getLocalesForPack(pack).forEach { locale ->
+            val translations =
+                jsonDataLoader.loadDictionaryList<MonsterTranslationJson>(file, "$pack/$locale")
+            val translationsEntities = translations.map { it.toEntity(locale) }
+            monsterDao.insertTranslations(*translationsEntities.toTypedArray())
         }
-        monsterDao.insertCards(*newCards.toTypedArray())
-
     }
 
-    suspend fun fillStats(version: Int, type: String, pack: String) {
-        val allMonsters = monsterDao.getAllMonsters()
-        val nameToId = allMonsters.associate { it.name to it.monsterId }
+    suspend fun fillStats(pack: String) {
+        fillStats("boss_stats.json", pack)
+    }
 
-        val allStats =
-            jsonDataLoader.loadMonsterStats(
-                version = version,
-                pack = pack,
-                type = type
-            )
+    suspend fun fillStats(fileName: String, pack: String) {
+        val translationFile = "text_$fileName"
+        val data = jsonDataLoader.loadDictionaryList<MonsterStatsJson>(fileName, pack)
 
-        allStats
-            .map { it.monsterName }
-            .toSet().forEach { name ->
-                nameToId[name]?.let { monsterDao.deleteStatsByMonsterId(it) }
-            }
-
-        val entities = allStats.flatMap { monsterStat ->
-            val monsterId = nameToId[monsterStat.monsterName]
-                ?: throw IllegalStateException("Monster not found: ${monsterStat.monsterName}")
+        val entities = data.flatMap { monsterStat ->
             monsterStat.stats.map { levelStat ->
                 MonsterStatsBd(
-                    monsterId = monsterId,
+                    monsterSlug = monsterStat.monsterSlug,
                     scenarioLevel = levelStat.level,
                     isElite = levelStat.isElite,
                     life = levelStat.life,
@@ -76,5 +59,27 @@ class MonsterJsonFiller @Inject constructor(
             }
         }
         monsterDao.insertAllStats(*entities.toTypedArray())
+
+        jsonDataLoader.getLocalesForPack(pack).forEach { locale ->
+            val translations =
+                jsonDataLoader.loadDictionaryList<MonsterTranslationStatsJson>(
+                    translationFile,
+                    "$pack/$locale"
+                )
+            val translationsEntities = translations.flatMap { monsterStat ->
+                monsterStat.stats.map { levelStat ->
+                    MonsterTextStatsBd(
+                        locale = locale,
+                        monsterSlug = monsterStat.monsterSlug,
+                        scenarioLevel = levelStat.level,
+                        isElite = levelStat.isElite,
+                        stats = levelStat.stats.map {
+                            MonsterAction.Text(content = it)
+                        }
+                    )
+                }
+            }
+            monsterDao.insertTranslations(*translationsEntities.toTypedArray())
+        }
     }
 }
