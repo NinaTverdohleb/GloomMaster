@@ -10,21 +10,24 @@ class QuestJsonFiller @Inject constructor(
     private val personalQuestDao: PersonalQuestDao
 ) {
     suspend fun fill(pack: String) {
-        val file = "quests.json"
-        val quests = jsonDataLoader.loadDictionaryList<PersonalQuestJson>(file, pack)
+        val quests = jsonDataLoader.loadDictionaryList<PersonalQuestJson>("quests.json", pack)
         val entities = quests.map { it.toEntity() }
         personalQuestDao.insertAll(*entities.toTypedArray())
 
         jsonDataLoader.getLocalesForPack(pack).forEach { locale ->
-            val translations =
-                jsonDataLoader.loadDictionaryList<PersonalQuestTranslationJson>(file, "$pack/$locale")
-            val questTranslations = translations.map { it.toEntity(locale) }
-            personalQuestDao.insertTranslations(*questTranslations.toTypedArray())
-
-            val taskTranslations = translations.flatMap { quest ->
-                quest.taskTexts.map { task -> task.toEntity(quest.questId, locale) }
-            }
-            personalQuestDao.insertTaskTranslations(*taskTranslations.toTypedArray())
+            fillTranslations(pack, locale)
         }
+    }
+
+    suspend fun fillTranslations(pack: String, locale: String) {
+        val translations =
+            jsonDataLoader.loadDictionaryListOrEmpty<PersonalQuestTranslationJson>("quests.json", "$pack/$locale")
+        val questTranslations = translations.map { it.toEntity(locale) }
+        personalQuestDao.insertTranslations(*questTranslations.toTypedArray())
+
+        val taskTranslations = translations.flatMap { quest ->
+            quest.taskTexts.map { task -> task.toEntity(quest.questId, locale) }
+        }
+        personalQuestDao.insertTaskTranslations(*taskTranslations.toTypedArray())
     }
 }

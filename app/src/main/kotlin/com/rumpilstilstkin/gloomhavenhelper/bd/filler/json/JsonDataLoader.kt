@@ -36,6 +36,13 @@ class JsonDataLoader @Inject constructor(
 
     inline fun <reified T> loadDictionaryList(fileName: String, pack: String): List<T> =
         json.decodeFromString(readAsset(fileName, pack))
+
+    inline fun <reified T> loadDictionaryListOrEmpty(fileName: String, pack: String): List<T> =
+        try {
+            loadDictionaryList(fileName, pack)
+        } catch (e: IOException) {
+            emptyList()
+        }
 }
 
 private fun getFilesFromAssets(context: Context, pack: String): List<String> {

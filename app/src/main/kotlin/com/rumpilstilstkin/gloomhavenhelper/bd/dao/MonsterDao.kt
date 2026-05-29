@@ -73,12 +73,15 @@ interface MonsterDao {
     @Query(
         """
             SELECT * FROM MonsterTextStatsBd AS t
-            WHERE monsterSlug = :monster AND scenarioLevel = :level AND isElite = :isElite AND locale = :targetLocale
-              OR (
-                  t.locale = :defaultLocale
-                  AND NOT EXISTS (
-                      SELECT 1 FROM MonsterTextStatsBd
-                      WHERE monsterSlug = t.monsterSlug AND scenarioLevel = t.scenarioLevel AND isElite = t.isElite AND locale = :targetLocale
+            WHERE monsterSlug = :monster AND scenarioLevel = :level AND isElite = :isElite
+              AND (
+                  t.locale = :targetLocale
+                  OR (
+                      t.locale = :defaultLocale
+                      AND NOT EXISTS (
+                          SELECT 1 FROM MonsterTextStatsBd
+                          WHERE monsterSlug = t.monsterSlug AND scenarioLevel = t.scenarioLevel AND isElite = t.isElite AND locale = :targetLocale
+                      )
                   )
               )
             LIMIT 1

@@ -15,7 +15,15 @@ class MonsterJsonFiller @Inject constructor(
     private val jsonDataLoader: JsonDataLoader,
     private val monsterDao: MonsterDao
 ) {
-    suspend fun fillDecks(
+
+    suspend fun fill(
+        pack: String
+    ){
+        fillDecks(pack)
+        fillMonsters(pack)
+        fillStats(pack)
+    }
+    private suspend fun fillDecks(
         pack: String
     ) {
         val decks = jsonDataLoader.loadDictionaryList<DeckJson>("ability_decks.json", pack)
@@ -25,27 +33,23 @@ class MonsterJsonFiller @Inject constructor(
         }
     }
 
-    suspend fun fillMonsters(pack: String) {
+    private suspend fun fillMonsters(pack: String) {
         val file = "monsters.json"
         val monsters = jsonDataLoader.loadDictionaryList<MonsterJson>(file, pack)
         val entities = monsters.map { it.toEntity() }
         monsterDao.insertMonsters(*entities.toTypedArray())
 
         jsonDataLoader.getLocalesForPack(pack).forEach { locale ->
-            val translations =
-                jsonDataLoader.loadDictionaryList<MonsterTranslationJson>(file, "$pack/$locale")
-            val translationsEntities = translations.map { it.toEntity(locale) }
-            monsterDao.insertTranslations(*translationsEntities.toTypedArray())
+            fillMonsterTranslations(pack, locale)
         }
     }
 
-    suspend fun fillStats(pack: String) {
+    private suspend fun fillStats(pack: String) {
         fillStats("boss_stats.json", pack)
         fillStats("base_stats.json", pack)
     }
 
-    suspend fun fillStats(fileName: String, pack: String) {
-        val translationFile = "text_$fileName"
+    private suspend fun fillStats(fileName: String, pack: String) {
         val data = jsonDataLoader.loadDictionaryList<MonsterStatsJson>(fileName, pack)
 
         val entities = data.flatMap { monsterStat ->
@@ -62,25 +66,44 @@ class MonsterJsonFiller @Inject constructor(
         monsterDao.insertAllStats(*entities.toTypedArray())
 
         jsonDataLoader.getLocalesForPack(pack).forEach { locale ->
-            val translations =
-                jsonDataLoader.loadDictionaryList<MonsterTranslationStatsJson>(
-                    translationFile,
-                    "$pack/$locale"
-                )
-            val translationsEntities = translations.flatMap { monsterStat ->
-                monsterStat.stats.map { levelStat ->
-                    MonsterTextStatsBd(
-                        locale = locale,
-                        monsterSlug = monsterStat.monsterSlug,
-                        scenarioLevel = levelStat.level,
-                        isElite = levelStat.isElite,
-                        stats = levelStat.textStats.map {
-                            MonsterAction.Text(content = it)
-                        }
-                    )
-                }
-            }
-            monsterDao.insertTranslations(*translationsEntities.toTypedArray())
+            fillStatsTranslations(fileName, pack, locale)
         }
+    }
+
+    /** Loads only the per-locale text (names + stat text) for an additional language. */
+    suspend fun fillTranslations(pack: String, locale: String) {
+        fillMonsterTranslations(pack, locale)
+        fillStatsTranslations("boss_stats.json", pack, locale)
+        fillStatsTranslations("base_stats.json", pack, locale)
+    }
+
+    private suspend fun fillMonsterTranslations(pack: String, locale: String) {
+        val translations =
+            jsonDataLoader.loadDictionaryListOrEmpty<MonsterTranslationJson>("monsters.json", "$pack/$locale")
+        val translationsEntities = translations.map { it.toEntity(locale) }
+        monsterDao.insertTranslations(*translationsEntities.toTypedArray())
+    }
+
+    private suspend fun fillStatsTranslations(fileName: String, pack: String, locale: String) {
+        val translationFile = "text_$fileName"
+        val translations =
+            jsonDataLoader.loadDictionaryListOrEmpty<MonsterTranslationStatsJson>(
+                translationFile,
+                "$pack/$locale"
+            )
+        val translationsEntities = translations.flatMap { monsterStat ->
+            monsterStat.stats.map { levelStat ->
+                MonsterTextStatsBd(
+                    locale = locale,
+                    monsterSlug = monsterStat.monsterSlug,
+                    scenarioLevel = levelStat.level,
+                    isElite = levelStat.isElite,
+                    stats = levelStat.textStats.map {
+                        MonsterAction.Text(content = it)
+                    }
+                )
+            }
+        }
+        monsterDao.insertTranslations(*translationsEntities.toTypedArray())
     }
 }
