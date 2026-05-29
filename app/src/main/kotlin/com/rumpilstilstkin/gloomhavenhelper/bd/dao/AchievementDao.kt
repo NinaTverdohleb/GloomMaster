@@ -16,7 +16,7 @@ interface AchievementDao {
               OR (
                   t.locale = :defaultLocale
                   AND NOT EXISTS (
-                      SELECT 1 FROM PerkTranslationBd
+                      SELECT 1 FROM AchievementTranslateBd
                       WHERE locale = :targetLocale
                   )
               ))
