@@ -54,7 +54,6 @@ class ImportTeamUseCase @Inject constructor(
             )
 
             val availableIdsMap = goodsRepository.getGoodIdsByNumbers(data.teamGoods.distinct())
-            Log.d("Dto", availableIdsMap.toString())
             val idAvaliableQueues = availableIdsMap.mapValues { it.value.toMutableList() }
             val teamGoods: Map<Int, List<Int>> = data.teamGoods
                 .mapNotNull { number ->

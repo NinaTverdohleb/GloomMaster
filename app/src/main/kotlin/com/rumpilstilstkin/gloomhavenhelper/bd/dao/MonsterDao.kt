@@ -77,10 +77,11 @@ interface MonsterDao {
               OR (
                   t.locale = :defaultLocale
                   AND NOT EXISTS (
-                      SELECT 1 FROM PerkTranslationBd
+                      SELECT 1 FROM MonsterTextStatsBd
                       WHERE monsterSlug = t.monsterSlug AND scenarioLevel = t.scenarioLevel AND isElite = t.isElite AND locale = :targetLocale
                   )
               )
+            LIMIT 1
             """
     )
     suspend fun getTextStats(
@@ -102,9 +103,6 @@ interface MonsterDao {
 
     @Query("DELETE FROM MonsterStatsBd")
     suspend fun deleteAllStats()
-
-    @Query("DELETE FROM MonsterStatsBd WHERE monsterSlug = :slug")
-    suspend fun deleteStatsByMonsterSlug(slug: Int)
 
     // Monster Ability Cards
     @Query("SELECT * FROM MonsterAbilityCardBd WHERE deckName = :deckName")
