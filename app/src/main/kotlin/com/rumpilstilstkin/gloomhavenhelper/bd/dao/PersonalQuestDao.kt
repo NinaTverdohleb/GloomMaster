@@ -11,7 +11,7 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface PersonalQuestDao  {
     @Query("SELECT * FROM PersonalQuestBd")
-    fun getQuests(): List<PersonalQuestBd>
+    suspend fun getQuests(): List<PersonalQuestBd>
 
     @Query(
         """
