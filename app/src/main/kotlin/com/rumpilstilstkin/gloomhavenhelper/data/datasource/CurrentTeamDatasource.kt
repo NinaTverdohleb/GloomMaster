@@ -10,15 +10,11 @@ import androidx.core.content.edit
 class CurrentTeamDatasource @Inject constructor(
     private val preference: SharedPreferences
 ) {
-
-    fun saveCurrentTeam(team: Int) {
-        preference.edit(commit = true) { putInt(CURRENT_TEAM, team) }
-    }
-
-    fun getCurrentTeam(): Int{
-        val currentTeam = preference.getInt(CURRENT_TEAM, EMPTY_TEAM)
-        return currentTeam
-    }
+    var currentTeam: Int
+        get() = preference.getInt(CURRENT_TEAM, EMPTY_TEAM)
+        set(value) {
+            preference.edit { putInt(CURRENT_TEAM, value) }
+        }
 
     companion object {
         private const val CURRENT_TEAM = "currentTeam"
