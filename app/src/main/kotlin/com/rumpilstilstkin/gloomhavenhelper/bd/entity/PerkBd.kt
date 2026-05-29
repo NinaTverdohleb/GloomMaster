@@ -1,19 +1,20 @@
 package com.rumpilstilstkin.gloomhavenhelper.bd.entity
 
-import androidx.room.ColumnInfo
 import androidx.room.Entity
-import androidx.room.ForeignKey
-import androidx.room.ForeignKey.Companion.CASCADE
-import androidx.room.Index
 import androidx.room.PrimaryKey
 
-@Entity(
-    indices = [
-        Index("characterType"),
-    ]
-)
+@Entity
 data class PerkBd(
-    @PrimaryKey(autoGenerate = true) val perkId: Int = 0,
-    @ColumnInfo(name = "text") val text: String,
-    @ColumnInfo(name = "characterType") val characterType: String,
+    val count: Int,
+    @PrimaryKey val characterType: String,
+)
+
+@Entity(
+    primaryKeys = ["perkId", "locale", "characterType"],
+)
+data class PerkTranslationBd(
+    val perkId: Int,
+    val locale: String,
+    val text: String,
+    val characterType: String,
 )

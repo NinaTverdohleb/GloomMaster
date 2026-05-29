@@ -6,7 +6,6 @@ import androidx.room.ForeignKey
 import androidx.room.ForeignKey.Companion.CASCADE
 import androidx.room.Index
 import androidx.room.PrimaryKey
-import androidx.room.Relation
 
 @Entity(foreignKeys = [
     ForeignKey(
@@ -15,16 +14,9 @@ import androidx.room.Relation
         childColumns = arrayOf("characterId"),
         onDelete = CASCADE
     ),
-    ForeignKey(
-        entity = PerkBd::class,
-        parentColumns = arrayOf("perkId"),
-        childColumns = arrayOf("perkId"),
-        onDelete = CASCADE
-    )
 ],
     indices = [
         Index("characterId"),
-        Index("perkId"),
     ]
 )
 data class CharacterPerkBd(
@@ -34,11 +26,8 @@ data class CharacterPerkBd(
     val perkId: Int,
 )
 
-data class CharacterPerkDetailsBd(
-    @Embedded val characterPerk: CharacterPerkBd,
-    @Relation(
-        parentColumn = "perkId",
-        entityColumn = "perkId"
-    )
-    val perk: PerkBd
+data class CharacterPerkWithNameBd(
+    @Embedded
+    val perk: CharacterPerkBd,
+    val text: String
 )

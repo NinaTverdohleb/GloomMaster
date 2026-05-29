@@ -1,39 +1,27 @@
 package com.rumpilstilstkin.gloomhavenhelper.bd.entity
 
-import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
 
 @Entity
-data class AchievementBd(
+data class LocationBd(
     @PrimaryKey val slug: String,
-    val pack: String,
-    val maxRang: Int = 1,
-    @ColumnInfo(name = "isGlobal") val isGlobal: Boolean
 )
 
 @Entity(
     primaryKeys = ["slug", "locale"],
     foreignKeys = [
         ForeignKey(
-            entity = AchievementBd::class,
+            entity = LocationBd::class,
             parentColumns = ["slug"],
             childColumns = ["slug"],
             onDelete = ForeignKey.CASCADE
         )
     ]
 )
-data class AchievementTranslateBd(
+data class LocationTranslateBd(
     val slug: String,
     val locale: String,
-    val name: String
-)
-
-data class AchievementWithTranslation(
-    val slug: String,
-    val pack: String,
-    val maxRang: Int,
-    @ColumnInfo(name = "isGlobal") val isGlobal: Boolean,
     val name: String
 )
