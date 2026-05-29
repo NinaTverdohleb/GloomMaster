@@ -28,7 +28,7 @@ interface TeamGoodDao {
         """
         SELECT 
             g.*, 
-            COALESCE(t1.name, t2.name, 'not found') AS translated_name 
+            COALESCE(t1.name, t2.name, CAST(g.displayNumber AS TEXT)) AS translated_name
         FROM TeamGoodBd tg
         INNER JOIN GoodBd g ON tg.goodId = g.goodId
         LEFT JOIN GoodTranslationsBd t1 ON g.displayNumber = t1.displayNumber AND t1.locale = :targetLocale

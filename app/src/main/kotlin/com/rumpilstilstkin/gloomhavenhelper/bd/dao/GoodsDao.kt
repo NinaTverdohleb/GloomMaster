@@ -14,7 +14,7 @@ interface GoodsDao {
         """
             SELECT 
                 g.*, 
-                COALESCE(t1.name, t2.name, 'not found') AS translated_name 
+                COALESCE(t1.name, t2.name, CAST(g.displayNumber AS TEXT)) AS translated_name
             FROM GoodBd g
             LEFT JOIN GoodTranslationsBd t1 ON g.displayNumber = t1.displayNumber AND t1.locale = :targetLocale
             LEFT JOIN GoodTranslationsBd t2 ON g.displayNumber = t2.displayNumber AND t2.locale = :defaultLocale
@@ -29,7 +29,7 @@ interface GoodsDao {
         """
             SELECT 
                 g.*, 
-                COALESCE(t1.name, t2.name, 'not found') AS translated_name 
+                COALESCE(t1.name, t2.name, CAST(g.displayNumber AS TEXT)) AS translated_name
             FROM GoodBd g
             LEFT JOIN GoodTranslationsBd t1 ON g.displayNumber = t1.displayNumber AND t1.locale = :targetLocale
             LEFT JOIN GoodTranslationsBd t2 ON g.displayNumber = t2.displayNumber AND t2.locale = :defaultLocale
@@ -64,7 +64,7 @@ interface GoodsDao {
         """
             SELECT 
                 g.*, 
-                COALESCE(t1.name, t2.name, 'not found') AS translated_name 
+                COALESCE(t1.name, t2.name, CAST(g.displayNumber AS TEXT)) AS translated_name
             FROM GoodBd g
             LEFT JOIN GoodTranslationsBd t1 ON g.displayNumber = t1.displayNumber AND t1.locale = :targetLocale
             LEFT JOIN GoodTranslationsBd t2 ON g.displayNumber = t2.displayNumber AND t2.locale = :defaultLocale
