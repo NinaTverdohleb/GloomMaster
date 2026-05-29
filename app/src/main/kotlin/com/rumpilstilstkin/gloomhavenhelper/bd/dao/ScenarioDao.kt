@@ -17,9 +17,9 @@ interface ScenarioDao {
             a.newScenarios, 
             a.requirements, 
             a.monsters, 
-            COALESCE(l1.name, l2.name, 'not found') AS locationName ,
-            a.pack, 
-            COALESCE(t1.name, t2.name, 'not found') AS name 
+            COALESCE(l1.name, l2.name, a.location) AS locationName ,
+            a.pack,
+            COALESCE(t1.name, t2.name, CAST(a.scenarioNumber AS TEXT)) AS name
         FROM ScenarioBd a
         LEFT JOIN ScenarioTranslationsBd t1 ON a.scenarioNumber = t1.scenarioNumber AND t1.locale = :targetLocale
         LEFT JOIN ScenarioTranslationsBd t2 ON a.scenarioNumber = t2.scenarioNumber AND t2.locale = :defaultLocale
@@ -40,9 +40,9 @@ interface ScenarioDao {
             a.newScenarios, 
             a.requirements, 
             a.monsters, 
-            COALESCE(l1.name, l2.name, 'not found') AS locationName ,
-            a.pack, 
-            COALESCE(t1.name, t2.name, 'not found') AS name 
+            COALESCE(l1.name, l2.name, a.location) AS locationName ,
+            a.pack,
+            COALESCE(t1.name, t2.name, CAST(a.scenarioNumber AS TEXT)) AS name
         FROM ScenarioBd a
         LEFT JOIN ScenarioTranslationsBd t1 ON a.scenarioNumber = t1.scenarioNumber AND t1.locale = :targetLocale
         LEFT JOIN ScenarioTranslationsBd t2 ON a.scenarioNumber = t2.scenarioNumber AND t2.locale = :defaultLocale

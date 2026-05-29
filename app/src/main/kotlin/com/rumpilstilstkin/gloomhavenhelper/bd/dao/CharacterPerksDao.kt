@@ -26,7 +26,7 @@ interface CharacterPerksDao {
         """
         SELECT 
             g.*, 
-            COALESCE(t1.text, t2.text, 'not found') AS text
+            COALESCE(t1.text, t2.text, CAST(g.perkId AS TEXT)) AS text
         FROM CharacterPerkBd g
         INNER JOIN CharacterBd c ON g.characterId = c.characterId
         LEFT JOIN PerkTranslationBd t1 ON g.perkId = t1.perkId 

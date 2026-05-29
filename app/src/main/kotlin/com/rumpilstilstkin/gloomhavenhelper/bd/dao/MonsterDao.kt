@@ -34,7 +34,7 @@ interface MonsterDao {
         """
             SELECT 
                 g.*, 
-                COALESCE(t1.name, t2.name, 'not found') AS name
+                COALESCE(t1.name, t2.name, g.slug) AS name
             FROM MonsterBd g
             LEFT JOIN MonsterTranslationsBd t1 ON g.slug = t1.slug AND t1.locale = :targetLocale
             LEFT JOIN MonsterTranslationsBd t2 ON g.slug = t2.slug AND t2.locale = :defaultLocale
