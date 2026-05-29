@@ -23,8 +23,10 @@ class ScenarioRepository @Inject constructor(
     private val achievementRepository: AchievementRepository
 ) {
     suspend fun getAllScenarios(
-        locale: String
+        locale: String,
+        packs: List<String>
     ): List<ScenarioInfoWithName> = scenarioDao.getAll(
+        packs = packs,
         targetLocale = locale,
         defaultLocale = LocaleRepository.DEFAULT_LOCALE
     ).map {

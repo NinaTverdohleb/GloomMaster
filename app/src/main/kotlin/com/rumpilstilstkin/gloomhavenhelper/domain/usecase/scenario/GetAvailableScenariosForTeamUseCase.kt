@@ -1,5 +1,6 @@
 package com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario
 
+import android.util.Log
 import com.rumpilstilstkin.gloomhavenhelper.data.LocaleRepository
 import com.rumpilstilstkin.gloomhavenhelper.data.ScenarioRepository
 import com.rumpilstilstkin.gloomhavenhelper.data.TeamRepository
@@ -27,9 +28,8 @@ class GetAvailableScenariosForTeamUseCase @Inject constructor(
                 if (team == null) {
                     flowOf(emptyList())
                 } else {
-                    val allScenarios = scenarioRepository.getAllScenarios(locale).filter { scenario ->
-                        scenario.pack in team.packs
-                    }
+                    val allScenarios =
+                        scenarioRepository.getAllScenarios(locale, team.packs.map { it.name })
                     scenarioRepository.getTeamScenariosFlow(team.teamId).map { scenarios ->
                         val teamScenarioNumbers = scenarios.map { it.scenarioNumber }.toSet()
                         allScenarios.filter { scenario ->

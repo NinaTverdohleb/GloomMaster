@@ -20,6 +20,18 @@ interface MonsterDao {
 
     @Query(
         """
+            SELECT * FROM MonsterAbilityCardBd 
+            WHERE deckName IN (
+                SELECT deckName 
+                FROM MonsterBd 
+                WHERE slug IN (:slugs)
+            )
+        """
+    )
+    suspend fun getCardsByMonsterSlugs(slugs: List<String>): List<MonsterAbilityCardBd>
+
+    @Query(
+        """
             SELECT 
                 g.*, 
                 COALESCE(t1.name, t2.name, 'not found') AS name
@@ -55,8 +67,8 @@ interface MonsterDao {
 
     // Monster Stats
 
-    @Query("SELECT * FROM MonsterStatsBd WHERE monsterSlug = :monster AND scenarioLevel = :level AND isElite = :isElite")
-    suspend fun getStats(monster: String, level: Int, isElite: Boolean): MonsterStatsBd
+    @Query("SELECT * FROM MonsterStatsBd WHERE monsterSlug = :monsterSlug AND scenarioLevel = :level AND isElite = :isElite")
+    suspend fun getStats(monsterSlug: String, level: Int, isElite: Boolean): MonsterStatsBd
 
     @Query(
         """

@@ -8,6 +8,7 @@ class AddGoodsToTeamByNumbersUseCase @Inject constructor(
 ) {
 
     suspend operator fun invoke(teamId: Int, goodNumbers: List<Int>) {
-        goodsRepository.addGoodsToTeam(teamId, goodNumbers)
+        val goodIds = goodsRepository.getGoodIdsByNumbers(goodNumbers)
+        goodsRepository.addGoodsToTeam(teamId, goodIds.values.flatten())
     }
 }

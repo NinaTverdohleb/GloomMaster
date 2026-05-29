@@ -75,7 +75,7 @@ class AddGoodsForTeamViewModel @Inject constructor(
 
                 is AddGoodsForTeamAction.AddSelectedGoods -> {
                     async {
-                        val goodIds = logicState.value.selectedGoods.map { it.number }
+                        val goodIds = logicState.value.selectedGoods.map { it.goodId }
                         addGoodToTeamUseCase(goodIds)
                     }.await()
                     _navigationEvents.emit(GlHelperEvent.Back)

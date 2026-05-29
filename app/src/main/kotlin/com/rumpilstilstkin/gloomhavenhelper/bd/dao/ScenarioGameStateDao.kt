@@ -4,6 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import androidx.room.Transaction
 import androidx.room.Update
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.ScenarioGameStateBd
 import kotlinx.coroutines.flow.Flow
@@ -17,11 +18,14 @@ interface ScenarioGameStateDao {
     @Query("SELECT * FROM ScenarioGameStateBd LIMIT 1")
     fun getFlow(): Flow<ScenarioGameStateBd?>
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(state: ScenarioGameStateBd)
+    @Insert
+    suspend fun insert(entity: ScenarioGameStateBd)
 
-    @Update
-    suspend fun update(state: ScenarioGameStateBd)
+    @Transaction
+    suspend fun clearAndInsert(entity: ScenarioGameStateBd) {
+        deleteAll()
+        insert(entity)
+    }
 
     @Query("DELETE FROM ScenarioGameStateBd")
     suspend fun deleteAll()

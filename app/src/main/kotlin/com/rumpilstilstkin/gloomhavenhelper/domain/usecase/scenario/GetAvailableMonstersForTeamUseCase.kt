@@ -16,7 +16,7 @@ class GetAvailableMonstersForTeamUseCase @Inject constructor(
             if (team == null) {
                 emptyList()
             } else {
-                val exclude = scenarioGameStateRepository.get()?.monsterNames ?: emptyList()
+                val exclude = scenarioGameStateRepository.get()?.monsterSlugs ?: emptyList()
                 monsterRepository.getMonstersForPacks(team.packs.map { it.name }).filter {
                     it !in exclude
                 }

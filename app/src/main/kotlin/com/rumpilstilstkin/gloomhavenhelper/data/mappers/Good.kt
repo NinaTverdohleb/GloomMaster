@@ -6,7 +6,8 @@ import com.rumpilstilstkin.gloomhavenhelper.domain.entity.GoodType
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.PackType
 
 fun GoodWithTranslation.toDomain() = Good(
-    number = this.good.goodNumber,
+    id = this.good.goodId,
+    displayNumber = this.good.displayNumber,
     name = this.name,
     type = GoodType.valueOf(this.good.type),
     cost = this.good.cost,

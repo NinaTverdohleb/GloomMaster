@@ -18,9 +18,9 @@ class AddMonstersForCurrentScenarioUseCase @Inject constructor(
                 localeRepository.getCurrentLocale()
             ).flatMap { it.cards }
                 .map { it.cardId }
-            scenarioGameStateRepository.update(
+            scenarioGameStateRepository.save(
                 scenario.copy(
-                    monsterNames = (scenario.monsterNames + monsters).distinct(),
+                    monsterSlugs = (scenario.monsterSlugs + monsters).distinct(),
                     availableCards = (scenario.availableCards + newCards).distinct()
                 )
             )

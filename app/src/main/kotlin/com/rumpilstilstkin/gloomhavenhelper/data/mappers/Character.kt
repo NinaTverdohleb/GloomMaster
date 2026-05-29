@@ -32,7 +32,8 @@ fun CharacterBd.toDomain(
     experience = this.experience,
     goldCount = this.goldCount,
     checkMarkCount = this.checkMarkCount,
-    notes = this.notes
+    notes = this.notes,
+    additionalContOfPerks = this.additionalContOfPerks
 )
 
 fun CharacterBd.toShortDomain(

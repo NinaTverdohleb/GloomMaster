@@ -17,7 +17,7 @@ class GetMonsterForScenarioUseCase @Inject constructor(
     ): Result<List<String>> = withContext(Dispatchers.Default) {
         getCurrentTeamUseCase().first().let { team ->
             if (team != null) {
-                monsterRepository.getMonsterNamesForScenario(
+                monsterRepository.getMonsterSlugsForScenario(
                     scenarioNumber = scenarioNumber,
                 ).toResult()
             } else {

@@ -414,7 +414,7 @@
     "pack": "MAIN"
   },
   {
-    "name": "the_dark_rider",
+    "slug": "the_dark_rider",
     "deckName": "boss",
     "isBoss": true,
     "fly": false,
@@ -423,7 +423,7 @@
     "pack": "MAIN"
   },
   {
-    "name": "the_betrayer",
+    "slug": "the_betrayer",
     "deckName": "boss",
     "isBoss": true,
     "fly": false,

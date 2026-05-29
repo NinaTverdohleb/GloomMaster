@@ -15,7 +15,7 @@ data class GoodJson(
     val isDrawing: Boolean = false
 ) {
     fun toEntity() = GoodBd(
-        goodNumber = number,
+        displayNumber = number,
         type = type,
         cost = cost,
         image = image,
@@ -30,7 +30,7 @@ data class GoodTranslationJson(
     val name: String
 ) {
     fun toEntity(locale: String) = GoodTranslationsBd(
-        goodNumber = goodNumber,
+        displayNumber = goodNumber,
         locale = locale,
         name = name
     )

@@ -12,7 +12,9 @@ class GoodJsonFiller @Inject constructor(
     suspend fun fill(pack: String) {
         val file = "goods.json"
         val data = jsonDataLoader.loadDictionaryList<GoodJson>(file, pack)
-        val entities = data.map { it.toEntity() }
+        val entities = data.flatMap { good ->
+            List(good.count) { good.toEntity() }
+        }
         goodsDao.insertAll(*entities.toTypedArray())
         jsonDataLoader.getLocalesForPack(pack).forEach { locale ->
             val translations = jsonDataLoader.loadDictionaryList<GoodTranslationJson>(

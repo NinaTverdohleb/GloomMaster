@@ -1,9 +1,7 @@
 package com.rumpilstilstkin.gloomhavenhelper.domain.entity.export
 
-import com.rumpilstilstkin.gloomhavenhelper.domain.entity.CharacterFullInfo
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.CharacterInfo
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.ShortTeamInfo
-import com.rumpilstilstkin.gloomhavenhelper.domain.entity.quest.CharacterPersonalQuest
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.quest.CharacterPersonalQuestShort
 import kotlinx.serialization.Serializable
 
@@ -25,7 +23,7 @@ data class TeamExportDto(
 data class CharacterDataDto(
     val generalInfo: CharacterInfo,
     val personalQuest: CharacterPersonalQuestShort?,
-    val goods: List<Int>,
+    val goodDisplayNumbers: List<Int>,
     val perks: List<Int>,
 )
 

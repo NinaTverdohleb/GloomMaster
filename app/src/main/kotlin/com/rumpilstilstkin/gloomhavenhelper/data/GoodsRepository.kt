@@ -39,27 +39,27 @@ class GoodsRepository @Inject constructor(
             .map { goods -> goods.map { it.toDomain() } }
 
     suspend fun getTeamGoodsNumbers(teamId: Int): List<Int> =
-        teamGoodDao.getGoodsForTeamSync(teamId).map { it.goodNumber }
+        teamGoodDao.getTeamGoodNumbers(teamId)
 
     suspend fun getCharacterGoodNumbers(characterId: Int): List<Int> =
-        characterGoodsDao.getCharactersGoodNumbers(listOf(characterId)).first()
+        characterGoodsDao.getCharactersGoodNumbers(characterId).first()
 
-    fun getCharacterGoodNumbers(characterIds: List<Int>): Flow<List<Int>> =
-        characterGoodsDao.getCharactersGoodNumbers(characterIds)
+    fun getCharacterGoodIds(characterIds: List<Int>): Flow<List<Int>> =
+        characterGoodsDao.getCharactersGoodIds(characterIds)
 
-    suspend fun getGoodsByNumbers(numbers: List<Int>, locale: String): List<Good> =
-        goodsDao.getGoodsByNumbers(
-            numbers = numbers,
-            targetLocale = locale,
-            defaultLocale = LocaleRepository.DEFAULT_LOCALE
-        ).map { it.toDomain() }
+    suspend fun getGoodIdsByNumbers(numbers: List<Int>): Map<Int, List<Int>> =
+        goodsDao.getGoodsByNumbers(numbers)
+            .groupBy { it.displayNumber }
+            .mapValues { entry ->
+                entry.value.map { it.goodId }
+            }
 
     suspend fun delete(teamId: Int, goodId: Int) {
         teamGoodDao.delete(teamId, goodId)
     }
 
-    suspend fun addGoodsToTeam(teamId: Int, goodNumbers: List<Int>) {
-        val entities = goodNumbers.map { TeamGoodBd(teamId = teamId, goodNumber = it) }
+    suspend fun addGoodsToTeam(teamId: Int, goodIds: List<Int>) {
+        val entities = goodIds.map { TeamGoodBd(teamId = teamId, goodId = it) }
         teamGoodDao.insertAll(entities)
     }
 
@@ -67,16 +67,16 @@ class GoodsRepository @Inject constructor(
         teamGoodDao.delete(teamId, goodId)
     }
 
-    suspend fun addCharacterGoods(characterId: Int, goodNumbers: List<Int>) {
+    suspend fun addCharacterGoods(characterId: Int, goodIds: List<Int>) {
         val entities =
-            goodNumbers.map { CharacterGoodBd(characterId = characterId, goodNumber = it) }
+            goodIds.map { CharacterGoodBd(characterId = characterId, goodId = it) }
         characterGoodsDao.insertAll(entities)
     }
 
-    suspend fun deleteCharacterGood(goodNumber: Int, characterId: Int) {
+    suspend fun deleteCharacterGood(goodId: Int, characterId: Int) {
         characterGoodsDao.delete(
             characterId = characterId,
-            goodNumber = goodNumber
+            goodId = goodId
         )
     }
 

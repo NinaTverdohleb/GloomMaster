@@ -1,6 +1,7 @@
 package com.rumpilstilstkin.gloomhavenhelper.bd.filler.json
 
 import android.content.Context
+import android.util.Log
 import com.rumpilstilstkin.gloomhavenhelper.bd.filler.json.models.MonsterStatsJson
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.serialization.json.Json
@@ -35,19 +36,16 @@ class JsonDataLoader @Inject constructor(
 
     inline fun <reified T> loadDictionaryList(fileName: String, pack: String): List<T> =
         json.decodeFromString(readAsset(fileName, pack))
-
-    fun loadMonsterStats(pack: String, type: String): List<MonsterStatsJson> =
-        json.decodeFromString(readAsset("${pack}_${type}_stats.json", pack))
 }
 
 private fun getFilesFromAssets(context: Context, pack: String): List<String> {
     if (pack.isEmpty()) return emptyList()
-
     val assetManager = context.assets
     return try {
-        assetManager.list(pack)?.filter { item ->
-            assetManager.list("$pack/$item")?.isEmpty() == true
-        }.orEmpty()
+        assetManager.list("data/$pack")
+            ?.filter { item ->
+                assetManager.list("data/$pack/$item")?.isNotEmpty() == true
+            }.orEmpty()
     } catch (e: IOException) {
         emptyList()
     }

@@ -14,6 +14,7 @@ import com.rumpilstilstkin.gloomhavenhelper.ui.icons.goods.Twoarm
 
 @Immutable
 data class GoodUi(
+    val goodId: Int,
     val number: Int,
     val name: String,
     val typeImage: ImageVector,
@@ -26,9 +27,10 @@ data class GoodUi(
 
     companion object {
         fun fixture(
-            number: Int = 2
+            id: Int = 2
         ) = GoodUi(
-            number = number,
+            goodId = id,
+            number = 14,
             name = "Seven-league boots, feast on these sweet French brioches",
             typeImage = GloomhavenIcons.GoodTypes.Foot,
             cost = 20,
@@ -38,7 +40,8 @@ data class GoodUi(
 }
 
 fun Good.toUi() = GoodUi(
-    number = this.number,
+    goodId = this.id,
+    number = this.displayNumber,
     name = this.name,
     typeImage = this.type.toImage(),
     cost = this.cost,

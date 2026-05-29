@@ -25,9 +25,10 @@ interface ScenarioDao {
         LEFT JOIN ScenarioTranslationsBd t2 ON a.scenarioNumber = t2.scenarioNumber AND t2.locale = :defaultLocale
         LEFT JOIN LocationTranslateBd l1 ON a.location =  l1.slug AND l1.locale = :targetLocale
         LEFT JOIN LocationTranslateBd l2 ON a.location = l2.slug AND l2.locale = :defaultLocale
+        WHERE a.pack in (:packs)
     """
     )
-    suspend fun getAll(targetLocale: String, defaultLocale: String): List<ScenarioWithNameBd>
+    suspend fun getAll(packs: List<String>, targetLocale: String, defaultLocale: String): List<ScenarioWithNameBd>
 
     @Query("SELECT * FROM ScenarioBd WHERE scenarioNumber = :scenarioNumber LIMIT 1")
     suspend fun getScenario(scenarioNumber: Int): ScenarioBd

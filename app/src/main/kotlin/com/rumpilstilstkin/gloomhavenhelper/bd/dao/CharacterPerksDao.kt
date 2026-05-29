@@ -24,14 +24,19 @@ interface CharacterPerksDao {
 
     @Query(
         """
-            SELECT 
-                g.*, 
-                COALESCE(t1.text, t2.text, 'not found') AS text
-            FROM CharacterPerkBd g
-            LEFT JOIN PerkTranslationBd t1 ON g.id = t1.perkId AND t1.locale = :targetLocale
-            LEFT JOIN PerkTranslationBd t2 ON g.id = t2.perkId AND t2.locale = :defaultLocale
-            WHERE g.characterId = :characterId
-             """
+        SELECT 
+            g.*, 
+            COALESCE(t1.text, t2.text, 'not found') AS text
+        FROM CharacterPerkBd g
+        INNER JOIN CharacterBd c ON g.characterId = c.characterId
+        LEFT JOIN PerkTranslationBd t1 ON g.perkId = t1.perkId 
+            AND t1.locale = :targetLocale 
+            AND t1.characterType = c.characterType
+        LEFT JOIN PerkTranslationBd t2 ON g.perkId = t2.perkId 
+            AND t2.locale = :defaultLocale 
+            AND t2.characterType = c.characterType
+        WHERE g.characterId = :characterId
+    """
     )
     fun getCharacterPerksFlow(
         characterId: Int,

@@ -5,7 +5,7 @@
       {
         "level": 0,
         "isElite": false,
-        "contents": [
+        "textStats": [
           "Special 1: Moves to the door and opens the room",
           "Special 2: Summons Living Bones"
         ]
@@ -13,7 +13,7 @@
       {
         "level": 1,
         "isElite": false,
-        "contents": [
+        "textStats": [
           "Special 1: Moves to the door and opens the room",
           "Special 2: Summons Living Bones"
         ]
@@ -21,7 +21,7 @@
       {
         "level": 2,
         "isElite": false,
-        "contents": [
+        "textStats": [
           "Special 1: Moves to the door and opens the room",
           "Special 2: Summons Living Bones"
         ]
@@ -29,7 +29,7 @@
       {
         "level": 3,
         "isElite": false,
-        "contents": [
+        "textStats": [
           "Special 1: Moves to the door and opens the room",
           "Special 2: Summons Living Bones"
         ]
@@ -37,7 +37,7 @@
       {
         "level": 4,
         "isElite": false,
-        "contents": [
+        "textStats": [
           "Special 1: Moves to the door and opens the room",
           "Special 2: Summons Living Bones"
         ]
@@ -45,7 +45,7 @@
       {
         "level": 5,
         "isElite": false,
-        "contents": [
+        "textStats": [
           "Special 1: Moves to the door and opens the room",
           "Special 2: Summons Living Bones"
         ]
@@ -53,7 +53,7 @@
       {
         "level": 6,
         "isElite": false,
-        "contents": [
+        "textStats": [
           "Special 1: Moves to the door and opens the room",
           "Special 2: Summons Living Bones"
         ]
@@ -61,7 +61,7 @@
       {
         "level": 7,
         "isElite": false,
-        "contents": [
+        "textStats": [
           "Special 1: Moves to the door and opens the room",
           "Special 2: Summons Living Bones"
         ]
@@ -74,7 +74,7 @@
       {
         "level": 0,
         "isElite": false,
-        "contents": [
+        "textStats": [
           "Special 1: Move -1, Attack -1 hex area #30",
           "Special 2: Move +0, Attack +0, Retaliate 4"
         ]
@@ -82,7 +82,7 @@
       {
         "level": 1,
         "isElite": false,
-        "contents": [
+        "textStats": [
           "Special 1: Move -1, Attack -1 hex area #30",
           "Special 2: Move +0, Attack +0, Retaliate 4"
         ]
@@ -90,7 +90,7 @@
       {
         "level": 2,
         "isElite": false,
-        "contents": [
+        "textStats": [
           "Special 1: Move -1, Attack -1 hex area #30",
           "Special 2: Move +0, Attack +0, Retaliate 4"
         ]
@@ -98,7 +98,7 @@
       {
         "level": 3,
         "isElite": false,
-        "contents": [
+        "textStats": [
           "Special 1: Move -1, Attack -1 hex area #30",
           "Special 2: Move +0, Attack +0, Retaliate 4"
         ]
@@ -106,7 +106,7 @@
       {
         "level": 4,
         "isElite": false,
-        "contents": [
+        "textStats": [
           "Special 1: Move -1, Attack -1 hex area #30",
           "Special 2: Move +0, Attack +0, Retaliate 4"
         ]
@@ -114,7 +114,7 @@
       {
         "level": 5,
         "isElite": false,
-        "contents": [
+        "textStats": [
           "Special 1: Move -1, Attack -1 hex area #30",
           "Special 2: Move +0, Attack +0, Retaliate 4"
         ]
@@ -122,7 +122,7 @@
       {
         "level": 6,
         "isElite": false,
-        "contents": [
+        "textStats": [
           "Special 1: Move -1, Attack -1 hex area #30",
           "Special 2: Move +0, Attack +0, Retaliate 4"
         ]
@@ -130,7 +130,7 @@
       {
         "level": 7,
         "isElite": false,
-        "contents": [
+        "textStats": [
           "Special 1: Move -1, Attack -1 hex area #30",
           "Special 2: Move +0, Attack +0, Retaliate 4"
         ]
@@ -143,7 +143,7 @@
       {
         "level": 0,
         "isElite": false,
-        "contents": [
+        "textStats": [
           "Special 1: Move -1, Attack -1 hex area #30",
           "Special 2: Move +0, Attack +0, Retaliate 4"
         ]
@@ -151,7 +151,7 @@
       {
         "level": 1,
         "isElite": false,
-        "contents": [
+        "textStats": [
           "Special 1: Move -1, Attack -1 hex area #30",
           "Special 2: Move +0, Attack +0, Retaliate 4"
         ]
@@ -159,7 +159,7 @@
       {
         "level": 2,
         "isElite": false,
-        "contents": [
+        "textStats": [
           "Special 1: Move -1, Attack -1 hex area #30",
           "Special 2: Move +0, Attack +0, Retaliate 4"
         ]
@@ -167,7 +167,7 @@
       {
         "level": 3,
         "isElite": false,
-        "contents": [
+        "textStats": [
           "Special 1: Move -1, Attack -1 hex area #30",
           "Special 2: Move +0, Attack +0, Retaliate 4"
         ]
@@ -175,7 +175,7 @@
       {
         "level": 4,
         "isElite": false,
-        "contents": [
+        "textStats": [
           "Special 1: Move -1, Attack -1 hex area #30",
           "Special 2: Move +0, Attack +0, Retaliate 4"
         ]
@@ -183,7 +183,7 @@
       {
         "level": 5,
         "isElite": false,
-        "contents": [
+        "textStats": [
           "Special 1: Move -1, Attack -1 hex area #30",
           "Special 2: Move +0, Attack +0, Retaliate 4"
         ]
@@ -191,7 +191,7 @@
       {
         "level": 6,
         "isElite": false,
-        "contents": [
+        "textStats": [
           "Special 1: Move -1, Attack -1 hex area #30",
           "Special 2: Move +0, Attack +0, Retaliate 4"
         ]
@@ -199,7 +199,7 @@
       {
         "level": 7,
         "isElite": false,
-        "contents": [
+        "textStats": [
           "Special 1: Move -1, Attack -1 hex area #30",
           "Special 2: Move +0, Attack +0, Retaliate 4"
         ]
@@ -212,7 +212,7 @@
       {
         "level": 0,
         "isElite": false,
-        "contents": [
+        "textStats": [
           "Special 1: All scouts perform another turn",
           "Special 2: Summons Vermling Scout",
           "V = Number of scouts on the map"
@@ -221,7 +221,7 @@
       {
         "level": 1,
         "isElite": false,
-        "contents": [
+        "textStats": [
           "Special 1: All scouts perform another turn",
           "Special 2: Summons Vermling Scout",
           "V = Number of scouts on the map"
@@ -230,7 +230,7 @@
       {
         "level": 2,
         "isElite": false,
-        "contents": [
+        "textStats": [
           "Special 1: All scouts perform another turn",
           "Special 2: Summons Vermling Scout",
           "V = Number of scouts on the map"
@@ -239,7 +239,7 @@
       {
         "level": 3,
         "isElite": false,
-        "contents": [
+        "textStats": [
           "Special 1: All scouts perform another turn",
           "Special 2: Summons Vermling Scout",
           "V = Number of scouts on the map"
@@ -248,7 +248,7 @@
       {
         "level": 4,
         "isElite": false,
-        "contents": [
+        "textStats": [
           "Special 1: All scouts perform another turn",
           "Special 2: Summons Vermling Scout",
           "V = Number of scouts on the map"
@@ -257,7 +257,7 @@
       {
         "level": 5,
         "isElite": false,
-        "contents": [
+        "textStats": [
           "Special 1: All scouts perform another turn",
           "Special 2: Summons Vermling Scout",
           "V = Number of scouts on the map"
@@ -266,7 +266,7 @@
       {
         "level": 6,
         "isElite": false,
-        "contents": [
+        "textStats": [
           "Special 1: All scouts perform another turn",
           "Special 2: Summons Vermling Scout",
           "V = Number of scouts on the map"
@@ -275,7 +275,7 @@
       {
         "level": 7,
         "isElite": false,
-        "contents": [
+        "textStats": [
           "Special 1: All scouts perform another turn",
           "Special 2: Summons Vermling Scout",
           "V = Number of scouts on the map"
@@ -289,7 +289,7 @@
       {
         "level": 0,
         "isElite": false,
-        "contents": [
+        "textStats": [
           "Special 1: Heals 2 self and all allies",
           "Special 2: All allies gain +1 to all attacks for the round. Attacks +1."
         ]
@@ -297,7 +297,7 @@
       {
         "level": 1,
         "isElite": false,
-        "contents": [
+        "textStats": [
           "Special 1: Heals 2 self and all allies",
           "Special 2: All allies gain +1 to all attacks for the round. Attacks +1."
         ]
@@ -305,7 +305,7 @@
       {
         "level": 2,
         "isElite": false,
-        "contents": [
+        "textStats": [
           "Special 1: Heals 2 self and all allies",
           "Special 2: All allies gain +1 to all attacks for the round. Attacks +1."
         ]
@@ -313,7 +313,7 @@
       {
         "level": 3,
         "isElite": false,
-        "contents": [
+        "textStats": [
           "Special 1: Heals 2 self and all allies",
           "Special 2: All allies gain +1 to all attacks for the round. Attacks +1."
         ]
@@ -321,7 +321,7 @@
       {
         "level": 4,
         "isElite": false,
-        "contents": [
+        "textStats": [
           "Special 1: Heals 2 self and all allies",
           "Special 2: All allies gain +1 to all attacks for the round. Attacks +1."
         ]
@@ -329,7 +329,7 @@
       {
         "level": 5,
         "isElite": false,
-        "contents": [
+        "textStats": [
           "Special 1: Heals 2 self and all allies",
           "Special 2: All allies gain +1 to all attacks for the round. Attacks +1."
         ]
@@ -337,7 +337,7 @@
       {
         "level": 6,
         "isElite": false,
-        "contents": [
+        "textStats": [
           "Special 1: Heals 2 self and all allies",
           "Special 2: All allies gain +1 to all attacks for the round. Attacks +1."
         ]
@@ -345,7 +345,7 @@
       {
         "level": 7,
         "isElite": false,
-        "contents": [
+        "textStats": [
           "Special 1: Heals 2 self and all allies",
           "Special 2: All allies gain +1 to all attacks for the round. Attacks +1."
         ]
@@ -358,7 +358,7 @@
       {
         "level": 0,
         "isElite": false,
-        "contents": [
+        "textStats": [
           "Special 1: Summons Living Bones, attacks -1 all adjacent enemies",
           "Special 2: Summons Living Corpse, moves -1, attacks +2"
         ]
@@ -366,7 +366,7 @@
       {
         "level": 1,
         "isElite": false,
-        "contents": [
+        "textStats": [
           "Special 1: Summons Living Bones, attacks -1 all adjacent enemies",
           "Special 2: Summons Living Corpse, moves -1, attacks +2"
         ]
@@ -374,7 +374,7 @@
       {
         "level": 2,
         "isElite": false,
-        "contents": [
+        "textStats": [
           "Special 1: Summons Living Bones, attacks -1 all adjacent enemies",
           "Special 2: Summons Living Corpse, moves -1, attacks +2"
         ]
@@ -382,7 +382,7 @@
       {
         "level": 3,
         "isElite": false,
-        "contents": [
+        "textStats": [
           "Special 1: Summons Living Bones, attacks -1 all adjacent enemies",
           "Special 2: Summons Living Corpse, moves -1, attacks +2"
         ]
@@ -390,7 +390,7 @@
       {
         "level": 4,
         "isElite": false,
-        "contents": [
+        "textStats": [
           "Special 1: Summons Living Bones, attacks -1 all adjacent enemies",
           "Special 2: Summons Living Corpse, moves -1, attacks +2"
         ]
@@ -398,7 +398,7 @@
       {
         "level": 5,
         "isElite": false,
-        "contents": [
+        "textStats": [
           "Special 1: Summons Living Bones, attacks -1 all adjacent enemies",
           "Special 2: Summons Living Corpse, moves -1, attacks +2"
         ]
@@ -406,7 +406,7 @@
       {
         "level": 6,
         "isElite": false,
-        "contents": [
+        "textStats": [
           "Special 1: Summons Living Bones, attacks -1 all adjacent enemies",
           "Special 2: Summons Living Corpse, moves -1, attacks +2"
         ]
@@ -414,7 +414,7 @@
       {
         "level": 7,
         "isElite": false,
-        "contents": [
+        "textStats": [
           "Special 1: Summons Living Bones, attacks -1 all adjacent enemies",
           "Special 2: Summons Living Corpse, moves -1, attacks +2"
         ]
@@ -427,7 +427,7 @@
       {
         "level": 0,
         "isElite": false,
-        "contents": [
+        "textStats": [
           "Special 1: Altar moves, summons a demon, move +2, attack -1",
           "Special 2: Altar moves, summons a demon, move +2, attack -1"
         ]
@@ -435,7 +435,7 @@
       {
         "level": 1,
         "isElite": false,
-        "contents": [
+        "textStats": [
           "Special 1: Altar moves, summons a demon, move +2, attack -1",
           "Special 2: Altar moves, summons a demon, move +2, attack -1"
         ]
@@ -443,7 +443,7 @@
       {
         "level": 2,
         "isElite": false,
-        "contents": [
+        "textStats": [
           "Special 1: Altar moves, summons a demon, move +2, attack -1",
           "Special 2: Altar moves, summons a demon, move +2, attack -1"
         ]
@@ -451,7 +451,7 @@
       {
         "level": 3,
         "isElite": false,
-        "contents": [
+        "textStats": [
           "Special 1: Altar moves, summons a demon, move +2, attack -1",
           "Special 2: Altar moves, summons a demon, move +2, attack -1"
         ]
@@ -459,7 +459,7 @@
       {
         "level": 4,
         "isElite": false,
-        "contents": [
+        "textStats": [
           "Special 1: Altar moves, summons a demon, move +2, attack -1",
           "Special 2: Altar moves, summons a demon, move +2, attack -1"
         ]
@@ -467,7 +467,7 @@
       {
         "level": 5,
         "isElite": false,
-        "contents": [
+        "textStats": [
           "Special 1: Altar moves, summons a demon, move +2, attack -1",
           "Special 2: Altar moves, summons a demon, move +2, attack -1"
         ]
@@ -475,7 +475,7 @@
       {
         "level": 6,
         "isElite": false,
-        "contents": [
+        "textStats": [
           "Special 1: Altar moves, summons a demon, move +2, attack -1",
           "Special 2: Altar moves, summons a demon, move +2, attack -1"
         ]
@@ -483,7 +483,7 @@
       {
         "level": 7,
         "isElite": false,
-        "contents": [
+        "textStats": [
           "Special 1: Altar moves, summons a demon, move +2, attack -1",
           "Special 2: Altar moves, summons a demon, move +2, attack -1"
         ]
@@ -496,7 +496,7 @@
       {
         "level": 0,
         "isElite": false,
-        "contents": [
+        "textStats": [
           "Special 1: Attack +0 #31",
           "Special 2: Moves and summons 2 zephyrs"
         ]
@@ -504,7 +504,7 @@
       {
         "level": 1,
         "isElite": false,
-        "contents": [
+        "textStats": [
           "Special 1: Attack +0 #31",
           "Special 2: Moves and summons 2 zephyrs"
         ]
@@ -512,7 +512,7 @@
       {
         "level": 2,
         "isElite": false,
-        "contents": [
+        "textStats": [
           "Special 1: Attack +0 #31",
           "Special 2: Moves and summons 2 zephyrs"
         ]
@@ -520,7 +520,7 @@
       {
         "level": 3,
         "isElite": false,
-        "contents": [
+        "textStats": [
           "Special 1: Attack +0 #31",
           "Special 2: Moves and summons 2 zephyrs"
         ]
@@ -528,7 +528,7 @@
       {
         "level": 4,
         "isElite": false,
-        "contents": [
+        "textStats": [
           "Special 1: Attack +0 #31",
           "Special 2: Moves and summons 2 zephyrs"
         ]
@@ -536,7 +536,7 @@
       {
         "level": 5,
         "isElite": false,
-        "contents": [
+        "textStats": [
           "Special 1: Attack +0 #31",
           "Special 2: Moves and summons 2 zephyrs"
         ]
@@ -544,7 +544,7 @@
       {
         "level": 6,
         "isElite": false,
-        "contents": [
+        "textStats": [
           "Special 1: Attack +0 #31",
           "Special 2: Moves and summons 2 zephyrs"
         ]
@@ -552,7 +552,7 @@
       {
         "level": 7,
         "isElite": false,
-        "contents": [
+        "textStats": [
           "Special 1: Attack +0 #31",
           "Special 2: Moves and summons 2 zephyrs"
         ]
@@ -565,7 +565,7 @@
       {
         "level": 0,
         "isElite": false,
-        "contents": [
+        "textStats": [
           "Special 1: Attacks -1 all adjacent enemies, Attacks +0 range 3, Eggs hatch",
           "Special 2: Summons C of eggs, moves -1, attacks +0"
         ]
@@ -573,7 +573,7 @@
       {
         "level": 1,
         "isElite": false,
-        "contents": [
+        "textStats": [
           "Special 1: Attacks -1 all adjacent enemies, Attacks +0 range 3, Eggs hatch",
           "Special 2: Summons C of eggs, moves -1, attacks +0"
         ]
@@ -581,7 +581,7 @@
       {
         "level": 2,
         "isElite": false,
-        "contents": [
+        "textStats": [
           "Special 1: Attacks -1 all adjacent enemies, Attacks +0 range 3, Eggs hatch",
           "Special 2: Summons C of eggs, moves -1, attacks +0"
         ]
@@ -589,7 +589,7 @@
       {
         "level": 3,
         "isElite": false,
-        "contents": [
+        "textStats": [
           "Special 1: Attacks -1 all adjacent enemies, Attacks +0 range 3, Eggs hatch",
           "Special 2: Summons C of eggs, moves -1, attacks +0"
         ]
@@ -597,7 +597,7 @@
       {
         "level": 4,
         "isElite": false,
-        "contents": [
+        "textStats": [
           "Special 1: Attacks -1 all adjacent enemies, Attacks +0 range 3, Eggs hatch",
           "Special 2: Summons C of eggs, moves -1, attacks +0"
         ]
@@ -605,7 +605,7 @@
       {
         "level": 5,
         "isElite": false,
-        "contents": [
+        "textStats": [
           "Special 1: Attacks -1 all adjacent enemies, Attacks +0 range 3, Eggs hatch",
           "Special 2: Summons C of eggs, moves -1, attacks +0"
         ]
@@ -613,7 +613,7 @@
       {
         "level": 6,
         "isElite": false,
-        "contents": [
+        "textStats": [
           "Special 1: Attacks -1 all adjacent enemies, Attacks +0 range 3, Eggs hatch",
           "Special 2: Summons C of eggs, moves -1, attacks +0"
         ]
@@ -621,7 +621,7 @@
       {
         "level": 7,
         "isElite": false,
-        "contents": [
+        "textStats": [
           "Special 1: Attacks -1 all adjacent enemies, Attacks +0 range 3, Eggs hatch",
           "Special 2: Summons C of eggs, moves -1, attacks +0"
         ]
@@ -634,7 +634,7 @@
       {
         "level": 0,
         "isElite": false,
-        "contents": [
+        "textStats": [
           "Special 1: Summons Deep Terror, attacks -3 #32",
           "Special 2: Summons Deep Terror, attacks -2 #33"
         ]
@@ -642,7 +642,7 @@
       {
         "level": 1,
         "isElite": false,
-        "contents": [
+        "textStats": [
           "Special 1: Summons Deep Terror, attacks -3 #32",
           "Special 2: Summons Deep Terror, attacks -2 #33"
         ]
@@ -650,7 +650,7 @@
       {
         "level": 2,
         "isElite": false,
-        "contents": [
+        "textStats": [
           "Special 1: Summons Deep Terror, attacks -3 #32",
           "Special 2: Summons Deep Terror, attacks -2 #33"
         ]
@@ -658,7 +658,7 @@
       {
         "level": 3,
         "isElite": false,
-        "contents": [
+        "textStats": [
           "Special 1: Summons Deep Terror, attacks -3 #32",
           "Special 2: Summons Deep Terror, attacks -2 #33"
         ]
@@ -666,7 +666,7 @@
       {
         "level": 4,
         "isElite": false,
-        "contents": [
+        "textStats": [
           "Special 1: Summons Deep Terror, attacks -3 #32",
           "Special 2: Summons Deep Terror, attacks -2 #33"
         ]
@@ -674,7 +674,7 @@
       {
         "level": 5,
         "isElite": false,
-        "contents": [
+        "textStats": [
           "Special 1: Summons Deep Terror, attacks -3 #32",
           "Special 2: Summons Deep Terror, attacks -2 #33"
         ]
@@ -682,7 +682,7 @@
       {
         "level": 6,
         "isElite": false,
-        "contents": [
+        "textStats": [
           "Special 1: Summons Deep Terror, attacks -3 #32",
           "Special 2: Summons Deep Terror, attacks -2 #33"
         ]
@@ -690,7 +690,7 @@
       {
         "level": 7,
         "isElite": false,
-        "contents": [
+        "textStats": [
           "Special 1: Summons Deep Terror, attacks -3 #32",
           "Special 2: Summons Deep Terror, attacks -2 #33"
         ]
@@ -703,7 +703,7 @@
       {
         "level": 0,
         "isElite": false,
-        "contents": [
+        "textStats": [
           "Special 1: Move +2, Attack +0",
           "Special 2: Move +0, Summons Black Imp, Attack -1",
           "X = Number of hexes moved before the attack"
@@ -712,7 +712,7 @@
       {
         "level": 1,
         "isElite": false,
-        "contents": [
+        "textStats": [
           "Special 1: Move +2, Attack +0",
           "Special 2: Move +0, Summons Black Imp, Attack -1",
           "X = Number of hexes moved before the attack"
@@ -721,7 +721,7 @@
       {
         "level": 2,
         "isElite": false,
-        "contents": [
+        "textStats": [
           "Special 1: Move +2, Attack +0",
           "Special 2: Move +0, Summons Black Imp, Attack -1",
           "X = Number of hexes moved before the attack"
@@ -730,7 +730,7 @@
       {
         "level": 3,
         "isElite": false,
-        "contents": [
+        "textStats": [
           "Special 1: Move +2, Attack +0",
           "Special 2: Move +0, Summons Black Imp, Attack -1",
           "X = Number of hexes moved before the attack"
@@ -739,7 +739,7 @@
       {
         "level": 4,
         "isElite": false,
-        "contents": [
+        "textStats": [
           "Special 1: Move +2, Attack +0",
           "Special 2: Move +0, Summons Black Imp, Attack -1",
           "X = Number of hexes moved before the attack"
@@ -748,7 +748,7 @@
       {
         "level": 5,
         "isElite": false,
-        "contents": [
+        "textStats": [
           "Special 1: Move +2, Attack +0",
           "Special 2: Move +0, Summons Black Imp, Attack -1",
           "X = Number of hexes moved before the attack"
@@ -757,7 +757,7 @@
       {
         "level": 6,
         "isElite": false,
-        "contents": [
+        "textStats": [
           "Special 1: Move +2, Attack +0",
           "Special 2: Move +0, Summons Black Imp, Attack -1",
           "X = Number of hexes moved before the attack"
@@ -766,7 +766,7 @@
       {
         "level": 7,
         "isElite": false,
-        "contents": [
+        "textStats": [
           "Special 1: Move +2, Attack +0",
           "Special 2: Move +0, Summons Black Imp, Attack -1",
           "X = Number of hexes moved before the attack"
@@ -780,7 +780,7 @@
       {
         "level": 0,
         "isElite": false,
-        "contents": [
+        "textStats": [
           "Special 1: Move +9, Attack +9",
           "Special 2: Teleport, Attack +1 range 5 #25 #14 #10"
         ]
@@ -788,7 +788,7 @@
       {
         "level": 1,
         "isElite": false,
-        "contents": [
+        "textStats": [
           "Special 1: Move +9, Attack +9",
           "Special 2: Teleport, Attack +1 range 5 #25 #14 #10"
         ]
@@ -796,7 +796,7 @@
       {
         "level": 2,
         "isElite": false,
-        "contents": [
+        "textStats": [
           "Special 1: Move +9, Attack +9",
           "Special 2: Teleport, Attack +1 range 5 #25 #14 #10"
         ]
@@ -804,7 +804,7 @@
       {
         "level": 3,
         "isElite": false,
-        "contents": [
+        "textStats": [
           "Special 1: Move +9, Attack +9",
           "Special 2: Teleport, Attack +1 range 5 #25 #14 #10"
         ]
@@ -812,7 +812,7 @@
       {
         "level": 4,
         "isElite": false,
-        "contents": [
+        "textStats": [
           "Special 1: Move +9, Attack +9",
           "Special 2: Teleport, Attack +1 range 5 #25 #14 #10"
         ]
@@ -820,7 +820,7 @@
       {
         "level": 5,
         "isElite": false,
-        "contents": [
+        "textStats": [
           "Special 1: Move +9, Attack +9",
           "Special 2: Teleport, Attack +1 range 5 #25 #14 #10"
         ]
@@ -828,7 +828,7 @@
       {
         "level": 6,
         "isElite": false,
-        "contents": [
+        "textStats": [
           "Special 1: Move +9, Attack +9",
           "Special 2: Teleport, Attack +1 range 5 #25 #14 #10"
         ]
@@ -836,7 +836,7 @@
       {
         "level": 7,
         "isElite": false,
-        "contents": [
+        "textStats": [
           "Special 1: Move +9, Attack +9",
           "Special 2: Teleport, Attack +1 range 5 #25 #14 #10"
         ]
@@ -849,7 +849,7 @@
       {
         "level": 0,
         "isElite": false,
-        "contents": [
+        "textStats": [
           "Special 1: Summons Giant Viper and inflicts terror",
           "Special 2: Mind Control"
         ]
@@ -857,7 +857,7 @@
       {
         "level": 1,
         "isElite": false,
-        "contents": [
+        "textStats": [
           "Special 1: Summons Giant Viper and inflicts terror",
           "Special 2: Mind Control"
         ]
@@ -865,7 +865,7 @@
       {
         "level": 2,
         "isElite": false,
-        "contents": [
+        "textStats": [
           "Special 1: Summons Giant Viper and inflicts terror",
           "Special 2: Mind Control"
         ]
@@ -873,7 +873,7 @@
       {
         "level": 3,
         "isElite": false,
-        "contents": [
+        "textStats": [
           "Special 1: Summons Giant Viper and inflicts terror",
           "Special 2: Mind Control"
         ]
@@ -881,7 +881,7 @@
       {
         "level": 4,
         "isElite": false,
-        "contents": [
+        "textStats": [
           "Special 1: Summons Giant Viper and inflicts terror",
           "Special 2: Mind Control"
         ]
@@ -889,7 +889,7 @@
       {
         "level": 5,
         "isElite": false,
-        "contents": [
+        "textStats": [
           "Special 1: Summons Giant Viper and inflicts terror",
           "Special 2: Mind Control"
         ]
@@ -897,7 +897,7 @@
       {
         "level": 6,
         "isElite": false,
-        "contents": [
+        "textStats": [
           "Special 1: Summons Giant Viper and inflicts terror",
           "Special 2: Mind Control"
         ]
@@ -905,7 +905,7 @@
       {
         "level": 7,
         "isElite": false,
-        "contents": [
+        "textStats": [
           "Special 1: Summons Giant Viper and inflicts terror",
           "Special 2: Mind Control"
         ]
@@ -918,7 +918,7 @@
       {
         "level": 0,
         "isElite": false,
-        "contents": [
+        "textStats": [
           "Special 1: Consumes #20 to summon a Night Demon, inflicts #24 on self",
           "Special 2: Consumes #19 to summon a Sun Demon, Heals self 4, Shield 1"
         ]
@@ -926,7 +926,7 @@
       {
         "level": 1,
         "isElite": false,
-        "contents": [
+        "textStats": [
           "Special 1: Consumes #20 to summon a Night Demon, inflicts #24 on self",
           "Special 2: Consumes #19 to summon a Sun Demon, Heals self 4, Shield 1"
         ]
@@ -934,7 +934,7 @@
       {
         "level": 2,
         "isElite": false,
-        "contents": [
+        "textStats": [
           "Special 1: Consumes #20 to summon a Night Demon, inflicts #24 on self",
           "Special 2: Consumes #19 to summon a Sun Demon, Heals self 4, Shield 1"
         ]
@@ -942,7 +942,7 @@
       {
         "level": 3,
         "isElite": false,
-        "contents": [
+        "textStats": [
           "Special 1: Consumes #20 to summon a Night Demon, inflicts #24 on self",
           "Special 2: Consumes #19 to summon a Sun Demon, Heals self 4, Shield 1"
         ]
@@ -950,7 +950,7 @@
       {
         "level": 4,
         "isElite": false,
-        "contents": [
+        "textStats": [
           "Special 1: Consumes #20 to summon a Night Demon, inflicts #24 on self",
           "Special 2: Consumes #19 to summon a Sun Demon, Heals self 4, Shield 1"
         ]
@@ -958,7 +958,7 @@
       {
         "level": 5,
         "isElite": false,
-        "contents": [
+        "textStats": [
           "Special 1: Consumes #20 to summon a Night Demon, inflicts #24 on self",
           "Special 2: Consumes #19 to summon a Sun Demon, Heals self 4, Shield 1"
         ]
@@ -966,7 +966,7 @@
       {
         "level": 6,
         "isElite": false,
-        "contents": [
+        "textStats": [
           "Special 1: Consumes #20 to summon a Night Demon, inflicts #24 on self",
           "Special 2: Consumes #19 to summon a Sun Demon, Heals self 4, Shield 1"
         ]
@@ -974,7 +974,7 @@
       {
         "level": 7,
         "isElite": false,
-        "contents": [
+        "textStats": [
           "Special 1: Consumes #20 to summon a Night Demon, inflicts #24 on self",
           "Special 2: Consumes #19 to summon a Sun Demon, Heals self 4, Shield 1"
         ]

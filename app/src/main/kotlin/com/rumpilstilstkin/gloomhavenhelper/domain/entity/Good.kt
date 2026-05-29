@@ -1,7 +1,8 @@
 package com.rumpilstilstkin.gloomhavenhelper.domain.entity
 
 data class Good(
-    val number: Int,
+    val id: Int,
+    val displayNumber: Int,
     val name: String,
     val type: GoodType,
     val cost: Int,
@@ -19,7 +20,7 @@ data class Good(
         val number = matchResult?.value?.toIntOrNull()
 
         return if (number != null) {
-            this.number == number
+            this.displayNumber == number
         } else false
     }
 }

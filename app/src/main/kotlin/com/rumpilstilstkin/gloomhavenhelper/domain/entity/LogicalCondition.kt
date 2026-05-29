@@ -1,8 +1,5 @@
 package com.rumpilstilstkin.gloomhavenhelper.domain.entity
 
-import androidx.compose.ui.res.stringResource
-import com.rumpilstilstkin.gloomhavenhelper.R
-
 class LogicalCondition(val condition: String) {
     val rpnQueue: List<String> = parseToRpn(condition)
 

@@ -27,7 +27,7 @@ data class PersonalQuestTranslationJson(
     val title: String,
     val description: String,
     val specialText: String = "",
-    val tasks: List<QuestTaskTranslationJson>
+    val taskTexts: List<QuestTaskTranslationJson>
 ) {
     fun toEntity(locale: String) = PersonalQuestTranslationsBd(
         questId = questId,

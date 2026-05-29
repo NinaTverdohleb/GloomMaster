@@ -9,7 +9,7 @@ class BuyGoodForCharacterUseCase @Inject constructor(
     private val goodsRepository: GoodsRepository
 ) {
 
-    suspend operator fun invoke(goodNumbers: List<Int>, cost: Int, characterId: Int): Result<Unit> {
+    suspend operator fun invoke(goodIds: List<Int>, cost: Int, characterId: Int): Result<Unit> {
         return characterRepository.getCharacterById(characterId)?.let { character ->
 
             if (cost > character.goldCount) {
@@ -17,7 +17,7 @@ class BuyGoodForCharacterUseCase @Inject constructor(
             }else {
                 goodsRepository.addCharacterGoods(
                     characterId = characterId,
-                    goodNumbers = goodNumbers
+                    goodIds = goodIds
                 )
 
                 characterRepository.updateGold(characterId, character.goldCount - cost)

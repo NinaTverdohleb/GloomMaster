@@ -97,7 +97,7 @@ import com.rumpilstilstkin.gloomhavenhelper.bd.typeconverters.StringListTypeConv
         LocationTranslateBd::class,
         MonsterTextStatsBd::class
     ],
-    version = 2
+    version = 3
 )
 abstract class GlHelperDatabase : RoomDatabase() {
     abstract fun characterDao(): CharacterDao
@@ -118,7 +118,6 @@ abstract class GlHelperDatabase : RoomDatabase() {
     abstract fun scenarioGameStateDao(): ScenarioGameStateDao
     abstract fun locationsDao(): LocationsDao
 }
-
 fun createGlHelperDatabase(
     context: Context,
 ): GlHelperDatabase =
@@ -127,9 +126,10 @@ fun createGlHelperDatabase(
         GlHelperDatabase::class.java,
         DATABASE_NAME
     )
-        //.fallbackToDestructiveMigration(true)
         .addMigrations(*ALL_MIGRATIONS)
+        .fallbackToDestructiveMigrationFrom(false, 3)
         .build()
+
 
 
 private const val DATABASE_NAME = "glHelperDatabase"

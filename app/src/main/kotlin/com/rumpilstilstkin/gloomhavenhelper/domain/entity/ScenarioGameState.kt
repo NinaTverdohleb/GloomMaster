@@ -6,7 +6,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class ScenarioGameState(
     val scenarioNumber: Int?,
-    val monsterNames: List<String>,
+    val monsterSlugs: List<String>,
     val round: Int,
     val availableCards: List<Int>,
     val activeMonsters: List<ScenarioGameStateMonsterItem>,
