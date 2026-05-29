@@ -15,9 +15,6 @@ import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.state.Scenario
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.state.ScenarioLogicState
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.state.ScenarioStateMapper
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.state.ScenarioStateUi
-import dagger.assisted.Assisted
-import dagger.assisted.AssistedFactory
-import dagger.assisted.AssistedInject
 import dagger.hilt.android.lifecycle.HiltViewModel
 import jakarta.inject.Inject
 import kotlinx.coroutines.Dispatchers
@@ -90,15 +87,15 @@ class ScenarioViewModel @Inject constructor(
         viewModelScope.launch {
             when (action) {
                 is ScenarioActions.AddMonster -> updateState {
-                    it.addMonster(action.monsterIds)
+                    it.addMonster(action.monsterSlugs)
                         .copy(showMonsterDialog = false)
                 }
 
-                is ScenarioActions.RemoveMonster -> updateState { it.removeMonster(action.monsterId) }
+                is ScenarioActions.RemoveMonster -> updateState { it.removeMonster(action.monsterSlug) }
                 is ScenarioActions.AddUnits -> updateState {
                     it.addUnits(
                         numbers = action.numbers,
-                        monsterId = action.monsterId,
+                        monsterSlug = action.monsterSlug,
                         isSpecial = action.isElite
                     )
                 }
@@ -106,14 +103,14 @@ class ScenarioViewModel @Inject constructor(
                 is ScenarioActions.RemoveUnit -> updateState {
                     it.removeUnit(
                         number = action.number,
-                        monsterId = action.monsterId
+                        monsterSlug = action.monsterSlug
                     )
                 }
 
                 is ScenarioActions.UpdateUnitLife -> updateState {
                     it.updateUnitLife(
                         number = action.unitNumber,
-                        monsterId = action.monsterId,
+                        monsterSlug = action.monsterSlug,
                         newValue = action.newValue
                     )
                 }
@@ -122,7 +119,7 @@ class ScenarioViewModel @Inject constructor(
                 is ScenarioActions.SwitchUnitEffect -> updateState {
                     it.addEffect(
                         number = action.unitNumber,
-                        monsterId = action.monsterId,
+                        monsterSlug = action.monsterSlug,
                         effect = action.effect
                     )
                 }
@@ -166,12 +163,12 @@ class ScenarioViewModel @Inject constructor(
 
                 is ScenarioActions.UpdateUnitLevel -> updateState {
                     val newStats = getMonsterStatsForLevelUseCase(
-                        action.monsterId,
+                        action.monsterSlug,
                         action.level,
                         action.isElite
                     )
                     it.updateUnitStats(
-                        monsterId = action.monsterId,
+                        monsterSlug = action.monsterSlug,
                         number = action.unitNumber,
                         stats = newStats
                     )

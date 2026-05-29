@@ -52,14 +52,14 @@ internal fun ScenarioScreen(
     complete: () -> Unit,
     back: () -> Unit,
     addMonster: () -> Unit,
-    deleteMonster: (monsterId: Int) -> Unit,
-    deleteUnit: (unitNumber: Int, monsterId: Int) -> Unit,
-    updateUnitLife: (unitNumber: Int, monsterId: Int, life: Int) -> Unit,
-    switchUnitEffect: (unitNumber: Int, monsterId: Int, effect: ActionUi) -> Unit,
+    deleteMonster: (monsterSlug: String) -> Unit,
+    deleteUnit: (unitNumber: Int, monsterSlug: String) -> Unit,
+    updateUnitLife: (unitNumber: Int, monsterSlug: String, life: Int) -> Unit,
+    switchUnitEffect: (unitNumber: Int, monsterSlug: String, effect: ActionUi) -> Unit,
     nextRound: () -> Unit,
-    addMonsterUnit: (unitNumbers: List<Int>, monsterId: Int, isElite: Boolean) -> Unit,
+    addMonsterUnit: (unitNumbers: List<Int>, monsterSlug: String, isElite: Boolean) -> Unit,
     clickMagic: (magic: Magic) -> Unit,
-    changeUnitLevel: (monsterId: Int, unit: MonsterUnit, level: Int) -> Unit,
+    changeUnitLevel: (monsterSlug: String, unit: MonsterUnit, level: Int) -> Unit,
 ) = Scaffold(
     topBar = {
         CombatToolbar(
@@ -139,12 +139,12 @@ private fun CombatToolbar(
 fun ScenarioScreenContent(
     monsters: List<MonsterItem>,
     addMonster: () -> Unit,
-    delete: (monsterNumber: Int) -> Unit,
-    deleteUnit: (unitNumber: Int, monsterId: Int) -> Unit,
-    updateUnitLife: (unitNumber: Int, monsterId: Int, life: Int) -> Unit,
-    switchUnitEffect: (unitNumber: Int, monsterId: Int, effect: ActionUi) -> Unit,
-    addMonsterUnit: (unitNumbers: List<Int>, monsterId: Int, isElite: Boolean) -> Unit,
-    changeUnitLevel: (monsterId: Int, unit: MonsterUnit, level: Int) -> Unit,
+    delete: (monsterSlug: String) -> Unit,
+    deleteUnit: (unitNumber: Int, monsterSlug: String) -> Unit,
+    updateUnitLife: (unitNumber: Int, monsterSlug: String, life: Int) -> Unit,
+    switchUnitEffect: (unitNumber: Int, monsterSlug: String, effect: ActionUi) -> Unit,
+    addMonsterUnit: (unitNumbers: List<Int>, monsterSlug: String, isElite: Boolean) -> Unit,
+    changeUnitLevel: (monsterSlug: String, unit: MonsterUnit, level: Int) -> Unit,
     modifier: Modifier = Modifier
 ) {
 

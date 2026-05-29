@@ -83,7 +83,7 @@ fun SpawnMonsterDialog(
 
 // ─── Tier selector ────────────────────────────────────────────────────────────
 
-enum class UnitTier(@StringRes val textRes: Int) {
+enum class UnitTier(@param:StringRes val textRes: Int) {
     Normal(R.string.tier_normal),
     Elite(R.string.tier_elite)
 }

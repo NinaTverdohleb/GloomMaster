@@ -13,7 +13,6 @@ import kotlin.collections.map
 class CharacterClassRepository @Inject constructor(
     private val teamCharacterClassDao: TeamCharacterClassDao,
 ) {
-    fun getAllClasses(): List<CharacterClassType> = CharacterClassType.entries
 
     fun getAvailableClassesForTeam(teamId: Int): Flow<List<CharacterClassType>> =
         teamCharacterClassDao

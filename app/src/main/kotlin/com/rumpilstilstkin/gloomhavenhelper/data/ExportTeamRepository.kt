@@ -38,7 +38,7 @@ class ExportTeamRepository @Inject constructor(
                             CharacterDataDto(
                                 generalInfo = it,
                                 personalQuest = questsRepository.getCharacterQuestById(it.id),
-                                goods = goodsRepository.getCharacterGoodIds(it.id),
+                                goods = goodsRepository.getCharacterGoodNumbers(it.id),
                                 perks = characterRepository.getCharacterPerks(it.id)
                             )
                         }

@@ -102,14 +102,14 @@ class AddGoodsForCharacterScreenViewModel @AssistedInject constructor(
                 }
 
                 is AddGoodsForCharacterScreenActions.AddSelectedGoods -> {
-                    addCharacterGoodsUseCase(logicState.value.selectedGoods.map { it.id }, id)
+                    addCharacterGoodsUseCase(logicState.value.selectedGoods.map { it.number }, id)
                     _navigationEvents.emit(GlHelperEvent.Back)
                 }
 
                 is AddGoodsForCharacterScreenActions.BuySelectedGoods -> {
                     val cost = uiState.value.goodsGold
                     buyGoodForCharacterUseCase(
-                        goodIds = logicState.value.selectedGoods.map { it.id },
+                        goodNumbers = logicState.value.selectedGoods.map { it.number },
                         cost = cost,
                         characterId = id
                     ).onSuccess {

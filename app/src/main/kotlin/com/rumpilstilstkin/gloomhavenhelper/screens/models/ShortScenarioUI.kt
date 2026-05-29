@@ -2,8 +2,7 @@ package com.rumpilstilstkin.gloomhavenhelper.screens.models
 
 import androidx.compose.runtime.Immutable
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.LogicalCondition
-import com.rumpilstilstkin.gloomhavenhelper.domain.entity.ScenarioInfo
-import com.rumpilstilstkin.gloomhavenhelper.domain.entity.ScenarioShortInfo
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.ScenarioInfoWithName
 
 @Immutable
 data class ShortScenarioUI(
@@ -26,18 +25,10 @@ data class ShortScenarioUI(
     }
 }
 
-fun ScenarioShortInfo.toUi() = ShortScenarioUI(
+fun ScenarioInfoWithName.toUi() = ShortScenarioUI(
     scenarioNumber = this.scenarioNumber,
     scenarioName = this.scenarioName,
     scenarioRequirements = this.scenarioRequirements,
     location = this.location,
     completed = this.isCompleted
-)
-
-fun ScenarioInfo.toUi() = ShortScenarioUI(
-    scenarioNumber = this.scenarioNumber,
-    scenarioName = this.scenarioName,
-    scenarioRequirements = this.scenarioRequirements,
-    location = this.location,
-    completed = this.monsters.isNotEmpty()
 )

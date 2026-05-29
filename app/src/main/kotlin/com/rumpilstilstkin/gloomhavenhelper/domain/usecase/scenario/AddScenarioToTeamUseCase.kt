@@ -11,7 +11,6 @@ class AddScenarioToTeamUseCase @Inject constructor(
 ) {
     suspend operator fun invoke(scenarioNumber: Int) {
         val team = teamRepository.currentTeam.first() ?: return
-        val scenario = scenarioRepository.getScenario(scenarioNumber)
-        scenarioRepository.saveTeamScenario(scenario, team.teamId)
+        scenarioRepository.saveTeamScenario(scenarioNumber, team.teamId)
     }
 }

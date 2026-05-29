@@ -3,25 +3,25 @@ package com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.state
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.ActionUi
 
 sealed interface ScenarioActions {
-    data class AddUnits(val numbers: List<Int>, val monsterId: Int, val isElite: Boolean) :
+    data class AddUnits(val numbers: List<Int>, val monsterSlug: String, val isElite: Boolean) :
         ScenarioActions
 
-    data class RemoveUnit(val number: Int, val monsterId: Int) : ScenarioActions
+    data class RemoveUnit(val number: Int, val monsterSlug: String) : ScenarioActions
     data object CompleteScenario : ScenarioActions
-    data class AddMonster(val monsterIds: List<Int>) : ScenarioActions
-    data class RemoveMonster(val monsterId: Int) : ScenarioActions
-    data class UpdateUnitLife(val newValue: Int, val monsterId: Int, val unitNumber: Int) :
+    data class AddMonster(val monsterSlugs: List<String>) : ScenarioActions
+    data class RemoveMonster(val monsterSlug: String) : ScenarioActions
+    data class UpdateUnitLife(val newValue: Int, val monsterSlug: String, val unitNumber: Int) :
         ScenarioActions
 
     data object NextRound : ScenarioActions
-    data class SwitchUnitEffect(val effect: ActionUi, val monsterId: Int, val unitNumber: Int) :
+    data class SwitchUnitEffect(val effect: ActionUi, val monsterSlug: String, val unitNumber: Int) :
         ScenarioActions
 
     data object OpenMonstersDialog : ScenarioActions
     data object CloseMonstersDialog : ScenarioActions
     data class UpdateMagic(val magic: Magic) : ScenarioActions
     data class UpdateUnitLevel(
-        val monsterId: Int,
+        val monsterSlug: String,
         val unitNumber: Int,
         val level: Int,
         val isElite: Boolean

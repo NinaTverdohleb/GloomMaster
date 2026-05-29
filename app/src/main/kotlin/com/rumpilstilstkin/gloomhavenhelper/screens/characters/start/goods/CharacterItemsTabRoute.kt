@@ -37,8 +37,8 @@ fun CharacterItemsTabRoute(
         addGoods = {
             viewModel.onAction(CharacterItemsTabActions.AddGood)
         },
-        sellGood = {
-            viewModel.onAction(CharacterItemsTabActions.SellGood(it))
+        sellGood = { number, cost ->
+            viewModel.onAction(CharacterItemsTabActions.SellGood(number, cost))
         }
     )
 

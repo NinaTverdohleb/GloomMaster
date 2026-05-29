@@ -64,7 +64,7 @@ internal fun ShopTabScreen(
             GoodDetailsDialog(
                 dismiss = { selectedGood = null },
                 confirm = {
-                    deleteItem(good.id)
+                    deleteItem(good.number)
                     selectedGood = null
                 },
                 isActionPositive = false,
@@ -97,11 +97,9 @@ private fun ShopTabScreenPreview() {
             state = ShopTabStateUi(
                 avaliableGoods = persistentListOf(
                     GoodUi.fixture(
-                        id = 1,
                         number = 1,
                     ),
                     GoodUi.fixture(
-                        id = 2,
                         number = 1,
                     )
                 )

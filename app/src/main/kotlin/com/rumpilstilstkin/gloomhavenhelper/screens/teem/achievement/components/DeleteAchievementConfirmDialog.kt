@@ -11,7 +11,6 @@ import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
 
 @Composable
 fun DeleteAchievementConfirmDialog(
-    achievementName: String,
     onDismiss: () -> Unit,
     onConfirm: () -> Unit,
 ) {
@@ -24,7 +23,7 @@ fun DeleteAchievementConfirmDialog(
         negativeText = stringResource(R.string.delete),
         content = {
             Text(
-                text = stringResource(R.string.delete_achievement_warning, achievementName),
+                text = stringResource(R.string.delete_achievement_warning),
                 style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.onSurface,
             )
@@ -37,7 +36,6 @@ fun DeleteAchievementConfirmDialog(
 private fun DeleteAchievementConfirmDialogPreview() {
     GloomhavenMasterTheme {
         DeleteAchievementConfirmDialog(
-            achievementName = "First Steps",
             onDismiss = {},
             onConfirm = {},
         )

@@ -1,7 +1,7 @@
 package com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario
 
+import com.rumpilstilstkin.gloomhavenhelper.data.LocaleRepository
 import com.rumpilstilstkin.gloomhavenhelper.data.MonsterRepository
-import com.rumpilstilstkin.gloomhavenhelper.data.ScenarioRepository
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.Magic
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.ScenarioGameState
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.ScenarioGameStateMagic
@@ -13,7 +13,7 @@ import javax.inject.Inject
 class CreateActiveScenarioUseCase @Inject constructor(
     private val getCurrentTeamUseCase: GetCurrentTeamUseCase,
     private val monsterRepository: MonsterRepository,
-    private val scenarioRepository: ScenarioRepository,
+    private val localeRepository: LocaleRepository,
     private val saveScenarioStateUseCase: SaveScenarioStateUseCase,
     private val clearCurrentActiveScenarioUseCase: ClearCurrentActiveScenarioUseCase
 ) {
@@ -24,18 +24,20 @@ class CreateActiveScenarioUseCase @Inject constructor(
             if (team != null) {
                 clearCurrentActiveScenarioUseCase()
                 val monsters = scenarioNumber?.let { number ->
-                    scenarioRepository.getScenario(number).monsters
+                    monsterRepository.getMonsterNamesForScenario(scenarioNumber)
                 } ?: emptyList()
                 val scenarioMonsters =
-                    monsterRepository.getMonstersByNames(monsters, team.level)
+                    monsterRepository.getMonstersBySlugs(
+                        monsters,
+                        team.level,
+                        localeRepository.getCurrentLocale()
+                    )
                 val state = ScenarioGameState(
                     scenarioNumber = scenarioNumber,
-                    name = scenarioNumber?.let { number ->
-                        team.activeScenario.firstOrNull { it.scenarioNumber == number }?.scenarioName
-                    }.orEmpty(),
                     monsterNames = monsters,
                     round = 0,
-                    availableCards = scenarioMonsters.flatMap { it.cards }.distinct().map { it.cardId },
+                    availableCards = scenarioMonsters.flatMap { it.cards }.distinct()
+                        .map { it.cardId },
                     activeMonsters = emptyList(),
                     magicCharges = listOf(
                         ScenarioGameStateMagic(

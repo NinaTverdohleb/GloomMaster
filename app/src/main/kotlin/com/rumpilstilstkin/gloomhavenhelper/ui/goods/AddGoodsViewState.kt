@@ -20,7 +20,6 @@ data class AddGoodsViewState(
             searchText = "",
             availableGoods = persistentListOf(
                 GoodUi(
-                    id = 1,
                     number = 1,
                     name = "Boots of Striding",
                     typeImage = GloomhavenIcons.GoodTypes.Foot,
@@ -28,8 +27,7 @@ data class AddGoodsViewState(
                     image = ""
                 ),
                 GoodUi(
-                    id = 2,
-                    number = 1,
+                    number = 2,
                     name = "Boots of Striding",
                     typeImage = GloomhavenIcons.GoodTypes.Foot,
                     cost = 20,
@@ -38,15 +36,13 @@ data class AddGoodsViewState(
             ),
             selectedGoods = persistentListOf(
                 GoodUi(
-                    id = 1,
-                    number = 1,
+                    number = 3,
                     name = "Boots of Striding",
                     typeImage = GloomhavenIcons.GoodTypes.Foot,
                     cost = 20,
                     image = ""
                 ),
                 GoodUi(
-                    id = 2,
                     number = 1,
                     name = "Boots of Striding",
                     typeImage = GloomhavenIcons.GoodTypes.Foot,

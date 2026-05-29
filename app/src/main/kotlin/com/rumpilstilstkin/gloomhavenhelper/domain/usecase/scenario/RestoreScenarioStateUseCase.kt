@@ -2,6 +2,7 @@ package com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario
 
 import com.rumpilstilstkin.gloomhavenhelper.data.MonsterRepository
 import com.rumpilstilstkin.gloomhavenhelper.data.ScenarioGameStateRepository
+import com.rumpilstilstkin.gloomhavenhelper.data.ScenarioRepository
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.LevelInfo
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.ScenarioBattleInfo
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.TeamInfo
@@ -10,15 +11,20 @@ import javax.inject.Inject
 class RestoreScenarioStateUseCase @Inject constructor(
     private val scenarioGameStateRepository: ScenarioGameStateRepository,
     private val monsterRepository: MonsterRepository,
+    private val scenarioRepository: ScenarioRepository
 ) {
     suspend operator fun invoke(
         team: TeamInfo,
-        levelInfo: LevelInfo?
+        levelInfo: LevelInfo?,
+        locale: String,
     ): ScenarioBattleInfo {
         val state = scenarioGameStateRepository.get()
         return state?.let { gameState ->
+            val scenarioName = gameState.scenarioNumber?.let {
+                scenarioRepository.getScenario(gameState.scenarioNumber, locale).scenarioName
+            } ?: ""
             val scenarioMonsters =
-                monsterRepository.getMonstersByNames(gameState.monsterNames, team.level)
+                monsterRepository.getMonstersBySlugs(gameState.monsterNames, team.level, locale)
             val allCards = scenarioMonsters.flatMap { it.cards }
             val avaliableCards = gameState.availableCards.mapNotNull { cardId ->
                 allCards.firstOrNull {
@@ -26,7 +32,7 @@ class RestoreScenarioStateUseCase @Inject constructor(
                 }
             }
             ScenarioBattleInfo(
-                name = state.name,
+                name = scenarioName,
                 golds = levelInfo?.goldCount ?: 0,
                 exp = levelInfo?.experience ?: 0,
                 trapDamage = levelInfo?.trapDamage ?: 0,

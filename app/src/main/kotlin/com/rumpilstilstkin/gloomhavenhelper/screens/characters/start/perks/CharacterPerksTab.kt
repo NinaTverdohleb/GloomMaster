@@ -105,7 +105,7 @@ fun PerkItem(
             TextWithImagesByCode(modifier = Modifier.weight(1f), text = perk.text)
             Spacer(modifier = Modifier.width(16.dp))
             IconButton(
-                onClick = { perk.characterPerId?.let { deleted(it) } }) {
+                onClick = { deleted(perk.id) }) {
                 Icon(
                     Icons.Filled.Delete,
                     stringResource(R.string.delete_perk_desc),

@@ -14,6 +14,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.rumpilstilstkin.gloomhavenhelper.R
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.Achievement
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.AchievementWithName
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomAlertDialog
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomCard
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
@@ -22,9 +23,9 @@ import kotlinx.collections.immutable.persistentListOf
 
 @Composable
 fun AddAchievementDialog(
-    availableAchievements: ImmutableList<Achievement>,
+    availableAchievements: ImmutableList<AchievementWithName>,
     onDismiss: () -> Unit,
-    onSelect: (Achievement) -> Unit,
+    onSelect: (AchievementWithName) -> Unit,
 ) {
     GloomAlertDialog(
         title = stringResource(R.string.add_achievement_title),
@@ -61,9 +62,9 @@ private fun AddAchievementDialogPreview() {
     GloomhavenMasterTheme {
         AddAchievementDialog(
             availableAchievements = persistentListOf(
-                Achievement.fixture("First Steps"),
-                Achievement.fixture("Jekserah's Plans"),
-                Achievement.fixture("Ancient Technology", 3),
+                AchievementWithName.fixture("First Steps"),
+                AchievementWithName.fixture("Jekserah's Plans"),
+                AchievementWithName.fixture("Ancient Technology", ),
             ),
             onDismiss = {},
             onSelect = {},

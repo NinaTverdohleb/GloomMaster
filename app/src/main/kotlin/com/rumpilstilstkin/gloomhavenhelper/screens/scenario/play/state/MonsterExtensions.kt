@@ -5,10 +5,10 @@ import com.rumpilstilstkin.gloomhavenhelper.screens.models.MonsterUnit
 import kotlinx.collections.immutable.toImmutableList
 
 fun List<MonsterItem>.updateMonster(
-    monsterId: Int,
+    monsterSlug: String,
     transform: (MonsterItem) -> MonsterItem
 ): List<MonsterItem> = map { monster ->
-    if (monster.id == monsterId) transform(monster) else monster
+    if (monster.slug == monsterSlug) transform(monster) else monster
 }
 
 fun MonsterItem.updateUnit(

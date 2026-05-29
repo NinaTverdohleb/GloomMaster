@@ -147,7 +147,7 @@
     <string name="selected_label">Selected</string>
     <string name="available_label">Available</string>
     <string name="delete_achievement_title">Delete achievement?</string>
-    <string name="delete_achievement_warning">Are you sure you want to delete achievement \"%1$s\"?</string>
+    <string name="delete_achievement_warning">Are you sure you want to delete achievement?</string>
     <string name="add_achievement_title">Add Achievement</string>
     <string name="add_achievement_button">Add Achievement</string>
     <string name="add_goods_to_shop_title">Add Items</string>

@@ -10,8 +10,12 @@ import javax.inject.Singleton
 class PerksRepository @Inject constructor(
     private val perksDao: PerksDao
 ) {
-    suspend fun getPerksForCharacterClass(characterType: CharacterClassType) =
+    suspend fun getPerksForCharacterClass(characterType: CharacterClassType, locale: String) =
         perksDao
-            .getPerksByCharacterClass(characterType.name)
+            .getPerksByCharacterClass(
+                characterType = characterType.name,
+                targetLocale = locale,
+                defaultLocale = LocaleRepository.DEFAULT_LOCALE
+            )
             .map { it.toDomain() }
 }

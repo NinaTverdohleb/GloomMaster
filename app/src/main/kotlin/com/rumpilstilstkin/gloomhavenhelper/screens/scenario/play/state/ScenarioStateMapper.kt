@@ -15,7 +15,7 @@ import kotlinx.collections.immutable.toImmutableMap
 object ScenarioStateMapper {
 
     fun toUiState(state: ScenarioLogicState): ScenarioStateUi {
-        val existingIds = state.activeMonsters.map { it.id }.toSet()
+        val existingSlugs = state.activeMonsters.map { it.slug }.toSet()
         return ScenarioStateUi(
             name = state.scenarioInfo.name,
             exp = state.scenarioInfo.exp,
@@ -33,10 +33,10 @@ object ScenarioStateMapper {
             }.sortedBy { it.currentCard?.initiative ?: 0 }.toImmutableList(),
             showMonsterDialog = state.showMonsterDialog,
             monstersForAdd = state.scenarioInfo.monsters
-                .filter { it.id !in existingIds }
+                .filter { it.slug !in existingSlugs }
                 .map {
                     MonsterItem(
-                        id = it.id,
+                        slug = it.slug,
                         name = it.name,
                         isFly = it.isFly,
                         currentCard = null,
@@ -53,9 +53,9 @@ object ScenarioStateMapper {
             scenarioInfo = battleInfo,
             cardDeck = CardDeckState.create(battleInfo.availableCards),
             activeMonsters = battleInfo.activeMonsters.map { item ->
-                val monster = battleInfo.monsters.first { it.id == item.id }
+                val monster = battleInfo.monsters.first { it.slug == item.slug }
                 MonsterItem(
-                    id = item.id,
+                    slug = item.slug,
                     name = monster.name,
                     currentCard = item.currentCard?.let { cardId ->
                         battleInfo.monsters.flatMap { it.cards }
@@ -85,13 +85,12 @@ object ScenarioStateMapper {
 
     fun stateForSave(state: ScenarioLogicState) =
         ScenarioGameState(
-            name = state.scenarioInfo.name,
             monsterNames = state.scenarioInfo.monsters.map { it.name },
             round = state.round,
             availableCards = state.cardDeck.getCards().map { it.cardId },
             activeMonsters = state.activeMonsters.map { monsterItem ->
                 ScenarioGameStateMonsterItem(
-                    id = monsterItem.id,
+                    slug = monsterItem.slug,
                     currentCard = monsterItem.currentCard?.id,
                     units = monsterItem.units.map { unit ->
                         ScenarioGameStateMonsterUnit(

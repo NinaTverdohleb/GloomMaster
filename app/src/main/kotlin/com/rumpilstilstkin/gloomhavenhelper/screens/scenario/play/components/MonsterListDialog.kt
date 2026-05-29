@@ -40,11 +40,11 @@ import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
 @Composable
 fun MonsterListDialog(
     monsters: List<MonsterItem>,
-    selectMonster: (List<Int>) -> Unit,
+    selectMonster: (List<String>) -> Unit,
     addNewMonsters: () -> Unit,
     onDismiss: () -> Unit,
 ) {
-    var selectedIds by remember { mutableStateOf(emptyList<Int>()) }
+    var selectedIds by remember { mutableStateOf(emptyList<String>()) }
 
     GloomAlertDialog(
         onDismissRequest = onDismiss,
@@ -64,12 +64,12 @@ fun MonsterListDialog(
                 items(monsters.size) { index ->
                     MonsterClassItem(
                         name = monsters[index].name,
-                        isSelected = selectedIds.contains(monsters[index].id),
+                        isSelected = selectedIds.contains(monsters[index].slug),
                         onClick = {
-                            selectedIds = if (selectedIds.contains(monsters[index].id)) {
-                                selectedIds - monsters[index].id
+                            selectedIds = if (selectedIds.contains(monsters[index].slug)) {
+                                selectedIds - monsters[index].slug
                             } else {
-                                selectedIds + monsters[index].id
+                                selectedIds + monsters[index].slug
                             }
                         },
                     )
@@ -138,8 +138,8 @@ private fun MonsterListDialogPreview() {
     GloomhavenMasterTheme {
         MonsterListDialog(
             monsters = listOf(
-                MonsterItem.fixture(1, "Skeleton"),
-                MonsterItem.fixture(2, "Zombie"),
+                MonsterItem.fixture("1", "Skeleton"),
+                MonsterItem.fixture("2", "Zombie"),
             ),
             onDismiss = {},
             selectMonster = {},

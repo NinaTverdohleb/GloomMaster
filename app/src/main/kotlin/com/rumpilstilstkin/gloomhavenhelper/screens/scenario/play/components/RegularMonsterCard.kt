@@ -31,12 +31,12 @@ import kotlinx.collections.immutable.persistentListOf
 fun RegularMonsterCard(
     item: MonsterItem,
     modifier: Modifier = Modifier,
-    delete: (monsterNumber: Int) -> Unit,
-    deleteUnit: (unitNumber: Int, monsterId: Int) -> Unit,
-    updateUnitLife: (unitNumber: Int, monsterId: Int, life: Int) -> Unit,
-    switchUnitEffect: (unitNumber: Int, monsterId: Int, effect: ActionUi) -> Unit,
-    addMonsterUnit: (unitNumbers: List<Int>, monsterId: Int, isSpecial: Boolean) -> Unit,
-    changeUnitLevel: (monsterId: Int, unit: MonsterUnit, level: Int) -> Unit
+    delete: (monsterSlug: String) -> Unit,
+    deleteUnit: (unitNumber: Int, monsterSlug: String) -> Unit,
+    updateUnitLife: (unitNumber: Int, monsterSlug: String, life: Int) -> Unit,
+    switchUnitEffect: (unitNumber: Int, monsterSlug: String, effect: ActionUi) -> Unit,
+    addMonsterUnit: (unitNumbers: List<Int>, monsterSlug: String, isSpecial: Boolean) -> Unit,
+    changeUnitLevel: (monsterSlug: String, unit: MonsterUnit, level: Int) -> Unit
 ) {
     var showSpawnDialog by remember { mutableStateOf(false) }
     var selectedUnit by remember { mutableStateOf<MonsterUnit?>(null) }
@@ -45,7 +45,7 @@ fun RegularMonsterCard(
         MonsterCardHeader(
             name = item.name,
             isFly = item.isFly,
-            delete = { delete(item.id) },
+            delete = { delete(item.slug) },
             onAddUnit = if (item.isBoss) {
                 null
             } else {
@@ -88,18 +88,18 @@ fun RegularMonsterCard(
                             ),
                         unit = unit,
                         isBoss = item.isBoss,
-                        deleteUnit = { unitNumber -> deleteUnit(unitNumber, item.id) },
+                        deleteUnit = { unitNumber -> deleteUnit(unitNumber, item.slug) },
                         switchEffect = { unitNumber, effect ->
                             switchUnitEffect(
                                 unitNumber,
-                                item.id,
+                                item.slug,
                                 effect
                             )
                         },
                         changeLife = { unitNumber, life ->
                             updateUnitLife(
                                 unitNumber,
-                                item.id,
+                                item.slug,
                                 life
                             )
                         },
@@ -119,7 +119,7 @@ fun RegularMonsterCard(
             dismiss = { selectedUnit = null },
             changeLevel = { level ->
                 changeUnitLevel(
-                    item.id,
+                    item.slug,
                     it,
                     level
                 )
@@ -135,7 +135,7 @@ fun RegularMonsterCard(
             availableIds = (1..14).toList().filter { it !in existingNumbers },
             onDismiss = { showSpawnDialog = false },
             onSpawn = { numbers, special ->
-                addMonsterUnit(numbers, item.id, special)
+                addMonsterUnit(numbers, item.slug, special)
                 showSpawnDialog = false
             },
         )
@@ -149,7 +149,7 @@ private fun RegularMonsterCardPreview() {
     GloomhavenMasterTheme {
         RegularMonsterCard(
             item = MonsterItem(
-                id = 1,
+                slug = "1",
                 isBoss = true,
                 name = "Living Bones",
                 currentCard = null,
