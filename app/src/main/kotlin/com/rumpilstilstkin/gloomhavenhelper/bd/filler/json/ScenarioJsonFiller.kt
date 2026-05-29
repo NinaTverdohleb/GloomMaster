@@ -10,16 +10,19 @@ class ScenarioJsonFiller @Inject constructor(
     private val scenarioDao: ScenarioDao
 ) {
     suspend fun fill(pack: String) {
-        val file = "scenarios.json"
-        val scenarios = jsonDataLoader.loadDictionaryList<ScenarioJson>(file, pack)
+        val scenarios = jsonDataLoader.loadDictionaryList<ScenarioJson>("scenarios.json", pack)
         val entities = scenarios.map { it.toEntity() }
         scenarioDao.insertAll(*entities.toTypedArray())
 
         jsonDataLoader.getLocalesForPack(pack).forEach { locale ->
-            val translations =
-                jsonDataLoader.loadDictionaryList<ScenarioTranslationJson>(file, "$pack/$locale")
-            val translationsEntities = translations.map { it.toEntity(locale) }
-            scenarioDao.insertAll(*translationsEntities.toTypedArray())
+            fillTranslations(pack, locale)
         }
+    }
+
+    suspend fun fillTranslations(pack: String, locale: String) {
+        val translations =
+            jsonDataLoader.loadDictionaryListOrEmpty<ScenarioTranslationJson>("scenarios.json", "$pack/$locale")
+        val translationsEntities = translations.map { it.toEntity(locale) }
+        scenarioDao.insertAll(*translationsEntities.toTypedArray())
     }
 }

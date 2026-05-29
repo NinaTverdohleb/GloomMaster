@@ -38,7 +38,22 @@ class DatabaseFiller @Inject constructor(
                 fillMain()
                 fillForgottenCircles()
             }
+            // Example for a future language: when "de" assets are added, bump VERSION and seed
+            // only its translations for the packs that have them — base data is left untouched.
+            // 5 -> fillLocale(locale = "de", packs = listOf("main", "forgottenCircles"))
             else -> {}
+        }
+    }
+
+    suspend fun fillLocale(locale: String, packs: List<String>) {
+        packs.forEach { pack ->
+            scenarioJsonFiller.fillTranslations(pack, locale)
+            goodJsonFiller.fillTranslations(pack, locale)
+            perkJsonFiller.fillTranslations(pack, locale)
+            achievementJsonFiller.fillTranslations(pack, locale)
+            monsterJsonFiller.fillTranslations(pack, locale)
+            locationJsonFiller.fillTranslations(pack, locale)
+            questJsonFiller.fillTranslations(pack, locale)
         }
     }
 
@@ -51,9 +66,7 @@ class DatabaseFiller @Inject constructor(
         achievementJsonFiller.fill(pack)
         perkJsonFiller.fill(pack)
         questJsonFiller.fill(pack)
-        monsterJsonFiller.fillDecks(pack)
-        monsterJsonFiller.fillMonsters(pack)
-        monsterJsonFiller.fillStats(pack)
+        monsterJsonFiller.fill(pack)
     }
 
     private suspend fun fillForgottenCircles() {
@@ -61,9 +74,7 @@ class DatabaseFiller @Inject constructor(
         scenarioJsonFiller.fill(pack)
         goodJsonFiller.fill(pack)
         perkJsonFiller.fill(pack)
-        monsterJsonFiller.fillDecks(pack)
-        monsterJsonFiller.fillMonsters(pack)
-        monsterJsonFiller.fillStats(pack)
+        monsterJsonFiller.fill(pack)
         achievementJsonFiller.fill(pack)
     }
 

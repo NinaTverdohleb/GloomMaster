@@ -10,17 +10,20 @@ class LocationJsonFiller @Inject constructor(
     private val dao: LocationsDao
 ) {
     suspend fun fill(pack: String) {
-        val file = "locations.json"
         val data =
-            jsonDataLoader.loadDictionaryList<LocationJson>(file, pack)
+            jsonDataLoader.loadDictionaryList<LocationJson>("locations.json", pack)
         val entities = data.map { it.toEntity() }
         dao.insertAll(*entities.toTypedArray())
         jsonDataLoader.getLocalesForPack(pack).forEach { locale ->
-            val translations = jsonDataLoader.loadDictionaryList<LocationTranslationJson>(
-                file, "$pack/$locale"
-            )
-            val translationsEntities = translations.map { it.toEntity(locale) }
-            dao.insertAll(*translationsEntities.toTypedArray())
+            fillTranslations(pack, locale)
         }
+    }
+
+    suspend fun fillTranslations(pack: String, locale: String) {
+        val translations = jsonDataLoader.loadDictionaryListOrEmpty<LocationTranslationJson>(
+            "locations.json", "$pack/$locale"
+        )
+        val translationsEntities = translations.map { it.toEntity(locale) }
+        dao.insertAll(*translationsEntities.toTypedArray())
     }
 }
