@@ -52,7 +52,10 @@ internal fun ShopTabScreen(
             verticalArrangement = Arrangement.spacedBy(8.dp),
             contentPadding = PaddingValues(vertical = 16.dp)
         ) {
-            items(state.avaliableGoods) { good ->
+            items(
+                items = state.avaliableGoods,
+                key = { it.goodId }
+            ) { good ->
                 GoodItem(
                     modifier = Modifier.animateItem(),
                     good = good,
@@ -97,10 +100,10 @@ private fun ShopTabScreenPreview() {
             state = ShopTabStateUi(
                 avaliableGoods = persistentListOf(
                     GoodUi.fixture(
-                        number = 1,
+                        id = 1,
                     ),
                     GoodUi.fixture(
-                        number = 1,
+                        id = 2,
                     )
                 )
             ),

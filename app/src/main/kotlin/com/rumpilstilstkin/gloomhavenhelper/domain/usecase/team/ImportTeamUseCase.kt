@@ -1,7 +1,9 @@
 package com.rumpilstilstkin.gloomhavenhelper.domain.usecase.team
 
+import android.util.Log
 import com.rumpilstilstkin.gloomhavenhelper.data.CharacterClassRepository
 import com.rumpilstilstkin.gloomhavenhelper.data.CharacterRepository
+import com.rumpilstilstkin.gloomhavenhelper.data.GoodsRepository
 import com.rumpilstilstkin.gloomhavenhelper.data.QuestsRepository
 import com.rumpilstilstkin.gloomhavenhelper.data.ScenarioRepository
 import com.rumpilstilstkin.gloomhavenhelper.data.TeamRepository
@@ -19,11 +21,11 @@ class ImportTeamUseCase @Inject constructor(
     private val teamRepository: TeamRepository,
     private val scenarioRepository: ScenarioRepository,
     private val characterClassRepository: CharacterClassRepository,
-    private val addGoodsToTeamUseCase: AddGoodsToTeamByNumbersUseCase,
     private val characterRepository: CharacterRepository,
     private val questsRepository: QuestsRepository,
     private val addPerksForCharacterUseCase: AddPerksForCharacterUseCase,
     private val addGoodForCharacterUseCase: AddGoodForCharacterUseCase,
+    private val goodsRepository: GoodsRepository
 ) {
     private val json = Json {
         ignoreUnknownKeys = true
@@ -50,8 +52,36 @@ class ImportTeamUseCase @Inject constructor(
                 data.teamScenarios.map { it.scenarioNumber to it.completed },
                 teamId
             )
-            addGoodsToTeamUseCase(teamId, data.teamGoods)
+
+            val availableIdsMap = goodsRepository.getGoodIdsByNumbers(data.teamGoods.distinct())
+            Log.d("Dto", availableIdsMap.toString())
+            val idAvaliableQueues = availableIdsMap.mapValues { it.value.toMutableList() }
+            val teamGoods: Map<Int, List<Int>> = data.teamGoods
+                .mapNotNull { number ->
+                    val queue = idAvaliableQueues[number]
+                    if (!queue.isNullOrEmpty()) {
+                        number to queue.removeAt(0)
+                    } else {
+                        null
+                    }
+                }
+                .groupBy(
+                    keySelector = { it.first },
+                    valueTransform = { it.second }
+                )
+            goodsRepository.addGoodsToTeam(teamId, teamGoods.values.flatten())
+
+            val teamQueues = teamGoods.mapValues { it.value.toMutableList() }
             data.characters.forEach { character ->
+                val goods = character.goodDisplayNumbers
+                    .mapNotNull { number ->
+                        val queue = teamQueues[number]
+                        if (!queue.isNullOrEmpty()) {
+                            queue.removeAt(0)
+                        } else {
+                            null
+                        }
+                    }
                 val characterId = characterRepository.addCharacter(
                     CharacterForSave(
                         name = character.generalInfo.name,
@@ -72,7 +102,7 @@ class ImportTeamUseCase @Inject constructor(
                     )
                 }
                 addPerksForCharacterUseCase(character.perks, characterId)
-                addGoodForCharacterUseCase(character.goods, characterId)
+                addGoodForCharacterUseCase(goods, characterId)
             }
         }
 }

@@ -27,7 +27,8 @@ data class CharacterInfo(
     val experience: Int,
     val goldCount: Int,
     val checkMarkCount: Int,
-    val notes: String
+    val notes: String,
+    val additionalContOfPerks: Int,
 )
 
 data class CharacterShortInfo(

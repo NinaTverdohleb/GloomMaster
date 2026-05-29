@@ -15,19 +15,19 @@ import androidx.room.PrimaryKey
     ),
     ForeignKey(
         entity = GoodBd::class,
-        parentColumns = arrayOf("goodNumber"),
-        childColumns = arrayOf("goodNumber"),
+        parentColumns = arrayOf("goodId"),
+        childColumns = arrayOf("goodId"),
         onDelete = CASCADE
     )
 ],
     indices = [
         Index("characterId"),
-        Index("goodNumber"),
+        Index("goodId"),
     ]
 )
 data class CharacterGoodBd(
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0,
     val characterId: Int,
-    val goodNumber: Int,
+    val goodId: Int,
 )

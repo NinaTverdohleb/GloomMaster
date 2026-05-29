@@ -45,14 +45,14 @@ class CharacterItemsTabViewModel @AssistedInject constructor(
             when (action) {
                 is CharacterItemsTabActions.DeleteGood -> {
                     deleteCharacterGoodsUseCase(
-                        goodNumber = action.goodNumber,
+                        goodId = action.goodId,
                         characterId = id
                     )
                 }
 
                 is CharacterItemsTabActions.SellGood -> {
                     sellGoodCharacterUseCase(
-                        goodNumber = action.goodNumber,
+                        goodId = action.goodId,
                         characterId = id,
                         cost = action.cost
                     )
@@ -62,7 +62,7 @@ class CharacterItemsTabViewModel @AssistedInject constructor(
                     _navigationEvents.emit(
                         GlHelperEvent.Screen(
                             GlHelperScreens.AddGoodsForCharacter(
-                                id
+                                characterId = id
                             )
                         )
                     )

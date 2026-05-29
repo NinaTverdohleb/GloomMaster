@@ -25,10 +25,10 @@ class GetGoodsForCurrentTeamUseCase @Inject constructor(
                 .flatMapLatest { team ->
                     team?.let {
                         combine(
-                            goodsRepository.getCharacterGoodNumbers(team.aliveCharacterIds),
+                            goodsRepository.getCharacterGoodIds(team.aliveCharacterIds),
                             goodsRepository.getGoodsForTeam(team.teamId, locale)
                         ) { characterGoodIds, allGoods ->
-                            allGoods.filter { good -> good.number !in characterGoodIds }
+                            allGoods.filter { good -> good.id !in characterGoodIds }
                         }
                     } ?: flowOf(emptyList())
                 }

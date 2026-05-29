@@ -9,10 +9,10 @@ class SellGoodCharacterUseCase @Inject constructor(
     private val deleteCharacterGoodsUseCase: DeleteCharacterGoodsUseCase,
 ) {
 
-    suspend operator fun invoke(goodNumber: Int, characterId: Int, cost: Int): Result<Unit> {
+    suspend operator fun invoke(goodId: Int, characterId: Int, cost: Int): Result<Unit> {
         return characterRepository.getCharacterById(characterId)?.let { character ->
             deleteCharacterGoodsUseCase(
-                goodNumber = goodNumber,
+                goodId = goodId,
                 characterId = characterId
             )
             characterRepository.updateGold(characterId, character.goldCount + cost.div(2))

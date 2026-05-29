@@ -64,5 +64,5 @@ data class MonsterTranslationStatsJson(
 data class MonsterLevelTranslationStatsJson(
     val level: Int,
     val isElite: Boolean,
-    val stats: List<String>
+    val textStats: List<String>
 )

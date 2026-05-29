@@ -24,7 +24,7 @@ class RestoreScenarioStateUseCase @Inject constructor(
                 scenarioRepository.getScenario(gameState.scenarioNumber, locale).scenarioName
             } ?: ""
             val scenarioMonsters =
-                monsterRepository.getMonstersBySlugs(gameState.monsterNames, team.level, locale)
+                monsterRepository.getMonstersBySlugs(gameState.monsterSlugs, team.level, locale)
             val allCards = scenarioMonsters.flatMap { it.cards }
             val avaliableCards = gameState.availableCards.mapNotNull { cardId ->
                 allCards.firstOrNull {

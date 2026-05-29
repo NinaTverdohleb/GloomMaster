@@ -78,19 +78,11 @@ private fun SelectedGoodsViewPreview() {
     GloomhavenMasterTheme {
         SelectedGoodsView(
             selectedGoods = persistentListOf(
-                GoodUi(
-                    number = 1,
-                    name = "Boots of Striding",
-                    typeImage = GloomhavenIcons.GoodTypes.Foot,
-                    cost = 20,
-                    image = ""
+                GoodUi.fixture(
+                    id = 1,
                 ),
-                GoodUi(
-                    number = 1,
-                    name = "Boots of Striding",
-                    typeImage = GloomhavenIcons.GoodTypes.Foot,
-                    cost = 20,
-                    image = ""
+                GoodUi.fixture(
+                    id = 2,
                 )
             ),
             onAction = {}

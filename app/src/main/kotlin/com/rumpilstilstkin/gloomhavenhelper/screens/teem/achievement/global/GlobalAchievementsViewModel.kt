@@ -43,7 +43,10 @@ class GlobalAchievementsViewModel @Inject constructor(
         logicState,
     ) { team, availableAchievements, logic ->
         AchievementsStateUi(
-            achievements = team?.achievements?.toImmutableList() ?: persistentListOf(),
+            achievements = team
+                ?.achievements
+                ?.filter { it.isGlobal }
+                ?.toImmutableList() ?: persistentListOf(),
             availableAchievements = availableAchievements.toImmutableList(),
             showAddDialog = logic.showAddDialog,
             achievementToDelete = logic.achievementToDelete,

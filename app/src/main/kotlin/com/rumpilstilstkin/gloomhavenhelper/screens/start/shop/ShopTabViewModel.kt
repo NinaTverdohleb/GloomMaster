@@ -42,7 +42,7 @@ class ShopTabViewModel @Inject constructor(
                         search = logicState.searchText
                     )
                 }
-                .sortedBy { it.number }
+                .sortedBy { it.displayNumber }
                 .map { it.toUi() }
                 .toImmutableList(),
             selectedFilter = logicState.selectedFilter,

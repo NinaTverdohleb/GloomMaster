@@ -13,8 +13,20 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface CharacterGoodsDao {
     @Transaction
-    @Query("SELECT goodNumber FROM CharacterGoodBd WHERE characterId IN (:characterIds)")
-    fun getCharactersGoodNumbers(characterIds: List<Int>): Flow<List<Int>>
+    @Query("SELECT goodId FROM CharacterGoodBd WHERE characterId IN (:characterIds)")
+    fun getCharactersGoodIds(characterIds: List<Int>): Flow<List<Int>>
+
+    @Transaction
+    @Query(
+        """
+        SELECT 
+            g.displayNumber 
+        FROM CharacterGoodBd tg
+        INNER JOIN GoodBd g ON tg.goodId = g.goodId
+        WHERE tg.characterId = :characterId
+    """
+    )
+    fun getCharactersGoodNumbers(characterId: Int): Flow<List<Int>>
 
     @Query(
         """
@@ -22,9 +34,9 @@ interface CharacterGoodsDao {
             g.*, 
             COALESCE(t1.name, t2.name, 'not found') AS translated_name 
         FROM CharacterGoodBd tg
-        INNER JOIN GoodBd g ON tg.goodNumber = g.goodNumber
-        LEFT JOIN GoodTranslationsBd t1 ON g.goodNumber = t1.goodNumber AND t1.locale = :targetLocale
-        LEFT JOIN GoodTranslationsBd t2 ON g.goodNumber = t2.goodNumber AND t2.locale = :defaultLocale
+        INNER JOIN GoodBd g ON tg.goodId = g.goodId
+        LEFT JOIN GoodTranslationsBd t1 ON g.displayNumber = t1.displayNumber AND t1.locale = :targetLocale
+        LEFT JOIN GoodTranslationsBd t2 ON g.displayNumber = t2.displayNumber AND t2.locale = :defaultLocale
         WHERE tg.characterId = :characterId
     """
     )
@@ -43,8 +55,8 @@ interface CharacterGoodsDao {
     @Delete
     suspend fun delete(characterGood: CharacterGoodBd)
 
-    @Query("DELETE FROM CharacterGoodBd WHERE characterId = :characterId AND goodNumber = :goodNumber")
-    suspend fun delete(characterId: Int, goodNumber: Int)
+    @Query("DELETE FROM CharacterGoodBd WHERE characterId = :characterId AND goodId = :goodId")
+    suspend fun delete(characterId: Int, goodId: Int)
 
     @Query("DELETE FROM CharacterGoodBd WHERE characterId = :characterId")
     suspend fun deleteCharacterGoods(characterId: Int)

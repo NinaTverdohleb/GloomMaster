@@ -38,7 +38,7 @@ fun AddAchievementDialog(
             ) {
                 items(
                     items = availableAchievements,
-                    key = { it.name }
+                    key = { it.slug }
                 ) { achievement ->
                     GloomCard(
                         modifier = Modifier.clickable { onSelect(achievement) }

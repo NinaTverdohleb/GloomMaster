@@ -19,35 +19,19 @@ data class AddGoodsViewState(
         fun fixture() = AddGoodsViewState(
             searchText = "",
             availableGoods = persistentListOf(
-                GoodUi(
-                    number = 1,
-                    name = "Boots of Striding",
-                    typeImage = GloomhavenIcons.GoodTypes.Foot,
-                    cost = 20,
-                    image = ""
+                GoodUi.fixture(
+                    id = 2,
                 ),
-                GoodUi(
-                    number = 2,
-                    name = "Boots of Striding",
-                    typeImage = GloomhavenIcons.GoodTypes.Foot,
-                    cost = 20,
-                    image = ""
+                GoodUi.fixture(
+                    id = 2,
                 )
             ),
             selectedGoods = persistentListOf(
-                GoodUi(
-                    number = 3,
-                    name = "Boots of Striding",
-                    typeImage = GloomhavenIcons.GoodTypes.Foot,
-                    cost = 20,
-                    image = ""
+                GoodUi.fixture(
+                    id = 3,
                 ),
-                GoodUi(
-                    number = 1,
-                    name = "Boots of Striding",
-                    typeImage = GloomhavenIcons.GoodTypes.Foot,
-                    cost = 20,
-                    image = ""
+                GoodUi.fixture(
+                    id = 1,
                 )
             ),
             selectedFilter = GoodType.Arm,

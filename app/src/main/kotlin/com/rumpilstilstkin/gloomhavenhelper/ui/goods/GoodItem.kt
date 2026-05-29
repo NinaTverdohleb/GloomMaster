@@ -89,12 +89,8 @@ fun GoodItem(
 private fun GoodItemPreview() {
     GloomhavenMasterTheme {
         GoodItem(
-            good = GoodUi(
-                number = 1,
-                name = "Boots of Striding",
-                typeImage = GloomhavenIcons.GoodTypes.Foot,
-                cost = 20,
-                image = ""
+            good = GoodUi.fixture(
+                id = 1,
             ),
             clickItem = {}
         )

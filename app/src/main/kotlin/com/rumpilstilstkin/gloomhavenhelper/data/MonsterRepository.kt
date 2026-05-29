@@ -1,9 +1,11 @@
 package com.rumpilstilstkin.gloomhavenhelper.data
 
+import android.util.Log
 import com.rumpilstilstkin.gloomhavenhelper.bd.dao.MonsterDao
 import com.rumpilstilstkin.gloomhavenhelper.bd.dao.ScenarioDao
 import com.rumpilstilstkin.gloomhavenhelper.data.mappers.toDomain
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.Monster
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterCard
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterStats
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -13,7 +15,7 @@ class MonsterRepository @Inject constructor(
     val monsterDao: MonsterDao,
     val scenarioDao: ScenarioDao,
 ) {
-    suspend fun getMonsterNamesForScenario(
+    suspend fun getMonsterSlugsForScenario(
         scenarioNumber: Int,
     ): List<String> =
         scenarioDao.getScenario(
@@ -26,19 +28,14 @@ class MonsterRepository @Inject constructor(
         isElite: Boolean,
         locale: String
     ): MonsterStats {
-        val monster = monsterDao.getMonsterBySlug(
-            monsterSlug,
-            targetLocale = locale,
-            defaultLocale = LocaleRepository.DEFAULT_LOCALE
-        )
         val stats = monsterDao.getStats(
-            monster = monster.monster.slug,
+            monsterSlug = monsterSlug,
             level = level,
             isElite = isElite
         ).let { stats ->
             stats.copy(
                 stats = stats.stats + monsterDao.getTextStats(
-                    monster = monster.monster.slug,
+                    monster = monsterSlug,
                     level = level,
                     isElite = isElite,
                     targetLocale = locale,
@@ -47,7 +44,7 @@ class MonsterRepository @Inject constructor(
             )
         }
         return MonsterStats(
-            monsterSlug = monster.monster.slug,
+            monsterSlug = monsterSlug,
             level = level,
             isElite = isElite,
             life = stats.life,
@@ -59,52 +56,39 @@ class MonsterRepository @Inject constructor(
         monsterDao.getMonstersByPacks(packs).map { monster -> monster.slug }
 
 
+    suspend fun getMonsterCards(
+        slugs: List<String>,
+    ): List<MonsterCard> =
+        monsterDao.getCardsByMonsterSlugs(slugs).map { it.toDomain() }
+
     suspend fun getMonstersBySlugs(
         slugs: List<String>,
         level: Int,
         locale: String
     ): List<Monster> =
         slugs
-            .map { monsterName ->
+            .map { slug ->
                 val monster = monsterDao.getMonsterBySlug(
-                    monsterName,
+                    slug = slug,
                     targetLocale = locale,
                     defaultLocale = LocaleRepository.DEFAULT_LOCALE
                 )
-                val regularStats = monsterDao.getStats(
-                    monster = monster.monster.slug,
+                val regularStats = getMonsterStats(
+                    monsterSlug = slug,
                     level = level,
-                    isElite = false
-                ).let { stats ->
-                    stats.copy(
-                        stats = stats.stats + monsterDao.getTextStats(
-                            monster = monster.monster.slug,
-                            level = level,
-                            isElite = false,
-                            targetLocale = locale,
-                            defaultLocale = LocaleRepository.DEFAULT_LOCALE
-                        )?.stats.orEmpty()
-                    )
-                }
+                    isElite = false,
+                    locale = locale
+                )
 
                 val eliteStats = if (monster.monster.isBoss) {
                     null
                 } else {
-                    monsterDao.getStats(
-                        monster = monster.monster.slug,
+                    getMonsterStats(
+                        monsterSlug = slug,
                         level = level,
-                        isElite = true
-                    ).let { stats ->
-                        stats.copy(
-                            stats = stats.stats + monsterDao.getTextStats(
-                                monster = monster.monster.slug,
-                                level = level,
-                                isElite = true,
-                                targetLocale = locale,
-                                defaultLocale = LocaleRepository.DEFAULT_LOCALE
-                            )?.stats.orEmpty()
-                        )
-                    }
+                        isElite = true,
+                        locale = locale
+                    )
                 }
 
                 val cards = monsterDao.getCardsByDeckName(monster.monster.deckName)

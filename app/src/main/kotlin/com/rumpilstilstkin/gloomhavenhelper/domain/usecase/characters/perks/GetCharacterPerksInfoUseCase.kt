@@ -6,6 +6,7 @@ import com.rumpilstilstkin.gloomhavenhelper.data.PerksRepository
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.CharacterPerksInfo
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
@@ -20,21 +21,24 @@ class GetCharacterPerksInfoUseCase @Inject constructor(
     @OptIn(ExperimentalCoroutinesApi::class)
     operator fun invoke(characterId: Int): Flow<CharacterPerksInfo> {
         return localeRepository.observeLocale.flatMapLatest { locale ->
-            characterRepository.getCharacterPerksFlow(characterId, locale).map { perks ->
-                characterRepository.getCharacterById(characterId)?.let { character ->
-                    val avaliablePerks =
-                        perksRepository.getPerksForCharacterClass(character.characterType, locale)
-                            .filter { perk -> perk.id !in perks.map { it.id } }
-                    val allCount = character.level + character.checkMarkCount.div(3) - 1
-                    CharacterPerksInfo(
-                        characterPerks = perks,
-                        avaliablePerks = avaliablePerks,
-                        avaliablePerksCount = max(0, allCount - perks.size)
-                    )
-                } ?: CharacterPerksInfo(
-                    characterPerks = emptyList(),
-                    avaliablePerks = emptyList(),
-                    avaliablePerksCount = 0
+            combine(
+                characterRepository.getCharacterByIdFlow(characterId),
+                characterRepository.getCharacterPerksFlow(characterId, locale)
+            ) { character, acquiredPerks ->
+                if (character == null) {
+                    return@combine CharacterPerksInfo(emptyList(), emptyList(), 0)
+                }
+                val acquiredIds = acquiredPerks.map { it.id }.toSet()
+
+                val allClassPerks = perksRepository.getPerksForCharacterClass(character.characterType, locale)
+                val avaliablePerks = allClassPerks.filter { it.id !in acquiredIds }
+
+                val allCount = character.level + (character.checkMarkCount / 3) - 1
+
+                CharacterPerksInfo(
+                    characterPerks = acquiredPerks,
+                    avaliablePerks = avaliablePerks,
+                    avaliablePerksCount = maxOf(0, allCount - acquiredPerks.size)
                 )
             }
         }

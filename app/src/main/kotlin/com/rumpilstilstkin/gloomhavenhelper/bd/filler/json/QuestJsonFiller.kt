@@ -22,7 +22,7 @@ class QuestJsonFiller @Inject constructor(
             personalQuestDao.insertTranslations(*questTranslations.toTypedArray())
 
             val taskTranslations = translations.flatMap { quest ->
-                quest.tasks.map { task -> task.toEntity(quest.questId, locale) }
+                quest.taskTexts.map { task -> task.toEntity(quest.questId, locale) }
             }
             personalQuestDao.insertTaskTranslations(*taskTranslations.toTypedArray())
         }

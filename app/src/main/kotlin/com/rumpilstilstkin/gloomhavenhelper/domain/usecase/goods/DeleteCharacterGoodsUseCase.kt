@@ -6,9 +6,9 @@ import javax.inject.Inject
 class DeleteCharacterGoodsUseCase @Inject constructor(
     private val goodsRepository: GoodsRepository
 ) {
-    suspend operator fun invoke(goodNumber: Int, characterId: Int) {
+    suspend operator fun invoke(goodId: Int, characterId: Int) {
         goodsRepository.deleteCharacterGood(
-            goodNumber = goodNumber,
+            goodId = goodId,
             characterId = characterId
         )
     }

@@ -1,16 +1,19 @@
 package com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario
 
+import com.rumpilstilstkin.gloomhavenhelper.data.AchievementRepository
 import com.rumpilstilstkin.gloomhavenhelper.data.LocaleRepository
 import com.rumpilstilstkin.gloomhavenhelper.data.ScenarioRepository
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.Achievement
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.ScenarioShortInfo
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.TeamScenarios
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.first
 import javax.inject.Inject
 
 class FilterTeamScenariosUseCase @Inject constructor(
     private val localeRepository: LocaleRepository,
     private val scenarioRepository: ScenarioRepository,
+    private val achievementRepository: AchievementRepository
 ) {
     @OptIn(ExperimentalCoroutinesApi::class)
     suspend operator fun invoke(
@@ -24,9 +27,9 @@ class FilterTeamScenariosUseCase @Inject constructor(
                 isCompleted = it.isCompleted
             )
         }
+        val dictionary = achievementRepository.dictionary.first()
         val allAchievement = (achievements)
-            .map { it.slug }
-            .map { it.trim() }
+            .mapNotNull { dictionary[it.slug]?.trim() }
             .filter { it.isNotEmpty() }
             .toSet()
         val completed = avaliableScenarios.filter { it.isCompleted }

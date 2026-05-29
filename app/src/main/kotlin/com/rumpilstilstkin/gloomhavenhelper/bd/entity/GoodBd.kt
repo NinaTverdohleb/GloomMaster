@@ -8,7 +8,8 @@ import androidx.room.PrimaryKey
 
 @Entity
 data class GoodBd(
-    @PrimaryKey val goodNumber: Int,
+    @PrimaryKey(autoGenerate = true) val goodId: Int = 0,
+    val displayNumber: Int,
     val type: String,
     val cost: Int,
     val image: String,
@@ -17,18 +18,10 @@ data class GoodBd(
 )
 
 @Entity(
-    primaryKeys = ["goodNumber", "locale"],
-    foreignKeys = [
-        ForeignKey(
-            entity = GoodBd::class,
-            parentColumns = ["goodNumber"],
-            childColumns = ["goodNumber"],
-            onDelete = ForeignKey.CASCADE
-        )
-    ]
+    primaryKeys = ["displayNumber", "locale"],
 )
 data class GoodTranslationsBd(
-    val goodNumber: Int,
+    val displayNumber: Int,
     val locale: String,
     val name: String,
 )

@@ -41,6 +41,7 @@ class MonsterJsonFiller @Inject constructor(
 
     suspend fun fillStats(pack: String) {
         fillStats("boss_stats.json", pack)
+        fillStats("base_stats.json", pack)
     }
 
     suspend fun fillStats(fileName: String, pack: String) {
@@ -73,7 +74,7 @@ class MonsterJsonFiller @Inject constructor(
                         monsterSlug = monsterStat.monsterSlug,
                         scenarioLevel = levelStat.level,
                         isElite = levelStat.isElite,
-                        stats = levelStat.stats.map {
+                        stats = levelStat.textStats.map {
                             MonsterAction.Text(content = it)
                         }
                     )

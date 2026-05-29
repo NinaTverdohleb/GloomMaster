@@ -17,11 +17,7 @@ class ScenarioGameStateRepository @Inject constructor(
         scenarioGameStateDao.getFlow()
 
     suspend fun save(state: ScenarioGameState) {
-        scenarioGameStateDao.insert(state.toEntity())
-    }
-
-    suspend fun update(state: ScenarioGameState) {
-        scenarioGameStateDao.update(state.toEntity())
+        scenarioGameStateDao.clearAndInsert(state.toEntity())
     }
 
     suspend fun delete() {
@@ -29,7 +25,7 @@ class ScenarioGameStateRepository @Inject constructor(
     }
 
     private fun ScenarioGameStateBd.toDomain() = ScenarioGameState(
-        monsterNames = monsterNames,
+        monsterSlugs = monsterSlugs,
         round = round,
         availableCards = availableCards,
         activeMonsters = activeMonsters,
@@ -38,7 +34,7 @@ class ScenarioGameStateRepository @Inject constructor(
     )
 
     private fun ScenarioGameState.toEntity() = ScenarioGameStateBd(
-        monsterNames = monsterNames,
+        monsterSlugs = monsterSlugs,
         round = round,
         availableCards = availableCards,
         activeMonsters = activeMonsters,
