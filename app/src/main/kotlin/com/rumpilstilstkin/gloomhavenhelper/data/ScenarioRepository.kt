@@ -11,7 +11,6 @@ import com.rumpilstilstkin.gloomhavenhelper.domain.entity.ScenarioInfo
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.ScenarioInfoWithName
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.ScenarioShortInfo
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -25,15 +24,18 @@ class ScenarioRepository @Inject constructor(
     suspend fun getAllScenarios(
         locale: String,
         packs: List<String>
-    ): List<ScenarioInfoWithName> = scenarioDao.getAll(
-        packs = packs,
-        targetLocale = locale,
-        defaultLocale = LocaleRepository.DEFAULT_LOCALE
-    ).map {
-        it.toDomain(
-            isCompleted = false,
-            dictionary = achievementRepository.dictionary.first()
-        )
+    ): List<ScenarioInfoWithName> {
+        val dictionary = achievementRepository.currentDictionary()
+        return scenarioDao.getAll(
+            packs = packs,
+            targetLocale = locale,
+            defaultLocale = LocaleRepository.DEFAULT_LOCALE
+        ).map {
+            it.toDomain(
+                isCompleted = false,
+                dictionary = dictionary
+            )
+        }
     }
 
     suspend fun getAllTeamScenarios(teamId: Int): List<ScenarioShortInfo> =
@@ -65,8 +67,31 @@ class ScenarioRepository @Inject constructor(
         )
             .toDomain(
                 isCompleted = isCompleted,
-                dictionary = achievementRepository.dictionary.first()
+                dictionary = achievementRepository.currentDictionary()
             )
+
+    /**
+     * Batch-loads the named scenarios for [scenarios] in one query, resolving the achievement
+     * dictionary once. The completed flag is carried over from each [ScenarioShortInfo].
+     */
+    suspend fun getScenariosWithName(
+        scenarios: List<ScenarioShortInfo>,
+        locale: String
+    ): List<ScenarioInfoWithName> {
+        if (scenarios.isEmpty()) return emptyList()
+        val dictionary = achievementRepository.currentDictionary()
+        val completedByNumber = scenarios.associate { it.scenarioNumber to it.isCompleted }
+        return scenarioDao.getScenariosWithNameByNumbers(
+            scenarioNumbers = scenarios.map { it.scenarioNumber },
+            targetLocale = locale,
+            defaultLocale = LocaleRepository.DEFAULT_LOCALE
+        ).map { scenario ->
+            scenario.toDomain(
+                isCompleted = completedByNumber[scenario.scenarioNumber] ?: false,
+                dictionary = dictionary
+            )
+        }
+    }
 
     suspend fun getShortScenario(scenarioNumber: Int): ScenarioInfo =
         scenarioDao.getScenario(

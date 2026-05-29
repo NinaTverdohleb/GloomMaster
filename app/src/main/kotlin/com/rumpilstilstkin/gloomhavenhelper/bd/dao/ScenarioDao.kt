@@ -57,6 +57,30 @@ interface ScenarioDao {
         defaultLocale: String
     ): ScenarioWithNameBd
 
+    @Query(
+        """
+        SELECT
+            a.scenarioNumber,
+            a.newScenarios,
+            a.requirements,
+            a.monsters,
+            COALESCE(l1.name, l2.name, a.location) AS locationName ,
+            a.pack,
+            COALESCE(t1.name, t2.name, CAST(a.scenarioNumber AS TEXT)) AS name
+        FROM ScenarioBd a
+        LEFT JOIN ScenarioTranslationsBd t1 ON a.scenarioNumber = t1.scenarioNumber AND t1.locale = :targetLocale
+        LEFT JOIN ScenarioTranslationsBd t2 ON a.scenarioNumber = t2.scenarioNumber AND t2.locale = :defaultLocale
+        LEFT JOIN LocationTranslateBd l1 ON a.location =  l1.slug AND l1.locale = :targetLocale
+        LEFT JOIN LocationTranslateBd l2 ON a.location = l2.slug AND l2.locale = :defaultLocale
+        WHERE a.scenarioNumber IN (:scenarioNumbers)
+    """
+    )
+    suspend fun getScenariosWithNameByNumbers(
+        scenarioNumbers: List<Int>,
+        targetLocale: String,
+        defaultLocale: String
+    ): List<ScenarioWithNameBd>
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(vararg scenarios: ScenarioBd)
 

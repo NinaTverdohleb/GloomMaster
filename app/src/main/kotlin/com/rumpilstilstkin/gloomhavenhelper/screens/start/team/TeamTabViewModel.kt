@@ -68,7 +68,7 @@ class TeamTabViewModel @Inject constructor(
     }.stateIn(
         scope = viewModelScope,
         initialValue = TeamTabUiState.Empty,
-        started = SharingStarted.WhileSubscribed(10),
+        started = SharingStarted.WhileSubscribed(5000),
     )
 
     fun onAction(action: TeamTabAction) {
