@@ -4,6 +4,7 @@ import com.rumpilstilstkin.gloomhavenhelper.bd.dao.MonsterDao
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.MonsterStatsBd
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.MonsterTextStatsBd
 import com.rumpilstilstkin.gloomhavenhelper.bd.filler.json.models.DeckJson
+import com.rumpilstilstkin.gloomhavenhelper.bd.filler.json.models.DeckTranslationJson
 import com.rumpilstilstkin.gloomhavenhelper.bd.filler.json.models.MonsterJson
 import com.rumpilstilstkin.gloomhavenhelper.bd.filler.json.models.MonsterStatsJson
 import com.rumpilstilstkin.gloomhavenhelper.bd.filler.json.models.MonsterTranslationJson
@@ -23,6 +24,7 @@ class MonsterJsonFiller @Inject constructor(
         fillMonsters(pack)
         fillStats(pack)
     }
+
     private suspend fun fillDecks(
         pack: String
     ) {
@@ -30,6 +32,9 @@ class MonsterJsonFiller @Inject constructor(
         decks.forEach { deck ->
             val entities = deck.toEntity()
             monsterDao.insertCards(*entities.toTypedArray())
+        }
+        jsonDataLoader.getLocalesForPack(pack).forEach { locale ->
+            fillDeckTranslations(pack, locale)
         }
     }
 
@@ -73,8 +78,18 @@ class MonsterJsonFiller @Inject constructor(
     /** Loads only the per-locale text (names + stat text) for an additional language. */
     suspend fun fillTranslations(pack: String, locale: String) {
         fillMonsterTranslations(pack, locale)
+        fillDeckTranslations(pack, locale)
         fillStatsTranslations("boss_stats.json", pack, locale)
         fillStatsTranslations("base_stats.json", pack, locale)
+    }
+
+    private suspend fun fillDeckTranslations(pack: String, locale: String) {
+        val decks =
+            jsonDataLoader.loadDictionaryListOrEmpty<DeckTranslationJson>("ability_decks.json", "$pack/$locale")
+        decks.forEach { deck ->
+            val entities = deck.toEntity(locale)
+            monsterDao.insertCardTranslations(*entities.toTypedArray())
+        }
     }
 
     private suspend fun fillMonsterTranslations(pack: String, locale: String) {

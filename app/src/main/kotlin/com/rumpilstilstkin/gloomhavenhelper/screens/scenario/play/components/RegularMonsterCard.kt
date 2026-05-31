@@ -52,16 +52,13 @@ fun RegularMonsterCard(
                 { showSpawnDialog = true }
             }
         )
-        HorizontalDivider(
-            thickness = 1.dp,
-            color = MaterialTheme.colorScheme.outlineVariant
-        )
         LazyColumn(
             modifier = modifier,
             verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
             item {
                 MonsterActionCard(
+                    monsterName = item.name,
                     card = item.currentCard
                 )
             }
@@ -156,7 +153,8 @@ private fun RegularMonsterCardPreview() {
                 isFly = true,
                 units = persistentListOf(
                     MonsterUnit.fixture(1),
-                )
+                ),
+                deck = ""
             ),
             delete = {},
             deleteUnit = { _, _ -> },

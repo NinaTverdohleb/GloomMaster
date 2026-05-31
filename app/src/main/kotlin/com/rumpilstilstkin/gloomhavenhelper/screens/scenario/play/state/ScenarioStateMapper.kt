@@ -1,5 +1,6 @@
 package com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.state
 
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.AvaliableCard
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.ScenarioBattleInfo
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.ScenarioGameState
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.ScenarioGameStateMagic
@@ -40,6 +41,7 @@ object ScenarioStateMapper {
                         name = it.name,
                         isFly = it.isFly,
                         currentCard = null,
+                        deck = it.deckName
                     )
                 }
                 .toImmutableList(),
@@ -57,9 +59,9 @@ object ScenarioStateMapper {
                 MonsterItem(
                     slug = item.slug,
                     name = monster.name,
-                    currentCard = item.currentCard?.let { cardId ->
+                    currentCard = item.currentCard?.let { currentCard ->
                         battleInfo.monsters.flatMap { it.cards }
-                            .firstOrNull { card -> card.cardId == cardId }
+                            .firstOrNull { card -> card.cardId == currentCard.cardId && card.deckName == currentCard.deck }
                             ?.let { MonsterAbilityCard.createFromMonsterCard(it) }
                     },
                     isFly = monster.isFly,
@@ -74,7 +76,8 @@ object ScenarioStateMapper {
                                 ActionUi.fromMonsterStatType(it)
                             }.toImmutableList()
                         )
-                    }.toImmutableList()
+                    }.toImmutableList(),
+                    deck = monster.deckName
                 )
             },
             round = battleInfo.round,
@@ -87,11 +90,21 @@ object ScenarioStateMapper {
         ScenarioGameState(
             monsterSlugs = state.scenarioInfo.monsters.map { it.slug },
             round = state.round,
-            availableCards = state.cardDeck.getCards().map { it.cardId },
+            availableCards = state.cardDeck.getCards().map {
+                AvaliableCard(
+                    deck = it.deckName,
+                    cardId = it.cardId
+                )
+            },
             activeMonsters = state.activeMonsters.map { monsterItem ->
                 ScenarioGameStateMonsterItem(
                     slug = monsterItem.slug,
-                    currentCard = monsterItem.currentCard?.id,
+                    currentCard = monsterItem.currentCard?.let {
+                        AvaliableCard(
+                            deck = monsterItem.deck,
+                            cardId = monsterItem.currentCard.cardId
+                        )
+                    },
                     units = monsterItem.units.map { unit ->
                         ScenarioGameStateMonsterUnit(
                             number = unit.number,

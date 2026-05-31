@@ -41,6 +41,7 @@ data class ScenarioLogicState(
                 currentCard = null,
                 isBoss = monster.isBoss,
                 units = units,
+                deck = monster.deckName
             )
         }
         var state = this
@@ -139,9 +140,7 @@ data class ScenarioLogicState(
             activeMonsters = activeMonsters
                 .updateMonster(monster.slug) { m ->
                     m.copy(currentCard = drawResult.card?.let {
-                        MonsterAbilityCard.createFromMonsterCard(
-                            it
-                        )
+                        MonsterAbilityCard.createFromMonsterCard(it)
                     })
                 },
             cardDeck = drawResult.newState

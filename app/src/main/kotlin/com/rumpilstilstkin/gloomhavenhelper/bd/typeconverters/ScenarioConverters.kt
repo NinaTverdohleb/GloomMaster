@@ -1,6 +1,7 @@
 package com.rumpilstilstkin.gloomhavenhelper.bd.typeconverters
 
 import androidx.room.TypeConverter
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.AvaliableCard
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.ScenarioGameStateMagic
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.ScenarioGameStateMonsterItem
 import kotlinx.serialization.json.Json
@@ -28,4 +29,11 @@ class ScenarioConverters {
 
     @TypeConverter
     fun toMonsterList(value: String) = json.decodeFromString<List<ScenarioGameStateMonsterItem>>(value)
+
+    // Для List<AvaliableCard>
+    @TypeConverter
+    fun fromAvaliableCardList(value: List<AvaliableCard>) = json.encodeToString(value)
+
+    @TypeConverter
+    fun toAvaliableCardList(value: String) = json.decodeFromString<List<AvaliableCard>>(value)
 }

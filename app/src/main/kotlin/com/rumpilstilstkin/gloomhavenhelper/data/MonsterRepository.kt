@@ -1,11 +1,10 @@
 package com.rumpilstilstkin.gloomhavenhelper.data
 
-import android.util.Log
 import com.rumpilstilstkin.gloomhavenhelper.bd.dao.MonsterDao
 import com.rumpilstilstkin.gloomhavenhelper.bd.dao.ScenarioDao
 import com.rumpilstilstkin.gloomhavenhelper.data.mappers.toDomain
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.AvaliableCard
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.Monster
-import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterCard
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterStats
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -58,8 +57,13 @@ class MonsterRepository @Inject constructor(
 
     suspend fun getMonsterCards(
         slugs: List<String>,
-    ): List<MonsterCard> =
-        monsterDao.getCardsByMonsterSlugs(slugs).map { it.toDomain() }
+    ): List<AvaliableCard> =
+        monsterDao.getCardsByMonsterSlugs(slugs).map {
+            AvaliableCard(
+                deck = it.deckName,
+                cardId = it.cardId
+            )
+        }
 
     suspend fun getMonstersBySlugs(
         slugs: List<String>,
@@ -92,6 +96,11 @@ class MonsterRepository @Inject constructor(
                 }
 
                 val cards = monsterDao.getCardsByDeckName(monster.monster.deckName)
+                val actions = monsterDao.getActionCards(
+                    deck = monster.monster.deckName,
+                    targetLocale = locale,
+                    defaultLocale = LocaleRepository.DEFAULT_LOCALE
+                )
                 Monster(
                     slug = monster.monster.slug,
                     name = monster.name,
@@ -99,8 +108,15 @@ class MonsterRepository @Inject constructor(
                     stats = regularStats.stats,
                     eliteLife = eliteStats?.life ?: 0,
                     eliteStats = eliteStats?.stats ?: emptyList(),
-                    cards = cards.map
-                    { it.toDomain() },
+                    cards = cards.map { card ->
+                        card.toDomain(
+                            actions
+                                .firstOrNull { actions ->
+                                    card.cardId == actions.cardId
+                                }
+                                ?.actions ?: emptyList()
+                        )
+                    },
                     deckName = monster.monster.deckName,
                     isBoss = monster.monster.isBoss,
                     immunity = monster.monster.immunity,

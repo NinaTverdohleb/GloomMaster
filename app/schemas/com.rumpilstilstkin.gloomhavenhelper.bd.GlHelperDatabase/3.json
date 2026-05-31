@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 3,
-    "identityHash": "2bac9eb03db386c5085324c74cc2dd94",
+    "identityHash": "5087382b81a9a7d842930c2cca619533",
     "entities": [
       {
         "tableName": "TeamBd",
@@ -1020,23 +1020,11 @@
       },
       {
         "tableName": "MonsterAbilityCardBd",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`cardId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `deckName` TEXT NOT NULL, `imageName` TEXT NOT NULL, `needsShuffle` INTEGER NOT NULL, `initiative` INTEGER NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`deckName` TEXT NOT NULL, `needsShuffle` INTEGER NOT NULL, `initiative` INTEGER NOT NULL, `cardId` INTEGER NOT NULL, PRIMARY KEY(`deckName`, `cardId`))",
         "fields": [
-          {
-            "fieldPath": "cardId",
-            "columnName": "cardId",
-            "affinity": "INTEGER",
-            "notNull": true
-          },
           {
             "fieldPath": "deckName",
             "columnName": "deckName",
-            "affinity": "TEXT",
-            "notNull": true
-          },
-          {
-            "fieldPath": "imageName",
-            "columnName": "imageName",
             "affinity": "TEXT",
             "notNull": true
           },
@@ -1051,25 +1039,21 @@
             "columnName": "initiative",
             "affinity": "INTEGER",
             "notNull": true
+          },
+          {
+            "fieldPath": "cardId",
+            "columnName": "cardId",
+            "affinity": "INTEGER",
+            "notNull": true
           }
         ],
         "primaryKey": {
-          "autoGenerate": true,
+          "autoGenerate": false,
           "columnNames": [
+            "deckName",
             "cardId"
           ]
-        },
-        "indices": [
-          {
-            "name": "index_MonsterAbilityCardBd_deckName",
-            "unique": false,
-            "columnNames": [
-              "deckName"
-            ],
-            "orders": [],
-            "createSql": "CREATE INDEX IF NOT EXISTS `index_MonsterAbilityCardBd_deckName` ON `${TABLE_NAME}` (`deckName`)"
-          }
-        ]
+        }
       },
       {
         "tableName": "TeamCharacterClassBd",
@@ -1426,11 +1410,64 @@
             ]
           }
         ]
+      },
+      {
+        "tableName": "MonsterAbilityCardTranslationBd",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`deckName` TEXT NOT NULL, `locale` TEXT NOT NULL, `cardId` INTEGER NOT NULL, `actions` TEXT NOT NULL, PRIMARY KEY(`deckName`, `locale`, `cardId`), FOREIGN KEY(`deckName`, `cardId`) REFERENCES `MonsterAbilityCardBd`(`deckName`, `cardId`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "deckName",
+            "columnName": "deckName",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "locale",
+            "columnName": "locale",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "cardId",
+            "columnName": "cardId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "actions",
+            "columnName": "actions",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "deckName",
+            "locale",
+            "cardId"
+          ]
+        },
+        "foreignKeys": [
+          {
+            "table": "MonsterAbilityCardBd",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "deckName",
+              "cardId"
+            ],
+            "referencedColumns": [
+              "deckName",
+              "cardId"
+            ]
+          }
+        ]
       }
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '2bac9eb03db386c5085324c74cc2dd94')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '5087382b81a9a7d842930c2cca619533')"
     ]
   }
 }

@@ -41,5 +41,28 @@ enum class IconCode(val value: String) {
     MOVE("38"),
     SHIELD("39"),
     HEAL("40"),
-    ATTACK("41")
+    ATTACK("41"),
+    SPEND_EARTH("42"),
+    SPEND_AIR("43"),
+    SPEND_ANY("44"),
+    SPEND_FROST("45"),
+    SPEND_MOON("46"),
+    SPEND_SUN("47"),
+    AREA_7("48"),
+    AREA_8("49"),
+    SPEND_FIRE("50"),
+    AREA_9("51"),
+    LOOT("52"),
+    AREA_10("53"),
+    AREA_11("54"),
+    AREA_12("55"),
+    REGENERATE("56"),
+    AREA_13("57");
+
+    companion object {
+        fun String.toIconCode(): IconCode {
+            val code = this.removePrefix("#").padStart(2, '0')
+            return IconCode.entries.first { it.value == code }
+        }
+    }
 }

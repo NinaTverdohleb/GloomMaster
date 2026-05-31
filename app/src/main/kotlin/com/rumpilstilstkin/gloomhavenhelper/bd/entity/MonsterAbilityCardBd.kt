@@ -1,19 +1,36 @@
 package com.rumpilstilstkin.gloomhavenhelper.bd.entity
 
 import androidx.room.Entity
+import androidx.room.ForeignKey
 import androidx.room.Index
 import androidx.room.PrimaryKey
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterAction
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterCardAction
 
 @Entity(
-    indices = [
-        Index("deckName")
-    ]
+    primaryKeys = ["deckName","cardId"],
 )
 data class MonsterAbilityCardBd(
-    @PrimaryKey(autoGenerate = true) val cardId: Int = 0,
     val deckName: String,
-    val imageName: String,
     val needsShuffle: Boolean = false,
     val initiative: Int,
+    val cardId: Int,
+)
+
+@Entity(
+    primaryKeys = ["deckName", "locale", "cardId"],
+    foreignKeys = [
+        ForeignKey(
+            entity = MonsterAbilityCardBd::class,
+            parentColumns = ["deckName", "cardId"],
+            childColumns = ["deckName", "cardId" ],
+            onDelete = ForeignKey.CASCADE
+        )
+    ]
+)
+data class MonsterAbilityCardTranslationBd(
+    val deckName: String,
+    val locale: String,
+    val cardId: Int,
+    val actions: List<MonsterCardAction>,
 )

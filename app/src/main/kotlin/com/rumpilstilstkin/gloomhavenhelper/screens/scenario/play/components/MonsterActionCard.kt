@@ -10,14 +10,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import coil3.compose.AsyncImage
 import com.rumpilstilstkin.gloomhavenhelper.R
-import com.rumpilstilstkin.gloomhavenhelper.screens.models.MonsterAbilityCard
+import com.rumpilstilstkin.gloomhavenhelper.ui.scenario.MonsterAbilityCardUi
+import com.rumpilstilstkin.gloomhavenhelper.ui.scenario.MonsterCardView
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
 
 @Composable
 fun MonsterActionCard(
-    card: MonsterAbilityCard?,
+    monsterName: String,
+    card: MonsterAbilityCardUi?,
     modifier: Modifier = Modifier
 ) {
     Box(
@@ -26,15 +27,15 @@ fun MonsterActionCard(
     ) {
         if (card == null) {
             Image(
-                modifier= Modifier.size(width = 360.dp, height = 280.dp),
+                modifier = Modifier.size(width = 360.dp, height = 280.dp),
                 painter = painterResource(id = R.drawable.ic_deck_back),
                 contentDescription = "null"
             )
         } else {
-            AsyncImage(
-                modifier= Modifier.size(width = 360.dp, height = 280.dp),
-                model = card.imagePath,
-                contentDescription = null
+            MonsterCardView(
+                monsterName = monsterName,
+                card = card,
+                modifier = Modifier.size(width = 360.dp, height = 280.dp)
             )
         }
     }
@@ -45,6 +46,7 @@ fun MonsterActionCard(
 private fun MonsterActionCardPreview() {
     GloomhavenMasterTheme {
         MonsterActionCard(
+            monsterName = "",
             card = null
         )
     }

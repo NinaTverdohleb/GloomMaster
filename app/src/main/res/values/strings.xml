@@ -60,6 +60,8 @@
     <string name="icon_shield">Shield</string>
     <string name="icon_heal">Heal</string>
     <string name="icon_attack">Attack</string>
+    <string name="icon_loot">Loot</string>
+    <string name="icon_regenerate">Regenerate</string>
     <string name="icon_plus_1">+1</string>
     <string name="icon_plus_2">+2</string>
     <string name="icon_plus_3">+3</string>

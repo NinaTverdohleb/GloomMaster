@@ -29,7 +29,7 @@ class CreateActiveScenarioUseCase @Inject constructor(
                     scenarioNumber = scenarioNumber,
                     monsterSlugs = monsters,
                     round = 0,
-                    availableCards =  monstersCard.distinct().map { it.cardId },
+                    availableCards = monstersCard.distinct(),
                     activeMonsters = emptyList(),
                     magicCharges = listOf(
                         ScenarioGameStateMagic(
