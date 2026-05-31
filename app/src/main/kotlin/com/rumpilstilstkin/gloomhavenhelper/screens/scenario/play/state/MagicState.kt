@@ -35,9 +35,9 @@ data class MagicValue(
     }
 
     fun color(magic: Magic): Color = when (value) {
-        0 -> magic.icon.color.copy(alpha = 0.2f)
-        1 -> magic.icon.color.copy(alpha = 0.5f)
-        else -> magic.icon.color
+        0 -> magic.icon.color?.copy(alpha = 0.2f) ?: Color.White
+        1 -> magic.icon.color?.copy(alpha = 0.5f) ?: Color.White
+        else -> magic.icon.color ?: Color.White
     }
 }
 

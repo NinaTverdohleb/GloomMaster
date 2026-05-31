@@ -1,0 +1,21 @@
+{
+  "deck": "boss",
+  "cards": [
+    {
+      "id": 1,
+      "actions": [
+        {
+          "text": "some text",
+          "endEffect": "#21",
+          "startEffect": "#21",
+          "subAction": [
+            {
+              "text": "some text",
+              "endEffect": "#21"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

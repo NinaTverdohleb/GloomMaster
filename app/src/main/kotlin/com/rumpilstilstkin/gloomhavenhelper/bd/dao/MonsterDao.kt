@@ -5,6 +5,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.MonsterAbilityCardBd
+import com.rumpilstilstkin.gloomhavenhelper.bd.entity.MonsterAbilityCardTranslationBd
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.MonsterBd
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.MonsterStatsBd
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.MonsterTextStatsBd
@@ -62,6 +63,9 @@ interface MonsterDao {
     @Insert
     suspend fun insertTranslations(vararg translations: MonsterTextStatsBd)
 
+    @Insert
+    suspend fun insertCardTranslations(vararg translations: MonsterAbilityCardTranslationBd)
+
     @Query("DELETE FROM MonsterBd")
     suspend fun deleteAllMonsters()
 
@@ -110,6 +114,26 @@ interface MonsterDao {
     // Monster Ability Cards
     @Query("SELECT * FROM MonsterAbilityCardBd WHERE deckName = :deckName")
     suspend fun getCardsByDeckName(deckName: String): List<MonsterAbilityCardBd>
+
+    @Query(
+        """
+        SELECT * FROM MonsterAbilityCardTranslationBd as t
+            WHERE deckName = :deck
+            AND (t.locale = :targetLocale
+              OR (
+                  t.locale = :defaultLocale
+                  AND NOT EXISTS (
+                      SELECT 1 FROM PerkTranslationBd
+                      WHERE deckName = t.deckName AND locale = :targetLocale
+                  )
+              ))
+        """
+    )
+    suspend fun getActionCards(
+        deck: String,
+        targetLocale: String,
+        defaultLocale: String
+    ): List<MonsterAbilityCardTranslationBd>
 
     @Query("SELECT * FROM MonsterAbilityCardBd WHERE cardId = :cardId")
     suspend fun getCardById(cardId: Int): MonsterAbilityCardBd

@@ -1,0 +1,1074 @@
+[
+  {
+    "deck": "boss",
+    "cards": [
+      {
+        "id": 1,
+        "actions": [{"text": "Special 2"}]
+      },
+      {
+        "id": 2,
+        "actions": [{"text": "Special 2"}]
+      },
+      {
+        "id": 3,
+        "actions": [{"text": "Special 2"}]
+      },
+      {
+        "id": 4,
+        "actions": [{"text": "Special 1"}]
+      },
+      {
+        "id": 5,
+        "actions": [{"text": "Special 1"}]
+      },
+      {
+        "id": 6,
+        "actions": [{"text": "Special 1"}]
+      },
+      {
+        "id": 7,
+        "actions": [{"text": "Move #38 +0"}, {"text": "Attack #41 +0"}]
+      },
+      {
+        "id": 8,
+        "actions": [{"text": "Move #38 -1"}, {"text": "Attack #41 -1","subAction": [{"text": "Range #37 3 and Target #13 2"}]}]
+      }
+    ]
+  },
+  {
+    "deck": "living-bones",
+    "cards": [
+      {
+        "id": 1,
+        "actions": [{"text": "Move #38 -1"}, {"text": "Attack #41 +1"}]
+      },
+      {
+        "id": 2,
+        "actions": [{"text": "Move #38 -2"}, {"text": "Attack #41 +0"}, {"text": "Heal #40 2 (Self)"}]
+      },
+      {
+        "id": 3,
+        "actions": [{"text": "Move #38 +1"}, {"text": "Attack #41 -1"}]
+      },
+      {
+        "id": 4,
+        "actions": [{"text": "Move #38 +0"}, {"text": "Attack #41 +0"}]
+      },
+      {
+        "id": 5,
+        "actions": [{"text": "Move #38 +0"}, {"text": "Attack #41 +0"}]
+      },
+      {
+        "id": 6,
+        "actions": [{"text": "Attack #41 +2"}]
+      },
+      {
+        "id": 7,
+        "actions": [{"text": "Move #38 +0"}, {"text": "Attack #41 +0","subAction": [{"text": "Target one enemy with all attacks"}]}]
+      },
+      {
+        "id": 8,
+        "actions": [{"text": "Shield #39 1"}, {"text": "Heal #40 2 (Self)"}]
+      }
+    ]
+  },
+  {
+    "deck": "guard",
+    "cards": [
+      {
+        "id": 1,
+        "actions": [{"text": "Shield #39 1"}, {"text": "Retail #36 2"}]
+      },
+      {
+        "id": 2,
+        "actions": [{"text": "Move #38 +1"}, {"text": "Attack #41 -1"}]
+      },
+      {
+        "id": 3,
+        "actions": [{"text": "Move #38 -1"}, {"text": "Attack #41 +0","subAction": [{"text": "Range #37 2"}]}]
+      },
+      {
+        "id": 4,
+        "actions": [{"text": "Move #38 +0"}, {"text": "Attack #41 +0"}]
+      },
+      {
+        "id": 5,
+        "actions": [{"text": "Move #38 +0"}, {"text": "Attack #41 +0"}]
+      },
+      {
+        "id": 6,
+        "actions": [{"text": "Move #38 -1"}, {"text": "Attack #41 +1"}]
+      },
+      {
+        "id": 7,
+        "actions": [{"text": "Move #38 -1"}, {"text": "Attack #41 +0"}, {"text": "Strengthen #35 (Self)"}]
+      },
+      {
+        "id": 8,
+        "actions": [{"text": "Shield #39 1"}, {"text": "Attack #41 +0","subAction": [{"text": "Poison #25"}]}]
+      }
+    ]
+  },
+  {
+    "deck": "archer",
+    "cards": [
+      {
+        "id": 1,
+        "actions": [{"text": "Move #38 +1"}, {"text": "Attack #41 -1"}]
+      },
+      {
+        "id": 2,
+        "actions": [{"text": "Move #38 +0"}, {"text": "Attack #41 +0"}]
+      },
+      {
+        "id": 3,
+        "actions": [{"text": "Move #38 +0"}, {"text": "Attack #41 +1","subAction": [{"text": "Range #37 -1"}]}]
+      },
+      {
+        "id": 4,
+        "actions": [{"text": "Move #38 -1"}, {"text": "Attack #41 +1"}]
+      },
+      {
+        "id": 5,
+        "actions": [{"text": "Attack #41 -1","subAction": [{"text": "Target #13 2"}]}]
+      },
+      {
+        "id": 6,
+        "actions": [{"text": "Attack #41 +1","subAction": [{"text": "Range #37 +1"}]}]
+      },
+      {
+        "id": 7,
+        "actions": [{"text": "Move #38 -1"}, {"text": "Attack #41 -1"}, {"text": "Create a 3 damage trap in an adjacent empty hex closest to an enemy"}]
+      },
+      {
+        "id": 8,
+        "actions": [{"text": "Move #38 +0"}, {"text": "Attack #41 -1","subAction": [{"text": "Range #37 +1 and Immobilize #18"}]}]
+      }
+    ]
+  },
+  {
+    "deck": "living-corpse",
+    "cards": [
+      {
+        "id": 1,
+        "actions": [{"text": "Move #38 +0"}, {"text": "Muddle #12 and Immobilize #18","subAction": [{"text": "Target one adjacent enemy"}]}]
+      },
+      {
+        "id": 2,
+        "actions": [{"text": "Move #38 +1"}, {"text": "Attack #41 -1"}]
+      },
+      {
+        "id": 3,
+        "actions": [{"text": "Move #38 +0"}, {"text": "Attack #41 +0"}]
+      },
+      {
+        "id": 4,
+        "actions": [{"text": "Move #38 +0"}, {"text": "Attack #41 +0"}]
+      },
+      {
+        "id": 5,
+        "actions": [{"text": "Move #38 -1"}, {"text": "Attack #41 +1"}]
+      },
+      {
+        "id": 6,
+        "actions": [{"text": "Move #38 -1"}, {"text": "Living corpse suffers 1 damage"}]
+      },
+      {
+        "id": 7,
+        "actions": [{"text": "Move #38 +0"}, {"text": "Attack #41 +1"}, {"text": "Poison #25","subAction": [{"text": "Target all adjacent enemies"}]}]
+      },
+      {
+        "id": 8,
+        "actions": [{"text": "Attack #41 +2","subAction": [{"text": "Push #08 1"}]}, {"text": "Living corpse suffers 1 damage"}]
+      }
+    ]
+  },
+  {
+    "deck": "shaman",
+    "cards": [
+      {
+        "id": 1,
+        "actions": [{"text": "Move #38 +0"}, {"text": "Attack #41 -1","subAction": [{"text": "Disarm #11"}]}]
+      },
+      {
+        "id": 2,
+        "actions": [{"text": "Move #38 -1"}, {"text": "Attack #41 +0","subAction": [{"text": "Immobilize #18"}]}]
+      },
+      {
+        "id": 3,
+        "actions": [{"text": "Move #38 +0"}, {"text": "Heal #40 3","subAction": [{"text": "Range #37 3"}]}]
+      },
+      {
+        "id": 4,
+        "actions": [{"text": "Move #38 +0"}, {"text": "Heal #40 3","subAction": [{"text": "Range #37 3"}]}]
+      },
+      {
+        "id": 5,
+        "actions": [{"text": "Move #38 +0"}, {"text": "Attack #41 +0"}]
+      },
+      {
+        "id": 6,
+        "actions": [{"text": "Move #38 -1"}, {"text": "Attack #41 +1"}]
+      },
+      {
+        "id": 7,
+        "actions": [{"text": "Move #38 -1"}, {"text": "Heal #40 1","subAction": [{"text": "Affect all adjacent allies"}]}, {"text": "Bless #34 (Self)"}]
+      },
+      {
+        "id": 8,
+        "actions": [{"text": "Move #38 +1"},{"text": "Attack #41 -1","subAction": [{"text": "Curse #26 and Target #13 2"}]}]
+      }
+    ]
+  },
+  {
+    "deck": "cultist",
+    "cards": [
+      {
+        "id": 1,
+        "actions": [{"text": "Move #38 -1"}, {"text": "Attack #41 -1"}, {"endEffect": "#27","text": "On death:","subAction": [{"text": "Attack #41 +2"}]}]
+      },
+      {
+        "id": 2,
+        "actions": [{"text": "Move #38 -1"}, {"text": "Attack #41 -1"}, {"endEffect": "#27","text": "On death:","subAction": [{"text": "Attack #41 +2"}]}]
+      },
+      {
+        "id": 3,
+        "actions": [{"text": "Move #38 +0"}, {"text": "Attack #41 +0"}]
+      },
+      {
+        "id": 4,
+        "actions": [{"text": "Move #38 +0"}, {"text": "Attack #41 +0"}]
+      },
+      {
+        "id": 5,
+        "actions": [{"text": "Move #38 -1"}, {"text": "Attack #41 +0"}, {"text": "Heal #40 1 (Self)"}]
+      },
+      {
+        "id": 6,
+        "actions": [{"text": "Summon normal Living Bones"}, {"text": "Cultist suffers 2 damage"}]
+      },
+      {
+        "id": 7,
+        "actions": [{"text": "Summon normal Living Bones"}, {"text": "Cultist suffers 2 damage"}]
+      },
+      {
+        "id": 8,
+        "actions": [{"text": "Move #38 -1"}, {"text": "Heal #40 3","subAction": [{"text": "Range #37 3"}]}]
+      }
+    ]
+  },
+  {
+    "deck": "earth-demon",
+    "cards": [
+      {
+        "id": 1,
+        "actions": [{"text": "Heal #40 3 (Self)"}, {"text": "#42 : Immobilize #18","subAction": [{"text": "Target all enemies within Range #37 3"}]}]
+      },
+      {
+        "id": 2,
+        "actions": [{"text": "Move #38 +1"}, {"text": "Attack #41 -1"}]
+      },
+      {
+        "id": 3,
+        "actions": [{"text": "Move #38 +0"}, {"text": "Attack #41 +0"}, {"text": "#23"}]
+      },
+      {
+        "id": 4,
+        "actions": [{"text": "Attack #41 +0","subAction": [{"text": "Range #37 4"}, {"text": "#42 : Target #13 2"}]}]
+      },
+      {
+        "id": 5,
+        "actions": [{"text": "Move #38 -1"}, {"text": "Attack #41 +1"}, {"text": "#23"}]
+      },
+      {
+        "id": 6,
+        "actions": [{"text": "Move #38 -1"}, {"text": "Attack #41 -1","subAction": [{"text": "Target all adjacent enemies"}, {"text": "#42 : Push #08 1"}]}]
+      },
+      {
+        "id": 7,
+        "actions": [{"text": "Move #38 +1"}, {"text": "Attack #41 +0","subAction": [{"text": "#43 : -2 Attack #41"}]}]
+      },
+      {
+        "id": 8,
+        "actions": [{"text": "Move #38 +0"}, {"endEffect": "#28", "text": "Attack #41 -1"}, {"text": "#44 : #23"}]
+      }
+    ]
+  },
+  {
+    "deck": "wind-demon",
+    "cards": [
+      {
+        "id": 1,
+        "actions": [{"text": "Attack #41 -1"}, {"text": "Heal #40 3 (Self)"}, {"text": "#43 : Invisible #24 (Self)"}]
+      },
+      {
+        "id": 2,
+        "actions": [{"text": "Move #38 +0"}, {"text": "Attack #41 +0", "subAction": [{"text": "Pull #17"}]}, {"text": "#21"}]
+      },
+      {
+        "id": 3,
+        "actions": [{"text": "Move #38 +0"}, {"text": "Attack #41 +0", "subAction": [{"text": "Pull #17"}]}, {"text": "#21"}]
+      },
+      {
+        "id": 4,
+        "actions": [{"text": "Move #38 +0"}, {"text": "Attack #41 -1","subAction": [{"text": "Target #13 2"}, {"text": "#43 : Push #08 2"}]}]
+      },
+      {
+        "id": 5,
+        "actions": [{"text": "Move #38 + 0"}, {"text": "Attack #41 +0", "endEffect": "#28"}, {"text": "#43 : +1 Attack #41", "endEffect": "#29"}]
+      },
+      {
+        "id": 6,
+        "actions": [{"text": "Move #38 -1"}, {"text": "Attack #41 +1","subAction": [{"text": "#43 : Target #13 2"}]}]
+      },
+      {
+        "id": 7,
+        "actions": [{"text": "Push #08 1","subAction": [{"text": "Target all adjacent enemies"}]}, {"text": "Attack #41 +0","subAction": [{"text": "#42 : -2 Range #37"}]}]
+      },
+      {
+        "id": 8,
+        "actions": [{"text": "Shield #39 1"}, {"text": "Move #38 -1"}, { "text": "Attack #41 -1"}, {"text": "#44 : #21"}]
+      }
+    ]
+  },
+  {
+    "deck": "living-spirit",
+    "cards": [
+      {
+        "id": 1,
+        "actions": [{"text": "Move #38 -1"}, {"text": "Attack #41 -1","subAction": [{"text": "Muddle #12"}]}]
+      },
+      {
+        "id": 2,
+        "actions": [{"text": "Move #38 +0"}, {"text": "Attack #41 -1","subAction": [{"text": "Target all enemies within range"}]}]
+      },
+      {
+        "id": 3,
+        "actions": [{"text": "Move #38 +0"}, {"text": "Attack #41 +0"}]
+      },
+      {
+        "id": 4,
+        "actions": [{"text": "Move #38 +0"}, {"text": "Attack #41 +0"}]
+      },
+      {
+        "id": 5,
+        "actions": [{"text": "Attack #41 +0","subAction": [{"text": "Range #37 -1"}, {"text": "Target #13 2"}]}]
+      },
+      {
+        "id": 6,
+        "actions": [{"text": "Move #38 -1"}, {"text": "Attack #41 +1","subAction": [{"text": "Range #37 -1"}]},{"text": "Heal #40 1 (Self)"}]
+      },
+      {
+        "id": 7,
+        "actions": [{"text": "Move #38 +0"}, {"text": "Curse #26","subAction": [{"text": "Target all enemies within range"}]},{"text": "#16"}]
+      },
+      {
+        "id": 8,
+        "actions": [{"text": "Move #38 -1"}, {"text": "Attack #41 +1","subAction": [{"text": "#45 : Stun #10"}]}]
+      }
+    ]
+  },
+  {
+    "deck": "night-demon",
+    "cards": [
+      {
+        "id": 1,
+        "actions": [{"text": "Move #38 +1"}, {"text": "Attack #41 -1"}, {"text": "#20"}]
+      },
+      {
+        "id": 2,
+        "actions": [{"text": "Move #38 +1"}, {"text": "Attack #41 -1"}, {"text": "#46 : Invisible #24 (Self)"}]
+      },
+      {
+        "id": 3,
+        "actions": [{"text": "Move #38 +0"}, {"text": "Attack #41 +0"}, {"text": "#20"}]
+      },
+      {
+        "id": 4,
+        "actions": [{"text": "Attack #41 -2","subAction": [{"text": "Range #37 3 and Target #13 3"}, {"text": "#46 : Muddle #12"}]}]
+      },
+      {
+        "id": 5,
+        "actions": [{"text": "Move #38 -1"}, {"text": "Attack #41 +1","subAction": [{ "text": "#46 : +2 Attack #41"}]}]
+      },
+      {
+        "id": 6,
+        "actions": [{"text": "Move #38 -1"}, {"text": "Attack #41 +1"}, {"text": "#20"}]
+      },
+      {
+        "id": 7,
+        "actions": [{"text": "Attack #41 -1"}, {"text": "Attack #41 -1","subAction": [{"text": "Pierce #09 2"}]}, {"text": "#47 : Curse #26 (Self)"}]
+      },
+      {
+        "id": 8,
+        "actions": [{"text": "Move #38 +0 and Attack #41 -1"}, {"text": "Shield #39 1"}, { "text": "All adjacent enemies and alias suffer 1 damage"}, {"text": "#44 : #21"}]
+      }
+    ]
+  },
+  {
+    "deck": "flame-demon",
+    "cards": [
+      {
+        "id": 1,
+        "actions": [{"text": "Move #38 +1"}, {"text": "Attack #41 -1"}, {"text": "#22"}]
+      },
+      {
+        "id": 2,
+        "actions": [{"text": "Move #38 +0"}, {"text": "Attack #41 +0"}, {"text": "#22"}]
+      },
+      {
+        "id": 3,
+        "actions": [{"text": "Attack #41 +0","subAction": [{"text": "#50 : #48"}]}]
+      },
+      {
+        "id": 4,
+        "actions": [{ "endEffect": "#49","text": "Attack #41 +0"}, { "text": "#50 : +1 Attack #41 and Wound #14"}]
+      },
+      {
+        "id": 5,
+        "actions": [{"text": "Move #38 -1"}, {"text": "Attack #41 +1","subAction": [{"text": "Range #37 -1"}]}, {"text": "#22"}]
+      },
+      {
+        "id": 6,
+        "actions": [{"text": "Attack #41 +0","subAction": [{"text": "Target all adjacent enemies"}]}, { "text": "#45 : Flame Demon suffer 1 damage"}]
+      },
+      {
+        "id": 7,
+        "actions": [{"text": "#50 : All adjacent enemies suffer 2 damage"},{"text": "Move #38 +0"}, {"text": "Attack #41 -2","subAction": [{"text": "Wound #14 and Target #13 2"}]}]
+      },
+      {
+        "id": 8,
+        "actions": [{"text": "Move #38 -1"}, { "text": "Create a 4 damage trap in an adjacent empty hex closest to an enemy"}, {"text": "#44 : #22"}]
+      }
+    ]
+  },
+  {
+    "deck": "frost-demon",
+    "cards": [
+      {
+        "id": 1,
+        "actions": [{"text": "Immobilize #18","subAction": [{"text": "Target all enemies within Range #37 2"}]}, {"text": "#45 : Heal #40 3 (Self)"}]
+      },
+      {
+        "id": 2,
+        "actions": [{"text": "Move #38 +1"}, {"text": "Attack #41 -1"}]
+      },
+      {
+        "id": 3,
+        "actions": [{"text": "Move #38 +0"}, {"text": "Attack #41 +0"}]
+      },
+      {
+        "id": 4,
+        "actions": [{"text": "Move #38 -1"}, {"text": "Attack #41 +0","subAction": [{"text": "Range #37 2"}]}, {"text": "#45 : +2 Attack #41, +1 Range #37"}]
+      },
+      {
+        "id": 5,
+        "actions": [{"text": "Move #38 -1"}, {"text": "Attack #41 +0", "endEffect": "#51"}, {"text": "#16"}]
+      },
+      {
+        "id": 6,
+        "actions": [{"text": "Move #38 -1"}, {"text": "Attack #41 +0", "endEffect": "#51"}, {"text": "#16"}]
+      },
+      {
+        "id": 7,
+        "actions": [{"text": "Move #38 -1"}, {"text": "Attack #41 +0","subAction": [{"text": "Pierce #09 3"}]}, {"text": "#44 : #16"}]
+      },
+      {
+        "id": 8,
+        "actions": [{"text": "Shield #39 2"}, {"text": "Move #38 +1"}, { "text": "#50 : Frost Demon suffer 1 damage"}]
+      }
+    ]
+  },
+  {
+    "deck": "imp",
+    "cards": [
+      {
+        "id": 1,
+        "actions": [{"text": "Shield #39 5"}, {"text": "Heal #40 1 (Self)"}]
+      },
+      {
+        "id": 2,
+        "actions": [{"text": "Move #38 +0"}, {"text": "Attack #41 +0"}]
+      },
+      {
+        "id": 3,
+        "actions": [{"text": "Move #38 +0"}, {"text": "Attack #41 +0"}]
+      },
+      {
+        "id": 4,
+        "actions": [{"text": "Move #38 +0"}, {"text": "Heal #40 2","subAction": [{"text": "Range #37 3"}]}]
+      },
+      {
+        "id": 5,
+        "actions": [{"text": "Move #38 +0"}, {"text": "Attack #41 -1", "subAction": [{"text": "Target #13 2 and Poison #25"}]}]
+      },
+      {
+        "id": 6,
+        "actions": [{"text": "Move #38 -1"}, {"text": "Attack #41 +1"}]
+      },
+      {
+        "id": 7,
+        "actions": [{"text": "Move #38 +0"},{"text": "Attack #41 -1","subAction": [{"text": "Target #13 2 and Curse #26"}]}]
+      },
+      {
+        "id": 8,
+        "actions": [{"text": "Strengthen #35", "subAction": [{"text": "Affect all allies within Range #37 2"}]} ,{"text": "Muddle #12", "subAction": [{"text": "Affect all allies within Range #37 2"}]}]
+      }
+    ]
+  },
+  {
+    "deck": "cave-bear",
+    "cards": [
+      {
+        "id": 1,
+        "actions": [{"text": "Move #38 +1"}, {"text": "Attack #41 -1"}]
+      },
+      {
+        "id": 2,
+        "actions": [{"text": "Move #38 -1"}, {"text": "Attack #41 -1","subAction": [{"text": "Immobilize #18"}]}]
+      },
+      {
+        "id": 3,
+        "actions": [ {"text": "Attack #41 +1","subAction": [{"text": "Wound #14"}]}]
+      },
+      {
+        "id": 4,
+        "actions": [{"text": "Move #38 +0"}, {"text": "Attack #41 +0"}]
+      },
+      {
+        "id": 5,
+        "actions": [{"text": "Move #38 -1"}, {"text": "Attack #41 +1"}]
+      },
+      {
+        "id": 6,
+        "actions": [{"text": "Attack #41 -1"}, {"text": "Move #38 -2"}, {"text": "Attack #41 -1","subAction": [{"text": "Wound #14"}]}]
+      },
+      {
+        "id": 7,
+        "actions": [{"text": "Move #38 +0"}, {"text": "Attack #41 -1", "subAction": [{"text": "Target #13 2"}]}]
+      },
+      {
+        "id": 8,
+        "actions": [{"text": "Shield #39 1"}, {"text": "Retail #36 2"}, {"text": "Heal #40 2 (Self)"}]
+      }
+    ]
+  },
+  {
+    "deck": "hound",
+    "cards": [
+      {
+        "id": 1,
+        "actions": [{"text": "Move #38 -1"}, {"text": "Attack #41 +0","subAction": [{"text": "Immobilize #18"}]}]
+      },
+      {
+        "id": 2,
+        "actions": [{"text": "Move #38 +0"}, {"text": "Muddle #12","subAction": [{"text": "Target all adjacent enemies"}]}]
+      },
+      {
+        "id": 3,
+        "actions": [{"text": "Move #38 +0"}, {"text": "Attack #41 +0","subAction": [{"text": "Add +2 Attack #41 if the target is adjacent to any of the Hound's allies"}]}]
+      },
+      {
+        "id": 4,
+        "actions": [{"text": "Move #38 +0"}, {"text": "Attack #41 +0","subAction": [{"text": "Add +2 Attack #41 if the target is adjacent to any of the Hound's allies"}]}]
+      },
+      {
+        "id": 5,
+        "actions": [{"text": "Move #38 +0"}, {"text": "Attack #41 +0"}]
+      },
+      {
+        "id": 6,
+        "actions": [{"text": "Move #38 +0"}, {"text": "Attack #41 +0"}]
+      },
+      {
+        "id": 7,
+        "actions": [{"text": "Move #38 -2"}, {"text": "Attack #41 +1"}]
+      },
+      {
+        "id": 8,
+        "actions": [{"text": "Attack #41 -1","subAction": [{"text": "Pierce #09 2"}]}, {"text": "Move #38 -2"}, {"text": "Attack #41 -1","subAction": [{"text": "Pierce #09 2"}]}]
+      }
+    ]
+  },
+  {
+    "deck": "scout",
+    "cards": [
+      {
+        "id": 1,
+        "actions": [{"text": "Move #38 -1"}, {"text": "Attack #41 -1","subAction": [{"text": "Range #37 3"}]}]
+      },
+      {
+        "id": 2,
+        "actions": [{"text": "Move #38 +1"}, {"text": "Attack #41 -1"}]
+      },
+      {
+        "id": 3,
+        "actions": [{"text": "Move #38 +0"}, {"text": "Attack #41 +0"}]
+      },
+      {
+        "id": 4,
+        "actions": [{"text": "Move #38 -2"}, {"text": "Attack #41 +0","subAction": [{"text": "Range #37 3 and Poison #25"}]}]
+      },
+      {
+        "id": 5,
+        "actions": [{"text": "Move #38 -1"}, {"text": "Attack #41 +1"}]
+      },
+      {
+        "id": 6,
+        "actions": [{"text": "Attack #41 +2","subAction": [{"text": "Poison #25"}]}]
+      },
+      {
+        "id": 7,
+        "actions": [{"text": "Attack #41 -1","subAction": [{"text": "Range #37 4"}, {"text": "Target #13 2"}]}]
+      },
+      {
+        "id": 8,
+        "actions": [{"text": "Move #38 +1","subAction": [{"text": "Jump"}]}, {"text": "Loot #52 1"}]
+      }
+    ]
+  },
+  {
+    "deck": "sun-demon",
+    "cards": [
+      {
+        "id": 1,
+        "actions": [{"text": "Heal #40 3","subAction": [{"text": "Range #37 3"}, {"text": "#47 : Target all allies within range"}]}]
+      },
+      {
+        "id": 2,
+        "actions": [{"text": "Move #38 +0"}, {"text": "Attack #41 +0", "subAction": [{"text": "Target all adjacent enemies"}]},{"text": "#19"}]
+      },
+      {
+        "id": 3,
+        "actions": [{"text": "Move #38 +0"}, {"text": "Attack #41 +0", "subAction": [{"text": "Target all adjacent enemies"}]},{"text": "#19"}]
+      },
+      {
+        "id": 4,
+        "actions": [{"text": "Move #38 +0"}, {"text": "Attack #41 +1"},{"text": "#19"}]
+      },
+      {
+        "id": 5,
+        "actions": [{"text": "Move #38 +0"}, {"text": "Attack #41 +1"}, {"text": "#47 : Heal #40 3 (Self)"}]
+      },
+      {
+        "id": 6,
+        "actions": [{"text": "Move #38 -1"}, {"text": "Attack #41 +0","subAction": [{"text": "Range #37 4"}, {"text": "#47 : Target all enemies within range"}]}]
+      },
+      {
+        "id": 7,
+        "actions": [{"text": "Move #38 -1"}, {"text": "Attack #41 -1","subAction": [{"text": "Target all adjacent enemies"}]}, {"text": "#46 : Muddle #12 (Self)"}]
+      },
+      {
+        "id": 8,
+        "actions": [{"text": "Move #38 +0"}, {"text": "Attack #41 +0","subAction": [{"text": "Range #37 3"}, { "text": "#44 : #19"}]}]
+      }
+    ]
+  },
+  {
+    "deck": "stone-golem",
+    "cards": [
+      {
+        "id": 1,
+        "actions": [{"text": "Retail #36 3","subAction": [{"text": "Range #37 3"}]}]
+      },
+      {
+        "id": 2,
+        "actions": [{"text": "Move #38 +1"}, {"text": "Attack #41 +0"}, {"text": "Stone Golem suffers 1 damage"}]
+      },
+      {
+        "id": 3,
+        "actions": [{"text": "Move #38 +1"}, {"text": "Attack #41 -1"}]
+      },
+      {
+        "id": 4,
+        "actions": [{"text": "Move #38 +0"}, {"text": "Attack #41 +0"}]
+      },
+      {
+        "id": 5,
+        "actions": [{"text": "Attack #41 +1","subAction": [{"text": "Range #37 3"}]}, {"text": "Stone Golem suffers 2 damage"}]
+      },
+      {
+        "id": 6,
+        "actions": [{"text": "Move #38 -1"}, {"text": "Attack #41 +1"}]
+      },
+      {
+        "id": 7,
+        "actions": [{"text": "Move #38 +0"}, {"text": "Attack #41 -1","subAction": [{"text": "Target all adjacent enemies"}]}]
+      },
+      {
+        "id": 8,
+        "actions": [{"text": "Move #38 +1"}, {"text": "Attack #41 -2","subAction": [{"text": "Range #37 3"},{"text": "Pull #17 2 and Immobilize #18"}]}]
+      }
+    ]
+  },
+  {
+    "deck": "spitting-drake",
+    "cards": [
+      {
+        "id": 1,
+        "actions": [{"text": "Move #38 +1"}, {"text": "Attack #41 -1"}]
+      },
+      {
+        "id": 2,
+        "actions": [{"text": "Move #38 +0"}, {"text": "Attack #41 +0"}]
+      },
+      {
+        "id": 3,
+        "actions": [{"text": "Move #38 +0"}, { "endEffect":"#53","text": "Attack #41 -1","subAction": [{"text": "Range #37 -1"}]}]
+      },
+      {
+        "id": 4,
+        "actions": [{"text": "Attack #41 +0","subAction": [{"text": "Target #13 2"}, {"text": "Poison #25"}]}]
+      },
+      {
+        "id": 5,
+        "actions": [{"text": "Move #38 -1"}, {"text": "Attack #41 +1"}]
+      },
+      {
+        "id": 6,
+        "actions": [{"text": "Attack #41 -2","subAction": [{"text": "Stun #10"}]}]
+      },
+      {
+        "id": 7,
+        "actions": [{"text": "Shield #39 2"}, {"text": "Heal #40 2 (Self)"}, {"text": "Strengthen #35 (Self)"}]
+      },
+      {
+        "id": 8,
+        "actions": [{"text": "Move #38 -1"}, {"endEffect": "#48", "text": "Attack #41 -2","subAction": [{"text": "Range #37 -2"}, {"text": "Poison #25"}]}]
+      }
+    ]
+  },
+  {
+    "deck": "savvas-icestorm",
+    "cards": [
+      {
+        "id": 1,
+        "actions": [{"text": "Push #08 2","subAction": [{"text": "Target all adjacent enemies"}, { "text": "#43 : Push #08 4 instead"}]}, {"text": "Attack #41 +1","subAction": [{"text": "Range #37 +1"}]}]
+      },
+      {
+        "id": 2,
+        "actions": [{"text": "Summon normal Wind Demon"}, {"text": "#21"}]
+      },
+      {
+        "id": 3,
+        "actions": [{"text": "Summon normal Frost Demon"}, {"text": "#16"}]
+      },
+      {
+        "id": 4,
+        "actions": [{"text": "Move #38 +0 #16" }, {"text": "Attack #41 -1","subAction": [{"text": "Range #37 -1"}]}, {"text": "Shield #39 1","subAction": [{"text": "Affect self and all allies within Range #37 2"}]}]
+      },
+      {
+        "id": 5,
+        "actions": [{"text": "Attack #41 +0", "subAction": [{"text": "#45 : +2 Attack #41 Immobilize #18"}]}, {"text": "Retail #36 2"}, {"text": "#21"}]
+      },
+      {
+        "id": 6,
+        "actions": [{"text": "Shield #39 4"}, {"text": "Heal #40 2","subAction": [{"text": "Range #37 3"}, {"text": "#45 : +3 Heal #40"}]}, { "text": "#43 : Attack #41 +0"}]
+      },
+      {
+        "id": 7,
+        "actions": [{"text": "Disarm #11","subAction": [{"text": "Target all adjacent enemies"}]}, {"text": "Move #38 +0"}, {"text": "Attack #41 -1"}, {"text": "#21"}]
+      },
+      {
+        "id": 8,
+        "actions": [{"text": "Move #38 -1"}, { "endEffect": "#30", "text": "Attack #41 -1"}, {"text": "#16"}]
+      }
+    ]
+  },
+  {
+    "deck": "harrower-infester",
+    "cards": [
+      {
+        "id": 1,
+        "actions": [{"text": "Move #38 -1"}, {"text": "Attack #41 +1", "subAction": [{"text": "Target #13 2"}]}]
+      },
+      {
+        "id": 2,
+        "actions": [{"text": "Move #38 +0"}, {"text": "Attack #41 -1", "subAction": [{"text": "Poison #25"}]}, {"text": "#20"}]
+      },
+      {
+        "id": 3,
+        "actions": [{"text": "Move #38 -1"}, {"text": "Attack #41 -1"}, {"text": "Heal #40 2 (Self)"}]
+      },
+      {
+        "id": 4,
+        "actions": [{"text": "Attack #41 +2","subAction": [{"text": "Immobilize #18"}]}, {"text": "Retail #36 2"}]
+      },
+      {
+        "id": 5,
+        "actions": [{"text": "Shield #39 2"}, {"text": "Retail #36 2","subAction": [{"text": "Range #37 3"}]}]
+      },
+      {
+        "id": 6,
+        "actions": [{"text": "Move #38 -1"}, {"endEffect": "#54", "text": "Attack #41 +0"}, {"text": "#46 : Perform Heal #40 2 (Self), for each target damaged"}]      },
+      {
+        "id": 7,
+        "actions": [{"text": "Move #38 +0"}, {"text": "Attack #41 -1","subAction": [{"text": "Target #13 2"}, {"text": "#46 : +2 Attack #41, Disarm #11"}]}]
+      },
+      {
+        "id": 8,
+        "actions": [{"text": "Attack #41 -1","subAction": [{"text": "Range #37 3"},{"text": "Muddle #12"}]}, {"text": "Heal #40 4 (Self)"}]
+      }
+    ]
+  },
+  {
+    "deck": "giant-viper",
+    "cards": [
+      {
+        "id": 1,
+        "actions": [{"text": "Move #38 +0"}, {"text": "Attack #41 +0","subAction": [{"text": "Add +2 Attack if the target is adjacent to any of the Giant Viper's allies"}]}]
+      },
+      {
+        "id": 2,
+        "actions": [{"text": "Move #38 +0"}, {"text": "Attack #41 +0","subAction": [{"text": "Add +2 Attack if the target is adjacent to any of the Giant Viper's allies"}]}]
+      },
+      {
+        "id": 3,
+        "actions": [{"text": "Shield #39 2"}, {"text": "Attack #41 -1"}]
+      },
+      {
+        "id": 4,
+        "actions": [{"text": "Move #38 +0", "subAction": [{"text":  "Jump"}]}, {"text": "Attack #41 -1","subAction": [{"text": "Target all adjacent enemies"}]}]
+      },
+      {
+        "id": 5,
+        "actions": [{"text": "Move #38 -1"}, {"text": "Attack #41 +1"}]
+      },
+      {
+        "id": 6,
+        "actions": [{"text": "Move #38 +1", "subAction": [{"text":  "Jump"}]}, {"text": "Attack #41 -1"}, {"text": "All attacks targeting Giant Viper this round gain Disadvantage"}]
+      },
+      {
+        "id": 7,
+        "actions": [{"text": "Move #38 -1", "subAction": [{"text":  "Jump"}]}, {"text": "Attack #41 +0","subAction": [{"text": "Target #13 2"}]}]
+      },
+      {
+        "id": 8,
+        "actions": [{"text": "Move #38 -1"}, {"text": "Attack #41 -1","subAction": [{"text": "Immobilize #18"}]}, {"text": "Attack #41 -1"}]
+      }
+    ]
+  },
+  {
+    "deck": "ooze",
+    "cards": [
+      {
+        "id": 1,
+        "actions": [{"text": "Move #38 +1"}, {"text": "Attack #41 -1"}]
+      },
+      {
+        "id": 2,
+        "actions": [{"text": "Move #38 +0"}, {"text": "Attack #41 +0"}]
+      },
+      {
+        "id": 3,
+        "actions": [ {"text": "Attack #41 +0","subAction": [{"text": "Target #13 2"},{"text": "Poison #25"}]}]
+      },
+      {
+        "id": 4,
+        "actions": [ {"text": "Move #38 -1"}, {"text": "Attack #41 +1","subAction": [{"text": "Range #37 +1"}]}]
+      },
+      {
+        "id": 5,
+        "actions": [{"text": "Ooze offers 2 damage"}, {"text": "Summon normal Ooze with a hit point value equals to the summoning Ooze's current hit point value (limited by a normal Ooze's specified maximum hit point value)"}]
+      },
+      {
+        "id": 6,
+        "actions": [{"text": "Ooze offers 2 damage"}, {"text": "Summon normal Ooze with a hit point value equals to the summoning Ooze's current hit point value (limited by a normal Ooze's specified maximum hit point value)"}]
+      },
+      {
+        "id": 7,
+        "actions": [{"text": "Move #38 -1"}, {"text": "Loot #52 1"},{"text": "Heal #40 2 (Self)"}]
+      },
+      {
+        "id": 8,
+        "actions": [{"text": "Push #08 1 and Poison #25","subAction": [{"text": "Target all adjacent enemies"}]}, {"text": "Attack #41 +1","subAction": [{"text": "Range #37 -1"}]}]
+      }
+    ]
+  },
+  {
+    "deck": "ancient-artillery",
+    "cards": [
+      {
+        "id": 1,
+        "actions": [{"text": "Attack #41 -1","subAction": [{"text": "Range #37 +2"}]}]
+      },
+      {
+        "id": 2,
+        "actions": [{"text": "Attack #41 +0","subAction": [{"text": "All adjacent enemies suffer 2 damage"}]}]
+      },
+      {
+        "id": 3,
+        "actions": [{"text": "Attack #41 +0","subAction": [{"text": "All adjacent enemies suffer 2 damage"}]}]
+      },
+      {
+        "id": 4,
+        "actions": [ {"text": "Push #08 1","subAction": [{"text": "Target all adjacent enemies"}]}, {"endEffect": "#53", "text": "Attack #41 -1","subAction": [{"text": "Range #37 -1"}]}]
+      },
+      {
+        "id": 5,
+        "actions": [ {"text": "Push #08 1","subAction": [{"text": "Target all adjacent enemies"}]}, {"endEffect": "#48", "text": "Attack #41 -1","subAction": [{"text": "Range #37 -1"}]}]
+      },
+      {
+        "id": 6,
+        "actions": [{"text": "Attack #41 +1"}]
+      },
+      {
+        "id": 7,
+        "actions": [ {"text": "Push #08 2","subAction": [{"text": "Target all adjacent enemies"}]},{"text": "Shield #39 2"}, {"text": "Attack #41 -2"}]
+      },
+      {
+        "id": 8,
+        "actions": [ {"endEffect": "#53", "text": "Attack #41 -1","subAction": [{"text": "Immobilize #18"}]}]
+      }
+    ]
+  },
+  {
+    "deck": "rending-drake",
+    "cards": [
+      {
+        "id": 1,
+        "actions": [{"text": "Move #38 +1"}, {"text": "Attack #41 -1"}]
+      },
+      {
+        "id": 2,
+        "actions": [{"text": "Attack #41 -1"},{"text": "Move #38 -1"}, {"text": "Attack #41 -1"}]
+      },
+      {
+        "id": 3,
+        "actions": [{"text": "Move #38 +0"}, {"text": "Attack #41 +0"}]
+      },
+      {
+        "id": 4,
+        "actions": [{"text": "Move #38 -1"}, {"text": "Attack #41 +1"}]
+      },
+      {
+        "id": 5,
+        "actions": [{"text": "Move #38 -2"}, {"text": "Attack #41 -1","subAction": [{"text": "Range #37 3"},{"text": "Target #13 2 and Poison #25"}]}]
+      },
+      {
+        "id": 6,
+        "actions": [{"text": "Move #38 -2"}, {"text": "Attack #41 +1","subAction": [{"text": "Target #13 2"}]}]
+      },
+      {
+        "id": 7,
+        "actions": [{"text": "Attack #41 -1"}, {"text": "Attack #41 -1"}, {"text": "Attack #41 -2"}]
+      },
+      {
+        "id": 8,
+        "actions": [{"text": "Shield #39 2"}, {"text": "Heal #40 2 (Self)"},{"text": "Strengthen #35 (Self)"}]
+      }
+    ]
+  },
+  {
+    "deck": "deep-terror",
+    "cards": [
+      {
+        "id": 1,
+        "actions": [{"text": "Attack #41 +0","subAction": [{"text": "Range #37 3"}, {"text": "Target #13 3 and Curse #26"}]}]
+      },
+      {
+        "id": 2,
+        "actions": [{"endEffect": "#55","text": "Attack #41 +0","subAction": [{"text": "Pierce #09 3"}]}]
+      },
+      {
+        "id": 3,
+        "actions": [{"endEffect": "#55","text": "Attack #41 +0","subAction": [{"text": "Pierce #09 3"}]}]
+      },
+      {
+        "id": 4,
+        "actions": [{"text": "Attack #41 -1","subAction": [{"text": "Target all adjacent enemies"}]}, {"text": "Attack #41 +0","subAction": [{"text": "Range #37 4"}, {"text": "Wound #14"}]}]
+      },
+      {
+        "id": 5,
+        "actions": [{"text": "Attack #41 +0","subAction": [{"text": "Poison #25"}]}, {"text": "Attack #41 -1","subAction": [{"text": "Range #37 5"}, {"text": "Immobilize #18"}]}]
+      },
+      {
+        "id": 6,
+        "actions": [{"text": "Attack #41 -2","subAction": [{"text": "Target all adjacent enemies"}, {"text": "Disarm #11"}]}, {"text": "Attack #41 +0","subAction": [{"text": "Range #37 3"}, {"text": "Target #13 2"}]}]
+      },
+      {
+        "id": 7,
+        "actions": [{"text": "Attack #41 -2","subAction": [{"text": "Range #37 6"}]}, {"text":  "Summon normal Deep Terror in a hex adjacent to the target"}]
+      },
+      {
+        "id": 8,
+        "actions": [{"text": "Wound #14 and Poison #25","subAction": [{"text": "Target all adjacent enemies"}]}, {"text": "Attack #41 +0","subAction": [{"text": "Range #37 4"}]}]
+      }
+    ]
+  },
+  {
+    "deck": "lurker",
+    "cards": [
+      {
+        "id": 1,
+        "actions": [{"text": "Shield #39 1", "subAction": [{"text":  "#45 : Shield #39 2 instead"}]}, {"text": "Wound #14","subAction": [{"text": "Target all adjacent enemies"}]}]
+      },
+      {
+        "id": 2,
+        "actions": [{"text": "Move #38 +1"}, {"text": "Attack #41 -1"}]
+      },
+      {
+        "id": 3,
+        "actions": [{"text": "Move #38 +0"}, {"text": "Attack #41 +0"}]
+      },
+      {
+        "id": 4,
+        "actions": [{"text": "Move #38 +0"}, {"text": "Attack #41 +0","subAction": [{"text": "Target one enemy with all attacks"}]}]
+      },
+      {
+        "id": 5,
+        "actions": [{"text": "Move #38 -1"}, {"text": "Attack #41 +1"}]
+      },
+      {
+        "id": 6,
+        "actions": [{"text": "Attack #41 +1","subAction": [{"text": "Target all adjacent enemies"}]}]
+      },
+      {
+        "id": 7,
+        "actions": [{"text":  "#45 : Strengthen #35 (Self)"},{"text": "Move #38 +0"}, {"text": "Attack #41 -1","subAction": [{"text":  "Wound #14"}]}]
+      },
+      {
+        "id": 8,
+        "actions": [{"text": "Shield #39 1"}, {"text": "Move #38 +0"}, {"text": "Attack #41 -1"}, {"text":  "#16"}]
+      }
+    ]
+  },
+  {
+    "deck": "savvas-lavaflow",
+    "cards": [
+      {
+        "id": 1,
+        "actions": [{"text": "Summon normal Flame Demon"}, {"text": "#22"}]
+      },
+      {
+        "id": 2,
+        "actions": [{"text": "Summon normal Earth Demon"}, {"text": "#23"}]
+      },
+      {
+        "id": 3,
+        "actions": [{"text": "Move #38 +1"}, {"text": "Attack #41 -1","subAction": [{"text": "Target all adjacent enemies"}]}, {"text": "#50 : Retail #36 3"}]
+      },
+      {
+        "id": 4,
+        "actions": [{"text": "Move #38 -1"}, {"text": "Attack #41 +1","subAction": [{"text": "Range #37 3"}, {"text": "All allies and enemies adjacent to the target suffer 2 damage"}]}, {"text": "#23"} ]
+      },
+      {
+        "id": 5,
+        "actions": [{"text": "Move #38 +0"}, {"endEffect": "#54", "text": "Attack #41 -1", "subAction": [{ "text": "#42 : +2 Attack #41 Immobilize #18"}]}]
+      },
+      {
+        "id": 6,
+        "actions": [{"text": "All enemies suffer 2 damage"}, {"text": "#42 : Wound #14 all enemies"}, { "text": "#50 : Disarm #11 all enemies"}]
+      },
+      {
+        "id": 7,
+        "actions": [{"text": "Heal #40 4","subAction": [{"text": "Range #37 3"}, { "text": "#42 : Target #13 3"}]}]
+      },
+      {
+        "id": 8,
+        "actions": [{"text": "Move #38 -1"}, { "text": "Attack #41 -1","subAction": [{"text": "Range #37 3"}, { "text": "Target #13 2"}]}, {"text": "#22"}]
+      }
+    ]
+  }
+]

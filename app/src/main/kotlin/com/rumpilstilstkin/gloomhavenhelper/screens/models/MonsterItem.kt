@@ -4,10 +4,16 @@ import androidx.compose.runtime.Immutable
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.Monster
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterAction
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterCard
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterCardAction
+import com.rumpilstilstkin.gloomhavenhelper.ui.icons.GameIcon
+import com.rumpilstilstkin.gloomhavenhelper.ui.scenario.MonsterAbilityCardUi
+import com.rumpilstilstkin.gloomhavenhelper.ui.scenario.MonsterActionUi
+import com.rumpilstilstkin.gloomhavenhelper.ui.scenario.toUi
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.toImmutableList
 import kotlinx.serialization.Serializable
+import kotlin.String
 
 @Serializable
 @Immutable
@@ -15,7 +21,8 @@ data class MonsterItem(
     val slug: String,
     val name: String,
     val isFly: Boolean,
-    val currentCard: MonsterAbilityCard? = null,
+    val deck: String,
+    val currentCard: MonsterAbilityCardUi? = null,
     val units: ImmutableList<MonsterUnit> = persistentListOf(),
     val isBoss: Boolean = false,
 ) {
@@ -25,12 +32,14 @@ data class MonsterItem(
             name: String = "Name",
             isBoss: Boolean = false,
             isFly: Boolean = false,
+            deck: String = "boss"
         ) = MonsterItem(
             slug = slug,
             name = name,
             currentCard = null,
             isBoss = isBoss,
-            isFly = isFly
+            isFly = isFly,
+            deck = deck
         )
     }
 }
@@ -76,7 +85,7 @@ data class MonsterUnit(
             monster: Monster,
             gamersCount: Int
         ): MonsterUnit {
-            val maxLife = if(monster.lifeMultiple) monster.life * gamersCount else monster.life
+            val maxLife = if (monster.lifeMultiple) monster.life * gamersCount else monster.life
             return MonsterUnit(
                 number = 1,
                 maxLife = maxLife,
@@ -122,20 +131,18 @@ data class MonsterUnit(
 @Serializable
 @Immutable
 data class MonsterAbilityCard(
-    val id: Int,
-    val imageName: String,
+    val cardId: Int,
     val needsShuffle: Boolean = false,
-    val initiative: Int
+    val initiative: Int,
+    val actions: List<MonsterCardAction>
 ) {
-    val imagePath
-        get() = "file:///android_asset/image/monster_cards/$imageName"
 
     companion object {
-        fun createFromMonsterCard(card: MonsterCard) = MonsterAbilityCard(
-            id = card.cardId,
-            imageName = card.imageName,
+        fun createFromMonsterCard(card: MonsterCard) = MonsterAbilityCardUi(
+            cardId = card.cardId,
             needsShuffle = card.needsShuffle,
-            initiative = card.initiative
+            initiative = card.initiative,
+            actions = card.actions.map { action -> action.toUi() }.toImmutableList()
         )
     }
 }

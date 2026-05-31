@@ -28,6 +28,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -70,7 +71,7 @@ fun MonsterUnitCard(
                         modifier = Modifier.size(32.dp),
                         painter = painterResource(id = effect.icon.imageRes),
                         contentDescription = null,
-                        tint = effect.icon.color
+                        tint = effect.icon.color ?: Color.White
                     )
                     Spacer(modifier = Modifier.width(12.dp))
                 }
@@ -156,7 +157,7 @@ fun MonsterUnitCard(
                         modifier = Modifier.fillMaxSize(),
                         painter = painterResource(id = effect.icon.imageRes),
                         contentDescription = null,
-                        tint = tint
+                        tint = tint ?: Color.White
                     )
                 }
             }
@@ -186,7 +187,7 @@ fun MonsterUnitCard(
                                 modifier = Modifier.size(28.dp),
                                 painter = painterResource(id = stat.type.icon.imageRes),
                                 contentDescription = null,
-                                tint = stat.type.icon.color
+                                tint = stat.type.icon.color?: Color.White
                             )
                             Spacer(modifier = Modifier.width(8.dp))
                             Text(

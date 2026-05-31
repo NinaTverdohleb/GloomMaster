@@ -2,378 +2,378 @@
   {
     "name": "boss",
     "cards": [
-      { "image": "ic_deck_ma_bo_1.webp", "needsShuffle": false, "initiative": 11 },
-      { "image": "ic_deck_ma_bo_2.webp", "needsShuffle": false, "initiative": 14 },
-      { "image": "ic_deck_ma_bo_3.webp", "needsShuffle": true, "initiative": 17 },
-      { "image": "ic_deck_ma_bo_4.webp", "needsShuffle": true, "initiative": 85 },
-      { "image": "ic_deck_ma_bo_5.webp", "needsShuffle": false, "initiative": 79 },
-      { "image": "ic_deck_ma_bo_6.webp", "needsShuffle": false, "initiative": 73 },
-      { "image": "ic_deck_ma_bo_7.webp", "needsShuffle": false, "initiative": 36 },
-      { "image": "ic_deck_ma_bo_8.webp", "needsShuffle": false, "initiative": 52 }
+      { "id": 1, "needsShuffle": false, "initiative": 11 },
+      { "id": 2, "needsShuffle": false, "initiative": 14 },
+      { "id": 3, "needsShuffle": true, "initiative": 17 },
+      { "id": 4, "needsShuffle": true, "initiative": 85 },
+      { "id": 5, "needsShuffle": false, "initiative": 79 },
+      { "id": 6, "needsShuffle": false, "initiative": 73 },
+      { "id": 7, "needsShuffle": false, "initiative": 36 },
+      { "id": 8, "needsShuffle": false, "initiative": 52 }
     ]
   },
   {
     "name": "living-bones",
     "cards": [
-      { "image": "ic_deck_ma_lb_1.webp", "needsShuffle": false, "initiative": 64 },
-      { "image": "ic_deck_ma_lb_2.webp", "needsShuffle": true, "initiative": 20 },
-      { "image": "ic_deck_ma_lb_3.webp", "needsShuffle": false, "initiative": 25 },
-      { "image": "ic_deck_ma_lb_4.webp", "needsShuffle": false, "initiative": 45 },
-      { "image": "ic_deck_ma_lb_5.webp", "needsShuffle": false, "initiative": 45 },
-      { "image": "ic_deck_ma_lb_6.webp", "needsShuffle": false, "initiative": 81 },
-      { "image": "ic_deck_ma_lb_7.webp", "needsShuffle": false, "initiative": 74 },
-      { "image": "ic_deck_ma_lb_8.webp", "needsShuffle": true, "initiative": 12 }
+      { "id": 1, "needsShuffle": false, "initiative": 64 },
+      { "id": 2, "needsShuffle": true, "initiative": 20 },
+      { "id": 3, "needsShuffle": false, "initiative": 25 },
+      { "id": 4, "needsShuffle": false, "initiative": 45 },
+      { "id": 5, "needsShuffle": false, "initiative": 45 },
+      { "id": 6, "needsShuffle": false, "initiative": 81 },
+      { "id": 7, "needsShuffle": false, "initiative": 74 },
+      { "id": 8, "needsShuffle": true, "initiative": 12 }
     ]
   },
   {
     "name": "guard",
     "cards": [
-      { "image": "ic_deck_ma_gu_1.webp", "needsShuffle": true, "initiative": 15 },
-      { "image": "ic_deck_ma_gu_2.webp", "needsShuffle": false, "initiative": 30 },
-      { "image": "ic_deck_ma_gu_3.webp", "needsShuffle": false, "initiative": 35 },
-      { "image": "ic_deck_ma_gu_4.webp", "needsShuffle": false, "initiative": 50 },
-      { "image": "ic_deck_ma_gu_5.webp", "needsShuffle": false, "initiative": 50 },
-      { "image": "ic_deck_ma_gu_6.webp", "needsShuffle": false, "initiative": 70 },
-      { "image": "ic_deck_ma_gu_7.webp", "needsShuffle": false, "initiative": 55 },
-      { "image": "ic_deck_ma_gu_8.webp", "needsShuffle": true, "initiative": 15 }
+      { "id": 1, "needsShuffle": true, "initiative": 15 },
+      { "id": 2, "needsShuffle": false, "initiative": 30 },
+      { "id": 3, "needsShuffle": false, "initiative": 35 },
+      { "id": 4, "needsShuffle": false, "initiative": 50 },
+      { "id": 5, "needsShuffle": false, "initiative": 50 },
+      { "id": 6, "needsShuffle": false, "initiative": 70 },
+      { "id": 7, "needsShuffle": false, "initiative": 55 },
+      { "id": 8, "needsShuffle": true, "initiative": 15 }
     ]
   },
   {
     "name": "archer",
     "cards": [
-      { "image": "ic_deck_ma_ar_1.webp", "needsShuffle": false, "initiative": 16 },
-      { "image": "ic_deck_ma_ar_2.webp", "needsShuffle": false, "initiative": 31 },
-      { "image": "ic_deck_ma_ar_3.webp", "needsShuffle": false, "initiative": 32 },
-      { "image": "ic_deck_ma_ar_4.webp", "needsShuffle": false, "initiative": 44 },
-      { "image": "ic_deck_ma_ar_5.webp", "needsShuffle": false, "initiative": 56 },
-      { "image": "ic_deck_ma_ar_6.webp", "needsShuffle": true, "initiative": 68 },
-      { "image": "ic_deck_ma_ar_7.webp", "needsShuffle": false, "initiative": 14 },
-      { "image": "ic_deck_ma_ar_8.webp", "needsShuffle": true, "initiative": 29 }
+      { "id": 1, "needsShuffle": false, "initiative": 16 },
+      { "id": 2, "needsShuffle": false, "initiative": 31 },
+      { "id": 3, "needsShuffle": false, "initiative": 32 },
+      { "id": 4, "needsShuffle": false, "initiative": 44 },
+      { "id": 5, "needsShuffle": false, "initiative": 56 },
+      { "id": 6, "needsShuffle": true, "initiative": 68 },
+      { "id": 7, "needsShuffle": false, "initiative": 14 },
+      { "id": 8, "needsShuffle": true, "initiative": 29 }
     ]
   },
   {
     "name": "living-corpse",
     "cards": [
-      { "image": "ic_deck_ma_lc_1.webp", "needsShuffle": false, "initiative": 21 },
-      { "image": "ic_deck_ma_lc_2.webp", "needsShuffle": false, "initiative": 47 },
-      { "image": "ic_deck_ma_lc_3.webp", "needsShuffle": true, "initiative": 66 },
-      { "image": "ic_deck_ma_lc_4.webp", "needsShuffle": true, "initiative": 66 },
-      { "image": "ic_deck_ma_lc_5.webp", "needsShuffle": false, "initiative": 82 },
-      { "image": "ic_deck_ma_lc_6.webp", "needsShuffle": false, "initiative": 91 },
-      { "image": "ic_deck_ma_lc_7.webp", "needsShuffle": false, "initiative": 71 },
-      { "image": "ic_deck_ma_lc_8.webp", "needsShuffle": false, "initiative": 32 }
+      { "id": 1, "needsShuffle": false, "initiative": 21 },
+      { "id": 2, "needsShuffle": false, "initiative": 47 },
+      { "id": 3, "needsShuffle": true, "initiative": 66 },
+      { "id": 4, "needsShuffle": true, "initiative": 66 },
+      { "id": 5, "needsShuffle": false, "initiative": 82 },
+      { "id": 6, "needsShuffle": false, "initiative": 91 },
+      { "id": 7, "needsShuffle": false, "initiative": 71 },
+      { "id": 8, "needsShuffle": false, "initiative": 32 }
     ]
   },
   {
     "name": "shaman",
     "cards": [
-      { "image": "ic_deck_ma_sh_1.webp", "needsShuffle": false, "initiative": 8 },
-      { "image": "ic_deck_ma_sh_2.webp", "needsShuffle": false, "initiative": 8 },
-      { "image": "ic_deck_ma_sh_3.webp", "needsShuffle": true, "initiative": 23 },
-      { "image": "ic_deck_ma_sh_4.webp", "needsShuffle": true, "initiative": 23 },
-      { "image": "ic_deck_ma_sh_5.webp", "needsShuffle": false, "initiative": 62 },
-      { "image": "ic_deck_ma_sh_6.webp", "needsShuffle": false, "initiative": 74 },
-      { "image": "ic_deck_ma_sh_7.webp", "needsShuffle": false, "initiative": 89 },
-      { "image": "ic_deck_ma_sh_8.webp", "needsShuffle": false, "initiative": 9 }
+      { "id": 1, "needsShuffle": false, "initiative": 8 },
+      { "id": 2, "needsShuffle": false, "initiative": 8 },
+      { "id": 3, "needsShuffle": true, "initiative": 23 },
+      { "id": 4, "needsShuffle": true, "initiative": 23 },
+      { "id": 5, "needsShuffle": false, "initiative": 62 },
+      { "id": 6, "needsShuffle": false, "initiative": 74 },
+      { "id": 7, "needsShuffle": false, "initiative": 89 },
+      { "id": 8, "needsShuffle": false, "initiative": 9 }
     ]
   },
   {
     "name": "cultist",
     "cards": [
-      { "image": "ic_deck_ma_cu_1.webp", "needsShuffle": false, "initiative": 10 },
-      { "image": "ic_deck_ma_cu_2.webp", "needsShuffle": false, "initiative": 10 },
-      { "image": "ic_deck_ma_cu_3.webp", "needsShuffle": false, "initiative": 27 },
-      { "image": "ic_deck_ma_cu_4.webp", "needsShuffle": false, "initiative": 27 },
-      { "image": "ic_deck_ma_cu_5.webp", "needsShuffle": false, "initiative": 39 },
-      { "image": "ic_deck_ma_cu_6.webp", "needsShuffle": true, "initiative": 63 },
-      { "image": "ic_deck_ma_cu_7.webp", "needsShuffle": true, "initiative": 63 },
-      { "image": "ic_deck_ma_cu_8.webp", "needsShuffle": false, "initiative": 31 }
+      { "id": 1, "needsShuffle": false, "initiative": 10 },
+      { "id": 2, "needsShuffle": false, "initiative": 10 },
+      { "id": 3, "needsShuffle": false, "initiative": 27 },
+      { "id": 4, "needsShuffle": false, "initiative": 27 },
+      { "id": 5, "needsShuffle": false, "initiative": 39 },
+      { "id": 6, "needsShuffle": true, "initiative": 63 },
+      { "id": 7, "needsShuffle": true, "initiative": 63 },
+      { "id": 8, "needsShuffle": false, "initiative": 31 }
     ]
   },
   {
     "name": "earth-demon",
     "cards": [
-      { "image": "ic_deck_ma_ed_1.webp", "needsShuffle": true, "initiative": 40 },
-      { "image": "ic_deck_ma_ed_2.webp", "needsShuffle": true, "initiative": 42 },
-      { "image": "ic_deck_ma_ed_3.webp", "needsShuffle": false, "initiative": 62 },
-      { "image": "ic_deck_ma_ed_4.webp", "needsShuffle": false, "initiative": 71 },
-      { "image": "ic_deck_ma_ed_5.webp", "needsShuffle": false, "initiative": 83 },
-      { "image": "ic_deck_ma_ed_6.webp", "needsShuffle": false, "initiative": 93 },
-      { "image": "ic_deck_ma_ed_7.webp", "needsShuffle": false, "initiative": 79 },
-      { "image": "ic_deck_ma_ed_8.webp", "needsShuffle": false, "initiative": 87 }
+      { "id": 1, "needsShuffle": true, "initiative": 40 },
+      { "id": 2, "needsShuffle": true, "initiative": 42 },
+      { "id": 3, "needsShuffle": false, "initiative": 62 },
+      { "id": 4, "needsShuffle": false, "initiative": 71 },
+      { "id": 5, "needsShuffle": false, "initiative": 83 },
+      { "id": 6, "needsShuffle": false, "initiative": 93 },
+      { "id": 7, "needsShuffle": false, "initiative": 79 },
+      { "id": 8, "needsShuffle": false, "initiative": 87 }
     ]
   },
   {
     "name": "wind-demon",
     "cards": [
-      { "image": "ic_deck_ma_wd_1.webp", "needsShuffle": false, "initiative": 9 },
-      { "image": "ic_deck_ma_wd_2.webp", "needsShuffle": true, "initiative": 21 },
-      { "image": "ic_deck_ma_wd_3.webp", "needsShuffle": true, "initiative": 21 },
-      { "image": "ic_deck_ma_wd_4.webp", "needsShuffle": false, "initiative": 29 },
-      { "image": "ic_deck_ma_wd_5.webp", "needsShuffle": false, "initiative": 37 },
-      { "image": "ic_deck_ma_wd_6.webp", "needsShuffle": false, "initiative": 43 },
-      { "image": "ic_deck_ma_wd_7.webp", "needsShuffle": false, "initiative": 43 },
-      { "image": "ic_deck_ma_wd_8.webp", "needsShuffle": false, "initiative": 2 }
+      { "id": 1, "needsShuffle": false, "initiative": 9 },
+      { "id": 2, "needsShuffle": true, "initiative": 21 },
+      { "id": 3, "needsShuffle": true, "initiative": 21 },
+      { "id": 4, "needsShuffle": false, "initiative": 29 },
+      { "id": 5, "needsShuffle": false, "initiative": 37 },
+      { "id": 6, "needsShuffle": false, "initiative": 43 },
+      { "id": 7, "needsShuffle": false, "initiative": 43 },
+      { "id": 8, "needsShuffle": false, "initiative": 2 }
     ]
   },
   {
     "name": "living-spirit",
     "cards": [
-      { "image": "ic_deck_ma_ls_1.webp", "needsShuffle": false, "initiative": 75 },
-      { "image": "ic_deck_ma_ls_2.webp", "needsShuffle": false, "initiative": 55 },
-      { "image": "ic_deck_ma_ls_3.webp", "needsShuffle": false, "initiative": 67 },
-      { "image": "ic_deck_ma_ls_4.webp", "needsShuffle": false, "initiative": 48 },
-      { "image": "ic_deck_ma_ls_5.webp", "needsShuffle": true, "initiative": 22 },
-      { "image": "ic_deck_ma_ls_6.webp", "needsShuffle": true, "initiative": 33 },
-      { "image": "ic_deck_ma_ls_7.webp", "needsShuffle": false, "initiative": 48 },
-      { "image": "ic_deck_ma_ls_8.webp", "needsShuffle": false, "initiative": 61 }
+      { "id": 1, "needsShuffle": false, "initiative": 75 },
+      { "id": 2, "needsShuffle": false, "initiative": 55 },
+      { "id": 3, "needsShuffle": false, "initiative": 67 },
+      { "id": 4, "needsShuffle": false, "initiative": 48 },
+      { "id": 5, "needsShuffle": true, "initiative": 22 },
+      { "id": 6, "needsShuffle": true, "initiative": 33 },
+      { "id": 7, "needsShuffle": false, "initiative": 48 },
+      { "id": 8, "needsShuffle": false, "initiative": 61 }
     ]
   },
   {
     "name": "night-demon",
     "cards": [
-      { "image": "ic_deck_ma_nd_1.webp", "needsShuffle": false, "initiative": 4 },
-      { "image": "ic_deck_ma_nd_2.webp", "needsShuffle": false, "initiative": 7 },
-      { "image": "ic_deck_ma_nd_3.webp", "needsShuffle": false, "initiative": 22 },
-      { "image": "ic_deck_ma_nd_4.webp", "needsShuffle": false, "initiative": 26 },
-      { "image": "ic_deck_ma_nd_5.webp", "needsShuffle": true, "initiative": 46 },
-      { "image": "ic_deck_ma_nd_6.webp", "needsShuffle": true, "initiative": 41 },
-      { "image": "ic_deck_ma_nd_7.webp", "needsShuffle": false, "initiative": 35 },
-      { "image": "ic_deck_ma_nd_8.webp", "needsShuffle": false, "initiative": 15 }
+      { "id": 1, "needsShuffle": false, "initiative": 4 },
+      { "id": 2, "needsShuffle": false, "initiative": 7 },
+      { "id": 3, "needsShuffle": false, "initiative": 22 },
+      { "id": 4, "needsShuffle": false, "initiative": 26 },
+      { "id": 5, "needsShuffle": true, "initiative": 46 },
+      { "id": 6, "needsShuffle": true, "initiative": 41 },
+      { "id": 7, "needsShuffle": false, "initiative": 35 },
+      { "id": 8, "needsShuffle": false, "initiative": 15 }
     ]
   },
   {
     "name": "flame-demon",
     "cards": [
-      { "image": "ic_deck_ma_fld_1.webp", "needsShuffle": false, "initiative": 3 },
-      { "image": "ic_deck_ma_fld_2.webp", "needsShuffle": false, "initiative": 24 },
-      { "image": "ic_deck_ma_fld_3.webp", "needsShuffle": true, "initiative": 46 },
-      { "image": "ic_deck_ma_fld_4.webp", "needsShuffle": false, "initiative": 49 },
-      { "image": "ic_deck_ma_fld_5.webp", "needsShuffle": false, "initiative": 67 },
-      { "image": "ic_deck_ma_fld_6.webp", "needsShuffle": false, "initiative": 77 },
-      { "image": "ic_deck_ma_fld_7.webp", "needsShuffle": true, "initiative": 30 },
-      { "image": "ic_deck_ma_fld_8.webp", "needsShuffle": false, "initiative": 8 }
+      { "id": 1, "needsShuffle": false, "initiative": 3 },
+      { "id": 2, "needsShuffle": false, "initiative": 24 },
+      { "id": 3, "needsShuffle": true, "initiative": 46 },
+      { "id": 4, "needsShuffle": false, "initiative": 49 },
+      { "id": 5, "needsShuffle": false, "initiative": 67 },
+      { "id": 6, "needsShuffle": false, "initiative": 77 },
+      { "id": 7, "needsShuffle": true, "initiative": 30 },
+      { "id": 8, "needsShuffle": false, "initiative": 8 }
     ]
   },
   {
     "name": "frost-demon",
     "cards": [
-      { "image": "ic_deck_ma_frd_1.webp", "needsShuffle": false, "initiative": 18 },
-      { "image": "ic_deck_ma_frd_2.webp", "needsShuffle": false, "initiative": 38 },
-      { "image": "ic_deck_ma_frd_3.webp", "needsShuffle": false, "initiative": 58 },
-      { "image": "ic_deck_ma_frd_4.webp", "needsShuffle": false, "initiative": 58 },
-      { "image": "ic_deck_ma_frd_5.webp", "needsShuffle": true, "initiative": 78 },
-      { "image": "ic_deck_ma_frd_6.webp", "needsShuffle": true, "initiative": 78 },
-      { "image": "ic_deck_ma_frd_7.webp", "needsShuffle": false, "initiative": 58 },
-      { "image": "ic_deck_ma_frd_8.webp", "needsShuffle": false, "initiative": 18 }
+      { "id": 1, "needsShuffle": false, "initiative": 18 },
+      { "id": 2, "needsShuffle": false, "initiative": 38 },
+      { "id": 3, "needsShuffle": false, "initiative": 58 },
+      { "id": 4, "needsShuffle": false, "initiative": 58 },
+      { "id": 5, "needsShuffle": true, "initiative": 78 },
+      { "id": 6, "needsShuffle": true, "initiative": 78 },
+      { "id": 7, "needsShuffle": false, "initiative": 58 },
+      { "id": 8, "needsShuffle": false, "initiative": 18 }
     ]
   },
   {
     "name": "imp",
     "cards": [
-      { "image": "ic_deck_ma_im_1.webp", "needsShuffle": false, "initiative": 5 },
-      { "image": "ic_deck_ma_im_2.webp", "needsShuffle": false, "initiative": 37 },
-      { "image": "ic_deck_ma_im_3.webp", "needsShuffle": false, "initiative": 37 },
-      { "image": "ic_deck_ma_im_4.webp", "needsShuffle": false, "initiative": 42 },
-      { "image": "ic_deck_ma_im_5.webp", "needsShuffle": true, "initiative": 43 },
-      { "image": "ic_deck_ma_im_6.webp", "needsShuffle": false, "initiative": 76 },
-      { "image": "ic_deck_ma_im_7.webp", "needsShuffle": true, "initiative": 43 },
-      { "image": "ic_deck_ma_im_8.webp", "needsShuffle": false, "initiative": 24 }
+      { "id": 1, "needsShuffle": false, "initiative": 5 },
+      { "id": 2, "needsShuffle": false, "initiative": 37 },
+      { "id": 3, "needsShuffle": false, "initiative": 37 },
+      { "id": 4, "needsShuffle": false, "initiative": 42 },
+      { "id": 5, "needsShuffle": true, "initiative": 43 },
+      { "id": 6, "needsShuffle": false, "initiative": 76 },
+      { "id": 7, "needsShuffle": true, "initiative": 43 },
+      { "id": 8, "needsShuffle": false, "initiative": 24 }
     ]
   },
   {
     "name": "cave-bear",
     "cards": [
-      { "image": "ic_deck_ma_cb_1.webp", "needsShuffle": false, "initiative": 13 },
-      { "image": "ic_deck_ma_cb_2.webp", "needsShuffle": false, "initiative": 14 },
-      { "image": "ic_deck_ma_cb_3.webp", "needsShuffle": true, "initiative": 34 },
-      { "image": "ic_deck_ma_cb_4.webp", "needsShuffle": false, "initiative": 41 },
-      { "image": "ic_deck_ma_cb_5.webp", "needsShuffle": false, "initiative": 60 },
-      { "image": "ic_deck_ma_cb_6.webp", "needsShuffle": true, "initiative": 80 },
-      { "image": "ic_deck_ma_cb_7.webp", "needsShuffle": false, "initiative": 61 },
-      { "image": "ic_deck_ma_cb_8.webp", "needsShuffle": false, "initiative": 3 }
+      { "id": 1, "needsShuffle": false, "initiative": 13 },
+      { "id": 2, "needsShuffle": false, "initiative": 14 },
+      { "id": 3, "needsShuffle": true, "initiative": 34 },
+      { "id": 4, "needsShuffle": false, "initiative": 41 },
+      { "id": 5, "needsShuffle": false, "initiative": 60 },
+      { "id": 6, "needsShuffle": true, "initiative": 80 },
+      { "id": 7, "needsShuffle": false, "initiative": 61 },
+      { "id": 8, "needsShuffle": false, "initiative": 3 }
     ]
   },
   {
     "name": "hound",
     "cards": [
-      { "image": "ic_deck_ma_ho_1.webp", "needsShuffle": false, "initiative": 6 },
-      { "image": "ic_deck_ma_ho_2.webp", "needsShuffle": false, "initiative": 7 },
-      { "image": "ic_deck_ma_ho_3.webp", "needsShuffle": true, "initiative": 19 },
-      { "image": "ic_deck_ma_ho_4.webp", "needsShuffle": true, "initiative": 19 },
-      { "image": "ic_deck_ma_ho_5.webp", "needsShuffle": false, "initiative": 26 },
-      { "image": "ic_deck_ma_ho_6.webp", "needsShuffle": false, "initiative": 26 },
-      { "image": "ic_deck_ma_ho_7.webp", "needsShuffle": false, "initiative": 83 },
-      { "image": "ic_deck_ma_ho_8.webp", "needsShuffle": false, "initiative": 72 }
+      { "id": 1, "needsShuffle": false, "initiative": 6 },
+      { "id": 2, "needsShuffle": false, "initiative": 7 },
+      { "id": 3, "needsShuffle": true, "initiative": 19 },
+      { "id": 4, "needsShuffle": true, "initiative": 19 },
+      { "id": 5, "needsShuffle": false, "initiative": 26 },
+      { "id": 6, "needsShuffle": false, "initiative": 26 },
+      { "id": 7, "needsShuffle": false, "initiative": 83 },
+      { "id": 8, "needsShuffle": false, "initiative": 72 }
     ]
   },
   {
     "name": "scout",
     "cards": [
-      { "image": "ic_deck_ma_sc_1.webp", "needsShuffle": false, "initiative": 29 },
-      { "image": "ic_deck_ma_sc_2.webp", "needsShuffle": false, "initiative": 40 },
-      { "image": "ic_deck_ma_sc_3.webp", "needsShuffle": false, "initiative": 53 },
-      { "image": "ic_deck_ma_sc_4.webp", "needsShuffle": false, "initiative": 54 },
-      { "image": "ic_deck_ma_sc_5.webp", "needsShuffle": false, "initiative": 69 },
-      { "image": "ic_deck_ma_sc_6.webp", "needsShuffle": true, "initiative": 1192 },
-      { "image": "ic_deck_ma_sc_7.webp", "needsShuffle": false, "initiative": 79 },
-      { "image": "ic_deck_ma_sc_8.webp", "needsShuffle": true, "initiative": 35 }
+      { "id": 1, "needsShuffle": false, "initiative": 29 },
+      { "id": 2, "needsShuffle": false, "initiative": 40 },
+      { "id": 3, "needsShuffle": false, "initiative": 53 },
+      { "id": 4, "needsShuffle": false, "initiative": 54 },
+      { "id": 5, "needsShuffle": false, "initiative": 69 },
+      { "id": 6, "needsShuffle": true, "initiative": 1192 },
+      { "id": 7, "needsShuffle": false, "initiative": 79 },
+      { "id": 8, "needsShuffle": true, "initiative": 35 }
     ]
   },
   {
     "name": "sun-demon",
     "cards": [
-      { "image": "ic_deck_ma_sud_1.webp", "needsShuffle": true, "initiative": 17 },
-      { "image": "ic_deck_ma_sud_2.webp", "needsShuffle": false, "initiative": 36 },
-      { "image": "ic_deck_ma_sud_3.webp", "needsShuffle": false, "initiative": 36 },
-      { "image": "ic_deck_ma_sud_4.webp", "needsShuffle": false, "initiative": 68 },
-      { "image": "ic_deck_ma_sud_5.webp", "needsShuffle": true, "initiative": 73 },
-      { "image": "ic_deck_ma_sud_6.webp", "needsShuffle": false, "initiative": 95 },
-      { "image": "ic_deck_ma_sud_7.webp", "needsShuffle": false, "initiative": 88 },
-      { "image": "ic_deck_ma_sud_8.webp", "needsShuffle": false, "initiative": 50 }
+      { "id": 1, "needsShuffle": true, "initiative": 17 },
+      { "id": 2, "needsShuffle": false, "initiative": 36 },
+      { "id": 3, "needsShuffle": false, "initiative": 36 },
+      { "id": 4, "needsShuffle": false, "initiative": 68 },
+      { "id": 5, "needsShuffle": true, "initiative": 73 },
+      { "id": 6, "needsShuffle": false, "initiative": 95 },
+      { "id": 7, "needsShuffle": false, "initiative": 88 },
+      { "id": 8, "needsShuffle": false, "initiative": 50 }
     ]
   },
   {
     "name": "stone-golem",
     "cards": [
-      { "image": "ic_deck_ma_sg_1.webp", "needsShuffle": false, "initiative": 11 },
-      { "image": "ic_deck_ma_sg_2.webp", "needsShuffle": false, "initiative": 28 },
-      { "image": "ic_deck_ma_sg_3.webp", "needsShuffle": true, "initiative": 51 },
-      { "image": "ic_deck_ma_sg_4.webp", "needsShuffle": false, "initiative": 65 },
-      { "image": "ic_deck_ma_sg_5.webp", "needsShuffle": false, "initiative": 72 },
-      { "image": "ic_deck_ma_sg_6.webp", "needsShuffle": true, "initiative": 90 },
-      { "image": "ic_deck_ma_sg_7.webp", "needsShuffle": false, "initiative": 83 },
-      { "image": "ic_deck_ma_sg_8.webp", "needsShuffle": false, "initiative": 28 }
+      { "id": 1, "needsShuffle": false, "initiative": 11 },
+      { "id": 2, "needsShuffle": false, "initiative": 28 },
+      { "id": 3, "needsShuffle": true, "initiative": 51 },
+      { "id": 4, "needsShuffle": false, "initiative": 65 },
+      { "id": 5, "needsShuffle": false, "initiative": 72 },
+      { "id": 6, "needsShuffle": true, "initiative": 90 },
+      { "id": 7, "needsShuffle": false, "initiative": 83 },
+      { "id": 8, "needsShuffle": false, "initiative": 28 }
     ]
   },
   {
     "name": "spitting-drake",
     "cards": [
-      { "image": "ic_deck_ma_spd_1.webp", "needsShuffle": false, "initiative": 32 },
-      { "image": "ic_deck_ma_spd_2.webp", "needsShuffle": false, "initiative": 52 },
-      { "image": "ic_deck_ma_spd_3.webp", "needsShuffle": true, "initiative": 57 },
-      { "image": "ic_deck_ma_spd_4.webp", "needsShuffle": false, "initiative": 27 },
-      { "image": "ic_deck_ma_spd_5.webp", "needsShuffle": false, "initiative": 87 },
-      { "image": "ic_deck_ma_spd_6.webp", "needsShuffle": false, "initiative": 89 },
-      { "image": "ic_deck_ma_spd_7.webp", "needsShuffle": false, "initiative": 6 },
-      { "image": "ic_deck_ma_spd_8.webp", "needsShuffle": true, "initiative": 89 }
+      { "id": 1, "needsShuffle": false, "initiative": 32 },
+      { "id": 2, "needsShuffle": false, "initiative": 52 },
+      { "id": 3, "needsShuffle": true, "initiative": 57 },
+      { "id": 4, "needsShuffle": false, "initiative": 27 },
+      { "id": 5, "needsShuffle": false, "initiative": 87 },
+      { "id": 6, "needsShuffle": false, "initiative": 89 },
+      { "id": 7, "needsShuffle": false, "initiative": 6 },
+      { "id": 8, "needsShuffle": true, "initiative": 89 }
     ]
   },
   {
     "name": "savvas-icestorm",
     "cards": [
-      { "image": "ic_deck_ma_si_1.webp", "needsShuffle": false, "initiative": 70 },
-      { "image": "ic_deck_ma_si_2.webp", "needsShuffle": false, "initiative": 98 },
-      { "image": "ic_deck_ma_si_3.webp", "needsShuffle": false, "initiative": 98 },
-      { "image": "ic_deck_ma_si_4.webp", "needsShuffle": false, "initiative": 19 },
-      { "image": "ic_deck_ma_si_5.webp", "needsShuffle": false, "initiative": 14 },
-      { "image": "ic_deck_ma_si_6.webp", "needsShuffle": false, "initiative": 14 },
-      { "image": "ic_deck_ma_si_7.webp", "needsShuffle": true, "initiative": 47 },
-      { "image": "ic_deck_ma_si_8.webp", "needsShuffle": true, "initiative": 35 }
+      { "id": 1, "needsShuffle": false, "initiative": 70 },
+      { "id": 2, "needsShuffle": false, "initiative": 98 },
+      { "id": 3, "needsShuffle": false, "initiative": 98 },
+      { "id": 4, "needsShuffle": false, "initiative": 19 },
+      { "id": 5, "needsShuffle": false, "initiative": 14 },
+      { "id": 6, "needsShuffle": false, "initiative": 14 },
+      { "id": 7, "needsShuffle": true, "initiative": 47 },
+      { "id": 8, "needsShuffle": true, "initiative": 35 }
     ]
   },
   {
     "name": "harrower-infester",
     "cards": [
-      { "image": "ic_deck_ma_hi_1.webp", "needsShuffle": false, "initiative": 38 },
-      { "image": "ic_deck_ma_hi_2.webp", "needsShuffle": false, "initiative": 7 },
-      { "image": "ic_deck_ma_hi_3.webp", "needsShuffle": false, "initiative": 16 },
-      { "image": "ic_deck_ma_hi_4.webp", "needsShuffle": false, "initiative": 16 },
-      { "image": "ic_deck_ma_hi_5.webp", "needsShuffle": true, "initiative": 2 },
-      { "image": "ic_deck_ma_hi_6.webp", "needsShuffle": false, "initiative": 30 },
-      { "image": "ic_deck_ma_hi_7.webp", "needsShuffle": false, "initiative": 38 },
-      { "image": "ic_deck_ma_hi_8.webp", "needsShuffle": true, "initiative": 7 }
+      { "id": 1, "needsShuffle": false, "initiative": 38 },
+      { "id": 2, "needsShuffle": false, "initiative": 7 },
+      { "id": 3, "needsShuffle": false, "initiative": 16 },
+      { "id": 4, "needsShuffle": false, "initiative": 16 },
+      { "id": 5, "needsShuffle": true, "initiative": 2 },
+      { "id": 6, "needsShuffle": false, "initiative": 30 },
+      { "id": 7, "needsShuffle": false, "initiative": 38 },
+      { "id": 8, "needsShuffle": true, "initiative": 7 }
     ]
   },
   {
     "name": "giant-viper",
     "cards": [
-      { "image": "ic_deck_ma_gv_1.webp", "needsShuffle": true, "initiative": 32 },
-      { "image": "ic_deck_ma_gv_2.webp", "needsShuffle": true, "initiative": 32 },
-      { "image": "ic_deck_ma_gv_3.webp", "needsShuffle": false, "initiative": 11 },
-      { "image": "ic_deck_ma_gv_4.webp", "needsShuffle": false, "initiative": 43 },
-      { "image": "ic_deck_ma_gv_5.webp", "needsShuffle": false, "initiative": 58 },
-      { "image": "ic_deck_ma_gv_6.webp", "needsShuffle": false, "initiative": 58 },
-      { "image": "ic_deck_ma_gv_7.webp", "needsShuffle": false, "initiative": 43 },
-      { "image": "ic_deck_ma_gv_8.webp", "needsShuffle": false, "initiative": 23 }
+      { "id": 1, "needsShuffle": true, "initiative": 32 },
+      { "id": 2, "needsShuffle": true, "initiative": 32 },
+      { "id": 3, "needsShuffle": false, "initiative": 11 },
+      { "id": 4, "needsShuffle": false, "initiative": 43 },
+      { "id": 5, "needsShuffle": false, "initiative": 58 },
+      { "id": 6, "needsShuffle": false, "initiative": 58 },
+      { "id": 7, "needsShuffle": false, "initiative": 43 },
+      { "id": 8, "needsShuffle": false, "initiative": 23 }
     ]
   },
   {
     "name": "ooze",
     "cards": [
-      { "image": "ic_deck_ma_oo_1.webp", "needsShuffle": false, "initiative": 36 },
-      { "image": "ic_deck_ma_oo_2.webp", "needsShuffle": false, "initiative": 57 },
-      { "image": "ic_deck_ma_oo_3.webp", "needsShuffle": false, "initiative": 59 },
-      { "image": "ic_deck_ma_oo_4.webp", "needsShuffle": false, "initiative": 66 },
-      { "image": "ic_deck_ma_oo_5.webp", "needsShuffle": true, "initiative": 94 },
-      { "image": "ic_deck_ma_oo_6.webp", "needsShuffle": true, "initiative": 94 },
-      { "image": "ic_deck_ma_oo_7.webp", "needsShuffle": false, "initiative": 66 },
-      { "image": "ic_deck_ma_oo_8.webp", "needsShuffle": false, "initiative": 85 }
+      { "id": 1, "needsShuffle": false, "initiative": 36 },
+      { "id": 2, "needsShuffle": false, "initiative": 57 },
+      { "id": 3, "needsShuffle": false, "initiative": 59 },
+      { "id": 4, "needsShuffle": false, "initiative": 66 },
+      { "id": 5, "needsShuffle": true, "initiative": 94 },
+      { "id": 6, "needsShuffle": true, "initiative": 94 },
+      { "id": 7, "needsShuffle": false, "initiative": 66 },
+      { "id": 8, "needsShuffle": false, "initiative": 85 }
     ]
   },
   {
     "name": "ancient-artillery",
     "cards": [
-      { "image": "ic_deck_ma_aa_1.webp", "needsShuffle": false, "initiative": 46 },
-      { "image": "ic_deck_ma_aa_2.webp", "needsShuffle": true, "initiative": 71 },
-      { "image": "ic_deck_ma_aa_3.webp", "needsShuffle": true, "initiative": 71 },
-      { "image": "ic_deck_ma_aa_4.webp", "needsShuffle": false, "initiative": 37 },
-      { "image": "ic_deck_ma_aa_5.webp", "needsShuffle": false, "initiative": 37 },
-      { "image": "ic_deck_ma_aa_6.webp", "needsShuffle": false, "initiative": 95 },
-      { "image": "ic_deck_ma_aa_7.webp", "needsShuffle": false, "initiative": 17 },
-      { "image": "ic_deck_ma_aa_8.webp", "needsShuffle": false, "initiative": 46 }
+      { "id": 1, "needsShuffle": false, "initiative": 46 },
+      { "id": 2, "needsShuffle": true, "initiative": 71 },
+      { "id": 3, "needsShuffle": true, "initiative": 71 },
+      { "id": 4, "needsShuffle": false, "initiative": 37 },
+      { "id": 5, "needsShuffle": false, "initiative": 37 },
+      { "id": 6, "needsShuffle": false, "initiative": 95 },
+      { "id": 7, "needsShuffle": false, "initiative": 17 },
+      { "id": 8, "needsShuffle": false, "initiative": 46 }
     ]
   },
   {
     "name": "rending-drake",
     "cards": [
-      { "image": "ic_deck_ma_rd_1.webp", "needsShuffle": false, "initiative": 12 },
-      { "image": "ic_deck_ma_rd_2.webp", "needsShuffle": true, "initiative": 13 },
-      { "image": "ic_deck_ma_rd_3.webp", "needsShuffle": false, "initiative": 25 },
-      { "image": "ic_deck_ma_rd_4.webp", "needsShuffle": false, "initiative": 39 },
-      { "image": "ic_deck_ma_rd_5.webp", "needsShuffle": false, "initiative": 54 },
-      { "image": "ic_deck_ma_rd_6.webp", "needsShuffle": false, "initiative": 59 },
-      { "image": "ic_deck_ma_rd_7.webp", "needsShuffle": true, "initiative": 72 },
-      { "image": "ic_deck_ma_rd_8.webp", "needsShuffle": false, "initiative": 6 }
+      { "id": 1, "needsShuffle": false, "initiative": 12 },
+      { "id": 2, "needsShuffle": true, "initiative": 13 },
+      { "id": 3, "needsShuffle": false, "initiative": 25 },
+      { "id": 4, "needsShuffle": false, "initiative": 39 },
+      { "id": 5, "needsShuffle": false, "initiative": 54 },
+      { "id": 6, "needsShuffle": false, "initiative": 59 },
+      { "id": 7, "needsShuffle": true, "initiative": 72 },
+      { "id": 8, "needsShuffle": false, "initiative": 6 }
     ]
   },
   {
     "name": "deep-terror",
     "cards": [
-      { "image": "ic_deck_ma_dt_1.webp", "needsShuffle": false, "initiative": 65 },
-      { "image": "ic_deck_ma_dt_2.webp", "needsShuffle": true, "initiative": 60 },
-      { "image": "ic_deck_ma_dt_3.webp", "needsShuffle": true, "initiative": 60 },
-      { "image": "ic_deck_ma_dt_4.webp", "needsShuffle": false, "initiative": 84 },
-      { "image": "ic_deck_ma_dt_5.webp", "needsShuffle": false, "initiative": 75 },
-      { "image": "ic_deck_ma_dt_6.webp", "needsShuffle": false, "initiative": 75 },
-      { "image": "ic_deck_ma_dt_7.webp", "needsShuffle": false, "initiative": 96 },
-      { "image": "ic_deck_ma_dt_8.webp", "needsShuffle": false, "initiative": 54 }
+      { "id": 1, "needsShuffle": false, "initiative": 65 },
+      { "id": 2, "needsShuffle": true, "initiative": 60 },
+      { "id": 3, "needsShuffle": true, "initiative": 60 },
+      { "id": 4, "needsShuffle": false, "initiative": 84 },
+      { "id": 5, "needsShuffle": false, "initiative": 75 },
+      { "id": 6, "needsShuffle": false, "initiative": 75 },
+      { "id": 7, "needsShuffle": false, "initiative": 96 },
+      { "id": 8, "needsShuffle": false, "initiative": 54 }
     ]
   },
   {
     "name": "lurker",
     "cards": [
-      { "image": "ic_deck_ma_lu_1.webp", "needsShuffle": true, "initiative": 11 },
-      { "image": "ic_deck_ma_lu_2.webp", "needsShuffle": false, "initiative": 28 },
-      { "image": "ic_deck_ma_lu_3.webp", "needsShuffle": false, "initiative": 38 },
-      { "image": "ic_deck_ma_lu_4.webp", "needsShuffle": false, "initiative": 38 },
-      { "image": "ic_deck_ma_lu_5.webp", "needsShuffle": false, "initiative": 61 },
-      { "image": "ic_deck_ma_lu_6.webp", "needsShuffle": false, "initiative": 64 },
-      { "image": "ic_deck_ma_lu_7.webp", "needsShuffle": false, "initiative": 41 },
-      { "image": "ic_deck_ma_lu_8.webp", "needsShuffle": true, "initiative": 23 }
+      { "id": 1, "needsShuffle": true, "initiative": 11 },
+      { "id": 2, "needsShuffle": false, "initiative": 28 },
+      { "id": 3, "needsShuffle": false, "initiative": 38 },
+      { "id": 4, "needsShuffle": false, "initiative": 38 },
+      { "id": 5, "needsShuffle": false, "initiative": 61 },
+      { "id": 6, "needsShuffle": false, "initiative": 64 },
+      { "id": 7, "needsShuffle": false, "initiative": 41 },
+      { "id": 8, "needsShuffle": true, "initiative": 23 }
     ]
   },
   {
     "name": "savvas-lavaflow",
     "cards": [
-      { "image": "ic_deck_ma_sl_1.webp", "needsShuffle": false, "initiative": 97 },
-      { "image": "ic_deck_ma_sl_2.webp", "needsShuffle": false, "initiative": 97 },
-      { "image": "ic_deck_ma_sl_3.webp", "needsShuffle": false, "initiative": 22 },
-      { "image": "ic_deck_ma_sl_4.webp", "needsShuffle": true, "initiative": 68 },
-      { "image": "ic_deck_ma_sl_5.webp", "needsShuffle": false, "initiative": 41 },
-      { "image": "ic_deck_ma_sl_6.webp", "needsShuffle": false, "initiative": 51 },
-      { "image": "ic_deck_ma_sl_7.webp", "needsShuffle": false, "initiative": 31 },
-      { "image": "ic_deck_ma_sl_8.webp", "needsShuffle": true, "initiative": 68 }
+      { "id": 1, "needsShuffle": false, "initiative": 97 },
+      { "id": 2, "needsShuffle": false, "initiative": 97 },
+      { "id": 3, "needsShuffle": false, "initiative": 22 },
+      { "id": 4, "needsShuffle": true, "initiative": 68 },
+      { "id": 5, "needsShuffle": false, "initiative": 41 },
+      { "id": 6, "needsShuffle": false, "initiative": 51 },
+      { "id": 7, "needsShuffle": false, "initiative": 31 },
+      { "id": 8, "needsShuffle": true, "initiative": 68 }
     ]
   }
 ]

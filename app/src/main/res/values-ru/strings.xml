@@ -57,9 +57,11 @@
     <string name="icon_retaliate">Ответный удар</string>
     <string name="icon_ranged_attack">Дальний удар</string>
     <string name="icon_move">Движение</string>
+    <string name="icon_regenerate">Регенерация</string>
     <string name="icon_shield">Защита</string>
     <string name="icon_heal">Лечение</string>
     <string name="icon_attack">Атака</string>
+    <string name="icon_loot">Добыча</string>
     <string name="icon_plus_1">+1</string>
     <string name="icon_plus_2">+2</string>
     <string name="icon_plus_3">+3</string>

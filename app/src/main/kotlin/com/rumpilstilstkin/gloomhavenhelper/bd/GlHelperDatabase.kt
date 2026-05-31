@@ -34,6 +34,7 @@ import com.rumpilstilstkin.gloomhavenhelper.bd.entity.GoodTranslationsBd
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.LocationBd
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.LocationTranslateBd
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.MonsterAbilityCardBd
+import com.rumpilstilstkin.gloomhavenhelper.bd.entity.MonsterAbilityCardTranslationBd
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.MonsterBd
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.MonsterStatsBd
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.MonsterTextStatsBd
@@ -54,6 +55,7 @@ import com.rumpilstilstkin.gloomhavenhelper.bd.migrations.ALL_MIGRATIONS
 import com.rumpilstilstkin.gloomhavenhelper.bd.typeconverters.AchievementConverter
 import com.rumpilstilstkin.gloomhavenhelper.bd.typeconverters.CardActionsTypeConverter
 import com.rumpilstilstkin.gloomhavenhelper.bd.typeconverters.ListCharacterTaskItemTypeConverter
+import com.rumpilstilstkin.gloomhavenhelper.bd.typeconverters.MonsterCardActionTypeConverter
 import com.rumpilstilstkin.gloomhavenhelper.bd.typeconverters.MonsterStatTypeConverter
 import com.rumpilstilstkin.gloomhavenhelper.bd.typeconverters.ScenarioConverters
 import com.rumpilstilstkin.gloomhavenhelper.bd.typeconverters.StringListTypeConverter
@@ -64,7 +66,8 @@ import com.rumpilstilstkin.gloomhavenhelper.bd.typeconverters.StringListTypeConv
     MonsterStatTypeConverter::class,
     StringListTypeConverter::class,
     AchievementConverter::class,
-    ScenarioConverters::class
+    ScenarioConverters::class,
+    MonsterCardActionTypeConverter::class
 )
 @Database(
     entities = [
@@ -95,7 +98,8 @@ import com.rumpilstilstkin.gloomhavenhelper.bd.typeconverters.StringListTypeConv
         ScenarioGameStateBd::class,
         LocationBd::class,
         LocationTranslateBd::class,
-        MonsterTextStatsBd::class
+        MonsterTextStatsBd::class,
+        MonsterAbilityCardTranslationBd::class
     ],
     version = 3
 )

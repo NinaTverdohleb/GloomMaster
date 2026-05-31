@@ -1,0 +1,113 @@
+[
+  {
+    "deck": "savage",
+    "cards": [
+      {
+        "id": 1,
+        "actions": [ {"text": "Strengthen #35 (Self)"}, {"text": "Attack #41 +0","subAction": [{"text": "Wound #14"}]}, {"text": "Savage suffers 2 damage"}]
+      },
+      {
+        "id": 2,
+        "actions": [{"text": "Retail #36 3","subAction": [{"text": "Range #37 3"}]}, {"text": "Heal #40 2 (Self)"}, {"text": "Regenerate #56 (Self)"}]
+      },
+      {
+        "id": 3,
+        "actions": [{"text": "Move #38 +0"}, {"text": "Attack #41 -1"}, {"text": "Attack #41 -1"}]
+      },
+      {
+        "id": 4,
+        "actions": [{"text": "Move #38 -1"}, {"text": "Attack #41 +0","subAction": [{"text": "Pierce #09 2"}]}]
+      },
+      {
+        "id": 5,
+        "actions": [{"text": "Move #38 +0"}, {"text": "Attack #41 -1","subAction": [{"text": "Range #37 3"}]}]
+      },
+      {
+        "id": 6,
+        "actions": [{"text": "Move #38 +0"}, {"text": "Attack #41 -1","subAction": [{"text": "Range #37 3"}]}]
+      },
+      {
+        "id": 7,
+        "actions": [{"text": "Move #38 +2"}, {"text": "Attack #41 +0"}, {"text": "ELITE: Attack #41 +0"}]
+      },
+      {
+        "id": 8,
+        "actions": [{"text": "Move #38 -1"}, {"text": "NORMAL: Attack #41 +0"}, {"text": "ELITE: Attack #41 +1", "endEffect":  "#57"}]
+      }
+    ]
+  },
+  {
+    "deck": "tracker",
+    "cards": [
+      {
+        "id": 1,
+        "actions": [ {"text": "Move #38 +0"}, {"text": "Attack #41 -1","subAction": [{"text": "Muddle #12"}]}]
+      },
+      {
+        "id": 2,
+        "actions": [{"text": "Move #38 -1"}, {"text": "Attack #41 -1"}, {"text": "Create one Disarm #11 trap in an adjacent empty hex closest to an enemy"}]
+      },
+      {
+        "id": 3,
+        "actions": [{"text": "Move #38 +0"}, {"text": "Attack #41 +0"}]
+      },
+      {
+        "id": 4,
+        "actions": [{"text": "Move #38 +0"}, {"text": "Attack #41 +0","subAction": [{"text": "Range #37 +1"} ,{"text": "Pierce #09 1"}]}]
+      },
+      {
+        "id": 5,
+        "actions": [{"text": "Move #38 -1"}, {"text": "Attack #41 +0","subAction": [{"text": "Range #37 +1"} ,{"text": "Immobilize #18"}]}]
+      },
+      {
+        "id": 6,
+        "actions": [{"text": "ELITE: Focus on the enemy with the lowest current hit point value"}, {"text": "Move #38 +1"},{"text": "Attack #41 +0"}]
+      },
+      {
+        "id": 7,
+        "actions": [{"text": "ELITE: Focus on the enemy with the lowest current hit point value"}, {"text": "Move #38 +0"},{"text": "Attack #41 -1","subAction": [{"text": "Wound #14"}]}]
+      },
+      {
+        "id": 8,
+        "actions": [{"text": "Attack #41 +1"}, {"text": "Heal #40 2 (Self)"}, {"text": "Regenerate #56 (Self)"}]
+      }
+    ]
+  },
+  {
+    "deck": "ashblade",
+    "cards": [
+      {
+        "id": 1,
+        "actions": [ {"text": "Move #38 +1"}, {"text": "Attack #41 +0"}, {"text": "#20"}]
+      },
+      {
+        "id": 2,
+        "actions": [ {"text": "Move #38 +1"}, {"text": "Attack #41 +0"}, {"text": "#22"}]
+      },
+      {
+        "id": 3,
+        "actions": [{"text": "Attack #41 +3","subAction": [{"text": "Pierce #09 2"}]}, {"text": "#22"}]
+      },
+      {
+        "id": 4,
+        "actions": [{"text": "Move #38 -1"}, {"text": "Attack #41 -1","subAction": [{"text": "Range #37 3"} ,{"text": "Immobilize #18"}]}]
+      },
+      {
+        "id": 5,
+        "actions": [{"text": "Move #38 +0"}, {"text": "Attack #41 +0", "subAction": [{"text": "#50 : Disarm #11"}]}]
+      },
+      {
+        "id": 6,
+        "actions": [{"text": "Move #38 +0"}, {"text": "Attack #41 +0"}, {"text": "#46 : Invisible #24 (Self)"}]
+      },
+      {
+        "id": 7,
+        "actions": [{"text": "Move #38 -1"}, {"text": "Attack #41 +2", "subAction": [{"text": "#50 : Wound #14"}, {"text": "#46 : Curse #26"}]}]
+      },
+      {
+        "id": 8,
+        "actions": [{"text": "Focus on the enemy with the highest initiative"}, {"text": "Teleport to the closest unoccupied hex adjacent to the focus"}, {"text": "Attack #41 -2"}, {"text": "#20"}]
+      }
+    ]
+  }
+]

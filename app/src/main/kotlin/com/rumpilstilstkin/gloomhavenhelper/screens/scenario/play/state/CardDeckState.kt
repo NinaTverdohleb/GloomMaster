@@ -15,7 +15,12 @@ data class CardDeckState(
         val newCards = if (card.needsShuffle) {
             cards
         } else {
-            cards.filter { it.cardId != card.cardId }
+            val index = cards.indexOfFirst { it.cardId == card.cardId && it.deckName == card.deckName }
+            if (index != -1) {
+                cards.take(index) + cards.drop(index + 1)
+            } else {
+                cards
+            }
         }
         return DrawResult(card = card, newState = copy(cards = newCards))
     }
