@@ -60,9 +60,9 @@ enum class IconCode(val value: String) {
     AREA_13("57");
 
     companion object {
-        fun String.toIconCode(): IconCode {
+        fun String.toIconCode(): IconCode? {
             val code = this.removePrefix("#").padStart(2, '0')
-            return IconCode.entries.first { it.value == code }
+            return IconCode.entries.firstOrNull { it.value == code }
         }
     }
 }

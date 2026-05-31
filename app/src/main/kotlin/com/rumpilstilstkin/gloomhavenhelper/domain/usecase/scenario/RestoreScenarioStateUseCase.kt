@@ -26,7 +26,7 @@ class RestoreScenarioStateUseCase @Inject constructor(
             val scenarioMonsters =
                 monsterRepository.getMonstersBySlugs(gameState.monsterSlugs, team.level, locale)
             val allCards = scenarioMonsters.flatMap { it.cards }
-            val avaliableCards = gameState.availableCards.mapNotNull { (deck, cardId) ->
+            val availableCard = gameState.availableCards.mapNotNull { (deck, cardId) ->
                 allCards.firstOrNull {
                     it.cardId == cardId && it.deckName == deck
                 }
@@ -40,7 +40,7 @@ class RestoreScenarioStateUseCase @Inject constructor(
                 monsterLevel = levelInfo?.monsterLevel ?: 0,
                 round = state.round,
                 monsters = scenarioMonsters,
-                availableCards = avaliableCards,
+                availableCards = availableCard,
                 activeMonsters = state.activeMonsters,
                 magicCharges = state.magicCharges.associate {
                     it.name to it.value

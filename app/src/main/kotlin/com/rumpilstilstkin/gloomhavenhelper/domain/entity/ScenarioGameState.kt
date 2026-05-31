@@ -8,7 +8,7 @@ data class ScenarioGameState(
     val scenarioNumber: Int?,
     val monsterSlugs: List<String>,
     val round: Int,
-    val availableCards: List<AvaliableCard>,
+    val availableCards: List<AvailableCard>,
     val activeMonsters: List<ScenarioGameStateMonsterItem>,
     val magicCharges: List<ScenarioGameStateMagic>
 )
@@ -20,7 +20,7 @@ data class ScenarioGameStateMagic(
 )
 
 @Serializable
-data class AvaliableCard(
+data class AvailableCard(
     val deck: String,
     val cardId: Int
 )
@@ -28,7 +28,7 @@ data class AvaliableCard(
 @Serializable
 data class ScenarioGameStateMonsterItem(
     val slug: String,
-    val currentCard: AvaliableCard? = null,
+    val currentCard: AvailableCard? = null,
     val units: List<ScenarioGameStateMonsterUnit> = listOf(),
 )
 

@@ -1,8 +1,10 @@
 package com.rumpilstilstkin.gloomhavenhelper.ui.scenario
 
 import androidx.compose.runtime.Immutable
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterCard
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.persistentListOf
+import kotlinx.collections.immutable.toImmutableList
 import kotlinx.serialization.Serializable
 
 @Serializable
@@ -27,6 +29,13 @@ data class MonsterAbilityCardUi(
         )
     }
 }
+
+fun MonsterCard.toUi() = MonsterAbilityCardUi(
+    cardId = cardId,
+    needsShuffle = needsShuffle,
+    initiative = initiative,
+    actions = actions.map { action -> action.toUi() }.toImmutableList()
+)
 
 val sampleDeck = listOf(
     MonsterAbilityCardUi(
