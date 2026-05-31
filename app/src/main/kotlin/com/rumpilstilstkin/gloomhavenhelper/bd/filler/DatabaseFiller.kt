@@ -1,6 +1,7 @@
 package com.rumpilstilstkin.gloomhavenhelper.bd.filler
 
 import android.content.SharedPreferences
+import android.util.Log
 import androidx.core.content.edit
 import com.rumpilstilstkin.gloomhavenhelper.bd.filler.json.AchievementJsonFiller
 import com.rumpilstilstkin.gloomhavenhelper.bd.filler.json.GameLevelInfoJsonFiller
@@ -25,6 +26,7 @@ class DatabaseFiller @Inject constructor(
 ) {
     suspend fun fillDatabase() {
         var version = preferences.getInt(PREFS_VERSION, 0)
+        Log.d("Dto", "fill database from version $version")
         while (version < VERSION) {
             update(version)
             version++

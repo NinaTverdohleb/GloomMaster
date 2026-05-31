@@ -13,7 +13,7 @@ android {
     compileSdk = 37
 
     defaultConfig {
-        applicationId = "com.rumpilstilstkin.gloomhavenhalper"
+        applicationId = "com.rumpilstilstkin.gloomhavenhelper"
         minSdk = 31
         versionCode = 11
         versionName = "1.8"
