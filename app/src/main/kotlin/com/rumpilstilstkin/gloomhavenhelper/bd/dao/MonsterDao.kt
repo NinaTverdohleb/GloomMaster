@@ -123,8 +123,8 @@ interface MonsterDao {
               OR (
                   t.locale = :defaultLocale
                   AND NOT EXISTS (
-                      SELECT 1 FROM PerkTranslationBd
-                      WHERE deckName = t.deckName AND locale = :targetLocale
+                      SELECT 1 FROM MonsterAbilityCardTranslationBd
+                      WHERE deckName = t.deckName AND cardId = t.cardId AND locale = :targetLocale
                   )
               ))
         """
@@ -134,9 +134,6 @@ interface MonsterDao {
         targetLocale: String,
         defaultLocale: String
     ): List<MonsterAbilityCardTranslationBd>
-
-    @Query("SELECT * FROM MonsterAbilityCardBd WHERE cardId = :cardId")
-    suspend fun getCardById(cardId: Int): MonsterAbilityCardBd
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertCard(card: MonsterAbilityCardBd): Long

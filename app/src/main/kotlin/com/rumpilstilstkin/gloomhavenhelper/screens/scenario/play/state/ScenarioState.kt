@@ -4,9 +4,10 @@ import com.rumpilstilstkin.gloomhavenhelper.domain.entity.ScenarioBattleInfo
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterStats
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.ActionUi
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.EffectItem
-import com.rumpilstilstkin.gloomhavenhelper.screens.models.MonsterAbilityCard
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.MonsterItem
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.MonsterUnit
+import com.rumpilstilstkin.gloomhavenhelper.screens.models.toUi
+import com.rumpilstilstkin.gloomhavenhelper.ui.scenario.toUi
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.toImmutableList
 import kotlinx.serialization.Serializable
@@ -139,9 +140,7 @@ data class ScenarioLogicState(
         return copy(
             activeMonsters = activeMonsters
                 .updateMonster(monster.slug) { m ->
-                    m.copy(currentCard = drawResult.card?.let {
-                        MonsterAbilityCard.createFromMonsterCard(it)
-                    })
+                    m.copy(currentCard = drawResult.card?.toUi())
                 },
             cardDeck = drawResult.newState
         )

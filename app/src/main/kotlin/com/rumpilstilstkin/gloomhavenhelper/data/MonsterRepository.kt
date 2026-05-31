@@ -3,7 +3,7 @@ package com.rumpilstilstkin.gloomhavenhelper.data
 import com.rumpilstilstkin.gloomhavenhelper.bd.dao.MonsterDao
 import com.rumpilstilstkin.gloomhavenhelper.bd.dao.ScenarioDao
 import com.rumpilstilstkin.gloomhavenhelper.data.mappers.toDomain
-import com.rumpilstilstkin.gloomhavenhelper.domain.entity.AvaliableCard
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.AvailableCard
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.Monster
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterStats
 import javax.inject.Inject
@@ -57,9 +57,9 @@ class MonsterRepository @Inject constructor(
 
     suspend fun getMonsterCards(
         slugs: List<String>,
-    ): List<AvaliableCard> =
+    ): List<AvailableCard> =
         monsterDao.getCardsByMonsterSlugs(slugs).map {
-            AvaliableCard(
+            AvailableCard(
                 deck = it.deckName,
                 cardId = it.cardId
             )
@@ -100,7 +100,7 @@ class MonsterRepository @Inject constructor(
                     deck = monster.monster.deckName,
                     targetLocale = locale,
                     defaultLocale = LocaleRepository.DEFAULT_LOCALE
-                )
+                ).associateBy { it.cardId }
                 Monster(
                     slug = monster.monster.slug,
                     name = monster.name,
@@ -109,13 +109,7 @@ class MonsterRepository @Inject constructor(
                     eliteLife = eliteStats?.life ?: 0,
                     eliteStats = eliteStats?.stats ?: emptyList(),
                     cards = cards.map { card ->
-                        card.toDomain(
-                            actions
-                                .firstOrNull { actions ->
-                                    card.cardId == actions.cardId
-                                }
-                                ?.actions ?: emptyList()
-                        )
+                        card.toDomain(actions[card.cardId]?.actions ?: emptyList())
                     },
                     deckName = monster.monster.deckName,
                     isBoss = monster.monster.isBoss,

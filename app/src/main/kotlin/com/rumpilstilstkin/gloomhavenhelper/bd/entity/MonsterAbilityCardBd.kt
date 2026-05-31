@@ -23,10 +23,11 @@ data class MonsterAbilityCardBd(
         ForeignKey(
             entity = MonsterAbilityCardBd::class,
             parentColumns = ["deckName", "cardId"],
-            childColumns = ["deckName", "cardId" ],
+            childColumns = ["deckName", "cardId"],
             onDelete = ForeignKey.CASCADE
         )
-    ]
+    ],
+    indices = [Index("deckName", "cardId")]
 )
 data class MonsterAbilityCardTranslationBd(
     val deckName: String,

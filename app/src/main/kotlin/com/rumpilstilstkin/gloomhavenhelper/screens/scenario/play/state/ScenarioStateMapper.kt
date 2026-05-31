@@ -1,15 +1,15 @@
 package com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.state
 
-import com.rumpilstilstkin.gloomhavenhelper.domain.entity.AvaliableCard
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.AvailableCard
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.ScenarioBattleInfo
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.ScenarioGameState
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.ScenarioGameStateMagic
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.ScenarioGameStateMonsterItem
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.ScenarioGameStateMonsterUnit
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.ActionUi
-import com.rumpilstilstkin.gloomhavenhelper.screens.models.MonsterAbilityCard
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.MonsterItem
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.MonsterUnit
+import com.rumpilstilstkin.gloomhavenhelper.ui.scenario.toUi
 import kotlinx.collections.immutable.toImmutableList
 import kotlinx.collections.immutable.toImmutableMap
 
@@ -60,9 +60,12 @@ object ScenarioStateMapper {
                     slug = item.slug,
                     name = monster.name,
                     currentCard = item.currentCard?.let { currentCard ->
-                        battleInfo.monsters.flatMap { it.cards }
-                            .firstOrNull { card -> card.cardId == currentCard.cardId && card.deckName == currentCard.deck }
-                            ?.let { MonsterAbilityCard.createFromMonsterCard(it) }
+                        battleInfo.monsters
+                            .flatMap { it.cards }
+                            .firstOrNull { card ->
+                                card.cardId == currentCard.cardId && card.deckName == currentCard.deck
+                            }
+                            ?.toUi()
                     },
                     isFly = monster.isFly,
                     isBoss = monster.isBoss,
@@ -91,7 +94,7 @@ object ScenarioStateMapper {
             monsterSlugs = state.scenarioInfo.monsters.map { it.slug },
             round = state.round,
             availableCards = state.cardDeck.getCards().map {
-                AvaliableCard(
+                AvailableCard(
                     deck = it.deckName,
                     cardId = it.cardId
                 )
@@ -100,7 +103,7 @@ object ScenarioStateMapper {
                 ScenarioGameStateMonsterItem(
                     slug = monsterItem.slug,
                     currentCard = monsterItem.currentCard?.let {
-                        AvaliableCard(
+                        AvailableCard(
                             deck = monsterItem.deck,
                             cardId = monsterItem.currentCard.cardId
                         )

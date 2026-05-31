@@ -128,25 +128,6 @@ data class MonsterUnit(
     }
 }
 
-@Serializable
-@Immutable
-data class MonsterAbilityCard(
-    val cardId: Int,
-    val needsShuffle: Boolean = false,
-    val initiative: Int,
-    val actions: List<MonsterCardAction>
-) {
-
-    companion object {
-        fun createFromMonsterCard(card: MonsterCard) = MonsterAbilityCardUi(
-            cardId = card.cardId,
-            needsShuffle = card.needsShuffle,
-            initiative = card.initiative,
-            actions = card.actions.map { action -> action.toUi() }.toImmutableList()
-        )
-    }
-}
-
 sealed interface EffectItem {
     val subLines: ImmutableList<EffectItem>?
 

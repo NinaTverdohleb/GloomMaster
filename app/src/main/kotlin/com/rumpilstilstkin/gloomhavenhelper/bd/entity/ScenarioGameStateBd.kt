@@ -2,7 +2,7 @@ package com.rumpilstilstkin.gloomhavenhelper.bd.entity
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.rumpilstilstkin.gloomhavenhelper.domain.entity.AvaliableCard
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.AvailableCard
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.ScenarioGameStateMagic
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.ScenarioGameStateMonsterItem
 
@@ -12,7 +12,7 @@ data class ScenarioGameStateBd(
     val scenarioNumber: Int?,
     val monsterSlugs: List<String>,
     val round: Int = 0,
-    val availableCards: List<AvaliableCard>,
+    val availableCards: List<AvailableCard>,
     val activeMonsters: List<ScenarioGameStateMonsterItem>,
     val magicChargeMap: List<ScenarioGameStateMagic>
 )

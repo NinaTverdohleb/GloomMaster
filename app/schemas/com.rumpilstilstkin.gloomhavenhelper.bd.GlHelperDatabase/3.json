@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 3,
-    "identityHash": "5087382b81a9a7d842930c2cca619533",
+    "identityHash": "6f0deef4f411733c969ecc8973ee8e50",
     "entities": [
       {
         "tableName": "TeamBd",
@@ -1448,6 +1448,18 @@
             "cardId"
           ]
         },
+        "indices": [
+          {
+            "name": "index_MonsterAbilityCardTranslationBd_deckName_cardId",
+            "unique": false,
+            "columnNames": [
+              "deckName",
+              "cardId"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_MonsterAbilityCardTranslationBd_deckName_cardId` ON `${TABLE_NAME}` (`deckName`, `cardId`)"
+          }
+        ],
         "foreignKeys": [
           {
             "table": "MonsterAbilityCardBd",
@@ -1467,7 +1479,7 @@
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '5087382b81a9a7d842930c2cca619533')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '6f0deef4f411733c969ecc8973ee8e50')"
     ]
   }
 }
