@@ -38,7 +38,7 @@ class GetCharacterPerksInfoUseCase @Inject constructor(
                 CharacterPerksInfo(
                     characterPerks = acquiredPerks,
                     avaliablePerks = avaliablePerks,
-                    avaliablePerksCount = maxOf(0, allCount - acquiredPerks.size)
+                    avaliablePerksCount = maxOf(0, allCount - acquiredPerks.size + character.additionalContOfPerks)
                 )
             }
         }

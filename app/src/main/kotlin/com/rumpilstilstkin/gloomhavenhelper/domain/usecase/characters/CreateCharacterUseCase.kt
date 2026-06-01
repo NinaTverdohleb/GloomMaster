@@ -26,7 +26,8 @@ class CreateCharacterUseCase @Inject constructor(
             level = level,
             characterType = characterType,
             teamId = team.teamId,
-            experience = getExpForLevel(level)
+            experience = getExpForLevel(level),
+            additionalContOfPerks = team.countRetiredCharacters
         )
         characterRepository.addCharacter(character)
     }

@@ -1,10 +1,13 @@
 package com.rumpilstilstkin.gloomhavenhelper.data.mappers
 
+import com.rumpilstilstkin.gloomhavenhelper.bd.entity.CharacterBd
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.TeamBd
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.DifficultyLevel
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.PackType
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.ShortTeamInfo
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.TeamInfoForSave
+import kotlin.collections.filter
+import kotlin.collections.map
 
 fun TeamInfoForSave.toBd() = TeamBd(
     name = this.name,
@@ -13,7 +16,7 @@ fun TeamInfoForSave.toBd() = TeamBd(
 )
 
 fun TeamBd.toDomain(
-    characterIds: List<Int>,
+    characters: List<CharacterBd>,
 ) = ShortTeamInfo(
     teamId = this.teamId,
     name = this.name,
@@ -21,9 +24,10 @@ fun TeamBd.toDomain(
     prosperity = this.prosperity,
     achievements = this.achievements,
     packs = this.packs.map { PackType.valueOf(it) },
-    aliveCharacterIds = characterIds,
+    aliveCharacterIds = characters.filter { it.isAlive }.map { it.characterId },
     churchValue = this.churchValue,
-    difficultyLevel = DifficultyLevel.fromValue(this.difficultyLevel)
+    difficultyLevel = DifficultyLevel.fromValue(this.difficultyLevel),
+    countRetiredCharacters = characters.count { !it.isAlive }
 )
 
 fun ShortTeamInfo.toBd() = TeamBd(

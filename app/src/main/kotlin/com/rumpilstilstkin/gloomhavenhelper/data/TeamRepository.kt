@@ -45,7 +45,7 @@ class TeamRepository @Inject constructor(
                             teamDao.getTeamFlow(teamId),
                             characterDao.findByTeamIdFlow(teamId),
                         ) { team, characters ->
-                            team.toDomain(characters.filter { it.isAlive }.map { it.characterId })
+                            team.toDomain(characters)
                         }
                     },
                     onFailure = { flowOf(null) }
@@ -78,8 +78,7 @@ class TeamRepository @Inject constructor(
 
     suspend fun getTeamInfo(teamId: Int): ShortTeamInfo? =
         teamDao.findById(teamId)?.let { team ->
-            val characters =
-                characterDao.findByTeamId(team.teamId).filter { it.isAlive }.map { it.characterId }
+            val characters = characterDao.findByTeamId(team.teamId)
             team.toDomain(characters)
         }
 

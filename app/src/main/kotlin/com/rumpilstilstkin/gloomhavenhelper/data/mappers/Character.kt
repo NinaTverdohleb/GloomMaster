@@ -18,6 +18,7 @@ fun CharacterForSave.toBd() = CharacterBd(
     isAlive = this.isAlive,
     notes = this.notes,
     checkMarkCount = this.checkMarkCount,
+    additionalContOfPerks = this.additionalContOfPerks,
 )
 
 fun CharacterBd.toDomain(

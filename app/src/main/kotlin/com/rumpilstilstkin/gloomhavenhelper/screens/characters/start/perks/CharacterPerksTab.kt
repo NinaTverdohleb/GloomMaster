@@ -117,7 +117,7 @@ fun PerkItem(
 
 }
 
-@Preview
+@Preview(showBackground = true, backgroundColor = 0xFF666666     )
 @Composable
 private fun CharacterPerkTabScreenPreview() {
     GloomhavenMasterTheme {
