@@ -9,6 +9,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.windowsizeclass.ExperimentalMaterial3WindowSizeClassApi
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -24,6 +25,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
+import androidx.compose.material3.windowsizeclass.calculateWindowSizeClass
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -34,6 +36,7 @@ class MainActivity : ComponentActivity() {
         super.onStart()
     }
 
+    @OptIn(ExperimentalMaterial3WindowSizeClassApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         val splashScreen = installSplashScreen()
         super.onCreate(savedInstanceState)
@@ -46,7 +49,6 @@ class MainActivity : ComponentActivity() {
                     .collect()
             }
         }
-
         splashScreen.setOnExitAnimationListener { splashScreenView ->
             val fadeOut = ObjectAnimator.ofFloat(splashScreenView.view, View.ALPHA, 1f, 0f)
             fadeOut.duration = 200L
@@ -63,8 +65,9 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             GloomhavenMasterTheme {
+                val windowSizeClass = calculateWindowSizeClass(this)
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    GlHelperNavHost(innerPadding = innerPadding)
+                    GlHelperNavHost(innerPadding = innerPadding, widthSizeClass = windowSizeClass.widthSizeClass)
                 }
             }
         }

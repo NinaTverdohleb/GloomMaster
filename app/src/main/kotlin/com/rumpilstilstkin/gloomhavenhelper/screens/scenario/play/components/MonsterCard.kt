@@ -1,4 +1,4 @@
-package com.rumpilstilstkin.gloomhavenhelper.ui.scenario
+package com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -32,16 +32,15 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterCardAction
+import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.state.MonsterAbilityCardUi
+import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.state.MonsterActionUi
+import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.state.sampleDeck
 import com.rumpilstilstkin.gloomhavenhelper.ui.icons.GameIcon
 import com.rumpilstilstkin.gloomhavenhelper.ui.icons.text.TextWithImagesByCode
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
-import kotlinx.collections.immutable.ImmutableList
-import kotlinx.collections.immutable.toImmutableList
 
 private const val SQRT_3_OVER_2 = 0.8660254f
 
@@ -249,7 +248,7 @@ private fun MonsterCardViewSample() {
                 MonsterCardView(
                     monsterName = "Living bones",
                     card = card,
-                    Modifier.size(width = 360.dp, height = 290.dp)
+                    Modifier.size(width = 360.dp, height = 270.dp)
                 )
                 Spacer(
                     Modifier.height(8.dp)

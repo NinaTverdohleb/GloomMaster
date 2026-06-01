@@ -6,10 +6,8 @@ import com.rumpilstilstkin.gloomhavenhelper.domain.entity.ScenarioGameState
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.ScenarioGameStateMagic
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.ScenarioGameStateMonsterItem
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.ScenarioGameStateMonsterUnit
-import com.rumpilstilstkin.gloomhavenhelper.screens.models.ActionUi
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.MonsterItem
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.MonsterUnit
-import com.rumpilstilstkin.gloomhavenhelper.ui.scenario.toUi
 import kotlinx.collections.immutable.toImmutableList
 import kotlinx.collections.immutable.toImmutableMap
 
@@ -46,7 +44,8 @@ object ScenarioStateMapper {
                 }
                 .toImmutableList(),
             magicChargeList = state.magicState.toMap().toImmutableMap(),
-            showUnitLevelDialog = state.showUnitLevelDialog
+            showUnitLevelDialog = state.showUnitLevelDialog,
+            availableEffects = state.availableEffects
         )
     }
 
@@ -75,9 +74,7 @@ object ScenarioStateMapper {
                             number = stateUnit.number,
                             isElite = stateUnit.isElite,
                             currentLife = stateUnit.currentLife,
-                            effects = stateUnit.effects.map {
-                                ActionUi.fromMonsterStatType(it)
-                            }.toImmutableList()
+                            effects = stateUnit.effects.map {it}.toImmutableList()
                         )
                     }.toImmutableList(),
                     deck = monster.deckName
@@ -86,7 +83,8 @@ object ScenarioStateMapper {
             round = battleInfo.round,
             showMonsterDialog = false,
             showUnitLevelDialog = false,
-            magicState = MagicState.restore(battleInfo.magicCharges)
+            magicState = MagicState.restore(battleInfo.magicCharges),
+            availableEffects = battleInfo.availableEffects
         )
 
     fun stateForSave(state: ScenarioLogicState) =
@@ -114,7 +112,7 @@ object ScenarioStateMapper {
                             currentLife = unit.currentLife,
                             level = unit.level,
                             isElite = unit.isSpecial,
-                            effects = unit.effects.map { it.toLogic() }
+                            effects = unit.effects
                         )
                     },
                 )

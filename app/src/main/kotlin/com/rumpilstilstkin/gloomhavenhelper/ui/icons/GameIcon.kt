@@ -4,6 +4,7 @@ import androidx.annotation.StringRes
 import androidx.compose.ui.graphics.Color
 import com.rumpilstilstkin.gloomhavenhelper.R
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.IconCode
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterStatType
 import java.util.EnumSet
 
 enum class GameIcon(val textCode: IconCode, @param:StringRes val titleRes: Int, val imageRes: Int, val color: Color?) {
@@ -68,36 +69,28 @@ enum class GameIcon(val textCode: IconCode, @param:StringRes val titleRes: Int, 
 
     companion object {
         fun IconCode.toGameIcon(): GameIcon = GameIcon.entries.first { it.textCode == this }
+        fun MonsterStatType.toGameIcon(): GameIcon = when(this){
+            MonsterStatType.ATTACK -> ATTACK
+            MonsterStatType.MOVE -> MOVE
+            MonsterStatType.RANGE -> RANGED_ATTACK
+            MonsterStatType.SHIELD -> SHIELD
+            MonsterStatType.RETALIATE -> RETALIATE
+            MonsterStatType.TARGET -> TARGET
+            MonsterStatType.POISON -> POISON
+            MonsterStatType.WOUND -> WOUND
+            MonsterStatType.MUDDLE -> CONFUSE
+            MonsterStatType.STUN -> STUN
+            MonsterStatType.IMMOBILIZE -> IMMOBILIZE
+            MonsterStatType.DISARM -> DISARM
+            MonsterStatType.CURSE -> CURSE
+            MonsterStatType.STRENGTHEN -> STRENGTH
+            MonsterStatType.INVISIBLE -> INVISIBILITY
+            MonsterStatType.HEAL -> HEAL
+            MonsterStatType.PUSH -> PUSH
+            MonsterStatType.BLESS -> BLESS
+            MonsterStatType.PULL -> PULL
+            MonsterStatType.PIERCE -> PIERCE
+            MonsterStatType.REGENERATE -> REGENERATE
+        }
     }
-}
-
-object GameIconGroups {
-    val magic = EnumSet.of(
-        GameIcon.SUN,
-        GameIcon.MOON,
-        GameIcon.FIRE,
-        GameIcon.FROST,
-        GameIcon.AIR,
-        GameIcon.EARTH,
-    )
-
-    val arias = EnumSet.of(
-        GameIcon.ARIA_0,
-        GameIcon.ARIA_1,
-        GameIcon.ARIA_2,
-        GameIcon.ARIA_3,
-        GameIcon.ARIA_4,
-        GameIcon.ARIA_5,
-        GameIcon.ARIA_6,
-    )
-
-    val effects = EnumSet.of(
-        GameIcon.STUN,
-        GameIcon.DISARM,
-        GameIcon.CONFUSE,
-        GameIcon.WOUND,
-        GameIcon.IMMOBILIZE,
-        GameIcon.POISON,
-        GameIcon.INVISIBILITY,
-    )
 }

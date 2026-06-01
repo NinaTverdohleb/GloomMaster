@@ -13,10 +13,10 @@ android {
     compileSdk = 37
 
     defaultConfig {
-        applicationId = "com.rumpilstilstkin.gloomhavenhelper"
+        applicationId = "com.rumpilstilstkin.gloommaster"
         minSdk = 31
-        versionCode = 11
-        versionName = "1.8"
+        versionCode = 1
+        versionName = "0.0.1"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -75,7 +75,7 @@ dependencies {
     implementation(libs.androidx.navigation.compose)
     implementation(libs.androidx.hilt.navigation.compose)
     implementation(libs.androidx.splashscreen)
-
+    implementation(libs.androidx.window.size)
     implementation(libs.kotlinx.serialization.json)
     implementation(libs.kotlinx.coroutines.core)
     implementation(libs.kotlinx.coroutines.android)

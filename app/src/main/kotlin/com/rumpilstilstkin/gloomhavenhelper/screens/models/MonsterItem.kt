@@ -3,12 +3,8 @@ package com.rumpilstilstkin.gloomhavenhelper.screens.models
 import androidx.compose.runtime.Immutable
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.Monster
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterAction
-import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterCard
-import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterCardAction
-import com.rumpilstilstkin.gloomhavenhelper.ui.icons.GameIcon
-import com.rumpilstilstkin.gloomhavenhelper.ui.scenario.MonsterAbilityCardUi
-import com.rumpilstilstkin.gloomhavenhelper.ui.scenario.MonsterActionUi
-import com.rumpilstilstkin.gloomhavenhelper.ui.scenario.toUi
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterStatType
+import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.state.MonsterAbilityCardUi
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.toImmutableList
@@ -52,8 +48,8 @@ data class MonsterUnit(
     val maxLife: Int,
     val stats: ImmutableList<EffectItem>,
     val isSpecial: Boolean,
-    val effects: ImmutableList<ActionUi> = persistentListOf(),
-    val immunity: ImmutableList<ActionUi> = persistentListOf(),
+    val effects: ImmutableList<MonsterStatType> = persistentListOf(),
+    val immunity: ImmutableList<MonsterStatType> = persistentListOf(),
     val level: Int,
 ) {
     companion object {
@@ -62,7 +58,7 @@ data class MonsterUnit(
             number: Int,
             isElite: Boolean,
             currentLife: Int? = null,
-            effects: ImmutableList<ActionUi> = persistentListOf()
+            effects: ImmutableList<MonsterStatType> = persistentListOf()
         ): MonsterUnit {
             val maxLife = if (isElite) monster.eliteLife else monster.life
             val stats = if (isElite) monster.eliteStats else monster.stats
@@ -76,7 +72,7 @@ data class MonsterUnit(
                 effects = effects,
                 immunity = monster
                     .immunity
-                    .map { ActionUi.fromMonsterStatType(it) }
+                    .map { it }
                     .toImmutableList()
             )
         }
@@ -93,8 +89,7 @@ data class MonsterUnit(
                 stats = monster.stats.map { EffectItem.fromCardAction(it) }.toImmutableList(),
                 isSpecial = false,
                 level = monster.level,
-                immunity = monster.immunity.map { ActionUi.fromMonsterStatType(it) }
-                    .toImmutableList()
+                immunity = monster.immunity.map { it }.toImmutableList()
             )
         }
 

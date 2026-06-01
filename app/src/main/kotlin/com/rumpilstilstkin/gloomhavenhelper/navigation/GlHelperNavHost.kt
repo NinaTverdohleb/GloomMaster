@@ -3,6 +3,7 @@ package com.rumpilstilstkin.gloomhavenhelper.navigation
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.windowsizeclass.WindowWidthSizeClass
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
@@ -25,7 +26,8 @@ import com.rumpilstilstkin.gloomhavenhelper.screens.teem.scenarios.AddScenarioFo
 @Composable
 fun GlHelperNavHost(
     navController: NavHostController = rememberNavController(),
-    innerPadding: PaddingValues
+    innerPadding: PaddingValues,
+    widthSizeClass: WindowWidthSizeClass
 ) {
     NavHost(
         navController = navController,
@@ -47,6 +49,7 @@ fun GlHelperNavHost(
         composable<GlHelperScreens.Scenario> {
             ScenarioRoute(
                 navController = navController,
+                widthSizeClass = widthSizeClass
             )
         }
         composable<GlHelperScreens.CharacterDetails> {

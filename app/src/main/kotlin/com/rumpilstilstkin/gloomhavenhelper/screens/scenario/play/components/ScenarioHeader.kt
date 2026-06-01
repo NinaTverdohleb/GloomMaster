@@ -24,7 +24,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.state.Magic
+import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.state.MagicUi
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.state.MagicValue
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
 
@@ -34,10 +34,10 @@ internal fun ScenarioHeader(
     exp: Int,
     gold: Int,
     trapDamage: Int,
-    magics: Map<Magic, MagicValue>,
+    magics: Map<MagicUi, MagicValue>,
     title: String,
     modifier: Modifier = Modifier,
-    clickMagic: (magic: Magic) -> Unit,
+    clickMagic: (magic: MagicUi) -> Unit,
 ) = Column(
     modifier = modifier.padding(horizontal = 16.dp, vertical = 8.dp)
 ) {
@@ -114,12 +114,12 @@ private fun ScenarioHeaderPreview() {
             gold = 100,
             trapDamage = 3,
             magics = mapOf(
-                Magic.FIRE to MagicValue(0),
-                Magic.FROST to MagicValue(2),
-                Magic.AIR to MagicValue(0),
-                Magic.EARTH to MagicValue(2),
-                Magic.SUN to MagicValue(1),
-                Magic.MOON to MagicValue(2),
+                MagicUi.FIRE to MagicValue(0),
+                MagicUi.FROST to MagicValue(2),
+                MagicUi.AIR to MagicValue(0),
+                MagicUi.EARTH to MagicValue(2),
+                MagicUi.SUN to MagicValue(1),
+                MagicUi.MOON to MagicValue(2),
             ),
             title = "Black Barrow",
             clickMagic = {}

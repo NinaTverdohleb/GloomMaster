@@ -37,24 +37,23 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.rumpilstilstkin.gloomhavenhelper.R
-import com.rumpilstilstkin.gloomhavenhelper.screens.models.ActionGroups
-import com.rumpilstilstkin.gloomhavenhelper.screens.models.ActionUi
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterStatType
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.EffectItem
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.MonsterUnit
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomSize
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.NumberPickerProgress
-import com.rumpilstilstkin.gloomhavenhelper.ui.components.RoundButton
+import com.rumpilstilstkin.gloomhavenhelper.ui.icons.GameIcon.Companion.toGameIcon
 import com.rumpilstilstkin.gloomhavenhelper.ui.icons.text.TextWithImagesByCode
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
-import kotlinx.collections.immutable.persistentListOf
 
 @Composable
 fun MonsterUnitCard(
     unit: MonsterUnit,
+    availableEffects: Set<MonsterStatType>,
     modifier: Modifier = Modifier,
     isBoss: Boolean = false,
     changeLife: (unitNumber: Int, life: Int) -> Unit,
-    switchEffect: (unitNumber: Int, effect: ActionUi) -> Unit,
+    switchEffect: (unitNumber: Int, effect: MonsterStatType) -> Unit,
     levelClick: (unit: MonsterUnit) -> Unit,
     deleteUnit: (unitNumber: Int) -> Unit
 ) {
@@ -67,11 +66,12 @@ fun MonsterUnitCard(
                 verticalAlignment = Alignment.CenterVertically,
             ) {
                 unit.immunity.forEach { effect ->
+                    val icon = effect.toGameIcon()
                     Icon(
                         modifier = Modifier.size(32.dp),
-                        painter = painterResource(id = effect.icon.imageRes),
+                        painter = painterResource(id = icon.imageRes),
                         contentDescription = null,
-                        tint = effect.icon.color ?: Color.White
+                        tint = icon.color ?: Color.White
                     )
                     Spacer(modifier = Modifier.width(12.dp))
                 }
@@ -141,10 +141,11 @@ fun MonsterUnitCard(
             horizontalArrangement = Arrangement.SpaceAround
         ) {
             val immunitySet = unit.immunity.toSet()
-            ActionGroups.effectsPack.filter { it !in immunitySet }.forEach { effect ->
+            availableEffects.filter { it !in immunitySet }.forEach { effect ->
+                val icon = effect.toGameIcon()
                 val tint =
                     if (unit.effects.contains(effect)) {
-                        effect.icon.color
+                        icon.color
                     } else {
                         MaterialTheme.colorScheme.onSurfaceVariant
                     }
@@ -155,7 +156,7 @@ fun MonsterUnitCard(
 
                     Icon(
                         modifier = Modifier.fillMaxSize(),
-                        painter = painterResource(id = effect.icon.imageRes),
+                        painter = painterResource(id = icon.imageRes),
                         contentDescription = null,
                         tint = tint ?: Color.White
                     )
@@ -187,7 +188,7 @@ fun MonsterUnitCard(
                                 modifier = Modifier.size(28.dp),
                                 painter = painterResource(id = stat.type.icon.imageRes),
                                 contentDescription = null,
-                                tint = stat.type.icon.color?: Color.White
+                                tint = stat.type.icon.color ?: Color.White
                             )
                             Spacer(modifier = Modifier.width(8.dp))
                             Text(
@@ -331,7 +332,8 @@ private fun MonsterUnitPreview() {
             changeLife = { _, _ -> },
             switchEffect = { _, _ -> },
             deleteUnit = { _ -> },
-            levelClick = {}
+            levelClick = {},
+            availableEffects = MonsterStatType.mainEffectsPack
         )
     }
 }
@@ -346,7 +348,8 @@ private fun MonsterUnitBossPreview() {
             changeLife = { _, _ -> },
             switchEffect = { _, _ -> },
             deleteUnit = { _ -> },
-            levelClick = {}
+            levelClick = {},
+            availableEffects = MonsterStatType.mainEffectsPack + MonsterStatType.fcEffectsPack
         )
     }
 }

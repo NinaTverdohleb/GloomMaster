@@ -163,7 +163,7 @@
     <string name="delete_team_confirm_warning">Вы уверены, что хотите удалить команду «%1$s»? Это действие нельзя отменить.</string>
     <string name="empty_team_achievements">Нет командных достижений</string>
     <string name="no_conditions">Условий нет</string>
-    <string name="achievement_obtained_format">Достижение получено: %1$s</string>
+    <string name="achievement_obtained_format">Получено достижение: %1$s</string>
     <string name="achievement_not_obtained_format">Не получено достижение: %1$s</string>
     <string name="logical_and"> и </string>
     <string name="logical_or"> или </string>

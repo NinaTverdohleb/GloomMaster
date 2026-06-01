@@ -20,7 +20,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.rumpilstilstkin.gloomhavenhelper.R
-import com.rumpilstilstkin.gloomhavenhelper.screens.models.ActionUi
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterStatType
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.MonsterItem
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.MonsterUnit
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomCard
@@ -30,11 +30,12 @@ import kotlinx.collections.immutable.persistentListOf
 @Composable
 fun RegularMonsterCard(
     item: MonsterItem,
+    availableEffects: Set<MonsterStatType>,
     modifier: Modifier = Modifier,
     delete: (monsterSlug: String) -> Unit,
     deleteUnit: (unitNumber: Int, monsterSlug: String) -> Unit,
     updateUnitLife: (unitNumber: Int, monsterSlug: String, life: Int) -> Unit,
-    switchUnitEffect: (unitNumber: Int, monsterSlug: String, effect: ActionUi) -> Unit,
+    switchUnitEffect: (unitNumber: Int, monsterSlug: String, effect: MonsterStatType) -> Unit,
     addMonsterUnit: (unitNumbers: List<Int>, monsterSlug: String, isSpecial: Boolean) -> Unit,
     changeUnitLevel: (monsterSlug: String, unit: MonsterUnit, level: Int) -> Unit
 ) {
@@ -84,6 +85,7 @@ fun RegularMonsterCard(
                                 placementSpec = spring()
                             ),
                         unit = unit,
+                        availableEffects = availableEffects,
                         isBoss = item.isBoss,
                         deleteUnit = { unitNumber -> deleteUnit(unitNumber, item.slug) },
                         switchEffect = { unitNumber, effect ->
@@ -156,6 +158,7 @@ private fun RegularMonsterCardPreview() {
                 ),
                 deck = ""
             ),
+            availableEffects = MonsterStatType.mainEffectsPack,
             delete = {},
             deleteUnit = { _, _ -> },
             updateUnitLife = { _, _, _ -> },

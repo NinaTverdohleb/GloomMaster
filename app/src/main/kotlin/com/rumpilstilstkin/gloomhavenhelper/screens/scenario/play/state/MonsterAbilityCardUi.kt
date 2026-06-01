@@ -1,4 +1,4 @@
-package com.rumpilstilstkin.gloomhavenhelper.ui.scenario
+package com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.state
 
 import androidx.compose.runtime.Immutable
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterCard
@@ -45,15 +45,13 @@ val sampleDeck = listOf(
         actions = persistentListOf(
             MonsterActionUi(
                 text = "Move #38 +1",
+                subAction = persistentListOf()
             ),
             MonsterActionUi(
-                text = "Attack #41 +0",
-            ),
-            MonsterActionUi(
-                text = "#20",
+                text = "Attack #41 -1",
+                subAction = persistentListOf()
             )
-        )
-    ),
+        )),
 
     MonsterAbilityCardUi(
         cardId = 2,
@@ -61,18 +59,14 @@ val sampleDeck = listOf(
         initiative = 42,
         actions = persistentListOf(
             MonsterActionUi(
-                text = "Move #38 +1",
+                text = "Move #38 +0",
+                subAction = persistentListOf()
             ),
             MonsterActionUi(
                 text = "Attack #41 +0",
-
-                ),
-            MonsterActionUi(
-                text = "#22",
-
-                )
-        )
-    ),
+                subAction = persistentListOf()
+            )
+        )),
 
     MonsterAbilityCardUi(
         cardId = 3,
@@ -80,20 +74,19 @@ val sampleDeck = listOf(
         initiative = 42,
         actions = persistentListOf(
             MonsterActionUi(
-                text = "Attack #41 +3",
+                text = "Attack #41 +0",
                 subAction = persistentListOf(
                     MonsterActionUi(
-                        text = "Pierce #09 2",
-
-                        )
+                        text = "Target #13 2",
+                        subAction = persistentListOf()
+                    ),
+                    MonsterActionUi(
+                        text = "Poison #25",
+                        subAction = persistentListOf()
+                    )
                 )
-            ),
-            MonsterActionUi(
-                text = "#22",
-
-                )
-        )
-    ),
+            )
+        )),
 
     MonsterAbilityCardUi(
         cardId = 4,
@@ -102,23 +95,18 @@ val sampleDeck = listOf(
         actions = persistentListOf(
             MonsterActionUi(
                 text = "Move #38 -1",
-
-                ),
+                subAction = persistentListOf()
+            ),
             MonsterActionUi(
-                text = "Attack #41 -1",
+                text = "Attack #41 +1",
                 subAction = persistentListOf(
                     MonsterActionUi(
-                        text = "Range #37 3",
-
-                        ),
-                    MonsterActionUi(
-                        text = "Immobilize #18",
-
-                        )
+                        text = "Range #37 +1",
+                        subAction = persistentListOf()
+                    )
                 )
             )
-        )
-    ),
+        )),
 
     MonsterAbilityCardUi(
         cardId = 5,
@@ -126,20 +114,14 @@ val sampleDeck = listOf(
         initiative = 42,
         actions = persistentListOf(
             MonsterActionUi(
-                text = "Move #38 +0",
-
-                ),
+                text = "Ooze offers 2 damage",
+                subAction = persistentListOf()
+            ),
             MonsterActionUi(
-                text = "Attack #41 +0",
-                subAction = persistentListOf(
-                    MonsterActionUi(
-                        text = "#50 : Disarm #11",
-
-                        )
-                )
+                text = "Summon normal Ooze with a hit point value equals to the summoning Ooze's current hit point value (limited by a normal Ooze's specified maximum hit point value)",
+                subAction = persistentListOf()
             )
-        )
-    ),
+        )),
 
     MonsterAbilityCardUi(
         cardId = 6,
@@ -147,19 +129,14 @@ val sampleDeck = listOf(
         initiative = 42,
         actions = persistentListOf(
             MonsterActionUi(
-                text = "Move #38 +0",
-
-                ),
+                text = "Ooze offers 2 damage",
+                subAction = persistentListOf()
+            ),
             MonsterActionUi(
-                text = "Attack #41 +0",
-
-                ),
-            MonsterActionUi(
-                text = "#46 : Invisible #24 (Self)",
-
-                )
-        )
-    ),
+                text = "Summon normal Ooze with a hit point value equals to the summoning Ooze's current hit point value (limited by a normal Ooze's specified maximum hit point value)",
+                subAction = persistentListOf()
+            )
+        )),
 
     MonsterAbilityCardUi(
         cardId = 7,
@@ -168,23 +145,17 @@ val sampleDeck = listOf(
         actions = persistentListOf(
             MonsterActionUi(
                 text = "Move #38 -1",
-
-                ),
+                subAction = persistentListOf()
+            ),
             MonsterActionUi(
-                text = "Attack #41 +2",
-                subAction = persistentListOf(
-                    MonsterActionUi(
-                        text = "#50 : Wound #14",
-
-                        ),
-                    MonsterActionUi(
-                        text = "#46 : Curse #26",
-
-                        )
-                )
+                text = "Loot #52 1",
+                subAction = persistentListOf()
+            ),
+            MonsterActionUi(
+                text = "Heal #40 2 (Self)",
+                subAction = persistentListOf()
             )
-        )
-    ),
+        )),
 
     MonsterAbilityCardUi(
         cardId = 8,
@@ -192,21 +163,23 @@ val sampleDeck = listOf(
         initiative = 42,
         actions = persistentListOf(
             MonsterActionUi(
-                text = "Focus on the enemy with the highest initiative",
-
-                ),
-            MonsterActionUi(
-                text = "Teleport to the closest unoccupied hex adjacent to the focus",
-
-                ),
-            MonsterActionUi(
-                text = "Attack #41 -2",
-
-                ),
-            MonsterActionUi(
-                text = "#20",
-
+                text = "Push #08 1 and Poison #25",
+                subAction = persistentListOf(
+                    MonsterActionUi(
+                        text = "Target all adjacent enemies",
+                        subAction = persistentListOf()
+                    )
                 )
-        )
-    ),
-)
+            ),
+            MonsterActionUi(
+                text = "Attack #41 +1",
+                subAction = persistentListOf(
+                    MonsterActionUi(
+                        text = "Range #37 -1",
+                        subAction = persistentListOf()
+                    )
+                )
+            )
+        )),
+
+    )

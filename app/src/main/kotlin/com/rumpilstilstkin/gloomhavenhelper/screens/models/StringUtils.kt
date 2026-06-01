@@ -28,7 +28,7 @@ fun LogicalCondition.toHumanReadable(): String {
             "&&" -> {
                 val r = stack.removeAt(stack.size - 1)
                 val l = stack.removeAt(stack.size - 1)
-                stack.add("($l$ andOp $r)")
+                stack.add("($l $andOp $r)")
             }
             "||" -> {
                 val r = stack.removeAt(stack.size - 1)

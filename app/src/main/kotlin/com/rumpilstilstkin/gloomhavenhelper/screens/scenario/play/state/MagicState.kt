@@ -5,7 +5,7 @@ import com.rumpilstilstkin.gloomhavenhelper.R
 import com.rumpilstilstkin.gloomhavenhelper.ui.icons.GameIcon
 import kotlinx.serialization.Serializable
 
-enum class Magic(val icon: GameIcon) {
+enum class MagicUi(val icon: GameIcon) {
     FIRE(GameIcon.FIRE),
     FROST(GameIcon.FROST),
     AIR(GameIcon.AIR),
@@ -14,7 +14,7 @@ enum class Magic(val icon: GameIcon) {
     MOON(GameIcon.MOON);
 
     companion object {
-        val ALL: List<Magic> = entries
+        val ALL: List<MagicUi> = entries
     }
 }
 
@@ -34,7 +34,7 @@ data class MagicValue(
         else -> R.drawable.ic_magic_full
     }
 
-    fun color(magic: Magic): Color = when (value) {
+    fun color(magic: MagicUi): Color = when (value) {
         0 -> magic.icon.color?.copy(alpha = 0.2f) ?: Color.White
         1 -> magic.icon.color?.copy(alpha = 0.5f) ?: Color.White
         else -> magic.icon.color ?: Color.White
@@ -43,9 +43,9 @@ data class MagicValue(
 
 @Serializable
 data class MagicState(
-    private val charges: Map<Magic, MagicValue> = Magic.ALL.associateWith { MagicValue() }
+    private val charges: Map<MagicUi, MagicValue> = MagicUi.ALL.associateWith { MagicValue() }
 ) {
-    fun toggle(magic: Magic): MagicState {
+    fun toggle(magic: MagicUi): MagicState {
         val currentValue = charges[magic] ?: return this
         return copy(charges = charges + (magic to currentValue.toggle()))
     }
@@ -53,7 +53,7 @@ data class MagicState(
     fun decreaseAll(): MagicState =
         copy(charges = charges.mapValues { (_, value) -> value.decrease() })
 
-    fun toMap(): Map<Magic, MagicValue> = charges
+    fun toMap(): Map<MagicUi, MagicValue> = charges
 
     fun toList(): List<Pair<String, Int>> = charges.toList().map { (magic, value) ->
         magic.name to value.value
@@ -64,7 +64,7 @@ data class MagicState(
 
         fun restore(magicCharges: Map<String, Int>): MagicState =
             MagicState(
-                charges = Magic.ALL.associateWith { magic ->
+                charges = MagicUi.ALL.associateWith { magic ->
                     MagicValue(magicCharges[magic.name] ?: 0)
                 }
             )

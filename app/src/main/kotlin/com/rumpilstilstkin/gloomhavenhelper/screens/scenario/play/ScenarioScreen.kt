@@ -32,15 +32,16 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.rumpilstilstkin.gloomhavenhelper.R
-import com.rumpilstilstkin.gloomhavenhelper.screens.models.ActionUi
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterStatType
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.MonsterItem
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.MonsterUnit
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.components.AddMonsterCard
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.components.RegularMonsterCard
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.components.ScenarioHeader
-import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.state.Magic
+import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.state.MagicUi
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.state.MagicValue
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.state.ScenarioStateUi
+import com.rumpilstilstkin.gloomhavenhelper.screens.start.characters.CharactersTabAction
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomToolbarStatus
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
 import kotlinx.collections.immutable.persistentListOf
@@ -55,10 +56,10 @@ internal fun ScenarioScreen(
     deleteMonster: (monsterSlug: String) -> Unit,
     deleteUnit: (unitNumber: Int, monsterSlug: String) -> Unit,
     updateUnitLife: (unitNumber: Int, monsterSlug: String, life: Int) -> Unit,
-    switchUnitEffect: (unitNumber: Int, monsterSlug: String, effect: ActionUi) -> Unit,
+    switchUnitEffect: (unitNumber: Int, monsterSlug: String, effect: MonsterStatType) -> Unit,
     nextRound: () -> Unit,
     addMonsterUnit: (unitNumbers: List<Int>, monsterSlug: String, isElite: Boolean) -> Unit,
-    clickMagic: (magic: Magic) -> Unit,
+    clickMagic: (magic: MagicUi) -> Unit,
     changeUnitLevel: (monsterSlug: String, unit: MonsterUnit, level: Int) -> Unit,
 ) = Scaffold(
     topBar = {
@@ -97,7 +98,8 @@ internal fun ScenarioScreen(
             updateUnitLife = updateUnitLife,
             switchUnitEffect = switchUnitEffect,
             addMonsterUnit = addMonsterUnit,
-            changeUnitLevel = changeUnitLevel
+            changeUnitLevel = changeUnitLevel,
+            availableEffects = state.availableEffects
         )
         Button(
             modifier = Modifier
@@ -137,12 +139,13 @@ private fun CombatToolbar(
 
 @Composable
 fun ScenarioScreenContent(
+    availableEffects: Set<MonsterStatType>,
     monsters: List<MonsterItem>,
     addMonster: () -> Unit,
     delete: (monsterSlug: String) -> Unit,
     deleteUnit: (unitNumber: Int, monsterSlug: String) -> Unit,
     updateUnitLife: (unitNumber: Int, monsterSlug: String, life: Int) -> Unit,
-    switchUnitEffect: (unitNumber: Int, monsterSlug: String, effect: ActionUi) -> Unit,
+    switchUnitEffect: (unitNumber: Int, monsterSlug: String, effect: MonsterStatType) -> Unit,
     addMonsterUnit: (unitNumbers: List<Int>, monsterSlug: String, isElite: Boolean) -> Unit,
     changeUnitLevel: (monsterSlug: String, unit: MonsterUnit, level: Int) -> Unit,
     modifier: Modifier = Modifier
@@ -191,7 +194,8 @@ fun ScenarioScreenContent(
                     updateUnitLife = updateUnitLife,
                     switchUnitEffect = switchUnitEffect,
                     addMonsterUnit = addMonsterUnit,
-                    changeUnitLevel = changeUnitLevel
+                    changeUnitLevel = changeUnitLevel,
+                    availableEffects = availableEffects
                 )
             }
         }
@@ -209,13 +213,14 @@ private fun ScenarioScreenPreview() {
                     MonsterItem.fixture()
                 ),
                 magicChargeList = persistentMapOf(
-                    Magic.FIRE to MagicValue(0),
-                    Magic.FROST to MagicValue(2),
-                    Magic.AIR to MagicValue(0),
-                    Magic.EARTH to MagicValue(2),
-                    Magic.SUN to MagicValue(1),
-                    Magic.MOON to MagicValue(2),
-                )
+                    MagicUi.FIRE to MagicValue(0),
+                    MagicUi.FROST to MagicValue(2),
+                    MagicUi.AIR to MagicValue(0),
+                    MagicUi.EARTH to MagicValue(2),
+                    MagicUi.SUN to MagicValue(1),
+                    MagicUi.MOON to MagicValue(2),
+                ),
+                availableEffects = MonsterStatType.mainEffectsPack,
             ),
             addMonster = {},
             back = {},
@@ -239,6 +244,7 @@ private fun ScenarioScreenEmptyPreview() {
         ScenarioScreen(
             state = ScenarioStateUi(
                 name = "Bad place",
+                availableEffects = MonsterStatType.mainEffectsPack,
             ),
             addMonster = {},
             back = {},

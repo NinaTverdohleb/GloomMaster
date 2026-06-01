@@ -23,5 +23,22 @@ enum class MonsterStatType {
     PUSH,
     BLESS,
     PULL,
-    PIERCE
+    PIERCE,
+    REGENERATE;
+
+    companion object {
+        val mainEffectsPack = setOf(
+            POISON,
+            MonsterStatType.WOUND,
+            MonsterStatType.IMMOBILIZE,
+            MonsterStatType.DISARM,
+            MonsterStatType.STUN,
+            MonsterStatType.MUDDLE,
+            MonsterStatType.STRENGTHEN,
+            MonsterStatType.INVISIBLE
+        )
+        val fcEffectsPack = setOf(
+            MonsterStatType.REGENERATE
+        )
+    }
 }

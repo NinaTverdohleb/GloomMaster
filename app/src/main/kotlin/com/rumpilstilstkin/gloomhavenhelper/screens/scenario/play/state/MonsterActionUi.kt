@@ -1,4 +1,4 @@
-package com.rumpilstilstkin.gloomhavenhelper.ui.scenario
+package com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.state
 
 import androidx.compose.runtime.Immutable
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.IconCode.Companion.toIconCode

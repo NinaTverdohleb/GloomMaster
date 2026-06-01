@@ -4,9 +4,12 @@ import com.rumpilstilstkin.gloomhavenhelper.data.MonsterRepository
 import com.rumpilstilstkin.gloomhavenhelper.data.ScenarioGameStateRepository
 import com.rumpilstilstkin.gloomhavenhelper.data.ScenarioRepository
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.LevelInfo
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.PackType
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.ScenarioBattleInfo
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.TeamInfo
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterStatType
 import javax.inject.Inject
+import kotlin.collections.mutableSetOf
 
 class RestoreScenarioStateUseCase @Inject constructor(
     private val scenarioGameStateRepository: ScenarioGameStateRepository,
@@ -45,7 +48,13 @@ class RestoreScenarioStateUseCase @Inject constructor(
                 magicCharges = state.magicCharges.associate {
                     it.name to it.value
                 },
-                scenarioNumber = state.scenarioNumber
+                scenarioNumber = state.scenarioNumber,
+                availableEffects = team.packs.flatMapTo(mutableSetOf()) { pack ->
+                    when (pack) {
+                        PackType.MAIN -> MonsterStatType.mainEffectsPack
+                        PackType.FORGOTTEN_CIRCLES -> MonsterStatType.fcEffectsPack
+                    }
+                }.toSet()
             )
         } ?: ScenarioBattleInfo(
             name = "",
@@ -55,7 +64,8 @@ class RestoreScenarioStateUseCase @Inject constructor(
             trapDamage = levelInfo?.trapDamage ?: 0,
             gamersCount = team.aliveCharacters.size,
             monsterLevel = levelInfo?.monsterLevel ?: 0,
-            scenarioNumber = null
+            scenarioNumber = null,
+            availableEffects = MonsterStatType.mainEffectsPack
         )
     }
 }

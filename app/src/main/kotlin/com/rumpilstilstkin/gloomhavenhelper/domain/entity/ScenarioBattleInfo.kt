@@ -2,6 +2,7 @@ package com.rumpilstilstkin.gloomhavenhelper.domain.entity
 
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.Monster
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterCard
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterStatType
 import kotlinx.serialization.Serializable
 
 @Serializable
@@ -24,5 +25,6 @@ data class ScenarioBattleInfo(
         Magic.EARTH.name to 0,
         Magic.SUN.name to 0,
         Magic.MOON.name to 0,
-    )
+    ),
+    val availableEffects: Set<MonsterStatType>
 )

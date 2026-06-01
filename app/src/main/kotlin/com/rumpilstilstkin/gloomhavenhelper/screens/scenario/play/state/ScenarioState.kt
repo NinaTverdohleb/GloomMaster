@@ -1,13 +1,11 @@
 package com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.state
 
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.ScenarioBattleInfo
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterStatType
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterStats
-import com.rumpilstilstkin.gloomhavenhelper.screens.models.ActionUi
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.EffectItem
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.MonsterItem
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.MonsterUnit
-import com.rumpilstilstkin.gloomhavenhelper.screens.models.toUi
-import com.rumpilstilstkin.gloomhavenhelper.ui.scenario.toUi
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.toImmutableList
 import kotlinx.serialization.Serializable
@@ -20,9 +18,10 @@ data class ScenarioLogicState(
     val round: Int = 0,
     val showMonsterDialog: Boolean = false,
     val showUnitLevelDialog: Boolean = false,
-    val magicState: MagicState = MagicState.initial()
+    val magicState: MagicState = MagicState.initial(),
+    val availableEffects: Set<MonsterStatType>
 ) {
-    fun updateMagic(magic: Magic): ScenarioLogicState =
+    fun updateMagic(magic: MagicUi): ScenarioLogicState =
         copy(magicState = magicState.toggle(magic))
 
     fun toUIState(): ScenarioStateUi = ScenarioStateMapper.toUiState(this)
@@ -116,7 +115,7 @@ data class ScenarioLogicState(
                 .toImmutableList()
         )
 
-    fun addEffect(monsterSlug: String, number: Int, effect: ActionUi): ScenarioLogicState =
+    fun addEffect(monsterSlug: String, number: Int, effect: MonsterStatType): ScenarioLogicState =
         copy(
             activeMonsters = activeMonsters
                 .updateMonster(monsterSlug) { monster ->

@@ -1,6 +1,7 @@
 package com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.state
 
 import androidx.compose.runtime.Immutable
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterStatType
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.MonsterItem
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.ImmutableMap
@@ -15,9 +16,10 @@ data class ScenarioStateUi(
     val trapDamage: Int = 0,
     val level: Int = 0,
     val round: Int = 0,
+    val availableEffects: Set<MonsterStatType> = MonsterStatType.mainEffectsPack,
     val showMonsterDialog: Boolean = false,
     val monsters: ImmutableList<MonsterItem> = persistentListOf(),
     val monstersForAdd: ImmutableList<MonsterItem> = persistentListOf(),
-    val magicChargeList: ImmutableMap<Magic, MagicValue> = persistentMapOf(),
-    val showUnitLevelDialog: Boolean = false
+    val magicChargeList: ImmutableMap<MagicUi, MagicValue> = persistentMapOf(),
+    val showUnitLevelDialog: Boolean = false,
 )
