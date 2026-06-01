@@ -38,5 +38,6 @@ data class ScenarioGameStateMonsterUnit(
     val currentLife: Int,
     val level: Int,
     val isElite: Boolean,
-    val effects: List<MonsterStatType>
+    val effects: List<MonsterStatType>,
+    val isNew: Boolean = false
 )

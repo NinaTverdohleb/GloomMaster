@@ -17,9 +17,7 @@ data class ScenarioStateUi(
     val level: Int = 0,
     val round: Int = 0,
     val availableEffects: Set<MonsterStatType> = MonsterStatType.mainEffectsPack,
-    val showMonsterDialog: Boolean = false,
     val monsters: ImmutableList<MonsterItem> = persistentListOf(),
     val monstersForAdd: ImmutableList<MonsterItem> = persistentListOf(),
     val magicChargeList: ImmutableMap<MagicUi, MagicValue> = persistentMapOf(),
-    val showUnitLevelDialog: Boolean = false,
 )

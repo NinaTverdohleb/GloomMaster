@@ -16,8 +16,6 @@ data class ScenarioLogicState(
     val cardDeck: CardDeckState,
     val activeMonsters: List<MonsterItem> = listOf(),
     val round: Int = 0,
-    val showMonsterDialog: Boolean = false,
-    val showUnitLevelDialog: Boolean = false,
     val magicState: MagicState = MagicState.initial(),
     val availableEffects: Set<MonsterStatType>
 ) {
