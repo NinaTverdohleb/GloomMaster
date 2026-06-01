@@ -132,14 +132,31 @@ data class ScenarioLogicState(
         )
 
     private fun updateMonsterCard(monster: MonsterItem): ScenarioLogicState {
-        if (round == 0) return this
+        if (round == 0) {
+            return copy(
+                activeMonsters = activeMonsters
+                    .updateMonster(monster.slug) { m ->
+                        m.copy(
+                            units = m.units.map {
+                                it.copy(isNew = false)
+                            }.toImmutableList()
+                        )
+                    },
+            )
+
+        }
         val monster = scenarioInfo.monsters.first { it.slug == monster.slug }
         val drawResult = cardDeck.drawCard(monster.deckName)
 
         return copy(
             activeMonsters = activeMonsters
                 .updateMonster(monster.slug) { m ->
-                    m.copy(currentCard = drawResult.card?.toUi())
+                    m.copy(
+                        currentCard = drawResult.card?.toUi(),
+                        units = m.units.map {
+                            it.copy(isNew = false)
+                        }.toImmutableList()
+                    )
                 },
             cardDeck = drawResult.newState
         )

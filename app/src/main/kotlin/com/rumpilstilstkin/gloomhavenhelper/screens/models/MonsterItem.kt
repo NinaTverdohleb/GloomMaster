@@ -51,6 +51,7 @@ data class MonsterUnit(
     val effects: ImmutableList<MonsterStatType> = persistentListOf(),
     val immunity: ImmutableList<MonsterStatType> = persistentListOf(),
     val level: Int,
+    val isNew: Boolean = true
 ) {
     companion object {
         fun create(
