@@ -5,6 +5,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -40,10 +43,13 @@ fun ScenarioRoute(
             )
         }
     }
-    val addMonster = { viewModel.onAction(ScenarioActions.OpenMonstersDialog) }
+    var showMonsterDialog by remember { mutableStateOf(false) }
+
+    val addMonster = { showMonsterDialog = true }
     val back: () -> Unit = { navController.popBackStack() }
     val complete = { viewModel.onAction(ScenarioActions.CompleteScenario) }
-    val deleteMonster = { monsterSlug: String -> viewModel.onAction(ScenarioActions.RemoveMonster(monsterSlug)) }
+    val deleteMonster =
+        { monsterSlug: String -> viewModel.onAction(ScenarioActions.RemoveMonster(monsterSlug)) }
     val deleteUnit = { unitNumber: Int, monsterSlug: String ->
         viewModel.onAction(
             ScenarioActions.RemoveUnit(
@@ -111,6 +117,7 @@ fun ScenarioRoute(
                 changeUnitLevel = changeUnitLevel
             )
         }
+
         else -> {
             ScenarioScreen(
                 state = uiState,
@@ -128,12 +135,18 @@ fun ScenarioRoute(
             )
         }
     }
-    if (uiState.showMonsterDialog) {
+
+    if (showMonsterDialog) {
         MonsterListDialog(
             monsters = uiState.monstersForAdd,
-            selectMonster = { viewModel.onAction(ScenarioActions.AddMonster(it)) },
-            onDismiss = { viewModel.onAction(ScenarioActions.CloseMonstersDialog) },
-            addNewMonsters = { viewModel.onAction(ScenarioActions.AddNewMonsters) }
+            selectMonster = {
+                viewModel.onAction(ScenarioActions.AddMonster(it))
+                showMonsterDialog = false
+            },
+            onDismiss = { showMonsterDialog = false },
+            addNewMonsters = {
+                viewModel.onAction(ScenarioActions.AddNewMonsters)
+            }
         )
     }
 }

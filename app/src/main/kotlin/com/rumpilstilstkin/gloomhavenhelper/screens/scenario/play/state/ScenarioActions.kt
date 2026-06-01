@@ -17,8 +17,6 @@ sealed interface ScenarioActions {
     data class SwitchUnitEffect(val effect: MonsterStatType, val monsterSlug: String, val unitNumber: Int) :
         ScenarioActions
 
-    data object OpenMonstersDialog : ScenarioActions
-    data object CloseMonstersDialog : ScenarioActions
     data class UpdateMagic(val magic: MagicUi) : ScenarioActions
     data class UpdateUnitLevel(
         val monsterSlug: String,
@@ -27,7 +25,5 @@ sealed interface ScenarioActions {
         val isElite: Boolean
     ) : ScenarioActions
 
-    data object ShowUnitLevelDialog : ScenarioActions
-    data object CloseUnitLevelDialog : ScenarioActions
     data object AddNewMonsters : ScenarioActions
 }

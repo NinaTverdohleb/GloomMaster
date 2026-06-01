@@ -1,6 +1,7 @@
 package com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario
 
 import com.rumpilstilstkin.gloomhavenhelper.data.MonsterRepository
+import com.rumpilstilstkin.gloomhavenhelper.data.ScenarioGameStateRepository
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.Magic
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.ScenarioGameState
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.ScenarioGameStateMagic
@@ -12,8 +13,8 @@ import javax.inject.Inject
 class CreateActiveScenarioUseCase @Inject constructor(
     private val getCurrentTeamUseCase: GetCurrentTeamUseCase,
     private val monsterRepository: MonsterRepository,
-    private val saveScenarioStateUseCase: SaveScenarioStateUseCase,
-    private val clearCurrentActiveScenarioUseCase: ClearCurrentActiveScenarioUseCase
+    private val scenarioGameStateRepository: ScenarioGameStateRepository,
+    private val clearCurrentActiveScenarioUseCase: ClearCurrentActiveScenarioUseCase,
 ) {
     suspend operator fun invoke(
         scenarioNumber: Int?,
@@ -58,7 +59,7 @@ class CreateActiveScenarioUseCase @Inject constructor(
                         ),
                     )
                 )
-                saveScenarioStateUseCase(state)
+                scenarioGameStateRepository.save(state)
                 return Unit.toResult()
             } else {
                 return Result.failure(IllegalStateException("Team is null"))

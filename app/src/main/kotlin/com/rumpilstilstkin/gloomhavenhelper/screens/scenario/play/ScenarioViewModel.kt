@@ -7,8 +7,8 @@ import androidx.lifecycle.viewModelScope
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario.ClearCurrentActiveScenarioUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario.CompleteScenarioUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario.GetMonsterStatsForLevelUseCase
-import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario.GetScenarioInfoUseCase
-import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario.SaveScenarioStateUseCase
+import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario.play.GetScenarioInfoUseCase
+import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario.play.SaveScenarioStateUseCase
 import com.rumpilstilstkin.gloomhavenhelper.navigation.GlHelperScreens
 import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEvent
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.state.ScenarioActions
@@ -88,7 +88,6 @@ class ScenarioViewModel @Inject constructor(
             when (action) {
                 is ScenarioActions.AddMonster -> updateState {
                     it.addMonster(action.monsterSlugs)
-                        .copy(showMonsterDialog = false)
                 }
 
                 is ScenarioActions.RemoveMonster -> updateState { it.removeMonster(action.monsterSlug) }
@@ -136,30 +135,7 @@ class ScenarioViewModel @Inject constructor(
                     _navigationEvents.emit(GlHelperEvent.Back)
                 }
 
-                ScenarioActions.CloseMonstersDialog -> updateState {
-                    it.copy(
-                        showMonsterDialog = false
-                    )
-                }
-
-                ScenarioActions.OpenMonstersDialog -> updateState {
-                    it.copy(
-                        showMonsterDialog = true
-                    )
-                }
-
                 is ScenarioActions.UpdateMagic -> updateState { it.updateMagic(action.magic) }
-                ScenarioActions.CloseUnitLevelDialog -> updateState {
-                    it.copy(
-                        showUnitLevelDialog = false
-                    )
-                }
-
-                ScenarioActions.ShowUnitLevelDialog -> updateState {
-                    it.copy(
-                        showUnitLevelDialog = true
-                    )
-                }
 
                 is ScenarioActions.UpdateUnitLevel -> updateState {
                     val newStats = getMonsterStatsForLevelUseCase(
@@ -175,11 +151,6 @@ class ScenarioViewModel @Inject constructor(
                 }
 
                 ScenarioActions.AddNewMonsters -> {
-                    updateState {
-                        it.copy(
-                            showMonsterDialog = false
-                        )
-                    }
                     _navigationEvents.emit(
                         GlHelperEvent.Screen(GlHelperScreens.ScenarioConstructor)
                     )

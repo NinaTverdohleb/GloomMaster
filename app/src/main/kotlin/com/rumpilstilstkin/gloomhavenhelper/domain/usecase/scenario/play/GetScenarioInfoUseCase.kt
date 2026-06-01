@@ -1,11 +1,10 @@
-package com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario
+package com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario.play
 
 import com.rumpilstilstkin.gloomhavenhelper.data.LevelInfoRepository
 import com.rumpilstilstkin.gloomhavenhelper.data.LocaleRepository
-import com.rumpilstilstkin.gloomhavenhelper.data.MonsterRepository
-import com.rumpilstilstkin.gloomhavenhelper.data.ScenarioGameStateRepository
-import com.rumpilstilstkin.gloomhavenhelper.data.ScenarioRepository
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.ScenarioBattleInfo
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.scenario.ScenarioBattleState
+import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario.RestoreScenarioStateUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.team.GetCurrentTeamUseCase
 import com.rumpilstilstkin.gloomhavenhelper.utils.toResult
 import kotlinx.coroutines.Dispatchers

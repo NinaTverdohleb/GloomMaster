@@ -59,7 +59,8 @@ data class MonsterUnit(
             number: Int,
             isElite: Boolean,
             currentLife: Int? = null,
-            effects: ImmutableList<MonsterStatType> = persistentListOf()
+            effects: ImmutableList<MonsterStatType> = persistentListOf(),
+            isNew: Boolean = true
         ): MonsterUnit {
             val maxLife = if (isElite) monster.eliteLife else monster.life
             val stats = if (isElite) monster.eliteStats else monster.stats
@@ -74,7 +75,8 @@ data class MonsterUnit(
                 immunity = monster
                     .immunity
                     .map { it }
-                    .toImmutableList()
+                    .toImmutableList(),
+                isNew = isNew
             )
         }
 

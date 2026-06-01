@@ -41,7 +41,6 @@ import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.components.Sce
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.state.MagicUi
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.state.MagicValue
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.state.ScenarioStateUi
-import com.rumpilstilstkin.gloomhavenhelper.screens.start.characters.CharactersTabAction
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomToolbarStatus
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
 import kotlinx.collections.immutable.persistentListOf
