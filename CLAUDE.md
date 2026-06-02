@@ -60,11 +60,11 @@ The project follows Clean Architecture with four layers:
 
 When changing database schema:
 1. Increment version in `GlHelperDatabase.kt`
-2. Create migration object (e.g., `MIGRATION_1_2`) in `bd/migrations/`
+2. Create migration object (e.g., `MIGRATION_4_5`) in `bd/migrations/DatabaseMigrations.kt`
 3. Add migration to `ALL_MIGRATIONS` array
 4. Build to export new schema
 
-Note: the app is pre-release. Schema v3 intentionally relies on `fallbackToDestructiveMigrationFrom(false, 3)` to wipe and reseed rather than carrying a real `MIGRATION_2_3` — clearing stale data is a requirement, not an oversight. Write a real migration only once the app has shipped.
+Note: the app is pre-release. Schema is at v5; versions 1–3 are wiped via `fallbackToDestructiveMigrationFrom(false, 1, 2, 3)` rather than carrying real migrations — clearing stale data was a requirement, not an oversight. From v4 onward (current real migration is `MIGRATION_4_5`, which adds `level` to `ScenarioGameStateBd`) write proper migrations.
 
 ### Localization (multi-language data)
 
@@ -83,22 +83,35 @@ Catalog content is split into locale-invariant base tables and per-locale transl
 - `CharacterBd` - Character stats, level, experience, gold
 - `ScenarioBd` / `TeamScenarioBd` - Scenarios and team progress
 - `MonsterBd` / `MonsterStatsBd` / `MonsterAbilityCardBd` - Monster data (keyed by `slug`); `MonsterTextStatsBd` holds localized stat text
-- `ScenarioGameStateBd` - Active scenario state (monsters, rounds, cards)
+- `ScenarioGameStateBd` - Active scenario state (monsters, rounds, cards, team level)
 - `GoodBd` / `PerkBd` / `PersonalQuestBd` / `LocationBd` - Items, perks, quests, scenario locations
 - `*TranslationsBd` / `*TranslateBd` - Per-locale text for the above base tables (see Localization)
 
+### Scenario play domain
+
+Active-scenario gameplay is modeled in the **domain** layer, not in screens. The single source of truth is `ScenarioBattleState` (in `domain/entity/scenario/`), which holds the loaded monsters, the active list, the round, the deck, magic charges, and team-level info.
+
+- `ScenarioBattleState` is the immutable state passed through the ViewModel; each player action is a use case in `domain/usecase/scenario/play/` returning a new state (`AddMonsterToBattleUseCase`, `AddMonsterUnitsUseCase`, `NextRoundUseCase`, `RemoveMonsterUseCase`, `RemoveUnitUseCase`, `ToggleMagicChargeUseCase`, `ToggleUnitEffectUseCase`, `UpdateUnitLevelUseCase`, `UpdateUnitLifeUseCase`).
+- `RestoreScenarioStateUseCase` / `SaveScenarioStateUseCase` / `GetScenarioInfoUseCase` bridge `ScenarioBattleState` ↔ persisted `ScenarioGameState`.
+- `MonsterDeckState` owns the per-deck card list and exposes `drawCard(deckName, picker)` returning `DrawResult(card, newState)`. Inject randomness via the `CardPicker` `fun interface` (default `CardPicker.Random`) so tests can use a deterministic picker.
+- `MagicChargeState` owns the `Magic → Int` map with `toggle(magic)` / `decreaseAll()` / `toSaveState()` and is rebuilt from persistence via `MagicChargeState.restore(...)`.
+- `MonsterItem` / `MonsterUnit` live under `domain/entity/scenario/` and use `kotlinx.collections.immutable` (`ImmutableList`) for Compose stability — they are NOT `@Serializable` (persistence goes through `ScenarioGameState`, not these models).
+- The ViewModel (`screens/scenario/play/ScenarioViewModel.kt`) holds `MutableStateFlow<ScenarioBattleState?>` and maps it to `ScenarioStateUi` via `ScenarioStateMapper.toUiState(...)`. Loading happens in `init {}` so `logicState` is populated before the first Compose subscription.
+
 ## Tech Stack
 
-- Kotlin 2.3, JDK 11
-- Android SDK 36 (minSdk 31)
-- Jetpack Compose with Material3
-- Room for persistence
-- Hilt for dependency injection
-- Kotlin Coroutines + Flow for async
-- Kotlin Serialization for JSON
-- KSP for annotation processing
-- Coil for image loading
+- Kotlin 2.3.10, JDK 11
+- Android Gradle Plugin 9.2.1, KSP 2.3.6
+- Android SDK 37 (minSdk 31)
+- Jetpack Compose (BOM `2026.04.01`) with Material3
+- Room 2.8.4 for persistence
+- Hilt 2.59.2 for dependency injection
+- Kotlin Coroutines 1.10.2 + Flow for async
+- Kotlin Serialization 1.11.0 for JSON
+- `kotlinx-collections-immutable` for Compose-stable collections
+- Coil 3 for image loading
 - ProGuard for release minification
+- Testing: JUnit 4, `kotlinx-coroutines-test`, Turbine 1.2.1, Room testing
 
 ## Project Structure
 
@@ -108,7 +121,7 @@ app/src/main/kotlin/com/rumpilstilstkin/gloomhavenhelper/
 │   ├── dao/               # DAO interfaces
 │   ├── entity/            # Room entities
 │   ├── filler/json/       # JSON data fillers for initial DB population
-│   ├── migrations/        # Database migrations
+│   ├── migrations/        # Database migrations (DatabaseMigrations.kt + README.md)
 │   └── typeconverters/    # JSON type converters
 ├── data/                  # Repository layer
 │   ├── datasource/        # Data sources (e.g., SharedPreferences)
@@ -116,15 +129,28 @@ app/src/main/kotlin/com/rumpilstilstkin/gloomhavenhelper/
 ├── di/                    # Hilt DI modules
 ├── domain/                # Business logic layer
 │   ├── entity/            # Domain models
+│   │   ├── monster/       # Monster, MonsterCard, MonsterStats, MonsterStatType, MonsterAction
+│   │   ├── quest/         # Personal quest model
+│   │   ├── scenario/      # Active-scenario gameplay state (ScenarioBattleState,
+│   │   │                  #   MonsterDeckState, MagicChargeState, MonsterItem,
+│   │   │                  #   MonsterUnit, CardPicker, MonsterExtensions)
+│   │   └── export/        # Export-related models
 │   ├── error/             # Error types
 │   └── usecase/           # Use cases organized by feature
+│       └── scenario/play/ # Per-action scenario use cases that transform
+│                          #   ScenarioBattleState (Add/Remove/Update/Toggle/NextRound,
+│                          #   Restore/Save/GetScenarioInfo)
 ├── navigation/            # Navigation routes and nav host
 │   └── events/            # Navigation events
 ├── screens/               # UI screens
 │   ├── characters/        # Character details, goods, perks, quests
 │   ├── dialogs/           # Reusable dialogs
-│   ├── models/            # UI state models
+│   ├── models/            # UI state models for non-scenario screens (character, team,
+│   │                      #   goods, perks, personal quest, level info, scenario list).
+│   │                      #   Scenario-play models live in domain/entity/scenario/.
 │   ├── scenario/          # Scenario play and constructor
+│   │   ├── monsters/      # Scenario constructor (pick monsters)
+│   │   └── play/          # Active scenario (ViewModel + state mapper + components)
 │   ├── start/             # Main tabs (team, characters, scenarios, shop)
 │   └── teem/              # Team editing, achievements, goods
 ├── ui/                    # Shared UI components
@@ -135,7 +161,7 @@ app/src/main/kotlin/com/rumpilstilstkin/gloomhavenhelper/
 │   ├── scenario/          # Scenario UI components
 │   ├── team/              # Team UI components (dialogs)
 │   └── theme/             # App theme
-└── utils/                 # Utility functions
+└── utils/                 # Utility functions (e.g., mapIf, toResult)
 ```
 
 ## Key Files
