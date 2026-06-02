@@ -24,7 +24,7 @@ fun CharacterItemsTabRoute(
         navigationEvents?.let { event ->
             GlHelperEventHelper.event(
                 event = event,
-                navController = navController
+                navController = navController,
             )
         }
     }
@@ -39,7 +39,6 @@ fun CharacterItemsTabRoute(
         },
         sellGood = { number, cost ->
             viewModel.onAction(CharacterItemsTabActions.SellGood(number, cost))
-        }
+        },
     )
-
 }

@@ -15,8 +15,10 @@ class DonateUseCase @Inject constructor(
         val churchValue = teamRepository.donate(team.teamId)
         val prosperity = getTeamProsperityUseCase(team.prosperity)
         if (churchValue == getNextChurchValueUseCase(oldChurchValue)) {
-            val newProsperityLevelValue = prosperity.prosperityLevelValue.plus(1)
-                .coerceAtMost(prosperity.prosperityRange.last)
+            val newProsperityLevelValue =
+                prosperity.prosperityLevelValue
+                    .plus(1)
+                    .coerceAtMost(prosperity.prosperityRange.last)
 
             updateTeamProsperityUseCase(newProsperityLevelValue)
         }

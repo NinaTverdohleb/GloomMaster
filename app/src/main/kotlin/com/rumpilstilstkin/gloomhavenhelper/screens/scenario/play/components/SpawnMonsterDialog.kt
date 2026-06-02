@@ -55,7 +55,7 @@ fun SpawnMonsterDialog(
         onConfirmRequest = {
             onSpawn(selectedIds, selectedTier == UnitTier.Elite)
         },
-        confirmEnabled = selectedIds.isNotEmpty()
+        confirmEnabled = selectedIds.isNotEmpty(),
     ) {
         Column(
             verticalArrangement = Arrangement.spacedBy(16.dp),
@@ -70,11 +70,12 @@ fun SpawnMonsterDialog(
                 ids = availableIds,
                 selectedIds = selectedIds,
                 onSelect = { number ->
-                    selectedIds = if (selectedIds.contains(number)) {
-                        selectedIds - number
-                    } else {
-                        selectedIds + number
-                    }
+                    selectedIds =
+                        if (selectedIds.contains(number)) {
+                            selectedIds - number
+                        } else {
+                            selectedIds + number
+                        }
                 },
             )
         }
@@ -83,9 +84,11 @@ fun SpawnMonsterDialog(
 
 // ─── Tier selector ────────────────────────────────────────────────────────────
 
-enum class UnitTier(@param:StringRes val textRes: Int) {
+enum class UnitTier(
+    @param:StringRes val textRes: Int,
+) {
     Normal(R.string.tier_normal),
-    Elite(R.string.tier_elite)
+    Elite(R.string.tier_elite),
 }
 
 @Composable
@@ -94,24 +97,25 @@ private fun TierSelector(
     onSelect: (UnitTier) -> Unit,
 ) {
     Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .clip(RoundedCornerShape(8.dp))
-            .background(MaterialTheme.colorScheme.secondaryContainer)
-            .padding(4.dp),
+        modifier =
+            Modifier
+                .fillMaxWidth()
+                .clip(RoundedCornerShape(8.dp))
+                .background(MaterialTheme.colorScheme.secondaryContainer)
+                .padding(4.dp),
         horizontalArrangement = Arrangement.spacedBy(4.dp),
     ) {
         UnitTier.entries.forEach { tier ->
             val isSelected = tier == selected
             Box(
-                modifier = Modifier
-                    .weight(1f)
-                    .clip(RoundedCornerShape(6.dp))
-                    .background(
-                        if (isSelected) MaterialTheme.colorScheme.secondary else Color.Transparent
-                    )
-                    .clickable { onSelect(tier) }
-                    .padding(vertical = 8.dp),
+                modifier =
+                    Modifier
+                        .weight(1f)
+                        .clip(RoundedCornerShape(6.dp))
+                        .background(
+                            if (isSelected) MaterialTheme.colorScheme.secondary else Color.Transparent,
+                        ).clickable { onSelect(tier) }
+                        .padding(vertical = 8.dp),
                 contentAlignment = Alignment.Center,
             ) {
                 Row(
@@ -181,17 +185,17 @@ private fun UnitIdCell(
     modifier: Modifier = Modifier,
 ) {
     Box(
-        modifier = modifier
-            .aspectRatio(1f)
-            .clip(RoundedCornerShape(8.dp))
-            .background(
-                if (isSelected) {
-                    MaterialTheme.colorScheme.primary
-                } else {
-                    MaterialTheme.colorScheme.secondaryContainer
-                }
-            )
-            .clickable(onClick = onClick),
+        modifier =
+            modifier
+                .aspectRatio(1f)
+                .clip(RoundedCornerShape(8.dp))
+                .background(
+                    if (isSelected) {
+                        MaterialTheme.colorScheme.primary
+                    } else {
+                        MaterialTheme.colorScheme.secondaryContainer
+                    },
+                ).clickable(onClick = onClick),
         contentAlignment = Alignment.Center,
     ) {
         Text(

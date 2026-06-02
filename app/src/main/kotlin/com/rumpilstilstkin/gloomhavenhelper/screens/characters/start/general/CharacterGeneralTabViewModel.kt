@@ -2,14 +2,14 @@ package com.rumpilstilstkin.gloomhavenhelper.screens.characters.start.general
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.characters.MarksCheckedChangeUseCase
-import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.team.DonateUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.characters.ExperienceChangeUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.characters.GetCharacterDetailsInfoUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.characters.LevelUpUseCase
+import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.characters.MarksCheckedChangeUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.characters.UpdateGoldUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.characters.UpdateNotesUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.characters.quests.QuestTaskUpdateUseCase
+import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.team.DonateUseCase
 import com.rumpilstilstkin.gloomhavenhelper.navigation.GlHelperScreens
 import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEvent
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.toUI
@@ -36,32 +36,31 @@ class CharacterGeneralTabViewModel @AssistedInject constructor(
     private val updateNotesUseCase: UpdateNotesUseCase,
     private val questTaskUpdateUseCase: QuestTaskUpdateUseCase,
 ) : ViewModel() {
-
     private val _navigationEvents = MutableSharedFlow<GlHelperEvent>()
     val navigationEvents = _navigationEvents.asSharedFlow()
 
     val uiState: StateFlow<CharacterGeneralTabState> =
-        getCharacterUseCase(id).map {
-            if (it == null) {
-                return@map CharacterGeneralTabState.Empty
-            }
-            CharacterGeneralTabState(
-                experience = it.generalInfo.experience,
-                goldCount = it.generalInfo.goldCount,
-                hasTeam = it.generalInfo.team != null,
-                teamName = it.generalInfo.team?.name,
-                nextLevel = it.nextLevelExperience,
-                notes = it.generalInfo.notes,
-                checkMarkCount = it.generalInfo.checkMarkCount,
-                isDonateAvailable = it.isDonateAvailable,
-                personalQuest = it.personalQuest?.toUI()
-
+        getCharacterUseCase(id)
+            .map {
+                if (it == null) {
+                    return@map CharacterGeneralTabState.Empty
+                }
+                CharacterGeneralTabState(
+                    experience = it.generalInfo.experience,
+                    goldCount = it.generalInfo.goldCount,
+                    hasTeam = it.generalInfo.team != null,
+                    teamName = it.generalInfo.team?.name,
+                    nextLevel = it.nextLevelExperience,
+                    notes = it.generalInfo.notes,
+                    checkMarkCount = it.generalInfo.checkMarkCount,
+                    isDonateAvailable = it.isDonateAvailable,
+                    personalQuest = it.personalQuest?.toUI(),
+                )
+            }.stateIn(
+                scope = viewModelScope,
+                initialValue = CharacterGeneralTabState.Empty,
+                started = SharingStarted.WhileSubscribed(100),
             )
-        }.stateIn(
-            scope = viewModelScope,
-            initialValue = CharacterGeneralTabState.Empty,
-            started = SharingStarted.WhileSubscribed(100),
-        )
 
     fun onAction(action: GeneralTabActions) {
         viewModelScope.launch {
@@ -90,27 +89,29 @@ class CharacterGeneralTabViewModel @AssistedInject constructor(
                     _navigationEvents.emit(
                         GlHelperEvent.Screen(
                             GlHelperScreens.SearchPersonalQuest(
-                                id
-                            )
-                        )
+                                id,
+                            ),
+                        ),
                     )
                 }
 
                 is GeneralTabActions.TaskCheckedChange -> {
                     questTaskUpdateUseCase.invoke(
                         characterId = id,
-                        task = action.task.copy(
-                            isChecked = !action.task.isChecked
-                        )
+                        task =
+                            action.task.copy(
+                                isChecked = !action.task.isChecked,
+                            ),
                     )
                 }
 
                 is GeneralTabActions.TaskCountChanged -> {
                     questTaskUpdateUseCase.invoke(
                         characterId = id,
-                        task = action.task.copy(
-                            currentCount = action.count
-                        )
+                        task =
+                            action.task.copy(
+                                currentCount = action.count,
+                            ),
                     )
                 }
             }

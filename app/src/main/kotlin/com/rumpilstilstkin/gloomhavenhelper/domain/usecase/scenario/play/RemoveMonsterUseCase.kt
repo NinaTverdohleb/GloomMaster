@@ -4,7 +4,10 @@ import com.rumpilstilstkin.gloomhavenhelper.domain.entity.scenario.ScenarioBattl
 import jakarta.inject.Inject
 
 class RemoveMonsterUseCase @Inject constructor() {
-    operator fun invoke(state: ScenarioBattleState, slug: String): ScenarioBattleState {
+    operator fun invoke(
+        state: ScenarioBattleState,
+        slug: String,
+    ): ScenarioBattleState {
         val filtered = state.activeMonsters.filter { it.slug != slug }
         if (filtered.size == state.activeMonsters.size) return state
         return state.copy(activeMonsters = filtered)

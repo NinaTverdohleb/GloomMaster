@@ -7,7 +7,7 @@ import javax.inject.Inject
 
 class AchievementJsonFiller @Inject constructor(
     private val jsonDataLoader: JsonDataLoader,
-    private val achievementDao: AchievementDao
+    private val achievementDao: AchievementDao,
 ) {
     suspend fun fill(pack: String) {
         val data =
@@ -19,10 +19,15 @@ class AchievementJsonFiller @Inject constructor(
         }
     }
 
-    suspend fun fillTranslations(pack: String, locale: String) {
-        val translations = jsonDataLoader.loadDictionaryListOrEmpty<AchievementTranslationJson>(
-            "achievements.json", "$pack/$locale"
-        )
+    suspend fun fillTranslations(
+        pack: String,
+        locale: String,
+    ) {
+        val translations =
+            jsonDataLoader.loadDictionaryListOrEmpty<AchievementTranslationJson>(
+                "achievements.json",
+                "$pack/$locale",
+            )
         val translationsEntities = translations.map { it.toEntity(locale) }
         achievementDao.insertAll(*translationsEntities.toTypedArray())
     }

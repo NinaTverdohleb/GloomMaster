@@ -22,7 +22,7 @@ import com.rumpilstilstkin.gloomhavenhelper.screens.start.team.TeamTabRoute
 @Composable
 fun StartScreenRoute(
     navController: NavHostController,
-    viewModel: StartScreenViewModel = hiltViewModel()
+    viewModel: StartScreenViewModel = hiltViewModel(),
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     val navigationEvents by viewModel.navigationEvents.collectAsStateWithLifecycle(initialValue = null)
@@ -33,7 +33,7 @@ fun StartScreenRoute(
         navigationEvents?.let { event ->
             GlHelperEventHelper.event(
                 event = event,
-                navController = navController
+                navController = navController,
             )
         }
     }
@@ -50,19 +50,20 @@ fun StartScreenRoute(
                 StartScreenTab.SHOP -> ShopTabRoute(navController)
             }
         },
-        editTeam = { viewModel.onAction(StartScreenAction.EditTeam) }
+        editTeam = { viewModel.onAction(StartScreenAction.EditTeam) },
     )
-    val openDocumentLauncher = rememberLauncherForActivityResult(
-        contract = ActivityResultContracts.OpenDocument(),
-        onResult = { uri -> uri?.let { viewModel.onAction(StartScreenAction.ImportTeam(it)) } }
-    )
+    val openDocumentLauncher =
+        rememberLauncherForActivityResult(
+            contract = ActivityResultContracts.OpenDocument(),
+            onResult = { uri -> uri?.let { viewModel.onAction(StartScreenAction.ImportTeam(it)) } },
+        )
     if (showAddTeamDialog) {
         AddTeamDialog(
             onDismiss = { showAddTeamDialog = false },
             openFile = { openDocumentLauncher.launch(arrayOf("application/json")) },
             onAdd = { name ->
                 viewModel.onAction(StartScreenAction.CreateTeam(name))
-            }
+            },
         )
     }
 }

@@ -14,7 +14,6 @@ import com.rumpilstilstkin.gloomhavenhelper.bd.entity.MonsterWithNameBd
 
 @Dao
 interface MonsterDao {
-
     // Monster
     @Query("SELECT * FROM MonsterBd")
     suspend fun getAllMonsters(): List<MonsterBd>
@@ -27,7 +26,7 @@ interface MonsterDao {
                 FROM MonsterBd 
                 WHERE slug IN (:slugs)
             )
-        """
+        """,
     )
     suspend fun getCardsByMonsterSlugs(slugs: List<String>): List<MonsterAbilityCardBd>
 
@@ -40,28 +39,37 @@ interface MonsterDao {
             LEFT JOIN MonsterTranslationsBd t1 ON g.slug = t1.slug AND t1.locale = :targetLocale
             LEFT JOIN MonsterTranslationsBd t2 ON g.slug = t2.slug AND t2.locale = :defaultLocale
             WHERE g.slug = :slug
-         """
+         """,
     )
     suspend fun getMonsterBySlug(
         slug: String,
         targetLocale: String,
-        defaultLocale: String
+        defaultLocale: String,
     ): MonsterWithNameBd
 
-
-    @Query("""
+    @Query(
+        """
       SELECT g.*, COALESCE(t1.name, t2.name, g.slug) AS name
       FROM MonsterBd g
       LEFT JOIN MonsterTranslationsBd t1 ON g.slug = t1.slug AND t1.locale = :targetLocale
       LEFT JOIN MonsterTranslationsBd t2 ON g.slug = t2.slug AND t2.locale = :defaultLocale
       WHERE g.slug IN (:slugs)
-  """)
-    suspend fun getMonstersBySlugs(slugs: List<String>, targetLocale: String, defaultLocale: String): List<MonsterWithNameBd>
+  """,
+    )
+    suspend fun getMonstersBySlugs(
+        slugs: List<String>,
+        targetLocale: String,
+        defaultLocale: String,
+    ): List<MonsterWithNameBd>
 
     @Query("SELECT * FROM MonsterStatsBd WHERE monsterSlug IN (:slugs) AND scenarioLevel = :level")
-    suspend fun getStatsForMonsters(slugs: List<String>, level: Int): List<MonsterStatsBd>
+    suspend fun getStatsForMonsters(
+        slugs: List<String>,
+        level: Int,
+    ): List<MonsterStatsBd>
 
-    @Query("""
+    @Query(
+        """
       SELECT * FROM MonsterTextStatsBd AS t
       WHERE t.monsterSlug IN (:slugs) AND t.scenarioLevel = :level
         AND (t.locale = :targetLocale
@@ -71,13 +79,20 @@ interface MonsterDao {
                      WHERE monsterSlug = t.monsterSlug AND scenarioLevel = t.scenarioLevel
                        AND isElite = t.isElite AND locale = :targetLocale
                  )))
-  """)
-    suspend fun getTextStatsForMonsters(slugs: List<String>, level: Int, targetLocale: String, defaultLocale: String): List<MonsterTextStatsBd>
+  """,
+    )
+    suspend fun getTextStatsForMonsters(
+        slugs: List<String>,
+        level: Int,
+        targetLocale: String,
+        defaultLocale: String,
+    ): List<MonsterTextStatsBd>
 
     @Query("SELECT * FROM MonsterAbilityCardBd WHERE deckName IN (:deckNames)")
     suspend fun getCardsByDeckNames(deckNames: List<String>): List<MonsterAbilityCardBd>
 
-    @Query("""
+    @Query(
+        """
       SELECT * FROM MonsterAbilityCardTranslationBd AS t
       WHERE t.deckName IN (:decks)
         AND (t.locale = :targetLocale
@@ -86,8 +101,13 @@ interface MonsterDao {
                      SELECT 1 FROM MonsterAbilityCardTranslationBd
                      WHERE deckName = t.deckName AND cardId = t.cardId AND locale = :targetLocale
                  )))
-  """)
-    suspend fun getActionCardsByDecks(decks: List<String>, targetLocale: String, defaultLocale: String): List<MonsterAbilityCardTranslationBd>
+  """,
+    )
+    suspend fun getActionCardsByDecks(
+        decks: List<String>,
+        targetLocale: String,
+        defaultLocale: String,
+    ): List<MonsterAbilityCardTranslationBd>
 
     @Query(
         """
@@ -98,12 +118,12 @@ interface MonsterDao {
             LEFT JOIN MonsterTranslationsBd t1 ON g.slug = t1.slug AND t1.locale = :targetLocale
             LEFT JOIN MonsterTranslationsBd t2 ON g.slug = t2.slug AND t2.locale = :defaultLocale
             WHERE g.pack IN (:packs)
-         """
+         """,
     )
     suspend fun getMonstersByPacks(
         packs: List<String>,
         targetLocale: String,
-        defaultLocale: String
+        defaultLocale: String,
     ): List<MonsterWithNameBd>
 
     @Insert
@@ -127,7 +147,11 @@ interface MonsterDao {
     // Monster Stats
 
     @Query("SELECT * FROM MonsterStatsBd WHERE monsterSlug = :monsterSlug AND scenarioLevel = :level AND isElite = :isElite")
-    suspend fun getStats(monsterSlug: String, level: Int, isElite: Boolean): MonsterStatsBd
+    suspend fun getStats(
+        monsterSlug: String,
+        level: Int,
+        isElite: Boolean,
+    ): MonsterStatsBd
 
     @Query(
         """
@@ -144,14 +168,14 @@ interface MonsterDao {
                   )
               )
             LIMIT 1
-            """
+            """,
     )
     suspend fun getTextStats(
         monster: String,
         level: Int,
         isElite: Boolean,
         targetLocale: String,
-        defaultLocale: String
+        defaultLocale: String,
     ): MonsterTextStatsBd?
 
     @Insert
@@ -182,12 +206,12 @@ interface MonsterDao {
                       WHERE deckName = t.deckName AND cardId = t.cardId AND locale = :targetLocale
                   )
               ))
-        """
+        """,
     )
     suspend fun getActionCards(
         deck: String,
         targetLocale: String,
-        defaultLocale: String
+        defaultLocale: String,
     ): List<MonsterAbilityCardTranslationBd>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)

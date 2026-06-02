@@ -20,7 +20,7 @@ fun ShopTabRoute(
         navigationEvents?.let { event ->
             GlHelperEventHelper.event(
                 event = event,
-                navController = navController
+                navController = navController,
             )
         }
     }
@@ -30,6 +30,6 @@ fun ShopTabRoute(
         deleteItem = { viewModel.onAction(ShopTabAction.RemoveGood(it)) },
         selectFilter = { viewModel.onAction(ShopTabAction.SelectFilter(it)) },
         enterSearchText = { viewModel.onAction(ShopTabAction.SearchTextChange(it)) },
-        addItems = {viewModel.onAction(ShopTabAction.AddGood)}
+        addItems = { viewModel.onAction(ShopTabAction.AddGood) },
     )
 }

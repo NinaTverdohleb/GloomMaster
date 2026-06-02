@@ -32,25 +32,25 @@ import kotlinx.collections.immutable.persistentListOf
 fun SelectedGoodsView(
     selectedGoods: ImmutableList<GoodUi>,
     onAction: (AddGoodsForCharacterScreenActions) -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     var selectedGood by remember { mutableStateOf<GoodUi?>(null) }
     Column(modifier = modifier) {
         Text(
             text = stringResource(R.string.selected_goods),
-            style = MaterialTheme.typography.titleLarge
+            style = MaterialTheme.typography.titleLarge,
         )
         Spacer(
-            modifier = Modifier.height(16.dp)
+            modifier = Modifier.height(16.dp),
         )
         Card {
             Column(
-                modifier = Modifier.padding(8.dp)
+                modifier = Modifier.padding(8.dp),
             ) {
                 selectedGoods.forEachIndexed { index, good ->
                     GoodItem(
                         good = good,
-                        clickItem = { selectedGood = it }
+                        clickItem = { selectedGood = it },
                     )
                     if (index != selectedGoods.lastIndex) {
                         HorizontalDivider()
@@ -67,7 +67,7 @@ fun SelectedGoodsView(
                 selectedGood = null
             },
             buttonText = stringResource(R.string.remove),
-            imagePath = good.imagePath
+            imagePath = good.imagePath,
         )
     }
 }
@@ -77,15 +77,16 @@ fun SelectedGoodsView(
 private fun SelectedGoodsViewPreview() {
     GloomhavenMasterTheme {
         SelectedGoodsView(
-            selectedGoods = persistentListOf(
-                GoodUi.fixture(
-                    id = 1,
+            selectedGoods =
+                persistentListOf(
+                    GoodUi.fixture(
+                        id = 1,
+                    ),
+                    GoodUi.fixture(
+                        id = 2,
+                    ),
                 ),
-                GoodUi.fixture(
-                    id = 2,
-                )
-            ),
-            onAction = {}
+            onAction = {},
         )
     }
 }

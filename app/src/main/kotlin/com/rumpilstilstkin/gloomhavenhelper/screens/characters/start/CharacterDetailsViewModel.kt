@@ -35,7 +35,6 @@ class CharacterDetailsViewModel @AssistedInject constructor(
     private val updateCharacterLevelUseCase: UpdateCharacterLevelUseCase,
     private val retireCharacterUseCase: RetireCharacterUseCase,
 ) : ViewModel() {
-
     private val _navigationEvents = MutableSharedFlow<GlHelperEvent>()
     val navigationEvents = _navigationEvents.asSharedFlow()
 
@@ -44,18 +43,18 @@ class CharacterDetailsViewModel @AssistedInject constructor(
     val uiState: StateFlow<CharacterDetailsStateUi> =
         combine(
             getCharacterUseCase(id).filterNotNull(),
-            logicState
+            logicState,
         ) { character, logic ->
-                CharacterDetailsStateUi(
-                    level = character.level,
-                    name = character.name,
-                    teamName = character.team?.name ?: "",
-                    type = character.characterType.toCharacterClassTypeUI(),
-                    showDeleteDialog = logic.showDeleteDialog,
-                    showNameDialog = logic.showNameDialog,
-                    showChangeLevelDialog = logic.showChangeLevelDialog,
-                    isActive = character.isAlive
-                )
+            CharacterDetailsStateUi(
+                level = character.level,
+                name = character.name,
+                teamName = character.team?.name ?: "",
+                type = character.characterType.toCharacterClassTypeUI(),
+                showDeleteDialog = logic.showDeleteDialog,
+                showNameDialog = logic.showNameDialog,
+                showChangeLevelDialog = logic.showChangeLevelDialog,
+                isActive = character.isAlive,
+            )
         }.stateIn(
             scope = viewModelScope,
             initialValue = CharacterDetailsStateUi(),

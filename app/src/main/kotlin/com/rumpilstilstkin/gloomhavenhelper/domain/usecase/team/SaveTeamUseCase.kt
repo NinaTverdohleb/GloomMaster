@@ -18,15 +18,15 @@ class SaveTeamUseCase @Inject constructor(
 ) {
     suspend operator fun invoke(team: TeamInfoForSave) {
         val teamId = teamRepository.saveTeam(team)
-        val startAvaliableClasses = listOf(
-            CharacterClassType.Brute,
-            CharacterClassType.Tinkerer,
-            CharacterClassType.Spellweaver,
-            CharacterClassType.Scoundrel,
-            CharacterClassType.Cragheart,
-            CharacterClassType.Mindthief
-
-        )
+        val startAvaliableClasses =
+            listOf(
+                CharacterClassType.Brute,
+                CharacterClassType.Tinkerer,
+                CharacterClassType.Spellweaver,
+                CharacterClassType.Scoundrel,
+                CharacterClassType.Cragheart,
+                CharacterClassType.Mindthief,
+            )
         val startGoods = getGoodsForLevelUseCase(1)
         scenarioRepository.saveTeamScenario(1, teamId)
         characterClassRepository.addAvailableClasses(teamId, startAvaliableClasses)

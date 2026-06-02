@@ -24,53 +24,64 @@ import javax.inject.Inject
 @HiltViewModel
 class ShopTabViewModel @Inject constructor(
     getGoodsForCurrentTeamUseCase: GetGoodsForCurrentTeamUseCase,
-    private val removeGoodFromTeamUseCase: RemoveGoodFromCurrentTeamUseCase
+    private val removeGoodFromTeamUseCase: RemoveGoodFromCurrentTeamUseCase,
 ) : ViewModel() {
     private val _navigationEvents = MutableSharedFlow<GlHelperEvent>()
     val navigationEvents = _navigationEvents.asSharedFlow()
 
     private val logicState = MutableStateFlow(ShopTabStateLogic())
-    val uiState: StateFlow<ShopTabStateUi> = combine(
-        getGoodsForCurrentTeamUseCase(),
-        logicState
-    ) { goods, logicState ->
-        ShopTabStateUi(
-            avaliableGoods = goods
-                .filter {
-                    it.filterResult(
-                        goodType = logicState.selectedFilter,
-                        search = logicState.searchText
-                    )
-                }
-                .sortedBy { it.displayNumber }
-                .map { it.toUi() }
-                .toImmutableList(),
-            selectedFilter = logicState.selectedFilter,
-            searchText = logicState.searchText,
-            canAdd = logicState.canAdd
+    val uiState: StateFlow<ShopTabStateUi> =
+        combine(
+            getGoodsForCurrentTeamUseCase(),
+            logicState,
+        ) { goods, logicState ->
+            ShopTabStateUi(
+                avaliableGoods =
+                    goods
+                        .filter {
+                            it.filterResult(
+                                goodType = logicState.selectedFilter,
+                                search = logicState.searchText,
+                            )
+                        }.sortedBy { it.displayNumber }
+                        .map { it.toUi() }
+                        .toImmutableList(),
+                selectedFilter = logicState.selectedFilter,
+                searchText = logicState.searchText,
+                canAdd = logicState.canAdd,
+            )
+        }.stateIn(
+            scope = viewModelScope,
+            initialValue = ShopTabStateUi(),
+            started = SharingStarted.WhileSubscribed(5000),
         )
-
-    }.stateIn(
-        scope = viewModelScope,
-        initialValue = ShopTabStateUi(),
-        started = SharingStarted.WhileSubscribed(5000),
-    )
 
     fun onAction(action: ShopTabAction) {
         when (action) {
-            is ShopTabAction.AddGood -> viewModelScope.launch {
-                _navigationEvents.emit(Screen(GlHelperScreens.AddGoodsForTeam))
+            is ShopTabAction.AddGood -> {
+                viewModelScope.launch {
+                    _navigationEvents.emit(Screen(GlHelperScreens.AddGoodsForTeam))
+                }
             }
 
-            is ShopTabAction.RemoveGood -> viewModelScope.launch { removeGoodFromTeamUseCase(action.id) }
-            is ShopTabAction.SearchTextChange -> logicState.update { it.copy(searchText = action.text) }
-            is ShopTabAction.SelectFilter -> logicState.update {
-                val newFilter = if (it.selectedFilter == action.type) {
-                    null
-                } else {
-                    action.type
+            is ShopTabAction.RemoveGood -> {
+                viewModelScope.launch { removeGoodFromTeamUseCase(action.id) }
+            }
+
+            is ShopTabAction.SearchTextChange -> {
+                logicState.update { it.copy(searchText = action.text) }
+            }
+
+            is ShopTabAction.SelectFilter -> {
+                logicState.update {
+                    val newFilter =
+                        if (it.selectedFilter == action.type) {
+                            null
+                        } else {
+                            action.type
+                        }
+                    it.copy(selectedFilter = newFilter)
                 }
-                it.copy(selectedFilter = newFilter)
             }
         }
     }

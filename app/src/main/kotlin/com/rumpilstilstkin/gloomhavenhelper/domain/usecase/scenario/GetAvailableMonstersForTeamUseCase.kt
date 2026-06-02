@@ -20,13 +20,13 @@ class GetAvailableMonstersForTeamUseCase @Inject constructor(
             } else {
                 val locale = localeRepository.getCurrentLocale()
                 val exclude = scenarioGameStateRepository.get()?.monsterSlugs ?: emptyList()
-                monsterRepository.getMonstersForPacks(
-                    packs = team.packs.map { it.name },
-                    locale = locale
-                ).filterKeys {
-                    it !in exclude
-                }
+                monsterRepository
+                    .getMonstersForPacks(
+                        packs = team.packs.map { it.name },
+                        locale = locale,
+                    ).filterKeys {
+                        it !in exclude
+                    }
             }
         }
-
 }

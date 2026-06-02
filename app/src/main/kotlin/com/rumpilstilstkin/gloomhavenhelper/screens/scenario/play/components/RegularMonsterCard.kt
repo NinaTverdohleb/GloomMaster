@@ -36,7 +36,7 @@ fun RegularMonsterCard(
     updateUnitLife: (unitNumber: Int, monsterSlug: String, life: Int) -> Unit,
     switchUnitEffect: (unitNumber: Int, monsterSlug: String, effect: MonsterStatType) -> Unit,
     addMonsterUnit: (unitNumbers: List<Int>, monsterSlug: String, isSpecial: Boolean) -> Unit,
-    changeUnitLevel: (monsterSlug: String, unit: MonsterUnit, level: Int) -> Unit
+    changeUnitLevel: (monsterSlug: String, unit: MonsterUnit, level: Int) -> Unit,
 ) {
     var showSpawnDialog by remember { mutableStateOf(false) }
     var selectedUnit by remember { mutableStateOf<MonsterUnit?>(null) }
@@ -46,20 +46,21 @@ fun RegularMonsterCard(
             name = item.name,
             isFly = item.isFly,
             delete = { delete(item.slug) },
-            onAddUnit = if (item.isBoss) {
-                null
-            } else {
-                { showSpawnDialog = true }
-            }
+            onAddUnit =
+                if (item.isBoss) {
+                    null
+                } else {
+                    { showSpawnDialog = true }
+                },
         )
         LazyColumn(
             modifier = modifier,
-            verticalArrangement = Arrangement.spacedBy(8.dp)
+            verticalArrangement = Arrangement.spacedBy(8.dp),
         ) {
             item {
                 MonsterActionCard(
                     monsterName = item.name,
-                    card = item.currentCard
+                    card = item.currentCard,
                 )
             }
             item {
@@ -78,11 +79,12 @@ fun RegularMonsterCard(
             } else {
                 items(item.units, key = { it.number }) { unit ->
                     MonsterUnitCard(
-                        modifier = Modifier
-                            .animateItem(
-                                fadeOutSpec = tween(400),
-                                placementSpec = spring()
-                            ),
+                        modifier =
+                            Modifier
+                                .animateItem(
+                                    fadeOutSpec = tween(400),
+                                    placementSpec = spring(),
+                                ),
                         unit = unit,
                         availableEffects = availableEffects,
                         isBoss = item.isBoss,
@@ -91,19 +93,19 @@ fun RegularMonsterCard(
                             switchUnitEffect(
                                 unitNumber,
                                 item.slug,
-                                effect
+                                effect,
                             )
                         },
                         changeLife = { unitNumber, life ->
                             updateUnitLife(
                                 unitNumber,
                                 item.slug,
-                                life
+                                life,
                             )
                         },
                         levelClick = {
                             selectedUnit = it
-                        }
+                        },
                     )
                 }
             }
@@ -119,10 +121,10 @@ fun RegularMonsterCard(
                 changeUnitLevel(
                     item.slug,
                     it,
-                    level
+                    level,
                 )
                 selectedUnit = null
-            }
+            },
         )
     }
 
@@ -138,7 +140,6 @@ fun RegularMonsterCard(
             },
         )
     }
-
 }
 
 @Preview(showBackground = true, backgroundColor = 0xFF1A1C24)
@@ -146,24 +147,26 @@ fun RegularMonsterCard(
 private fun RegularMonsterCardPreview() {
     GloomhavenMasterTheme {
         RegularMonsterCard(
-            item = MonsterItem(
-                slug = "1",
-                isBoss = true,
-                name = "Living Bones",
-                currentCard = null,
-                isFly = true,
-                units = persistentListOf(
-                    MonsterUnit.fixture(1),
+            item =
+                MonsterItem(
+                    slug = "1",
+                    isBoss = true,
+                    name = "Living Bones",
+                    currentCard = null,
+                    isFly = true,
+                    units =
+                        persistentListOf(
+                            MonsterUnit.fixture(1),
+                        ),
+                    deck = "",
                 ),
-                deck = ""
-            ),
             availableEffects = MonsterStatType.mainEffectsPack,
             delete = {},
             deleteUnit = { _, _ -> },
             updateUnitLife = { _, _, _ -> },
             switchUnitEffect = { _, _, _ -> },
             addMonsterUnit = { _, _, _ -> },
-            changeUnitLevel = { _, _, _ -> }
+            changeUnitLevel = { _, _, _ -> },
         )
     }
 }

@@ -38,33 +38,34 @@ fun ScenarioBlock(
     completeScenario: (Int) -> Unit,
     startScenario: (Int?) -> Unit,
     playCurrentScenario: () -> Unit,
-    deleteScenario: (Int) -> Unit
+    deleteScenario: (Int) -> Unit,
 ) = Column(
-    modifier = modifier
+    modifier = modifier,
 ) {
     Row(
         modifier = Modifier.fillMaxWidth(),
         verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.SpaceBetween
+        horizontalArrangement = Arrangement.SpaceBetween,
     ) {
         Text(
             style = MaterialTheme.typography.labelLarge,
             text = stringResource(R.string.available_scenarios).uppercase(),
-            color = MaterialTheme.colorScheme.primary
+            color = MaterialTheme.colorScheme.primary,
         )
 
         IconButton(onClick = { startScenario(null) }) {
             Icon(
                 Icons.Default.Add,
                 contentDescription = null,
-                tint = MaterialTheme.colorScheme.onSurface
+                tint = MaterialTheme.colorScheme.onSurface,
             )
         }
     }
     if (canRestore) {
         Button(
-            modifier = Modifier
-                .fillMaxWidth(),
+            modifier =
+                Modifier
+                    .fillMaxWidth(),
             onClick = { playCurrentScenario() },
         ) {
             Text(stringResource(R.string.continue_button))
@@ -82,7 +83,7 @@ fun ScenarioBlock(
         ) { selectedScenario = scenario }
         if (index != scenarios.lastIndex) {
             Spacer(
-                modifier = Modifier.height(8.dp)
+                modifier = Modifier.height(8.dp),
             )
         }
     }
@@ -105,7 +106,7 @@ fun ScenarioBlock(
             deleteScenario = {
                 deleteScenario(it)
                 selectedScenario = null
-            }
+            },
         )
     }
 }
@@ -115,14 +116,15 @@ fun ScenarioBlock(
 private fun ScenarioBlockPreview() {
     GloomhavenMasterTheme {
         ScenarioBlock(
-            scenarios = listOf(
-                ShortScenarioUI.fixture(1)
-            ),
+            scenarios =
+                listOf(
+                    ShortScenarioUI.fixture(1),
+                ),
             canRestore = true,
             completeScenario = {},
             startScenario = {},
             playCurrentScenario = {},
-            deleteScenario = {}
+            deleteScenario = {},
         )
     }
 }

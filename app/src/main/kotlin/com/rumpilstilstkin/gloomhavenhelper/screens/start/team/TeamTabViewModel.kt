@@ -2,10 +2,10 @@ package com.rumpilstilstkin.gloomhavenhelper.screens.start.team
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.team.DonateUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario.CompleteScenarioUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario.CreateActiveScenarioUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario.DeleteScenarioUseCase
+import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.team.DonateUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.team.GetCurrentTeamUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.team.GetNextChurchValueUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.team.UpdateTeamProsperityUseCase
@@ -38,38 +38,40 @@ class TeamTabViewModel @Inject constructor(
     private val getNextChurchValueUseCase: GetNextChurchValueUseCase,
     private val deleteScenarioUseCase: DeleteScenarioUseCase,
 ) : ViewModel() {
-
     private val _navigationEvents = MutableSharedFlow<GlHelperEvent>()
     val navigationEvents = _navigationEvents.asSharedFlow()
 
-    val uiState: StateFlow<TeamTabUiState> = getCurrentTeamUseCase().map { team ->
-        if (team == null) {
-            TeamTabUiState.Empty
-        } else {
-            TeamTabUiState.Data(
-                currentTeam = TeamUI(
-                    teamId = team.id,
-                    teamName = team.name,
-                    teamLevel = team.level,
-                    teamScenario = team.activeScenario.map { it.toUi() }.toImmutableList(),
-                    teamReputation = team.reputation,
-                    prosperity = team.prosperity,
-                    teamAchievements = team.teamAchievement.toImmutableList(),
-                    globalAchievements = team.globalAchievement.toImmutableList(),
-                    characters = team.aliveCharacters.map { it.toUi() }.toImmutableList(),
-                    canAddCharacter = team.aliveCharacters.size < 4,
-                    shopDiscount = team.shopDiscount,
-                    hasActiveScenario = team.hasActiveScenario,
-                    churchValue = team.churchValue,
-                    churchValueForNextProsperity = getNextChurchValueUseCase(churchValue = team.churchValue)
-                ),
+    val uiState: StateFlow<TeamTabUiState> =
+        getCurrentTeamUseCase()
+            .map { team ->
+                if (team == null) {
+                    TeamTabUiState.Empty
+                } else {
+                    TeamTabUiState.Data(
+                        currentTeam =
+                            TeamUI(
+                                teamId = team.id,
+                                teamName = team.name,
+                                teamLevel = team.level,
+                                teamScenario = team.activeScenario.map { it.toUi() }.toImmutableList(),
+                                teamReputation = team.reputation,
+                                prosperity = team.prosperity,
+                                teamAchievements = team.teamAchievement.toImmutableList(),
+                                globalAchievements = team.globalAchievement.toImmutableList(),
+                                characters = team.aliveCharacters.map { it.toUi() }.toImmutableList(),
+                                canAddCharacter = team.aliveCharacters.size < 4,
+                                shopDiscount = team.shopDiscount,
+                                hasActiveScenario = team.hasActiveScenario,
+                                churchValue = team.churchValue,
+                                churchValueForNextProsperity = getNextChurchValueUseCase(churchValue = team.churchValue),
+                            ),
+                    )
+                }
+            }.stateIn(
+                scope = viewModelScope,
+                initialValue = TeamTabUiState.Empty,
+                started = SharingStarted.WhileSubscribed(5000),
             )
-        }
-    }.stateIn(
-        scope = viewModelScope,
-        initialValue = TeamTabUiState.Empty,
-        started = SharingStarted.WhileSubscribed(5000),
-    )
 
     fun onAction(action: TeamTabAction) {
         val state = uiState.value as? TeamTabUiState.Data ?: return
@@ -77,7 +79,7 @@ class TeamTabViewModel @Inject constructor(
             when (action) {
                 is TeamTabAction.UpdateProsperity -> {
                     updateTeamProsperityUseCase(
-                        newProsperityLevelValue = action.value
+                        newProsperityLevelValue = action.value,
                     )
                 }
 
@@ -109,24 +111,46 @@ class TeamTabViewModel @Inject constructor(
                     _navigationEvents.emit(Screen(Scenario))
                 }
 
-                TeamTabAction.Donate -> donateUseCase(
-                    oldChurchValue = state.currentTeam.churchValue
-                )
+                TeamTabAction.Donate -> {
+                    donateUseCase(
+                        oldChurchValue = state.currentTeam.churchValue,
+                    )
+                }
 
-                is TeamTabAction.DeleteScenario -> deleteScenarioUseCase(action.scenarioNumber)
+                is TeamTabAction.DeleteScenario -> {
+                    deleteScenarioUseCase(action.scenarioNumber)
+                }
             }
         }
     }
 }
 
 sealed interface TeamTabAction {
-    data class StartScenario(val scenarioId: Int?) : TeamTabAction
-    data class CompleteScenario(val scenarioId: Int) : TeamTabAction
-    data class UpdateReputation(val value: Int) : TeamTabAction
-    data class UpdateProsperity(val value: Int) : TeamTabAction
+    data class StartScenario(
+        val scenarioId: Int?,
+    ) : TeamTabAction
+
+    data class CompleteScenario(
+        val scenarioId: Int,
+    ) : TeamTabAction
+
+    data class UpdateReputation(
+        val value: Int,
+    ) : TeamTabAction
+
+    data class UpdateProsperity(
+        val value: Int,
+    ) : TeamTabAction
+
     data object OpenTeamAchievements : TeamTabAction
+
     data object OpenGlobalAchievements : TeamTabAction
+
     data object RestoreLastScenario : TeamTabAction
+
     data object Donate : TeamTabAction
-    data class DeleteScenario(val scenarioNumber: Int): TeamTabAction
+
+    data class DeleteScenario(
+        val scenarioNumber: Int,
+    ) : TeamTabAction
 }

@@ -13,5 +13,5 @@ data class TeamBd(
     val prosperity: Int = 0,
     val churchValue: Int = 100,
     val packs: List<String>,
-    val difficultyLevel: Int = 0
+    val difficultyLevel: Int = 0,
 )

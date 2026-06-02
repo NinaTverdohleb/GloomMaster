@@ -1,6 +1,8 @@
 package com.rumpilstilstkin.gloomhavenhelper.domain.entity
 
-class LogicalCondition(val condition: String) {
+class LogicalCondition(
+    val condition: String,
+) {
     val rpnQueue: List<String> = parseToRpn(condition)
 
     fun evaluate(activeAchievements: Set<String>): Boolean {
@@ -35,17 +37,22 @@ class LogicalCondition(val condition: String) {
     }
 
     private fun parseToRpn(condition: String): List<String> {
-        val tokens = TOKEN_PATTERN.findAll(condition)
-            .map { it.value.trim() }
-            .filter { it.isNotEmpty() }
-            .toList()
+        val tokens =
+            TOKEN_PATTERN
+                .findAll(condition)
+                .map { it.value.trim() }
+                .filter { it.isNotEmpty() }
+                .toList()
 
         val output = mutableListOf<String>()
         val operators = mutableListOf<String>()
 
         for (token in tokens) {
             when (token) {
-                "(" -> operators.add(token)
+                "(" -> {
+                    operators.add(token)
+                }
+
                 ")" -> {
                     while (operators.isNotEmpty() && operators.last() != "(") {
                         output.add(operators.removeAt(operators.size - 1))
@@ -62,7 +69,9 @@ class LogicalCondition(val condition: String) {
                     operators.add(token)
                 }
 
-                else -> output.add(token)
+                else -> {
+                    output.add(token)
+                }
             }
         }
         while (operators.isNotEmpty()) {
@@ -77,17 +86,21 @@ class LogicalCondition(val condition: String) {
         private val PRECEDENCE = mapOf("!" to 3, "&&" to 2, "||" to 1)
         private val TOKEN_PATTERN = Regex("""(\|\||&&|!|\(|\)|[^!&|()]+)""")
 
-        fun createWithDictionary(conditions: String, dictionary: Map<String, String>): LogicalCondition {
-            val newConditions = TOKEN_PATTERN.replace(conditions) { matchResult ->
-                val rawToken = matchResult.value
-                val trimmedKey = rawToken.trim()
+        fun createWithDictionary(
+            conditions: String,
+            dictionary: Map<String, String>,
+        ): LogicalCondition {
+            val newConditions =
+                TOKEN_PATTERN.replace(conditions) { matchResult ->
+                    val rawToken = matchResult.value
+                    val trimmedKey = rawToken.trim()
 
-                if (dictionary.containsKey(trimmedKey)) {
-                    rawToken.replaceFirst(trimmedKey, dictionary.getValue(trimmedKey))
-                } else {
-                    rawToken
+                    if (dictionary.containsKey(trimmedKey)) {
+                        rawToken.replaceFirst(trimmedKey, dictionary.getValue(trimmedKey))
+                    } else {
+                        rawToken
+                    }
                 }
-            }
             return LogicalCondition(newConditions)
         }
     }

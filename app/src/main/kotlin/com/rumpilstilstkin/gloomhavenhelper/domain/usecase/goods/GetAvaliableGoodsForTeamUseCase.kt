@@ -14,7 +14,7 @@ import javax.inject.Inject
 class GetAvaliableGoodsForTeamUseCase @Inject constructor(
     private val teamRepository: TeamRepository,
     private val goodsRepository: GoodsRepository,
-    private val localeRepository: LocaleRepository
+    private val localeRepository: LocaleRepository,
 ) {
     @OptIn(ExperimentalCoroutinesApi::class)
     operator fun invoke(): Flow<List<Good>> =
@@ -23,7 +23,8 @@ class GetAvaliableGoodsForTeamUseCase @Inject constructor(
                 .flatMapLatest { team ->
                     team?.let {
                         val allGoods = goodsRepository.getGoods(team.packs.toSet(), locale)
-                        goodsRepository.getGoodsForTeam(team.teamId, locale)
+                        goodsRepository
+                            .getGoodsForTeam(team.teamId, locale)
                             .map { goods -> (allGoods - goods.toSet()) }
                     } ?: flowOf(emptyList())
                 }

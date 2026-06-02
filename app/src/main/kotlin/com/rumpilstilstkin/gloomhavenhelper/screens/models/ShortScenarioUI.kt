@@ -13,22 +13,22 @@ data class ShortScenarioUI(
     val completed: Boolean,
 ) {
     companion object {
-        fun fixture(
-            number: Int = 1
-        ) = ShortScenarioUI(
-            scenarioNumber = number,
-            scenarioName = "Scenario 1",
-            scenarioRequirements = LogicalCondition("!Global Achievement"),
-            location = "Bad place",
-            completed = true
-        )
+        fun fixture(number: Int = 1) =
+            ShortScenarioUI(
+                scenarioNumber = number,
+                scenarioName = "Scenario 1",
+                scenarioRequirements = LogicalCondition("!Global Achievement"),
+                location = "Bad place",
+                completed = true,
+            )
     }
 }
 
-fun ScenarioInfoWithName.toUi() = ShortScenarioUI(
-    scenarioNumber = this.scenarioNumber,
-    scenarioName = this.scenarioName,
-    scenarioRequirements = this.scenarioRequirements,
-    location = this.location,
-    completed = this.isCompleted
-)
+fun ScenarioInfoWithName.toUi() =
+    ShortScenarioUI(
+        scenarioNumber = this.scenarioNumber,
+        scenarioName = this.scenarioName,
+        scenarioRequirements = this.scenarioRequirements,
+        location = this.location,
+        completed = this.isCompleted,
+    )

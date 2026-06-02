@@ -18,23 +18,23 @@ import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
 fun MonsterActionCard(
     monsterName: String,
     card: MonsterCard?,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     Box(
         modifier = modifier.fillMaxWidth(),
-        contentAlignment = Alignment.Center
+        contentAlignment = Alignment.Center,
     ) {
         if (card == null) {
             Image(
                 modifier = Modifier.size(width = 360.dp, height = 280.dp),
                 painter = painterResource(id = R.drawable.ic_deck_back),
-                contentDescription = "null"
+                contentDescription = "null",
             )
         } else {
             MonsterCardView(
                 monsterName = monsterName,
                 card = card,
-                modifier = Modifier.size(width = 360.dp, height = 280.dp)
+                modifier = Modifier.size(width = 360.dp, height = 280.dp),
             )
         }
     }
@@ -46,7 +46,7 @@ private fun MonsterActionCardPreview() {
     GloomhavenMasterTheme {
         MonsterActionCard(
             monsterName = "",
-            card = null
+            card = null,
         )
     }
 }

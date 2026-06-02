@@ -8,16 +8,15 @@ import jakarta.inject.Inject
 import kotlinx.collections.immutable.toImmutableList
 
 class NextRoundUseCase @Inject constructor() {
-    operator fun invoke(
-        state: ScenarioBattleState,
-    ): ScenarioBattleState {
+    operator fun invoke(state: ScenarioBattleState): ScenarioBattleState {
         var newDeck = state.deck
-        val newActive = state.activeMonsters.map { active ->
-            val monster = state.monsterBySlug.getValue(active.slug)
-            val draw = newDeck.drawCard(monster.deckName)
-            newDeck = draw.newState
-            active.withCardAndClearedIsNew(draw.card)
-        }
+        val newActive =
+            state.activeMonsters.map { active ->
+                val monster = state.monsterBySlug.getValue(active.slug)
+                val draw = newDeck.drawCard(monster.deckName)
+                newDeck = draw.newState
+                active.withCardAndClearedIsNew(draw.card)
+            }
         return state.copy(
             round = state.round + 1,
             activeMonsters = newActive,

@@ -11,11 +11,10 @@ class GetShareFileUseCase @Inject constructor(
     private val teamRepository: TeamRepository,
     private val exportTeamRepository: ExportTeamRepository,
 ) {
-    suspend operator fun invoke(
-        exportDir: File
-    ): Result<File> {
-        val currentTeam = teamRepository.currentTeam.first()
-            ?: return Result.failure(IllegalStateException())
+    suspend operator fun invoke(exportDir: File): Result<File> {
+        val currentTeam =
+            teamRepository.currentTeam.first()
+                ?: return Result.failure(IllegalStateException())
 
         return exportTeamRepository
             .getExportTeamData(currentTeam.teamId)
@@ -29,6 +28,5 @@ class GetShareFileUseCase @Inject constructor(
                     Result.failure(e)
                 }
             }
-
     }
 }

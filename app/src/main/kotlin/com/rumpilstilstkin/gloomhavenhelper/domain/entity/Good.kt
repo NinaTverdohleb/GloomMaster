@@ -8,9 +8,12 @@ data class Good(
     val cost: Int,
     val image: String,
     val characterGoodId: Int? = null,
-    val pack: PackType
+    val pack: PackType,
 ) {
-    fun filterResult(goodType: GoodType?, search: String): Boolean {
+    fun filterResult(
+        goodType: GoodType?,
+        search: String,
+    ): Boolean {
         if (goodType != null && goodType != this.type) return false
         if (search.isBlank()) return true
         if (this.name.contains(search, ignoreCase = true)) return true
@@ -21,7 +24,9 @@ data class Good(
 
         return if (number != null) {
             this.displayNumber == number
-        } else false
+        } else {
+            false
+        }
     }
 }
 
@@ -31,5 +36,5 @@ enum class GoodType {
     Foot,
     Arm,
     DoubleArm,
-    SmallThing
+    SmallThing,
 }

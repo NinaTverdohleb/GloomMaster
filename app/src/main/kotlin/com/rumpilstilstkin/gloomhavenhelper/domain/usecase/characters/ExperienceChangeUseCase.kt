@@ -4,9 +4,12 @@ import com.rumpilstilstkin.gloomhavenhelper.data.CharacterRepository
 import javax.inject.Inject
 
 class ExperienceChangeUseCase @Inject constructor(
-    private val characterRepository: CharacterRepository
+    private val characterRepository: CharacterRepository,
 ) {
-    suspend operator fun invoke(characterId: Int, newExp: Int) {
+    suspend operator fun invoke(
+        characterId: Int,
+        newExp: Int,
+    ) {
         characterRepository.updateExperience(characterId, newExp)
     }
 }

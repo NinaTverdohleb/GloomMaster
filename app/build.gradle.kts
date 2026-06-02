@@ -1,3 +1,6 @@
+import com.diffplug.gradle.spotless.SpotlessExtension
+import org.gradle.kotlin.dsl.configure
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.compose.compiler)
@@ -5,6 +8,7 @@ plugins {
     alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.hilt)
     alias(libs.plugins.room)
+    alias(libs.plugins.spotless)
 }
 
 android {
@@ -37,6 +41,10 @@ android {
                 "proguard-rules.pro"
             )
         }
+        debug {
+            applicationIdSuffix = ".debug"
+            manifestPlaceholders["appLabelSuffix"] = " (Debug)"
+        }
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
@@ -51,13 +59,50 @@ android {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
-    room {
-        schemaDirectory("$projectDir/schemas")
+}
+
+room {
+    schemaDirectory("$projectDir/schemas")
+}
+
+kotlin {
+    compilerOptions {
+        languageVersion = org.jetbrains.kotlin.gradle.dsl.KotlinVersion.KOTLIN_2_3
     }
+}
+
+configure<SpotlessExtension> {
     kotlin {
-        compilerOptions {
-            languageVersion = org.jetbrains.kotlin.gradle.dsl.KotlinVersion.KOTLIN_2_3
-        }
+        target("src/**/*.kt")
+        val ktlintVersion = extensions.getByType<VersionCatalogsExtension>()
+            .named("libs")
+            .findVersion("ktlint")
+            .get()
+            .requiredVersion
+
+        ktlint(ktlintVersion).editorConfigOverride(
+            mapOf(
+                "android" to "true",
+                "ktlint_code_style" to "ktlint_official",
+                "ij_kotlin_allow_trailing_comma" to "true",
+                "ij_kotlin_allow_trailing_comma_on_call_site" to "true",
+                "ktlint_function_naming_ignore_when_annotated_with" to "Composable",
+                "ktlint_standard_annotation" to "disabled",
+                "ij_kotlin_variable_annotation_wrap" to "off",
+                "ij_kotlin_annotation_wrap" to "off"
+            )
+        )
+        endWithNewline()
+    }
+
+    format("kts") {
+        target("*.kts")
+        endWithNewline()
+    }
+
+    format("xml") {
+        target("src/**/*.xml")
+        endWithNewline()
     }
 }
 

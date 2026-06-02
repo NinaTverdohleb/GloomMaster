@@ -9,7 +9,6 @@ import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface TeamCharacterClassDao {
-
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(teamCharacterClass: TeamCharacterClassBd)
 
@@ -17,7 +16,10 @@ interface TeamCharacterClassDao {
     suspend fun insertAll(vararg teamCharacterClasses: TeamCharacterClassBd)
 
     @Query("DELETE FROM TeamCharacterClassBd WHERE teamId = :teamId AND characterType = :characterType")
-    suspend fun delete(teamId: Int, characterType: String)
+    suspend fun delete(
+        teamId: Int,
+        characterType: String,
+    )
 
     @Query("DELETE FROM TeamCharacterClassBd WHERE teamId = :teamId")
     suspend fun deleteAllForTeam(teamId: Int)

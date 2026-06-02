@@ -13,7 +13,6 @@ import kotlin.collections.map
 class CharacterClassRepository @Inject constructor(
     private val teamCharacterClassDao: TeamCharacterClassDao,
 ) {
-
     fun getAvailableClassesForTeam(teamId: Int): Flow<List<CharacterClassType>> =
         teamCharacterClassDao
             .getClassTypesForTeam(teamId)
@@ -24,26 +23,37 @@ class CharacterClassRepository @Inject constructor(
             .getClassesForTeamSync(teamId)
             .map { it.characterType }
 
-    suspend fun addAvailableClass(teamId: Int, type: CharacterClassType) {
+    suspend fun addAvailableClass(
+        teamId: Int,
+        type: CharacterClassType,
+    ) {
         teamCharacterClassDao.insert(
             TeamCharacterClassBd(
                 teamId = teamId,
                 characterType = type.name,
-            )
+            ),
         )
     }
 
-    suspend fun removeAvailableClass(teamId: Int, type: CharacterClassType) {
+    suspend fun removeAvailableClass(
+        teamId: Int,
+        type: CharacterClassType,
+    ) {
         teamCharacterClassDao.delete(teamId, type.name)
     }
 
-    suspend fun addAvailableClasses(teamId: Int, types: List<CharacterClassType>) {
-        val entities = types.map {
-            TeamCharacterClassBd(
-                teamId = teamId,
-                characterType = it.name,
-            )
-        }.toTypedArray()
+    suspend fun addAvailableClasses(
+        teamId: Int,
+        types: List<CharacterClassType>,
+    ) {
+        val entities =
+            types
+                .map {
+                    TeamCharacterClassBd(
+                        teamId = teamId,
+                        characterType = it.name,
+                    )
+                }.toTypedArray()
         teamCharacterClassDao.insertAll(*entities)
     }
 }

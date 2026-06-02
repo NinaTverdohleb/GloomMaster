@@ -31,37 +31,39 @@ fun GoodFilters(
     filterType: GoodType?,
     selectFilter: (GoodType) -> Unit,
     changeSearchText: (String) -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) = Column(
-    modifier = modifier
+    modifier = modifier,
 ) {
     Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(8.dp),
-        horizontalArrangement = Arrangement.SpaceBetween
+        modifier =
+            Modifier
+                .fillMaxWidth()
+                .padding(8.dp),
+        horizontalArrangement = Arrangement.SpaceBetween,
     ) {
         GoodType.entries.forEach {
             FilterButton(
                 type = it,
                 selectedFilter = filterType,
-                onSelectedChanged = selectFilter
+                onSelectedChanged = selectFilter,
             )
         }
     }
     Spacer(
-        modifier = Modifier.height(4.dp)
+        modifier = Modifier.height(4.dp),
     )
 
     OutlinedTextField(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(horizontal = 8.dp),
+        modifier =
+            Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 8.dp),
         value = searchText,
         leadingIcon = {
             Icon(
                 imageVector = Icons.Default.Search,
-                contentDescription = null
+                contentDescription = null,
             )
         },
         onValueChange = changeSearchText,
@@ -74,20 +76,20 @@ private fun FilterButton(
     type: GoodType,
     selectedFilter: GoodType?,
     modifier: Modifier = Modifier,
-    onSelectedChanged: (GoodType) -> Unit
+    onSelectedChanged: (GoodType) -> Unit,
 ) {
     val isChecked = selectedFilter == type
     Icon(
-        modifier = modifier
-            .size(40.dp)
-            .clickable {
-                onSelectedChanged(type)
-            },
+        modifier =
+            modifier
+                .size(40.dp)
+                .clickable {
+                    onSelectedChanged(type)
+                },
         imageVector = type.toImage(),
         contentDescription = null,
-        tint = if (isChecked) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.outlineVariant
+        tint = if (isChecked) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.outlineVariant,
     )
-
 }
 
 @Preview

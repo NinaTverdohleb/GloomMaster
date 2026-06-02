@@ -11,11 +11,10 @@ class ToggleUnitEffectUseCase @Inject constructor() {
         slug: String,
         number: Int,
         effect: MonsterStatType,
-    ): ScenarioBattleState {
-        return state.updateUnit(slug, number) {
+    ): ScenarioBattleState =
+        state.updateUnit(slug, number) {
             val newEffects =
                 if (effect in it.effects) it.effects - effect else it.effects + effect
             it.copy(effects = newEffects.toImmutableList())
         }
-    }
 }

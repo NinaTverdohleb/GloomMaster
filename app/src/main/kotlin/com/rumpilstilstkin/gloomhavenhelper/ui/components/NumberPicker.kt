@@ -36,12 +36,12 @@ fun NumberPicker(
     showSign: Boolean = false,
     size: GloomSize = GloomSize.M,
     numberBack: @Composable () -> Unit = {},
-    onValueChange: (Int) -> Unit
+    onValueChange: (Int) -> Unit,
 ) {
     Row(
         modifier = modifier,
         horizontalArrangement = Arrangement.SpaceBetween,
-        verticalAlignment = CenterVertically
+        verticalAlignment = CenterVertically,
     ) {
         PickerButton(
             size = size,
@@ -49,38 +49,43 @@ fun NumberPicker(
             type = PickerButtonType.MINUS,
             onValueChange = {
                 onValueChange(checkRange(it, intRange))
-            }
+            },
         )
-        val textStyle = when (size) {
-            GloomSize.S -> MaterialTheme.typography.bodyLarge
-            GloomSize.M -> MaterialTheme.typography.headlineMedium
-        }
-        val padding = when (size) {
-            GloomSize.S -> 4.dp
-            GloomSize.M -> 16.dp
-        }
-        Column(
-            modifier = Modifier
-                .align(CenterVertically)
-                .weight(1f, fill = false)
-                .defaultMinSize(minWidth = 48.dp)
-                .padding(bottom = 4.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            val text = if (showSign) {
-                String.format(Locale.getDefault(), "%+d", value)
-            } else {
-                value.toString()
+        val textStyle =
+            when (size) {
+                GloomSize.S -> MaterialTheme.typography.bodyLarge
+                GloomSize.M -> MaterialTheme.typography.headlineMedium
             }
+        val padding =
+            when (size) {
+                GloomSize.S -> 4.dp
+                GloomSize.M -> 16.dp
+            }
+        Column(
+            modifier =
+                Modifier
+                    .align(CenterVertically)
+                    .weight(1f, fill = false)
+                    .defaultMinSize(minWidth = 48.dp)
+                    .padding(bottom = 4.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
+        ) {
+            val text =
+                if (showSign) {
+                    String.format(Locale.getDefault(), "%+d", value)
+                } else {
+                    value.toString()
+                }
             Box {
                 numberBack()
                 Text(
-                    modifier = Modifier
-                        .padding(padding),
+                    modifier =
+                        Modifier
+                            .padding(padding),
                     style = textStyle,
                     text = text,
                     textAlign = TextAlign.Center,
-                    color = MaterialTheme.colorScheme.onSurface
+                    color = MaterialTheme.colorScheme.onSurface,
                 )
             }
         }
@@ -90,11 +95,10 @@ fun NumberPicker(
             type = PickerButtonType.PLUS,
             onValueChange = {
                 onValueChange(checkRange(it, intRange))
-            }
+            },
         )
     }
 }
-
 
 @Composable
 fun NumberPickerProgress(
@@ -110,12 +114,12 @@ fun NumberPickerProgress(
     val progress = (value.toFloat() / (intRange.last - intRange.first)).coerceIn(0f, 1f)
     Column(
         modifier = modifier,
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = CenterVertically
+            verticalAlignment = CenterVertically,
         ) {
             PickerButton(
                 size = size,
@@ -123,40 +127,45 @@ fun NumberPickerProgress(
                 type = PickerButtonType.MINUS,
                 onValueChange = {
                     onValueChange(checkRange(it, intRange))
-                }
+                },
             )
-            val textStyle = when (size) {
-                GloomSize.S -> MaterialTheme.typography.bodyLarge
-                GloomSize.M -> MaterialTheme.typography.headlineMedium
-            }
-            val padding = when (size) {
-                GloomSize.S -> 4.dp
-                GloomSize.M -> 16.dp
-            }
-            Column(
-                modifier = Modifier
-                    .align(CenterVertically)
-                    .weight(1f, fill = false)
-                    .defaultMinSize(minWidth = 48.dp)
-                    .padding(bottom = 4.dp),
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                val text = if (showSign) {
-                    String.format(Locale.getDefault(), "%+d", value)
-                } else {
-                    value.toString()
+            val textStyle =
+                when (size) {
+                    GloomSize.S -> MaterialTheme.typography.bodyLarge
+                    GloomSize.M -> MaterialTheme.typography.headlineMedium
                 }
+            val padding =
+                when (size) {
+                    GloomSize.S -> 4.dp
+                    GloomSize.M -> 16.dp
+                }
+            Column(
+                modifier =
+                    Modifier
+                        .align(CenterVertically)
+                        .weight(1f, fill = false)
+                        .defaultMinSize(minWidth = 48.dp)
+                        .padding(bottom = 4.dp),
+                horizontalAlignment = Alignment.CenterHorizontally,
+            ) {
+                val text =
+                    if (showSign) {
+                        String.format(Locale.getDefault(), "%+d", value)
+                    } else {
+                        value.toString()
+                    }
                 Box(
-                    contentAlignment = Alignment.Center
+                    contentAlignment = Alignment.Center,
                 ) {
                     numberBack()
                     Text(
-                        modifier = Modifier
-                            .padding(padding),
+                        modifier =
+                            Modifier
+                                .padding(padding),
                         style = textStyle,
                         text = text,
                         textAlign = TextAlign.Center,
-                        color = MaterialTheme.colorScheme.onSurface
+                        color = MaterialTheme.colorScheme.onSurface,
                     )
                 }
             }
@@ -166,31 +175,34 @@ fun NumberPickerProgress(
                 type = PickerButtonType.PLUS,
                 onValueChange = {
                     onValueChange(checkRange(it, intRange))
-                }
+                },
             )
         }
         Spacer(modifier = Modifier.height(4.dp))
         LinearProgressIndicator(
             progress = { progress },
-            modifier = Modifier
-                .height(8.dp)
-                .fillMaxWidth(),
+            modifier =
+                Modifier
+                    .height(8.dp)
+                    .fillMaxWidth(),
             color = progressColor,
             trackColor = MaterialTheme.colorScheme.secondaryContainer,
             strokeCap = StrokeCap.Round,
             gapSize = 0.dp,
-            drawStopIndicator = {}
+            drawStopIndicator = {},
         )
     }
 }
 
-private fun checkRange(value: Int, range: IntRange): Int {
-    return when {
+private fun checkRange(
+    value: Int,
+    range: IntRange,
+): Int =
+    when {
         value < range.first -> range.first
         value > range.last -> range.last
         else -> value
     }
-}
 
 @Preview
 @Composable
@@ -199,10 +211,9 @@ private fun NumberPickerMPreview() {
         NumberPicker(
             value = 5,
             intRange = IntRange(0, 15),
-            onValueChange = {}
+            onValueChange = {},
         )
     }
-
 }
 
 @Preview
@@ -213,10 +224,9 @@ private fun NumberPickerSPreview() {
             size = GloomSize.S,
             value = 5,
             intRange = IntRange(0, 15),
-            onValueChange = {}
+            onValueChange = {},
         )
     }
-
 }
 
 @Preview
@@ -235,10 +245,9 @@ private fun NumberPickerProgressPreview() {
                     modifier = Modifier.size(64.dp),
                     painter = painterResource(id = R.drawable.ic_life),
                     contentDescription = null,
-                    tint = MaterialTheme.colorScheme.error
+                    tint = MaterialTheme.colorScheme.error,
                 )
-            }
+            },
         )
     }
-
 }

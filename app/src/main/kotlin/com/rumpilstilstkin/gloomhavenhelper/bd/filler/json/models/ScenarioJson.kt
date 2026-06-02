@@ -11,26 +11,28 @@ data class ScenarioJson(
     val requirements: String = "",
     val monsters: List<String> = emptyList(),
     val location: String = "",
-    val pack: String
+    val pack: String,
 ) {
-    fun toEntity() = ScenarioBd(
-        scenarioNumber = scenarioNumber,
-        newScenarios = newScenarios,
-        requirements = requirements,
-        monsters = monsters,
-        location = location,
-        pack = pack
-    )
+    fun toEntity() =
+        ScenarioBd(
+            scenarioNumber = scenarioNumber,
+            newScenarios = newScenarios,
+            requirements = requirements,
+            monsters = monsters,
+            location = location,
+            pack = pack,
+        )
 }
 
 @Serializable
 data class ScenarioTranslationJson(
     val scenarioNumber: Int,
-    val name: String
+    val name: String,
 ) {
-    fun toEntity(locale: String) = ScenarioTranslationsBd(
-        scenarioNumber = scenarioNumber,
-        locale = locale,
-        name = name
-    )
+    fun toEntity(locale: String) =
+        ScenarioTranslationsBd(
+            scenarioNumber = scenarioNumber,
+            locale = locale,
+            name = name,
+        )
 }

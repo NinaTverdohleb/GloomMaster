@@ -13,12 +13,12 @@ import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterAction
             entity = MonsterBd::class,
             parentColumns = arrayOf("slug"),
             childColumns = arrayOf("monsterSlug"),
-            onDelete = CASCADE
-        )
+            onDelete = CASCADE,
+        ),
     ],
     indices = [
-        Index("monsterSlug")
-    ]
+        Index("monsterSlug"),
+    ],
 )
 data class MonsterStatsBd(
     val monsterSlug: String,
@@ -35,12 +35,12 @@ data class MonsterStatsBd(
             entity = MonsterBd::class,
             parentColumns = arrayOf("slug"),
             childColumns = arrayOf("monsterSlug"),
-            onDelete = CASCADE
-        )
+            onDelete = CASCADE,
+        ),
     ],
     indices = [
-        Index("monsterSlug")
-    ]
+        Index("monsterSlug"),
+    ],
 )
 data class MonsterTextStatsBd(
     val locale: String,

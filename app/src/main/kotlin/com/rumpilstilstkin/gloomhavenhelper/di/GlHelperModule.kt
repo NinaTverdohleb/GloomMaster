@@ -17,14 +17,14 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object GlHelperModule {
-
     @Singleton
     @Provides
     fun providesSharedPreference(
-        @ApplicationContext context: Context
+        @ApplicationContext context: Context,
     ): SharedPreferences =
         context.getSharedPreferences(
-            "GlHelperPreferences", Context.MODE_PRIVATE
+            "GlHelperPreferences",
+            Context.MODE_PRIVATE,
         )
 
     @Singleton

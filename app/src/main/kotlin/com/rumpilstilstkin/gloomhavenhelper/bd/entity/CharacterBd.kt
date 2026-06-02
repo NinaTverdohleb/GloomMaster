@@ -15,5 +15,5 @@ data class CharacterBd(
     val isAlive: Boolean = true,
     val notes: String = "",
     val checkMarkCount: Int = 0,
-    val additionalContOfPerks: Int = 0
+    val additionalContOfPerks: Int = 0,
 )

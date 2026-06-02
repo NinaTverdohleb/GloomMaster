@@ -21,34 +21,36 @@ fun GloomCard(
     modifier: Modifier = Modifier,
     active: Boolean = true,
     content: @Composable ColumnScope.() -> Unit,
-) =
-    Card(
-        modifier = modifier,
-        colors = cardColors(
+) = Card(
+    modifier = modifier,
+    colors =
+        cardColors(
             containerColor = MaterialTheme.colorScheme.primaryContainer,
         ),
-        border = BorderStroke(
+    border =
+        BorderStroke(
             1.dp,
-            if (active) MaterialTheme.colorScheme.outline else MaterialTheme.colorScheme.outlineVariant
-        )
-    ) {
-        Column(
-            modifier = Modifier
+            if (active) MaterialTheme.colorScheme.outline else MaterialTheme.colorScheme.outlineVariant,
+        ),
+) {
+    Column(
+        modifier =
+            Modifier
                 .fillMaxWidth()
                 .padding(16.dp),
-            content = content
-        )
-    }
+        content = content,
+    )
+}
 
 @Preview
 @Composable
 private fun GloomCardPreview() {
     GloomhavenMasterTheme {
         GloomCard(
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier.fillMaxWidth(),
         ) {
             Box(
-                modifier = Modifier.height(40.dp)
+                modifier = Modifier.height(40.dp),
             )
         }
     }

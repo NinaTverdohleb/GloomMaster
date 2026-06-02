@@ -12,7 +12,6 @@ import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface CharacterPersonalQuestDao {
-
     @Transaction
     @Query("SELECT * FROM CharacterPersonalQuestBd WHERE characterId = :characterId LIMIT 1")
     fun getCharacterPersonalQuestFlow(characterId: Int): Flow<CharacterPersonalQuestDetailsBd?>

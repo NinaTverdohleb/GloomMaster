@@ -31,16 +31,16 @@ fun ScenarioInfoCardItem(
     scenarioName: String,
     location: String,
     modifier: Modifier = Modifier,
-    onClick: (Int) -> Unit = {}
+    onClick: (Int) -> Unit = {},
 ) = GloomCard(
-    modifier = modifier
+    modifier = modifier,
 ) {
     ScenarioInfoItem(
         scenarioNumber = scenarioNumber,
         scenarioName = scenarioName,
         location = location,
         modifier = modifier,
-        onClick = onClick
+        onClick = onClick,
     )
 }
 
@@ -50,56 +50,57 @@ fun ScenarioInfoItem(
     scenarioName: String,
     location: String,
     modifier: Modifier = Modifier,
-    onClick: (Int) -> Unit = {}
+    onClick: (Int) -> Unit = {},
 ) {
     Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .clickable { onClick(scenarioNumber) },
-        verticalAlignment = Alignment.CenterVertically
+        modifier =
+            Modifier
+                .fillMaxWidth()
+                .clickable { onClick(scenarioNumber) },
+        verticalAlignment = Alignment.CenterVertically,
     ) {
         Box(
-            modifier = modifier
-                .background(
-                    color = MaterialTheme.colorScheme.secondaryContainer,
-                    shape = RoundedCornerShape(8.dp),
-                )
-                .border(
-                    shape = RoundedCornerShape(8.dp),
-                    color = MaterialTheme.colorScheme.outline,
-                    width = 1.dp
-                ),
-            contentAlignment = Alignment.Center
+            modifier =
+                modifier
+                    .background(
+                        color = MaterialTheme.colorScheme.secondaryContainer,
+                        shape = RoundedCornerShape(8.dp),
+                    ).border(
+                        shape = RoundedCornerShape(8.dp),
+                        color = MaterialTheme.colorScheme.outline,
+                        width = 1.dp,
+                    ),
+            contentAlignment = Alignment.Center,
         ) {
             Text(
-                modifier = modifier
-                    .padding(vertical = 8.dp, horizontal = 8.dp),
+                modifier =
+                    modifier
+                        .padding(vertical = 8.dp, horizontal = 8.dp),
                 style = MaterialTheme.typography.headlineMedium,
                 text = stringResource(R.string.scenario_number_format, scenarioNumber),
                 textAlign = TextAlign.Center,
-                color = MaterialTheme.colorScheme.primary
+                color = MaterialTheme.colorScheme.primary,
             )
         }
         Spacer(modifier = Modifier.width(16.dp))
         Column(
-            modifier = Modifier.weight(1f)
+            modifier = Modifier.weight(1f),
         ) {
             Text(
                 text = scenarioName,
                 style = MaterialTheme.typography.bodyLarge,
-                color = MaterialTheme.colorScheme.onSurface
+                color = MaterialTheme.colorScheme.onSurface,
             )
             if (location.isNotBlank()) {
                 Spacer(modifier = Modifier.height(8.dp))
                 Text(
                     text = stringResource(R.string.location_format, location),
                     style = MaterialTheme.typography.bodyMedium,
-                    color = MaterialTheme.colorScheme.onSurface
+                    color = MaterialTheme.colorScheme.onSurface,
                 )
             }
         }
     }
-
 }
 
 @Preview

@@ -13,7 +13,6 @@ class GetCharactersForCurrentTeamUseCase @Inject constructor(
     private val characterRepository: CharacterRepository,
     private val teamRepository: TeamRepository,
 ) {
-
     @OptIn(ExperimentalCoroutinesApi::class)
     operator fun invoke(): Flow<List<CharacterInfo>> =
         teamRepository.currentTeam

@@ -5,7 +5,8 @@ import com.rumpilstilstkin.gloomhavenhelper.domain.entity.scenario.ScenarioBattl
 import jakarta.inject.Inject
 
 class ToggleMagicChargeUseCase @Inject constructor() {
-    operator fun invoke(state: ScenarioBattleState, magic: Magic): ScenarioBattleState {
-        return state.copy(magicState = state.magicState.toggle(magic))
-    }
+    operator fun invoke(
+        state: ScenarioBattleState,
+        magic: Magic,
+    ): ScenarioBattleState = state.copy(magicState = state.magicState.toggle(magic))
 }

@@ -24,33 +24,35 @@ fun RoundButton(
     modifier: Modifier = Modifier,
     color: Color = MaterialTheme.colorScheme.secondary,
     size: GloomSize = GloomSize.M,
-    onClick: () -> Unit
+    onClick: () -> Unit,
 ) {
-    val mutableInteractionSource = remember {
-        MutableInteractionSource()
-    }
-    val boxSize = when(size){
-        GloomSize.S -> 32.dp
-        GloomSize.M -> 48.dp
-    }
+    val mutableInteractionSource =
+        remember {
+            MutableInteractionSource()
+        }
+    val boxSize =
+        when (size) {
+            GloomSize.S -> 32.dp
+            GloomSize.M -> 48.dp
+        }
     Box(
-        modifier = modifier
-            .size(boxSize)
-            .clickable(interactionSource = mutableInteractionSource, indication = null) {
-                onClick.invoke()
-            }
-            .background(
-                color = color,
-                shape = CircleShape
-            ),
-        contentAlignment = Alignment.Center
+        modifier =
+            modifier
+                .size(boxSize)
+                .clickable(interactionSource = mutableInteractionSource, indication = null) {
+                    onClick.invoke()
+                }.background(
+                    color = color,
+                    shape = CircleShape,
+                ),
+        contentAlignment = Alignment.Center,
     ) {
         Text(
             modifier = Modifier,
             style = MaterialTheme.typography.headlineMedium,
             text = text,
             textAlign = TextAlign.Center,
-            color = MaterialTheme.colorScheme.onSecondary
+            color = MaterialTheme.colorScheme.onSecondary,
         )
     }
 }
@@ -61,7 +63,7 @@ private fun RoundButtonPreview() {
     GloomhavenMasterTheme {
         RoundButton(
             text = "2",
-            onClick = {}
+            onClick = {},
         )
     }
 }

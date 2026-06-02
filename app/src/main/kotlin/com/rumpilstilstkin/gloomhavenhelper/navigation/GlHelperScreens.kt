@@ -13,13 +13,19 @@ sealed interface GlHelperScreens {
     data object Scenario : GlHelperScreens
 
     @Serializable
-    data class CharacterDetails(val characterId: Int) : GlHelperScreens
+    data class CharacterDetails(
+        val characterId: Int,
+    ) : GlHelperScreens
 
     @Serializable
-    data class AddGoodsForCharacter(val characterId: Int) : GlHelperScreens
+    data class AddGoodsForCharacter(
+        val characterId: Int,
+    ) : GlHelperScreens
 
     @Serializable
-    data class SearchPersonalQuest(val characterId: Int) : GlHelperScreens
+    data class SearchPersonalQuest(
+        val characterId: Int,
+    ) : GlHelperScreens
 
     @Serializable
     data object AddGoodsForTeam : GlHelperScreens
@@ -29,8 +35,10 @@ sealed interface GlHelperScreens {
 
     @Serializable
     data object TeamAchievements : GlHelperScreens
+
     @Serializable
     data object GlobalAchievements : GlHelperScreens
+
     @Serializable
     data object ScenarioConstructor : GlHelperScreens
 }

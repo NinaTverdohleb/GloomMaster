@@ -11,7 +11,6 @@ import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface ScenarioGameStateDao {
-
     @Query("SELECT * FROM ScenarioGameStateBd LIMIT 1")
     suspend fun get(): ScenarioGameStateBd?
 

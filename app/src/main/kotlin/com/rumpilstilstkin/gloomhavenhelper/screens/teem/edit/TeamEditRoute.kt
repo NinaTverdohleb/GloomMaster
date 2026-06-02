@@ -20,7 +20,7 @@ fun TeamEditRoute(
         navigationEvents?.let { event ->
             GlHelperEventHelper.event(
                 event = event,
-                navController = navController
+                navController = navController,
             )
         }
     }
@@ -37,6 +37,6 @@ fun TeamEditRoute(
         dismissTeamListDialog = { viewModel.onAction(TeamEditAction.DismissTeamListDialog) },
         selectTeam = { viewModel.onAction(TeamEditAction.SelectTeam(it)) },
         shareTeamData = { viewModel.onAction(TeamEditAction.ShareTeam) },
-        onDifficultyChange = { viewModel.onAction(TeamEditAction.ChangeDifficultyLevel(it)) }
+        onDifficultyChange = { viewModel.onAction(TeamEditAction.ChangeDifficultyLevel(it)) },
     )
 }

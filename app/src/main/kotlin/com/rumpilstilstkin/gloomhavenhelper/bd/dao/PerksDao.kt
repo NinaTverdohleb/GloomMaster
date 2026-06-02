@@ -9,7 +9,6 @@ import com.rumpilstilstkin.gloomhavenhelper.bd.entity.PerkTranslationBd
 
 @Dao
 interface PerksDao {
-
     @Insert
     suspend fun insertAll(vararg users: PerkBd)
 
@@ -31,12 +30,11 @@ interface PerksDao {
                       WHERE characterType = t.characterType AND locale = :targetLocale
                   )
               ))
-        """
+        """,
     )
     suspend fun getPerksByCharacterClass(
         characterType: String,
         targetLocale: String,
-        defaultLocale: String
+        defaultLocale: String,
     ): List<PerkTranslationBd>
-
 }

@@ -6,10 +6,11 @@ import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterCardAct
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterStatType
 import kotlinx.serialization.json.Json
 
-private val json = Json {
-    ignoreUnknownKeys = true
-    encodeDefaults = true
-}
+private val json =
+    Json {
+        ignoreUnknownKeys = true
+        encodeDefaults = true
+    }
 
 class CardActionsTypeConverter {
     @TypeConverter

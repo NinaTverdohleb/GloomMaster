@@ -27,12 +27,12 @@ import com.rumpilstilstkin.gloomhavenhelper.screens.characters.start.components.
 import com.rumpilstilstkin.gloomhavenhelper.screens.characters.start.general.CharacterGeneralTabContent
 import com.rumpilstilstkin.gloomhavenhelper.screens.characters.start.general.CharacterGeneralTabState
 import com.rumpilstilstkin.gloomhavenhelper.screens.dialogs.character.CharacterEditLevelDialog
+import com.rumpilstilstkin.gloomhavenhelper.screens.dialogs.character.CharacterEditNameDialog
 import com.rumpilstilstkin.gloomhavenhelper.screens.dialogs.character.DeleteCharacterDialog
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.CharacterClassTypeUI
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomToolbarTitle
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.NavItem
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
-import com.rumpilstilstkin.gloomhavenhelper.screens.dialogs.character.CharacterEditNameDialog
 
 @Composable
 internal fun CharacterDetailsScreen(
@@ -48,14 +48,14 @@ internal fun CharacterDetailsScreen(
     hideChangeLevelDialog: () -> Unit,
     changeLevel: (Int) -> Unit,
     retire: () -> Unit,
-    selectTab: @Composable (CharacterDetailsTab) -> Unit
+    selectTab: @Composable (CharacterDetailsTab) -> Unit,
 ) {
     if (state.showDeleteDialog) {
         DeleteCharacterDialog(
             onDismiss = hideDeleteDialog,
             delete = confirmDelete,
             retire = retire,
-            canRetire = state.isActive
+            canRetire = state.isActive,
         )
     }
 
@@ -63,17 +63,17 @@ internal fun CharacterDetailsScreen(
         CharacterEditNameDialog(
             currentName = state.name,
             onDismiss = hideNameDialog,
-            onSave = saveName
+            onSave = saveName,
         )
     }
 
-    if(state.showChangeLevelDialog) {
+    if (state.showChangeLevelDialog) {
         CharacterEditLevelDialog(
             characterLevel = state.level,
             characterName = state.name,
             characterClass = state.type,
             dismiss = hideChangeLevelDialog,
-            changeLevel = changeLevel
+            changeLevel = changeLevel,
         )
     }
 
@@ -87,17 +87,18 @@ internal fun CharacterDetailsScreen(
                         Icon(
                             Icons.Default.Delete,
                             contentDescription = null,
-                            tint = MaterialTheme.colorScheme.error
+                            tint = MaterialTheme.colorScheme.error,
                         )
                     }
-                }
+                },
             )
-        }
+        },
     ) { paddingValues ->
         Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(paddingValues)
+            modifier =
+                Modifier
+                    .fillMaxSize()
+                    .padding(paddingValues),
         ) {
             CharacterHeader(
                 modifier = Modifier.background(MaterialTheme.colorScheme.surface),
@@ -105,11 +106,11 @@ internal fun CharacterDetailsScreen(
                 name = state.name,
                 level = state.level,
                 onNameClick = showNameDialog,
-                clickLevel = showChangeLevelDialog
+                clickLevel = showChangeLevelDialog,
             )
 
             CharactersTabs(
-                selectTab = selectTab
+                selectTab = selectTab,
             )
         }
     }
@@ -117,7 +118,7 @@ internal fun CharacterDetailsScreen(
 
 internal enum class CharacterDetailsTab(
     override val titleRes: Int,
-    override val iconRes: Int
+    override val iconRes: Int,
 ) : NavItem {
     GENERAL(R.string.tab_general, R.drawable.ic_company),
     STUFF(R.string.tab_items, R.drawable.ic_shop),
@@ -127,16 +128,17 @@ internal enum class CharacterDetailsTab(
 @Composable
 internal fun CharactersTabs(
     modifier: Modifier = Modifier,
-    selectTab: @Composable (CharacterDetailsTab) -> Unit
+    selectTab: @Composable (CharacterDetailsTab) -> Unit,
 ) {
     var selectedTab by rememberSaveable { mutableStateOf(CharacterDetailsTab.GENERAL) }
 
     val tabs = CharacterDetailsTab.entries
 
     Column(
-        modifier = modifier
-            .background(MaterialTheme.colorScheme.background)
-            .fillMaxSize()
+        modifier =
+            modifier
+                .background(MaterialTheme.colorScheme.background)
+                .fillMaxSize(),
     ) {
         PrimaryTabRow(
             selectedTabIndex = tabs.indexOf(selectedTab),
@@ -147,7 +149,7 @@ internal fun CharactersTabs(
                 Tab(
                     text = { Text(text = stringResource(tab.titleRes)) },
                     selected = selectedTab == tab,
-                    onClick = { selectedTab = tab }
+                    onClick = { selectedTab = tab },
                 )
             }
         }
@@ -160,12 +162,13 @@ internal fun CharactersTabs(
 private fun CharacterDetailsScreenPreview() {
     GloomhavenMasterTheme {
         CharacterDetailsScreen(
-            state = CharacterDetailsStateUi(
-                name = "Character",
-                level = 1,
-                type = CharacterClassTypeUI.Brute,
-                teamName = "Team"
-            ),
+            state =
+                CharacterDetailsStateUi(
+                    name = "Character",
+                    level = 1,
+                    type = CharacterClassTypeUI.Brute,
+                    teamName = "Team",
+                ),
             back = {},
             showDeleteDialog = {},
             hideDeleteDialog = {},
@@ -179,18 +182,19 @@ private fun CharacterDetailsScreenPreview() {
             retire = {},
             selectTab = {
                 CharacterGeneralTabContent(
-                    content = CharacterGeneralTabState(
-                        experience = 150,
-                        goldCount = 10,
-                        checkMarkCount = 15,
-                        hasTeam = false,
-                        teamName = null,
-                        nextLevel = 175,
-                        notes = "Some notes"
-                    ),
-                    onAction = {}
+                    content =
+                        CharacterGeneralTabState(
+                            experience = 150,
+                            goldCount = 10,
+                            checkMarkCount = 15,
+                            hasTeam = false,
+                            teamName = null,
+                            nextLevel = 175,
+                            notes = "Some notes",
+                        ),
+                    onAction = {},
                 )
-            }
+            },
         )
     }
 }

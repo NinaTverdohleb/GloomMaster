@@ -43,7 +43,7 @@ internal fun StartScreen(
                 selectedItem = selectedTab,
                 selectTab = { tab ->
                     selectedTab = tab as StartScreenTab
-                }
+                },
             )
         },
         topBar = {
@@ -55,31 +55,36 @@ internal fun StartScreen(
                             Icon(
                                 Icons.Default.Add,
                                 contentDescription = null,
-                                tint = MaterialTheme.colorScheme.onSurface
+                                tint = MaterialTheme.colorScheme.onSurface,
                             )
                         }
                     },
-                    statusClick = editTeam
+                    statusClick = editTeam,
                 )
             } else {
                 GloomToolbarTitle(
                     title = stringResource(R.string.app_name),
                 )
             }
-        }
+        },
     ) { paddingValues ->
         Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(paddingValues)
-                .padding(top = 32.dp, start = 16.dp, end = 16.dp)
+            modifier =
+                Modifier
+                    .fillMaxSize()
+                    .padding(paddingValues)
+                    .padding(top = 32.dp, start = 16.dp, end = 16.dp),
         ) {
             when (state) {
-                StartScreenState.Empty -> EmptyTeamScreen(
-                    addTeam = addTeam
-                )
+                StartScreenState.Empty -> {
+                    EmptyTeamScreen(
+                        addTeam = addTeam,
+                    )
+                }
 
-                is StartScreenState.Team -> selectTab(selectedTab)
+                is StartScreenState.Team -> {
+                    selectTab(selectedTab)
+                }
             }
         }
     }
@@ -87,7 +92,7 @@ internal fun StartScreen(
 
 internal enum class StartScreenTab(
     override val titleRes: Int,
-    override val iconRes: Int
+    override val iconRes: Int,
 ) : NavItem {
     TEAM(R.string.tab_team, R.drawable.ic_company),
     CHARACTERS(R.string.tab_characters, R.drawable.ic_characters),
@@ -103,7 +108,7 @@ private fun StartScreenEmptyPreview() {
             state = StartScreenState.Empty,
             addTeam = {},
             selectTab = {},
-            editTeam = {}
+            editTeam = {},
         )
     }
 }
@@ -113,10 +118,11 @@ private fun StartScreenEmptyPreview() {
 private fun StartScreenPreview() {
     GloomhavenMasterTheme {
         StartScreen(
-            state = StartScreenState.Team(
-                id = 1,
-                name = "Superteam"
-            ),
+            state =
+                StartScreenState.Team(
+                    id = 1,
+                    name = "Superteam",
+                ),
             addTeam = {},
             selectTab = {
                 CharactersTabScreen(
@@ -125,10 +131,10 @@ private fun StartScreenPreview() {
                     addCharacter = {},
                     openCharacterDetails = {},
                     toggleClass = {},
-                    changeLevel = {_, _ ->}
+                    changeLevel = { _, _ -> },
                 )
             },
-            editTeam = {}
+            editTeam = {},
         )
     }
 }

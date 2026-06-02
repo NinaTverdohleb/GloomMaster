@@ -41,14 +41,16 @@ fun CharacterAvailableClasses(
                 Icon(
                     painter = painterResource(id = classType.image),
                     contentDescription = stringResource(classType.titleRes),
-                    modifier = Modifier
-                        .size(32.dp)
-                        .clickable { onToggle(classType) },
-                    tint = if (isAvailable) {
-                        MaterialTheme.colorScheme.primary
-                    } else {
-                        MaterialTheme.colorScheme.outlineVariant
-                    },
+                    modifier =
+                        Modifier
+                            .size(32.dp)
+                            .clickable { onToggle(classType) },
+                    tint =
+                        if (isAvailable) {
+                            MaterialTheme.colorScheme.primary
+                        } else {
+                            MaterialTheme.colorScheme.outlineVariant
+                        },
                 )
             }
         }
@@ -60,11 +62,12 @@ fun CharacterAvailableClasses(
 private fun CharacterAvailableClassesPreview() {
     GloomhavenMasterTheme {
         CharacterAvailableClasses(
-            availableClasses = persistentListOf(
-                CharacterClassTypeUI.Brute,
-                CharacterClassTypeUI.Spellweaver,
-                CharacterClassTypeUI.Scoundrel,
-            ),
+            availableClasses =
+                persistentListOf(
+                    CharacterClassTypeUI.Brute,
+                    CharacterClassTypeUI.Spellweaver,
+                    CharacterClassTypeUI.Scoundrel,
+                ),
             onToggle = {},
         )
     }

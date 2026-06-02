@@ -30,18 +30,19 @@ internal fun AddGoodsScreen(
 ) { paddingValues ->
     AddGoodsView(
         state = uiState.goodsState,
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(paddingValues),
+        modifier =
+            Modifier
+                .fillMaxWidth()
+                .padding(paddingValues),
         selectFilter = { onAction(AddGoodsForCharacterScreenActions.SelectFilter(it)) },
         changeSearchText = { onAction(AddGoodsForCharacterScreenActions.SearchTextChange(it)) },
         selectGood = { onAction(AddGoodsForCharacterScreenActions.SelectGood(it)) },
-        unselectGood = { onAction(AddGoodsForCharacterScreenActions.UnselectGood(it)) }
+        unselectGood = { onAction(AddGoodsForCharacterScreenActions.UnselectGood(it)) },
     ) {
         AddGoodsStatusRow(
             allGold = uiState.allGold,
             goodsGold = uiState.goodsGold,
-            onAction = { onAction(it) }
+            onAction = { onAction(it) },
         )
     }
 }
@@ -51,10 +52,11 @@ internal fun AddGoodsScreen(
 private fun AddGoodsScreenPreview() {
     GloomhavenMasterTheme {
         AddGoodsScreen(
-            uiState = AddGoodsForCharacterScreenUiState(
-                goodsState = AddGoodsViewState.fixture()
-            ),
-            onAction = {}
+            uiState =
+                AddGoodsForCharacterScreenUiState(
+                    goodsState = AddGoodsViewState.fixture(),
+                ),
+            onAction = {},
         )
     }
 }

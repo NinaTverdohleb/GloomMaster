@@ -19,7 +19,7 @@ class UpdateUnitLevelUseCase @Inject constructor(
         return state.updateUnit(slug, number) {
             it.copy(
                 currentLife = stats.life,
-                level = stats.level
+                level = stats.level,
             )
         }
     }

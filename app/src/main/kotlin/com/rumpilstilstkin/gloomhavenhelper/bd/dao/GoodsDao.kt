@@ -9,7 +9,6 @@ import com.rumpilstilstkin.gloomhavenhelper.bd.entity.GoodWithTranslation
 
 @Dao
 interface GoodsDao {
-
     @Query(
         """
             SELECT 
@@ -18,11 +17,11 @@ interface GoodsDao {
             FROM GoodBd g
             LEFT JOIN GoodTranslationsBd t1 ON g.displayNumber = t1.displayNumber AND t1.locale = :targetLocale
             LEFT JOIN GoodTranslationsBd t2 ON g.displayNumber = t2.displayNumber AND t2.locale = :defaultLocale
-        """
+        """,
     )
     suspend fun getAll(
         targetLocale: String,
-        defaultLocale: String
+        defaultLocale: String,
     ): List<GoodWithTranslation>
 
     @Query(
@@ -34,12 +33,12 @@ interface GoodsDao {
             LEFT JOIN GoodTranslationsBd t1 ON g.displayNumber = t1.displayNumber AND t1.locale = :targetLocale
             LEFT JOIN GoodTranslationsBd t2 ON g.displayNumber = t2.displayNumber AND t2.locale = :defaultLocale
             WHERE g.pack = :pack
-        """
+        """,
     )
     suspend fun getAllByPack(
         pack: String,
         targetLocale: String,
-        defaultLocale: String
+        defaultLocale: String,
     ): List<GoodWithTranslation>
 
     @Insert
@@ -54,11 +53,9 @@ interface GoodsDao {
                 * 
             FROM GoodBd g
             WHERE g.displayNumber IN (:numbers)
-        """
+        """,
     )
-    suspend fun getGoodsByNumbers(
-        numbers: List<Int>
-    ): List<GoodBd>
+    suspend fun getGoodsByNumbers(numbers: List<Int>): List<GoodBd>
 
     @Query(
         """
@@ -69,11 +66,11 @@ interface GoodsDao {
             LEFT JOIN GoodTranslationsBd t1 ON g.displayNumber = t1.displayNumber AND t1.locale = :targetLocale
             LEFT JOIN GoodTranslationsBd t2 ON g.displayNumber = t2.displayNumber AND t2.locale = :defaultLocale
             WHERE g.goodId = :goodId
-             """
+             """,
     )
     suspend fun getGoodById(
         goodId: Int,
         targetLocale: String,
-        defaultLocale: String
+        defaultLocale: String,
     ): GoodWithTranslation?
 }

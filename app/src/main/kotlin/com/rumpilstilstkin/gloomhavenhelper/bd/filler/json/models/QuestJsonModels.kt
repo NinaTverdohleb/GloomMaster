@@ -11,14 +11,15 @@ data class PersonalQuestJson(
     val questId: String,
     val characterType: String? = null,
     val pack: String = "MAIN",
-    val tasks: List<CharacterTaskItem>
+    val tasks: List<CharacterTaskItem>,
 ) {
-    fun toEntity() = PersonalQuestBd(
-        questId = questId,
-        characterType = characterType,
-        tasks = tasks,
-        pack = pack
-    )
+    fun toEntity() =
+        PersonalQuestBd(
+            questId = questId,
+            characterType = characterType,
+            tasks = tasks,
+            pack = pack,
+        )
 }
 
 @Serializable
@@ -27,26 +28,30 @@ data class PersonalQuestTranslationJson(
     val title: String,
     val description: String,
     val specialText: String = "",
-    val taskTexts: List<QuestTaskTranslationJson>
+    val taskTexts: List<QuestTaskTranslationJson>,
 ) {
-    fun toEntity(locale: String) = PersonalQuestTranslationsBd(
-        questId = questId,
-        locale = locale,
-        title = title,
-        description = description,
-        specialText = specialText
-    )
+    fun toEntity(locale: String) =
+        PersonalQuestTranslationsBd(
+            questId = questId,
+            locale = locale,
+            title = title,
+            description = description,
+            specialText = specialText,
+        )
 }
 
 @Serializable
 data class QuestTaskTranslationJson(
     val id: Int,
-    val text: String
+    val text: String,
 ) {
-    fun toEntity(questId: String, locale: String) = PersonalQuestTaskTranslationsBd(
+    fun toEntity(
+        questId: String,
+        locale: String,
+    ) = PersonalQuestTaskTranslationsBd(
         questId = questId,
         locale = locale,
         text = text,
-        taskId = id
+        taskId = id,
     )
 }

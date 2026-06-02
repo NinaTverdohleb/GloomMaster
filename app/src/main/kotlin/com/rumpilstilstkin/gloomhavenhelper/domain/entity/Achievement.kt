@@ -15,22 +15,23 @@ data class Achievement(
             slug: String = "Achievement 1",
             value: Int = 1,
             maxValue: Int = 1,
-            isGlobal: Boolean = false
+            isGlobal: Boolean = false,
         ) = Achievement(
             slug = slug,
             value = value,
             maxValue = maxValue,
-            isGlobal = isGlobal
+            isGlobal = isGlobal,
         )
     }
 
-    fun toAchievementWithName(name: String?) = AchievementWithName(
-        slug = slug,
-        value = value,
-        maxValue = maxValue,
-        name = name ?: "",
-        isGlobal = isGlobal
-    )
+    fun toAchievementWithName(name: String?) =
+        AchievementWithName(
+            slug = slug,
+            value = value,
+            maxValue = maxValue,
+            name = name ?: "",
+            isGlobal = isGlobal,
+        )
 }
 
 @Serializable
@@ -39,15 +40,15 @@ data class AchievementWithName(
     val name: String,
     val value: Int,
     val maxValue: Int,
-    val isGlobal: Boolean
+    val isGlobal: Boolean,
 ) {
-
-    fun toAchievement() = Achievement(
-        slug = slug,
-        value = value,
-        maxValue = maxValue,
-        isGlobal = isGlobal
-    )
+    fun toAchievement() =
+        Achievement(
+            slug = slug,
+            value = value,
+            maxValue = maxValue,
+            isGlobal = isGlobal,
+        )
 
     companion object {
         fun fixture(
@@ -55,13 +56,13 @@ data class AchievementWithName(
             slug: String = name,
             value: Int = 1,
             maxValue: Int = 1,
-            isGlobal: Boolean = false
+            isGlobal: Boolean = false,
         ) = AchievementWithName(
             slug = slug,
             value = value,
             maxValue = maxValue,
             name = name,
-            isGlobal = isGlobal
+            isGlobal = isGlobal,
         )
     }
 }

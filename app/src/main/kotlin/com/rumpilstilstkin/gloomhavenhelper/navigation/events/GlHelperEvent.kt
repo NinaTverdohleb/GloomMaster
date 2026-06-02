@@ -3,7 +3,13 @@ package com.rumpilstilstkin.gloomhavenhelper.navigation.events
 import com.rumpilstilstkin.gloomhavenhelper.navigation.GlHelperScreens
 
 sealed interface GlHelperEvent {
-    data class Screen(val screen: GlHelperScreens): GlHelperEvent
-    data object Back: GlHelperEvent
-    data class Message(val text: String): GlHelperEvent
+    data class Screen(
+        val screen: GlHelperScreens,
+    ) : GlHelperEvent
+
+    data object Back : GlHelperEvent
+
+    data class Message(
+        val text: String,
+    ) : GlHelperEvent
 }

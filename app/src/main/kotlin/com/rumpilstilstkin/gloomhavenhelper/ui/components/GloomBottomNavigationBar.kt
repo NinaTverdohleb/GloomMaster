@@ -28,7 +28,7 @@ fun GloomBottomNavigationBar(
     NavigationBar(
         windowInsets = WindowInsets(0, 0, 0, 0),
         containerColor = MaterialTheme.colorScheme.surface,
-        contentColor = MaterialTheme.colorScheme.primary
+        contentColor = MaterialTheme.colorScheme.primary,
     ) {
         items.forEach { item ->
             val title = stringResource(item.titleRes)
@@ -39,17 +39,18 @@ fun GloomBottomNavigationBar(
                     Icon(
                         modifier = Modifier.size(32.dp),
                         painter = painterResource(item.iconRes),
-                        contentDescription = title
+                        contentDescription = title,
                     )
                 },
                 label = { Text(title.replaceFirstChar { it.uppercase() }) },
-                colors = NavigationBarItemDefaults.colors(
-                    selectedIconColor = MaterialTheme.colorScheme.primary,
-                    indicatorColor = MaterialTheme.colorScheme.outline,
-                    selectedTextColor = MaterialTheme.colorScheme.primary,
-                    unselectedIconColor = MaterialTheme.colorScheme.secondary,
-                    unselectedTextColor = MaterialTheme.colorScheme.secondary
-                )
+                colors =
+                    NavigationBarItemDefaults.colors(
+                        selectedIconColor = MaterialTheme.colorScheme.primary,
+                        indicatorColor = MaterialTheme.colorScheme.outline,
+                        selectedTextColor = MaterialTheme.colorScheme.primary,
+                        unselectedIconColor = MaterialTheme.colorScheme.secondary,
+                        unselectedTextColor = MaterialTheme.colorScheme.secondary,
+                    ),
             )
         }
     }
@@ -58,6 +59,7 @@ fun GloomBottomNavigationBar(
 interface NavItem {
     @get:StringRes
     val titleRes: Int
+
     @get:DrawableRes
     val iconRes: Int
 }
@@ -69,14 +71,14 @@ fun CampaignEmptyStatePreview() {
         GloomBottomNavigationBar(
             items = SampleScreenTab.entries,
             selectedItem = SampleScreenTab.PROSPERITY,
-            selectTab = {}
+            selectTab = {},
         )
     }
 }
 
 private enum class SampleScreenTab(
     override val titleRes: Int,
-    override val iconRes: Int
+    override val iconRes: Int,
 ) : NavItem {
     INFO(R.string.app_name, R.drawable.ic_fly),
     PROSPERITY(R.string.app_name, R.drawable.ic_fly),

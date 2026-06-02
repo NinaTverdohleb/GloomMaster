@@ -15,15 +15,15 @@ data class ScenariosTabStateUi(
 ) {
     companion object {
         fun fixture(
-            sections: ImmutableMap<ScenarioSectionType, ScenariosSection> = persistentMapOf(
-                ScenarioSectionType.ACCESS to ScenariosSection.fixture(isExpanded = true),
-                ScenarioSectionType.FINISHED to ScenariosSection.fixture()
-            ),
+            sections: ImmutableMap<ScenarioSectionType, ScenariosSection> =
+                persistentMapOf(
+                    ScenarioSectionType.ACCESS to ScenariosSection.fixture(isExpanded = true),
+                    ScenarioSectionType.FINISHED to ScenariosSection.fixture(),
+                ),
         ) = ScenariosTabStateUi(
             sections = sections,
         )
     }
-
 }
 
 @Immutable
@@ -42,17 +42,35 @@ data class ScenariosSection(
     }
 }
 
-enum class ScenarioSectionType(@get:StringRes val titleRes: Int, val isActive: Boolean) {
+enum class ScenarioSectionType(
+    @get:StringRes val titleRes: Int,
+    val isActive: Boolean,
+) {
     ACCESS(R.string.available_scenarios_tab, true),
     BLOCKED(R.string.blocked_scenarios_tab, false),
-    FINISHED(R.string.finished_scenarios_tab, false)
+    FINISHED(R.string.finished_scenarios_tab, false),
 }
 
 sealed interface ScenariosTabAction {
-    data class StartScenario(val scenarioId: Int) : ScenariosTabAction
-    data class CompleteScenario(val scenarioId: Int) : ScenariosTabAction
-    data class ToggleSection(val sectionType: ScenarioSectionType) : ScenariosTabAction
+    data class StartScenario(
+        val scenarioId: Int,
+    ) : ScenariosTabAction
+
+    data class CompleteScenario(
+        val scenarioId: Int,
+    ) : ScenariosTabAction
+
+    data class ToggleSection(
+        val sectionType: ScenarioSectionType,
+    ) : ScenariosTabAction
+
     data object AddScenario : ScenariosTabAction
-    data class DeleteScenario(val scenarioNumber: Int) : ScenariosTabAction
-    data class RestoreScenario(val scenarioNumber: Int) : ScenariosTabAction
+
+    data class DeleteScenario(
+        val scenarioNumber: Int,
+    ) : ScenariosTabAction
+
+    data class RestoreScenario(
+        val scenarioNumber: Int,
+    ) : ScenariosTabAction
 }

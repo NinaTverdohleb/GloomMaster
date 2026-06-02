@@ -35,7 +35,7 @@ internal fun ShopTabScreen(
     addItems: () -> Unit,
     deleteItem: (goodId: Int) -> Unit,
     selectFilter: (type: GoodType) -> Unit,
-    enterSearchText: (text: String) -> Unit
+    enterSearchText: (text: String) -> Unit,
 ) {
     Column(
         modifier = Modifier.fillMaxSize(),
@@ -44,22 +44,22 @@ internal fun ShopTabScreen(
             searchText = state.searchText,
             filterType = state.selectedFilter,
             selectFilter = selectFilter,
-            changeSearchText = enterSearchText
+            changeSearchText = enterSearchText,
         )
         var selectedGood by remember { mutableStateOf<GoodUi?>(null) }
         LazyColumn(
             modifier = Modifier.weight(1f),
             verticalArrangement = Arrangement.spacedBy(8.dp),
-            contentPadding = PaddingValues(vertical = 16.dp)
+            contentPadding = PaddingValues(vertical = 16.dp),
         ) {
             items(
                 items = state.avaliableGoods,
-                key = { it.goodId }
+                key = { it.goodId },
             ) { good ->
                 GoodItem(
                     modifier = Modifier.animateItem(),
                     good = good,
-                    clickItem = { selectedGood = it }
+                    clickItem = { selectedGood = it },
                 )
             }
         }
@@ -72,20 +72,21 @@ internal fun ShopTabScreen(
                 },
                 isActionPositive = false,
                 buttonText = stringResource(R.string.delete),
-                imagePath = good.imagePath
+                imagePath = good.imagePath,
             )
         }
         if (state.canAdd) {
             Button(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(16.dp),
+                modifier =
+                    Modifier
+                        .fillMaxWidth()
+                        .padding(16.dp),
                 onClick = addItems,
-                contentPadding = PaddingValues(16.dp)
+                contentPadding = PaddingValues(16.dp),
             ) {
                 Text(
                     text = stringResource(R.string.add_item),
-                    fontSize = 16.sp
+                    fontSize = 16.sp,
                 )
             }
         }
@@ -97,20 +98,22 @@ internal fun ShopTabScreen(
 private fun ShopTabScreenPreview() {
     GloomhavenMasterTheme {
         ShopTabScreen(
-            state = ShopTabStateUi(
-                avaliableGoods = persistentListOf(
-                    GoodUi.fixture(
-                        id = 1,
-                    ),
-                    GoodUi.fixture(
-                        id = 2,
-                    )
-                )
-            ),
+            state =
+                ShopTabStateUi(
+                    avaliableGoods =
+                        persistentListOf(
+                            GoodUi.fixture(
+                                id = 1,
+                            ),
+                            GoodUi.fixture(
+                                id = 2,
+                            ),
+                        ),
+                ),
             deleteItem = {},
             selectFilter = {},
             enterSearchText = {},
-            addItems = {}
+            addItems = {},
         )
     }
 }

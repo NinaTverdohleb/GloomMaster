@@ -13,19 +13,22 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MainActivityViewModel @Inject constructor(
-    databaseFiller: DatabaseFiller
+    databaseFiller: DatabaseFiller,
 ) : ViewModel() {
-    val uiState: StateFlow<MainActivityUiState> = flowOf(1).map {
-        databaseFiller.fillDatabase()
-        MainActivityUiState.Success
-    }.stateIn(
-        scope = viewModelScope,
-        initialValue = MainActivityUiState.Loading,
-        started = SharingStarted.WhileSubscribed(5_000),
-    )
+    val uiState: StateFlow<MainActivityUiState> =
+        flowOf(1)
+            .map {
+                databaseFiller.fillDatabase()
+                MainActivityUiState.Success
+            }.stateIn(
+                scope = viewModelScope,
+                initialValue = MainActivityUiState.Loading,
+                started = SharingStarted.WhileSubscribed(5_000),
+            )
 }
 
 sealed interface MainActivityUiState {
     data object Loading : MainActivityUiState
+
     data object Success : MainActivityUiState
 }

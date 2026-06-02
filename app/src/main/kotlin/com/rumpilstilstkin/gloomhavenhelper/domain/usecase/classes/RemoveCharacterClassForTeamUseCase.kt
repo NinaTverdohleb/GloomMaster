@@ -11,13 +11,12 @@ class RemoveCharacterClassForTeamUseCase @Inject constructor(
     private val teamRepository: TeamRepository,
     private val characterClassRepository: CharacterClassRepository,
 ) {
-
     @OptIn(ExperimentalCoroutinesApi::class)
     suspend operator fun invoke(type: CharacterClassType) {
         val team = teamRepository.currentTeam.first() ?: return
         characterClassRepository.removeAvailableClass(
             teamId = team.teamId,
-            type = type
+            type = type,
         )
     }
 }

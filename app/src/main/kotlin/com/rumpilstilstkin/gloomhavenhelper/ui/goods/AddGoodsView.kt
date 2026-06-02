@@ -40,32 +40,33 @@ fun AddGoodsView(
     var selectedGood by remember { mutableStateOf<GoodUi?>(null) }
 
     Column(
-        modifier = modifier
-            .fillMaxSize()
-            .padding(8.dp)
+        modifier =
+            modifier
+                .fillMaxSize()
+                .padding(8.dp),
     ) {
         GoodFilters(
             searchText = state.searchText,
             filterType = state.selectedFilter,
             selectFilter = selectFilter,
-            changeSearchText = changeSearchText
+            changeSearchText = changeSearchText,
         )
         Spacer(
-            modifier = Modifier.height(16.dp)
+            modifier = Modifier.height(16.dp),
         )
         LazyColumn(
             modifier = Modifier.weight(1f),
             verticalArrangement = Arrangement.spacedBy(8.dp),
-            contentPadding = PaddingValues(vertical = 16.dp)
+            contentPadding = PaddingValues(vertical = 16.dp),
         ) {
             if (state.selectedGoods.isNotEmpty()) {
                 item {
                     Text(
                         text = stringResource(R.string.selected_goods),
-                        style = MaterialTheme.typography.titleLarge
+                        style = MaterialTheme.typography.titleLarge,
                     )
                     Spacer(
-                        modifier = Modifier.height(16.dp)
+                        modifier = Modifier.height(16.dp),
                     )
                 }
                 items(state.selectedGoods) { good ->
@@ -73,17 +74,17 @@ fun AddGoodsView(
                         modifier = Modifier.animateItem(),
                         good = good,
                         active = true,
-                        clickItem = { selectedGood = it }
+                        clickItem = { selectedGood = it },
                     )
                 }
             }
             item {
                 Text(
                     text = stringResource(R.string.available_goods),
-                    style = MaterialTheme.typography.titleLarge
+                    style = MaterialTheme.typography.titleLarge,
                 )
                 Spacer(
-                    modifier = Modifier.height(16.dp)
+                    modifier = Modifier.height(16.dp),
                 )
             }
 
@@ -91,13 +92,12 @@ fun AddGoodsView(
                 GoodItem(
                     modifier = Modifier.animateItem(),
                     good = good,
-                    clickItem = { selectedGood = it }
+                    clickItem = { selectedGood = it },
                 )
             }
         }
         bottomContent()
     }
-
 
     selectedGood?.let { good ->
         if (state.selectedGoods.contains(good)) {
@@ -109,7 +109,7 @@ fun AddGoodsView(
                 },
                 buttonText = stringResource(R.string.remove),
                 isActionPositive = false,
-                imagePath = good.imagePath
+                imagePath = good.imagePath,
             )
         } else {
             GoodDetailsDialog(
@@ -119,7 +119,7 @@ fun AddGoodsView(
                     selectedGood = null
                 },
                 buttonText = stringResource(R.string.add),
-                imagePath = good.imagePath
+                imagePath = good.imagePath,
             )
         }
     }
@@ -135,7 +135,7 @@ private fun GoodFiltersPreview() {
             selectFilter = {},
             changeSearchText = {},
             selectGood = {},
-            unselectGood = {}
+            unselectGood = {},
         )
     }
 }

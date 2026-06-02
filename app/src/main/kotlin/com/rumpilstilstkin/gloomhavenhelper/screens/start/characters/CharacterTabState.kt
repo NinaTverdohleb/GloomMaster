@@ -12,31 +12,32 @@ data class CharactersTabStateUi(
     val filterAlive: Boolean = true,
     val canAdd: Boolean = true,
     val characters: ImmutableList<CharacterUI> = persistentListOf(),
-    val avaliableClasses: ImmutableList<CharacterClassTypeUI> = persistentListOf()
+    val avaliableClasses: ImmutableList<CharacterClassTypeUI> = persistentListOf(),
 ) {
     companion object {
         fun fixture(
             filterAlive: Boolean = true,
-            characters: ImmutableList<CharacterUI> = persistentListOf(
-                CharacterUI.fixture(
-                    name = "Character 1"
+            characters: ImmutableList<CharacterUI> =
+                persistentListOf(
+                    CharacterUI.fixture(
+                        name = "Character 1",
+                    ),
+                    CharacterUI.fixture(
+                        name = "Character 2",
+                    ),
                 ),
-                CharacterUI.fixture(
-                    name = "Character 2"
-                )
-            ),
-            avaliableClasses: ImmutableList<CharacterClassTypeUI> = persistentListOf(
-                CharacterClassTypeUI.Brute,
-                CharacterClassTypeUI.Elementalist
-            )
+            avaliableClasses: ImmutableList<CharacterClassTypeUI> =
+                persistentListOf(
+                    CharacterClassTypeUI.Brute,
+                    CharacterClassTypeUI.Elementalist,
+                ),
         ) = CharactersTabStateUi(
             characters = characters,
             filterAlive = filterAlive,
-            avaliableClasses = avaliableClasses
+            avaliableClasses = avaliableClasses,
         )
     }
 }
-
 
 data class CharactersTabStateLogic(
     val filterAlive: Boolean = true,
@@ -47,13 +48,25 @@ sealed interface CharactersTabAction {
     data class AddCharacter(
         val name: String,
         val level: Int,
-        val characterType: CharacterClassTypeUI
+        val characterType: CharacterClassTypeUI,
     ) : CharactersTabAction
 
     data object SwitchAlive : CharactersTabAction
+
     data object ShowAddCharacterDialog : CharactersTabAction
+
     data object CloseAddCharacterDialog : CharactersTabAction
-    data class CharacterDetails(val characterId: Int) : CharactersTabAction
-    data class SwitchClassAvailability(val type: CharacterClassTypeUI) : CharactersTabAction
-    data class ChangeLevel(val characterId: Int, val level: Int) : CharactersTabAction
+
+    data class CharacterDetails(
+        val characterId: Int,
+    ) : CharactersTabAction
+
+    data class SwitchClassAvailability(
+        val type: CharacterClassTypeUI,
+    ) : CharactersTabAction
+
+    data class ChangeLevel(
+        val characterId: Int,
+        val level: Int,
+    ) : CharactersTabAction
 }

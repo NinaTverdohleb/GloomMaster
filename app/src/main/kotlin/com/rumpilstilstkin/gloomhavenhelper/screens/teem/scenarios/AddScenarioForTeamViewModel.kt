@@ -25,38 +25,38 @@ class AddScenarioForTeamViewModel @Inject constructor(
     getAvailableScenariosUseCase: GetAvailableScenariosForTeamUseCase,
     private val addScenarioToTeamUseCase: AddScenarioToTeamUseCase,
 ) : ViewModel() {
-
     private val _navigationEvents = MutableSharedFlow<GlHelperEvent>()
     val navigationEvents = _navigationEvents.asSharedFlow()
 
     private val logicState = MutableStateFlow(AddScenarioForTeamLogicState())
 
-    val uiState: StateFlow<AddScenarioForTeamUiState> = combine(
-        logicState,
-        getAvailableScenariosUseCase(),
-    ) { state, allScenarios ->
-        val filteredScenarios: List<ShortScenarioUI> = allScenarios
-            .filter { scenario ->
-                if (state.searchText.isBlank()) {
-                    true
-                } else {
-                    scenario.scenarioNumber.toString().contains(state.searchText, ignoreCase = true) ||
-                            scenario.scenarioName.contains(state.searchText, ignoreCase = true)
-                }
-            }
-            .map { it.toUi() }
-            .sortedBy { it.scenarioNumber }
+    val uiState: StateFlow<AddScenarioForTeamUiState> =
+        combine(
+            logicState,
+            getAvailableScenariosUseCase(),
+        ) { state, allScenarios ->
+            val filteredScenarios: List<ShortScenarioUI> =
+                allScenarios
+                    .filter { scenario ->
+                        if (state.searchText.isBlank()) {
+                            true
+                        } else {
+                            scenario.scenarioNumber.toString().contains(state.searchText, ignoreCase = true) ||
+                                scenario.scenarioName.contains(state.searchText, ignoreCase = true)
+                        }
+                    }.map { it.toUi() }
+                    .sortedBy { it.scenarioNumber }
 
-        AddScenarioForTeamUiState(
-            scenarios = filteredScenarios.toImmutableList(),
-            searchText = state.searchText,
-            selectedScenario = state.selectedScenario,
+            AddScenarioForTeamUiState(
+                scenarios = filteredScenarios.toImmutableList(),
+                searchText = state.searchText,
+                selectedScenario = state.selectedScenario,
+            )
+        }.stateIn(
+            scope = viewModelScope,
+            initialValue = AddScenarioForTeamUiState(),
+            started = SharingStarted.WhileSubscribed(5000),
         )
-    }.stateIn(
-        scope = viewModelScope,
-        initialValue = AddScenarioForTeamUiState(),
-        started = SharingStarted.WhileSubscribed(5000),
-    )
 
     fun onAction(action: AddScenarioForTeamAction) {
         viewModelScope.launch {

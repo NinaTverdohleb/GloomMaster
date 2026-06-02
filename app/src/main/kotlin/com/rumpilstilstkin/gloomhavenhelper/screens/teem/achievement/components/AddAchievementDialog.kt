@@ -38,10 +38,10 @@ fun AddAchievementDialog(
             ) {
                 items(
                     items = availableAchievements,
-                    key = { it.slug }
+                    key = { it.slug },
                 ) { achievement ->
                     GloomCard(
-                        modifier = Modifier.clickable { onSelect(achievement) }
+                        modifier = Modifier.clickable { onSelect(achievement) },
                     ) {
                         Text(
                             text = achievement.name,
@@ -52,7 +52,7 @@ fun AddAchievementDialog(
                     }
                 }
             }
-        }
+        },
     )
 }
 
@@ -61,11 +61,12 @@ fun AddAchievementDialog(
 private fun AddAchievementDialogPreview() {
     GloomhavenMasterTheme {
         AddAchievementDialog(
-            availableAchievements = persistentListOf(
-                AchievementWithName.fixture("First Steps"),
-                AchievementWithName.fixture("Jekserah's Plans"),
-                AchievementWithName.fixture("Ancient Technology", ),
-            ),
+            availableAchievements =
+                persistentListOf(
+                    AchievementWithName.fixture("First Steps"),
+                    AchievementWithName.fixture("Jekserah's Plans"),
+                    AchievementWithName.fixture("Ancient Technology"),
+                ),
             onDismiss = {},
             onSelect = {},
         )

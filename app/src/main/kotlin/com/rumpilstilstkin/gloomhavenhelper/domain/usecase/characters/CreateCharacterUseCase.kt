@@ -13,22 +13,22 @@ class CreateCharacterUseCase @Inject constructor(
     private val characterRepository: CharacterRepository,
     private val teamRepository: TeamRepository,
 ) {
-
     @OptIn(ExperimentalCoroutinesApi::class)
     suspend operator fun invoke(
         name: String,
         level: Int,
-        characterType: CharacterClassType
+        characterType: CharacterClassType,
     ) {
         val team = teamRepository.currentTeam.first() ?: return
-        val character = CharacterForSave(
-            name = name,
-            level = level,
-            characterType = characterType,
-            teamId = team.teamId,
-            experience = getExpForLevel(level),
-            additionalContOfPerks = team.countRetiredCharacters
-        )
+        val character =
+            CharacterForSave(
+                name = name,
+                level = level,
+                characterType = characterType,
+                teamId = team.teamId,
+                experience = getExpForLevel(level),
+                additionalContOfPerks = team.countRetiredCharacters,
+            )
         characterRepository.addCharacter(character)
     }
 }

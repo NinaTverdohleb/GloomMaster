@@ -40,34 +40,36 @@ fun CharacterItemsTabScreen(
     goods: List<GoodUi>,
     deleteGood: (Int) -> Unit,
     addGoods: () -> Unit,
-    sellGood: (id: Int, cost: Int) -> Unit
+    sellGood: (id: Int, cost: Int) -> Unit,
 ) {
     Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(8.dp)
+        modifier =
+            Modifier
+                .fillMaxSize()
+                .padding(8.dp),
     ) {
         var selectedGood by remember { mutableStateOf<GoodUi?>(null) }
 
         LazyColumn(
             modifier = Modifier.weight(1f),
             verticalArrangement = Arrangement.spacedBy(8.dp),
-            contentPadding = PaddingValues(vertical = 16.dp)
+            contentPadding = PaddingValues(vertical = 16.dp),
         ) {
             items(goods) { good ->
                 GoodItem(
                     modifier = Modifier.animateItem(),
                     good = good,
                     active = true,
-                    clickItem = { selectedGood = it }
+                    clickItem = { selectedGood = it },
                 )
             }
         }
 
         Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(8.dp),
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .padding(8.dp),
             horizontalArrangement = Arrangement.spacedBy(8.dp),
         ) {
             Button(
@@ -81,24 +83,25 @@ fun CharacterItemsTabScreen(
         selectedGood?.let { good ->
             GoodDetailsDialogCustomActions(
                 dismiss = { selectedGood = null },
-                imagePath = good.imagePath
+                imagePath = good.imagePath,
             ) {
                 Column(
                     modifier = Modifier.fillMaxWidth(),
-                    verticalArrangement = Arrangement.spacedBy(8.dp)
+                    verticalArrangement = Arrangement.spacedBy(8.dp),
                 ) {
                     OutlinedButton(
                         modifier = Modifier.fillMaxWidth(),
                         shape = RoundedCornerShape(16.dp),
                         border = BorderStroke(1.dp, MaterialTheme.colorScheme.error),
-                        colors = ButtonDefaults.outlinedButtonColors(
-                            containerColor = Color.Transparent,
-                            contentColor = MaterialTheme.colorScheme.error,
-                        ),
+                        colors =
+                            ButtonDefaults.outlinedButtonColors(
+                                containerColor = Color.Transparent,
+                                contentColor = MaterialTheme.colorScheme.error,
+                            ),
                         onClick = {
                             deleteGood(good.goodId)
                             selectedGood = null
-                        }
+                        },
                     ) {
                         Text(text = stringResource(R.string.delete))
                     }
@@ -106,14 +109,15 @@ fun CharacterItemsTabScreen(
                         modifier = Modifier.fillMaxWidth(),
                         shape = RoundedCornerShape(16.dp),
                         border = BorderStroke(1.dp, MaterialTheme.colorScheme.secondary),
-                        colors = ButtonDefaults.outlinedButtonColors(
-                            containerColor = Color.Transparent,
-                            contentColor = MaterialTheme.colorScheme.onSurface,
-                        ),
+                        colors =
+                            ButtonDefaults.outlinedButtonColors(
+                                containerColor = Color.Transparent,
+                                contentColor = MaterialTheme.colorScheme.onSurface,
+                            ),
                         onClick = {
                             sellGood(good.goodId, good.cost)
                             selectedGood = null
-                        }
+                        },
                     ) {
                         Text(text = stringResource(R.string.sell_button))
                     }
@@ -128,17 +132,18 @@ fun CharacterItemsTabScreen(
 private fun CharacterItemsTabPreview() {
     GloomhavenMasterTheme {
         CharacterItemsTabScreen(
-            goods = listOf(
-                GoodUi.fixture(
-                    id = 1,
+            goods =
+                listOf(
+                    GoodUi.fixture(
+                        id = 1,
+                    ),
+                    GoodUi.fixture(
+                        id = 1,
+                    ),
                 ),
-                GoodUi.fixture(
-                    id = 1,
-                )
-            ),
             deleteGood = {},
             addGoods = {},
-            sellGood = {_, _ ->},
+            sellGood = { _, _ -> },
         )
     }
 }

@@ -40,66 +40,69 @@ internal fun ScenarioHeader(
     modifier: Modifier = Modifier,
     clickMagic: (magic: Magic) -> Unit,
 ) = Column(
-    modifier = modifier.padding(horizontal = 16.dp, vertical = 8.dp)
+    modifier = modifier.padding(horizontal = 16.dp, vertical = 8.dp),
 ) {
     var showStatsDialog by remember { mutableStateOf(false) }
 
-    if(showStatsDialog){
+    if (showStatsDialog) {
         ScenarioStatsDialog(
             level = level,
             exp = exp,
             gold = gold,
             trapDamage = trapDamage,
-            onDismiss = { showStatsDialog = false }
+            onDismiss = { showStatsDialog = false },
         )
     }
 
     Text(
         text = title,
         style = MaterialTheme.typography.headlineSmall,
-        color = MaterialTheme.colorScheme.onSurface
+        color = MaterialTheme.colorScheme.onSurface,
     )
     Spacer(
-        modifier = Modifier.height(8.dp)
+        modifier = Modifier.height(8.dp),
     )
     ScenarioStatsRow(
-        modifier = Modifier.clickable{
-            showStatsDialog = true
-        },
+        modifier =
+            Modifier.clickable {
+                showStatsDialog = true
+            },
         level = level,
         exp = exp,
         gold = gold,
-        trapDamage = trapDamage
+        trapDamage = trapDamage,
     )
     Spacer(
-        modifier = Modifier.height(16.dp)
+        modifier = Modifier.height(16.dp),
     )
     Row(
         modifier = Modifier.fillMaxWidth(),
-        horizontalArrangement = Arrangement.SpaceBetween
+        horizontalArrangement = Arrangement.SpaceBetween,
     ) {
         magics.keys.forEach { magic ->
             IconButton(
                 onClick = { clickMagic(magic) },
                 modifier = Modifier.size(52.dp),
             ) {
-                val charge =getChargeImage(magics[magic])
+                val charge = getChargeImage(magics[magic])
                 charge?.let { image ->
                     Icon(
                         painter = painterResource(id = image),
                         contentDescription = null,
-                        modifier = modifier
-                            .size(52.dp),
-                        tint = MaterialTheme.colorScheme.primary
+                        modifier =
+                            modifier
+                                .size(52.dp),
+                        tint = MaterialTheme.colorScheme.primary,
                     )
                 }
                 val icon = magic.toIcon()
                 Icon(
                     painter = painterResource(id = icon.imageRes),
                     contentDescription = stringResource(icon.titleRes),
-                    modifier = modifier
-                        .size(32.dp),
-                    tint = icon.color?: Color.White
+                    modifier =
+                        modifier
+                            .size(32.dp),
+                    tint = icon.color ?: Color.White,
                 )
             }
         }
@@ -115,16 +118,17 @@ private fun ScenarioHeaderPreview() {
             exp = 100,
             gold = 100,
             trapDamage = 3,
-            magics = mapOf(
-                Magic.FIRE to 0,
-                Magic.FROST to 2,
-                Magic.AIR to 0,
-                Magic.EARTH to 2,
-                Magic.SUN to 1,
-                Magic.MOON to 2,
-            ),
+            magics =
+                mapOf(
+                    Magic.FIRE to 0,
+                    Magic.FROST to 2,
+                    Magic.AIR to 0,
+                    Magic.EARTH to 2,
+                    Magic.SUN to 1,
+                    Magic.MOON to 2,
+                ),
             title = "Black Barrow",
-            clickMagic = {}
+            clickMagic = {},
         )
     }
 }

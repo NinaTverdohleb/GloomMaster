@@ -16,7 +16,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
 
-
 @Composable
 fun GloomVariantCard(
     modifier: Modifier = Modifier,
@@ -25,31 +24,32 @@ fun GloomVariantCard(
 ) {
     Card(
         modifier = modifier,
-        colors = cardColors(
-            containerColor = MaterialTheme.colorScheme.secondaryContainer,
-        ),
-        border = BorderStroke(
-            1.dp,
-            if (active) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.outline
-        )
+        colors =
+            cardColors(
+                containerColor = MaterialTheme.colorScheme.secondaryContainer,
+            ),
+        border =
+            BorderStroke(
+                1.dp,
+                if (active) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.outline,
+            ),
     ) {
         Column(
             modifier = Modifier.padding(8.dp),
-            content = content
+            content = content,
         )
     }
 }
-
 
 @Preview
 @Composable
 private fun GloomVariantCardPreview() {
     GloomhavenMasterTheme {
         GloomVariantCard(
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier.fillMaxWidth(),
         ) {
             Box(
-                modifier = Modifier.height(40.dp)
+                modifier = Modifier.height(40.dp),
             )
         }
     }

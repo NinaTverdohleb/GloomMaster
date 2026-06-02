@@ -25,7 +25,6 @@ import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomSize
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.RoundButton
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
 
-
 @Composable
 internal fun CharacterHeader(
     characterClass: CharacterClassTypeUI,
@@ -36,48 +35,48 @@ internal fun CharacterHeader(
     clickLevel: () -> Unit,
 ) {
     Column(
-        modifier = modifier
-            .fillMaxWidth()
-            .padding(16.dp),
+        modifier =
+            modifier
+                .fillMaxWidth()
+                .padding(16.dp),
     ) {
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.Start,
-            verticalAlignment = Alignment.CenterVertically
+            verticalAlignment = Alignment.CenterVertically,
         ) {
-
             Icon(
                 painter = painterResource(characterClass.image),
                 contentDescription = null,
                 modifier = Modifier.size(48.dp),
-                tint = MaterialTheme.colorScheme.primary
+                tint = MaterialTheme.colorScheme.primary,
             )
 
             Spacer(modifier = Modifier.width(8.dp))
             Column(
-                modifier = Modifier
-                    .weight(1f)
-                    .clickable { onNameClick() },
+                modifier =
+                    Modifier
+                        .weight(1f)
+                        .clickable { onNameClick() },
             ) {
                 Text(
                     text = name,
                     style = MaterialTheme.typography.bodyLarge,
-                    color = MaterialTheme.colorScheme.onSurface
+                    color = MaterialTheme.colorScheme.onSurface,
                 )
                 Spacer(modifier = Modifier.height(8.dp))
                 Text(
                     text = stringResource(characterClass.titleRes),
                     style = MaterialTheme.typography.bodyMedium,
-                    color = MaterialTheme.colorScheme.onSurface
+                    color = MaterialTheme.colorScheme.onSurface,
                 )
             }
 
             RoundButton(
                 text = level.toString(),
                 size = GloomSize.M,
-                onClick = clickLevel
+                onClick = clickLevel,
             )
-
         }
     }
 }
@@ -91,8 +90,7 @@ private fun CharacterHeaderPreview() {
             name = "Warrior",
             level = 10,
             onNameClick = { },
-            clickLevel = { }
+            clickLevel = { },
         )
     }
-
 }

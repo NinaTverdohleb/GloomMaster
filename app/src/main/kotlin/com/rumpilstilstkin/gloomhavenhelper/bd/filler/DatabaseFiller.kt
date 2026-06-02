@@ -38,6 +38,7 @@ class DatabaseFiller @Inject constructor(
                 fillMain()
                 fillForgottenCircles()
             }
+
             // Example for a future language: when "de" assets are added, bump VERSION and seed
             // only its translations for the packs that have them — base data is left untouched.
             // 5 -> fillLocale(locale = "de", packs = listOf("main", "forgottenCircles"))
@@ -45,7 +46,10 @@ class DatabaseFiller @Inject constructor(
         }
     }
 
-    suspend fun fillLocale(locale: String, packs: List<String>) {
+    suspend fun fillLocale(
+        locale: String,
+        packs: List<String>,
+    ) {
         packs.forEach { pack ->
             scenarioJsonFiller.fillTranslations(pack, locale)
             goodJsonFiller.fillTranslations(pack, locale)

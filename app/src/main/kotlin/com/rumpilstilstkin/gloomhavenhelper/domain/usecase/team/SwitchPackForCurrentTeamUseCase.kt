@@ -10,11 +10,12 @@ class SwitchPackForCurrentTeamUseCase @Inject constructor(
 ) {
     suspend operator fun invoke(packType: PackType) {
         val currentTeam = teamRepository.currentTeam.first() ?: return
-        val newPacks = if (packType in currentTeam.packs) {
-            currentTeam.packs - packType
-        } else {
-            currentTeam.packs + packType
-        }
+        val newPacks =
+            if (packType in currentTeam.packs) {
+                currentTeam.packs - packType
+            } else {
+                currentTeam.packs + packType
+            }
         teamRepository.updateTeam(currentTeam.copy(packs = newPacks))
     }
 }

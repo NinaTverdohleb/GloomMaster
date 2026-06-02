@@ -12,7 +12,6 @@ import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface CharacterDao {
-
     @Query("SELECT * FROM CharacterBd")
     fun getAllCharacters(): Flow<List<CharacterBd>>
 

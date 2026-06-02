@@ -19,38 +19,40 @@ import javax.inject.Singleton
 class ScenarioRepository @Inject constructor(
     private val scenarioDao: ScenarioDao,
     private val teamScenarioDao: TeamScenarioDao,
-    private val achievementRepository: AchievementRepository
+    private val achievementRepository: AchievementRepository,
 ) {
     suspend fun getAllScenarios(
         locale: String,
-        packs: List<String>
+        packs: List<String>,
     ): List<ScenarioInfoWithName> {
         val dictionary = achievementRepository.currentDictionary()
-        return scenarioDao.getAll(
-            packs = packs,
-            targetLocale = locale,
-            defaultLocale = LocaleRepository.DEFAULT_LOCALE
-        ).map {
-            it.toDomain(
-                isCompleted = false,
-                dictionary = dictionary
-            )
-        }
+        return scenarioDao
+            .getAll(
+                packs = packs,
+                targetLocale = locale,
+                defaultLocale = LocaleRepository.DEFAULT_LOCALE,
+            ).map {
+                it.toDomain(
+                    isCompleted = false,
+                    dictionary = dictionary,
+                )
+            }
     }
 
     suspend fun getAllTeamScenarios(teamId: Int): List<ScenarioShortInfo> =
         teamScenarioDao.getTeamScenarios(teamId).map {
             it.scenario.toShortDomain(
-                isCompleted = it.teamScenario.completed
+                isCompleted = it.teamScenario.completed,
             )
         }
 
     fun getTeamScenariosFlow(teamId: Int): Flow<List<ScenarioShortInfo>> =
-        teamScenarioDao.getTeamScenariosFlow(teamId)
+        teamScenarioDao
+            .getTeamScenariosFlow(teamId)
             .map { scenarioBds ->
                 scenarioBds.map {
                     it.scenario.toShortDomain(
-                        isCompleted = it.teamScenario.completed
+                        isCompleted = it.teamScenario.completed,
                     )
                 }
             }
@@ -58,16 +60,16 @@ class ScenarioRepository @Inject constructor(
     suspend fun getScenario(
         scenarioNumber: Int,
         locale: String,
-        isCompleted: Boolean = false
+        isCompleted: Boolean = false,
     ): ScenarioInfoWithName =
-        scenarioDao.getScenarioWithName(
-            scenarioNumber = scenarioNumber,
-            targetLocale = locale,
-            defaultLocale = LocaleRepository.DEFAULT_LOCALE
-        )
-            .toDomain(
+        scenarioDao
+            .getScenarioWithName(
+                scenarioNumber = scenarioNumber,
+                targetLocale = locale,
+                defaultLocale = LocaleRepository.DEFAULT_LOCALE,
+            ).toDomain(
                 isCompleted = isCompleted,
-                dictionary = achievementRepository.currentDictionary()
+                dictionary = achievementRepository.currentDictionary(),
             )
 
     /**
@@ -76,63 +78,80 @@ class ScenarioRepository @Inject constructor(
      */
     suspend fun getScenariosWithName(
         scenarios: List<ScenarioShortInfo>,
-        locale: String
+        locale: String,
     ): List<ScenarioInfoWithName> {
         if (scenarios.isEmpty()) return emptyList()
         val dictionary = achievementRepository.currentDictionary()
         val completedByNumber = scenarios.associate { it.scenarioNumber to it.isCompleted }
-        return scenarioDao.getScenariosWithNameByNumbers(
-            scenarioNumbers = scenarios.map { it.scenarioNumber },
-            targetLocale = locale,
-            defaultLocale = LocaleRepository.DEFAULT_LOCALE
-        ).map { scenario ->
-            scenario.toDomain(
-                isCompleted = completedByNumber[scenario.scenarioNumber] ?: false,
-                dictionary = dictionary
-            )
-        }
+        return scenarioDao
+            .getScenariosWithNameByNumbers(
+                scenarioNumbers = scenarios.map { it.scenarioNumber },
+                targetLocale = locale,
+                defaultLocale = LocaleRepository.DEFAULT_LOCALE,
+            ).map { scenario ->
+                scenario.toDomain(
+                    isCompleted = completedByNumber[scenario.scenarioNumber] ?: false,
+                    dictionary = dictionary,
+                )
+            }
     }
 
     suspend fun getShortScenario(scenarioNumber: Int): ScenarioInfo =
-        scenarioDao.getScenario(
-            scenarioNumber = scenarioNumber,
-        ).toInfoDomain()
+        scenarioDao
+            .getScenario(
+                scenarioNumber = scenarioNumber,
+            ).toInfoDomain()
 
-    suspend fun saveTeamScenario(scenarioNumber: Int, teamId: Int) {
+    suspend fun saveTeamScenario(
+        scenarioNumber: Int,
+        teamId: Int,
+    ) {
         teamScenarioDao.insertAll(
             TeamScenarioBd(
                 teamId = teamId,
                 scenarioNumber = scenarioNumber,
-            )
+            ),
         )
     }
 
-    suspend fun addTeamScenarios(scenarios: List<Pair<Int, Boolean>>, teamId: Int) {
+    suspend fun addTeamScenarios(
+        scenarios: List<Pair<Int, Boolean>>,
+        teamId: Int,
+    ) {
         teamScenarioDao.insertAll(
-            *scenarios.map { (number, completed) ->
-                TeamScenarioBd(
-                    teamId = teamId,
-                    scenarioNumber = number,
-                    completed = completed
-                )
-            }.toTypedArray()
+            *scenarios
+                .map { (number, completed) ->
+                    TeamScenarioBd(
+                        teamId = teamId,
+                        scenarioNumber = number,
+                        completed = completed,
+                    )
+                }.toTypedArray(),
         )
     }
 
-    suspend fun completeTeamScenario(teamId: Int, scenarioNumber: Int) {
+    suspend fun completeTeamScenario(
+        teamId: Int,
+        scenarioNumber: Int,
+    ) {
         teamScenarioDao.getTeamScenarioClear(teamId, scenarioNumber).let {
             teamScenarioDao.update(it.copy(completed = true))
         }
     }
 
-    suspend fun restoreTeamScenario(teamId: Int, scenarioNumber: Int) {
+    suspend fun restoreTeamScenario(
+        teamId: Int,
+        scenarioNumber: Int,
+    ) {
         teamScenarioDao.getTeamScenarioClear(teamId, scenarioNumber).let {
             teamScenarioDao.update(it.copy(completed = false))
         }
     }
 
-    suspend fun deleteTeamScenario(teamId: Int, scenarioNumber: Int) {
+    suspend fun deleteTeamScenario(
+        teamId: Int,
+        scenarioNumber: Int,
+    ) {
         teamScenarioDao.deleteTeamScenario(teamId, scenarioNumber)
-
     }
 }

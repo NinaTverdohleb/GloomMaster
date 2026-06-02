@@ -9,7 +9,7 @@ import com.rumpilstilstkin.gloomhavenhelper.bd.entity.PersonalQuestTranslationsB
 import kotlinx.coroutines.flow.Flow
 
 @Dao
-interface PersonalQuestDao  {
+interface PersonalQuestDao {
     @Query("SELECT * FROM PersonalQuestBd")
     suspend fun getQuests(): List<PersonalQuestBd>
 
@@ -26,12 +26,12 @@ interface PersonalQuestDao  {
                   )
               ))
               LIMIT 1
-        """
+        """,
     )
     suspend fun getQuestTranslation(
         questId: String,
         targetLocale: String,
-        defaultLocale: String
+        defaultLocale: String,
     ): PersonalQuestTranslationsBd
 
     @Query(
@@ -46,12 +46,12 @@ interface PersonalQuestDao  {
                       WHERE questId = t.questId AND locale = :targetLocale
                   )
               ))
-        """
+        """,
     )
     suspend fun getTasksTranslation(
         questId: String,
         targetLocale: String,
-        defaultLocale: String
+        defaultLocale: String,
     ): List<PersonalQuestTaskTranslationsBd>
 
     @Query("SELECT * FROM PersonalQuestBd WHERE questId = :questId LIMIT 1")

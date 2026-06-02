@@ -15,7 +15,7 @@ import javax.inject.Singleton
 
 @Singleton
 class SystemLocaleDatasource @Inject constructor(
-    @param:ApplicationContext private val context: Context
+    @param:ApplicationContext private val context: Context,
 ) {
     fun getSystemLocale(): String {
         val configuration = context.resources.configuration
@@ -27,19 +27,23 @@ class SystemLocaleDatasource @Inject constructor(
         }
     }
 
-    fun observeSystemLocale(): Flow<String> = callbackFlow {
-        trySend(getSystemLocale())
+    fun observeSystemLocale(): Flow<String> =
+        callbackFlow {
+            trySend(getSystemLocale())
 
-        val callbacks = object : ComponentCallbacks2 {
-            override fun onConfigurationChanged(newConfig: Configuration) {
-                trySend(getSystemLocale())
-            }
-            @Deprecated("Deprecated in Java")
-            override fun onLowMemory() {}
-            override fun onTrimMemory(level: Int) {}
-        }
+            val callbacks =
+                object : ComponentCallbacks2 {
+                    override fun onConfigurationChanged(newConfig: Configuration) {
+                        trySend(getSystemLocale())
+                    }
 
-        context.registerComponentCallbacks(callbacks)
-        awaitClose { context.unregisterComponentCallbacks(callbacks) }
-    }.distinctUntilChanged()
+                    @Deprecated("Deprecated in Java")
+                    override fun onLowMemory() {}
+
+                    override fun onTrimMemory(level: Int) {}
+                }
+
+            context.registerComponentCallbacks(callbacks)
+            awaitClose { context.unregisterComponentCallbacks(callbacks) }
+        }.distinctUntilChanged()
 }

@@ -10,7 +10,7 @@ data class AchievementBd(
     @PrimaryKey val slug: String,
     val pack: String,
     val maxRang: Int = 1,
-    @ColumnInfo(name = "isGlobal") val isGlobal: Boolean
+    @ColumnInfo(name = "isGlobal") val isGlobal: Boolean,
 )
 
 @Entity(
@@ -20,14 +20,14 @@ data class AchievementBd(
             entity = AchievementBd::class,
             parentColumns = ["slug"],
             childColumns = ["slug"],
-            onDelete = ForeignKey.CASCADE
-        )
-    ]
+            onDelete = ForeignKey.CASCADE,
+        ),
+    ],
 )
 data class AchievementTranslateBd(
     val slug: String,
     val locale: String,
-    val name: String
+    val name: String,
 )
 
 data class AchievementWithTranslation(
@@ -35,5 +35,5 @@ data class AchievementWithTranslation(
     val pack: String,
     val maxRang: Int,
     @ColumnInfo(name = "isGlobal") val isGlobal: Boolean,
-    val name: String
+    val name: String,
 )

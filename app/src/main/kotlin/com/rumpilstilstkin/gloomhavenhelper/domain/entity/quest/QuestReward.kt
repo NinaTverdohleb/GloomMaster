@@ -6,5 +6,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class QuestReward(
     val classType: CharacterClassType? = null,
-    val alternativeReward: String = ""
+    val alternativeReward: String = "",
 )

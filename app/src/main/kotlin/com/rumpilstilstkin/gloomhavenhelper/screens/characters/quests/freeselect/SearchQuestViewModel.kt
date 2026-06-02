@@ -2,8 +2,8 @@ package com.rumpilstilstkin.gloomhavenhelper.screens.characters.quests.freeselec
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.quests.GetQuestsFlowUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.characters.quests.SetQuestForCharacterUseCase
+import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.quests.GetQuestsFlowUseCase
 import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEvent
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.PersonalQuestUI
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.toUI
@@ -28,32 +28,35 @@ import kotlinx.coroutines.launch
 class SearchQuestViewModel @AssistedInject constructor(
     @Assisted val id: Int,
     getQuestsFlowUseCase: GetQuestsFlowUseCase,
-    private val setQuestForCharacterUseCase: SetQuestForCharacterUseCase
+    private val setQuestForCharacterUseCase: SetQuestForCharacterUseCase,
 ) : ViewModel() {
-
     private val _navigationEvents = MutableSharedFlow<GlHelperEvent>()
     val navigationEvents = _navigationEvents.asSharedFlow()
 
-    private val quests: StateFlow<List<PersonalQuestUI>> = getQuestsFlowUseCase().map { quests ->
-        quests.map { it.toUI() }
-    }.stateIn(
-        scope = viewModelScope,
-        initialValue = emptyList(),
-        started = SharingStarted.WhileSubscribed(100),
-    )
+    private val quests: StateFlow<List<PersonalQuestUI>> =
+        getQuestsFlowUseCase()
+            .map { quests ->
+                quests.map { it.toUI() }
+            }.stateIn(
+                scope = viewModelScope,
+                initialValue = emptyList(),
+                started = SharingStarted.WhileSubscribed(100),
+            )
 
     private val queryState: MutableStateFlow<String> = MutableStateFlow("")
 
-    internal val uiState: StateFlow<SearchQuestState> = quests.combine(queryState) { quests, query ->
-        SearchQuestState(
-            quests = quests.filter { it.filterResult(query) }.toImmutableList(),
-            searchText = query
-        )
-    }.stateIn(
-        scope = viewModelScope,
-        initialValue = SearchQuestState(),
-        started = SharingStarted.WhileSubscribed(100),
-    )
+    internal val uiState: StateFlow<SearchQuestState> =
+        quests
+            .combine(queryState) { quests, query ->
+                SearchQuestState(
+                    quests = quests.filter { it.filterResult(query) }.toImmutableList(),
+                    searchText = query,
+                )
+            }.stateIn(
+                scope = viewModelScope,
+                initialValue = SearchQuestState(),
+                started = SharingStarted.WhileSubscribed(100),
+            )
 
     private fun PersonalQuestUI.filterResult(search: String): Boolean {
         if (search.isBlank()) return true
@@ -65,7 +68,9 @@ class SearchQuestViewModel @AssistedInject constructor(
 
         return if (number != null) {
             this.id.contains(number)
-        } else false
+        } else {
+            false
+        }
     }
 
     @AssistedFactory
@@ -79,13 +84,15 @@ class SearchQuestViewModel @AssistedInject constructor(
                 is SearchQuestActions.ChooseQuest -> {
                     setQuestForCharacterUseCase(
                         questId = action.questId,
-                        characterId = id
+                        characterId = id,
                     )
                     _navigationEvents.emit(GlHelperEvent.Back)
                 }
+
                 is SearchQuestActions.Close -> {
                     _navigationEvents.emit(GlHelperEvent.Back)
                 }
+
                 is SearchQuestActions.SearchTextChange -> {
                     queryState.emit(action.text)
                 }
@@ -100,7 +107,13 @@ internal data class SearchQuestState(
 )
 
 sealed interface SearchQuestActions {
-    data class ChooseQuest(val questId: String) : SearchQuestActions
+    data class ChooseQuest(
+        val questId: String,
+    ) : SearchQuestActions
+
     data object Close : SearchQuestActions
-    data class SearchTextChange(val text: String) : SearchQuestActions
+
+    data class SearchTextChange(
+        val text: String,
+    ) : SearchQuestActions
 }

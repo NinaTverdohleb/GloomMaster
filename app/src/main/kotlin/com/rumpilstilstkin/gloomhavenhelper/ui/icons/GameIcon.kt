@@ -7,7 +7,12 @@ import com.rumpilstilstkin.gloomhavenhelper.domain.entity.IconCode
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterStatType
 import java.util.EnumSet
 
-enum class GameIcon(val textCode: IconCode, @param:StringRes val titleRes: Int, val imageRes: Int, val color: Color?) {
+enum class GameIcon(
+    val textCode: IconCode,
+    @param:StringRes val titleRes: Int,
+    val imageRes: Int,
+    val color: Color?,
+) {
     SUN(textCode = IconCode.SUN, titleRes = R.string.icon_light, imageRes = R.drawable.ic_magic_sun, color = Color(0xFFD2A21E)),
     MOON(textCode = IconCode.MOON, titleRes = R.string.icon_light, imageRes = R.drawable.ic_magic_moon, color = Color(0xFF324C5C)),
     FIRE(textCode = IconCode.FIRE, titleRes = R.string.icon_light, imageRes = R.drawable.ic_magic_fire, color = Color(0xFFBF3A0A)),
@@ -37,14 +42,29 @@ enum class GameIcon(val textCode: IconCode, @param:StringRes val titleRes: Int, 
     TARGET(textCode = IconCode.TARGET, titleRes = R.string.icon_target, imageRes = R.drawable.ic_target, color = Color(0xFFA43737)),
     WOUND(textCode = IconCode.WOUND, titleRes = R.string.icon_wound, imageRes = R.drawable.ic_wound, color = Color(0xFFDC7331)),
     PULL(textCode = IconCode.PULL, titleRes = R.string.icon_pull, imageRes = R.drawable.ic_pull, color = Color(0xFF585151)),
-    IMMOBILIZE(textCode = IconCode.PARALYZE, titleRes = R.string.icon_immobilize, imageRes = R.drawable.ic_immobilize, color = Color(0xFF903E3E)),
+    IMMOBILIZE(
+        textCode = IconCode.PARALYZE,
+        titleRes = R.string.icon_immobilize,
+        imageRes = R.drawable.ic_immobilize,
+        color = Color(0xFF903E3E),
+    ),
     POISON(textCode = IconCode.POISON, titleRes = R.string.icon_poison, imageRes = R.drawable.ic_poison, color = Color(0xFF6A7B57)),
     CURSE(textCode = IconCode.CURSE, titleRes = R.string.icon_curse, imageRes = R.drawable.ic_curse, color = Color(0xFF7D3194)),
-    INVISIBILITY(textCode = IconCode.INVISIBILITY, titleRes = R.string.icon_invisibility, imageRes = R.drawable.ic_invisibility, color = Color(0xFF111113)),
+    INVISIBILITY(
+        textCode = IconCode.INVISIBILITY,
+        titleRes = R.string.icon_invisibility,
+        imageRes = R.drawable.ic_invisibility,
+        color = Color(0xFF111113),
+    ),
     BLESS(textCode = IconCode.BLESS, titleRes = R.string.icon_bless, imageRes = R.drawable.ic_bless, color = Color(0xFFC49D27)),
     STRENGTH(textCode = IconCode.STRENGTH, titleRes = R.string.icon_strength, imageRes = R.drawable.ic_strength, color = Color(0xFF3B9FC6)),
     RETALIATE(textCode = IconCode.RETALIATE, titleRes = R.string.icon_retaliate, imageRes = R.drawable.ic_retaliate, color = Color.White),
-    RANGED_ATTACK(textCode = IconCode.RANGED_ATTACK, titleRes = R.string.icon_ranged_attack, imageRes = R.drawable.ic_range, color = Color.White),
+    RANGED_ATTACK(
+        textCode = IconCode.RANGED_ATTACK,
+        titleRes = R.string.icon_ranged_attack,
+        imageRes = R.drawable.ic_range,
+        color = Color.White,
+    ),
     MOVE(textCode = IconCode.MOVE, titleRes = R.string.icon_move, imageRes = R.drawable.ic_move, color = Color.White),
     SHIELD(textCode = IconCode.SHIELD, titleRes = R.string.icon_shield, imageRes = R.drawable.ic_shield, color = Color.White),
     HEAL(textCode = IconCode.HEAL, titleRes = R.string.icon_heal, imageRes = R.drawable.ic_heal, color = Color.White),
@@ -64,33 +84,40 @@ enum class GameIcon(val textCode: IconCode, @param:StringRes val titleRes: Int, 
     LOOT(textCode = IconCode.LOOT, titleRes = R.string.icon_loot, imageRes = R.drawable.ic_loot, color = Color.White),
     SPEND_ANY(textCode = IconCode.SPEND_ANY, titleRes = R.string.icon_light, imageRes = R.drawable.ic_magic_any_spend, color = null),
     AREA_13(textCode = IconCode.AREA_13, titleRes = R.string.icon_area, imageRes = R.drawable.ic_aria_13, color = null),
-    REGENERATE(textCode = IconCode.REGENERATE, titleRes = R.string.icon_regenerate, imageRes = R.drawable.ic_regenerate, color = Color(0xFFC23BC6)),
+    REGENERATE(
+        textCode = IconCode.REGENERATE,
+        titleRes = R.string.icon_regenerate,
+        imageRes = R.drawable.ic_regenerate,
+        color = Color(0xFFC23BC6),
+    ),
     ;
 
     companion object {
         fun IconCode.toGameIcon(): GameIcon = GameIcon.entries.first { it.textCode == this }
-        fun MonsterStatType.toGameIcon(): GameIcon = when(this){
-            MonsterStatType.ATTACK -> ATTACK
-            MonsterStatType.MOVE -> MOVE
-            MonsterStatType.RANGE -> RANGED_ATTACK
-            MonsterStatType.SHIELD -> SHIELD
-            MonsterStatType.RETALIATE -> RETALIATE
-            MonsterStatType.TARGET -> TARGET
-            MonsterStatType.POISON -> POISON
-            MonsterStatType.WOUND -> WOUND
-            MonsterStatType.MUDDLE -> CONFUSE
-            MonsterStatType.STUN -> STUN
-            MonsterStatType.IMMOBILIZE -> IMMOBILIZE
-            MonsterStatType.DISARM -> DISARM
-            MonsterStatType.CURSE -> CURSE
-            MonsterStatType.STRENGTHEN -> STRENGTH
-            MonsterStatType.INVISIBLE -> INVISIBILITY
-            MonsterStatType.HEAL -> HEAL
-            MonsterStatType.PUSH -> PUSH
-            MonsterStatType.BLESS -> BLESS
-            MonsterStatType.PULL -> PULL
-            MonsterStatType.PIERCE -> PIERCE
-            MonsterStatType.REGENERATE -> REGENERATE
-        }
+
+        fun MonsterStatType.toGameIcon(): GameIcon =
+            when (this) {
+                MonsterStatType.ATTACK -> ATTACK
+                MonsterStatType.MOVE -> MOVE
+                MonsterStatType.RANGE -> RANGED_ATTACK
+                MonsterStatType.SHIELD -> SHIELD
+                MonsterStatType.RETALIATE -> RETALIATE
+                MonsterStatType.TARGET -> TARGET
+                MonsterStatType.POISON -> POISON
+                MonsterStatType.WOUND -> WOUND
+                MonsterStatType.MUDDLE -> CONFUSE
+                MonsterStatType.STUN -> STUN
+                MonsterStatType.IMMOBILIZE -> IMMOBILIZE
+                MonsterStatType.DISARM -> DISARM
+                MonsterStatType.CURSE -> CURSE
+                MonsterStatType.STRENGTHEN -> STRENGTH
+                MonsterStatType.INVISIBLE -> INVISIBILITY
+                MonsterStatType.HEAL -> HEAL
+                MonsterStatType.PUSH -> PUSH
+                MonsterStatType.BLESS -> BLESS
+                MonsterStatType.PULL -> PULL
+                MonsterStatType.PIERCE -> PIERCE
+                MonsterStatType.REGENERATE -> REGENERATE
+            }
     }
 }

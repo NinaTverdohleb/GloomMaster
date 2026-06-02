@@ -14,7 +14,7 @@ data class CharacterForSave(
     val isAlive: Boolean = true,
     val notes: String = "",
     val checkMarkCount: Int = 0,
-    val additionalContOfPerks: Int = 0
+    val additionalContOfPerks: Int = 0,
 )
 
 @Serializable
@@ -42,7 +42,7 @@ data class CharacterShortInfo(
     val experience: Int,
     val goldCount: Int,
     val checkMarkCount: Int,
-    val notes: String
+    val notes: String,
 )
 
 data class CharacterFullInfo(

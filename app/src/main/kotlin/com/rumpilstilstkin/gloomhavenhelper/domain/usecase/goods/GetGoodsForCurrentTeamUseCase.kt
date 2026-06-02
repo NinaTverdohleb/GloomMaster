@@ -15,9 +15,8 @@ import kotlin.collections.emptyList
 class GetGoodsForCurrentTeamUseCase @Inject constructor(
     private val teamRepository: TeamRepository,
     private val goodsRepository: GoodsRepository,
-    private val localeRepository: LocaleRepository
+    private val localeRepository: LocaleRepository,
 ) {
-
     @OptIn(ExperimentalCoroutinesApi::class)
     operator fun invoke(): Flow<List<Good>> =
         localeRepository.observeLocale.flatMapLatest { locale ->
@@ -26,7 +25,7 @@ class GetGoodsForCurrentTeamUseCase @Inject constructor(
                     team?.let {
                         combine(
                             goodsRepository.getCharacterGoodIds(team.aliveCharacterIds),
-                            goodsRepository.getGoodsForTeam(team.teamId, locale)
+                            goodsRepository.getGoodsForTeam(team.teamId, locale),
                         ) { characterGoodIds, allGoods ->
                             allGoods.filter { good -> good.id !in characterGoodIds }
                         }

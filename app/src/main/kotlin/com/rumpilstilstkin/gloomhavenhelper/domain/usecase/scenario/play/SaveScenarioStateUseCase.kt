@@ -7,7 +7,7 @@ import javax.inject.Inject
 class SaveScenarioStateUseCase @Inject constructor(
     private val scenarioGameStateRepository: ScenarioGameStateRepository,
 ) {
-    suspend operator fun invoke(state: ScenarioGameState){
+    suspend operator fun invoke(state: ScenarioGameState) {
         scenarioGameStateRepository.save(state)
     }
 }

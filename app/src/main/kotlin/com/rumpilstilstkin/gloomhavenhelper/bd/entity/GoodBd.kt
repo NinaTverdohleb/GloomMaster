@@ -29,7 +29,6 @@ data class GoodTranslationsBd(
 data class GoodWithTranslation(
     @Embedded
     val good: GoodBd,
-
     @ColumnInfo(name = "translated_name")
-    val name: String
+    val name: String,
 )

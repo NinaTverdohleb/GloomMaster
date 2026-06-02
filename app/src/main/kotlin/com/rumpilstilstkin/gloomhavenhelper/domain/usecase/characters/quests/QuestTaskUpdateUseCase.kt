@@ -8,25 +8,26 @@ import javax.inject.Inject
 class QuestTaskUpdateUseCase @Inject constructor(
     private val questsRepository: QuestsRepository,
 ) {
-
     suspend operator fun invoke(
         characterId: Int,
         task: CharacterTaskItem,
     ) {
-        questsRepository.getCharacterQuestById(characterId)
+        questsRepository
+            .getCharacterQuestById(characterId)
             ?.let {
-                val newTask = it.copy(
-                    tasks = it.tasks.map { existingTask ->
-                        if (existingTask.id == task.id) {
-                            task
-                        } else {
-                            existingTask
-                        }
-                    }
-                )
+                val newTask =
+                    it.copy(
+                        tasks =
+                            it.tasks.map { existingTask ->
+                                if (existingTask.id == task.id) {
+                                    task
+                                } else {
+                                    existingTask
+                                }
+                            },
+                    )
                 newTask
-            }
-            ?.let { updatedQuest ->
+            }?.let { updatedQuest ->
                 questsRepository.updateCharacterQuest(updatedQuest, characterId)
             }
     }

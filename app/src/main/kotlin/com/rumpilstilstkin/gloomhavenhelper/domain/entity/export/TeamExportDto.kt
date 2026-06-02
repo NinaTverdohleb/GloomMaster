@@ -12,7 +12,7 @@ data class TeamExportDto(
     val teamGoods: List<Int>,
     val unlockedClasses: List<String>,
     val teamScenarios: List<TeamScenarioDataDto>,
-    val characters: List<CharacterDataDto>
+    val characters: List<CharacterDataDto>,
 ) {
     companion object {
         const val CURRENT_VERSION = 1
@@ -30,5 +30,5 @@ data class CharacterDataDto(
 @Serializable
 data class TeamScenarioDataDto(
     val scenarioNumber: Int,
-    val completed: Boolean
+    val completed: Boolean,
 )

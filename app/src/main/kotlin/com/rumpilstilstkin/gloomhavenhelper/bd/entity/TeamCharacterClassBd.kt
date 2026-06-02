@@ -12,12 +12,12 @@ import androidx.room.PrimaryKey
             entity = TeamBd::class,
             parentColumns = arrayOf("teamId"),
             childColumns = arrayOf("teamId"),
-            onDelete = CASCADE
-        )
+            onDelete = CASCADE,
+        ),
     ],
     indices = [
         Index("teamId"),
-    ]
+    ],
 )
 data class TeamCharacterClassBd(
     @PrimaryKey(autoGenerate = true)

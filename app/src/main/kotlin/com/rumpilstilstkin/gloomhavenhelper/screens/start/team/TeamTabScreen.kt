@@ -32,12 +32,12 @@ internal fun TeamTabScreen(
     openGlobalAchievements: () -> Unit,
     playCurrentScenario: () -> Unit,
     donate: () -> Unit,
-    deleteScenario: (Int) -> Unit
+    deleteScenario: (Int) -> Unit,
 ) {
     if (state is TeamTabUiState.Data) {
         val team = state.currentTeam
         Column(
-            modifier = Modifier.fillMaxSize()
+            modifier = Modifier.fillMaxSize(),
         ) {
             TeamHeader(
                 teamName = team.teamName,
@@ -49,7 +49,7 @@ internal fun TeamTabScreen(
             LazyColumn(
                 modifier = Modifier.fillMaxWidth(),
                 verticalArrangement = Arrangement.spacedBy(32.dp),
-                contentPadding = PaddingValues(bottom = 16.dp)
+                contentPadding = PaddingValues(bottom = 16.dp),
             ) {
                 item {
                     TeamReputation(
@@ -64,7 +64,7 @@ internal fun TeamTabScreen(
                         updateProsperity = updateProsperity,
                         churchValue = team.churchValue,
                         churchValueForNextProsperity = team.churchValueForNextProsperity,
-                        donate = donate
+                        donate = donate,
                     )
                 }
 
@@ -75,20 +75,20 @@ internal fun TeamTabScreen(
                         startScenario = startScenario,
                         canRestore = team.hasActiveScenario,
                         playCurrentScenario = playCurrentScenario,
-                        deleteScenario = deleteScenario
+                        deleteScenario = deleteScenario,
                     )
                 }
                 item {
                     GlobalAchievement(
                         globalAchievements = team.globalAchievements,
-                        clickGlobalAchievement = openGlobalAchievements
+                        clickGlobalAchievement = openGlobalAchievements,
                     )
                 }
 
                 item {
                     TeamAchievement(
                         teamAchievements = team.teamAchievements,
-                        clickTeamAchievement = openTeamAchievements
+                        clickTeamAchievement = openTeamAchievements,
                     )
                 }
             }
@@ -101,9 +101,10 @@ internal fun TeamTabScreen(
 private fun TeamTabScreenPreview() {
     GloomhavenMasterTheme {
         TeamTabScreen(
-            state = TeamTabUiState.Data(
-                currentTeam = TeamUI.fixture()
-            ),
+            state =
+                TeamTabUiState.Data(
+                    currentTeam = TeamUI.fixture(),
+                ),
             completeScenario = {},
             startScenario = {},
             updateProsperity = {},
@@ -112,7 +113,7 @@ private fun TeamTabScreenPreview() {
             openGlobalAchievements = {},
             playCurrentScenario = {},
             donate = {},
-            deleteScenario = {}
+            deleteScenario = {},
         )
     }
 }

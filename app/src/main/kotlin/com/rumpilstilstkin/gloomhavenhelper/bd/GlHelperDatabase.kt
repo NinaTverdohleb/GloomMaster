@@ -67,7 +67,7 @@ import com.rumpilstilstkin.gloomhavenhelper.bd.typeconverters.StringListTypeConv
     StringListTypeConverter::class,
     AchievementConverter::class,
     ScenarioConverters::class,
-    MonsterCardActionTypeConverter::class
+    MonsterCardActionTypeConverter::class,
 )
 @Database(
     entities = [
@@ -99,41 +99,54 @@ import com.rumpilstilstkin.gloomhavenhelper.bd.typeconverters.StringListTypeConv
         LocationBd::class,
         LocationTranslateBd::class,
         MonsterTextStatsBd::class,
-        MonsterAbilityCardTranslationBd::class
+        MonsterAbilityCardTranslationBd::class,
     ],
-    version = 5
+    version = 5,
 )
 abstract class GlHelperDatabase : RoomDatabase() {
     abstract fun characterDao(): CharacterDao
+
     abstract fun teamDao(): TeamDao
+
     abstract fun gameLevelInfoDao(): GameLevelInfoDao
+
     abstract fun scenarioDao(): ScenarioDao
+
     abstract fun teamScenarioDao(): TeamScenarioDao
+
     abstract fun characterGoodsDao(): CharacterGoodsDao
+
     abstract fun goodsDao(): GoodsDao
+
     abstract fun characterPerksDao(): CharacterPerksDao
+
     abstract fun perksDao(): PerksDao
+
     abstract fun personalQuestDao(): PersonalQuestDao
+
     abstract fun characterPersonalQuestDao(): CharacterPersonalQuestDao
+
     abstract fun monsterDao(): MonsterDao
+
     abstract fun teamCharacterClassDao(): TeamCharacterClassDao
+
     abstract fun teamGoodDao(): TeamGoodDao
+
     abstract fun achievementDao(): AchievementDao
+
     abstract fun scenarioGameStateDao(): ScenarioGameStateDao
+
     abstract fun locationsDao(): LocationsDao
 }
-fun createGlHelperDatabase(
-    context: Context,
-): GlHelperDatabase =
-    Room.databaseBuilder(
-        context,
-        GlHelperDatabase::class.java,
-        DATABASE_NAME
-    )
-        .fallbackToDestructiveMigrationFrom(false, 1, 2, 3)
+
+fun createGlHelperDatabase(context: Context): GlHelperDatabase =
+    Room
+        .databaseBuilder(
+            context,
+            GlHelperDatabase::class.java,
+            DATABASE_NAME,
+        ).fallbackToDestructiveMigrationFrom(false, 1, 2, 3)
         .addMigrations(*ALL_MIGRATIONS)
         .build()
-
-
 
 private const val DATABASE_NAME = "glHelperDatabase"

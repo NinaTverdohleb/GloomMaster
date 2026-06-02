@@ -4,5 +4,5 @@ data class LevelInfoUI(
     val monsterLevel: Int,
     val goldCount: Int,
     val trapDamage: Int,
-    val experience: Int
+    val experience: Int,
 )

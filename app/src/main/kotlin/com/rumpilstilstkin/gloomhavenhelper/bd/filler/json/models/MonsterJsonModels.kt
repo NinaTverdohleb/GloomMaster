@@ -15,35 +15,37 @@ data class MonsterJson(
     val fly: Boolean = false,
     val lifeMultiple: Boolean = false,
     val immunity: List<MonsterStatType> = emptyList(),
-    val pack: String
-){
-    fun toEntity() = MonsterBd(
-        slug = slug,
-        deckName = deckName,
-        isBoss = isBoss,
-        fly = fly,
-        lifeMultiple = lifeMultiple,
-        immunity = immunity,
-        pack = pack
-    )
+    val pack: String,
+) {
+    fun toEntity() =
+        MonsterBd(
+            slug = slug,
+            deckName = deckName,
+            isBoss = isBoss,
+            fly = fly,
+            lifeMultiple = lifeMultiple,
+            immunity = immunity,
+            pack = pack,
+        )
 }
 
 @Serializable
 data class MonsterTranslationJson(
     val slug: String,
-    val name: String
+    val name: String,
 ) {
-    fun toEntity(locale: String) = MonsterTranslationsBd(
-        slug = slug,
-        locale = locale,
-        name = name
-    )
+    fun toEntity(locale: String) =
+        MonsterTranslationsBd(
+            slug = slug,
+            locale = locale,
+            name = name,
+        )
 }
 
 @Serializable
 data class MonsterStatsJson(
     val monsterSlug: String,
-    val stats: List<MonsterLevelStatsJson>
+    val stats: List<MonsterLevelStatsJson>,
 )
 
 @Serializable
@@ -51,18 +53,18 @@ data class MonsterLevelStatsJson(
     val level: Int,
     val isElite: Boolean,
     val life: Int,
-    val stats: List<MonsterAction>
+    val stats: List<MonsterAction>,
 )
 
 @Serializable
 data class MonsterTranslationStatsJson(
     val monsterSlug: String,
-    val stats: List<MonsterLevelTranslationStatsJson>
+    val stats: List<MonsterLevelTranslationStatsJson>,
 )
 
 @Serializable
 data class MonsterLevelTranslationStatsJson(
     val level: Int,
     val isElite: Boolean,
-    val textStats: List<String>
+    val textStats: List<String>,
 )

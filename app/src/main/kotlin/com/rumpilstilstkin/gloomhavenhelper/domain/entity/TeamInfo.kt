@@ -29,12 +29,13 @@ data class Prosperity(
     val isMax = prosperityLevel == 9
 
     companion object {
-        fun fixture() = Prosperity(
-            prosperityLevelValue = 2,
-            prosperityLevel = 3,
-            prosperityRange = IntRange(0, 5),
-            prosperitySource = 11
-        )
+        fun fixture() =
+            Prosperity(
+                prosperityLevelValue = 2,
+                prosperityLevel = 3,
+                prosperityRange = IntRange(0, 5),
+                prosperitySource = 11,
+            )
     }
 }
 
@@ -57,11 +58,11 @@ data class ShortTeamInfoWithTranslations(
     val packs: List<PackType>,
     val churchValue: Int,
     val difficultyLevel: DifficultyLevel = DifficultyLevel.NORMAL,
-){
+) {
     companion object {
         fun fixture(
             teamId: Int = 1,
-            teamName: String = "Name"
+            teamName: String = "Name",
         ) = ShortTeamInfoWithTranslations(
             teamId = teamId,
             name = teamName,
@@ -71,7 +72,7 @@ data class ShortTeamInfoWithTranslations(
             packs = listOf(PackType.MAIN),
             aliveCharacterIds = listOf(1, 2, 3),
             churchValue = 100,
-            difficultyLevel = DifficultyLevel.NORMAL
+            difficultyLevel = DifficultyLevel.NORMAL,
         )
     }
 }
@@ -87,12 +88,12 @@ data class ShortTeamInfo(
     val packs: List<PackType>,
     val churchValue: Int,
     val difficultyLevel: DifficultyLevel = DifficultyLevel.NORMAL,
-    val countRetiredCharacters: Int
+    val countRetiredCharacters: Int,
 ) {
     companion object {
         fun fixture(
             teamId: Int = 1,
-            teamName: String = "Name"
+            teamName: String = "Name",
         ) = ShortTeamInfo(
             teamId = teamId,
             name = teamName,
@@ -103,7 +104,7 @@ data class ShortTeamInfo(
             aliveCharacterIds = listOf(1, 2, 3),
             churchValue = 100,
             difficultyLevel = DifficultyLevel.NORMAL,
-            countRetiredCharacters = 0
+            countRetiredCharacters = 0,
         )
     }
 }
@@ -114,5 +115,3 @@ data class TeamInfoForSave(
     val packs: List<PackType>,
     val difficultyLevel: DifficultyLevel = DifficultyLevel.NORMAL,
 )
-
-

@@ -12,16 +12,15 @@ import androidx.compose.ui.res.stringResource
 import com.rumpilstilstkin.gloomhavenhelper.R
 
 @Composable
-fun EmptyAchievements(
-    modifier: Modifier = Modifier
-) = Column(
-    modifier = modifier.fillMaxWidth(),
-    verticalArrangement = Arrangement.Center,
-    horizontalAlignment = Alignment.CenterHorizontally,
-) {
-    Text(
-        text = stringResource(R.string.empty_team_achievements),
-        style = MaterialTheme.typography.bodyLarge,
-        color = MaterialTheme.colorScheme.onSurfaceVariant,
-    )
-}
+fun EmptyAchievements(modifier: Modifier = Modifier) =
+    Column(
+        modifier = modifier.fillMaxWidth(),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally,
+    ) {
+        Text(
+            text = stringResource(R.string.empty_team_achievements),
+            style = MaterialTheme.typography.bodyLarge,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+        )
+    }

@@ -21,11 +21,25 @@ data class AchievementsStateLogic(
 
 sealed interface AchievementsAction {
     data object ShowAddDialog : AchievementsAction
+
     data object DismissAddDialog : AchievementsAction
-    data class AddAchievement(val achievement: AchievementWithName) : AchievementsAction
-    data class ShowDeleteConfirmDialog(val achievementSlug: String) : AchievementsAction
+
+    data class AddAchievement(
+        val achievement: AchievementWithName,
+    ) : AchievementsAction
+
+    data class ShowDeleteConfirmDialog(
+        val achievementSlug: String,
+    ) : AchievementsAction
+
     data object DismissDeleteConfirmDialog : AchievementsAction
+
     data object ConfirmDelete : AchievementsAction
+
     data object Back : AchievementsAction
-    data class UpdateAchievement(val value: Int, val achievement: AchievementWithName) : AchievementsAction
+
+    data class UpdateAchievement(
+        val value: Int,
+        val achievement: AchievementWithName,
+    ) : AchievementsAction
 }

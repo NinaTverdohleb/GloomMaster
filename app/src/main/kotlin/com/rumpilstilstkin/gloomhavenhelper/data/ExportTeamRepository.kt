@@ -21,28 +21,32 @@ class ExportTeamRepository @Inject constructor(
         teamRepository
             .getTeamInfo(teamId)
             ?.let { teamInfo ->
-                val dto = TeamExportDto(
-                    team = teamInfo,
-                    teamGoods = goodsRepository.getTeamGoodsNumbers(teamId),
-                    unlockedClasses = characterClassRepository.getAvailableClassesForTeamSync(teamId),
-
-                    teamScenarios = scenarioRepository.getAllTeamScenarios(teamId)
-                        .map {
-                            TeamScenarioDataDto(
-                                scenarioNumber = it.scenarioNumber,
-                                completed = it.isCompleted
-                            )
-                        },
-                    characters = characterRepository.getCharacterByTeamIdSync(teamId)
-                        .map {
-                            CharacterDataDto(
-                                generalInfo = it,
-                                personalQuest = questsRepository.getCharacterQuestById(it.id),
-                                goodDisplayNumbers = goodsRepository.getCharacterGoodNumbers(it.id),
-                                perks = characterRepository.getCharacterPerks(it.id)
-                            )
-                        }
-                )
+                val dto =
+                    TeamExportDto(
+                        team = teamInfo,
+                        teamGoods = goodsRepository.getTeamGoodsNumbers(teamId),
+                        unlockedClasses = characterClassRepository.getAvailableClassesForTeamSync(teamId),
+                        teamScenarios =
+                            scenarioRepository
+                                .getAllTeamScenarios(teamId)
+                                .map {
+                                    TeamScenarioDataDto(
+                                        scenarioNumber = it.scenarioNumber,
+                                        completed = it.isCompleted,
+                                    )
+                                },
+                        characters =
+                            characterRepository
+                                .getCharacterByTeamIdSync(teamId)
+                                .map {
+                                    CharacterDataDto(
+                                        generalInfo = it,
+                                        personalQuest = questsRepository.getCharacterQuestById(it.id),
+                                        goodDisplayNumbers = goodsRepository.getCharacterGoodNumbers(it.id),
+                                        perks = characterRepository.getCharacterPerks(it.id),
+                                    )
+                                },
+                    )
                 Result.success(Json.encodeToString(dto))
             } ?: Result.failure(Resources.NotFoundException())
 }

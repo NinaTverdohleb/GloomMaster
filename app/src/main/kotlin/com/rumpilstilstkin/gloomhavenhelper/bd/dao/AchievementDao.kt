@@ -20,11 +20,11 @@ interface AchievementDao {
                       WHERE locale = :targetLocale
                   )
               ))
-        """
+        """,
     )
     suspend fun getAllTranslations(
         targetLocale: String,
-        defaultLocale: String
+        defaultLocale: String,
     ): List<AchievementTranslateBd>
 
     @Query("SELECT * FROM AchievementBd")
@@ -50,12 +50,12 @@ interface AchievementDao {
               )
           )
       )
-"""
+""",
     )
     suspend fun getTeamAchievementsBySlugs(
         slugs: List<String>,
         targetLocale: String,
-        defaultLocale: String
+        defaultLocale: String,
     ): List<AchievementTranslateBd>
 
     @Insert

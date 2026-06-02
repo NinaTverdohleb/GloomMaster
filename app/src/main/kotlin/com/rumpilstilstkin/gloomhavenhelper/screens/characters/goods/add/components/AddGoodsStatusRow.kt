@@ -30,10 +30,11 @@ fun AddGoodsStatusRow(
         text = stringResource(R.string.available_gold_format, allGold),
     )
     Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(top = 8.dp),
-        verticalAlignment = Alignment.CenterVertically
+        modifier =
+            Modifier
+                .fillMaxWidth()
+                .padding(top = 8.dp),
+        verticalAlignment = Alignment.CenterVertically,
     ) {
         Text(
             text = stringResource(R.string.cost_gold_format, goodsGold),
@@ -48,7 +49,7 @@ fun AddGoodsStatusRow(
             modifier = Modifier.weight(1f),
             onClick = {
                 onAction(AddGoodsForCharacterScreenActions.BuySelectedGoods)
-            }
+            },
         ) {
             Text(stringResource(R.string.buy))
         }
@@ -57,7 +58,7 @@ fun AddGoodsStatusRow(
             modifier = Modifier.weight(1f),
             onClick = {
                 onAction(AddGoodsForCharacterScreenActions.AddSelectedGoods)
-            }
+            },
         ) {
             Text(stringResource(R.string.add))
         }

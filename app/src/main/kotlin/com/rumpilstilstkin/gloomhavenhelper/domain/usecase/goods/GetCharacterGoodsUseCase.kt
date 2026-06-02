@@ -10,10 +10,8 @@ import javax.inject.Inject
 
 class GetCharacterGoodsUseCase @Inject constructor(
     private val goodsRepository: GoodsRepository,
-    private val localeRepository: LocaleRepository
-
+    private val localeRepository: LocaleRepository,
 ) {
-
     @OptIn(ExperimentalCoroutinesApi::class)
     operator fun invoke(characterId: Int): Flow<List<Good>> =
         localeRepository.observeLocale.flatMapLatest { locale ->

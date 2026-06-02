@@ -5,10 +5,11 @@ import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterCard
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterCardAction
 import kotlinx.collections.immutable.toImmutableList
 
-fun MonsterAbilityCardBd.toDomain(actions: List<MonsterCardAction>): MonsterCard = MonsterCard(
-    cardId = cardId,
-    actions = actions.toImmutableList(),
-    needsShuffle = needsShuffle,
-    deckName = deckName,
-    initiative = initiative
-)
+fun MonsterAbilityCardBd.toDomain(actions: List<MonsterCardAction>): MonsterCard =
+    MonsterCard(
+        cardId = cardId,
+        actions = actions.toImmutableList(),
+        needsShuffle = needsShuffle,
+        deckName = deckName,
+        initiative = initiative,
+    )

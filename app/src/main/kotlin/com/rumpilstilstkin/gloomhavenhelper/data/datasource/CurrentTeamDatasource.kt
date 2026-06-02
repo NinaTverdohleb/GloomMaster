@@ -2,13 +2,13 @@ package com.rumpilstilstkin.gloomhavenhelper.data.datasource
 
 import android.content.SharedPreferences
 import android.util.Log
+import androidx.core.content.edit
 import javax.inject.Inject
 import javax.inject.Singleton
-import androidx.core.content.edit
 
 @Singleton
 class CurrentTeamDatasource @Inject constructor(
-    private val preference: SharedPreferences
+    private val preference: SharedPreferences,
 ) {
     var currentTeam: Int
         get() = preference.getInt(CURRENT_TEAM, EMPTY_TEAM)

@@ -14,9 +14,8 @@ fun DeleteCharacterDialog(
     onDismiss: () -> Unit,
     delete: () -> Unit,
     retire: () -> Unit,
-    canRetire: Boolean
+    canRetire: Boolean,
 ) {
-
     GloomAlertDialog(
         title = stringResource(R.string.delete_character_title),
         onDismissRequest = onDismiss,
@@ -31,7 +30,7 @@ fun DeleteCharacterDialog(
                 style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.onSurface,
             )
-        }
+        },
     )
 }
 
@@ -43,7 +42,7 @@ private fun DeleteCharacterDialogPreview() {
             onDismiss = {},
             delete = {},
             retire = {},
-            canRetire = true
+            canRetire = true,
         )
     }
 }

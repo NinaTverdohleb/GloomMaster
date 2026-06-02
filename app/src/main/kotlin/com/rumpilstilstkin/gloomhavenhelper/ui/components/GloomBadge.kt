@@ -21,31 +21,34 @@ import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
 fun GloomBadge(
     text: String,
     modifier: Modifier = Modifier,
-    size: GloomSize = GloomSize.S
+    size: GloomSize = GloomSize.S,
 ) {
-    val boxSize = when (size) {
-        GloomSize.S -> 18.dp
-        GloomSize.M -> 32.dp
-    }
-    val textSize = when (size) {
-        GloomSize.S -> 10.sp
-        GloomSize.M -> 18.sp
-    }
+    val boxSize =
+        when (size) {
+            GloomSize.S -> 18.dp
+            GloomSize.M -> 32.dp
+        }
+    val textSize =
+        when (size) {
+            GloomSize.S -> 10.sp
+            GloomSize.M -> 18.sp
+        }
     Box(
-        modifier = modifier
-            .size(boxSize)
-            .background(
-                color = MaterialTheme.colorScheme.secondary,
-                shape = CircleShape
-            ),
-        contentAlignment = Alignment.Center
+        modifier =
+            modifier
+                .size(boxSize)
+                .background(
+                    color = MaterialTheme.colorScheme.secondary,
+                    shape = CircleShape,
+                ),
+        contentAlignment = Alignment.Center,
     ) {
         Text(
             style = MaterialTheme.typography.bodyMedium,
             text = text,
             fontSize = textSize,
             textAlign = TextAlign.Center,
-            color = MaterialTheme.colorScheme.onSecondary
+            color = MaterialTheme.colorScheme.onSecondary,
         )
     }
 }
@@ -56,7 +59,7 @@ private fun GloomBadgeSPreview() {
     GloomhavenMasterTheme {
         GloomBadge(
             text = "999",
-            size = GloomSize.S
+            size = GloomSize.S,
         )
     }
 }
@@ -67,7 +70,7 @@ private fun GloomBadgeMPreview() {
     GloomhavenMasterTheme {
         GloomBadge(
             text = "999",
-            size = GloomSize.M
+            size = GloomSize.M,
         )
     }
 }

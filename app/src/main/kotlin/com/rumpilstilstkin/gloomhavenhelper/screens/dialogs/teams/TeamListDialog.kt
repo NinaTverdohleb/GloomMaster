@@ -31,10 +31,11 @@ fun TeamsDialog(
             teams.forEach { team ->
                 TeamInfoItem(
                     teamName = team.teamName,
-                    modifier = Modifier.clickable {
-                        selectTeam(team.teamId)
-                        onDismiss()
-                    }
+                    modifier =
+                        Modifier.clickable {
+                            selectTeam(team.teamId)
+                            onDismiss()
+                        },
                 )
             }
         },
@@ -48,9 +49,10 @@ private fun TeamInfoItem(
     modifier: Modifier = Modifier,
 ) {
     Column(
-        modifier = modifier
-            .padding(8.dp)
-            .fillMaxWidth()
+        modifier =
+            modifier
+                .padding(8.dp)
+                .fillMaxWidth(),
     ) {
         Text(
             modifier = Modifier.fillMaxWidth(),
@@ -66,12 +68,13 @@ private fun TeamInfoItem(
 private fun TeamListDialogPreview() {
     GloomhavenMasterTheme {
         TeamsDialog(
-            teams = persistentListOf(
-                ShortTeamInfoUi(1, "Team 1"),
-                ShortTeamInfoUi(2, "Team 2"),
-                ShortTeamInfoUi(3, "Team 3"),
-                ShortTeamInfoUi(4, "Team 4"),
-            ),
+            teams =
+                persistentListOf(
+                    ShortTeamInfoUi(1, "Team 1"),
+                    ShortTeamInfoUi(2, "Team 2"),
+                    ShortTeamInfoUi(3, "Team 3"),
+                    ShortTeamInfoUi(4, "Team 4"),
+                ),
             onDismiss = {},
             selectTeam = {},
         )

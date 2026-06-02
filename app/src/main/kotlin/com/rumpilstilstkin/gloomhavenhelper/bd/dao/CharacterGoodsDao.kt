@@ -24,7 +24,7 @@ interface CharacterGoodsDao {
         FROM CharacterGoodBd tg
         INNER JOIN GoodBd g ON tg.goodId = g.goodId
         WHERE tg.characterId = :characterId
-    """
+    """,
     )
     fun getCharactersGoodNumbers(characterId: Int): Flow<List<Int>>
 
@@ -38,12 +38,12 @@ interface CharacterGoodsDao {
         LEFT JOIN GoodTranslationsBd t1 ON g.displayNumber = t1.displayNumber AND t1.locale = :targetLocale
         LEFT JOIN GoodTranslationsBd t2 ON g.displayNumber = t2.displayNumber AND t2.locale = :defaultLocale
         WHERE tg.characterId = :characterId
-    """
+    """,
     )
     fun getCharacterGoodsFlow(
         characterId: Int,
         targetLocale: String,
-        defaultLocale: String
+        defaultLocale: String,
     ): Flow<List<GoodWithTranslation>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
@@ -56,7 +56,10 @@ interface CharacterGoodsDao {
     suspend fun delete(characterGood: CharacterGoodBd)
 
     @Query("DELETE FROM CharacterGoodBd WHERE characterId = :characterId AND goodId = :goodId")
-    suspend fun delete(characterId: Int, goodId: Int)
+    suspend fun delete(
+        characterId: Int,
+        goodId: Int,
+    )
 
     @Query("DELETE FROM CharacterGoodBd WHERE characterId = :characterId")
     suspend fun deleteCharacterGoods(characterId: Int)

@@ -46,9 +46,9 @@ internal fun CharactersTabScreen(
     openCharacterDetails: (Int) -> Unit,
     switchAlive: (Boolean) -> Unit,
     toggleClass: (CharacterClassTypeUI) -> Unit,
-    changeLevel: (Int, Int) -> Unit
+    changeLevel: (Int, Int) -> Unit,
 ) = Column(
-    modifier = Modifier.fillMaxSize()
+    modifier = Modifier.fillMaxSize(),
 ) {
     var selectedCharacter by remember { mutableStateOf<CharacterUI?>(null) }
 
@@ -61,30 +61,30 @@ internal fun CharactersTabScreen(
             changeLevel = {
                 changeLevel(character.id, it)
                 selectedCharacter = null
-            }
+            },
         )
     }
 
     CharacterAvailableClasses(
         availableClasses = state.avaliableClasses,
-        onToggle = toggleClass
+        onToggle = toggleClass,
     )
     Spacer(
-        modifier = Modifier.height(8.dp)
+        modifier = Modifier.height(8.dp),
     )
     Row(
         modifier = Modifier.fillMaxWidth(),
-        verticalAlignment = Alignment.CenterVertically
+        verticalAlignment = Alignment.CenterVertically,
     ) {
         Text(
             modifier = Modifier.weight(1f),
             text = stringResource(R.string.show_only_active),
             color = MaterialTheme.colorScheme.onSurface,
             style = MaterialTheme.typography.labelSmall,
-            textAlign = TextAlign.End
+            textAlign = TextAlign.End,
         )
         Spacer(
-            modifier = Modifier.width(8.dp)
+            modifier = Modifier.width(8.dp),
         )
         Switch(
             checked = state.filterAlive,
@@ -100,13 +100,13 @@ internal fun CharactersTabScreen(
         LazyColumn(
             modifier = Modifier.weight(1f),
             verticalArrangement = Arrangement.spacedBy(16.dp),
-            contentPadding = PaddingValues(vertical = 16.dp)
+            contentPadding = PaddingValues(vertical = 16.dp),
         ) {
             items(state.characters) { character ->
                 CharacterItem(
                     character = character,
                     onItemClick = openCharacterDetails,
-                    onLevelClick = { selectedCharacter = character }
+                    onLevelClick = { selectedCharacter = character },
                 )
             }
         }
@@ -114,15 +114,16 @@ internal fun CharactersTabScreen(
 
     if (state.canAdd) {
         Button(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(16.dp),
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp),
             onClick = addCharacter,
-            contentPadding = PaddingValues(16.dp)
+            contentPadding = PaddingValues(16.dp),
         ) {
             Text(
                 text = stringResource(R.string.add_character),
-                fontSize = 16.sp
+                fontSize = 16.sp,
             )
         }
     }
@@ -138,7 +139,7 @@ private fun CharactersTabScreenPreview() {
             addCharacter = {},
             openCharacterDetails = {},
             toggleClass = {},
-            changeLevel = {_,_ ->}
+            changeLevel = { _, _ -> },
         )
     }
 }
@@ -153,7 +154,7 @@ private fun CharactersTabScreenEmptyPreview() {
             addCharacter = {},
             openCharacterDetails = {},
             toggleClass = {},
-            changeLevel = {_,_ ->}
+            changeLevel = { _, _ -> },
         )
     }
 }

@@ -12,32 +12,42 @@ import javax.inject.Singleton
 
 @Singleton
 class JsonDataLoader @Inject constructor(
-    @param:ApplicationContext private val context: Context
+    @param:ApplicationContext private val context: Context,
 ) {
     @PublishedApi
-    internal val json = Json {
-        ignoreUnknownKeys = true
-        encodeDefaults = true
-        coerceInputValues = true
-    }
+    internal val json =
+        Json {
+            ignoreUnknownKeys = true
+            encodeDefaults = true
+            coerceInputValues = true
+        }
 
-    private val localeCache = LazyMapCache { key ->
-        getFilesFromAssets(context, key)
-    }
+    private val localeCache =
+        LazyMapCache { key ->
+            getFilesFromAssets(context, key)
+        }
 
     fun getLocalesForPack(pack: String) = localeCache[pack]
 
     @PublishedApi
-    internal fun readAsset(fileName: String, pack: String): String =
+    internal fun readAsset(
+        fileName: String,
+        pack: String,
+    ): String =
         context.assets
             .open("data/$pack/$fileName")
             .bufferedReader()
             .use { it.readText() }
 
-    inline fun <reified T> loadDictionaryList(fileName: String, pack: String): List<T> =
-        json.decodeFromString(readAsset(fileName, pack))
+    inline fun <reified T> loadDictionaryList(
+        fileName: String,
+        pack: String,
+    ): List<T> = json.decodeFromString(readAsset(fileName, pack))
 
-    inline fun <reified T> loadDictionaryListOrEmpty(fileName: String, pack: String): List<T> =
+    inline fun <reified T> loadDictionaryListOrEmpty(
+        fileName: String,
+        pack: String,
+    ): List<T> =
         try {
             loadDictionaryList(fileName, pack)
         } catch (e: IOException) {
@@ -45,11 +55,15 @@ class JsonDataLoader @Inject constructor(
         }
 }
 
-private fun getFilesFromAssets(context: Context, pack: String): List<String> {
+private fun getFilesFromAssets(
+    context: Context,
+    pack: String,
+): List<String> {
     if (pack.isEmpty()) return emptyList()
     val assetManager = context.assets
     return try {
-        assetManager.list("data/$pack")
+        assetManager
+            .list("data/$pack")
             ?.filter { item ->
                 assetManager.list("data/$pack/$item")?.isNotEmpty() == true
             }.orEmpty()
@@ -58,14 +72,10 @@ private fun getFilesFromAssets(context: Context, pack: String): List<String> {
     }
 }
 
-
 private class LazyMapCache(
-    private val valueGenerator: (String) -> List<String>
+    private val valueGenerator: (String) -> List<String>,
 ) {
     private val storage = ConcurrentHashMap<String, List<String>>()
-    operator fun get(key: String): List<String> {
-        return storage.computeIfAbsent(key, valueGenerator)
-    }
+
+    operator fun get(key: String): List<String> = storage.computeIfAbsent(key, valueGenerator)
 }
-
-

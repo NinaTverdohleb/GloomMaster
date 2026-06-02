@@ -25,32 +25,37 @@ data class TeamUI(
     val churchValueForNextProsperity: Int,
 ) {
     companion object {
-        fun fixture() = TeamUI(
-            teamId = 1,
-            teamLevel = 3,
-            teamName = "Team 1",
-            teamReputation = 1,
-            prosperity = Prosperity.fixture(),
-            teamAchievements = persistentListOf(
-                AchievementWithName.fixture("Achievement 1"),
-                AchievementWithName.fixture("Achievement 2")
-            ),
-            globalAchievements = persistentListOf(
-                AchievementWithName.fixture("Achievement 1"),
-                AchievementWithName.fixture("Achievement 2")
-            ),
-            shopDiscount = 0,
-            teamScenario = persistentListOf(
-                ShortScenarioUI.fixture(1),
-                ShortScenarioUI.fixture(2),
-            ),
-            characters = persistentListOf(
-                CharacterUI.fixture()
-            ),
-            hasActiveScenario = true,
-            churchValue = 100,
-            churchValueForNextProsperity = 150
-        )
+        fun fixture() =
+            TeamUI(
+                teamId = 1,
+                teamLevel = 3,
+                teamName = "Team 1",
+                teamReputation = 1,
+                prosperity = Prosperity.fixture(),
+                teamAchievements =
+                    persistentListOf(
+                        AchievementWithName.fixture("Achievement 1"),
+                        AchievementWithName.fixture("Achievement 2"),
+                    ),
+                globalAchievements =
+                    persistentListOf(
+                        AchievementWithName.fixture("Achievement 1"),
+                        AchievementWithName.fixture("Achievement 2"),
+                    ),
+                shopDiscount = 0,
+                teamScenario =
+                    persistentListOf(
+                        ShortScenarioUI.fixture(1),
+                        ShortScenarioUI.fixture(2),
+                    ),
+                characters =
+                    persistentListOf(
+                        CharacterUI.fixture(),
+                    ),
+                hasActiveScenario = true,
+                churchValue = 100,
+                churchValueForNextProsperity = 150,
+            )
     }
 }
 

@@ -38,17 +38,18 @@ fun MonsterCardHeader(
     isFly: Boolean,
     modifier: Modifier = Modifier,
     delete: () -> Unit,
-    onAddUnit: (() -> Unit)? = null
+    onAddUnit: (() -> Unit)? = null,
 ) = Row(
-    modifier = modifier
-        .fillMaxWidth()
-        .height(64.dp)
-        .padding(vertical = 8.dp),
+    modifier =
+        modifier
+            .fillMaxWidth()
+            .height(64.dp)
+            .padding(vertical = 8.dp),
     verticalAlignment = Alignment.CenterVertically,
 ) {
     Row(
         modifier = Modifier.weight(1f),
-        verticalAlignment = Alignment.CenterVertically
+        verticalAlignment = Alignment.CenterVertically,
     ) {
         Text(
             text = name,
@@ -68,22 +69,22 @@ fun MonsterCardHeader(
         }
     }
     if (onAddUnit != null) {
-
         OutlinedButton(
             onClick = onAddUnit,
             border = BorderStroke(1.dp, MaterialTheme.colorScheme.secondary),
             shape = RoundedCornerShape(16.dp),
-            colors = ButtonDefaults.outlinedButtonColors(
-                containerColor = Color.Transparent,
-                contentColor = MaterialTheme.colorScheme.secondary,
-            ),
+            colors =
+                ButtonDefaults.outlinedButtonColors(
+                    containerColor = Color.Transparent,
+                    contentColor = MaterialTheme.colorScheme.secondary,
+                ),
             contentPadding = PaddingValues(horizontal = 14.dp, vertical = 0.dp),
         ) {
             Text(
                 text = stringResource(R.string.add_enemy),
                 fontSize = 12.sp,
                 fontWeight = FontWeight.Medium,
-                textAlign = TextAlign.Center
+                textAlign = TextAlign.Center,
             )
         }
 
@@ -110,7 +111,7 @@ private fun MonsterCardHeaderPreview() {
             delete = {},
             name = "Bandit Guard",
             isFly = true,
-            onAddUnit = {}
+            onAddUnit = {},
         )
     }
 }

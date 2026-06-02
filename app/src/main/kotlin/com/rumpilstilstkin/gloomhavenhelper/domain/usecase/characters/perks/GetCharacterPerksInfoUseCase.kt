@@ -15,15 +15,14 @@ import kotlin.math.max
 class GetCharacterPerksInfoUseCase @Inject constructor(
     private val characterRepository: CharacterRepository,
     private val perksRepository: PerksRepository,
-    private val localeRepository: LocaleRepository
+    private val localeRepository: LocaleRepository,
 ) {
-
     @OptIn(ExperimentalCoroutinesApi::class)
     operator fun invoke(characterId: Int): Flow<CharacterPerksInfo> {
         return localeRepository.observeLocale.flatMapLatest { locale ->
             combine(
                 characterRepository.getCharacterByIdFlow(characterId),
-                characterRepository.getCharacterPerksFlow(characterId, locale)
+                characterRepository.getCharacterPerksFlow(characterId, locale),
             ) { character, acquiredPerks ->
                 if (character == null) {
                     return@combine CharacterPerksInfo(emptyList(), emptyList(), 0)
@@ -38,7 +37,7 @@ class GetCharacterPerksInfoUseCase @Inject constructor(
                 CharacterPerksInfo(
                     characterPerks = acquiredPerks,
                     avaliablePerks = avaliablePerks,
-                    avaliablePerksCount = maxOf(0, allCount - acquiredPerks.size + character.additionalContOfPerks)
+                    avaliablePerksCount = maxOf(0, allCount - acquiredPerks.size + character.additionalContOfPerks),
                 )
             }
         }

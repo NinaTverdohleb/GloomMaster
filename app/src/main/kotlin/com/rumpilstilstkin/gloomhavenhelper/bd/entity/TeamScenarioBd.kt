@@ -8,24 +8,25 @@ import androidx.room.Index
 import androidx.room.PrimaryKey
 import androidx.room.Relation
 
-@Entity(foreignKeys = [
+@Entity(
+    foreignKeys = [
         ForeignKey(
             entity = TeamBd::class,
             parentColumns = arrayOf("teamId"),
             childColumns = arrayOf("teamId"),
-            onDelete = CASCADE
+            onDelete = CASCADE,
         ),
         ForeignKey(
             entity = ScenarioBd::class,
             parentColumns = arrayOf("scenarioNumber"),
             childColumns = arrayOf("scenarioNumber"),
-            onDelete = CASCADE
-        )
+            onDelete = CASCADE,
+        ),
     ],
     indices = [
         Index("teamId"),
         Index("scenarioNumber"),
-    ]
+    ],
 )
 data class TeamScenarioBd(
     @PrimaryKey(autoGenerate = true)
@@ -39,7 +40,7 @@ data class TeamScenarioBdDetailsBd(
     @Embedded val teamScenario: TeamScenarioBd,
     @Relation(
         parentColumn = "scenarioNumber",
-        entityColumn = "scenarioNumber"
+        entityColumn = "scenarioNumber",
     )
-    val scenario: ScenarioBd
+    val scenario: ScenarioBd,
 )

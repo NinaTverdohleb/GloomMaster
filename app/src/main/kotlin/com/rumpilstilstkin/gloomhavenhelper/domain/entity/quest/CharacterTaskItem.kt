@@ -20,7 +20,7 @@ sealed interface CharacterTaskItem {
         override val id: Int,
         override val priority: Int,
         override val text: String = "",
-        val isChecked: Boolean = false
+        val isChecked: Boolean = false,
     ) : CharacterTaskItem {
         override val completed: Boolean
             get() = isChecked

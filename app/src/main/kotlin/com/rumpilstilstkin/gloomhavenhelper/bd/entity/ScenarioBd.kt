@@ -22,9 +22,9 @@ data class ScenarioBd(
             entity = ScenarioBd::class,
             parentColumns = ["scenarioNumber"],
             childColumns = ["scenarioNumber"],
-            onDelete = ForeignKey.CASCADE
-        )
-    ]
+            onDelete = ForeignKey.CASCADE,
+        ),
+    ],
 )
 data class ScenarioTranslationsBd(
     val scenarioNumber: Int,

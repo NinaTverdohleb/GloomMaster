@@ -14,7 +14,7 @@ import com.rumpilstilstkin.gloomhavenhelper.screens.characters.start.perks.Chara
 @Composable
 fun CharacterDetailsRoute(
     characterId: Int,
-    navController: NavHostController
+    navController: NavHostController,
 ) {
     val viewModel =
         hiltViewModel<CharacterDetailsViewModel, CharacterDetailsViewModel.Factory> { factory ->
@@ -27,7 +27,7 @@ fun CharacterDetailsRoute(
         navigationEvents?.let { event ->
             GlHelperEventHelper.event(
                 event = event,
-                navController = navController
+                navController = navController,
             )
         }
     }
@@ -51,7 +51,6 @@ fun CharacterDetailsRoute(
                 CharacterDetailsTab.STUFF -> CharacterItemsTabRoute(characterId, navController)
                 CharacterDetailsTab.SKILLS -> CharacterPerksTabRoute(characterId)
             }
-        }
+        },
     )
-
 }

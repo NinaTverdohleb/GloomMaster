@@ -31,31 +31,32 @@ class GlobalAchievementsViewModel @Inject constructor(
     private val updateAchievementUseCase: UpdateAchievementUseCase,
     private val removeAchievementUseCase: RemoveAchievementUseCase,
 ) : ViewModel() {
-
     private val _navigationEvents = MutableSharedFlow<GlHelperEvent>()
     val navigationEvents = _navigationEvents.asSharedFlow()
 
     private val logicState = MutableStateFlow(AchievementsStateLogic())
 
-    val uiState: StateFlow<AchievementsStateUi> = combine(
-        getCurrentTeamShortInfoUseCase(),
-        getAvailableAchievementsUseCase(),
-        logicState,
-    ) { team, availableAchievements, logic ->
-        AchievementsStateUi(
-            achievements = team
-                ?.achievements
-                ?.filter { it.isGlobal }
-                ?.toImmutableList() ?: persistentListOf(),
-            availableAchievements = availableAchievements.toImmutableList(),
-            showAddDialog = logic.showAddDialog,
-            achievementToDelete = logic.achievementToDelete,
+    val uiState: StateFlow<AchievementsStateUi> =
+        combine(
+            getCurrentTeamShortInfoUseCase(),
+            getAvailableAchievementsUseCase(),
+            logicState,
+        ) { team, availableAchievements, logic ->
+            AchievementsStateUi(
+                achievements =
+                    team
+                        ?.achievements
+                        ?.filter { it.isGlobal }
+                        ?.toImmutableList() ?: persistentListOf(),
+                availableAchievements = availableAchievements.toImmutableList(),
+                showAddDialog = logic.showAddDialog,
+                achievementToDelete = logic.achievementToDelete,
+            )
+        }.stateIn(
+            scope = viewModelScope,
+            initialValue = AchievementsStateUi(),
+            started = SharingStarted.WhileSubscribed(5000),
         )
-    }.stateIn(
-        scope = viewModelScope,
-        initialValue = AchievementsStateUi(),
-        started = SharingStarted.WhileSubscribed(5000),
-    )
 
     fun onAction(action: AchievementsAction) {
         viewModelScope.launch {
@@ -94,7 +95,7 @@ class GlobalAchievementsViewModel @Inject constructor(
 
                 is AchievementsAction.UpdateAchievement -> {
                     updateAchievementUseCase(
-                        action.achievement.copy(value = action.value).toAchievement()
+                        action.achievement.copy(value = action.value).toAchievement(),
                     )
                 }
             }

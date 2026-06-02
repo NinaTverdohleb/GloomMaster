@@ -37,38 +37,40 @@ class AddGoodsForCharacterScreenViewModel @AssistedInject constructor(
     private val getDiscountByReputationUseCase: GetDiscountByReputationUseCase,
     private val getTeamUseCase: GetTeamInfoUseCase,
 ) : ViewModel() {
-
     private val _navigationEvents = MutableSharedFlow<GlHelperEvent>()
     val navigationEvents = _navigationEvents.asSharedFlow()
 
     private val logicState = MutableStateFlow(AddGoodsForCharacterScreenLogicState())
 
-    val uiState: StateFlow<AddGoodsForCharacterScreenUiState> = combine(
-        logicState,
-        getGoodsForCurrentTeamUseCase(),
-    ) { state, all ->
-        val availableGoods: List<GoodUi> = all
-            .filter { it.filterResult(state.selectedFilter, state.searchText) }
-            .map { it.toUi() }
-            .minus(state.selectedGoods.toSet())
-            .sortedBy { it.number }
-        val selectedGoods = state.selectedGoods.sortedBy { it.number }.toImmutableList()
+    val uiState: StateFlow<AddGoodsForCharacterScreenUiState> =
+        combine(
+            logicState,
+            getGoodsForCurrentTeamUseCase(),
+        ) { state, all ->
+            val availableGoods: List<GoodUi> =
+                all
+                    .filter { it.filterResult(state.selectedFilter, state.searchText) }
+                    .map { it.toUi() }
+                    .minus(state.selectedGoods.toSet())
+                    .sortedBy { it.number }
+            val selectedGoods = state.selectedGoods.sortedBy { it.number }.toImmutableList()
 
-        AddGoodsForCharacterScreenUiState(
-            goodsState = AddGoodsViewState(
-                availableGoods = availableGoods.toImmutableList(),
-                selectedGoods = selectedGoods,
-                selectedFilter = state.selectedFilter,
-                searchText = state.searchText,
-            ),
-            allGold = state.allGold,
-            goodsGold = selectedGoods.sumOf { it.cost } + state.discount,
+            AddGoodsForCharacterScreenUiState(
+                goodsState =
+                    AddGoodsViewState(
+                        availableGoods = availableGoods.toImmutableList(),
+                        selectedGoods = selectedGoods,
+                        selectedFilter = state.selectedFilter,
+                        searchText = state.searchText,
+                    ),
+                allGold = state.allGold,
+                goodsGold = selectedGoods.sumOf { it.cost } + state.discount,
+            )
+        }.stateIn(
+            scope = viewModelScope,
+            initialValue = AddGoodsForCharacterScreenUiState(),
+            started = SharingStarted.WhileSubscribed(5000),
         )
-    }.stateIn(
-        scope = viewModelScope,
-        initialValue = AddGoodsForCharacterScreenUiState(),
-        started = SharingStarted.WhileSubscribed(5000),
-    )
 
     init {
         viewModelScope.launch {
@@ -79,7 +81,7 @@ class AddGoodsForCharacterScreenViewModel @AssistedInject constructor(
                 logicState.update {
                     it.copy(
                         allGold = totalGold,
-                        discount = discount
+                        discount = discount,
                     )
                 }
             }
@@ -104,7 +106,7 @@ class AddGoodsForCharacterScreenViewModel @AssistedInject constructor(
                 is AddGoodsForCharacterScreenActions.AddSelectedGoods -> {
                     addCharacterGoodsUseCase(
                         goodIds = logicState.value.selectedGoods.map { it.goodId },
-                        characterId = id
+                        characterId = id,
                     )
                     _navigationEvents.emit(GlHelperEvent.Back)
                 }
@@ -114,7 +116,7 @@ class AddGoodsForCharacterScreenViewModel @AssistedInject constructor(
                     buyGoodForCharacterUseCase(
                         goodIds = logicState.value.selectedGoods.map { it.goodId },
                         cost = cost,
-                        characterId = id
+                        characterId = id,
                     ).onSuccess {
                         _navigationEvents.emit(GlHelperEvent.Back)
                     }

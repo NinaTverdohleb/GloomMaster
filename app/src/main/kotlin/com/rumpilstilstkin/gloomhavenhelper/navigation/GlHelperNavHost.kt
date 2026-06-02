@@ -27,75 +27,76 @@ import com.rumpilstilstkin.gloomhavenhelper.screens.teem.scenarios.AddScenarioFo
 fun GlHelperNavHost(
     navController: NavHostController = rememberNavController(),
     innerPadding: PaddingValues,
-    widthSizeClass: WindowWidthSizeClass
+    widthSizeClass: WindowWidthSizeClass,
 ) {
     NavHost(
         navController = navController,
         startDestination = GlHelperScreens.Start,
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(innerPadding)
+        modifier =
+            Modifier
+                .fillMaxSize()
+                .padding(innerPadding),
     ) {
         composable<GlHelperScreens.Start> {
             StartScreenRoute(
-                navController = navController
+                navController = navController,
             )
         }
         composable<GlHelperScreens.EditCurrentTeam> {
             TeamEditRoute(
-                navController = navController
+                navController = navController,
             )
         }
         composable<GlHelperScreens.Scenario> {
             ScenarioRoute(
                 navController = navController,
-                widthSizeClass = widthSizeClass
+                widthSizeClass = widthSizeClass,
             )
         }
         composable<GlHelperScreens.CharacterDetails> {
             val args = it.toRoute<GlHelperScreens.CharacterDetails>()
             CharacterDetailsRoute(
                 navController = navController,
-                characterId = args.characterId
+                characterId = args.characterId,
             )
         }
         composable<GlHelperScreens.AddGoodsForCharacter> {
             val args = it.toRoute<GlHelperScreens.AddGoodsForCharacter>()
             AddGoodsForCharacterScreenRoute(
                 characterId = args.characterId,
-                navController = navController
+                navController = navController,
             )
         }
         composable<GlHelperScreens.SearchPersonalQuest> {
             val args = it.toRoute<GlHelperScreens.SearchPersonalQuest>()
             SearchQuestScreen(
                 characterId = args.characterId,
-                navController = navController
+                navController = navController,
             )
         }
         composable<GlHelperScreens.AddGoodsForTeam> {
             AddGoodsForTeamScreenRoute(
-                navController = navController
+                navController = navController,
             )
         }
         composable<GlHelperScreens.AddScenarioForTeam> {
             AddScenarioForTeamRoute(
-                navController = navController
+                navController = navController,
             )
         }
         composable<GlHelperScreens.TeamAchievements> {
             TeamAchievementsRoute(
-                navController = navController
+                navController = navController,
             )
         }
         composable<GlHelperScreens.GlobalAchievements> {
             GlobalAchievementsRoute(
-                navController = navController
+                navController = navController,
             )
         }
         composable<GlHelperScreens.ScenarioConstructor> {
             ScenarioConstructorRoute(
-                navController = navController
+                navController = navController,
             )
         }
     }

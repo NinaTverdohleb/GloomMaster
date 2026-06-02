@@ -20,22 +20,23 @@ class LocaleDatasource @Inject constructor(
                 ?: preference.edit { remove(APP_LOCALE_KEY) }
         }
 
-    fun observeAppLocale(): Flow<String?> = callbackFlow {
-        trySend(locale)
+    fun observeAppLocale(): Flow<String?> =
+        callbackFlow {
+            trySend(locale)
 
-        val listener = SharedPreferences.OnSharedPreferenceChangeListener { _, key ->
-            if (key == APP_LOCALE_KEY) {
-                trySend(locale)
+            val listener =
+                SharedPreferences.OnSharedPreferenceChangeListener { _, key ->
+                    if (key == APP_LOCALE_KEY) {
+                        trySend(locale)
+                    }
+                }
+
+            preference.registerOnSharedPreferenceChangeListener(listener)
+
+            awaitClose {
+                preference.unregisterOnSharedPreferenceChangeListener(listener)
             }
-        }
-
-        preference.registerOnSharedPreferenceChangeListener(listener)
-
-        awaitClose {
-            preference.unregisterOnSharedPreferenceChangeListener(listener)
-        }
-    }.distinctUntilChanged()
-
+        }.distinctUntilChanged()
 
     companion object {
         private const val APP_LOCALE_KEY = "appLocaleKey"

@@ -42,32 +42,31 @@ fun MonsterLevelDialog(
                 Row(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.Center,
-                    verticalAlignment = Alignment.CenterVertically
+                    verticalAlignment = Alignment.CenterVertically,
                 ) {
-
                     Text(
                         modifier = Modifier,
                         text = monsterName,
                         textAlign = TextAlign.Center,
                         style = MaterialTheme.typography.headlineSmall,
-                        color = MaterialTheme.colorScheme.onSurface
+                        color = MaterialTheme.colorScheme.onSurface,
                     )
                 }
                 Spacer(modifier = Modifier.height(8.dp))
                 Column(
                     verticalArrangement = Arrangement.spacedBy(16.dp),
-                    horizontalAlignment = Alignment.CenterHorizontally
+                    horizontalAlignment = Alignment.CenterHorizontally,
                 ) {
                     NumberPicker(
                         modifier = Modifier.fillMaxWidth(),
                         value = level,
-                        intRange = IntRange(0, 7)
+                        intRange = IntRange(0, 7),
                     ) {
                         level = it
                     }
                 }
             }
-        }
+        },
     )
 }
 
@@ -79,7 +78,7 @@ private fun MonsterLevelDialogPreview() {
             unitLevel = 1,
             monsterName = "Character",
             dismiss = {},
-            changeLevel = {}
+            changeLevel = {},
         )
     }
 }

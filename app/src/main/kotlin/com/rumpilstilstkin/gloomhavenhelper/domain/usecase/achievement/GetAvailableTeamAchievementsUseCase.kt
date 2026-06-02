@@ -27,7 +27,7 @@ class GetAvailableTeamAchievementsUseCase @Inject constructor(
                             name = dictionary[achievement.slug] ?: "",
                             value = achievement.value,
                             maxValue = achievement.maxValue,
-                            isGlobal = achievement.isGlobal
+                            isGlobal = achievement.isGlobal,
                         )
                     }
             }

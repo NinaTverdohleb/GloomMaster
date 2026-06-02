@@ -47,22 +47,24 @@ internal fun AddScenarioForTeamScreen(
     },
 ) { paddingValues ->
     Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(paddingValues)
-            .padding(16.dp),
+        modifier =
+            Modifier
+                .fillMaxSize()
+                .padding(paddingValues)
+                .padding(16.dp),
     ) {
         OutlinedTextField(
             value = uiState.searchText,
             onValueChange = onSearchTextChange,
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(bottom = 16.dp),
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .padding(bottom = 16.dp),
             placeholder = { Text(stringResource(R.string.search_scenarios_placeholder)) },
             leadingIcon = {
                 Icon(
                     imageVector = Icons.Default.Search,
-                    contentDescription = null
+                    contentDescription = null,
                 )
             },
             singleLine = true,
@@ -71,17 +73,17 @@ internal fun AddScenarioForTeamScreen(
         LazyColumn(
             modifier = Modifier.weight(1f),
             verticalArrangement = Arrangement.spacedBy(8.dp),
-            contentPadding = PaddingValues(bottom = 16.dp)
+            contentPadding = PaddingValues(bottom = 16.dp),
         ) {
             items(
                 items = uiState.scenarios,
-                key = { it.scenarioNumber }
+                key = { it.scenarioNumber },
             ) { scenario ->
                 ScenarioInfoCardItem(
                     scenarioNumber = scenario.scenarioNumber,
                     scenarioName = scenario.scenarioName,
                     location = scenario.location,
-                    onClick = { onScenarioClick(scenario) }
+                    onClick = { onScenarioClick(scenario) },
                 )
             }
         }
@@ -116,16 +118,17 @@ private fun AddScenarioConfirmDialog(
             )
             if (scenario.scenarioRequirements.isNotBlank()) {
                 Text(
-                    text = stringResource(
-                        R.string.requirements_format,
-                        scenario.scenarioRequirements.toHumanReadable()
-                    ),
+                    text =
+                        stringResource(
+                            R.string.requirements_format,
+                            scenario.scenarioRequirements.toHumanReadable(),
+                        ),
                     style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    modifier = Modifier.padding(top = 8.dp)
+                    modifier = Modifier.padding(top = 8.dp),
                 )
             }
-        }
+        },
     )
 }
 
@@ -134,15 +137,17 @@ private fun AddScenarioConfirmDialog(
 private fun AddScenarioForTeamScreenPreview() {
     GloomhavenMasterTheme {
         AddScenarioForTeamScreen(
-            uiState = AddScenarioForTeamUiState(
-                scenarios = persistentListOf(
-                    ShortScenarioUI.fixture(1),
-                    ShortScenarioUI.fixture(2),
-                    ShortScenarioUI.fixture(3),
+            uiState =
+                AddScenarioForTeamUiState(
+                    scenarios =
+                        persistentListOf(
+                            ShortScenarioUI.fixture(1),
+                            ShortScenarioUI.fixture(2),
+                            ShortScenarioUI.fixture(3),
+                        ),
+                    searchText = "",
+                    selectedScenario = null,
                 ),
-                searchText = "",
-                selectedScenario = null,
-            ),
             onSearchTextChange = {},
             onScenarioClick = {},
             onDismissDialog = {},

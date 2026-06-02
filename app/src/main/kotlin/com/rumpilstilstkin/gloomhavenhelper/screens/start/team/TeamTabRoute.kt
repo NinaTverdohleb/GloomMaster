@@ -20,7 +20,7 @@ fun TeamTabRoute(
         navigationEvents?.let { event ->
             GlHelperEventHelper.event(
                 event = event,
-                navController = navController
+                navController = navController,
             )
         }
     }
@@ -29,8 +29,8 @@ fun TeamTabRoute(
         completeScenario = { scenarioId ->
             viewModel.onAction(
                 TeamTabAction.CompleteScenario(
-                    scenarioId
-                )
+                    scenarioId,
+                ),
             )
         },
         startScenario = { scenarioId -> viewModel.onAction(TeamTabAction.StartScenario(scenarioId)) },
@@ -40,6 +40,6 @@ fun TeamTabRoute(
         openGlobalAchievements = { viewModel.onAction(TeamTabAction.OpenGlobalAchievements) },
         playCurrentScenario = { viewModel.onAction(TeamTabAction.RestoreLastScenario) },
         donate = { viewModel.onAction(TeamTabAction.Donate) },
-        deleteScenario = { viewModel.onAction(TeamTabAction.DeleteScenario(it)) }
+        deleteScenario = { viewModel.onAction(TeamTabAction.DeleteScenario(it)) },
     )
 }

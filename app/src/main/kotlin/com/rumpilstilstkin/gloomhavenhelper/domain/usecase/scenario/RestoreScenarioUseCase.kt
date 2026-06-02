@@ -5,7 +5,7 @@ import com.rumpilstilstkin.gloomhavenhelper.data.TeamRepository
 import kotlinx.coroutines.flow.first
 import javax.inject.Inject
 
-class RestoreScenarioUseCase  @Inject constructor(
+class RestoreScenarioUseCase @Inject constructor(
     private val teamRepository: TeamRepository,
     private val scenarioRepository: ScenarioRepository,
 ) {
@@ -13,7 +13,7 @@ class RestoreScenarioUseCase  @Inject constructor(
         teamRepository.currentTeam.first()?.let { team ->
             scenarioRepository.restoreTeamScenario(
                 teamId = team.teamId,
-                scenarioNumber = scenarioNumber
+                scenarioNumber = scenarioNumber,
             )
         }
     }

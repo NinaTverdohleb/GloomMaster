@@ -7,7 +7,7 @@ import javax.inject.Inject
 
 class LocationJsonFiller @Inject constructor(
     private val jsonDataLoader: JsonDataLoader,
-    private val dao: LocationsDao
+    private val dao: LocationsDao,
 ) {
     suspend fun fill(pack: String) {
         val data =
@@ -19,10 +19,15 @@ class LocationJsonFiller @Inject constructor(
         }
     }
 
-    suspend fun fillTranslations(pack: String, locale: String) {
-        val translations = jsonDataLoader.loadDictionaryListOrEmpty<LocationTranslationJson>(
-            "locations.json", "$pack/$locale"
-        )
+    suspend fun fillTranslations(
+        pack: String,
+        locale: String,
+    ) {
+        val translations =
+            jsonDataLoader.loadDictionaryListOrEmpty<LocationTranslationJson>(
+                "locations.json",
+                "$pack/$locale",
+            )
         val translationsEntities = translations.map { it.toEntity(locale) }
         dao.insertAll(*translationsEntities.toTypedArray())
     }

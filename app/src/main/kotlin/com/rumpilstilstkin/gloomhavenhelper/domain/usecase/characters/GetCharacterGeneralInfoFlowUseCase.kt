@@ -4,8 +4,7 @@ import com.rumpilstilstkin.gloomhavenhelper.data.CharacterRepository
 import javax.inject.Inject
 
 class GetCharacterGeneralInfoFlowUseCase @Inject constructor(
-    private val characterRepository: CharacterRepository
+    private val characterRepository: CharacterRepository,
 ) {
-    operator fun invoke(characterId: Int) =
-        characterRepository.getCharacterByIdFlow(characterId)
+    operator fun invoke(characterId: Int) = characterRepository.getCharacterByIdFlow(characterId)
 }

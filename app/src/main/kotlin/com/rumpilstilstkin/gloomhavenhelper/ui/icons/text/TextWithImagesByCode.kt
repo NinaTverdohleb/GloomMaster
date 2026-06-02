@@ -30,7 +30,7 @@ fun TextWithImagesByCode(
         inlineContent = inlineContentMap,
         color = color,
         fontSize = fontSize,
-        textAlign = textAlign
+        textAlign = textAlign,
     )
 }
 

@@ -19,7 +19,6 @@ data class Monster(
     val lifeMultiple: Boolean,
 )
 
-
 data class MonsterStats(
     val monsterSlug: String,
     val level: Int,

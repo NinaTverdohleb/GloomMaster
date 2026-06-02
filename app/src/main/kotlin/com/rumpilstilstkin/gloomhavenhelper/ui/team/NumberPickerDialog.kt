@@ -13,8 +13,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.rumpilstilstkin.gloomhavenhelper.R
-import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.NumberPicker
+import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
 
 @Composable
 fun NumberPickerDialog(
@@ -22,7 +22,7 @@ fun NumberPickerDialog(
     title: String,
     intRange: IntRange,
     onDismiss: () -> Unit,
-    onNumberSelected: (Int) -> Unit
+    onNumberSelected: (Int) -> Unit,
 ) {
     var value by remember { mutableIntStateOf(startValue) }
 
@@ -33,7 +33,7 @@ fun NumberPickerDialog(
             NumberPicker(
                 modifier = Modifier.fillMaxWidth(),
                 value = value,
-                intRange = intRange
+                intRange = intRange,
             ) {
                 value = it
             }
@@ -42,8 +42,9 @@ fun NumberPickerDialog(
             Button(
                 modifier = Modifier.fillMaxWidth(),
                 onClick = {
-                    onNumberSelected(value);
-                }) {
+                    onNumberSelected(value)
+                },
+            ) {
                 Text(stringResource(R.string.save))
             }
         },
@@ -59,7 +60,7 @@ private fun Sample() {
             title = "Reputation",
             intRange = IntRange(0, 10),
             onDismiss = {},
-            onNumberSelected = {}
+            onNumberSelected = {},
         )
     }
 }

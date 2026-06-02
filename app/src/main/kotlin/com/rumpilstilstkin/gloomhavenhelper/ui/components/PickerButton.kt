@@ -25,54 +25,54 @@ fun PickerButton(
     onValueChange: (Int) -> Unit = {},
     size: GloomSize = GloomSize.M,
 ) {
-    val sizeDp = when (size) {
-        GloomSize.S -> 32.dp
-        GloomSize.M -> 48.dp
-    }
+    val sizeDp =
+        when (size) {
+            GloomSize.S -> 32.dp
+            GloomSize.M -> 48.dp
+        }
     IconButton(
-        modifier = modifier
-            .background(
-                color = MaterialTheme.colorScheme.secondaryContainer,
-                shape = RoundedCornerShape(16.dp),
-            )
-            .border(
-                shape = RoundedCornerShape(16.dp),
-                color = MaterialTheme.colorScheme.outline,
-                width = 1.dp
-            )
-            .size(sizeDp),
+        modifier =
+            modifier
+                .background(
+                    color = MaterialTheme.colorScheme.secondaryContainer,
+                    shape = RoundedCornerShape(16.dp),
+                ).border(
+                    shape = RoundedCornerShape(16.dp),
+                    color = MaterialTheme.colorScheme.outline,
+                    width = 1.dp,
+                ).size(sizeDp),
         onClick = {
             onValueChange(
-                type.action(value)
+                type.action(value),
             )
         },
     ) {
         Icon(
-            modifier = modifier
-                .size(sizeDp),
+            modifier =
+                modifier
+                    .size(sizeDp),
             imageVector = type.image,
             contentDescription = null,
-            tint = MaterialTheme.colorScheme.primary
+            tint = MaterialTheme.colorScheme.primary,
         )
     }
 }
 
 enum class PickerButtonType(
     val image: ImageVector,
-    val action: (Int) -> Int
+    val action: (Int) -> Int,
 ) {
     PLUS(Icons.Rounded.Add, { it + 1 }),
-    MINUS(Minus, { it - 1 })
+    MINUS(Minus, { it - 1 }),
 }
 
 @Preview
 @Composable
 private fun SamplePlus() {
     GloomhavenMasterTheme {
-
         PickerButton(
             0,
-            PickerButtonType.PLUS
+            PickerButtonType.PLUS,
         )
     }
 }
@@ -83,7 +83,7 @@ private fun SampleMinus() {
     GloomhavenMasterTheme {
         PickerButton(
             0,
-            PickerButtonType.MINUS
+            PickerButtonType.MINUS,
         )
     }
 }

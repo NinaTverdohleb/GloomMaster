@@ -50,16 +50,15 @@ fun GloomAlertDialog(
     content: @Composable () -> Unit,
 ) = BasicAlertDialog(
     onDismissRequest = onDismissRequest,
-    modifier = modifier
-        .clip(RoundedCornerShape(16.dp))
-        .background(MaterialTheme.colorScheme.surface)
-        .border(
-            1.dp,
-            MaterialTheme.colorScheme.outlineVariant,
-            RoundedCornerShape(16.dp)
-
-        )
-        .padding(16.dp),
+    modifier =
+        modifier
+            .clip(RoundedCornerShape(16.dp))
+            .background(MaterialTheme.colorScheme.surface)
+            .border(
+                1.dp,
+                MaterialTheme.colorScheme.outlineVariant,
+                RoundedCornerShape(16.dp),
+            ).padding(16.dp),
     content = {
         Column(
             verticalArrangement = Arrangement.spacedBy(16.dp),
@@ -89,20 +88,21 @@ fun GloomAlertDialog(
                 modifier = Modifier.fillMaxWidth(),
                 verticalArrangement = Arrangement.spacedBy(12.dp),
             ) {
-
                 if (onNegativeRequest != null) {
                     OutlinedButton(
                         onClick = onNegativeRequest,
                         modifier = Modifier.fillMaxWidth(),
                         shape = RoundedCornerShape(16.dp),
                         border = BorderStroke(1.dp, MaterialTheme.colorScheme.error),
-                        colors = ButtonDefaults.outlinedButtonColors(
-                            containerColor = Color.Transparent,
-                            contentColor = MaterialTheme.colorScheme.error,
-                        ),
+                        colors =
+                            ButtonDefaults.outlinedButtonColors(
+                                containerColor = Color.Transparent,
+                                contentColor = MaterialTheme.colorScheme.error,
+                            ),
                     ) {
                         Text(
-                            text = negativeText, style = MaterialTheme.typography.bodyMedium
+                            text = negativeText,
+                            style = MaterialTheme.typography.bodyMedium,
                         )
                     }
                 }
@@ -113,10 +113,11 @@ fun GloomAlertDialog(
                         modifier = Modifier.fillMaxWidth(),
                         shape = RoundedCornerShape(16.dp),
                         border = BorderStroke(1.dp, MaterialTheme.colorScheme.secondary),
-                        colors = ButtonDefaults.outlinedButtonColors(
-                            containerColor = Color.Transparent,
-                            contentColor = MaterialTheme.colorScheme.onSurface,
-                        ),
+                        colors =
+                            ButtonDefaults.outlinedButtonColors(
+                                containerColor = Color.Transparent,
+                                contentColor = MaterialTheme.colorScheme.onSurface,
+                            ),
                     ) {
                         Text(text = neutralText, style = MaterialTheme.typography.bodyMedium)
                     }
@@ -128,22 +129,23 @@ fun GloomAlertDialog(
                         modifier = Modifier.fillMaxWidth(),
                         shape = RoundedCornerShape(16.dp),
                         enabled = confirmEnabled,
-                        colors = ButtonDefaults.buttonColors(
-                            containerColor = MaterialTheme.colorScheme.secondary,
-                            contentColor = MaterialTheme.colorScheme.onSurface,
-                            disabledContainerColor = MaterialTheme.colorScheme.secondary.copy(alpha = 0.4f),
-                        ),
+                        colors =
+                            ButtonDefaults.buttonColors(
+                                containerColor = MaterialTheme.colorScheme.secondary,
+                                contentColor = MaterialTheme.colorScheme.onSurface,
+                                disabledContainerColor = MaterialTheme.colorScheme.secondary.copy(alpha = 0.4f),
+                            ),
                     ) {
                         Text(
                             text = confirmText,
                             color = MaterialTheme.colorScheme.onSecondary,
-                            style = MaterialTheme.typography.bodyMedium
+                            style = MaterialTheme.typography.bodyMedium,
                         )
                     }
                 }
             }
         }
-    }
+    },
 )
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -157,16 +159,15 @@ fun GloomAlertDialogCustomActions(
     actions: @Composable () -> Unit,
 ) = BasicAlertDialog(
     onDismissRequest = onDismissRequest,
-    modifier = modifier
-        .clip(RoundedCornerShape(16.dp))
-        .background(MaterialTheme.colorScheme.surface)
-        .border(
-            1.dp,
-            MaterialTheme.colorScheme.outlineVariant,
-            RoundedCornerShape(16.dp)
-
-        )
-        .padding(16.dp),
+    modifier =
+        modifier
+            .clip(RoundedCornerShape(16.dp))
+            .background(MaterialTheme.colorScheme.surface)
+            .border(
+                1.dp,
+                MaterialTheme.colorScheme.outlineVariant,
+                RoundedCornerShape(16.dp),
+            ).padding(16.dp),
     content = {
         Column(
             verticalArrangement = Arrangement.spacedBy(16.dp),
@@ -195,7 +196,7 @@ fun GloomAlertDialogCustomActions(
             content()
             actions()
         }
-    }
+    },
 )
 
 @Preview
@@ -207,7 +208,7 @@ private fun GloomAlertDialogPreview() {
             onConfirmRequest = {},
             onNegativeRequest = {},
             content = {},
-            title = "Title"
+            title = "Title",
         )
     }
 }

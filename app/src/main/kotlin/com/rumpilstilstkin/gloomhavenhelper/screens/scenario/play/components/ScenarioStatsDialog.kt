@@ -21,7 +21,6 @@ internal fun ScenarioStatsDialog(
     trapDamage: Int,
     onDismiss: () -> Unit,
 ) {
-
     GloomAlertDialog(
         title = stringResource(R.string.scenario_stats_title),
         onDismissRequest = onDismiss,
@@ -29,25 +28,24 @@ internal fun ScenarioStatsDialog(
     ) {
         StatItem(
             value = stringResource(R.string.stat_monster_level, level),
-            image = R.drawable.ic_level
+            image = R.drawable.ic_level,
         )
 
         StatItem(
             value = stringResource(R.string.stat_exp_reward, exp),
-            image = R.drawable.ic_exp
+            image = R.drawable.ic_exp,
         )
 
         StatItem(
             value = stringResource(R.string.stat_gold_reward, gold),
-            image = R.drawable.ic_gold
+            image = R.drawable.ic_gold,
         )
 
         StatItem(
             value = stringResource(R.string.stat_trap_damage, trapDamage),
-            image = R.drawable.ic_trap
+            image = R.drawable.ic_trap,
         )
     }
-
 }
 
 @Preview
@@ -59,7 +57,7 @@ private fun ScenarioStatsDialogPreview() {
             exp = 100,
             gold = 100,
             trapDamage = 10,
-            onDismiss = { }
+            onDismiss = { },
         )
     }
 }

@@ -13,29 +13,29 @@ data class CharacterUI(
     val characterClass: CharacterClassTypeUI,
     val id: Int = 0,
     val teamName: String?,
-    val isAlive: Boolean = true
+    val isAlive: Boolean = true,
 ) {
     companion object {
         fun fixture(
             name: String = "Name2",
             level: Int = 6,
             characterClass: CharacterClassTypeUI = CharacterClassTypeUI.Brute,
-            teamName: String? = null
+            teamName: String? = null,
         ) = CharacterUI(
             name = name,
             level = level,
             characterClass = characterClass,
-            teamName = teamName
+            teamName = teamName,
         )
     }
 }
 
-fun CharacterInfo.toUi() = CharacterUI(
-    name = this.name,
-    level = this.level,
-    id = this.id,
-    characterClass = this.characterType.toCharacterClassTypeUI(),
-    isAlive = this.isAlive,
-    teamName = this.team?.name
-
-)
+fun CharacterInfo.toUi() =
+    CharacterUI(
+        name = this.name,
+        level = this.level,
+        id = this.id,
+        characterClass = this.characterType.toCharacterClassTypeUI(),
+        isAlive = this.isAlive,
+        teamName = this.team?.name,
+    )

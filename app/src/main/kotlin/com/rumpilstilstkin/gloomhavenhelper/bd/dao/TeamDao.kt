@@ -34,14 +34,22 @@ interface TeamDao {
 
     @Transaction
     @Query("UPDATE TeamBd SET reputation=:reputation WHERE teamId = :id")
-    suspend fun updateReputation(id: Int, reputation: Int)
+    suspend fun updateReputation(
+        id: Int,
+        reputation: Int,
+    )
 
     @Transaction
     @Query("UPDATE TeamBd SET prosperity=:prosperity WHERE teamId = :id")
-    suspend fun updateProsperity(id: Int, prosperity: Int)
+    suspend fun updateProsperity(
+        id: Int,
+        prosperity: Int,
+    )
 
     @Transaction
     @Query("UPDATE TeamBd SET churchValue=:value WHERE teamId = :id")
-    suspend fun updateDonateValue(id: Int, value: Int)
-
+    suspend fun updateDonateValue(
+        id: Int,
+        value: Int,
+    )
 }

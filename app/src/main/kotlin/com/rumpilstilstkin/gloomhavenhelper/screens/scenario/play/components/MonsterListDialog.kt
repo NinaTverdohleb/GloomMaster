@@ -35,7 +35,6 @@ import com.rumpilstilstkin.gloomhavenhelper.domain.entity.scenario.MonsterItem
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomAlertDialog
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
 
-
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MonsterListDialog(
@@ -56,9 +55,10 @@ fun MonsterListDialog(
     ) {
         Column {
             LazyColumn(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .heightIn(max = 420.dp),
+                modifier =
+                    Modifier
+                        .fillMaxWidth()
+                        .heightIn(max = 420.dp),
                 verticalArrangement = Arrangement.spacedBy(8.dp),
             ) {
                 items(monsters.size) { index ->
@@ -66,11 +66,12 @@ fun MonsterListDialog(
                         name = monsters[index].name,
                         isSelected = selectedIds.contains(monsters[index].slug),
                         onClick = {
-                            selectedIds = if (selectedIds.contains(monsters[index].slug)) {
-                                selectedIds - monsters[index].slug
-                            } else {
-                                selectedIds + monsters[index].slug
-                            }
+                            selectedIds =
+                                if (selectedIds.contains(monsters[index].slug)) {
+                                    selectedIds - monsters[index].slug
+                                } else {
+                                    selectedIds + monsters[index].slug
+                                }
                         },
                     )
                 }
@@ -78,14 +79,14 @@ fun MonsterListDialog(
                 item {
                     Button(
                         onClick = addNewMonsters,
-                        modifier = Modifier
-                            .fillMaxWidth()
+                        modifier =
+                            Modifier
+                                .fillMaxWidth(),
                     ) {
                         Text(stringResource(R.string.add_monsters))
                     }
                 }
             }
-
         }
     }
 }
@@ -97,22 +98,26 @@ private fun MonsterClassItem(
     onClick: () -> Unit,
 ) {
     val borderColor =
-        if (isSelected) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.primary.copy(
-            alpha = 0.2f
-        )
+        if (isSelected) {
+            MaterialTheme.colorScheme.primary
+        } else {
+            MaterialTheme.colorScheme.primary.copy(
+                alpha = 0.2f,
+            )
+        }
     val borderWidth = if (isSelected) 1.5.dp else 1.dp
     Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .clip(RoundedCornerShape(12.dp))
-            .background(MaterialTheme.colorScheme.secondaryContainer)
-            .border(
-                borderWidth,
-                borderColor,
-                RoundedCornerShape(12.dp)
-            )
-            .clickable(onClick = onClick)
-            .padding(horizontal = 16.dp, vertical = 18.dp),
+        modifier =
+            Modifier
+                .fillMaxWidth()
+                .clip(RoundedCornerShape(12.dp))
+                .background(MaterialTheme.colorScheme.secondaryContainer)
+                .border(
+                    borderWidth,
+                    borderColor,
+                    RoundedCornerShape(12.dp),
+                ).clickable(onClick = onClick)
+                .padding(horizontal = 16.dp, vertical = 18.dp),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween,
     ) {
@@ -137,13 +142,14 @@ private fun MonsterClassItem(
 private fun MonsterListDialogPreview() {
     GloomhavenMasterTheme {
         MonsterListDialog(
-            monsters = listOf(
-                MonsterItem.fixture("1", "Skeleton"),
-                MonsterItem.fixture("2", "Zombie"),
-            ),
+            monsters =
+                listOf(
+                    MonsterItem.fixture("1", "Skeleton"),
+                    MonsterItem.fixture("2", "Zombie"),
+                ),
             onDismiss = {},
             selectMonster = {},
-            addNewMonsters = {}
+            addNewMonsters = {},
         )
     }
 }

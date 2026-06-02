@@ -50,14 +50,14 @@ import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEventHelpe
 import com.rumpilstilstkin.gloomhavenhelper.screens.characters.start.general.components.PersonalQuestView
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.PersonalQuestUI
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomAlertDialog
-import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.NumberPicker
+import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
 
 @Composable
 fun CharacterGeneralTab(
     characterId: Int,
     navController: NavHostController,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     val viewModel =
         hiltViewModel<CharacterGeneralTabViewModel, CharacterGeneralTabViewModel.Factory> { factory ->
@@ -71,7 +71,7 @@ fun CharacterGeneralTab(
         navigationEvents?.let { event ->
             GlHelperEventHelper.event(
                 event = event,
-                navController = navController
+                navController = navController,
             )
         }
     }
@@ -90,17 +90,18 @@ fun CharacterGeneralTabContent(
     onAction: (GeneralTabActions) -> Unit,
 ) {
     Column(
-        modifier = modifier
-            .padding(16.dp)
-            .fillMaxSize()
-            .verticalScroll(rememberScrollState()),
+        modifier =
+            modifier
+                .padding(16.dp)
+                .fillMaxSize()
+                .verticalScroll(rememberScrollState()),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         ExperienceRow(
             experience = content.experience,
             nextLevelExperience = content.nextLevel,
             onLevelUp = { onAction(GeneralTabActions.LevelUp) },
-            onExperienceChanged = { onAction(GeneralTabActions.ExperienceChanged(it)) }
+            onExperienceChanged = { onAction(GeneralTabActions.ExperienceChanged(it)) },
         )
         Spacer(modifier = Modifier.height(32.dp))
 
@@ -112,7 +113,7 @@ fun CharacterGeneralTabContent(
         Spacer(modifier = Modifier.height(32.dp))
         CheckMarksBlock(
             checkMarkCount = content.checkMarkCount,
-            onCheckedChange = { onAction(GeneralTabActions.CheckedChange(it)) }
+            onCheckedChange = { onAction(GeneralTabActions.CheckedChange(it)) },
         )
         Spacer(modifier = Modifier.height(16.dp))
         PersonalQuest(
@@ -124,7 +125,7 @@ fun CharacterGeneralTabContent(
         Spacer(modifier = Modifier.height(16.dp))
         NotesRow(
             notes = content.notes,
-            onNotesChanged = { onAction(GeneralTabActions.NotesChanged(it)) }
+            onNotesChanged = { onAction(GeneralTabActions.NotesChanged(it)) },
         )
     }
 }
@@ -136,11 +137,11 @@ fun CheckMarksBlock(
     modifier: Modifier = Modifier,
 ) {
     Column(
-        modifier = modifier
+        modifier = modifier,
     ) {
         Text(
             text = stringResource(R.string.notes_title),
-            style = MaterialTheme.typography.titleMedium
+            style = MaterialTheme.typography.titleMedium,
         )
         Spacer(modifier = Modifier.height(8.dp))
 
@@ -154,23 +155,23 @@ fun PersonalQuest(
     onTaskCheckedChange: (CharacterTaskItem.Check) -> Unit,
     onTaskCountChanged: (CharacterTaskItem.Count, Int) -> Unit,
     choosePersonalQuest: () -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     Column(
-        modifier = modifier.fillMaxWidth()
+        modifier = modifier.fillMaxWidth(),
     ) {
         Text(
             text = stringResource(R.string.personal_quest_title),
-            style = MaterialTheme.typography.titleMedium
+            style = MaterialTheme.typography.titleMedium,
         )
         Spacer(
-            modifier = Modifier.height(16.dp)
+            modifier = Modifier.height(16.dp),
         )
 
         if (personalQuest == null) {
             Button(
                 modifier = Modifier.fillMaxWidth(),
-                onClick = choosePersonalQuest
+                onClick = choosePersonalQuest,
             ) {
                 Text(stringResource(R.string.add))
             }
@@ -179,20 +180,18 @@ fun PersonalQuest(
                 quest = personalQuest,
                 selectNewQuest = choosePersonalQuest,
                 onTaskCheckedChange = onTaskCheckedChange,
-                onTaskCountChanged = onTaskCountChanged
+                onTaskCountChanged = onTaskCountChanged,
             )
         }
     }
-
 }
 
 @Composable
 fun NotesRow(
     notes: String,
     modifier: Modifier = Modifier,
-    onNotesChanged: (String) -> Unit
+    onNotesChanged: (String) -> Unit,
 ) {
-
     // add characterDialog
     var showNotesDialog by remember { mutableStateOf(false) }
 
@@ -203,7 +202,7 @@ fun NotesRow(
         onNotesChanged = { text ->
             onNotesChanged(text)
             showNotesDialog = false
-        }
+        },
     )
 
     Column(
@@ -211,7 +210,7 @@ fun NotesRow(
     ) {
         Text(
             text = stringResource(R.string.text_label),
-            style = MaterialTheme.typography.titleSmall
+            style = MaterialTheme.typography.titleSmall,
         )
         Spacer(modifier = Modifier.height(8.dp))
         if (notes.isNotEmpty()) {
@@ -225,7 +224,7 @@ fun NotesRow(
         ) {
             Text(
                 text = stringResource(R.string.edit_text_button),
-                textAlign = TextAlign.Center
+                textAlign = TextAlign.Center,
             )
         }
     }
@@ -241,7 +240,7 @@ fun NotesDialog(
     if (showDialog) {
         var newNotes by rememberSaveable { mutableStateOf(text) }
 
-        GloomAlertDialog (
+        GloomAlertDialog(
             onDismissRequest = { onDismiss.invoke() },
             title = stringResource(R.string.notes_title),
             content = {
@@ -250,43 +249,50 @@ fun NotesDialog(
                         modifier = Modifier.defaultMinSize(minHeight = 240.dp),
                         value = newNotes,
                         onValueChange = { newNotes = it },
-                        label = { Text(stringResource(R.string.notes_title)) }
+                        label = { Text(stringResource(R.string.notes_title)) },
                     )
                 }
             },
-            onConfirmRequest = {onNotesChanged.invoke(newNotes)},
+            onConfirmRequest = { onNotesChanged.invoke(newNotes) },
             onNeutralRequest = null,
             confirmText = stringResource(R.string.save),
         )
     }
-
 }
 
 @Composable
 fun CheckMarks(
     checkMarkCount: Int,
     modifier: Modifier = Modifier,
-    onCheckedChange: (Boolean) -> Unit
+    onCheckedChange: (Boolean) -> Unit,
 ) {
     val fullCount = checkMarkCount / 3
     val remainder = checkMarkCount % 3
     Column {
-        for (i in 0..2)
+        for (i in 0..2) {
             Row(
                 modifier = modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.Start,
-                verticalAlignment = Alignment.CenterVertically
+                verticalAlignment = Alignment.CenterVertically,
             ) {
                 for (j in 0..1) {
                     val t = i * 2 + j
-                    val count = if (t < fullCount) 3 else if (t == fullCount) remainder else 0
+                    val count =
+                        if (t < fullCount) {
+                            3
+                        } else if (t == fullCount) {
+                            remainder
+                        } else {
+                            0
+                        }
                     CheckMarkRow(
                         fillCount = count,
-                        onCheckedChange = onCheckedChange
+                        onCheckedChange = onCheckedChange,
                     )
                     Spacer(modifier = Modifier.width(32.dp))
                 }
             }
+        }
     }
 }
 
@@ -295,17 +301,17 @@ fun CheckMarks(
 fun CheckMarkRow(
     fillCount: Int,
     modifier: Modifier = Modifier,
-    onCheckedChange: (Boolean) -> Unit
+    onCheckedChange: (Boolean) -> Unit,
 ) {
     Row(
         modifier = modifier.padding(vertical = 2.dp),
         horizontalArrangement = Arrangement.Start,
-        verticalAlignment = Alignment.CenterVertically
+        verticalAlignment = Alignment.CenterVertically,
     ) {
         Icon(
             imageVector = Icons.Default.Check,
             contentDescription = null,
-            tint = MaterialTheme.colorScheme.onBackground
+            tint = MaterialTheme.colorScheme.onBackground,
         )
 
         Text(
@@ -321,17 +327,16 @@ fun CheckMarkRow(
                     modifier = Modifier,
                     checked = i < fillCount,
                     onCheckedChange = { onCheckedChange(it) },
-                    colors = CheckboxDefaults.colors().copy(
-                        uncheckedBorderColor = MaterialTheme.colorScheme.primary,
-                    )
+                    colors =
+                        CheckboxDefaults.colors().copy(
+                            uncheckedBorderColor = MaterialTheme.colorScheme.primary,
+                        ),
                 )
                 Spacer(modifier = Modifier.width(6.dp))
             }
         }
-
     }
 }
-
 
 @Composable
 fun GoldRow(
@@ -342,22 +347,22 @@ fun GoldRow(
 ) {
     Column(
         modifier = modifier.fillMaxWidth(),
-        verticalArrangement = Arrangement.Center
+        verticalArrangement = Arrangement.Center,
     ) {
         Text(
             text = stringResource(R.string.gold_title),
-            style = MaterialTheme.typography.titleMedium
+            style = MaterialTheme.typography.titleMedium,
         )
         Spacer(modifier = Modifier.height(8.dp))
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.CenterVertically
+            verticalAlignment = Alignment.CenterVertically,
         ) {
             NumberPicker(
                 value = goldCount,
                 intRange = goldRange,
-                onValueChange = onGoldChanged
+                onValueChange = onGoldChanged,
             )
         }
     }
@@ -371,35 +376,34 @@ fun ExperienceRow(
     isCanLevelUp: Boolean = experience > nextLevelExperience,
     levelRange: IntRange = 0..500,
     onLevelUp: () -> Unit,
-    onExperienceChanged: (Int) -> Unit
+    onExperienceChanged: (Int) -> Unit,
 ) {
     Column(
         modifier = modifier.fillMaxWidth(),
     ) {
-
         Text(
             text = stringResource(R.string.experience_title),
-            style = MaterialTheme.typography.titleMedium
+            style = MaterialTheme.typography.titleMedium,
         )
         Spacer(modifier = Modifier.height(8.dp))
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.CenterVertically
+            verticalAlignment = Alignment.CenterVertically,
         ) {
             NumberPicker(
                 value = experience,
                 intRange = levelRange,
-                onValueChange = onExperienceChanged
+                onValueChange = onExperienceChanged,
             )
 
             Button(
                 onClick = onLevelUp,
-                enabled = isCanLevelUp
+                enabled = isCanLevelUp,
             ) {
                 Text(
                     text = stringResource(R.string.level_up_button),
-                    textAlign = TextAlign.Center
+                    textAlign = TextAlign.Center,
                 )
             }
         }
@@ -413,17 +417,18 @@ fun ExperienceRow(
 private fun Sample() {
     GloomhavenMasterTheme {
         CharacterGeneralTabContent(
-            content = CharacterGeneralTabState(
-                experience = 150,
-                goldCount = 10,
-                checkMarkCount = 15,
-                hasTeam = false,
-                teamName = null,
-                nextLevel = 175,
-                notes = "Some notes about my journey."
-            ),
+            content =
+                CharacterGeneralTabState(
+                    experience = 150,
+                    goldCount = 10,
+                    checkMarkCount = 15,
+                    hasTeam = false,
+                    teamName = null,
+                    nextLevel = 175,
+                    notes = "Some notes about my journey.",
+                ),
             modifier = Modifier.background(MaterialTheme.colorScheme.background),
-            onAction = {}
+            onAction = {},
         )
     }
 }
@@ -436,7 +441,7 @@ private fun SampleNotesDialog() {
             text = "",
             showDialog = true,
             onDismiss = { /*TODO*/ },
-            onNotesChanged = {}
+            onNotesChanged = {},
         )
     }
 }

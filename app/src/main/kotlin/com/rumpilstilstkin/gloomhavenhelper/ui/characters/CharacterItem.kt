@@ -33,58 +33,59 @@ fun CharacterItem(
     character: CharacterUI,
     modifier: Modifier = Modifier,
     onItemClick: (Int) -> Unit,
-    onLevelClick: (Int) -> Unit = {}
+    onLevelClick: (Int) -> Unit = {},
 ) = GloomCard(
-    modifier = modifier
-        .clickable {
-            onItemClick.invoke(character.id)
-        },
-    active = character.isAlive
+    modifier =
+        modifier
+            .clickable {
+                onItemClick.invoke(character.id)
+            },
+    active = character.isAlive,
 ) {
     Row(
         modifier = Modifier.fillMaxWidth(),
-        verticalAlignment = Alignment.CenterVertically
+        verticalAlignment = Alignment.CenterVertically,
     ) {
         Box(
-            modifier = modifier
-                .size(52.dp)
-                .background(
-                    color = MaterialTheme.colorScheme.secondaryContainer,
-                    shape = RoundedCornerShape(8.dp),
-                )
-                .border(
-                    shape = RoundedCornerShape(8.dp),
-                    color = MaterialTheme.colorScheme.outline,
-                    width = 1.dp
-                ),
-            contentAlignment = Alignment.Center
+            modifier =
+                modifier
+                    .size(52.dp)
+                    .background(
+                        color = MaterialTheme.colorScheme.secondaryContainer,
+                        shape = RoundedCornerShape(8.dp),
+                    ).border(
+                        shape = RoundedCornerShape(8.dp),
+                        color = MaterialTheme.colorScheme.outline,
+                        width = 1.dp,
+                    ),
+            contentAlignment = Alignment.Center,
         ) {
             Icon(
                 modifier = Modifier.size(40.dp),
                 painter = painterResource(character.characterClass.image),
-                contentDescription = null
+                contentDescription = null,
             )
         }
         Spacer(modifier = Modifier.width(16.dp))
         Column(
-            modifier = Modifier.weight(1f)
+            modifier = Modifier.weight(1f),
         ) {
             Text(
                 text = character.name,
                 style = MaterialTheme.typography.bodyLarge,
-                color = MaterialTheme.colorScheme.onSurface
+                color = MaterialTheme.colorScheme.onSurface,
             )
             Spacer(modifier = Modifier.height(8.dp))
             Text(
                 text = stringResource(character.characterClass.titleRes),
                 style = MaterialTheme.typography.bodyMedium,
-                color = MaterialTheme.colorScheme.onSurface
+                color = MaterialTheme.colorScheme.onSurface,
             )
         }
         RoundButton(
             size = GloomSize.M,
             text = character.level.toString(),
-            onClick = { onLevelClick(character.id) }
+            onClick = { onLevelClick(character.id) },
         )
     }
 }
@@ -95,7 +96,7 @@ private fun CharacterItemPreview() {
     GloomhavenMasterTheme {
         CharacterItem(
             character = CharacterUI.fixture(),
-            onItemClick = {}
+            onItemClick = {},
         )
     }
 }

@@ -26,14 +26,14 @@ data class MonsterItem(
             name: String = "Name",
             isBoss: Boolean = false,
             isFly: Boolean = false,
-            deck: String = "boss"
+            deck: String = "boss",
         ) = MonsterItem(
             slug = slug,
             name = name,
             currentCard = null,
             isBoss = isBoss,
             isFly = isFly,
-            deck = deck
+            deck = deck,
         )
     }
 }
@@ -47,7 +47,7 @@ data class MonsterUnit(
     val effects: ImmutableList<MonsterStatType> = persistentListOf(),
     val immunity: ImmutableList<MonsterStatType> = persistentListOf(),
     val level: Int,
-    val isNew: Boolean = true
+    val isNew: Boolean = true,
 ) {
     companion object {
         fun create(
@@ -56,7 +56,7 @@ data class MonsterUnit(
             isElite: Boolean,
             currentLife: Int? = null,
             effects: ImmutableList<MonsterStatType> = persistentListOf(),
-            isNew: Boolean = true
+            isNew: Boolean = true,
         ): MonsterUnit {
             val maxLife = if (isElite) monster.eliteLife else monster.life
             val stats = if (isElite) monster.eliteStats else monster.stats
@@ -68,40 +68,41 @@ data class MonsterUnit(
                 isSpecial = isElite,
                 level = monster.level,
                 effects = effects,
-                immunity = monster
-                    .immunity
-                    .map { it }
-                    .toImmutableList(),
-                isNew = isNew
+                immunity =
+                    monster
+                        .immunity
+                        .map { it }
+                        .toImmutableList(),
+                isNew = isNew,
             )
         }
 
-        fun fixture(
-            number: Int = 1
-        ) = MonsterUnit(
-            number = number,
-            isSpecial = true,
-            currentLife = 10,
-            maxLife = 10,
-            level = 1,
-            stats = persistentListOf(
-               MonsterAction.Action(
-                    statType = MonsterStatType.MOVE,
-                    modifier = "3"
-                ),
-               MonsterAction.Action(
-                    statType = MonsterStatType.ATTACK,
-                    modifier = "4"
-                ),
-               MonsterAction.Action(
-                   statType = MonsterStatType.SHIELD,
-                    modifier = "2"
-                ),
-               MonsterAction.Action(
-                    statType = MonsterStatType.POISON,
-                    modifier = ""
-                ),
+        fun fixture(number: Int = 1) =
+            MonsterUnit(
+                number = number,
+                isSpecial = true,
+                currentLife = 10,
+                maxLife = 10,
+                level = 1,
+                stats =
+                    persistentListOf(
+                        MonsterAction.Action(
+                            statType = MonsterStatType.MOVE,
+                            modifier = "3",
+                        ),
+                        MonsterAction.Action(
+                            statType = MonsterStatType.ATTACK,
+                            modifier = "4",
+                        ),
+                        MonsterAction.Action(
+                            statType = MonsterStatType.SHIELD,
+                            modifier = "2",
+                        ),
+                        MonsterAction.Action(
+                            statType = MonsterStatType.POISON,
+                            modifier = "",
+                        ),
+                    ),
             )
-        )
     }
 }

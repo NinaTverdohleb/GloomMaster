@@ -77,26 +77,27 @@ internal fun TeamEditScreen(
                     Icon(
                         Icons.Default.Delete,
                         contentDescription = null,
-                        tint = MaterialTheme.colorScheme.error
+                        tint = MaterialTheme.colorScheme.error,
                     )
                 }
                 IconButton(onClick = shareTeamData) {
                     Icon(
                         Icons.Default.Share,
                         contentDescription = null,
-                        tint = MaterialTheme.colorScheme.onSurface
+                        tint = MaterialTheme.colorScheme.onSurface,
                     )
                 }
-            }
+            },
         )
     },
 ) { paddingValues ->
     Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(paddingValues)
-            .padding(16.dp)
-            .verticalScroll(rememberScrollState()),
+        modifier =
+            Modifier
+                .fillMaxSize()
+                .padding(paddingValues)
+                .padding(16.dp)
+                .verticalScroll(rememberScrollState()),
         verticalArrangement = Arrangement.spacedBy(16.dp),
     ) {
         var localName by remember(uiState.teamName) { mutableStateOf(uiState.teamName) }
@@ -115,7 +116,7 @@ internal fun TeamEditScreen(
 
         DifficultySelector(
             selected = uiState.difficultyLevel,
-            onSelect = onDifficultyChange
+            onSelect = onDifficultyChange,
         )
 
         Spacer(modifier = Modifier.height(8.dp))
@@ -129,9 +130,10 @@ internal fun TeamEditScreen(
         uiState.availablePacks.forEach { packItem ->
             GloomCard {
                 Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(vertical = 4.dp),
+                    modifier =
+                        Modifier
+                            .fillMaxWidth()
+                            .padding(vertical = 4.dp),
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.SpaceBetween,
                 ) {
@@ -178,7 +180,6 @@ internal fun TeamEditScreen(
     }
 }
 
-
 @Composable
 fun DifficultySelector(
     selected: DifficultyLevel,
@@ -214,16 +215,25 @@ private fun DifficultyItem(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    val (icon, tint) = when (level) {
-        DifficultyLevel.EASY -> Icons.Rounded.Eco to Color(0xFF3B6D11)
-        DifficultyLevel.NORMAL -> Icons.Rounded.Whatshot to Color(0xFF185FA5)
-        DifficultyLevel.HARD -> Icons.Rounded.ElectricBolt to Color(0xFF854F0B)
-        DifficultyLevel.VERY_HARD -> Icons.Rounded.AdminPanelSettings to Color(0xFFA32D2D)
-    }
-    val bgColor = if (isSelected) tint.copy(alpha = 0.12f)
-    else MaterialTheme.colorScheme.surface
-    val borderColor = if (isSelected) tint
-    else MaterialTheme.colorScheme.outlineVariant
+    val (icon, tint) =
+        when (level) {
+            DifficultyLevel.EASY -> Icons.Rounded.Eco to Color(0xFF3B6D11)
+            DifficultyLevel.NORMAL -> Icons.Rounded.Whatshot to Color(0xFF185FA5)
+            DifficultyLevel.HARD -> Icons.Rounded.ElectricBolt to Color(0xFF854F0B)
+            DifficultyLevel.VERY_HARD -> Icons.Rounded.AdminPanelSettings to Color(0xFFA32D2D)
+        }
+    val bgColor =
+        if (isSelected) {
+            tint.copy(alpha = 0.12f)
+        } else {
+            MaterialTheme.colorScheme.surface
+        }
+    val borderColor =
+        if (isSelected) {
+            tint
+        } else {
+            MaterialTheme.colorScheme.outlineVariant
+        }
 
     Surface(
         onClick = onClick,
@@ -233,8 +243,9 @@ private fun DifficultyItem(
         border = BorderStroke(0.5.dp, borderColor),
     ) {
         Column(
-            modifier = Modifier
-                .padding(vertical = 10.dp, horizontal = 6.dp),
+            modifier =
+                Modifier
+                    .padding(vertical = 10.dp, horizontal = 6.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.spacedBy(3.dp),
         ) {
@@ -242,35 +253,38 @@ private fun DifficultyItem(
             Text(
                 text = level.toLabel(),
                 style = MaterialTheme.typography.labelSmall,
-                textAlign = TextAlign.Center
+                textAlign = TextAlign.Center,
             )
         }
     }
 }
 
 @Composable
-private fun DifficultyLevel.toLabel() = when(this){
-    DifficultyLevel.EASY -> stringResource(R.string.difficulty_easy)
-    DifficultyLevel.NORMAL -> stringResource(R.string.difficulty_normal)
-    DifficultyLevel.HARD -> stringResource(R.string.difficulty_hard)
-    DifficultyLevel.VERY_HARD -> stringResource(R.string.difficulty_very_hard)
-}
+private fun DifficultyLevel.toLabel() =
+    when (this) {
+        DifficultyLevel.EASY -> stringResource(R.string.difficulty_easy)
+        DifficultyLevel.NORMAL -> stringResource(R.string.difficulty_normal)
+        DifficultyLevel.HARD -> stringResource(R.string.difficulty_hard)
+        DifficultyLevel.VERY_HARD -> stringResource(R.string.difficulty_very_hard)
+    }
 
 @Preview(showBackground = true, backgroundColor = 0xFF1A1C24)
 @Composable
 private fun TeamEditScreenPreview() {
     GloomhavenMasterTheme {
         TeamEditScreen(
-            uiState = TeamEditStateUi(
-                teamName = "My Team",
-                availablePacks = persistentListOf(
-                    PackItemUi(
-                        pack = PackType.FORGOTTEN_CIRCLES,
-                        isEnabled = false,
-                    ),
+            uiState =
+                TeamEditStateUi(
+                    teamName = "My Team",
+                    availablePacks =
+                        persistentListOf(
+                            PackItemUi(
+                                pack = PackType.FORGOTTEN_CIRCLES,
+                                isEnabled = false,
+                            ),
+                        ),
+                    showChangeTeamButton = true,
                 ),
-                showChangeTeamButton = true
-            ),
             onNameChange = {},
             onTogglePack = {},
             back = {},
@@ -281,7 +295,7 @@ private fun TeamEditScreenPreview() {
             dismissTeamListDialog = {},
             selectTeam = {},
             shareTeamData = {},
-            onDifficultyChange = {}
+            onDifficultyChange = {},
         )
     }
 }

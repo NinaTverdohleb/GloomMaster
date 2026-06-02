@@ -27,7 +27,7 @@ fun DeleteAchievementConfirmDialog(
                 style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.onSurface,
             )
-        }
+        },
     )
 }
 

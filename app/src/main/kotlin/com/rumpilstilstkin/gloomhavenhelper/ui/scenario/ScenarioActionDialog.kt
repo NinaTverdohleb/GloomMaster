@@ -26,7 +26,7 @@ fun ScenarioActionDialog(
     onDismiss: () -> Unit,
     completeScenario: () -> Unit,
     startScenario: () -> Unit,
-    deleteScenario: (Int) -> Unit
+    deleteScenario: (Int) -> Unit,
 ) {
     GloomAlertDialog(
         onDismissRequest = onDismiss,
@@ -48,10 +48,10 @@ fun ScenarioActionDialog(
                         text = stringResource(R.string.requirements),
                         style = MaterialTheme.typography.labelLarge,
                         color = MaterialTheme.colorScheme.primary,
-                        textAlign = TextAlign.Center
+                        textAlign = TextAlign.Center,
                     )
                     Spacer(
-                        modifier = Modifier.height(16.dp)
+                        modifier = Modifier.height(16.dp),
                     )
                     Text(
                         text = scenarioRequirements.split(",").joinToString("\n") { it.trim() },
@@ -59,7 +59,7 @@ fun ScenarioActionDialog(
                     )
                 }
             }
-        }
+        },
     )
 }
 
@@ -76,9 +76,12 @@ fun ScenarioInfoDialog(
 ) {
     GloomAlertDialog(
         onDismissRequest = onDismiss,
-        onConfirmRequest = if (completed) {
-            { restoreScenario(scenarioNumber) }
-        } else null,
+        onConfirmRequest =
+            if (completed) {
+                { restoreScenario(scenarioNumber) }
+            } else {
+                null
+            },
         confirmText = stringResource(R.string.restore),
         onNeutralRequest = null,
         onNegativeRequest = { deleteScenario(scenarioNumber) },
@@ -95,10 +98,10 @@ fun ScenarioInfoDialog(
                         text = stringResource(R.string.requirements),
                         style = MaterialTheme.typography.labelLarge,
                         color = MaterialTheme.colorScheme.primary,
-                        textAlign = TextAlign.Center
+                        textAlign = TextAlign.Center,
                     )
                     Spacer(
-                        modifier = Modifier.height(16.dp)
+                        modifier = Modifier.height(16.dp),
                     )
                     Text(
                         text = scenarioRequirements.split(",").joinToString("\n") { it.trim() },
@@ -106,7 +109,7 @@ fun ScenarioInfoDialog(
                     )
                 }
             }
-        }
+        },
     )
 }
 
@@ -122,7 +125,7 @@ private fun ScenarioActionDialogPreview() {
             onDismiss = {},
             completeScenario = {},
             startScenario = {},
-            deleteScenario = {}
+            deleteScenario = {},
         )
     }
 }
@@ -139,7 +142,7 @@ private fun ScenarioInfoDialogPreview() {
             location = "",
             onDismiss = {},
             restoreScenario = {},
-            deleteScenario = {}
+            deleteScenario = {},
         )
     }
 }

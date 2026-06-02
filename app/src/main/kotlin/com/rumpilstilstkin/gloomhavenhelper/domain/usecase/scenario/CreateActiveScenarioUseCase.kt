@@ -16,50 +16,51 @@ class CreateActiveScenarioUseCase @Inject constructor(
     private val scenarioGameStateRepository: ScenarioGameStateRepository,
     private val clearCurrentActiveScenarioUseCase: ClearCurrentActiveScenarioUseCase,
 ) {
-    suspend operator fun invoke(
-        scenarioNumber: Int?,
-    ): Result<Unit> {
+    suspend operator fun invoke(scenarioNumber: Int?): Result<Unit> {
         getCurrentTeamUseCase().first().let { team ->
             if (team != null) {
                 clearCurrentActiveScenarioUseCase()
-                val monsters = scenarioNumber?.let { _ ->
-                    monsterRepository.getMonsterSlugsForScenario(scenarioNumber)
-                } ?: emptyList()
+                val monsters =
+                    scenarioNumber?.let { _ ->
+                        monsterRepository.getMonsterSlugsForScenario(scenarioNumber)
+                    } ?: emptyList()
                 val monstersCard = monsterRepository.getMonsterCards(monsters)
-                val state = ScenarioGameState(
-                    scenarioNumber = scenarioNumber,
-                    monsterSlugs = monsters,
-                    round = 0,
-                    availableCards = monstersCard.distinct(),
-                    activeMonsters = emptyList(),
-                    level = team.level,
-                    magicCharges = listOf(
-                        ScenarioGameStateMagic(
-                            name = Magic.FIRE.name,
-                            value = 0
-                        ),
-                        ScenarioGameStateMagic(
-                            name = Magic.FROST.name,
-                            value = 0
-                        ),
-                        ScenarioGameStateMagic(
-                            name = Magic.AIR.name,
-                            value = 0
-                        ),
-                        ScenarioGameStateMagic(
-                            name = Magic.EARTH.name,
-                            value = 0
-                        ),
-                        ScenarioGameStateMagic(
-                            name = Magic.SUN.name,
-                            value = 0
-                        ),
-                        ScenarioGameStateMagic(
-                            name = Magic.MOON.name,
-                            value = 0
-                        ),
+                val state =
+                    ScenarioGameState(
+                        scenarioNumber = scenarioNumber,
+                        monsterSlugs = monsters,
+                        round = 0,
+                        availableCards = monstersCard.distinct(),
+                        activeMonsters = emptyList(),
+                        level = team.level,
+                        magicCharges =
+                            listOf(
+                                ScenarioGameStateMagic(
+                                    name = Magic.FIRE.name,
+                                    value = 0,
+                                ),
+                                ScenarioGameStateMagic(
+                                    name = Magic.FROST.name,
+                                    value = 0,
+                                ),
+                                ScenarioGameStateMagic(
+                                    name = Magic.AIR.name,
+                                    value = 0,
+                                ),
+                                ScenarioGameStateMagic(
+                                    name = Magic.EARTH.name,
+                                    value = 0,
+                                ),
+                                ScenarioGameStateMagic(
+                                    name = Magic.SUN.name,
+                                    value = 0,
+                                ),
+                                ScenarioGameStateMagic(
+                                    name = Magic.MOON.name,
+                                    value = 0,
+                                ),
+                            ),
                     )
-                )
                 scenarioGameStateRepository.save(state)
                 return Unit.toResult()
             } else {

@@ -11,7 +11,6 @@ import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface TeamGoodDao {
-
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(teamGood: TeamGoodBd)
 
@@ -19,7 +18,10 @@ interface TeamGoodDao {
     suspend fun insertAll(teamGoods: List<TeamGoodBd>)
 
     @Query("DELETE FROM TeamGoodBd WHERE teamId = :teamId AND goodId = :goodId")
-    suspend fun delete(teamId: Int, goodId: Int)
+    suspend fun delete(
+        teamId: Int,
+        goodId: Int,
+    )
 
     @Query("DELETE FROM TeamGoodBd WHERE teamId = :teamId")
     suspend fun deleteAllForTeam(teamId: Int)
@@ -34,12 +36,12 @@ interface TeamGoodDao {
         LEFT JOIN GoodTranslationsBd t1 ON g.displayNumber = t1.displayNumber AND t1.locale = :targetLocale
         LEFT JOIN GoodTranslationsBd t2 ON g.displayNumber = t2.displayNumber AND t2.locale = :defaultLocale
         WHERE tg.teamId = :teamId
-    """
+    """,
     )
     fun getGoodsForTeam(
         teamId: Int,
         targetLocale: String,
-        defaultLocale: String
+        defaultLocale: String,
     ): Flow<List<GoodWithTranslation>>
 
     @Transaction
@@ -50,7 +52,7 @@ interface TeamGoodDao {
         FROM TeamGoodBd tg
         INNER JOIN GoodBd g ON tg.goodId = g.goodId
         WHERE tg.teamId = :teamId
-    """
+    """,
     )
     suspend fun getTeamGoodNumbers(teamId: Int): List<Int>
 }

@@ -46,19 +46,20 @@ fun AddPerksDialog(
             LazyColumn(
                 modifier = modifier.height(320.dp),
                 verticalArrangement = Arrangement.spacedBy(8.dp),
-                contentPadding = PaddingValues(vertical = 8.dp)
+                contentPadding = PaddingValues(vertical = 8.dp),
             ) {
                 items(avaliablePerks) { perk ->
                     AddPerkDialogItem(
                         perk = perk,
                         checked = checkedPerks.contains(perk.id),
                         onSelectedChanged = {
-                            checkedPerks = if (checkedPerks.contains(it)) {
-                                checkedPerks.filter { id -> id != it }
-                            } else {
-                                checkedPerks.plus(it)
-                            }
-                        }
+                            checkedPerks =
+                                if (checkedPerks.contains(it)) {
+                                    checkedPerks.filter { id -> id != it }
+                                } else {
+                                    checkedPerks.plus(it)
+                                }
+                        },
                     )
                 }
             }
@@ -71,7 +72,6 @@ fun AddPerksDialog(
     )
 }
 
-
 @Composable
 private fun AddPerkDialogItem(
     perk: PerkUI,
@@ -79,16 +79,17 @@ private fun AddPerkDialogItem(
     modifier: Modifier = Modifier,
     onSelectedChanged: (Int) -> Unit,
 ) = GloomCard(
-    modifier = modifier
-        .fillMaxWidth()
-        .clickable {
-            onSelectedChanged(perk.id)
-        }
+    modifier =
+        modifier
+            .fillMaxWidth()
+            .clickable {
+                onSelectedChanged(perk.id)
+            },
 ) {
     Row(
         modifier = modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.Start,
-        verticalAlignment = Alignment.CenterVertically
+        verticalAlignment = Alignment.CenterVertically,
     ) {
         Checkbox(
             modifier = Modifier.padding(),
@@ -96,28 +97,29 @@ private fun AddPerkDialogItem(
             onCheckedChange = {
                 onSelectedChanged(perk.id)
             },
-            colors = CheckboxDefaults.colors().copy(
-                uncheckedBorderColor = MaterialTheme.colorScheme.primary,
-            )
+            colors =
+                CheckboxDefaults.colors().copy(
+                    uncheckedBorderColor = MaterialTheme.colorScheme.primary,
+                ),
         )
         Spacer(modifier = Modifier.width(8.dp))
         TextWithImagesByCode(text = perk.text)
     }
 }
 
-
 @Preview
 @Composable
 private fun AddPerksDialogPreview() {
     GloomhavenMasterTheme {
         AddPerksDialog(
-            avaliablePerks = listOf(
-                PerkUI(1, "Remove two cards #01"),
-                PerkUI(2, "Replace one card #01 with one card #03"),
-                PerkUI(3, "Add two cards #03"),
-            ),
+            avaliablePerks =
+                listOf(
+                    PerkUI(1, "Remove two cards #01"),
+                    PerkUI(2, "Replace one card #01 with one card #03"),
+                    PerkUI(3, "Add two cards #03"),
+                ),
             onDismiss = {},
-            onPerkSelected = {}
+            onPerkSelected = {},
         )
     }
 }
@@ -129,7 +131,7 @@ private fun AddPerkDialogItemPreview() {
         AddPerkDialogItem(
             perk = PerkUI(1, "Remove two cards #01"),
             checked = true,
-            onSelectedChanged = {}
+            onSelectedChanged = {},
         )
     }
 }

@@ -24,9 +24,8 @@ import javax.inject.Inject
 @HiltViewModel
 class ScenarioConstructorViewModel @Inject constructor(
     private val getAvailableMonstersForTeamUseCase: GetAvailableMonstersForTeamUseCase,
-    private val addMonstersForCurrentScenarioUseCase: AddMonstersForCurrentScenarioUseCase
+    private val addMonstersForCurrentScenarioUseCase: AddMonstersForCurrentScenarioUseCase,
 ) : ViewModel() {
-
     private val _navigationEvents = MutableSharedFlow<GlHelperEvent>()
     val navigationEvents = _navigationEvents.asSharedFlow()
 
@@ -34,34 +33,37 @@ class ScenarioConstructorViewModel @Inject constructor(
         MutableStateFlow(ScenarioConstructorStateLogic())
 
     @OptIn(ExperimentalCoroutinesApi::class)
-    val uiState: StateFlow<ScenarioConstructorStateUi> = logicState
-        .filterNotNull()
-        .map { state ->
-            if (state.allMonsters.isEmpty()) {
-                ScenarioConstructorStateUi.Loading
-            } else {
-                ScenarioConstructorStateUi.Content(
-                    availableMonsters = (state.allMonsters - state.selectedMonsters.keys).map { entry ->
-                        MonsterNameUi(
-                            entry.key,
-                            entry.value
-                        )
-                    }.toImmutableList(),
-                    selectedMonsters = state.selectedMonsters.map { entry ->
-                        MonsterNameUi(
-                            entry.key,
-                            entry.value
-                        )
-                    }.toImmutableList(),
-                )
-            }
-
-        }
-        .stateIn(
-            scope = viewModelScope,
-            started = SharingStarted.WhileSubscribed(5000),
-            initialValue = ScenarioConstructorStateUi.Loading
-        )
+    val uiState: StateFlow<ScenarioConstructorStateUi> =
+        logicState
+            .filterNotNull()
+            .map { state ->
+                if (state.allMonsters.isEmpty()) {
+                    ScenarioConstructorStateUi.Loading
+                } else {
+                    ScenarioConstructorStateUi.Content(
+                        availableMonsters =
+                            (state.allMonsters - state.selectedMonsters.keys)
+                                .map { entry ->
+                                    MonsterNameUi(
+                                        entry.key,
+                                        entry.value,
+                                    )
+                                }.toImmutableList(),
+                        selectedMonsters =
+                            state.selectedMonsters
+                                .map { entry ->
+                                    MonsterNameUi(
+                                        entry.key,
+                                        entry.value,
+                                    )
+                                }.toImmutableList(),
+                    )
+                }
+            }.stateIn(
+                scope = viewModelScope,
+                started = SharingStarted.WhileSubscribed(5000),
+                initialValue = ScenarioConstructorStateUi.Loading,
+            )
 
     init {
         viewModelScope.launch {
@@ -96,7 +98,8 @@ class ScenarioConstructorViewModel @Inject constructor(
                 is ScenarioConstructorAction.AddMonsters -> {
                     async {
                         addMonstersForCurrentScenarioUseCase(
-                            logicState.value.selectedMonsters.keys.toList()
+                            logicState.value.selectedMonsters.keys
+                                .toList(),
                         )
                     }.await()
                     _navigationEvents.emit(GlHelperEvent.Back)

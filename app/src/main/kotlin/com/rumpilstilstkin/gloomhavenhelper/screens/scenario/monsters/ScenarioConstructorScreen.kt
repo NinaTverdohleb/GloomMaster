@@ -48,48 +48,48 @@ internal fun ScenarioConstructorScreen(
                 title = stringResource(R.string.add_monsters_title),
                 back = back,
             )
-        }
+        },
     ) { paddingValues ->
 
         when (state) {
             is ScenarioConstructorStateUi.Content -> {
                 Column(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .padding(paddingValues)
-                        .padding(horizontal = 16.dp)
+                    modifier =
+                        Modifier
+                            .fillMaxSize()
+                            .padding(paddingValues)
+                            .padding(horizontal = 16.dp),
                 ) {
-
                     LazyColumn(
                         modifier = Modifier.weight(1f),
                         verticalArrangement = Arrangement.spacedBy(12.dp),
-                        contentPadding = PaddingValues(vertical = 16.dp)
+                        contentPadding = PaddingValues(vertical = 16.dp),
                     ) {
                         if (state.selectedMonsters.isNotEmpty()) {
                             item {
                                 Text(
                                     text = stringResource(R.string.selected_label),
-                                    style = MaterialTheme.typography.titleLarge
+                                    style = MaterialTheme.typography.titleLarge,
                                 )
                                 Spacer(
-                                    modifier = Modifier.height(16.dp)
+                                    modifier = Modifier.height(16.dp),
                                 )
                             }
                             items(state.selectedMonsters) { monster ->
                                 MonsterSelectCard(
                                     monster = monster.name,
                                     isSelected = true,
-                                    onClick = { toggleMonster(monster) }
+                                    onClick = { toggleMonster(monster) },
                                 )
                             }
                         }
                         item {
                             Text(
                                 text = stringResource(R.string.available_label),
-                                style = MaterialTheme.typography.titleLarge
+                                style = MaterialTheme.typography.titleLarge,
                             )
                             Spacer(
-                                modifier = Modifier.height(16.dp)
+                                modifier = Modifier.height(16.dp),
                             )
                         }
 
@@ -97,7 +97,7 @@ internal fun ScenarioConstructorScreen(
                             MonsterSelectCard(
                                 monster = monster.name,
                                 isSelected = false,
-                                onClick = { toggleMonster(monster) }
+                                onClick = { toggleMonster(monster) },
                             )
                         }
                     }
@@ -105,22 +105,23 @@ internal fun ScenarioConstructorScreen(
                     Button(
                         onClick = startScenario,
                         enabled = state.selectedMonsters.isNotEmpty(),
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(top = 16.dp)
+                        modifier =
+                            Modifier
+                                .fillMaxWidth()
+                                .padding(top = 16.dp),
                     ) {
                         Text(stringResource(R.string.add))
                     }
-
                 }
             }
 
             ScenarioConstructorStateUi.Loading -> {
                 Box(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .padding(paddingValues),
-                    contentAlignment = Alignment.Center
+                    modifier =
+                        Modifier
+                            .fillMaxSize()
+                            .padding(paddingValues),
+                    contentAlignment = Alignment.Center,
                 ) {
                     CircularProgressIndicator()
                 }
@@ -134,32 +135,34 @@ private fun MonsterSelectCard(
     monster: String,
     isSelected: Boolean,
     onClick: () -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     GloomVariantCard(
-        modifier = modifier
-            .fillMaxWidth()
-            .clickable(onClick = onClick),
+        modifier =
+            modifier
+                .fillMaxWidth()
+                .clickable(onClick = onClick),
         active = isSelected,
     ) {
         Row(
-            modifier = modifier
-                .fillMaxWidth()
-                .padding(4.dp),
+            modifier =
+                modifier
+                    .fillMaxWidth()
+                    .padding(4.dp),
             verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceBetween
+            horizontalArrangement = Arrangement.SpaceBetween,
         ) {
             Text(
                 text = monster,
                 style = MaterialTheme.typography.bodyLarge,
-                color = MaterialTheme.colorScheme.onSurface
+                color = MaterialTheme.colorScheme.onSurface,
             )
             if (isSelected) {
                 Icon(
                     imageVector = Icons.Default.CheckCircle,
                     contentDescription = null,
                     tint = MaterialTheme.colorScheme.primary,
-                    modifier = Modifier.size(24.dp)
+                    modifier = Modifier.size(24.dp),
                 )
             }
         }
@@ -171,16 +174,19 @@ private fun MonsterSelectCard(
 private fun ScenarioConstructorScreenPreview() {
     GloomhavenMasterTheme {
         ScenarioConstructorScreen(
-            state = ScenarioConstructorStateUi.Content(
-                availableMonsters = persistentListOf(
-                    MonsterNameUi("1", "Bandit Archer"),
-                    MonsterNameUi("2", "Living Spirit"),
+            state =
+                ScenarioConstructorStateUi.Content(
+                    availableMonsters =
+                        persistentListOf(
+                            MonsterNameUi("1", "Bandit Archer"),
+                            MonsterNameUi("2", "Living Spirit"),
+                        ),
+                    selectedMonsters =
+                        persistentListOf(
+                            MonsterNameUi("1", "Bandit Archer"),
+                            MonsterNameUi("2", "Living Spirit"),
+                        ),
                 ),
-                selectedMonsters = persistentListOf(
-                    MonsterNameUi("1", "Bandit Archer"),
-                    MonsterNameUi("2", "Living Spirit"),
-                ),
-            ),
             back = {},
             toggleMonster = {},
             startScenario = {},

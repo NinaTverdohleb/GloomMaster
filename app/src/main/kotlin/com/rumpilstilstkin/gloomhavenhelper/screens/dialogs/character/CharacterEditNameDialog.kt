@@ -19,7 +19,7 @@ import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
 fun CharacterEditNameDialog(
     currentName: String,
     onDismiss: () -> Unit,
-    onSave: (String) -> Unit
+    onSave: (String) -> Unit,
 ) {
     var name by rememberSaveable { mutableStateOf(currentName) }
 
@@ -34,7 +34,7 @@ fun CharacterEditNameDialog(
                 onValueChange = { name = it },
                 label = { Text(stringResource(R.string.character_name_label)) },
                 singleLine = true,
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier.fillMaxWidth(),
             )
         },
     )
@@ -47,7 +47,7 @@ private fun CharacterEditNameDialogPreview() {
         CharacterEditNameDialog(
             currentName = "Character",
             onDismiss = {},
-            onSave = {}
+            onSave = {},
         )
     }
 }

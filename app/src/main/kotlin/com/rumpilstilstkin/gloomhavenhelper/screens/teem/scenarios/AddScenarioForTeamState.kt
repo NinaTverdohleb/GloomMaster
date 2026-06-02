@@ -16,9 +16,17 @@ data class AddScenarioForTeamLogicState(
 )
 
 sealed interface AddScenarioForTeamAction {
-    data class SearchTextChange(val text: String) : AddScenarioForTeamAction
-    data class SelectScenario(val scenario: ShortScenarioUI) : AddScenarioForTeamAction
+    data class SearchTextChange(
+        val text: String,
+    ) : AddScenarioForTeamAction
+
+    data class SelectScenario(
+        val scenario: ShortScenarioUI,
+    ) : AddScenarioForTeamAction
+
     data object DismissDialog : AddScenarioForTeamAction
+
     data object ConfirmAddScenario : AddScenarioForTeamAction
+
     data object Back : AddScenarioForTeamAction
 }

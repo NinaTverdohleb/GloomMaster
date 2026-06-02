@@ -13,7 +13,7 @@ class DeleteScenarioUseCase @Inject constructor(
         teamRepository.currentTeam.first()?.let { team ->
             scenarioRepository.deleteTeamScenario(
                 teamId = team.teamId,
-                scenarioNumber = scenarioNumber
+                scenarioNumber = scenarioNumber,
             )
         }
     }

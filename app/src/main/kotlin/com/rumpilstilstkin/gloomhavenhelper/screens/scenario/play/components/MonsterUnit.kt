@@ -55,14 +55,15 @@ fun MonsterUnitCard(
     changeLife: (unitNumber: Int, life: Int) -> Unit,
     switchEffect: (unitNumber: Int, effect: MonsterStatType) -> Unit,
     levelClick: (unit: MonsterUnit) -> Unit,
-    deleteUnit: (unitNumber: Int) -> Unit
+    deleteUnit: (unitNumber: Int) -> Unit,
 ) {
     UnitCard(modifier = modifier.clickable { levelClick(unit) }) {
         if (unit.immunity.isNotEmpty()) {
             Row(
-                modifier = Modifier
-                    .padding(vertical = 4.dp, horizontal = 16.dp)
-                    .fillMaxWidth(),
+                modifier =
+                    Modifier
+                        .padding(vertical = 4.dp, horizontal = 16.dp)
+                        .fillMaxWidth(),
                 verticalAlignment = Alignment.CenterVertically,
             ) {
                 unit.immunity.forEach { effect ->
@@ -71,13 +72,13 @@ fun MonsterUnitCard(
                         modifier = Modifier.size(32.dp),
                         painter = painterResource(id = icon.imageRes),
                         contentDescription = null,
-                        tint = icon.color ?: Color.White
+                        tint = icon.color ?: Color.White,
                     )
                     Spacer(modifier = Modifier.width(12.dp))
                 }
             }
             Spacer(
-                modifier.height(8.dp)
+                modifier.height(8.dp),
             )
         }
         Row(
@@ -89,10 +90,11 @@ fun MonsterUnitCard(
             }
 
             Box(
-                modifier = Modifier
-                    .weight(1f)
-                    .padding(horizontal = 16.dp),
-                contentAlignment = Alignment.Center
+                modifier =
+                    Modifier
+                        .weight(1f)
+                        .padding(horizontal = 16.dp),
+                contentAlignment = Alignment.Center,
             ) {
                 NumberPickerProgress(
                     modifier = Modifier.fillMaxWidth(),
@@ -106,15 +108,14 @@ fun MonsterUnitCard(
                             modifier = Modifier.size(52.dp),
                             painter = painterResource(id = R.drawable.ic_life),
                             contentDescription = null,
-                            tint = MaterialTheme.colorScheme.error
+                            tint = MaterialTheme.colorScheme.error,
                         )
-                    }
+                    },
                 )
-
             }
             if (!isBoss) {
                 Spacer(
-                    modifier.width(8.dp)
+                    modifier.width(8.dp),
                 )
                 IconButton(
                     onClick = { deleteUnit(unit.number) },
@@ -130,15 +131,16 @@ fun MonsterUnitCard(
             }
         }
         Spacer(
-            modifier.height(16.dp)
+            modifier.height(16.dp),
         )
 
         Row(
-            modifier = Modifier
-                .padding(vertical = 8.dp)
-                .fillMaxWidth(),
+            modifier =
+                Modifier
+                    .padding(vertical = 8.dp)
+                    .fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceAround
+            horizontalArrangement = Arrangement.SpaceAround,
         ) {
             val immunitySet = unit.immunity.toSet()
             availableEffects.filter { it !in immunitySet }.forEach { effect ->
@@ -153,29 +155,30 @@ fun MonsterUnitCard(
                     onClick = { switchEffect(unit.number, effect) },
                     modifier = Modifier.size(36.dp),
                 ) {
-
                     Icon(
                         modifier = Modifier.fillMaxSize(),
                         painter = painterResource(id = icon.imageRes),
                         contentDescription = null,
-                        tint = tint ?: Color.White
+                        tint = tint ?: Color.White,
                     )
                 }
             }
         }
         Spacer(
-            modifier.height(8.dp)
+            modifier.height(8.dp),
         )
         Card(
             modifier = Modifier.fillMaxWidth(),
-            colors = cardColors(
-                containerColor = MaterialTheme.colorScheme.secondaryContainer,
-            ),
+            colors =
+                cardColors(
+                    containerColor = MaterialTheme.colorScheme.secondaryContainer,
+                ),
         ) {
             Row(
-                modifier = Modifier
-                    .padding(vertical = 4.dp, horizontal = 16.dp)
-                    .fillMaxWidth(),
+                modifier =
+                    Modifier
+                        .padding(vertical = 4.dp, horizontal = 16.dp)
+                        .fillMaxWidth(),
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.SpaceAround,
             ) {
@@ -189,13 +192,13 @@ fun MonsterUnitCard(
                                 modifier = Modifier.size(28.dp),
                                 painter = painterResource(id = icon.imageRes),
                                 contentDescription = null,
-                                tint = icon.color ?: Color.White
+                                tint = icon.color ?: Color.White,
                             )
                             Spacer(modifier = Modifier.width(8.dp))
                             Text(
                                 text = stat.modifier,
                                 fontSize = 24.sp,
-                                color = MaterialTheme.colorScheme.onSurface
+                                color = MaterialTheme.colorScheme.onSurface,
                             )
                         }
                     }
@@ -206,25 +209,27 @@ fun MonsterUnitCard(
         val texts = unit.stats.filterIsInstance<MonsterAction.Text>()
         if (texts.isNotEmpty()) {
             Spacer(
-                modifier.height(16.dp)
+                modifier.height(16.dp),
             )
             Card(
-                modifier = Modifier
-                    .fillMaxWidth(),
-                colors = cardColors(
-                    containerColor = MaterialTheme.colorScheme.secondaryContainer,
-                ),
+                modifier =
+                    Modifier
+                        .fillMaxWidth(),
+                colors =
+                    cardColors(
+                        containerColor = MaterialTheme.colorScheme.secondaryContainer,
+                    ),
             ) {
                 Column(
-                    modifier = Modifier.padding(16.dp)
+                    modifier = Modifier.padding(16.dp),
                 ) {
                     texts.forEachIndexed { index, stat ->
                         TextWithImagesByCode(
-                            text = stat.content
+                            text = stat.content,
                         )
                         if (index != texts.lastIndex) {
                             Spacer(
-                                modifier = Modifier.height(8.dp)
+                                modifier = Modifier.height(8.dp),
                             )
                         }
                     }
@@ -234,16 +239,16 @@ fun MonsterUnitCard(
     }
 }
 
-
 @Composable
 fun EmptyMonsterUnitCard(modifier: Modifier = Modifier) {
     UnitCard(
-        modifier = modifier
+        modifier = modifier,
     ) {
         Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(vertical = 16.dp),
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .padding(vertical = 16.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.spacedBy(4.dp),
         ) {
@@ -273,27 +278,28 @@ fun EmptyMonsterUnitCard(modifier: Modifier = Modifier) {
 private fun UnitCard(
     modifier: Modifier = Modifier,
     content: @Composable ColumnScope.() -> Unit,
-) =
-    Card(
-        modifier = modifier,
-        colors = cardColors(
+) = Card(
+    modifier = modifier,
+    colors =
+        cardColors(
             containerColor = MaterialTheme.colorScheme.surface,
         ),
-        border = BorderStroke(
+    border =
+        BorderStroke(
             0.5.dp,
-            MaterialTheme.colorScheme.outlineVariant
-        )
-    ) {
-        Column(
-            modifier = Modifier.padding(16.dp),
-            content = content
-        )
-    }
+            MaterialTheme.colorScheme.outlineVariant,
+        ),
+) {
+    Column(
+        modifier = Modifier.padding(16.dp),
+        content = content,
+    )
+}
 
 @Composable
 private fun UnitNumberBadge(
     number: Int,
-    isElite: Boolean
+    isElite: Boolean,
 ) {
     val textColor =
         if (isElite) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurface
@@ -301,17 +307,17 @@ private fun UnitNumberBadge(
         if (isElite) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurfaceVariant
 
     Box(
-        modifier = Modifier
-            .size(36.dp)
-            .border(
-                shape = RoundedCornerShape(10.dp),
-                color = color,
-                width = 1.dp
-            )
-            .background(
-                color = MaterialTheme.colorScheme.secondaryContainer,
-                shape = RoundedCornerShape(10.dp),
-            ),
+        modifier =
+            Modifier
+                .size(36.dp)
+                .border(
+                    shape = RoundedCornerShape(10.dp),
+                    color = color,
+                    width = 1.dp,
+                ).background(
+                    color = MaterialTheme.colorScheme.secondaryContainer,
+                    shape = RoundedCornerShape(10.dp),
+                ),
         contentAlignment = Alignment.Center,
     ) {
         Text(
@@ -334,7 +340,7 @@ private fun MonsterUnitPreview() {
             switchEffect = { _, _ -> },
             deleteUnit = { _ -> },
             levelClick = {},
-            availableEffects = MonsterStatType.mainEffectsPack
+            availableEffects = MonsterStatType.mainEffectsPack,
         )
     }
 }
@@ -350,7 +356,7 @@ private fun MonsterUnitBossPreview() {
             switchEffect = { _, _ -> },
             deleteUnit = { _ -> },
             levelClick = {},
-            availableEffects = MonsterStatType.mainEffectsPack + MonsterStatType.fcEffectsPack
+            availableEffects = MonsterStatType.mainEffectsPack + MonsterStatType.fcEffectsPack,
         )
     }
 }

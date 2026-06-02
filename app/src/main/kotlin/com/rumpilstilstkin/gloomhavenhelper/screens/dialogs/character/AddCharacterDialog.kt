@@ -38,7 +38,7 @@ import kotlinx.collections.immutable.persistentListOf
 fun AddCharacterDialog(
     avaliableClasses: ImmutableList<CharacterClassTypeUI>,
     onDismiss: () -> Unit,
-    addCharacter: (name: String, level: Int, characterClass: CharacterClassTypeUI) -> Unit
+    addCharacter: (name: String, level: Int, characterClass: CharacterClassTypeUI) -> Unit,
 ) {
     var newCharacterName by rememberSaveable { mutableStateOf("") }
     var selectedClass by remember { mutableStateOf(avaliableClasses.firstOrNull()) }
@@ -53,10 +53,10 @@ fun AddCharacterDialog(
                 addCharacter(
                     newCharacterName,
                     level,
-                    it
+                    it,
                 )
             }
-        }
+        },
     ) {
         GloomVariantCard {
             LazyVerticalGrid(
@@ -70,20 +70,23 @@ fun AddCharacterDialog(
                     Icon(
                         painter = painterResource(id = classType.image),
                         contentDescription = stringResource(classType.titleRes),
-                        modifier = Modifier
-                            .size(32.dp)
-                            .clickable {
-                                selectedClass = if (isSelected) {
-                                    null
-                                } else {
-                                    classType
-                                }
+                        modifier =
+                            Modifier
+                                .size(32.dp)
+                                .clickable {
+                                    selectedClass =
+                                        if (isSelected) {
+                                            null
+                                        } else {
+                                            classType
+                                        }
+                                },
+                        tint =
+                            if (isSelected) {
+                                MaterialTheme.colorScheme.primary
+                            } else {
+                                MaterialTheme.colorScheme.outlineVariant
                             },
-                        tint = if (isSelected) {
-                            MaterialTheme.colorScheme.primary
-                        } else {
-                            MaterialTheme.colorScheme.outlineVariant
-                        },
                     )
                 }
             }
@@ -93,7 +96,7 @@ fun AddCharacterDialog(
             Text(
                 modifier = Modifier.fillMaxWidth(),
                 text = stringResource(it.titleRes),
-                textAlign = TextAlign.Center
+                textAlign = TextAlign.Center,
             )
         }
 
@@ -101,13 +104,13 @@ fun AddCharacterDialog(
             modifier = Modifier.fillMaxWidth(),
             value = newCharacterName,
             onValueChange = { newCharacterName = it },
-            label = { Text(stringResource(R.string.name_label)) }
+            label = { Text(stringResource(R.string.name_label)) },
         )
         Text(stringResource(R.string.character_level_label))
         NumberPicker(
             modifier = Modifier.fillMaxWidth(),
             value = level,
-            intRange = IntRange(1, 9)
+            intRange = IntRange(1, 9),
         ) {
             level = it
         }
@@ -119,12 +122,13 @@ fun AddCharacterDialog(
 private fun AddCharacterDialogPreview() {
     GloomhavenMasterTheme {
         AddCharacterDialog(
-            avaliableClasses = persistentListOf(
-                CharacterClassTypeUI.Brute,
-                CharacterClassTypeUI.Spellweaver
-            ),
+            avaliableClasses =
+                persistentListOf(
+                    CharacterClassTypeUI.Brute,
+                    CharacterClassTypeUI.Spellweaver,
+                ),
             onDismiss = {},
-            addCharacter = { _, _, _ -> }
+            addCharacter = { _, _, _ -> },
         )
     }
 }

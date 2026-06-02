@@ -7,7 +7,7 @@ import javax.inject.Inject
 
 class GameLevelInfoJsonFiller @Inject constructor(
     private val jsonDataLoader: JsonDataLoader,
-    private val gameLevelInfoDao: GameLevelInfoDao
+    private val gameLevelInfoDao: GameLevelInfoDao,
 ) {
     suspend fun fill(pack: String) {
         val levels = jsonDataLoader.loadDictionaryList<GameLevelJson>("game_levels.json", pack)

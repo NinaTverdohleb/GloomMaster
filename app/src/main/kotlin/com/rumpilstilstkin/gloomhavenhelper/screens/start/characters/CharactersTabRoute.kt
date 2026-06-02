@@ -12,7 +12,7 @@ import com.rumpilstilstkin.gloomhavenhelper.screens.dialogs.character.AddCharact
 @Composable
 fun CharactersTabRoute(
     navController: NavHostController,
-    viewModel: CharactersTabViewModel = hiltViewModel()
+    viewModel: CharactersTabViewModel = hiltViewModel(),
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     val navigationEvents by viewModel.navigationEvents.collectAsStateWithLifecycle(initialValue = null)
@@ -21,7 +21,7 @@ fun CharactersTabRoute(
         navigationEvents?.let { event ->
             GlHelperEventHelper.event(
                 event = event,
-                navController = navController
+                navController = navController,
             )
         }
     }
@@ -32,7 +32,7 @@ fun CharactersTabRoute(
         openCharacterDetails = { viewModel.onAction(CharactersTabAction.CharacterDetails(it)) },
         switchAlive = { viewModel.onAction(CharactersTabAction.SwitchAlive) },
         toggleClass = { viewModel.onAction(CharactersTabAction.SwitchClassAvailability(it)) },
-        changeLevel = { characterId, level -> viewModel.onAction(CharactersTabAction.ChangeLevel(characterId, level)) }
+        changeLevel = { characterId, level -> viewModel.onAction(CharactersTabAction.ChangeLevel(characterId, level)) },
     )
 
     if (uiState.showAddCharacterDialog) {
@@ -44,10 +44,10 @@ fun CharactersTabRoute(
                     CharactersTabAction.AddCharacter(
                         name = name,
                         level = level,
-                        characterType = classType
-                    )
+                        characterType = classType,
+                    ),
                 )
-            }
+            },
         )
     }
 }

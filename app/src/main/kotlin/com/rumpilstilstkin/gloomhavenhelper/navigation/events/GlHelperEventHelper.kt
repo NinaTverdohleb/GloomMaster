@@ -6,7 +6,7 @@ import androidx.navigation.NavHostController
 object GlHelperEventHelper {
     fun event(
         navController: NavHostController,
-        event: GlHelperEvent
+        event: GlHelperEvent,
     ) {
         when (event) {
             is GlHelperEvent.Screen -> {
@@ -18,11 +18,12 @@ object GlHelperEventHelper {
             }
 
             is GlHelperEvent.Message -> {
-                Toast.makeText(
-                    navController.context,
-                    event.text,
-                    Toast.LENGTH_LONG
-                ).show()
+                Toast
+                    .makeText(
+                        navController.context,
+                        event.text,
+                        Toast.LENGTH_LONG,
+                    ).show()
             }
         }
     }

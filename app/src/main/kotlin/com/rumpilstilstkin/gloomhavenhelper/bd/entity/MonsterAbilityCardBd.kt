@@ -8,7 +8,7 @@ import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterAction
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterCardAction
 
 @Entity(
-    primaryKeys = ["deckName","cardId"],
+    primaryKeys = ["deckName", "cardId"],
 )
 data class MonsterAbilityCardBd(
     val deckName: String,
@@ -24,10 +24,10 @@ data class MonsterAbilityCardBd(
             entity = MonsterAbilityCardBd::class,
             parentColumns = ["deckName", "cardId"],
             childColumns = ["deckName", "cardId"],
-            onDelete = ForeignKey.CASCADE
-        )
+            onDelete = ForeignKey.CASCADE,
+        ),
     ],
-    indices = [Index("deckName", "cardId")]
+    indices = [Index("deckName", "cardId")],
 )
 data class MonsterAbilityCardTranslationBd(
     val deckName: String,

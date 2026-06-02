@@ -25,9 +25,9 @@ data class MonsterBd(
             entity = MonsterBd::class,
             parentColumns = ["slug"],
             childColumns = ["slug"],
-            onDelete = ForeignKey.CASCADE
-        )
-    ]
+            onDelete = ForeignKey.CASCADE,
+        ),
+    ],
 )
 data class MonsterTranslationsBd(
     val slug: String,
@@ -38,5 +38,5 @@ data class MonsterTranslationsBd(
 data class MonsterWithNameBd(
     @Embedded
     val monster: MonsterBd,
-    val name: String
+    val name: String,
 )

@@ -24,21 +24,26 @@ class CharacterPerksTabViewModel @AssistedInject constructor(
     @Assisted val id: Int,
     getCharacterPerksInfoUseCase: GetCharacterPerksInfoUseCase,
     private val deleteCharacterPerksUseCase: DeleteCharacterPerkUseCase,
-    private val addCharacterPerksUseCase: AddPerksForCharacterUseCase
+    private val addCharacterPerksUseCase: AddPerksForCharacterUseCase,
 ) : ViewModel() {
-
     private val logicState = MutableStateFlow(CharacterPerksScreenStateLogic())
 
     val uiState: StateFlow<CharacterPerksScreenStateUi> =
         combine(
             logicState,
-            getCharacterPerksInfoUseCase(id)
+            getCharacterPerksInfoUseCase(id),
         ) { state, info ->
             CharacterPerksScreenStateUi(
-                characterPerks = info.characterPerks.map { perk -> perk.toUi() }.sortedBy { id }
-                    .toImmutableList(),
-                avaliablePerks = info.avaliablePerks.map { perk -> perk.toUi() }.sortedBy { id }
-                    .toImmutableList(),
+                characterPerks =
+                    info.characterPerks
+                        .map { perk -> perk.toUi() }
+                        .sortedBy { id }
+                        .toImmutableList(),
+                avaliablePerks =
+                    info.avaliablePerks
+                        .map { perk -> perk.toUi() }
+                        .sortedBy { id }
+                        .toImmutableList(),
                 avaliablePerksCount = info.avaliablePerksCount,
                 showAddPerksDialog = state.showAddPerksDialog,
             )
@@ -78,8 +83,15 @@ class CharacterPerksTabViewModel @AssistedInject constructor(
 }
 
 sealed interface CharacterPerksTabActions {
-    data class DeletePerk(val perkId: Int) : CharacterPerksTabActions
-    data class AddPerks(val perks: List<Int>) : CharacterPerksTabActions
+    data class DeletePerk(
+        val perkId: Int,
+    ) : CharacterPerksTabActions
+
+    data class AddPerks(
+        val perks: List<Int>,
+    ) : CharacterPerksTabActions
+
     data object CloseAddPerkDialog : CharacterPerksTabActions
+
     data object OpenAddPerkDialog : CharacterPerksTabActions
 }

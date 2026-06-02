@@ -16,25 +16,28 @@ data class AddGoodsViewState(
     val searchText: String = "",
 ) {
     companion object {
-        fun fixture() = AddGoodsViewState(
-            searchText = "",
-            availableGoods = persistentListOf(
-                GoodUi.fixture(
-                    id = 2,
-                ),
-                GoodUi.fixture(
-                    id = 2,
-                )
-            ),
-            selectedGoods = persistentListOf(
-                GoodUi.fixture(
-                    id = 3,
-                ),
-                GoodUi.fixture(
-                    id = 1,
-                )
-            ),
-            selectedFilter = GoodType.Arm,
-        )
+        fun fixture() =
+            AddGoodsViewState(
+                searchText = "",
+                availableGoods =
+                    persistentListOf(
+                        GoodUi.fixture(
+                            id = 2,
+                        ),
+                        GoodUi.fixture(
+                            id = 2,
+                        ),
+                    ),
+                selectedGoods =
+                    persistentListOf(
+                        GoodUi.fixture(
+                            id = 3,
+                        ),
+                        GoodUi.fixture(
+                            id = 1,
+                        ),
+                    ),
+                selectedFilter = GoodType.Arm,
+            )
     }
 }

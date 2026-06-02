@@ -6,7 +6,7 @@ import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.persistentListOf
 
 @Immutable
-data class CharacterPerksScreenStateUi (
+data class CharacterPerksScreenStateUi(
     val characterPerks: ImmutableList<PerkUI> = persistentListOf(),
     val avaliablePerks: ImmutableList<PerkUI> = persistentListOf(),
     val avaliablePerksCount: Int = 0,

@@ -34,90 +34,102 @@ class ScenariosTabViewModel @Inject constructor(
     private val restoreScenarioUseCase: RestoreScenarioUseCase,
     private val deleteScenarioUseCase: DeleteScenarioUseCase,
 ) : ViewModel() {
-
     private val _navigationEvents = MutableSharedFlow<GlHelperEvent>()
     val navigationEvents = _navigationEvents.asSharedFlow()
 
-    private val sectionsExpanded = MutableStateFlow(
-        mapOf(
-            ScenarioSectionType.ACCESS to true,
-            ScenarioSectionType.BLOCKED to false,
-            ScenarioSectionType.FINISHED to false,
+    private val sectionsExpanded =
+        MutableStateFlow(
+            mapOf(
+                ScenarioSectionType.ACCESS to true,
+                ScenarioSectionType.BLOCKED to false,
+                ScenarioSectionType.FINISHED to false,
+            ),
         )
-    )
 
-    val uiState: StateFlow<ScenariosTabStateUi> = combine(
-        getTeamScenariosUseCase(),
-        sectionsExpanded,
-    ) { teamScenarios, expandedMap ->
-        val sections = buildMap {
-            if (teamScenarios.activeScenarios.isNotEmpty()) {
-                put(
-                    ScenarioSectionType.ACCESS,
-                    ScenariosSection(
-                        scenarios = teamScenarios.activeScenarios.map { it.toUi() }
-                            .toImmutableList(),
-                        isExpanded = expandedMap[ScenarioSectionType.ACCESS] ?: true,
-                    )
-                )
-            }
-            if (teamScenarios.blockedScenarios.isNotEmpty()) {
-                put(
-                    ScenarioSectionType.BLOCKED,
-                    ScenariosSection(
-                        scenarios = teamScenarios.blockedScenarios.map { it.toUi() }
-                            .toImmutableList(),
-                        isExpanded = expandedMap[ScenarioSectionType.BLOCKED] ?: false,
-                    )
-                )
-            }
-            if (teamScenarios.completedScenarios.isNotEmpty()) {
-                put(
-                    ScenarioSectionType.FINISHED,
-                    ScenariosSection(
-                        scenarios = teamScenarios.completedScenarios.map { it.toUi() }
-                            .toImmutableList(),
-                        isExpanded = expandedMap[ScenarioSectionType.FINISHED] ?: false,
-                    )
-                )
-            }
-        }.toImmutableMap()
+    val uiState: StateFlow<ScenariosTabStateUi> =
+        combine(
+            getTeamScenariosUseCase(),
+            sectionsExpanded,
+        ) { teamScenarios, expandedMap ->
+            val sections =
+                buildMap {
+                    if (teamScenarios.activeScenarios.isNotEmpty()) {
+                        put(
+                            ScenarioSectionType.ACCESS,
+                            ScenariosSection(
+                                scenarios =
+                                    teamScenarios.activeScenarios
+                                        .map { it.toUi() }
+                                        .toImmutableList(),
+                                isExpanded = expandedMap[ScenarioSectionType.ACCESS] ?: true,
+                            ),
+                        )
+                    }
+                    if (teamScenarios.blockedScenarios.isNotEmpty()) {
+                        put(
+                            ScenarioSectionType.BLOCKED,
+                            ScenariosSection(
+                                scenarios =
+                                    teamScenarios.blockedScenarios
+                                        .map { it.toUi() }
+                                        .toImmutableList(),
+                                isExpanded = expandedMap[ScenarioSectionType.BLOCKED] ?: false,
+                            ),
+                        )
+                    }
+                    if (teamScenarios.completedScenarios.isNotEmpty()) {
+                        put(
+                            ScenarioSectionType.FINISHED,
+                            ScenariosSection(
+                                scenarios =
+                                    teamScenarios.completedScenarios
+                                        .map { it.toUi() }
+                                        .toImmutableList(),
+                                isExpanded = expandedMap[ScenarioSectionType.FINISHED] ?: false,
+                            ),
+                        )
+                    }
+                }.toImmutableMap()
 
-        ScenariosTabStateUi(sections = sections)
-    }.stateIn(
-        scope = viewModelScope,
-        initialValue = ScenariosTabStateUi(),
-        started = SharingStarted.WhileSubscribed(5000),
-    )
+            ScenariosTabStateUi(sections = sections)
+        }.stateIn(
+            scope = viewModelScope,
+            initialValue = ScenariosTabStateUi(),
+            started = SharingStarted.WhileSubscribed(5000),
+        )
 
-    fun onAction(action: ScenariosTabAction) = viewModelScope.launch {
-        when (action) {
-            is ScenariosTabAction.ToggleSection -> {
-                sectionsExpanded.update { current ->
-                    current.toMutableMap().apply {
-                        this[action.sectionType] = !(this[action.sectionType] ?: false)
+    fun onAction(action: ScenariosTabAction) =
+        viewModelScope.launch {
+            when (action) {
+                is ScenariosTabAction.ToggleSection -> {
+                    sectionsExpanded.update { current ->
+                        current.toMutableMap().apply {
+                            this[action.sectionType] = !(this[action.sectionType] ?: false)
+                        }
                     }
                 }
-            }
 
-            is ScenariosTabAction.StartScenario -> {
-                createActiveScenarioUseCase(action.scenarioId).onSuccess {
-                    _navigationEvents.emit(Screen(Scenario))
+                is ScenariosTabAction.StartScenario -> {
+                    createActiveScenarioUseCase(action.scenarioId).onSuccess {
+                        _navigationEvents.emit(Screen(Scenario))
+                    }
+                }
+
+                is ScenariosTabAction.CompleteScenario -> {
+                    completeScenarioUseCase.invoke(scenarioNumber = action.scenarioId)
+                }
+
+                ScenariosTabAction.AddScenario -> {
+                    _navigationEvents.emit(Screen(GlHelperScreens.AddScenarioForTeam))
+                }
+
+                is ScenariosTabAction.DeleteScenario -> {
+                    deleteScenarioUseCase.invoke(action.scenarioNumber)
+                }
+
+                is ScenariosTabAction.RestoreScenario -> {
+                    restoreScenarioUseCase.invoke(action.scenarioNumber)
                 }
             }
-
-            is ScenariosTabAction.CompleteScenario ->
-                completeScenarioUseCase.invoke(scenarioNumber = action.scenarioId)
-
-            ScenariosTabAction.AddScenario ->
-                _navigationEvents.emit(Screen(GlHelperScreens.AddScenarioForTeam))
-
-            is ScenariosTabAction.DeleteScenario -> {
-                deleteScenarioUseCase.invoke(action.scenarioNumber)
-            }
-            is ScenariosTabAction.RestoreScenario -> {
-                restoreScenarioUseCase.invoke(action.scenarioNumber)
-            }
         }
-    }
 }

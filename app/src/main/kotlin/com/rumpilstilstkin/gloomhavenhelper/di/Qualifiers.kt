@@ -6,7 +6,6 @@ import javax.inject.Qualifier
 @Qualifier
 annotation class ApplicationScope
 
-
 @Retention(AnnotationRetention.RUNTIME)
 @Qualifier
 annotation class DefaultDispatcher

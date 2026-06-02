@@ -17,21 +17,22 @@ import kotlin.collections.map
 @Singleton
 class QuestsRepository @Inject constructor(
     private val personalQuestDao: PersonalQuestDao,
-    private val characterPersonalQuestDao: CharacterPersonalQuestDao
+    private val characterPersonalQuestDao: CharacterPersonalQuestDao,
 ) {
-    suspend fun getQuests(
-        locale: String
-    ) = personalQuestDao.getQuests().map { quest ->
-        quest.toDomain(locale)
-    }
-
-    fun getCharacterPersonalQuestFlow(characterId: Int, locale: String) =
-        characterPersonalQuestDao.getCharacterPersonalQuestFlow(characterId).map { quest ->
-            quest?.personalTask?.toDomain(
-                locale,
-                quest.characterPersonalQuest
-            )
+    suspend fun getQuests(locale: String) =
+        personalQuestDao.getQuests().map { quest ->
+            quest.toDomain(locale)
         }
+
+    fun getCharacterPersonalQuestFlow(
+        characterId: Int,
+        locale: String,
+    ) = characterPersonalQuestDao.getCharacterPersonalQuestFlow(characterId).map { quest ->
+        quest?.personalTask?.toDomain(
+            locale,
+            quest.characterPersonalQuest,
+        )
+    }
 
     suspend fun getQuestById(questId: String) =
         CharacterPersonalQuestShort(
@@ -47,60 +48,69 @@ class QuestsRepository @Inject constructor(
             )
         }
 
-    suspend fun setQuestForCharacter(quest: CharacterPersonalQuestShort, characterId: Int) {
+    suspend fun setQuestForCharacter(
+        quest: CharacterPersonalQuestShort,
+        characterId: Int,
+    ) {
         characterPersonalQuestDao.insert(
             CharacterPersonalQuestBd(
                 characterId = characterId,
                 questId = quest.questId,
-                tasks = quest.tasks
-            )
+                tasks = quest.tasks,
+            ),
         )
     }
 
-    suspend fun updateCharacterQuest(quest: CharacterPersonalQuestShort, characterId: Int) {
+    suspend fun updateCharacterQuest(
+        quest: CharacterPersonalQuestShort,
+        characterId: Int,
+    ) {
         deleteCharacterQuests(characterId)
         setQuestForCharacter(
             quest = quest,
-            characterId = characterId
+            characterId = characterId,
         )
     }
 
-    suspend fun deleteCharacterQuests(characterId: Int) =
-        characterPersonalQuestDao.deleteByCharacterId(characterId)
+    suspend fun deleteCharacterQuests(characterId: Int) = characterPersonalQuestDao.deleteByCharacterId(characterId)
 
     private suspend fun PersonalQuestBd.toDomain(
         locale: String,
-        personal: CharacterPersonalQuestBd? = null
+        personal: CharacterPersonalQuestBd? = null,
     ): CharacterPersonalQuest {
-        val questTranslations = personalQuestDao.getQuestTranslation(
-            questId = questId,
-            targetLocale = locale,
-            defaultLocale = LocaleRepository.DEFAULT_LOCALE
-        )
-        val taskTranslations = personalQuestDao.getTasksTranslation(
-            questId = questId,
-            targetLocale = locale,
-            defaultLocale = LocaleRepository.DEFAULT_LOCALE
-        )
+        val questTranslations =
+            personalQuestDao.getQuestTranslation(
+                questId = questId,
+                targetLocale = locale,
+                defaultLocale = LocaleRepository.DEFAULT_LOCALE,
+            )
+        val taskTranslations =
+            personalQuestDao.getTasksTranslation(
+                questId = questId,
+                targetLocale = locale,
+                defaultLocale = LocaleRepository.DEFAULT_LOCALE,
+            )
         return CharacterPersonalQuest(
             questId = questId,
             title = questTranslations.title,
             descriptions = questTranslations.description,
-            tasks = (personal?.tasks ?: tasks).map { task ->
-                val tr = taskTranslations.firstOrNull { it.taskId == task.id }
-                if (tr != null) {
-                    when (task) {
-                        is CharacterTaskItem.Check -> task.copy(text = tr.text)
-                        is CharacterTaskItem.Count -> task.copy(text = tr.text)
+            tasks =
+                (personal?.tasks ?: tasks).map { task ->
+                    val tr = taskTranslations.firstOrNull { it.taskId == task.id }
+                    if (tr != null) {
+                        when (task) {
+                            is CharacterTaskItem.Check -> task.copy(text = tr.text)
+                            is CharacterTaskItem.Count -> task.copy(text = tr.text)
+                        }
+                    } else {
+                        task
                     }
-                } else {
-                    task
-                }
-            },
-            reward = QuestReward(
-                classType = characterType?.let { CharacterClassType.valueOf(it) },
-                alternativeReward = questTranslations.specialText
-            )
+                },
+            reward =
+                QuestReward(
+                    classType = characterType?.let { CharacterClassType.valueOf(it) },
+                    alternativeReward = questTranslations.specialText,
+                ),
         )
     }
 }

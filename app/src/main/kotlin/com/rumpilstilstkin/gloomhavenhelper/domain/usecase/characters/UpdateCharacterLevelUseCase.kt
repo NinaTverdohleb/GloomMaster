@@ -5,13 +5,16 @@ import com.rumpilstilstkin.gloomhavenhelper.domain.getExpForLevel
 import javax.inject.Inject
 
 class UpdateCharacterLevelUseCase @Inject constructor(
-    private val characterRepository: CharacterRepository
+    private val characterRepository: CharacterRepository,
 ) {
-    suspend operator fun invoke(characterId: Int, level: Int) {
+    suspend operator fun invoke(
+        characterId: Int,
+        level: Int,
+    ) {
         characterRepository.setLevel(
             id = characterId,
             level = level,
-            experience = getExpForLevel(level)
+            experience = getExpForLevel(level),
         )
     }
 }

@@ -14,15 +14,16 @@ data class CharacterGeneralTabState(
     val notes: String,
     val checkMarkCount: Int = 0,
     val isDonateAvailable: Boolean = false,
-    val personalQuest: PersonalQuestUI? = null
+    val personalQuest: PersonalQuestUI? = null,
 ) {
     companion object {
-        val Empty = CharacterGeneralTabState(
-            experience = 0,
-            goldCount = 0,
-            nextLevel = 0,
-            notes = "",
-            personalQuest = null
-        )
+        val Empty =
+            CharacterGeneralTabState(
+                experience = 0,
+                goldCount = 0,
+                nextLevel = 0,
+                notes = "",
+                personalQuest = null,
+            )
     }
 }

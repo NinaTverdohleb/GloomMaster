@@ -6,7 +6,7 @@ import kotlinx.serialization.json.Json
 
 class AchievementConverter {
     @TypeConverter
-    fun fromList(list: List<Achievement>): String  = Json.encodeToString(list)
+    fun fromList(list: List<Achievement>): String = Json.encodeToString(list)
 
     @TypeConverter
     fun toList(value: String): List<Achievement> = Json.decodeFromString(value)

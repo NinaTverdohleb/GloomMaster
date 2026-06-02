@@ -27,36 +27,40 @@ class AddGoodsForTeamViewModel @Inject constructor(
     getGoodsUseCase: GetAvaliableGoodsForTeamUseCase,
     private val addGoodToTeamUseCase: AddGoodToTeamUseCase,
 ) : ViewModel() {
-
     private val _navigationEvents = MutableSharedFlow<GlHelperEvent>()
     val navigationEvents = _navigationEvents.asSharedFlow()
 
     private val logicState = MutableStateFlow(AddGoodsForTeamLogicState())
 
-    val uiState: StateFlow<AddGoodsForTeamUiState> = combine(
-        logicState,
-        getGoodsUseCase(),
-    ) { state, all ->
-        val availableGoods: List<GoodUi> = all
-            .filter { it.filterResult(state.selectedFilter, state.searchText) }
-            .map { it.toUi() }
-            .minus(state.selectedGoods.toSet())
-            .sortedBy { it.number }
+    val uiState: StateFlow<AddGoodsForTeamUiState> =
+        combine(
+            logicState,
+            getGoodsUseCase(),
+        ) { state, all ->
+            val availableGoods: List<GoodUi> =
+                all
+                    .filter { it.filterResult(state.selectedFilter, state.searchText) }
+                    .map { it.toUi() }
+                    .minus(state.selectedGoods.toSet())
+                    .sortedBy { it.number }
 
-        AddGoodsForTeamUiState(
-            goodsState = AddGoodsViewState(
-                availableGoods = availableGoods.toImmutableList(),
-                selectedGoods = state.selectedGoods.sortedBy { it.number }
-                    .toImmutableList(),
-                selectedFilter = state.selectedFilter,
-                searchText = state.searchText,
-            ),
+            AddGoodsForTeamUiState(
+                goodsState =
+                    AddGoodsViewState(
+                        availableGoods = availableGoods.toImmutableList(),
+                        selectedGoods =
+                            state.selectedGoods
+                                .sortedBy { it.number }
+                                .toImmutableList(),
+                        selectedFilter = state.selectedFilter,
+                        searchText = state.searchText,
+                    ),
+            )
+        }.stateIn(
+            scope = viewModelScope,
+            initialValue = AddGoodsForTeamUiState(),
+            started = SharingStarted.WhileSubscribed(5000),
         )
-    }.stateIn(
-        scope = viewModelScope,
-        initialValue = AddGoodsForTeamUiState(),
-        started = SharingStarted.WhileSubscribed(5000),
-    )
 
     fun onAction(action: AddGoodsForTeamAction) {
         viewModelScope.launch {

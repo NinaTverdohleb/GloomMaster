@@ -64,15 +64,16 @@ internal fun ScenarioScreen(
         CombatToolbar(
             roundNumber = state.round,
             back = back,
-            complete = complete
+            complete = complete,
         )
     },
 ) { paddingValues ->
     Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(paddingValues)
-            .padding(top = 16.dp),
+        modifier =
+            Modifier
+                .fillMaxSize()
+                .padding(paddingValues)
+                .padding(top = 16.dp),
     ) {
         ScenarioHeader(
             title = state.name.ifBlank { stringResource(R.string.custom_scenario) },
@@ -81,11 +82,11 @@ internal fun ScenarioScreen(
             level = state.level,
             exp = state.exp,
             gold = state.gold,
-            trapDamage = state.trapDamage
+            trapDamage = state.trapDamage,
         )
 
         Spacer(
-            modifier = Modifier.height(8.dp)
+            modifier = Modifier.height(8.dp),
         )
         ScenarioScreenContent(
             modifier = Modifier.weight(1f),
@@ -97,30 +98,30 @@ internal fun ScenarioScreen(
             switchUnitEffect = switchUnitEffect,
             addMonsterUnit = addMonsterUnit,
             changeUnitLevel = changeUnitLevel,
-            availableEffects = state.availableEffects
+            availableEffects = state.availableEffects,
         )
         Button(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(16.dp),
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp),
             onClick = nextRound,
-            contentPadding = PaddingValues(16.dp)
+            contentPadding = PaddingValues(16.dp),
         ) {
             Text(
                 text = stringResource(R.string.round_label),
-                fontSize = 16.sp
+                fontSize = 16.sp,
             )
         }
     }
 }
-
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun CombatToolbar(
     roundNumber: Int,
     complete: () -> Unit,
-    back: () -> Unit
+    back: () -> Unit,
 ) = GloomToolbarStatus(
     status = stringResource(R.string.round_status, roundNumber),
     back = back,
@@ -129,10 +130,10 @@ private fun CombatToolbar(
             Icon(
                 Icons.Default.Check,
                 contentDescription = null,
-                tint = MaterialTheme.colorScheme.onSurface
+                tint = MaterialTheme.colorScheme.onSurface,
             )
         }
-    }
+    },
 )
 
 @Composable
@@ -146,29 +147,31 @@ fun ScenarioScreenContent(
     switchUnitEffect: (unitNumber: Int, monsterSlug: String, effect: MonsterStatType) -> Unit,
     addMonsterUnit: (unitNumbers: List<Int>, monsterSlug: String, isElite: Boolean) -> Unit,
     changeUnitLevel: (monsterSlug: String, unit: MonsterUnit, level: Int) -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
-
     val pageCount = monsters.size + 1
     val pagerState = rememberPagerState(pageCount = { pageCount })
     Row(
         Modifier
             .height(10.dp)
             .fillMaxWidth(),
-        horizontalArrangement = Arrangement.Center
+        horizontalArrangement = Arrangement.Center,
     ) {
         repeat(pagerState.pageCount) { iteration ->
-            val color = if (pagerState.currentPage == iteration)
-                MaterialTheme.colorScheme.primary
-            else
-                MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.5f)
+            val color =
+                if (pagerState.currentPage == iteration) {
+                    MaterialTheme.colorScheme.primary
+                } else {
+                    MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.5f)
+                }
 
             Box(
-                modifier = Modifier
-                    .padding(2.dp)
-                    .clip(CircleShape)
-                    .background(color)
-                    .size(8.dp)
+                modifier =
+                    Modifier
+                        .padding(2.dp)
+                        .clip(CircleShape)
+                        .background(color)
+                        .size(8.dp),
             )
         }
     }
@@ -181,7 +184,7 @@ fun ScenarioScreenContent(
         Box(modifier = modifier.fillMaxSize()) {
             if (page == pageCount - 1) {
                 AddMonsterCard(
-                    addMonster = addMonster
+                    addMonster = addMonster,
                 )
             } else {
                 val currentCard = monsters[page]
@@ -193,7 +196,7 @@ fun ScenarioScreenContent(
                     switchUnitEffect = switchUnitEffect,
                     addMonsterUnit = addMonsterUnit,
                     changeUnitLevel = changeUnitLevel,
-                    availableEffects = availableEffects
+                    availableEffects = availableEffects,
                 )
             }
         }
@@ -205,21 +208,24 @@ fun ScenarioScreenContent(
 private fun ScenarioScreenPreview() {
     GloomhavenMasterTheme {
         ScenarioScreen(
-            state = ScenarioStateUi(
-                name = "Bad place",
-                monsters = persistentListOf(
-                    MonsterItem.fixture()
+            state =
+                ScenarioStateUi(
+                    name = "Bad place",
+                    monsters =
+                        persistentListOf(
+                            MonsterItem.fixture(),
+                        ),
+                    magicChargeList =
+                        persistentMapOf(
+                            Magic.FIRE to 0,
+                            Magic.FROST to 2,
+                            Magic.AIR to 0,
+                            Magic.EARTH to 2,
+                            Magic.SUN to 1,
+                            Magic.MOON to 2,
+                        ),
+                    availableEffects = MonsterStatType.mainEffectsPack,
                 ),
-                magicChargeList = persistentMapOf(
-                    Magic.FIRE to 0,
-                    Magic.FROST to 2,
-                    Magic.AIR to 0,
-                    Magic.EARTH to 2,
-                    Magic.SUN to 1,
-                    Magic.MOON to 2,
-                ),
-                availableEffects = MonsterStatType.mainEffectsPack,
-            ),
             addMonster = {},
             back = {},
             complete = {},
@@ -240,10 +246,11 @@ private fun ScenarioScreenPreview() {
 private fun ScenarioScreenEmptyPreview() {
     GloomhavenMasterTheme {
         ScenarioScreen(
-            state = ScenarioStateUi(
-                name = "Bad place",
-                availableEffects = MonsterStatType.mainEffectsPack,
-            ),
+            state =
+                ScenarioStateUi(
+                    name = "Bad place",
+                    availableEffects = MonsterStatType.mainEffectsPack,
+                ),
             addMonster = {},
             back = {},
             complete = {},

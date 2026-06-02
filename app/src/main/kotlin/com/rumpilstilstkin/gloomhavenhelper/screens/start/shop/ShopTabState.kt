@@ -22,7 +22,16 @@ data class ShopTabStateLogic(
 
 sealed interface ShopTabAction {
     data object AddGood : ShopTabAction
-    data class RemoveGood(val id: Int) : ShopTabAction
-    data class SelectFilter(val type: GoodType) : ShopTabAction
-    data class SearchTextChange(val text: String) : ShopTabAction
+
+    data class RemoveGood(
+        val id: Int,
+    ) : ShopTabAction
+
+    data class SelectFilter(
+        val type: GoodType,
+    ) : ShopTabAction
+
+    data class SearchTextChange(
+        val text: String,
+    ) : ShopTabAction
 }

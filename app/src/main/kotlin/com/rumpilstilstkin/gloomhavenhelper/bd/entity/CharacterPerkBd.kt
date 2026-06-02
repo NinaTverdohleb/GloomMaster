@@ -7,17 +7,18 @@ import androidx.room.ForeignKey.Companion.CASCADE
 import androidx.room.Index
 import androidx.room.PrimaryKey
 
-@Entity(foreignKeys = [
-    ForeignKey(
-        entity = CharacterBd::class,
-        parentColumns = arrayOf("characterId"),
-        childColumns = arrayOf("characterId"),
-        onDelete = CASCADE
-    ),
-],
+@Entity(
+    foreignKeys = [
+        ForeignKey(
+            entity = CharacterBd::class,
+            parentColumns = arrayOf("characterId"),
+            childColumns = arrayOf("characterId"),
+            onDelete = CASCADE,
+        ),
+    ],
     indices = [
         Index("characterId"),
-    ]
+    ],
 )
 data class CharacterPerkBd(
     @PrimaryKey(autoGenerate = true)
@@ -29,5 +30,5 @@ data class CharacterPerkBd(
 data class CharacterPerkWithNameBd(
     @Embedded
     val perk: CharacterPerkBd,
-    val text: String
+    val text: String,
 )

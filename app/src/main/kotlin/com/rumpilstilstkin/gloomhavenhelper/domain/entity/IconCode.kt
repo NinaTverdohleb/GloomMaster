@@ -1,6 +1,8 @@
 package com.rumpilstilstkin.gloomhavenhelper.domain.entity
 
-enum class IconCode(val value: String) {
+enum class IconCode(
+    val value: String,
+) {
     MINUS1("01"),
     MINUS2("02"),
     PLUS1("03"),
@@ -57,7 +59,8 @@ enum class IconCode(val value: String) {
     AREA_11("54"),
     AREA_12("55"),
     REGENERATE("56"),
-    AREA_13("57");
+    AREA_13("57"),
+    ;
 
     companion object {
         fun String.toIconCode(): IconCode? {

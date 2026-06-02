@@ -16,14 +16,15 @@ class GetScenarioInfoUseCase @Inject constructor(
     private val restoreScenarioStateUseCase: RestoreScenarioStateUseCase,
     private val localeRepository: LocaleRepository,
 ) {
-    suspend operator fun invoke(): Result<ScenarioBattleState> = withContext(Dispatchers.Default) {
-        getCurrentTeamUseCase().first().let { team ->
-            if (team != null) {
-                val levelInfo = levelInfoRepository.getLevelInfo(team.level).getOrNull()
-                restoreScenarioStateUseCase(team, levelInfo, localeRepository.getCurrentLocale()).toResult()
-            } else {
-                Result.failure(IllegalStateException("Team is null"))
+    suspend operator fun invoke(): Result<ScenarioBattleState> =
+        withContext(Dispatchers.Default) {
+            getCurrentTeamUseCase().first().let { team ->
+                if (team != null) {
+                    val levelInfo = levelInfoRepository.getLevelInfo(team.level).getOrNull()
+                    restoreScenarioStateUseCase(team, levelInfo, localeRepository.getCurrentLocale()).toResult()
+                } else {
+                    Result.failure(IllegalStateException("Team is null"))
+                }
             }
         }
-    }
 }

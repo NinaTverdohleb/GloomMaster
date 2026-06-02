@@ -42,43 +42,43 @@ fun GoodItem(
     Row(
         modifier = modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.SpaceBetween,
-        verticalAlignment = Alignment.CenterVertically
+        verticalAlignment = Alignment.CenterVertically,
     ) {
         Box(
-            modifier = modifier
-                .size(52.dp)
-                .background(
-                    color = MaterialTheme.colorScheme.secondaryContainer,
-                    shape = RoundedCornerShape(8.dp),
-                )
-                .border(
-                    shape = RoundedCornerShape(8.dp),
-                    color = MaterialTheme.colorScheme.outline,
-                    width = 1.dp
-                ),
-            contentAlignment = Alignment.Center
+            modifier =
+                modifier
+                    .size(52.dp)
+                    .background(
+                        color = MaterialTheme.colorScheme.secondaryContainer,
+                        shape = RoundedCornerShape(8.dp),
+                    ).border(
+                        shape = RoundedCornerShape(8.dp),
+                        color = MaterialTheme.colorScheme.outline,
+                        width = 1.dp,
+                    ),
+            contentAlignment = Alignment.Center,
         ) {
             Icon(
                 modifier = Modifier.size(34.dp),
                 imageVector = good.typeImage,
                 contentDescription = null,
-                tint = MaterialTheme.colorScheme.primary
+                tint = MaterialTheme.colorScheme.primary,
             )
         }
         Spacer(modifier = Modifier.width(16.dp))
         Column(
-            modifier = Modifier.weight(1f)
+            modifier = Modifier.weight(1f),
         ) {
             Text(
                 text = "#${good.number} ${good.name}",
                 style = MaterialTheme.typography.bodyLarge,
-                color = MaterialTheme.colorScheme.onSurface
+                color = MaterialTheme.colorScheme.onSurface,
             )
             Spacer(modifier = Modifier.height(8.dp))
             Text(
                 text = stringResource(R.string.gold_format, good.cost),
                 style = MaterialTheme.typography.bodyMedium,
-                color = MaterialTheme.colorScheme.onSurface
+                color = MaterialTheme.colorScheme.onSurface,
             )
         }
     }
@@ -89,10 +89,11 @@ fun GoodItem(
 private fun GoodItemPreview() {
     GloomhavenMasterTheme {
         GoodItem(
-            good = GoodUi.fixture(
-                id = 1,
-            ),
-            clickItem = {}
+            good =
+                GoodUi.fixture(
+                    id = 1,
+                ),
+            clickItem = {},
         )
     }
 }

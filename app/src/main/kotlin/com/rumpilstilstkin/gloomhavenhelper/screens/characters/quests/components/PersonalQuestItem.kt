@@ -38,28 +38,29 @@ fun PersonalQuestItem(
         quest = quest,
         showDialog = showDetailsDialog,
         onAction = { chooseQuest(it) },
-        onDismiss = { showDetailsDialog = false }
+        onDismiss = { showDetailsDialog = false },
     )
     GloomCard(
-        modifier = modifier
+        modifier = modifier,
     ) {
         Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .clickable { showDetailsDialog = true },
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .clickable { showDetailsDialog = true },
             horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.CenterVertically
+            verticalAlignment = Alignment.CenterVertically,
         ) {
             Row(
                 modifier = Modifier.weight(1f),
-                verticalAlignment = Alignment.CenterVertically
+                verticalAlignment = Alignment.CenterVertically,
             ) {
                 Text(
                     text = "# ${quest.id}",
                     style = MaterialTheme.typography.headlineSmall,
                 )
                 Spacer(
-                    modifier = Modifier.width(16.dp)
+                    modifier = Modifier.width(16.dp),
                 )
                 Text(
                     modifier = Modifier.weight(1f),
@@ -76,19 +77,20 @@ fun PersonalQuestItem(
 private fun PersonalQuestItemPreview() {
     GloomhavenMasterTheme {
         PersonalQuestItem(
-            quest = PersonalQuestUI(
-                id = "512",
-                title = "Some title",
-                description = "",
-                phases = persistentListOf(),
-                completed = false,
-                reward = QuestReward(
-                    classType = null,
-                    alternativeReward = ""
-                )
-            ),
-            chooseQuest = {}
+            quest =
+                PersonalQuestUI(
+                    id = "512",
+                    title = "Some title",
+                    description = "",
+                    phases = persistentListOf(),
+                    completed = false,
+                    reward =
+                        QuestReward(
+                            classType = null,
+                            alternativeReward = "",
+                        ),
+                ),
+            chooseQuest = {},
         )
     }
-
 }

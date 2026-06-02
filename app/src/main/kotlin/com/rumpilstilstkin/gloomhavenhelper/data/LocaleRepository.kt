@@ -11,19 +11,17 @@ import javax.inject.Singleton
 @Singleton
 class LocaleRepository @Inject constructor(
     private val systemLocaleDataSource: SystemLocaleDatasource,
-    private val appLocaleDataSource: LocaleDatasource
+    private val appLocaleDataSource: LocaleDatasource,
 ) {
+    val observeLocale: Flow<String> =
+        combine(
+            systemLocaleDataSource.observeSystemLocale(),
+            appLocaleDataSource.observeAppLocale(),
+        ) { systemLocale, appLocale ->
+            appLocale ?: systemLocale
+        }.distinctUntilChanged()
 
-    val observeLocale: Flow<String> = combine(
-        systemLocaleDataSource.observeSystemLocale(),
-        appLocaleDataSource.observeAppLocale()
-    ) { systemLocale, appLocale ->
-        appLocale ?: systemLocale
-    }.distinctUntilChanged()
-
-
-    suspend fun getCurrentLocale(): String =
-        appLocaleDataSource.locale ?: systemLocaleDataSource.getSystemLocale()
+    suspend fun getCurrentLocale(): String = appLocaleDataSource.locale ?: systemLocaleDataSource.getSystemLocale()
 
     suspend fun setAppLocale(locale: String?) {
         appLocaleDataSource.locale = locale

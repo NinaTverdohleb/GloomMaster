@@ -16,24 +16,25 @@ import javax.inject.Inject
 class GetCharacterDetailsInfoUseCase @Inject constructor(
     private val characterRepository: CharacterRepository,
     private val questsRepository: QuestsRepository,
-    private val localeRepository: LocaleRepository
+    private val localeRepository: LocaleRepository,
 ) {
     @OptIn(ExperimentalCoroutinesApi::class)
     operator fun invoke(characterId: Int): Flow<CharacterFullInfo?> =
         localeRepository.observeLocale.flatMapLatest { locale ->
-            characterRepository.getCharacterByIdFlow(characterId)
+            characterRepository
+                .getCharacterByIdFlow(characterId)
                 .combine(
                     questsRepository.getCharacterPersonalQuestFlow(
                         characterId,
-                        locale
-                    )
+                        locale,
+                    ),
                 ) { characterInfo, quest ->
                     characterInfo?.let {
                         CharacterFullInfo(
                             generalInfo = characterInfo,
                             nextLevelExperience = getNextLevel(characterInfo.level),
                             isDonateAvailable = characterInfo.goldCount >= 10,
-                            personalQuest = quest
+                            personalQuest = quest,
                         )
                     }
                 }

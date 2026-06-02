@@ -25,19 +25,20 @@ import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
 @Composable
 internal fun EmptyTeamScreen(
     modifier: Modifier = Modifier,
-    addTeam: () -> Unit
+    addTeam: () -> Unit,
 ) = Column(
-    modifier = modifier
-        .fillMaxSize()
-        .padding(32.dp),
+    modifier =
+        modifier
+            .fillMaxSize()
+            .padding(32.dp),
     horizontalAlignment = Alignment.CenterHorizontally,
-    verticalArrangement = Arrangement.Center
+    verticalArrangement = Arrangement.Center,
 ) {
     Image(painter = painterResource(id = R.drawable.logo), contentDescription = null)
     Spacer(modifier = Modifier.height(48.dp))
     Button(
         modifier = Modifier.fillMaxWidth(),
-        onClick = addTeam
+        onClick = addTeam,
     ) {
         Text(
             modifier = Modifier.padding(8.dp),

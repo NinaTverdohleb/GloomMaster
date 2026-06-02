@@ -13,14 +13,13 @@ class GetAvaliableClassesForCurrentTeamUseCase @Inject constructor(
     private val teamRepository: TeamRepository,
     private val characterClassRepository: CharacterClassRepository,
 ) {
-
     @OptIn(ExperimentalCoroutinesApi::class)
     operator fun invoke(): Flow<List<CharacterClassType>> =
         teamRepository.currentTeam
             .flatMapLatest { team ->
                 if (team == null) {
                     flowOf(emptyList())
-                }else {
+                } else {
                     characterClassRepository.getAvailableClassesForTeam(team.teamId)
                 }
             }

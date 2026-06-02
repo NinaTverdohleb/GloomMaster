@@ -32,19 +32,20 @@ class GetCurrentTeamUseCase @Inject constructor(
         combine(
             teamRepository.currentTeam,
             localeRepository.observeLocale,
-            ::Pair
+            ::Pair,
         ).flatMapLatest { (team, locale) ->
             if (team == null) return@flatMapLatest flowOf(null)
 
-            val achievementsNames = achievementRepository.getAchievementsNameBySlugs(
-                team.achievements.map { it.slug },
-                locale
-            )
+            val achievementsNames =
+                achievementRepository.getAchievementsNameBySlugs(
+                    team.achievements.map { it.slug },
+                    locale,
+                )
 
             combine(
                 characterRepository.getCharacterByTeamId(team.teamId),
                 scenarioRepository.getTeamScenariosFlow(team.teamId),
-                scenarioGameStateRepository.getFlow()
+                scenarioGameStateRepository.getFlow(),
             ) { characters, scenarios, activeScenario ->
                 val activeCharacters = characters.filter { it.isAlive }
                 val teamScenarios = filterTeamScenariosUseCase(team.achievements, scenarios)
@@ -53,10 +54,14 @@ class GetCurrentTeamUseCase @Inject constructor(
                     id = team.teamId,
                     name = team.name,
                     level = activeCharacters.map { it.level }.toLevel(team.difficultyLevel),
-                    teamAchievement = team.achievements.filter { !it.isGlobal }
-                        .map { it.toAchievementWithName(achievementsNames[it.slug]) },
-                    globalAchievement = team.achievements.filter { it.isGlobal }
-                        .map { it.toAchievementWithName(achievementsNames[it.slug]) },
+                    teamAchievement =
+                        team.achievements
+                            .filter { !it.isGlobal }
+                            .map { it.toAchievementWithName(achievementsNames[it.slug]) },
+                    globalAchievement =
+                        team.achievements
+                            .filter { it.isGlobal }
+                            .map { it.toAchievementWithName(achievementsNames[it.slug]) },
                     reputation = team.reputation,
                     prosperity = getTeamProsperityUseCase(team.prosperity),
                     activeScenario = teamScenarios.activeScenarios,
@@ -65,7 +70,7 @@ class GetCurrentTeamUseCase @Inject constructor(
                     packs = team.packs,
                     hasActiveScenario = activeScenario != null,
                     churchValue = team.churchValue,
-                    difficultyLevel = team.difficultyLevel
+                    difficultyLevel = team.difficultyLevel,
                 )
             }
         }

@@ -30,7 +30,7 @@ class TeamRepository @Inject constructor(
     private val currentTeamDatasource: CurrentTeamDatasource,
     private val teamDao: TeamDao,
     private val characterDao: CharacterDao,
-    private val scenarioGameStateRepository: ScenarioGameStateRepository
+    private val scenarioGameStateRepository: ScenarioGameStateRepository,
 ) {
     private val _currentTeam: MutableStateFlow<Result<Int>> =
         MutableStateFlow(Result.failure(NotFoundException()))
@@ -48,7 +48,7 @@ class TeamRepository @Inject constructor(
                             team.toDomain(characters)
                         }
                     },
-                    onFailure = { flowOf(null) }
+                    onFailure = { flowOf(null) },
                 )
             }
 
@@ -71,7 +71,7 @@ class TeamRepository @Inject constructor(
                     teamId = teamBd.teamId,
                     name = teamBd.name,
                     packs = teamBd.packs.map { PackType.valueOf(it) },
-                    difficultyLevel = DifficultyLevel.fromValue(teamBd.difficultyLevel)
+                    difficultyLevel = DifficultyLevel.fromValue(teamBd.difficultyLevel),
                 )
             }
         }
@@ -81,7 +81,6 @@ class TeamRepository @Inject constructor(
             val characters = characterDao.findByTeamId(team.teamId)
             team.toDomain(characters)
         }
-
 
     suspend fun saveTeam(team: TeamInfoForSave): Int {
         val savedTeamId = teamDao.insert(team.toBd()).toInt()
@@ -98,7 +97,10 @@ class TeamRepository @Inject constructor(
         }
     }
 
-    suspend fun updateProsperity(teamId: Int, prosperity: Int) {
+    suspend fun updateProsperity(
+        teamId: Int,
+        prosperity: Int,
+    ) {
         teamDao.updateProsperity(teamId, prosperity)
     }
 
@@ -115,8 +117,9 @@ class TeamRepository @Inject constructor(
 
     suspend fun deleteTeam(team: ShortTeamInfo) {
         val teams = teamDao.getAll()
-        val newTeamId = teams.firstOrNull { it.teamId != team.teamId }?.teamId
-            ?: CurrentTeamDatasource.EMPTY_TEAM
+        val newTeamId =
+            teams.firstOrNull { it.teamId != team.teamId }?.teamId
+                ?: CurrentTeamDatasource.EMPTY_TEAM
         setCurrentTeam(newTeamId)
         teamDao.delete(team.teamId)
     }
@@ -126,7 +129,7 @@ class TeamRepository @Inject constructor(
         val team = teamDao.findById(currentTeamId)
         if (currentTeamId != CurrentTeamDatasource.EMPTY_TEAM && team != null) {
             _currentTeam.emit(
-                Result.success(team.teamId)
+                Result.success(team.teamId),
             )
         } else {
             _currentTeam.emit(Result.failure(NotFoundException()))

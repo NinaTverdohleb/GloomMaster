@@ -7,13 +7,17 @@ import javax.inject.Inject
 
 class GetMonsterStatsForLevelUseCase @Inject constructor(
     private val monsterRepository: MonsterRepository,
-    private val localeRepository: LocaleRepository
+    private val localeRepository: LocaleRepository,
 ) {
-    suspend operator fun invoke(monsterSlug: String, level: Int, isElite: Boolean): MonsterStats =
+    suspend operator fun invoke(
+        monsterSlug: String,
+        level: Int,
+        isElite: Boolean,
+    ): MonsterStats =
         monsterRepository.getMonsterStats(
             monsterSlug = monsterSlug,
             level = level,
             isElite = isElite,
-            locale = localeRepository.getCurrentLocale()
+            locale = localeRepository.getCurrentLocale(),
         )
 }

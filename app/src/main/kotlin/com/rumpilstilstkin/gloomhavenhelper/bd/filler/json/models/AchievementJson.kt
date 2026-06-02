@@ -9,24 +9,26 @@ data class AchievementJson(
     val slug: String,
     val pack: String,
     val isGlobal: Boolean,
-    val maxRang: Int = 1
+    val maxRang: Int = 1,
 ) {
-    fun toEntity() = AchievementBd(
-        slug = slug,
-        pack = pack,
-        isGlobal = isGlobal,
-        maxRang = maxRang
-    )
+    fun toEntity() =
+        AchievementBd(
+            slug = slug,
+            pack = pack,
+            isGlobal = isGlobal,
+            maxRang = maxRang,
+        )
 }
 
 @Serializable
 data class AchievementTranslationJson(
     val slug: String,
-    val name: String
+    val name: String,
 ) {
-    fun toEntity(locale: String) = AchievementTranslateBd(
-        slug = slug,
-        locale = locale,
-        name = name
-    )
+    fun toEntity(locale: String) =
+        AchievementTranslateBd(
+            slug = slug,
+            locale = locale,
+            name = name,
+        )
 }

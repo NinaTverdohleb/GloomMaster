@@ -6,21 +6,23 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class LocationJson(
-    val slug: String
+    val slug: String,
 ) {
-    fun toEntity() = LocationBd(
-        slug = slug,
-    )
+    fun toEntity() =
+        LocationBd(
+            slug = slug,
+        )
 }
 
 @Serializable
 data class LocationTranslationJson(
     val slug: String,
-    val name: String
+    val name: String,
 ) {
-    fun toEntity(locale: String) = LocationTranslateBd(
-        slug = slug,
-        locale = locale,
-        name = name
-    )
+    fun toEntity(locale: String) =
+        LocationTranslateBd(
+            slug = slug,
+            locale = locale,
+            name = name,
+        )
 }

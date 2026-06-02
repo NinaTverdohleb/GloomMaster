@@ -21,11 +21,15 @@ data class ScenarioConstructorStateLogic(
 
 data class MonsterNameUi(
     val slug: String,
-    val name: String
+    val name: String,
 )
 
 sealed interface ScenarioConstructorAction {
     data object Back : ScenarioConstructorAction
-    data class ToggleMonster(val monster: MonsterNameUi) : ScenarioConstructorAction
+
+    data class ToggleMonster(
+        val monster: MonsterNameUi,
+    ) : ScenarioConstructorAction
+
     data object AddMonsters : ScenarioConstructorAction
 }

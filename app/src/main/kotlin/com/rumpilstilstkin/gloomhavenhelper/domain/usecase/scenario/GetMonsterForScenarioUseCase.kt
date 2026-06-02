@@ -12,17 +12,17 @@ class GetMonsterForScenarioUseCase @Inject constructor(
     private val monsterRepository: MonsterRepository,
     private val getCurrentTeamUseCase: GetCurrentTeamUseCase,
 ) {
-    suspend operator fun invoke(
-        scenarioNumber: Int
-    ): Result<List<String>> = withContext(Dispatchers.Default) {
-        getCurrentTeamUseCase().first().let { team ->
-            if (team != null) {
-                monsterRepository.getMonsterSlugsForScenario(
-                    scenarioNumber = scenarioNumber,
-                ).toResult()
-            } else {
-                Result.failure(IllegalStateException("Team is null"))
+    suspend operator fun invoke(scenarioNumber: Int): Result<List<String>> =
+        withContext(Dispatchers.Default) {
+            getCurrentTeamUseCase().first().let { team ->
+                if (team != null) {
+                    monsterRepository
+                        .getMonsterSlugsForScenario(
+                            scenarioNumber = scenarioNumber,
+                        ).toResult()
+                } else {
+                    Result.failure(IllegalStateException("Team is null"))
+                }
             }
         }
-    }
 }

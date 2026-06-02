@@ -39,7 +39,7 @@ fun AddTeamDialog(
         onNeutralRequest = {
             openFile()
             onDismiss()
-        }
+        },
     ) {
         OutlinedTextField(
             modifier = Modifier.fillMaxWidth(),
@@ -58,7 +58,7 @@ private fun AddTeamDialogPreview() {
         AddTeamDialog(
             onDismiss = {},
             onAdd = {},
-            openFile = {}
+            openFile = {},
         )
     }
 }

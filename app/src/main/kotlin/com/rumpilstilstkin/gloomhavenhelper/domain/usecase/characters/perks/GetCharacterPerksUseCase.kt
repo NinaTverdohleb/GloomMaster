@@ -10,9 +10,8 @@ import javax.inject.Inject
 
 class GetCharacterPerksUseCase @Inject constructor(
     private val characterRepository: CharacterRepository,
-    private val localeRepository: LocaleRepository
+    private val localeRepository: LocaleRepository,
 ) {
-
     @OptIn(ExperimentalCoroutinesApi::class)
     operator fun invoke(characterId: Int): Flow<List<Perk>> =
         localeRepository.observeLocale.flatMapLatest { locale ->

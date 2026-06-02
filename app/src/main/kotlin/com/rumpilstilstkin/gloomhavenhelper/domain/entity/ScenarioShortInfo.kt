@@ -5,7 +5,7 @@ data class ScenarioShortInfo(
     val scenarioRequirements: LogicalCondition,
     val isCompleted: Boolean,
     val pack: PackType,
-    val monsters: List<String>
+    val monsters: List<String>,
 )
 
 data class ScenarioInfoWithName(
@@ -24,5 +24,5 @@ data class ScenarioInfo(
     val scenarioRequirements: LogicalCondition,
     val newScenario: List<Int>,
     val pack: PackType,
-    val monsters: List<String>
+    val monsters: List<String>,
 )

@@ -14,7 +14,7 @@ data class PersonalQuestUI(
     val description: String,
     val phases: ImmutableList<QuestTaskPhaseUI>,
     val completed: Boolean = false,
-    val reward: QuestReward
+    val reward: QuestReward,
 )
 
 @Immutable
@@ -25,30 +25,30 @@ data class QuestTaskPhaseUI(
     val tasks: ImmutableList<CharacterTaskItem>,
 )
 
-
-fun CharacterPersonalQuest.toUI() = PersonalQuestUI(
-    id = this.questId,
-    title = this.title,
-    description = this.descriptions,
-    completed = this.tasks.all { it.completed },
-    reward = this.reward,
-    phases = tasks.toImmutableListQuestTaskPhaseUIList()
-)
+fun CharacterPersonalQuest.toUI() =
+    PersonalQuestUI(
+        id = this.questId,
+        title = this.title,
+        description = this.descriptions,
+        completed = this.tasks.all { it.completed },
+        reward = this.reward,
+        phases = tasks.toImmutableListQuestTaskPhaseUIList(),
+    )
 
 private fun List<CharacterTaskItem>.toImmutableListQuestTaskPhaseUIList() =
-    this.groupBy { it.priority }.map { (priority, tasks) ->
-        QuestTaskPhaseUI(
-            priority = priority,
-            completed = tasks.all { it.completed },
-            tasks = tasks.sortedBy { it.priority }.toImmutableList()
-        )
-    }.compile()
+    this
+        .groupBy { it.priority }
+        .map { (priority, tasks) ->
+            QuestTaskPhaseUI(
+                priority = priority,
+                completed = tasks.all { it.completed },
+                tasks = tasks.sortedBy { it.priority }.toImmutableList(),
+            )
+        }.compile()
 
 private fun List<QuestTaskPhaseUI>.compile() =
     this
-        .mapIndexed {
-                    index, questTaskPhase -> questTaskPhase.copy(visible = questTaskPhase.priority == 0 || this[index - 1].completed)
-        }
-        .sortedBy { it.priority }
+        .mapIndexed { index, questTaskPhase ->
+            questTaskPhase.copy(visible = questTaskPhase.priority == 0 || this[index - 1].completed)
+        }.sortedBy { it.priority }
         .toImmutableList()
-

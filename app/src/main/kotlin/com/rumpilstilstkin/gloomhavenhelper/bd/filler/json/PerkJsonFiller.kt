@@ -9,7 +9,7 @@ import javax.inject.Inject
 
 class PerkJsonFiller @Inject constructor(
     private val jsonDataLoader: JsonDataLoader,
-    private val perksDao: PerksDao
+    private val perksDao: PerksDao,
 ) {
     suspend fun fill(pack: String) {
         val data = jsonDataLoader.loadDictionaryList<CharacterPerksJson>("perks.json", pack)
@@ -21,18 +21,22 @@ class PerkJsonFiller @Inject constructor(
         }
     }
 
-    suspend fun fillTranslations(pack: String, locale: String) {
+    suspend fun fillTranslations(
+        pack: String,
+        locale: String,
+    ) {
         val translationGroups =
             jsonDataLoader.loadDictionaryListOrEmpty<PerkTranslationGroupJson>("perks.json", "$pack/$locale")
         translationGroups.forEach { group ->
-            val entities = group.perks.map {
-                PerkTranslationBd(
-                    perkId = it.id,
-                    locale = locale,
-                    text = it.text,
-                    characterType = group.characterType
-                )
-            }
+            val entities =
+                group.perks.map {
+                    PerkTranslationBd(
+                        perkId = it.id,
+                        locale = locale,
+                        text = it.text,
+                        characterType = group.characterType,
+                    )
+                }
             perksDao.insertAll(*entities.toTypedArray())
         }
     }

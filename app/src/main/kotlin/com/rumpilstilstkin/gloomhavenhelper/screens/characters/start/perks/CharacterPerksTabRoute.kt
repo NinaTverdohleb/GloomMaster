@@ -6,9 +6,7 @@ import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 
 @Composable
-fun CharacterPerksTabRoute(
-    characterId: Int,
-) {
+fun CharacterPerksTabRoute(characterId: Int) {
     val viewModel =
         hiltViewModel<CharacterPerksTabViewModel, CharacterPerksTabViewModel.Factory> { factory ->
             factory.create(characterId)
@@ -27,7 +25,6 @@ fun CharacterPerksTabRoute(
         },
         addPerks = {
             viewModel.onAction(CharacterPerksTabActions.AddPerks(it))
-        }
+        },
     )
-
 }

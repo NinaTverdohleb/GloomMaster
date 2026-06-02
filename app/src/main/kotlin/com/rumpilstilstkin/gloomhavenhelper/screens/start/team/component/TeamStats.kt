@@ -33,78 +33,77 @@ internal fun TeamStats(
     discount: Int,
     modifier: Modifier = Modifier,
     onReputationClick: (Int) -> Unit = {},
-    onProsperityClick: (Int) -> Unit = {}
+    onProsperityClick: (Int) -> Unit = {},
 ) = Column(
-    modifier = modifier
+    modifier = modifier,
 ) {
     GloomCard(
-        modifier = Modifier.fillMaxWidth()
+        modifier = Modifier.fillMaxWidth(),
     ) {
         Column(
             modifier = Modifier.fillMaxWidth(),
-            horizontalAlignment = Alignment.CenterHorizontally
+            horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             Text(
                 style = MaterialTheme.typography.labelLarge,
                 text = stringResource(R.string.reputation).uppercase(),
-                color = MaterialTheme.colorScheme.primary
+                color = MaterialTheme.colorScheme.primary,
             )
 
             Spacer(
-                modifier = Modifier.height(16.dp)
+                modifier = Modifier.height(16.dp),
             )
 
             NumberPicker(
                 value = reputation,
                 showSign = true,
-                intRange = IntRange(-20, 20)
+                intRange = IntRange(-20, 20),
             ) { newValue ->
                 onReputationClick(newValue)
             }
             Spacer(
-                modifier = Modifier.height(8.dp)
+                modifier = Modifier.height(8.dp),
             )
             GloomVariantCard {
                 Row(
                     modifier = Modifier.padding(4.dp),
-                    verticalAlignment = Alignment.CenterVertically
+                    verticalAlignment = Alignment.CenterVertically,
                 ) {
                     Icon(
                         painter = painterResource(R.drawable.ic_shop),
                         contentDescription = null,
-                        tint = MaterialTheme.colorScheme.primary
+                        tint = MaterialTheme.colorScheme.primary,
                     )
                     Spacer(
-                        modifier = Modifier.width(8.dp)
+                        modifier = Modifier.width(8.dp),
                     )
                     Text(
                         style = MaterialTheme.typography.labelLarge,
-                        text = stringResource(R.string.shop_discount)
+                        text = stringResource(R.string.shop_discount),
                     )
                     Spacer(
-                        modifier = Modifier.width(8.dp)
+                        modifier = Modifier.width(8.dp),
                     )
                     Text(
                         style = MaterialTheme.typography.titleLarge,
                         text = String.format(LocalLocale.current.platformLocale, "%+d", discount),
-                        color = MaterialTheme.colorScheme.primary
+                        color = MaterialTheme.colorScheme.primary,
                     )
-
                 }
             }
         }
     }
 
     Spacer(
-        modifier = Modifier.height(16.dp)
+        modifier = Modifier.height(16.dp),
     )
 
     GloomCard(
-        modifier = Modifier.fillMaxWidth()
+        modifier = Modifier.fillMaxWidth(),
     ) {
         Column(
             modifier = Modifier.fillMaxWidth(),
-            horizontalAlignment = Alignment.CenterHorizontally
+            horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             Row(
                 modifier = Modifier.fillMaxWidth(),
@@ -114,22 +113,22 @@ internal fun TeamStats(
                 Text(
                     style = MaterialTheme.typography.labelLarge,
                     text = stringResource(R.string.prosperity).uppercase(),
-                    color = MaterialTheme.colorScheme.primary
+                    color = MaterialTheme.colorScheme.primary,
                 )
                 Text(
                     style = MaterialTheme.typography.labelMedium,
-                    text = stringResource(R.string.level_label, prosperity)
+                    text = stringResource(R.string.level_label, prosperity),
                 )
             }
 
             Spacer(
-                modifier = Modifier.height(16.dp)
+                modifier = Modifier.height(16.dp),
             )
 
             NumberPickerProgress(
                 value = reputation,
                 showSign = false,
-                intRange = IntRange(0, 9)
+                intRange = IntRange(0, 9),
             ) { newValue ->
                 onProsperityClick(newValue)
             }
@@ -144,8 +143,7 @@ private fun ContentSample() {
         TeamStats(
             reputation = 2,
             prosperity = 3,
-            discount = -1
+            discount = -1,
         )
     }
 }
-

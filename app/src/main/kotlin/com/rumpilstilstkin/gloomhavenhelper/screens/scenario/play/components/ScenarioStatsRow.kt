@@ -23,37 +23,35 @@ fun ScenarioStatsRow(
     exp: Int,
     gold: Int,
     trapDamage: Int,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) = GloomVariantCard(
     modifier = modifier.fillMaxWidth(),
 ) {
     Row(
         modifier = Modifier.fillMaxWidth(),
-        horizontalArrangement = Arrangement.SpaceBetween
+        horizontalArrangement = Arrangement.SpaceBetween,
     ) {
         StatItem(
             value = level.toString(),
-            image = R.drawable.ic_level
+            image = R.drawable.ic_level,
         )
 
         StatItem(
             value = exp.toString(),
-            image = R.drawable.ic_exp
+            image = R.drawable.ic_exp,
         )
 
         StatItem(
             value = gold.toString(),
-            image = R.drawable.ic_gold
+            image = R.drawable.ic_gold,
         )
 
         StatItem(
             value = trapDamage.toString(),
-            image = R.drawable.ic_trap
+            image = R.drawable.ic_trap,
         )
-
     }
 }
-
 
 @Composable
 internal fun StatItem(
@@ -65,7 +63,6 @@ internal fun StatItem(
         Spacer(modifier = Modifier.width(4.dp))
         Text(value)
     }
-
 }
 
 @Preview
@@ -76,7 +73,7 @@ private fun ScenarioStatsRowPreview() {
             level = 1,
             exp = 100,
             gold = 100,
-            trapDamage = 10
+            trapDamage = 10,
         )
     }
 }

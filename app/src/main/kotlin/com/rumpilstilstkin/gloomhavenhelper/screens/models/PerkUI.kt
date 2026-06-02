@@ -7,8 +7,8 @@ data class PerkUI(
     val text: String,
 )
 
-
-fun Perk.toUi() = PerkUI(
-    id = this.id,
-    text = this.text,
-)
+fun Perk.toUi() =
+    PerkUI(
+        id = this.id,
+        text = this.text,
+    )

@@ -13,7 +13,7 @@ import javax.inject.Inject
 class GetTeamScenariosUseCase @Inject constructor(
     private val teamRepository: TeamRepository,
     private val scenarioRepository: ScenarioRepository,
-    private val filterTeamScenariosUseCase: FilterTeamScenariosUseCase
+    private val filterTeamScenariosUseCase: FilterTeamScenariosUseCase,
 ) {
     @OptIn(ExperimentalCoroutinesApi::class)
     operator fun invoke(): Flow<TeamScenarios> =

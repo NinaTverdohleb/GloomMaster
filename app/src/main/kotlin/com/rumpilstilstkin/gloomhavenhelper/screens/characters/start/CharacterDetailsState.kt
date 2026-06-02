@@ -5,17 +5,34 @@ import com.rumpilstilstkin.gloomhavenhelper.screens.models.CharacterClassTypeUI
 
 sealed interface CharacterDetailsAction {
     data object Back : CharacterDetailsAction
+
     data object ShowDeleteDialog : CharacterDetailsAction
+
     data object HideDeleteDialog : CharacterDetailsAction
+
     data object ConfirmDelete : CharacterDetailsAction
+
     data object ShowNameDialog : CharacterDetailsAction
+
     data object HideNameDialog : CharacterDetailsAction
-    data class SaveName(val name: String) : CharacterDetailsAction
-    data class ChangeTeam(val teamId: Int) : CharacterDetailsAction
+
+    data class SaveName(
+        val name: String,
+    ) : CharacterDetailsAction
+
+    data class ChangeTeam(
+        val teamId: Int,
+    ) : CharacterDetailsAction
+
     data object ShowChangeLevelDialog : CharacterDetailsAction
+
     data object HideChangeLevelDialog : CharacterDetailsAction
-    data class ChangeLevel(val level: Int) : CharacterDetailsAction
-    data object Retire: CharacterDetailsAction
+
+    data class ChangeLevel(
+        val level: Int,
+    ) : CharacterDetailsAction
+
+    data object Retire : CharacterDetailsAction
 }
 
 data class CharacterDetailsStateLogic(
@@ -23,7 +40,6 @@ data class CharacterDetailsStateLogic(
     val showNameDialog: Boolean = false,
     val showChangeLevelDialog: Boolean = false,
 )
-
 
 @Immutable
 data class CharacterDetailsStateUi(

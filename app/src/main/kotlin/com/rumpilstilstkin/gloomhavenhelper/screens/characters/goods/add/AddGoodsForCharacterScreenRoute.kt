@@ -24,13 +24,13 @@ fun AddGoodsForCharacterScreenRoute(
         navigationEvents?.let { event ->
             GlHelperEventHelper.event(
                 event = event,
-                navController = navController
+                navController = navController,
             )
         }
     }
 
     AddGoodsScreen(
         uiState = uiState,
-        onAction = { viewModel.onAction(it) }
+        onAction = { viewModel.onAction(it) },
     )
 }

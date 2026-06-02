@@ -32,17 +32,18 @@ fun AddMonsterCard(
     addMonster: () -> Unit,
 ) {
     GloomCard(
-        modifier = modifier
+        modifier = modifier,
     ) {
         Column(
             modifier.fillMaxWidth(),
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             Box(
-                modifier = Modifier
-                    .size(120.dp)
-                    .clip(CircleShape)
-                    .background(MaterialTheme.colorScheme.secondaryContainer),
+                modifier =
+                    Modifier
+                        .size(120.dp)
+                        .clip(CircleShape)
+                        .background(MaterialTheme.colorScheme.secondaryContainer),
                 contentAlignment = Alignment.Center,
             ) {
                 Icon(
@@ -71,7 +72,7 @@ fun AddMonsterCard(
 private fun AddMonsterCardPreview() {
     GloomhavenMasterTheme {
         AddMonsterCard(
-            addMonster = {}
+            addMonster = {},
         )
     }
 }

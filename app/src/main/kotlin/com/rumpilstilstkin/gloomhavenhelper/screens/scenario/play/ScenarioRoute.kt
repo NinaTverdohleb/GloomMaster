@@ -21,7 +21,7 @@ import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.state.Scenario
 fun ScenarioRoute(
     navController: NavHostController,
     widthSizeClass: WindowWidthSizeClass,
-    viewModel: ScenarioViewModel = hiltViewModel()
+    viewModel: ScenarioViewModel = hiltViewModel(),
 ) {
     val navigationEvents by viewModel.navigationEvents.collectAsStateWithLifecycle(initialValue = null)
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
@@ -30,7 +30,7 @@ fun ScenarioRoute(
         navigationEvents?.let { event ->
             GlHelperEventHelper.event(
                 event = event,
-                navController = navController
+                navController = navController,
             )
         }
     }
@@ -45,8 +45,8 @@ fun ScenarioRoute(
         viewModel.onAction(
             ScenarioActions.RemoveUnit(
                 number = unitNumber,
-                monsterSlug = monsterSlug
-            )
+                monsterSlug = monsterSlug,
+            ),
         )
     }
     val updateUnitLife = { unitNumber: Int, monsterSlug: String, life: Int ->
@@ -54,8 +54,8 @@ fun ScenarioRoute(
             ScenarioActions.UpdateUnitLife(
                 unitNumber = unitNumber,
                 monsterSlug = monsterSlug,
-                newValue = life
-            )
+                newValue = life,
+            ),
         )
     }
     val switchUnitEffect = { unitNumber: Int, monsterSlug: String, effect: MonsterStatType ->
@@ -63,8 +63,8 @@ fun ScenarioRoute(
             ScenarioActions.SwitchUnitEffect(
                 unitNumber = unitNumber,
                 monsterSlug = monsterSlug,
-                effect = effect
-            )
+                effect = effect,
+            ),
         )
     }
     val addMonsterUnit = { unitNumbers: List<Int>, monsterSlug: String, isElite: Boolean ->
@@ -72,8 +72,8 @@ fun ScenarioRoute(
             ScenarioActions.AddUnits(
                 numbers = unitNumbers,
                 monsterSlug = monsterSlug,
-                isElite = isElite
-            )
+                isElite = isElite,
+            ),
         )
     }
     val nextRound = { viewModel.onAction(ScenarioActions.NextRound) }
@@ -86,8 +86,8 @@ fun ScenarioRoute(
                 monsterSlug = monsterSlug,
                 unitNumber = unit.number,
                 level = level,
-                isElite = unit.isSpecial
-            )
+                isElite = unit.isSpecial,
+            ),
         )
     }
 
@@ -105,7 +105,7 @@ fun ScenarioRoute(
                 addMonsterUnit = addMonsterUnit,
                 nextRound = nextRound,
                 clickMagic = clickMagic,
-                changeUnitLevel = changeUnitLevel
+                changeUnitLevel = changeUnitLevel,
             )
         }
 
@@ -122,7 +122,7 @@ fun ScenarioRoute(
                 addMonsterUnit = addMonsterUnit,
                 nextRound = nextRound,
                 clickMagic = clickMagic,
-                changeUnitLevel = changeUnitLevel
+                changeUnitLevel = changeUnitLevel,
             )
         }
     }
@@ -138,7 +138,7 @@ fun ScenarioRoute(
             addNewMonsters = {
                 showMonsterDialog = false
                 viewModel.onAction(ScenarioActions.AddNewMonsters)
-            }
+            },
         )
     }
 }

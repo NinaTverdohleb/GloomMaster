@@ -43,30 +43,31 @@ fun rememberIconsInlineContent(fontSize: TextUnit): Map<String, InlineTextConten
 
     return remember(fontSize) {
         GameIcon.entries.associate { icon ->
-            icon.textCode.value to InlineTextContent(
-                Placeholder(
-                    width = placeholderSize,
-                    height = placeholderSize,
-                    placeholderVerticalAlign = PlaceholderVerticalAlign.Center
-                )
-            ) {
-                val modifier = Modifier.fillMaxSize()
+            icon.textCode.value to
+                InlineTextContent(
+                    Placeholder(
+                        width = placeholderSize,
+                        height = placeholderSize,
+                        placeholderVerticalAlign = PlaceholderVerticalAlign.Center,
+                    ),
+                ) {
+                    val modifier = Modifier.fillMaxSize()
 
-                if (icon.color != null) {
-                    Icon(
-                        painter = painterResource(id = icon.imageRes),
-                        contentDescription = "Icon",
-                        tint = icon.color,
-                        modifier = modifier
-                    )
-                } else {
-                    Image(
-                        painter = painterResource(id = icon.imageRes),
-                        contentDescription = "Icon",
-                        modifier = modifier
-                    )
+                    if (icon.color != null) {
+                        Icon(
+                            painter = painterResource(id = icon.imageRes),
+                            contentDescription = "Icon",
+                            tint = icon.color,
+                            modifier = modifier,
+                        )
+                    } else {
+                        Image(
+                            painter = painterResource(id = icon.imageRes),
+                            contentDescription = "Icon",
+                            modifier = modifier,
+                        )
+                    }
                 }
-            }
         }
     }
 }

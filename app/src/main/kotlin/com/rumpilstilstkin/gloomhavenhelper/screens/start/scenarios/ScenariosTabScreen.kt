@@ -52,23 +52,23 @@ internal fun ScenariosTabScreen(
     LazyColumn(
         modifier = Modifier.weight(1f),
         verticalArrangement = Arrangement.spacedBy(8.dp),
-        contentPadding = PaddingValues(bottom = 16.dp)
+        contentPadding = PaddingValues(bottom = 16.dp),
     ) {
-
-        state.sections.entries.forEach {(key, section) ->
+        state.sections.entries.forEach { (key, section) ->
             item(key = key.name) {
                 Box(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .clickable{
-                            toggleSection(key)
-                        }
+                    modifier =
+                        Modifier
+                            .fillMaxWidth()
+                            .clickable {
+                                toggleSection(key)
+                            },
                 ) {
                     Text(
                         modifier = Modifier.padding(vertical = 16.dp),
                         style = MaterialTheme.typography.headlineSmall,
                         text = stringResource(key.titleRes).uppercase(),
-                        color = MaterialTheme.colorScheme.primary
+                        color = MaterialTheme.colorScheme.primary,
                     )
                 }
             }
@@ -76,14 +76,15 @@ internal fun ScenariosTabScreen(
             if (section.isExpanded) {
                 items(
                     items = section.scenarios,
-                    key = { it.scenarioNumber }
+                    key = { it.scenarioNumber },
                 ) { scenario ->
                     ScenarioInfoCardItem(
-                        modifier = Modifier.animateItem(
-                            fadeInSpec = tween(300),
-                            fadeOutSpec = tween(300),
-                            placementSpec = spring(stiffness = Spring.StiffnessLow)
-                        ),
+                        modifier =
+                            Modifier.animateItem(
+                                fadeInSpec = tween(300),
+                                fadeOutSpec = tween(300),
+                                placementSpec = spring(stiffness = Spring.StiffnessLow),
+                            ),
                         scenarioNumber = scenario.scenarioNumber,
                         scenarioName = scenario.scenarioName,
                         location = scenario.location,
@@ -100,15 +101,16 @@ internal fun ScenariosTabScreen(
     }
 
     Button(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(16.dp),
+        modifier =
+            Modifier
+                .fillMaxWidth()
+                .padding(16.dp),
         onClick = addScenario,
-        contentPadding = PaddingValues(16.dp)
+        contentPadding = PaddingValues(16.dp),
     ) {
         Text(
             text = stringResource(R.string.add_scenario),
-            fontSize = 16.sp
+            fontSize = 16.sp,
         )
     }
     selectedActiveScenario?.let { scenario ->
@@ -129,7 +131,7 @@ internal fun ScenariosTabScreen(
             deleteScenario = {
                 deleteScenario(it)
                 selectedActiveScenario = null
-            }
+            },
         )
     }
 
@@ -164,7 +166,7 @@ private fun ScenariosTabScreenPreview() {
             toggleSection = {},
             addScenario = {},
             deleteScenario = {},
-            restoreScenario = {}
+            restoreScenario = {},
         )
     }
 }

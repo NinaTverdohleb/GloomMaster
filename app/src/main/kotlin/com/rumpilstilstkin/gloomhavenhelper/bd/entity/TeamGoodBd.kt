@@ -11,8 +11,8 @@ import androidx.room.ForeignKey.Companion.CASCADE
             entity = TeamBd::class,
             parentColumns = arrayOf("teamId"),
             childColumns = arrayOf("teamId"),
-            onDelete = CASCADE
-        )
+            onDelete = CASCADE,
+        ),
     ],
 )
 data class TeamGoodBd(

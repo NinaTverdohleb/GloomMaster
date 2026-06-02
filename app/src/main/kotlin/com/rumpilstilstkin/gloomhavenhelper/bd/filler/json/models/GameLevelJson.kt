@@ -9,13 +9,14 @@ data class GameLevelJson(
     val monsterLevel: Int,
     val goldCount: Int,
     val trapDamage: Int,
-    val experience: Int
+    val experience: Int,
 ) {
-    fun toEntity() = GameLevelInfoBd(
-        level = level,
-        monsterLevel = monsterLevel,
-        goldCount = goldCount,
-        trapDamage = trapDamage,
-        experience = experience
-    )
+    fun toEntity() =
+        GameLevelInfoBd(
+            level = level,
+            monsterLevel = monsterLevel,
+            goldCount = goldCount,
+            trapDamage = trapDamage,
+            experience = experience,
+        )
 }

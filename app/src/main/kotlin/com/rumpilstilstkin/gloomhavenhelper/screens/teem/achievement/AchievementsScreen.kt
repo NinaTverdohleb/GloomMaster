@@ -60,45 +60,48 @@ internal fun AchievementsScreen(
     },
 ) { innerPadding ->
     Column(
-        modifier = Modifier
-            .padding(innerPadding)
-            .fillMaxSize()
+        modifier =
+            Modifier
+                .padding(innerPadding)
+                .fillMaxSize(),
     ) {
         if (uiState.achievements.isEmpty()) {
             EmptyAchievements(
-                modifier = Modifier.weight(1f)
+                modifier = Modifier.weight(1f),
             )
         } else {
             LazyColumn(
-                modifier = Modifier
-                    .weight(1f)
-                    .fillMaxSize(),
+                modifier =
+                    Modifier
+                        .weight(1f)
+                        .fillMaxSize(),
                 contentPadding = PaddingValues(16.dp),
                 verticalArrangement = Arrangement.spacedBy(8.dp),
             ) {
                 items(
                     items = uiState.achievements,
-                    key = { it.slug }
+                    key = { it.slug },
                 ) { achievement ->
                     AchievementItem(
                         achievement = achievement,
                         delete = { showDeleteDialog(achievement.slug) },
-                        changeValue = { updateAchievement(it, achievement) }
+                        changeValue = { updateAchievement(it, achievement) },
                     )
                 }
             }
         }
 
         Button(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(16.dp),
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp),
             onClick = showAddDialog,
-            contentPadding = PaddingValues(16.dp)
+            contentPadding = PaddingValues(16.dp),
         ) {
             Text(
                 text = stringResource(R.string.add_achievement_button),
-                fontSize = 16.sp
+                fontSize = 16.sp,
             )
         }
     }
@@ -139,7 +142,7 @@ private fun AchievementItem(
                 )
                 if (achievement.maxValue > 1) {
                     Spacer(
-                        modifier = Modifier.height(8.dp)
+                        modifier = Modifier.height(8.dp),
                     )
                     NumberPicker(
                         value = achievement.value,
@@ -166,16 +169,19 @@ private fun AchievementsScreenPreview() {
     GloomhavenMasterTheme {
         AchievementsScreen(
             title = "Party Achievements",
-            uiState = AchievementsStateUi(
-                achievements = persistentListOf(
-                    AchievementWithName.fixture("First Steps"),
-                    AchievementWithName.fixture("Jekserah's Plans"),
-                    AchievementWithName.fixture("Ancient Technology", maxValue = 3),
+            uiState =
+                AchievementsStateUi(
+                    achievements =
+                        persistentListOf(
+                            AchievementWithName.fixture("First Steps"),
+                            AchievementWithName.fixture("Jekserah's Plans"),
+                            AchievementWithName.fixture("Ancient Technology", maxValue = 3),
+                        ),
+                    availableAchievements =
+                        persistentListOf(
+                            AchievementWithName.fixture("Treasure Map"),
+                        ),
                 ),
-                availableAchievements = persistentListOf(
-                    AchievementWithName.fixture("Treasure Map"),
-                ),
-            ),
             showAddDialog = {},
             dismissAddDialog = {},
             addAchievement = {},

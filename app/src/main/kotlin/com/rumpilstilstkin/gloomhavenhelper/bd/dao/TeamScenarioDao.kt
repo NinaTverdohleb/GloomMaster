@@ -19,10 +19,16 @@ interface TeamScenarioDao {
 
     @Transaction
     @Query("SELECT * FROM TeamScenarioBd WHERE teamId = :teamId AND scenarioNumber = :scenarioNumber LIMIT 1")
-    suspend fun getTeamScenario(teamId: Int, scenarioNumber: Int): TeamScenarioBdDetailsBd
+    suspend fun getTeamScenario(
+        teamId: Int,
+        scenarioNumber: Int,
+    ): TeamScenarioBdDetailsBd
 
     @Query("SELECT * FROM TeamScenarioBd WHERE teamId = :teamId AND scenarioNumber = :scenarioNumber LIMIT 1")
-    suspend fun getTeamScenarioClear(teamId: Int, scenarioNumber: Int): TeamScenarioBd
+    suspend fun getTeamScenarioClear(
+        teamId: Int,
+        scenarioNumber: Int,
+    ): TeamScenarioBd
 
     @Transaction
     @Query("SELECT * FROM TeamScenarioBd WHERE teamId = :teamId")
@@ -33,6 +39,8 @@ interface TeamScenarioDao {
     fun getTeamScenariosFlow(teamId: Int): Flow<List<TeamScenarioBdDetailsBd>>
 
     @Query("DELETE FROM TeamScenarioBd WHERE teamId = :teamId AND scenarioNumber = :scenarioNumber")
-    suspend fun deleteTeamScenario(teamId: Int, scenarioNumber: Int)
-
+    suspend fun deleteTeamScenario(
+        teamId: Int,
+        scenarioNumber: Int,
+    )
 }

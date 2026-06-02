@@ -6,24 +6,25 @@ import javax.inject.Inject
 
 class BuyGoodForCharacterUseCase @Inject constructor(
     private val characterRepository: CharacterRepository,
-    private val goodsRepository: GoodsRepository
+    private val goodsRepository: GoodsRepository,
 ) {
-
-    suspend operator fun invoke(goodIds: List<Int>, cost: Int, characterId: Int): Result<Unit> {
-        return characterRepository.getCharacterById(characterId)?.let { character ->
+    suspend operator fun invoke(
+        goodIds: List<Int>,
+        cost: Int,
+        characterId: Int,
+    ): Result<Unit> =
+        characterRepository.getCharacterById(characterId)?.let { character ->
 
             if (cost > character.goldCount) {
                 Result.failure(Exception())
-            }else {
+            } else {
                 goodsRepository.addCharacterGoods(
                     characterId = characterId,
-                    goodIds = goodIds
+                    goodIds = goodIds,
                 )
 
                 characterRepository.updateGold(characterId, character.goldCount - cost)
                 Result.success(Unit)
             }
         } ?: Result.failure(Exception())
-    }
-
 }

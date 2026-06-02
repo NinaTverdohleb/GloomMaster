@@ -32,13 +32,13 @@ internal fun TeamProsperity(
     churchValueForNextProsperity: Int,
     modifier: Modifier = Modifier,
     updateProsperity: (Int) -> Unit,
-    donate: () -> Unit
+    donate: () -> Unit,
 ) = GloomCard(
-    modifier = modifier
+    modifier = modifier,
 ) {
     Column(
         modifier = Modifier.fillMaxWidth(),
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Row(
             modifier = Modifier.fillMaxWidth(),
@@ -48,36 +48,36 @@ internal fun TeamProsperity(
             Text(
                 style = MaterialTheme.typography.labelLarge,
                 text = stringResource(R.string.prosperity).uppercase(),
-                color = MaterialTheme.colorScheme.primary
+                color = MaterialTheme.colorScheme.primary,
             )
             Text(
                 style = MaterialTheme.typography.labelMedium,
-                text = stringResource(R.string.level_label, prosperity.prosperityLevel)
+                text = stringResource(R.string.level_label, prosperity.prosperityLevel),
             )
         }
 
         Spacer(
-            modifier = Modifier.height(16.dp)
+            modifier = Modifier.height(16.dp),
         )
 
         NumberPickerProgress(
             value = prosperity.prosperityLevelValue,
             showSign = false,
-            intRange = prosperity.prosperityRange
+            intRange = prosperity.prosperityRange,
         ) { newValue ->
             updateProsperity(newValue)
         }
         Spacer(
-            modifier = Modifier.height(32.dp)
+            modifier = Modifier.height(32.dp),
         )
         Text(
             modifier = Modifier.fillMaxWidth(),
             style = MaterialTheme.typography.labelLarge,
             text = stringResource(R.string.donations),
-            color = MaterialTheme.colorScheme.primary
+            color = MaterialTheme.colorScheme.primary,
         )
         Spacer(
-            modifier = Modifier.height(16.dp)
+            modifier = Modifier.height(16.dp),
         )
         Row(
             modifier = Modifier.fillMaxWidth(),
@@ -86,27 +86,27 @@ internal fun TeamProsperity(
             Text(
                 text = churchValue.toString(),
                 style = MaterialTheme.typography.headlineSmall,
-                color = MaterialTheme.colorScheme.onSurface
+                color = MaterialTheme.colorScheme.onSurface,
             )
             Spacer(
-                modifier = Modifier.width(16.dp)
+                modifier = Modifier.width(16.dp),
             )
             PickerButton(
                 size = GloomSize.M,
                 value = churchValue,
                 type = PickerButtonType.PLUS,
-                onValueChange = { donate() }
+                onValueChange = { donate() },
             )
 
             Spacer(
-                modifier = Modifier.width(16.dp)
+                modifier = Modifier.width(16.dp),
             )
             Text(
                 modifier = Modifier.weight(1f),
                 text = stringResource(R.string.next_prosperity_at, churchValueForNextProsperity),
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurface,
-                textAlign = TextAlign.End
+                textAlign = TextAlign.End,
             )
         }
     }
@@ -121,8 +121,7 @@ private fun TeamProsperitySample() {
             churchValue = 100,
             churchValueForNextProsperity = 150,
             updateProsperity = {},
-            donate = {}
+            donate = {},
         )
     }
 }
-

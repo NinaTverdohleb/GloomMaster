@@ -26,51 +26,50 @@ import com.rumpilstilstkin.gloomhavenhelper.R
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
 
 @Composable
-internal fun EmptyCharacters(
-    modifier: Modifier = Modifier,
-) = Column(
-    modifier = modifier
-        .fillMaxSize()
-        .padding(32.dp),
-    horizontalAlignment = Alignment.CenterHorizontally,
-    verticalArrangement = Arrangement.Center
-) {
-    Box(
+internal fun EmptyCharacters(modifier: Modifier = Modifier) =
+    Column(
         modifier =
-            Modifier
-                .size(96.dp)
-                .background(
-                    color = MaterialTheme.colorScheme.secondary.copy(alpha = 0.1f),
-                    shape = CircleShape
-                )
-                .border(
-                    shape = CircleShape,
-                    color = MaterialTheme.colorScheme.outline,
-                    width = 1.dp
-                ),
-        contentAlignment = Alignment.Center
+            modifier
+                .fillMaxSize()
+                .padding(32.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center,
     ) {
-        Icon(
-            painter = painterResource(id = R.drawable.ic_no_characters),
-            contentDescription = null,
-            tint = MaterialTheme.colorScheme.secondary
+        Box(
+            modifier =
+                Modifier
+                    .size(96.dp)
+                    .background(
+                        color = MaterialTheme.colorScheme.secondary.copy(alpha = 0.1f),
+                        shape = CircleShape,
+                    ).border(
+                        shape = CircleShape,
+                        color = MaterialTheme.colorScheme.outline,
+                        width = 1.dp,
+                    ),
+            contentAlignment = Alignment.Center,
+        ) {
+            Icon(
+                painter = painterResource(id = R.drawable.ic_no_characters),
+                contentDescription = null,
+                tint = MaterialTheme.colorScheme.secondary,
+            )
+        }
+        Spacer(modifier = Modifier.height(32.dp))
+
+        Text(
+            text = stringResource(R.string.empty_active_characters),
+            style = MaterialTheme.typography.displaySmall,
+            textAlign = TextAlign.Center,
+            color = MaterialTheme.colorScheme.onSurface,
+        )
+        Spacer(modifier = Modifier.height(16.dp))
+        Text(
+            text = stringResource(R.string.add_character_to_company),
+            style = MaterialTheme.typography.bodyMedium,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
         )
     }
-    Spacer(modifier = Modifier.height(32.dp))
-
-    Text(
-        text = stringResource(R.string.empty_active_characters),
-        style = MaterialTheme.typography.displaySmall,
-        textAlign = TextAlign.Center,
-        color = MaterialTheme.colorScheme.onSurface
-    )
-    Spacer(modifier = Modifier.height(16.dp))
-    Text(
-        text = stringResource(R.string.add_character_to_company),
-        style = MaterialTheme.typography.bodyMedium,
-        color = MaterialTheme.colorScheme.onSurfaceVariant
-    )
-}
 
 @Preview(showBackground = true, backgroundColor = 0xFF1A1C24)
 @Composable

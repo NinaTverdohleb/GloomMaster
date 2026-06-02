@@ -48,13 +48,13 @@ fun CharacterEditLevelDialog(
                 Row(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.Center,
-                    verticalAlignment = Alignment.CenterVertically
+                    verticalAlignment = Alignment.CenterVertically,
                 ) {
                     Icon(
                         painter = painterResource(id = characterClass.image),
                         contentDescription = null,
                         modifier = Modifier.size(32.dp),
-                        tint = MaterialTheme.colorScheme.primary
+                        tint = MaterialTheme.colorScheme.primary,
                     )
                     Spacer(modifier = Modifier.width(8.dp))
 
@@ -63,24 +63,24 @@ fun CharacterEditLevelDialog(
                         text = characterName,
                         textAlign = TextAlign.Center,
                         style = MaterialTheme.typography.headlineSmall,
-                        color = MaterialTheme.colorScheme.onSurface
+                        color = MaterialTheme.colorScheme.onSurface,
                     )
                 }
                 Spacer(modifier = Modifier.height(8.dp))
                 Column(
                     verticalArrangement = Arrangement.spacedBy(16.dp),
-                    horizontalAlignment = Alignment.CenterHorizontally
+                    horizontalAlignment = Alignment.CenterHorizontally,
                 ) {
                     NumberPicker(
                         modifier = Modifier.fillMaxWidth(),
                         value = level,
-                        intRange = IntRange(0, 9)
+                        intRange = IntRange(0, 9),
                     ) {
                         level = it
                     }
                 }
             }
-        }
+        },
     )
 }
 
@@ -93,7 +93,7 @@ private fun CharacterEditLevelDialogPreview() {
             characterName = "Character",
             characterClass = CharacterClassTypeUI.Brute,
             dismiss = {},
-            changeLevel = {}
+            changeLevel = {},
         )
     }
 }

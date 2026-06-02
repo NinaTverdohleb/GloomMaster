@@ -9,7 +9,7 @@ data class MonsterCard(
     val cardId: Int,
     val actions: List<MonsterCardAction>,
     val needsShuffle: Boolean = false,
-    val initiative: Int
+    val initiative: Int,
 )
 
 @Serializable
@@ -17,5 +17,5 @@ data class MonsterCardAction(
     val text: String,
     val startEffect: String? = null,
     val endEffect: String? = null,
-    val subAction: List<MonsterCardAction> = emptyList()
+    val subAction: List<MonsterCardAction> = emptyList(),
 )

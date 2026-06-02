@@ -23,26 +23,27 @@ import kotlinx.collections.immutable.persistentListOf
 internal fun GlobalAchievement(
     globalAchievements: ImmutableList<AchievementWithName>,
     modifier: Modifier = Modifier,
-    clickGlobalAchievement: () -> Unit
+    clickGlobalAchievement: () -> Unit,
 ) = GloomCard(
-    modifier = modifier.clickable { clickGlobalAchievement() }
+    modifier = modifier.clickable { clickGlobalAchievement() },
 ) {
     Text(
         modifier = Modifier.fillMaxWidth(),
         text = stringResource(R.string.global_achievements),
         style = MaterialTheme.typography.labelLarge,
         color = MaterialTheme.colorScheme.primary,
-        textAlign = TextAlign.Center
+        textAlign = TextAlign.Center,
     )
     Spacer(
-        modifier = Modifier.height(16.dp)
+        modifier = Modifier.height(16.dp),
     )
     globalAchievements.forEach { achievement ->
-        val text = if(achievement.maxValue > 1){
-            "${achievement.name} - ${achievement.value}"
-        } else {
-            achievement.name
-        }
+        val text =
+            if (achievement.maxValue > 1) {
+                "${achievement.name} - ${achievement.value}"
+            } else {
+                achievement.name
+            }
         Text(
             text = text,
             style = MaterialTheme.typography.bodyMedium,
@@ -54,26 +55,27 @@ internal fun GlobalAchievement(
 internal fun TeamAchievement(
     teamAchievements: ImmutableList<AchievementWithName>,
     modifier: Modifier = Modifier,
-    clickTeamAchievement: () -> Unit
+    clickTeamAchievement: () -> Unit,
 ) = GloomCard(
-    modifier = modifier.clickable { clickTeamAchievement() }
+    modifier = modifier.clickable { clickTeamAchievement() },
 ) {
     Text(
         modifier = Modifier.fillMaxWidth(),
         text = stringResource(R.string.team_achievements),
         style = MaterialTheme.typography.labelLarge,
         color = MaterialTheme.colorScheme.primary,
-        textAlign = TextAlign.Center
+        textAlign = TextAlign.Center,
     )
     Spacer(
-        modifier = Modifier.height(16.dp)
+        modifier = Modifier.height(16.dp),
     )
     teamAchievements.forEach { achievement ->
-        val text = if(achievement.maxValue > 1){
-            "${achievement.name} : ${achievement.value}"
-        } else {
-            achievement.name
-        }
+        val text =
+            if (achievement.maxValue > 1) {
+                "${achievement.name} : ${achievement.value}"
+            } else {
+                achievement.name
+            }
         Text(
             text = text,
             style = MaterialTheme.typography.bodyMedium,
@@ -87,11 +89,12 @@ private fun GlobalAchievementPreview() {
     GloomhavenMasterTheme {
         GlobalAchievement(
             modifier = Modifier.fillMaxWidth(),
-            globalAchievements = persistentListOf(
-                AchievementWithName.fixture("City Rule: Militaristic"),
-                AchievementWithName.fixture("The Voice: Silenced", value = 2)
-            ),
-            clickGlobalAchievement = {}
+            globalAchievements =
+                persistentListOf(
+                    AchievementWithName.fixture("City Rule: Militaristic"),
+                    AchievementWithName.fixture("The Voice: Silenced", value = 2),
+                ),
+            clickGlobalAchievement = {},
         )
     }
 }
@@ -102,11 +105,12 @@ private fun TeamAchievementPreview() {
     GloomhavenMasterTheme {
         TeamAchievement(
             modifier = Modifier.fillMaxWidth(),
-            teamAchievements = persistentListOf(
-                AchievementWithName.fixture("City Rule: Militaristic"),
-                AchievementWithName.fixture("The Voice", value = 2, maxValue = 3),
-            ),
-            clickTeamAchievement = {}
+            teamAchievements =
+                persistentListOf(
+                    AchievementWithName.fixture("City Rule: Militaristic"),
+                    AchievementWithName.fixture("The Voice", value = 2, maxValue = 3),
+                ),
+            clickTeamAchievement = {},
         )
     }
 }

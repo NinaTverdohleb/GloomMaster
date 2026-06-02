@@ -11,7 +11,6 @@ import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface CharacterPerksDao {
-
     @Insert
     suspend fun insert(characterPerk: CharacterPerkBd)
 
@@ -20,7 +19,10 @@ interface CharacterPerksDao {
 
     @Transaction
     @Query("DELETE FROM CharacterPerkBd WHERE perkId = :perkId AND characterId = :characterId")
-    suspend fun deleteById(perkId: Int, characterId: Int)
+    suspend fun deleteById(
+        perkId: Int,
+        characterId: Int,
+    )
 
     @Query(
         """
@@ -36,17 +38,15 @@ interface CharacterPerksDao {
             AND t2.locale = :defaultLocale 
             AND t2.characterType = c.characterType
         WHERE g.characterId = :characterId
-    """
+    """,
     )
     fun getCharacterPerksFlow(
         characterId: Int,
         targetLocale: String,
-        defaultLocale: String
+        defaultLocale: String,
     ): Flow<List<CharacterPerkWithNameBd>>
 
     @Transaction
     @Query("SELECT * FROM CharacterPerkBd WHERE characterId = :characterId")
     suspend fun getCharacterPerks(characterId: Int): List<CharacterPerkBd>
-
-
 }

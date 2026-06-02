@@ -11,19 +11,19 @@ data class ScenarioGameState(
     val round: Int,
     val availableCards: List<AvailableCard>,
     val activeMonsters: List<ScenarioGameStateMonsterItem>,
-    val magicCharges: List<ScenarioGameStateMagic>
+    val magicCharges: List<ScenarioGameStateMagic>,
 )
 
 @Serializable
 data class ScenarioGameStateMagic(
     val name: String,
-    val value: Int
+    val value: Int,
 )
 
 @Serializable
 data class AvailableCard(
     val deck: String,
-    val cardId: Int
+    val cardId: Int,
 )
 
 @Serializable
@@ -41,5 +41,5 @@ data class ScenarioGameStateMonsterUnit(
     val isElite: Boolean,
     val effects: List<MonsterStatType>,
     val isNew: Boolean = false,
-    val maxLife: Int = 0
+    val maxLife: Int = 0,
 )

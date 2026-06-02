@@ -9,7 +9,6 @@ import kotlinx.serialization.json.JsonClassDiscriminator
 @Serializable
 @JsonClassDiscriminator("kind")
 sealed interface MonsterAction {
-
     @Serializable
     @SerialName("action")
     data class Action(

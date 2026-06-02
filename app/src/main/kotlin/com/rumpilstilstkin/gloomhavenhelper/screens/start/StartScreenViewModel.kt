@@ -33,24 +33,25 @@ class StartScreenViewModel @Inject constructor(
     val saveTeamUseCase: SaveTeamUseCase,
     val importTeamUseCase: ImportTeamUseCase,
 ) : ViewModel() {
-
     private val _navigationEvents = MutableSharedFlow<GlHelperEvent>()
     val navigationEvents = _navigationEvents.asSharedFlow()
 
-    val uiState: StateFlow<StartScreenState> = getCurrentTeamUseCase().map { team ->
-        if (team == null) {
-            StartScreenState.Empty
-        } else {
-            StartScreenState.Team(
-                name = team.name,
-                id = team.id
+    val uiState: StateFlow<StartScreenState> =
+        getCurrentTeamUseCase()
+            .map { team ->
+                if (team == null) {
+                    StartScreenState.Empty
+                } else {
+                    StartScreenState.Team(
+                        name = team.name,
+                        id = team.id,
+                    )
+                }
+            }.stateIn(
+                scope = viewModelScope,
+                initialValue = StartScreenState.Empty,
+                started = SharingStarted.WhileSubscribed(5000),
             )
-        }
-    }.stateIn(
-        scope = viewModelScope,
-        initialValue = StartScreenState.Empty,
-        started = SharingStarted.WhileSubscribed(5000),
-    )
 
     fun onAction(action: StartScreenAction) {
         viewModelScope.launch {
@@ -59,8 +60,8 @@ class StartScreenViewModel @Inject constructor(
                     saveTeamUseCase(
                         TeamInfoForSave(
                             action.teamName,
-                            packs = listOf(PackType.MAIN)
-                        )
+                            packs = listOf(PackType.MAIN),
+                        ),
                     )
                 }
 
@@ -68,8 +69,9 @@ class StartScreenViewModel @Inject constructor(
                     changeCurrentTeamUseCase(action.teamId)
                 }
 
-                StartScreenAction.EditTeam ->
+                StartScreenAction.EditTeam -> {
                     _navigationEvents.emit(Screen(GlHelperScreens.EditCurrentTeam))
+                }
 
                 is StartScreenAction.ImportTeam -> {
                     runCatching {

@@ -46,57 +46,61 @@ import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
 
 private const val SQRT_3_OVER_2 = 0.8660254f
 
-val HexagonShape = GenericShape { size, _ ->
-    val cx = size.width / 2f
-    val cy = size.height / 2f
-    val r = minOf(cx, cy)
-    val xOffset = r * SQRT_3_OVER_2
-    val yOffset = r * 0.5f
+val HexagonShape =
+    GenericShape { size, _ ->
+        val cx = size.width / 2f
+        val cy = size.height / 2f
+        val r = minOf(cx, cy)
+        val xOffset = r * SQRT_3_OVER_2
+        val yOffset = r * 0.5f
 
-    moveTo(cx, cy - r)
-    lineTo(cx + xOffset, cy - yOffset)
-    lineTo(cx + xOffset, cy + yOffset)
-    lineTo(cx, cy + r)
-    lineTo(cx - xOffset, cy + yOffset)
-    lineTo(cx - xOffset, cy - yOffset)
-    close()
-}
+        moveTo(cx, cy - r)
+        lineTo(cx + xOffset, cy - yOffset)
+        lineTo(cx + xOffset, cy + yOffset)
+        lineTo(cx, cy + r)
+        lineTo(cx - xOffset, cy + yOffset)
+        lineTo(cx - xOffset, cy - yOffset)
+        close()
+    }
 
 @Composable
 fun MonsterCardView(
     monsterName: String,
     card: MonsterCard,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     val cardShape = RoundedCornerShape(12.dp)
     val borderRed = Color(0xFF6B1A1A)
 
     Box(
-        modifier = modifier
-            .clip(cardShape)
-            .border(2.dp, borderRed, cardShape)
-            .background(
-                brush = Brush.linearGradient(
-                    colors = listOf(
-                        Color(0xFF200404),
-                        Color(0xFF5C1212),
-                        Color(0xFF3D0808)
-                    )
-                )
-            )
-            .padding(8.dp)
+        modifier =
+            modifier
+                .clip(cardShape)
+                .border(2.dp, borderRed, cardShape)
+                .background(
+                    brush =
+                        Brush.linearGradient(
+                            colors =
+                                listOf(
+                                    Color(0xFF200404),
+                                    Color(0xFF5C1212),
+                                    Color(0xFF3D0808),
+                                ),
+                        ),
+                ).padding(8.dp),
     ) {
-        Column() {
+        Column {
             MonsterCardHeaderView(
                 weight = card.initiative,
-                monsterName = monsterName
+                monsterName = monsterName,
             )
 
             Column(
-                modifier = Modifier
-                    .fillMaxSize(),
+                modifier =
+                    Modifier
+                        .fillMaxSize(),
                 horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.Center
+                verticalArrangement = Arrangement.Center,
             ) {
                 card.actions.forEach {
                     ActionMonsterEffect(it)
@@ -110,10 +114,11 @@ fun MonsterCardView(
                 imageVector = Icons.Default.Refresh,
                 contentDescription = null,
                 tint = MaterialTheme.colorScheme.onSurface,
-                modifier = Modifier
-                    .align(Alignment.BottomEnd)
-                    .padding(end = 10.dp, bottom = 6.dp)
-                    .size(32.dp)
+                modifier =
+                    Modifier
+                        .align(Alignment.BottomEnd)
+                        .padding(end = 10.dp, bottom = 6.dp)
+                        .size(32.dp),
             )
         }
     }
@@ -122,40 +127,40 @@ fun MonsterCardView(
 @Composable
 fun ActionMonsterEffect(
     item: MonsterCardAction,
-    fontSize: TextUnit = 18.sp
+    fontSize: TextUnit = 18.sp,
 ) {
     Row(
-        verticalAlignment = Alignment.CenterVertically
+        verticalAlignment = Alignment.CenterVertically,
     ) {
         item.startEffect?.toIconCode()?.toGameIcon()?.let {
             ActionEffectImage(it)
             Spacer(
-                Modifier.width(16.dp)
+                Modifier.width(16.dp),
             )
         }
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
+            verticalArrangement = Arrangement.Center,
         ) {
             val adaptiveFontSize =
                 if (item.text.contains(Regex("\\p{L}"))) fontSize else fontSize.div(0.8)
             TextWithImagesByCode(
                 text = item.text,
                 fontSize = adaptiveFontSize,
-                textAlign = TextAlign.Center
+                textAlign = TextAlign.Center,
             )
 
             item.subAction.forEach { subItem ->
                 ActionMonsterEffect(
                     item = subItem,
-                    fontSize = fontSize.div(1.4)
+                    fontSize = fontSize.div(1.4),
                 )
             }
         }
 
         item.endEffect?.toIconCode()?.toGameIcon()?.let {
             Spacer(
-                Modifier.width(16.dp)
+                Modifier.width(16.dp),
             )
             ActionEffectImage(it)
         }
@@ -169,14 +174,16 @@ private fun ActionEffectImage(icon: GameIcon) {
             painter = painterResource(id = icon.imageRes),
             contentDescription = "Icon",
             tint = icon.color,
-            modifier = Modifier
-                .padding(2.dp)
+            modifier =
+                Modifier
+                    .padding(2.dp),
         )
     } ?: Image(
         painter = painterResource(id = icon.imageRes),
         contentDescription = "Icon",
-        modifier = Modifier
-            .padding(2.dp)
+        modifier =
+            Modifier
+                .padding(2.dp),
     )
 }
 
@@ -185,32 +192,34 @@ private fun MonsterCardHeaderView(
     weight: Int,
     monsterName: String,
 ) = Row(
-    modifier = Modifier
-        .fillMaxWidth()
-        .background(
-            brush = Brush.verticalGradient(
-                colors = listOf(Color(0x88000000), Color.Transparent)
-            )
-        )
-        .padding(horizontal = 12.dp, vertical = 8.dp),
+    modifier =
+        Modifier
+            .fillMaxWidth()
+            .background(
+                brush =
+                    Brush.verticalGradient(
+                        colors = listOf(Color(0x88000000), Color.Transparent),
+                    ),
+            ).padding(horizontal = 12.dp, vertical = 8.dp),
     verticalAlignment = Alignment.CenterVertically,
-    horizontalArrangement = Arrangement.Center
+    horizontalArrangement = Arrangement.Center,
 ) {
     Box(
-        contentAlignment = Alignment.Center
+        contentAlignment = Alignment.Center,
     ) {
         Spacer(
-            modifier = Modifier
-                .size(56.dp)
-                .clip(HexagonShape)
-                .background(
-                    brush = Brush.linearGradient(
-                        colors = listOf(Color(0xFF4A4440), Color(0xFF2A2420)),
-                        start = Offset(0f, 0f),
-                        end = Offset(48f, 48f)
-                    )
-                )
-                .border(1.5.dp, Color(0xFF6B5A50), HexagonShape),
+            modifier =
+                Modifier
+                    .size(56.dp)
+                    .clip(HexagonShape)
+                    .background(
+                        brush =
+                            Brush.linearGradient(
+                                colors = listOf(Color(0xFF4A4440), Color(0xFF2A2420)),
+                                start = Offset(0f, 0f),
+                                end = Offset(48f, 48f),
+                            ),
+                    ).border(1.5.dp, Color(0xFF6B5A50), HexagonShape),
         )
         Text(
             text = weight.toString(),
@@ -219,10 +228,10 @@ private fun MonsterCardHeaderView(
         )
     }
     Spacer(
-        modifier = Modifier.width(16.dp)
+        modifier = Modifier.width(16.dp),
     )
     Column(
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Text(
             text = monsterName,
@@ -230,30 +239,31 @@ private fun MonsterCardHeaderView(
             color = MaterialTheme.colorScheme.onSurface,
         )
         Spacer(
-            modifier = Modifier.height(16.dp)
+            modifier = Modifier.height(16.dp),
         )
         HorizontalDivider()
     }
 }
 
 @Preview(
-    heightDp = 3000
+    heightDp = 3000,
 )
 @Composable
 private fun MonsterCardViewSample() {
     GloomhavenMasterTheme {
         Column(
-            modifier = Modifier
-                .fillMaxSize()
+            modifier =
+                Modifier
+                    .fillMaxSize(),
         ) {
             sampleDeck.forEach { card ->
                 MonsterCardView(
                     monsterName = "Living bones",
                     card = card,
-                    Modifier.size(width = 360.dp, height = 270.dp)
+                    Modifier.size(width = 360.dp, height = 270.dp),
                 )
                 Spacer(
-                    Modifier.height(8.dp)
+                    Modifier.height(8.dp),
                 )
             }
         }

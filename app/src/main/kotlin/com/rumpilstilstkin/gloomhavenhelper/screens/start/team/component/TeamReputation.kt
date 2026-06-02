@@ -13,6 +13,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalLocale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -23,7 +24,6 @@ import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomVariantCard
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.NumberPicker
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
 import java.util.Locale
-import androidx.compose.ui.platform.LocalLocale
 
 @Composable
 internal fun TeamReputation(
@@ -32,58 +32,57 @@ internal fun TeamReputation(
     modifier: Modifier = Modifier,
     updateReputation: (Int) -> Unit,
 ) = GloomCard(
-    modifier = modifier
+    modifier = modifier,
 ) {
     Column(
         modifier = Modifier.fillMaxWidth(),
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Text(
             style = MaterialTheme.typography.labelLarge,
             text = stringResource(R.string.reputation).uppercase(),
-            color = MaterialTheme.colorScheme.primary
+            color = MaterialTheme.colorScheme.primary,
         )
 
         Spacer(
-            modifier = Modifier.height(16.dp)
+            modifier = Modifier.height(16.dp),
         )
 
         NumberPicker(
             value = reputation,
             showSign = true,
-            intRange = IntRange(-20, 20)
+            intRange = IntRange(-20, 20),
         ) { newValue ->
             updateReputation(newValue)
         }
         Spacer(
-            modifier = Modifier.height(8.dp)
+            modifier = Modifier.height(8.dp),
         )
         GloomVariantCard {
             Row(
                 modifier = Modifier.padding(4.dp),
-                verticalAlignment = Alignment.CenterVertically
+                verticalAlignment = Alignment.CenterVertically,
             ) {
                 Icon(
                     painter = painterResource(R.drawable.ic_shop),
                     contentDescription = null,
-                    tint = MaterialTheme.colorScheme.primary
+                    tint = MaterialTheme.colorScheme.primary,
                 )
                 Spacer(
-                    modifier = Modifier.width(8.dp)
+                    modifier = Modifier.width(8.dp),
                 )
                 Text(
                     style = MaterialTheme.typography.labelLarge,
-                    text = stringResource(R.string.shop_discount)
+                    text = stringResource(R.string.shop_discount),
                 )
                 Spacer(
-                    modifier = Modifier.width(8.dp)
+                    modifier = Modifier.width(8.dp),
                 )
                 Text(
                     style = MaterialTheme.typography.titleLarge,
                     text = String.format(LocalLocale.current.platformLocale, "%+d", discount),
-                    color = MaterialTheme.colorScheme.primary
+                    color = MaterialTheme.colorScheme.primary,
                 )
-
             }
         }
     }
@@ -96,8 +95,7 @@ private fun TeamReputationSample() {
         TeamReputation(
             reputation = 2,
             discount = -1,
-            updateReputation = {}
+            updateReputation = {},
         )
     }
 }
-

@@ -16,12 +16,12 @@ data class LocationBd(
             entity = LocationBd::class,
             parentColumns = ["slug"],
             childColumns = ["slug"],
-            onDelete = ForeignKey.CASCADE
-        )
-    ]
+            onDelete = ForeignKey.CASCADE,
+        ),
+    ],
 )
 data class LocationTranslateBd(
     val slug: String,
     val locale: String,
-    val name: String
+    val name: String,
 )

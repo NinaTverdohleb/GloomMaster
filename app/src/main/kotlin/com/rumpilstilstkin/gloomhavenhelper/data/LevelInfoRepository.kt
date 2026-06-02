@@ -14,12 +14,11 @@ class LevelInfoRepository @Inject constructor(
 
     suspend fun getLevelInfo(level: Int): Result<LevelInfo> {
         if (levelInfoCache.isEmpty()) {
-                levelInfoDao.getAll().let { list ->
-                    levelInfoCache = list.map { it.toDomain() }
-                }
+            levelInfoDao.getAll().let { list ->
+                levelInfoCache = list.map { it.toDomain() }
+            }
         }
         return levelInfoCache.find { it.level == level }?.let { Result.success(it) }
             ?: Result.failure(Exception("Level not found"))
     }
-
 }

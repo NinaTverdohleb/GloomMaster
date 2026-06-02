@@ -24,74 +24,85 @@ class CharacterRepository @Inject constructor(
     private val teamDao: TeamDao,
     private val characterPerksDao: CharacterPerksDao,
 ) {
-
-    suspend fun addCharacterPerk(characterId: Int, perkId: Int) {
+    suspend fun addCharacterPerk(
+        characterId: Int,
+        perkId: Int,
+    ) {
         characterPerksDao.insert(CharacterPerkBd(characterId = characterId, perkId = perkId))
     }
 
-    suspend fun deleteCharacterPerk(characterId: Int, perkId: Int) {
+    suspend fun deleteCharacterPerk(
+        characterId: Int,
+        perkId: Int,
+    ) {
         characterPerksDao.deleteById(characterId = characterId, perkId = perkId)
     }
 
-    fun getCharacterPerksFlow(characterId: Int, locale: String) =
-        characterPerksDao.getCharacterPerksFlow(
+    fun getCharacterPerksFlow(
+        characterId: Int,
+        locale: String,
+    ) = characterPerksDao
+        .getCharacterPerksFlow(
             characterId = characterId,
             targetLocale = locale,
-            defaultLocale = LocaleRepository.DEFAULT_LOCALE
+            defaultLocale = LocaleRepository.DEFAULT_LOCALE,
         ).map { perks ->
             perks.map { it.toDomain() }
         }
 
     suspend fun getCharacterPerks(characterId: Int): List<Int> =
-        characterPerksDao.getCharacterPerks(
-            characterId = characterId,
-        ).map { it.perkId }
+        characterPerksDao
+            .getCharacterPerks(
+                characterId = characterId,
+            ).map { it.perkId }
 
     fun getCharacterByTeamId(teamId: Int): Flow<List<CharacterInfo>> =
         characterDao.findByTeamIdFlow(teamId).map { list ->
             list.map {
-                val team = teamDao.findById(teamId)?.let { teamBd ->
-                    Team(
-                        teamId = teamBd.teamId,
-                        name = teamBd.name,
-                        packs = teamBd.packs.map { PackType.valueOf(it) },
-                        difficultyLevel = DifficultyLevel.fromValue(teamBd.difficultyLevel)
-                    )
-                }
+                val team =
+                    teamDao.findById(teamId)?.let { teamBd ->
+                        Team(
+                            teamId = teamBd.teamId,
+                            name = teamBd.name,
+                            packs = teamBd.packs.map { PackType.valueOf(it) },
+                            difficultyLevel = DifficultyLevel.fromValue(teamBd.difficultyLevel),
+                        )
+                    }
 
                 it.toDomain(team)
             }
         }
 
-    suspend fun getCharacterByTeamIdSync(teamId: Int): List<CharacterInfo> =
-        characterDao.findByTeamId(teamId).map { it.toDomain(null) }
+    suspend fun getCharacterByTeamIdSync(teamId: Int): List<CharacterInfo> = characterDao.findByTeamId(teamId).map { it.toDomain(null) }
 
     fun getCharacterByIdFlow(id: Int): Flow<CharacterInfo?> =
         characterDao.getCharacterByIdFlow(id).map { character ->
-            val team = character?.teamId?.let {
-                teamDao.findById(it)?.let { teamBd ->
-                    Team(
-                        teamId = teamBd.teamId,
-                        name = teamBd.name,
-                        packs = teamBd.packs.map { PackType.valueOf(it) },
-                        difficultyLevel = DifficultyLevel.fromValue(teamBd.difficultyLevel)
-                    )
+            val team =
+                character?.teamId?.let {
+                    teamDao.findById(it)?.let { teamBd ->
+                        Team(
+                            teamId = teamBd.teamId,
+                            name = teamBd.name,
+                            packs = teamBd.packs.map { PackType.valueOf(it) },
+                            difficultyLevel = DifficultyLevel.fromValue(teamBd.difficultyLevel),
+                        )
+                    }
                 }
-            }
             character?.toDomain(team)
         }
 
-    suspend fun getCharacterById(id: Int): CharacterShortInfo? =
-        characterDao.getCharacterById(id)?.toShortDomain()
+    suspend fun getCharacterById(id: Int): CharacterShortInfo? = characterDao.getCharacterById(id)?.toShortDomain()
 
-    suspend fun addCharacter(character: CharacterForSave): Int =
-        characterDao.insert(character.toBd()).toInt()
+    suspend fun addCharacter(character: CharacterForSave): Int = characterDao.insert(character.toBd()).toInt()
 
     suspend fun deleteCharacter(id: Int) {
         characterDao.deleteById(id)
     }
 
-    suspend fun updateLevel(id: Int, level: Int) {
+    suspend fun updateLevel(
+        id: Int,
+        level: Int,
+    ) {
         characterDao.getCharacterById(id)?.let {
             characterDao.update(it.copy(level = level))
         }
@@ -107,25 +118,37 @@ class CharacterRepository @Inject constructor(
         }
     }
 
-    suspend fun updateNotes(id: Int, notes: String) {
+    suspend fun updateNotes(
+        id: Int,
+        notes: String,
+    ) {
         characterDao.getCharacterById(id)?.let {
             characterDao.update(it.copy(notes = notes))
         }
     }
 
-    suspend fun updateCheckMarks(id: Int, checkMarkCount: Int) {
+    suspend fun updateCheckMarks(
+        id: Int,
+        checkMarkCount: Int,
+    ) {
         characterDao.getCharacterById(id)?.let {
             characterDao.update(it.copy(checkMarkCount = checkMarkCount))
         }
     }
 
-    suspend fun updateExperience(id: Int, experience: Int) {
+    suspend fun updateExperience(
+        id: Int,
+        experience: Int,
+    ) {
         characterDao.getCharacterById(id)?.let {
             characterDao.update(it.copy(experience = experience))
         }
     }
 
-    suspend fun updateGold(id: Int, goldCount: Int) {
+    suspend fun updateGold(
+        id: Int,
+        goldCount: Int,
+    ) {
         characterDao.getCharacterById(id)?.let {
             characterDao.update(it.copy(goldCount = goldCount))
         }
@@ -137,13 +160,19 @@ class CharacterRepository @Inject constructor(
         }
     }
 
-    suspend fun setTeam(characterId: Int, teamId: Int) {
+    suspend fun setTeam(
+        characterId: Int,
+        teamId: Int,
+    ) {
         characterDao.getCharacterById(characterId)?.let {
             characterDao.update(it.copy(teamId = teamId))
         }
     }
 
-    suspend fun updateName(id: Int, name: String) {
+    suspend fun updateName(
+        id: Int,
+        name: String,
+    ) {
         characterDao.getCharacterById(id)?.let {
             characterDao.update(it.copy(name = name))
         }

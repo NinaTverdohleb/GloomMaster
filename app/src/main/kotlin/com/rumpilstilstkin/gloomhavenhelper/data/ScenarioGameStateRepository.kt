@@ -10,11 +10,9 @@ import javax.inject.Singleton
 class ScenarioGameStateRepository @Inject constructor(
     private val scenarioGameStateDao: ScenarioGameStateDao,
 ) {
-    suspend fun get(): ScenarioGameState? =
-        scenarioGameStateDao.get()?.toDomain()
+    suspend fun get(): ScenarioGameState? = scenarioGameStateDao.get()?.toDomain()
 
-    fun getFlow() =
-        scenarioGameStateDao.getFlow()
+    fun getFlow() = scenarioGameStateDao.getFlow()
 
     suspend fun save(state: ScenarioGameState) {
         scenarioGameStateDao.clearAndInsert(state.toEntity())
@@ -24,23 +22,25 @@ class ScenarioGameStateRepository @Inject constructor(
         scenarioGameStateDao.deleteAll()
     }
 
-    private fun ScenarioGameStateBd.toDomain() = ScenarioGameState(
-        monsterSlugs = monsterSlugs,
-        round = round,
-        availableCards = availableCards,
-        activeMonsters = activeMonsters,
-        magicCharges = magicChargeMap,
-        scenarioNumber = scenarioNumber,
-        level = level
-    )
+    private fun ScenarioGameStateBd.toDomain() =
+        ScenarioGameState(
+            monsterSlugs = monsterSlugs,
+            round = round,
+            availableCards = availableCards,
+            activeMonsters = activeMonsters,
+            magicCharges = magicChargeMap,
+            scenarioNumber = scenarioNumber,
+            level = level,
+        )
 
-    private fun ScenarioGameState.toEntity() = ScenarioGameStateBd(
-        monsterSlugs = monsterSlugs,
-        round = round,
-        availableCards = availableCards,
-        activeMonsters = activeMonsters,
-        magicChargeMap = magicCharges,
-        scenarioNumber = scenarioNumber,
-        level = level
-    )
+    private fun ScenarioGameState.toEntity() =
+        ScenarioGameStateBd(
+            monsterSlugs = monsterSlugs,
+            round = round,
+            availableCards = availableCards,
+            activeMonsters = activeMonsters,
+            magicChargeMap = magicCharges,
+            scenarioNumber = scenarioNumber,
+            level = level,
+        )
 }

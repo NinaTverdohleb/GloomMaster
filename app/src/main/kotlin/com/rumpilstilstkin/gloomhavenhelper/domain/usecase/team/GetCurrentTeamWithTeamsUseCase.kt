@@ -14,17 +14,18 @@ class GetCurrentTeamWithTeamsUseCase @Inject constructor(
     operator fun invoke(): Flow<Pair<Team?, List<Team>>> =
         combine(
             teamRepository.currentTeam,
-            teamRepository.getTeams()
+            teamRepository.getTeams(),
         ) { team, teams ->
             if (team == null) {
                 null to emptyList()
             } else {
-                val currentTeam = Team(
-                    teamId = team.teamId,
-                    name = team.name,
-                    packs = team.packs,
-                    difficultyLevel = team.difficultyLevel
-                )
+                val currentTeam =
+                    Team(
+                        teamId = team.teamId,
+                        name = team.name,
+                        packs = team.packs,
+                        difficultyLevel = team.difficultyLevel,
+                    )
                 currentTeam to (teams - currentTeam)
             }
         }

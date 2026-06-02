@@ -15,13 +15,15 @@ class AddMonsterUnitsUseCase @Inject constructor() {
         isElite: Boolean,
     ): ScenarioBattleState {
         val monster = state.monsters.first { it.slug == slug }
-        val newUnits = numbers.map { number ->
-            MonsterUnit.create(monster, number, isElite)
-        }
+        val newUnits =
+            numbers.map { number ->
+                MonsterUnit.create(monster, number, isElite)
+            }
         return state.copy(
-            activeMonsters = state.activeMonsters
-                .updateMonster(slug) { it.addUnits(newUnits) }
-                .toImmutableList()
+            activeMonsters =
+                state.activeMonsters
+                    .updateMonster(slug) { it.addUnits(newUnits) }
+                    .toImmutableList(),
         )
     }
 }

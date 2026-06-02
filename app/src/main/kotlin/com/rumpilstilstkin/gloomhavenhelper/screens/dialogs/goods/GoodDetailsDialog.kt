@@ -26,21 +26,21 @@ fun GoodDetailsDialog(
     dismiss: () -> Unit,
     confirm: () -> Unit = {},
 ) {
-
     GloomAlertDialog(
         modifier = modifier,
         content = {
             Column(
                 modifier = Modifier.fillMaxWidth(),
-                horizontalAlignment = Alignment.CenterHorizontally
+                horizontalAlignment = Alignment.CenterHorizontally,
             ) {
                 AsyncImage(
-                    modifier = Modifier.size(
-                        width = 240.dp,
-                        height = 350.dp
-                    ),
+                    modifier =
+                        Modifier.size(
+                            width = 240.dp,
+                            height = 350.dp,
+                        ),
                     model = imagePath,
-                    contentDescription = null
+                    contentDescription = null,
                 )
             }
         },
@@ -52,7 +52,6 @@ fun GoodDetailsDialog(
         onNeutralRequest = null,
     )
 }
-
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -67,20 +66,21 @@ fun GoodDetailsDialogCustomActions(
         content = {
             Column(
                 modifier = Modifier.fillMaxWidth(),
-                horizontalAlignment = Alignment.CenterHorizontally
+                horizontalAlignment = Alignment.CenterHorizontally,
             ) {
                 AsyncImage(
-                    modifier = Modifier.size(
-                        width = 240.dp,
-                        height = 350.dp
-                    ),
+                    modifier =
+                        Modifier.size(
+                            width = 240.dp,
+                            height = 350.dp,
+                        ),
                     model = imagePath,
-                    contentDescription = null
+                    contentDescription = null,
                 )
             }
         },
         onDismissRequest = dismiss,
-        actions = actions
+        actions = actions,
     )
 }
 
@@ -90,7 +90,7 @@ private fun GoodDetailsDialogPreview() {
     GloomhavenMasterTheme {
         GoodDetailsDialog(
             imagePath = "",
-            dismiss = {}
+            dismiss = {},
         )
     }
 }

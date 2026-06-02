@@ -45,9 +45,8 @@ fun PersonalQuestView(
     onTaskCheckedChange: (CharacterTaskItem.Check) -> Unit,
     selectNewQuest: () -> Unit,
     onTaskCountChanged: (CharacterTaskItem.Count, Int) -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
-
     var showDetailsDialog by remember { mutableStateOf(false) }
     QuestDetailsDialog(
         quest = quest,
@@ -57,23 +56,24 @@ fun PersonalQuestView(
             showDetailsDialog = false
         },
         onDismiss = { showDetailsDialog = false },
-        buttonText = stringResource(R.string.change_button)
+        buttonText = stringResource(R.string.change_button),
     )
 
     Column(
-        modifier = modifier
-            .fillMaxWidth()
-            .clickable { showDetailsDialog = true },
+        modifier =
+            modifier
+                .fillMaxWidth()
+                .clickable { showDetailsDialog = true },
     ) {
         Row(
-            verticalAlignment = Alignment.CenterVertically
+            verticalAlignment = Alignment.CenterVertically,
         ) {
             Text(
                 text = "# ${quest.id}",
                 style = MaterialTheme.typography.headlineSmall,
             )
             Spacer(
-                modifier = Modifier.width(16.dp)
+                modifier = Modifier.width(16.dp),
             )
             Text(
                 modifier = Modifier.weight(1f),
@@ -82,25 +82,29 @@ fun PersonalQuestView(
             )
         }
         Spacer(
-            modifier = Modifier.height(16.dp)
+            modifier = Modifier.height(16.dp),
         )
         quest.phases.forEach { phase ->
             if (phase.visible) {
                 phase.tasks.forEach { task ->
                     when (task) {
-                        is CharacterTaskItem.Check -> CheckTask(
-                            questTask = task,
-                            onTaskCheckedChange = onTaskCheckedChange
-                        )
+                        is CharacterTaskItem.Check -> {
+                            CheckTask(
+                                questTask = task,
+                                onTaskCheckedChange = onTaskCheckedChange,
+                            )
+                        }
 
-                        is CharacterTaskItem.Count -> CountTask(
-                            questTask = task,
-                            onTaskCountChanged = onTaskCountChanged
-                        )
+                        is CharacterTaskItem.Count -> {
+                            CountTask(
+                                questTask = task,
+                                onTaskCountChanged = onTaskCountChanged,
+                            )
+                        }
                     }
 
                     Spacer(
-                        modifier = Modifier.height(8.dp)
+                        modifier = Modifier.height(8.dp),
                     )
                 }
             }
@@ -114,33 +118,37 @@ private fun CheckTask(
     onTaskCheckedChange: (CharacterTaskItem.Check) -> Unit,
 ) {
     Card(
-        modifier = Modifier
-            .padding(4.dp),
+        modifier =
+            Modifier
+                .padding(4.dp),
         shape = RoundedCornerShape(16.dp),
-        colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.surfaceContainer
-        ),
+        colors =
+            CardDefaults.cardColors(
+                containerColor = MaterialTheme.colorScheme.surfaceContainer,
+            ),
     ) {
         Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .defaultMinSize(minHeight = 48.dp)
-                .padding(8.dp),
-            verticalAlignment = Alignment.CenterVertically
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .defaultMinSize(minHeight = 48.dp)
+                    .padding(8.dp),
+            verticalAlignment = Alignment.CenterVertically,
         ) {
             Text(
                 modifier = Modifier.weight(1f),
-                text = questTask.text
+                text = questTask.text,
             )
             Spacer(
-                modifier = Modifier.width(16.dp)
+                modifier = Modifier.width(16.dp),
             )
             Checkbox(
                 checked = questTask.isChecked,
                 onCheckedChange = { onTaskCheckedChange(questTask) },
-                colors = CheckboxDefaults.colors().copy(
-                    uncheckedBorderColor = MaterialTheme.colorScheme.primary,
-                )
+                colors =
+                    CheckboxDefaults.colors().copy(
+                        uncheckedBorderColor = MaterialTheme.colorScheme.primary,
+                    ),
             )
         }
     }
@@ -153,17 +161,18 @@ private fun CountTask(
 ) {
     GloomCard {
         Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .defaultMinSize(minHeight = 48.dp),
-            verticalAlignment = Alignment.CenterVertically
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .defaultMinSize(minHeight = 48.dp),
+            verticalAlignment = Alignment.CenterVertically,
         ) {
             Text(
                 modifier = Modifier.weight(1f),
-                text = questTask.text
+                text = questTask.text,
             )
             Spacer(
-                modifier = Modifier.width(16.dp)
+                modifier = Modifier.width(16.dp),
             )
 
             NumberPicker(
@@ -172,7 +181,7 @@ private fun CountTask(
                 intRange = IntRange(0, questTask.count),
                 onValueChange = { value ->
                     onTaskCountChanged(questTask, value)
-                }
+                },
             )
         }
     }
@@ -183,44 +192,49 @@ private fun CountTask(
 private fun PersonalQuestViewPreview() {
     GloomhavenMasterTheme {
         PersonalQuestView(
-            quest = PersonalQuestUI(
-                id = "511",
-                title = "Seeker of Xorn",
-                description = "Ever since you were a child, you heard the call of Xorn.",
-                completed = false,
-                reward = QuestReward(
-                    classType = CharacterClassType.Plagueherald,
-                    alternativeReward = "Open envelope B"
-                ),
-                phases = persistentListOf(
-                    QuestTaskPhaseUI(
-                        priority = 0,
-                        visible = true,
-                        tasks = persistentListOf(
-                            CharacterTaskItem.Count(
+            quest =
+                PersonalQuestUI(
+                    id = "511",
+                    title = "Seeker of Xorn",
+                    description = "Ever since you were a child, you heard the call of Xorn.",
+                    completed = false,
+                    reward =
+                        QuestReward(
+                            classType = CharacterClassType.Plagueherald,
+                            alternativeReward = "Open envelope B",
+                        ),
+                    phases =
+                        persistentListOf(
+                            QuestTaskPhaseUI(
                                 priority = 0,
-                                text = "Complete three scenarios with the name Crypt",
-                                count = 3,
-                                currentCount = 0,
-                                id = 1
-                            )
-                        )
-                    ),
-                    QuestTaskPhaseUI(
-                        priority = 1,
-                        tasks = persistentListOf(
-                            CharacterTaskItem.Check(
+                                visible = true,
+                                tasks =
+                                    persistentListOf(
+                                        CharacterTaskItem.Count(
+                                            priority = 0,
+                                            text = "Complete three scenarios with the name Crypt",
+                                            count = 3,
+                                            currentCount = 0,
+                                            id = 1,
+                                        ),
+                                    ),
+                            ),
+                            QuestTaskPhaseUI(
                                 priority = 1,
-                                text = "Open and complete the scenario \"Jekserah's Plans\"",
-                                id = 2
-                            )
-                        )
-                    )
-                )
-            ),
+                                tasks =
+                                    persistentListOf(
+                                        CharacterTaskItem.Check(
+                                            priority = 1,
+                                            text = "Open and complete the scenario \"Jekserah's Plans\"",
+                                            id = 2,
+                                        ),
+                                    ),
+                            ),
+                        ),
+                ),
             selectNewQuest = {},
             onTaskCheckedChange = {},
-            onTaskCountChanged = { i, k -> }
+            onTaskCountChanged = { i, k -> },
         )
     }
 }

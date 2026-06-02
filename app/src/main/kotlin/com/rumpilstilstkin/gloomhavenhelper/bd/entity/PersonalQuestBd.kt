@@ -22,9 +22,9 @@ data class PersonalQuestBd(
             entity = PersonalQuestBd::class,
             parentColumns = ["questId"],
             childColumns = ["questId"],
-            onDelete = ForeignKey.CASCADE
-        )
-    ]
+            onDelete = ForeignKey.CASCADE,
+        ),
+    ],
 )
 data class PersonalQuestTranslationsBd(
     val questId: String,
@@ -41,9 +41,9 @@ data class PersonalQuestTranslationsBd(
             entity = PersonalQuestBd::class,
             parentColumns = ["questId"],
             childColumns = ["questId"],
-            onDelete = ForeignKey.CASCADE
-        )
-    ]
+            onDelete = ForeignKey.CASCADE,
+        ),
+    ],
 )
 data class PersonalQuestTaskTranslationsBd(
     val questId: String,

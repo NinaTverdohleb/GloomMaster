@@ -41,33 +41,34 @@ fun GloomToolbarStatus(
     windowInsets = WindowInsets(0, 0, 0, 0),
     title = {
         Box(
-            modifier = Modifier
-                .border(
-                    width = 1.dp,
-                    color = MaterialTheme.colorScheme.primary,
-                    shape = RoundedCornerShape(16.dp)
-                )
-                .heightIn(min = 24.dp)
-                .clickable {
-                    statusClick()
-                }
-                .padding(horizontal = 10.dp, vertical = 2.dp),
-            contentAlignment = Alignment.Center
+            modifier =
+                Modifier
+                    .border(
+                        width = 1.dp,
+                        color = MaterialTheme.colorScheme.primary,
+                        shape = RoundedCornerShape(16.dp),
+                    ).heightIn(min = 24.dp)
+                    .clickable {
+                        statusClick()
+                    }.padding(horizontal = 10.dp, vertical = 2.dp),
+            contentAlignment = Alignment.Center,
         ) {
             Text(
                 modifier = Modifier.padding(4.dp),
                 text = status,
-                style = LocalTextStyle.current.copy(
-                    fontSize = 14.sp,
-                    lineHeight = 12.sp,
-                    platformStyle = PlatformTextStyle(includeFontPadding = false),
-                    lineHeightStyle = LineHeightStyle(
-                        alignment = LineHeightStyle.Alignment.Center,
-                        trim = LineHeightStyle.Trim.Both
-                    )
-                ),
+                style =
+                    LocalTextStyle.current.copy(
+                        fontSize = 14.sp,
+                        lineHeight = 12.sp,
+                        platformStyle = PlatformTextStyle(includeFontPadding = false),
+                        lineHeightStyle =
+                            LineHeightStyle(
+                                alignment = LineHeightStyle.Alignment.Center,
+                                trim = LineHeightStyle.Trim.Both,
+                            ),
+                    ),
                 color = MaterialTheme.colorScheme.primary,
-                textAlign = TextAlign.Center
+                textAlign = TextAlign.Center,
             )
         }
     },
@@ -77,14 +78,13 @@ fun GloomToolbarStatus(
                 Icon(
                     Icons.AutoMirrored.Filled.ArrowBack,
                     contentDescription = null,
-                    tint = MaterialTheme.colorScheme.onSurface
+                    tint = MaterialTheme.colorScheme.onSurface,
                 )
             }
         }
     },
-    actions = actions
+    actions = actions,
 )
-
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -99,7 +99,7 @@ fun GloomToolbarTitle(
             text = title,
             style = MaterialTheme.typography.titleMedium,
             color = MaterialTheme.colorScheme.onSurface,
-            textAlign = TextAlign.Center
+            textAlign = TextAlign.Center,
         )
     },
     navigationIcon = {
@@ -108,12 +108,12 @@ fun GloomToolbarTitle(
                 Icon(
                     Icons.AutoMirrored.Filled.ArrowBack,
                     contentDescription = null,
-                    tint = MaterialTheme.colorScheme.onSurface
+                    tint = MaterialTheme.colorScheme.onSurface,
                 )
             }
         }
     },
-    actions = actions
+    actions = actions,
 )
 
 @Preview
@@ -128,10 +128,10 @@ private fun GloomToolbarStatusPreview() {
                     Icon(
                         Icons.Default.Check,
                         contentDescription = null,
-                        tint = MaterialTheme.colorScheme.onSurface
+                        tint = MaterialTheme.colorScheme.onSurface,
                     )
                 }
-            }
+            },
         )
     }
 }
@@ -148,10 +148,10 @@ private fun GloomToolbarTitlePreview() {
                     Icon(
                         Icons.Default.Check,
                         contentDescription = null,
-                        tint = MaterialTheme.colorScheme.onSurface
+                        tint = MaterialTheme.colorScheme.onSurface,
                     )
                 }
-            }
+            },
         )
     }
 }

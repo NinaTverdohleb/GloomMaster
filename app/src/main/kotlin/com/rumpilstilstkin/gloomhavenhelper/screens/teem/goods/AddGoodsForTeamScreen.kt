@@ -39,18 +39,20 @@ internal fun AddGoodsForTeamScreen(
 ) { paddingValues ->
     AddGoodsView(
         state = uiState.goodsState,
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(paddingValues),
+        modifier =
+            Modifier
+                .fillMaxWidth()
+                .padding(paddingValues),
         selectFilter = selectFilter,
         changeSearchText = changeSearchText,
         selectGood = selectGood,
         unselectGood = unselectGood,
     ) {
         Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(8.dp),
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .padding(8.dp),
             horizontalArrangement = Arrangement.spacedBy(8.dp),
         ) {
             Button(
@@ -69,15 +71,16 @@ internal fun AddGoodsForTeamScreen(
 private fun AddGoodsForTeamScreenPreview() {
     GloomhavenMasterTheme {
         AddGoodsForTeamScreen(
-            uiState = AddGoodsForTeamUiState(
-                goodsState = AddGoodsViewState.fixture(),
-            ),
+            uiState =
+                AddGoodsForTeamUiState(
+                    goodsState = AddGoodsViewState.fixture(),
+                ),
             selectFilter = {},
             changeSearchText = {},
             selectGood = {},
             unselectGood = {},
             addGoods = {},
-            back = {}
+            back = {},
         )
     }
 }

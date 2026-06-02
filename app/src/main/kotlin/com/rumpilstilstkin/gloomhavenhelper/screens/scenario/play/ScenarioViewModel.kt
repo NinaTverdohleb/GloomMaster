@@ -58,23 +58,23 @@ class ScenarioViewModel @Inject constructor(
     private val toggleMagicChargeUseCase: ToggleMagicChargeUseCase,
     private val toggleUnitEffectUseCase: ToggleUnitEffectUseCase,
     private val updateUnitLevelUseCase: UpdateUnitLevelUseCase,
-    private val updateUnitLifeUseCase: UpdateUnitLifeUseCase
+    private val updateUnitLifeUseCase: UpdateUnitLifeUseCase,
 ) : ViewModel() {
     private val _navigationEvents = MutableSharedFlow<GlHelperEvent>()
     val navigationEvents = _navigationEvents.asSharedFlow()
 
     private val logicState = MutableStateFlow<ScenarioBattleState?>(null)
-    val uiState: StateFlow<ScenarioStateUi> = logicState
-        .filterNotNull()
-        .debounce(200)
-        .map {
-            ScenarioStateMapper.toUiState(it)
-        }
-        .stateIn(
-            scope = viewModelScope,
-            started = SharingStarted.WhileSubscribed(500),
-            initialValue = ScenarioStateUi()
-        )
+    val uiState: StateFlow<ScenarioStateUi> =
+        logicState
+            .filterNotNull()
+            .debounce(200)
+            .map {
+                ScenarioStateMapper.toUiState(it)
+            }.stateIn(
+                scope = viewModelScope,
+                started = SharingStarted.WhileSubscribed(500),
+                initialValue = ScenarioStateUi(),
+            )
 
     init {
         loadScenario()
@@ -82,12 +82,10 @@ class ScenarioViewModel @Inject constructor(
             .filterNotNull()
             .map { logicState ->
                 ScenarioStateMapper.stateForSave(logicState)
-            }
-            .distinctUntilChanged()
+            }.distinctUntilChanged()
             .onEach { newState ->
                 saveScenarioStateUseCase(newState)
-            }
-            .launchIn(viewModelScope)
+            }.launchIn(viewModelScope)
     }
 
     private fun loadScenario() {
@@ -102,94 +100,112 @@ class ScenarioViewModel @Inject constructor(
     fun onAction(action: ScenarioActions) {
         viewModelScope.launch {
             when (action) {
-                is ScenarioActions.AddMonster -> updateState {
-                    addMonsterToBattleUseCase(it, action.monsterSlugs)
+                is ScenarioActions.AddMonster -> {
+                    updateState {
+                        addMonsterToBattleUseCase(it, action.monsterSlugs)
+                    }
                 }
 
-                is ScenarioActions.RemoveMonster -> updateState {
-                    removeMonsterUseCase(
-                        it,
-                        action.monsterSlug
-                    )
+                is ScenarioActions.RemoveMonster -> {
+                    updateState {
+                        removeMonsterUseCase(
+                            it,
+                            action.monsterSlug,
+                        )
+                    }
                 }
 
-                is ScenarioActions.AddUnits -> updateState {
-                    addMonsterUnitsUseCase(
-                        state = it,
-                        numbers = action.numbers,
-                        slug = action.monsterSlug,
-                        isElite = action.isElite
-                    )
+                is ScenarioActions.AddUnits -> {
+                    updateState {
+                        addMonsterUnitsUseCase(
+                            state = it,
+                            numbers = action.numbers,
+                            slug = action.monsterSlug,
+                            isElite = action.isElite,
+                        )
+                    }
                 }
 
-                is ScenarioActions.RemoveUnit -> updateState {
-                    removeUnitUseCase(
-                        state = it,
-                        number = action.number,
-                        slug = action.monsterSlug
-                    )
+                is ScenarioActions.RemoveUnit -> {
+                    updateState {
+                        removeUnitUseCase(
+                            state = it,
+                            number = action.number,
+                            slug = action.monsterSlug,
+                        )
+                    }
                 }
 
-                is ScenarioActions.UpdateUnitLife -> updateState {
-                    updateUnitLifeUseCase(
-                        state = it,
-                        number = action.unitNumber,
-                        slug = action.monsterSlug,
-                        newLife = action.newValue
-                    )
+                is ScenarioActions.UpdateUnitLife -> {
+                    updateState {
+                        updateUnitLifeUseCase(
+                            state = it,
+                            number = action.unitNumber,
+                            slug = action.monsterSlug,
+                            newLife = action.newValue,
+                        )
+                    }
                 }
 
-                is ScenarioActions.NextRound -> updateState { nextRoundUseCase(it) }
-                is ScenarioActions.SwitchUnitEffect -> updateState {
-                    toggleUnitEffectUseCase(
-                        state = it,
-                        number = action.unitNumber,
-                        slug = action.monsterSlug,
-                        effect = action.effect
-                    )
+                is ScenarioActions.NextRound -> {
+                    updateState { nextRoundUseCase(it) }
+                }
+
+                is ScenarioActions.SwitchUnitEffect -> {
+                    updateState {
+                        toggleUnitEffectUseCase(
+                            state = it,
+                            number = action.unitNumber,
+                            slug = action.monsterSlug,
+                            effect = action.effect,
+                        )
+                    }
                 }
 
                 is ScenarioActions.CompleteScenario -> {
-                    viewModelScope.async {
-                        val number = logicState.value?.scenarioNumber
-                        if (number != null) {
-                            completeScenarioUseCase(number)
-                        } else {
-                            clearCurrentActiveScenarioUseCase()
-                        }
-                    }.await()
+                    viewModelScope
+                        .async {
+                            val number = logicState.value?.scenarioNumber
+                            if (number != null) {
+                                completeScenarioUseCase(number)
+                            } else {
+                                clearCurrentActiveScenarioUseCase()
+                            }
+                        }.await()
                     _navigationEvents.emit(GlHelperEvent.Back)
                 }
 
-                is ScenarioActions.UpdateMagic -> updateState {
-                    toggleMagicChargeUseCase(
-                        state = it,
-                        magic = action.magic
-                    )
+                is ScenarioActions.UpdateMagic -> {
+                    updateState {
+                        toggleMagicChargeUseCase(
+                            state = it,
+                            magic = action.magic,
+                        )
+                    }
                 }
 
-                is ScenarioActions.UpdateUnitLevel -> updateState {
-                    updateUnitLevelUseCase(
-                        state = it,
-                        slug = action.monsterSlug,
-                        level = action.level,
-                        isElite = action.isElite,
-                        number = action.unitNumber
-                    )
+                is ScenarioActions.UpdateUnitLevel -> {
+                    updateState {
+                        updateUnitLevelUseCase(
+                            state = it,
+                            slug = action.monsterSlug,
+                            level = action.level,
+                            isElite = action.isElite,
+                            number = action.unitNumber,
+                        )
+                    }
                 }
 
                 ScenarioActions.AddNewMonsters -> {
                     _navigationEvents.emit(
-                        GlHelperEvent.Screen(GlHelperScreens.ScenarioConstructor)
+                        GlHelperEvent.Screen(GlHelperScreens.ScenarioConstructor),
                     )
                 }
             }
         }
     }
 
-    private suspend fun updateState(
-        update: suspend (ScenarioBattleState) -> ScenarioBattleState
-    ) {
+    private suspend fun updateState(update: suspend (ScenarioBattleState) -> ScenarioBattleState) {
         val state = logicState.value ?: return
         withContext(Dispatchers.Default) {
             val newState = update(state)
