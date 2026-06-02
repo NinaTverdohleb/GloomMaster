@@ -1,6 +1,5 @@
 package com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario.play
 
-import android.util.Log
 import com.rumpilstilstkin.gloomhavenhelper.data.LevelInfoRepository
 import com.rumpilstilstkin.gloomhavenhelper.data.LocaleRepository
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.scenario.ScenarioBattleState

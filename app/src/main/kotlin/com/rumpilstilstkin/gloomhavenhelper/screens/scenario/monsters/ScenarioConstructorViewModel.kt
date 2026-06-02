@@ -1,6 +1,5 @@
 package com.rumpilstilstkin.gloomhavenhelper.screens.scenario.monsters
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario.AddMonstersForCurrentScenarioUseCase

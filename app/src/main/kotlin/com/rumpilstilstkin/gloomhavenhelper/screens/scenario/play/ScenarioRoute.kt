@@ -2,20 +2,18 @@ package com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play
 
 import androidx.compose.material3.windowsizeclass.WindowWidthSizeClass
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
-import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.Magic
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterStatType
-import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEventHelper
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.scenario.MonsterUnit
+import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEventHelper
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.components.MonsterListDialog
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.state.ScenarioActions
 
@@ -27,13 +25,6 @@ fun ScenarioRoute(
 ) {
     val navigationEvents by viewModel.navigationEvents.collectAsStateWithLifecycle(initialValue = null)
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
-    val lifecycleOwner = LocalLifecycleOwner.current
-    DisposableEffect(lifecycleOwner) {
-        lifecycleOwner.lifecycle.addObserver(viewModel)
-        onDispose {
-            lifecycleOwner.lifecycle.removeObserver(viewModel)
-        }
-    }
 
     LaunchedEffect(navigationEvents) {
         navigationEvents?.let { event ->

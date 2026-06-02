@@ -23,8 +23,7 @@ data class MagicChargeState private constructor(
 
     companion object {
         fun restore(charges: Map<Magic, Int>): MagicChargeState {
-            val withDefaults = Magic.entries.associateWith { charges[it] ?: 0 } +
-                    charges.filterKeys { key -> Magic.entries.none { it == key } }
+            val withDefaults = Magic.entries.associateWith { charges[it] ?: 0 } + charges
             return MagicChargeState(charges = withDefaults)
         }
 

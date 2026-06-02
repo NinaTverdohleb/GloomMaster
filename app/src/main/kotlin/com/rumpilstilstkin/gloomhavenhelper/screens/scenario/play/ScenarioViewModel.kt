@@ -1,6 +1,5 @@
 package com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play
 
-import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.scenario.ScenarioBattleState
@@ -27,6 +26,7 @@ import jakarta.inject.Inject
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.async
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -59,7 +59,7 @@ class ScenarioViewModel @Inject constructor(
     private val toggleUnitEffectUseCase: ToggleUnitEffectUseCase,
     private val updateUnitLevelUseCase: UpdateUnitLevelUseCase,
     private val updateUnitLifeUseCase: UpdateUnitLifeUseCase
-) : ViewModel(), DefaultLifecycleObserver {
+) : ViewModel() {
     private val _navigationEvents = MutableSharedFlow<GlHelperEvent>()
     val navigationEvents = _navigationEvents.asSharedFlow()
 
@@ -68,7 +68,7 @@ class ScenarioViewModel @Inject constructor(
         .filterNotNull()
         .debounce(200)
         .map {
-            it.toUIState()
+            ScenarioStateMapper.toUiState(it)
         }
         .stateIn(
             scope = viewModelScope,
@@ -80,7 +80,6 @@ class ScenarioViewModel @Inject constructor(
         loadScenario()
         logicState
             .filterNotNull()
-            .debounce(500)
             .map { logicState ->
                 ScenarioStateMapper.stateForSave(logicState)
             }
@@ -93,6 +92,7 @@ class ScenarioViewModel @Inject constructor(
 
     private fun loadScenario() {
         viewModelScope.launch {
+            delay(200)
             getScenarioInfoUseCase().onSuccess { battleInfo ->
                 logicState.update { battleInfo }
             }
@@ -106,7 +106,13 @@ class ScenarioViewModel @Inject constructor(
                     addMonsterToBattleUseCase(it, action.monsterSlugs)
                 }
 
-                is ScenarioActions.RemoveMonster -> updateState { removeMonsterUseCase(it, action.monsterSlug) }
+                is ScenarioActions.RemoveMonster -> updateState {
+                    removeMonsterUseCase(
+                        it,
+                        action.monsterSlug
+                    )
+                }
+
                 is ScenarioActions.AddUnits -> updateState {
                     addMonsterUnitsUseCase(
                         state = it,
