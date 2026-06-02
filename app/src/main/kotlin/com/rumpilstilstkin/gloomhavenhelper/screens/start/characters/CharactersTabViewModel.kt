@@ -9,7 +9,7 @@ import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.characters.UpdateChar
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.classes.AddCharacterClassForTeamUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.classes.GetAvaliableClassesForCurrentTeamUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.classes.RemoveCharacterClassForTeamUseCase
-import com.rumpilstilstkin.gloomhavenhelper.navigation.GlHelperScreens.*
+import com.rumpilstilstkin.gloomhavenhelper.navigation.GlHelperScreens
 import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEvent
 import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEvent.Screen
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.CharacterClassTypeUI
@@ -28,7 +28,6 @@ import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
-import kotlin.collections.map
 
 @HiltViewModel
 class CharactersTabViewModel @Inject constructor(
@@ -37,9 +36,8 @@ class CharactersTabViewModel @Inject constructor(
     private val createCharacterUseCase: CreateCharacterUseCase,
     private val removeCharacterClassForTeamUseCase: RemoveCharacterClassForTeamUseCase,
     private val addCharacterClassForTeamUseCase: AddCharacterClassForTeamUseCase,
-    private val updateCharacterLevelUseCase: UpdateCharacterLevelUseCase
+    private val updateCharacterLevelUseCase: UpdateCharacterLevelUseCase,
 ) : ViewModel() {
-
     private val _navigationEvents = MutableSharedFlow<GlHelperEvent>()
     val navigationEvents = _navigationEvents.asSharedFlow()
 
@@ -72,13 +70,14 @@ class CharactersTabViewModel @Inject constructor(
             CharactersTabStateUi(
                 showAddCharacterDialog = logicState.showAddCharacterDialog,
                 filterAlive = logicState.filterAlive,
-                characters = (if (logicState.filterAlive) alive else characters)
-                    .sortedBy { it.id}
-                    .sortedBy { !it.isAlive }
-                    .map { it.toUi() }
-                    .toImmutableList(),
+                characters =
+                    (if (logicState.filterAlive) alive else characters)
+                        .sortedBy { it.id }
+                        .sortedBy { !it.isAlive }
+                        .map { it.toUi() }
+                        .toImmutableList(),
                 canAdd = alive.size < 4,
-                avaliableClasses = classes.toImmutableList()
+                avaliableClasses = classes.toImmutableList(),
             )
         }.stateIn(
             scope = viewModelScope,
@@ -94,7 +93,7 @@ class CharactersTabViewModel @Inject constructor(
                     createCharacterUseCase(
                         name = action.name,
                         level = action.level,
-                        characterType = action.characterType.type
+                        characterType = action.characterType.type,
                     )
                 }
 
@@ -111,7 +110,7 @@ class CharactersTabViewModel @Inject constructor(
                 }
 
                 is CharactersTabAction.CharacterDetails -> {
-                    _navigationEvents.emit(Screen(CharacterDetails(characterId = action.characterId)))
+                    _navigationEvents.emit(Screen(GlHelperScreens.CharacterDetails(characterId = action.characterId)))
                 }
 
                 is CharactersTabAction.SwitchClassAvailability -> {

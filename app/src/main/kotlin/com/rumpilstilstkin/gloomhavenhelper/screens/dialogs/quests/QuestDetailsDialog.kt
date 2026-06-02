@@ -20,15 +20,12 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.rumpilstilstkin.gloomhavenhelper.R
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.CharacterClassType
-import com.rumpilstilstkin.gloomhavenhelper.domain.entity.quest.CharacterTaskItem
-import com.rumpilstilstkin.gloomhavenhelper.domain.entity.quest.QuestReward
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.PersonalQuestUI
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.QuestTaskPhaseUI
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomAlertDialog
 import com.rumpilstilstkin.gloomhavenhelper.ui.icons.toImage
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
 import kotlinx.collections.immutable.ImmutableList
-import kotlinx.collections.immutable.persistentListOf
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -66,34 +63,32 @@ fun QuestDetailsDialog(
             Spacer(modifier = Modifier.size(16.dp))
 
             Task(
-                phases = quest.phases
+                phases = quest.phases,
             )
 
             Spacer(modifier = Modifier.size(16.dp))
 
             Rewards(
                 classType = quest.reward.classType,
-                alternativeReward = quest.reward.alternativeReward
+                alternativeReward = quest.reward.alternativeReward,
             )
-        }
+        },
     )
 }
 
 @Composable
-private fun Task(
-    phases: ImmutableList<QuestTaskPhaseUI>,
-) {
+private fun Task(phases: ImmutableList<QuestTaskPhaseUI>) {
     Column(
-        modifier = Modifier.fillMaxWidth()
+        modifier = Modifier.fillMaxWidth(),
     ) {
         phases.forEach { phase ->
             phase.tasks.forEach { task ->
                 Text(
                     text = task.text,
-                    style = MaterialTheme.typography.labelMedium
+                    style = MaterialTheme.typography.labelMedium,
                 )
                 Spacer(
-                    modifier = Modifier.size(4.dp)
+                    modifier = Modifier.size(4.dp),
                 )
             }
         }
@@ -114,14 +109,14 @@ private fun Rewards(
         Spacer(modifier = Modifier.size(4.dp))
         if (classType != null) {
             Row(
-                verticalAlignment = Alignment.CenterVertically
+                verticalAlignment = Alignment.CenterVertically,
             ) {
                 Text(text = stringResource(R.string.unlock_class))
                 Image(
                     modifier = Modifier.size(32.dp),
                     painter = painterResource(id = classType.toImage()),
                     colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.primary),
-                    contentDescription = null
+                    contentDescription = null,
                 )
             }
             Spacer(modifier = Modifier.size(4.dp))
@@ -138,39 +133,7 @@ private fun Rewards(
 private fun GoodDetailsDialogPreview() {
     GloomhavenMasterTheme {
         QuestDetailsDialog(
-            quest = PersonalQuestUI(
-                id = "511",
-                title = "Seeker of Xorn",
-                description = "Ever since you were a child, you heard the call of Xorn. Once he was worshipped as a god, but his following has long since been destroyed. But you can hear his call. You traveled to Gloomhaven by his order. You will find his remains and free him. What happened once will happen again.",
-                reward = QuestReward(
-                    classType = CharacterClassType.Plagueherald,
-                    alternativeReward = "Open envelope B"
-                ),
-                phases = persistentListOf(
-                    QuestTaskPhaseUI(
-                        priority = 0,
-                        tasks = persistentListOf(
-                            CharacterTaskItem.Count(
-                                priority = 0,
-                                text = "Complete three scenarios with the name Crypt",
-                                count = 3,
-                                currentCount = 0,
-                                id = 1
-                            )
-                        )
-                    ),
-                    QuestTaskPhaseUI(
-                        priority = 1,
-                        tasks = persistentListOf(
-                            CharacterTaskItem.Check(
-                                priority = 1,
-                                text = "Open and complete the scenario \"Jekserah's Plans\"",
-                                id = 2
-                            )
-                        )
-                    )
-                )
-            ),
+            quest = PersonalQuestUI.fixture(),
             showDialog = true,
             onAction = {},
             onDismiss = {},

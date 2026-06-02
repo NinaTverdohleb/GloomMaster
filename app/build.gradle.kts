@@ -74,6 +74,11 @@ kotlin {
 configure<SpotlessExtension> {
     kotlin {
         target("src/**/*.kt")
+        targetExclude(
+            "**/ui/icons/**/*.kt",
+            "src/test/**/*.kt",
+            "src/androidTest/**/*.kt"
+        )
         val ktlintVersion = extensions.getByType<VersionCatalogsExtension>()
             .named("libs")
             .findVersion("ktlint")
@@ -89,7 +94,9 @@ configure<SpotlessExtension> {
                 "ktlint_function_naming_ignore_when_annotated_with" to "Composable",
                 "ktlint_standard_annotation" to "disabled",
                 "ij_kotlin_variable_annotation_wrap" to "off",
-                "ij_kotlin_annotation_wrap" to "off"
+                "ij_kotlin_annotation_wrap" to "off",
+                "ktlint_experimental_suppress-annotation" to "enabled",
+                "ktlint_standard_backing-property-naming" to "disabled",
             )
         )
         endWithNewline()

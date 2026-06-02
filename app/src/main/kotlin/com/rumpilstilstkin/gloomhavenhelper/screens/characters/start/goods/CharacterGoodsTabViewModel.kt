@@ -21,24 +21,25 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
-@HiltViewModel(assistedFactory = CharacterItemsTabViewModel.Factory::class)
-class CharacterItemsTabViewModel @AssistedInject constructor(
+@HiltViewModel(assistedFactory = CharacterGoodsTabViewModel.Factory::class)
+class CharacterGoodsTabViewModel @AssistedInject constructor(
     @Assisted val id: Int,
     getCharacterGoodsUseCase: GetCharacterGoodsUseCase,
     private val deleteCharacterGoodsUseCase: DeleteCharacterGoodsUseCase,
     private val sellGoodCharacterUseCase: SellGoodCharacterUseCase,
 ) : ViewModel() {
-
     private val _navigationEvents = MutableSharedFlow<GlHelperEvent>()
     val navigationEvents = _navigationEvents.asSharedFlow()
 
-    val uiState: StateFlow<List<GoodUi>> = getCharacterGoodsUseCase(id).map { item ->
-        item.map { good -> good.toUi() }.sortedBy { it.number }
-    }.stateIn(
-        scope = viewModelScope,
-        initialValue = emptyList(),
-        started = SharingStarted.WhileSubscribed(100),
-    )
+    val uiState: StateFlow<List<GoodUi>> =
+        getCharacterGoodsUseCase(id)
+            .map { item ->
+                item.map { good -> good.toUi() }.sortedBy { it.number }
+            }.stateIn(
+                scope = viewModelScope,
+                initialValue = emptyList(),
+                started = SharingStarted.WhileSubscribed(100),
+            )
 
     fun onAction(action: CharacterItemsTabActions) {
         viewModelScope.launch {
@@ -46,7 +47,7 @@ class CharacterItemsTabViewModel @AssistedInject constructor(
                 is CharacterItemsTabActions.DeleteGood -> {
                     deleteCharacterGoodsUseCase(
                         goodId = action.goodId,
-                        characterId = id
+                        characterId = id,
                     )
                 }
 
@@ -54,7 +55,7 @@ class CharacterItemsTabViewModel @AssistedInject constructor(
                     sellGoodCharacterUseCase(
                         goodId = action.goodId,
                         characterId = id,
-                        cost = action.cost
+                        cost = action.cost,
                     )
                 }
 
@@ -62,9 +63,9 @@ class CharacterItemsTabViewModel @AssistedInject constructor(
                     _navigationEvents.emit(
                         GlHelperEvent.Screen(
                             GlHelperScreens.AddGoodsForCharacter(
-                                characterId = id
-                            )
-                        )
+                                characterId = id,
+                            ),
+                        ),
                     )
                 }
             }
@@ -73,6 +74,6 @@ class CharacterItemsTabViewModel @AssistedInject constructor(
 
     @AssistedFactory
     interface Factory {
-        fun create(id: Int): CharacterItemsTabViewModel
+        fun create(id: Int): CharacterGoodsTabViewModel
     }
 }

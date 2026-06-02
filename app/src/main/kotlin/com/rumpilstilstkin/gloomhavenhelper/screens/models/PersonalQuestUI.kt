@@ -1,10 +1,12 @@
 package com.rumpilstilstkin.gloomhavenhelper.screens.models
 
 import androidx.compose.runtime.Immutable
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.CharacterClassType
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.quest.CharacterPersonalQuest
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.quest.CharacterTaskItem
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.quest.QuestReward
 import kotlinx.collections.immutable.ImmutableList
+import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.toImmutableList
 
 @Immutable
@@ -15,7 +17,55 @@ data class PersonalQuestUI(
     val phases: ImmutableList<QuestTaskPhaseUI>,
     val completed: Boolean = false,
     val reward: QuestReward,
-)
+) {
+    companion object {
+        fun fixture(id: String = "511") =
+            PersonalQuestUI(
+                id = id,
+                title = "Seeker of Xorn",
+                description =
+                    """
+                    Ever since you were a child, you heard the call of Xorn. 
+                    Once he was worshipped as a god, but his following has long since been destroyed.
+                     But you can hear his call. 
+                     You traveled to Gloomhaven by his order.
+                      You will find his remains and free him. 
+                      What happened once will happen again.
+                    """.trimIndent(),
+                reward =
+                    QuestReward(
+                        classType = CharacterClassType.Plagueherald,
+                    ),
+                phases =
+                    persistentListOf(
+                        QuestTaskPhaseUI(
+                            priority = 0,
+                            tasks =
+                                persistentListOf(
+                                    CharacterTaskItem.Count(
+                                        priority = 0,
+                                        text = "Complete three scenarios with the name Crypt",
+                                        count = 3,
+                                        currentCount = 0,
+                                        id = 1,
+                                    ),
+                                ),
+                        ),
+                        QuestTaskPhaseUI(
+                            priority = 1,
+                            tasks =
+                                persistentListOf(
+                                    CharacterTaskItem.Check(
+                                        priority = 1,
+                                        text = "Open and complete the scenario \"Jekserah's Plans\"",
+                                        id = 2,
+                                    ),
+                                ),
+                        ),
+                    ),
+            )
+    }
+}
 
 @Immutable
 data class QuestTaskPhaseUI(

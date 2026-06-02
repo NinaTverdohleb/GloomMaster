@@ -12,25 +12,26 @@ class UpdateTeamProsperityUseCase @Inject constructor(
     private val getGoodsForLevelUseCase: GetGoodNumbersForLevelUseCase,
     private val addGoodsToTeamUseCase: AddGoodsToTeamByNumbersUseCase,
 ) {
-    suspend operator fun invoke(
-        newProsperityLevelValue: Int
-    ) {
+    suspend operator fun invoke(newProsperityLevelValue: Int) {
         val team = teamRepository.currentTeam.first() ?: return
         val prosperity = getTeamProsperityUseCase(team.prosperity)
-        if (prosperity.isStartValue && newProsperityLevelValue == 0 || prosperity.isMax) {
+        val prosperityIsMin = prosperity.isStartValue && newProsperityLevelValue == 0
+        if (prosperityIsMin || prosperity.isMax) {
             return
         }
 
-        val prosperityValue = if (prosperity.prosperityLevelValue == newProsperityLevelValue) {
-            if (prosperity.prosperityLevelValue == 0) {
-                prosperity.prosperitySource.minus(1)
+        val prosperityValue =
+            if (prosperity.prosperityLevelValue == newProsperityLevelValue) {
+                if (prosperity.prosperityLevelValue == 0) {
+                    prosperity.prosperitySource.minus(1)
+                } else {
+                    prosperity.prosperitySource.plus(1)
+                }
             } else {
-                prosperity.prosperitySource.plus(1)
+                prosperity.prosperitySource
+                    .minus(prosperity.prosperityLevelValue)
+                    .plus(newProsperityLevelValue)
             }
-        } else {
-            prosperity.prosperitySource.minus(prosperity.prosperityLevelValue)
-                .plus(newProsperityLevelValue)
-        }
 
         teamRepository.updateProsperity(team.teamId, prosperityValue)
         val newProsperity = getTeamProsperityUseCase(prosperityValue)

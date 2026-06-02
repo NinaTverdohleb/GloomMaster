@@ -14,7 +14,6 @@ import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.team.SwitchPackForCur
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.team.UpdateDifficultyLevelUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.team.UpdateNameForCurrentTeamUseCase
 import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEvent
-import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEvent.*
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.ShortTeamInfoUi
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
@@ -42,48 +41,52 @@ class TeamEditViewModel @Inject constructor(
     private val getShareFileUseCase: GetShareFileUseCase,
     private val updateDifficultyLevelUseCase: UpdateDifficultyLevelUseCase,
 ) : ViewModel() {
-
     private val _navigationEvents = MutableSharedFlow<GlHelperEvent>()
     val navigationEvents = _navigationEvents.asSharedFlow()
 
     private val logicState: MutableStateFlow<TeamEditStateLogic> =
         MutableStateFlow(TeamEditStateLogic())
 
-    val uiState: StateFlow<TeamEditStateUi> = combine(
-        getCurrentTeamWithTeamsCountUseCase(),
-        logicState,
-    ) { (team, teams), logicState ->
-        if (team == null) {
-            TeamEditStateUi()
-        } else {
-            val currentPacks = team.packs.toSet()
+    val uiState: StateFlow<TeamEditStateUi> =
+        combine(
+            getCurrentTeamWithTeamsCountUseCase(),
+            logicState,
+        ) { (team, teams), logicState ->
+            if (team == null) {
+                TeamEditStateUi()
+            } else {
+                val currentPacks = team.packs.toSet()
 
-            TeamEditStateUi(
-                teamName = team.name,
-                difficultyLevel = team.difficultyLevel,
-                availablePacks = selectablePacks.map { packType ->
-                    PackItemUi(
-                        pack = packType,
-                        isEnabled = packType in currentPacks,
-                    )
-                }.toImmutableList(),
-                showDeleteConfirmDialog = logicState.showDeleteConfirmDialog,
-                showTeamListDialog = logicState.showTeamListDialog,
-                showChangeTeamButton = teams.isNotEmpty(),
-                teamsForSelect = teams.map {
-                    ShortTeamInfoUi(
-                        teamId = it.teamId,
-                        teamName = it.name,
-                    )
-                }.toImmutableList(),
-                createShareFileInProgress = logicState.createShareFileInProgress,
-            )
-        }
-    }.stateIn(
-        scope = viewModelScope,
-        initialValue = TeamEditStateUi(),
-        started = SharingStarted.WhileSubscribed(5000),
-    )
+                TeamEditStateUi(
+                    teamName = team.name,
+                    difficultyLevel = team.difficultyLevel,
+                    availablePacks =
+                        selectablePacks
+                            .map { packType ->
+                                PackItemUi(
+                                    pack = packType,
+                                    isEnabled = packType in currentPacks,
+                                )
+                            }.toImmutableList(),
+                    showDeleteConfirmDialog = logicState.showDeleteConfirmDialog,
+                    showTeamListDialog = logicState.showTeamListDialog,
+                    showChangeTeamButton = teams.isNotEmpty(),
+                    teamsForSelect =
+                        teams
+                            .map {
+                                ShortTeamInfoUi(
+                                    teamId = it.teamId,
+                                    teamName = it.name,
+                                )
+                            }.toImmutableList(),
+                    createShareFileInProgress = logicState.createShareFileInProgress,
+                )
+            }
+        }.stateIn(
+            scope = viewModelScope,
+            initialValue = TeamEditStateUi(),
+            started = SharingStarted.WhileSubscribed(5000),
+        )
 
     fun onAction(action: TeamEditAction) {
         viewModelScope.launch {
@@ -133,18 +136,20 @@ class TeamEditViewModel @Inject constructor(
                         getShareFileUseCase(File(context.filesDir, "exports"))
                             .fold(
                                 onSuccess = { file ->
-                                    val contentUri = FileProvider.getUriForFile(
-                                        context,
-                                        "${context.packageName}.fileprovider",
-                                        file
-                                    )
+                                    val contentUri =
+                                        FileProvider.getUriForFile(
+                                            context,
+                                            "${context.packageName}.fileprovider",
+                                            file,
+                                        )
 
-                                    val shareIntent = Intent(Intent.ACTION_SEND).apply {
-                                        type = "application/json"
-                                        putExtra(Intent.EXTRA_STREAM, contentUri)
-                                        addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
-                                        addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                                    }
+                                    val shareIntent =
+                                        Intent(Intent.ACTION_SEND).apply {
+                                            type = "application/json"
+                                            putExtra(Intent.EXTRA_STREAM, contentUri)
+                                            addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                                            addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                                        }
 
                                     val chooser =
                                         Intent.createChooser(shareIntent, "Share Team Data").apply {
@@ -155,8 +160,8 @@ class TeamEditViewModel @Inject constructor(
                                 },
                                 onFailure = { _ ->
                                     logicState.update { it.copy(createShareFileInProgress = false) }
-                                    _navigationEvents.emit(Message("Oops, something went wrong!"))
-                                }
+                                    _navigationEvents.emit(GlHelperEvent.Message("Oops, something went wrong!"))
+                                },
                             )
                     }
                 }

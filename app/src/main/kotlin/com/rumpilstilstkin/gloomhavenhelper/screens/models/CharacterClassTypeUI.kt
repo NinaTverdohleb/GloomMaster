@@ -27,10 +27,10 @@ enum class CharacterClassTypeUI(
     Summoner(R.string.class_summoner, R.drawable.ic_su, CharacterClassType.Summoner),
     Sunkeeper(R.string.class_sunkeeper, R.drawable.ic_sk, CharacterClassType.Sunkeeper),
     Quartermaster(R.string.class_quartermaster, R.drawable.ic_qm, CharacterClassType.Quartermaster),
-    Berserker(R.string.class_berserker, R.drawable.ic_be, CharacterClassType.Berserker);
+    Berserker(R.string.class_berserker, R.drawable.ic_be, CharacterClassType.Berserker),
+    ;
 
     companion object {
-        fun CharacterClassType.toCharacterClassTypeUI(): CharacterClassTypeUI =
-            CharacterClassTypeUI.entries.first { it.type == this }
+        fun CharacterClassType.toCharacterClassTypeUI(): CharacterClassTypeUI = CharacterClassTypeUI.entries.first { it.type == this }
     }
 }

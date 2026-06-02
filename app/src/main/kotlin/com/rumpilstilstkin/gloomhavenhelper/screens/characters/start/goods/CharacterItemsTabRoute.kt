@@ -14,7 +14,7 @@ fun CharacterItemsTabRoute(
     navController: NavHostController,
 ) {
     val viewModel =
-        hiltViewModel<CharacterItemsTabViewModel, CharacterItemsTabViewModel.Factory> { factory ->
+        hiltViewModel<CharacterGoodsTabViewModel, CharacterGoodsTabViewModel.Factory> { factory ->
             factory.create(characterId)
         }
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()

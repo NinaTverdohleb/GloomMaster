@@ -25,13 +25,9 @@ import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import com.rumpilstilstkin.gloomhavenhelper.R
-import com.rumpilstilstkin.gloomhavenhelper.domain.entity.CharacterClassType
-import com.rumpilstilstkin.gloomhavenhelper.domain.entity.quest.CharacterTaskItem
-import com.rumpilstilstkin.gloomhavenhelper.domain.entity.quest.QuestReward
 import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEventHelper
 import com.rumpilstilstkin.gloomhavenhelper.screens.characters.quests.components.PersonalQuestItem
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.PersonalQuestUI
-import com.rumpilstilstkin.gloomhavenhelper.screens.models.QuestTaskPhaseUI
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
 import kotlinx.collections.immutable.persistentListOf
 
@@ -53,7 +49,7 @@ fun SearchQuestScreen(
         navigationEvents?.let { event ->
             GlHelperEventHelper.event(
                 event = event,
-                navController = navController
+                navController = navController,
             )
         }
     }
@@ -72,38 +68,42 @@ private fun SearchQuestView(
     onAction: (SearchQuestActions) -> Unit,
 ) {
     Column(
-        modifier = modifier
-            .fillMaxSize()
-            .padding(8.dp)
+        modifier =
+            modifier
+                .fillMaxSize()
+                .padding(8.dp),
     ) {
         OutlinedTextField(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 8.dp),
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 8.dp),
             value = state.searchText,
             onValueChange = { onAction(SearchQuestActions.SearchTextChange(it)) },
             label = { Text(stringResource(R.string.search_hint)) },
-            colors = OutlinedTextFieldDefaults.colors(
-                focusedBorderColor = MaterialTheme.colorScheme.primary,
-                unfocusedBorderColor = MaterialTheme.colorScheme.primary,
-                focusedLabelColor = MaterialTheme.colorScheme.primary,
-                unfocusedLabelColor = MaterialTheme.colorScheme.onSecondary,
-                cursorColor = MaterialTheme.colorScheme.primary,
-            )
+            colors =
+                OutlinedTextFieldDefaults.colors(
+                    focusedBorderColor = MaterialTheme.colorScheme.primary,
+                    unfocusedBorderColor = MaterialTheme.colorScheme.primary,
+                    focusedLabelColor = MaterialTheme.colorScheme.primary,
+                    unfocusedLabelColor = MaterialTheme.colorScheme.onSecondary,
+                    cursorColor = MaterialTheme.colorScheme.primary,
+                ),
         )
         Spacer(
-            modifier = Modifier.height(16.dp)
+            modifier = Modifier.height(16.dp),
         )
         LazyColumn(
             modifier = Modifier.weight(1f),
         ) {
             items(state.quests) { quest ->
                 PersonalQuestItem(
-                    modifier = Modifier
-                        .padding(8.dp)
-                        .animateItem(),
+                    modifier =
+                        Modifier
+                            .padding(8.dp)
+                            .animateItem(),
                     quest = quest,
-                    chooseQuest = { onAction(SearchQuestActions.ChooseQuest(quest.id)) }
+                    chooseQuest = { onAction(SearchQuestActions.ChooseQuest(quest.id)) },
                 )
             }
         }
@@ -115,77 +115,19 @@ private fun SearchQuestView(
 private fun SearchQuestPreview() {
     GloomhavenMasterTheme {
         Box(
-            modifier = Modifier.background(MaterialTheme.colorScheme.background)
+            modifier = Modifier.background(MaterialTheme.colorScheme.background),
         ) {
             SearchQuestView(
-                state = SearchQuestState(
-                    quests = persistentListOf(
-                        PersonalQuestUI(
-                            id = "511",
-                            title = "Seeker of Xorn",
-                            description = "Ever since you were a child, you heard the call of Xorn. Once he was worshipped as a god, but his following has long since been destroyed. But you can hear his call. You traveled to Gloomhaven by his order. You will find his remains and free him. What happened once will happen again.",
-                            reward = QuestReward(
-                                classType = CharacterClassType.Plagueherald,
-                            ),
-                            phases = persistentListOf(
-                                QuestTaskPhaseUI(
-                                    priority = 0,
-                                    tasks = persistentListOf(
-                                        CharacterTaskItem.Count(
-                                            priority = 0,
-                                            text = "Complete three scenarios with the name Crypt",
-                                            count = 3,
-                                            currentCount = 0,
-                                            id = 1
-                                        )
-                                    )
+                state =
+                    SearchQuestState(
+                        quests =
+                            persistentListOf(
+                                PersonalQuestUI.fixture(),
+                                PersonalQuestUI.fixture(
+                                    id = "512",
                                 ),
-                                QuestTaskPhaseUI(
-                                    priority = 1,
-                                    tasks = persistentListOf(
-                                        CharacterTaskItem.Check(
-                                            priority = 1,
-                                            text = "Open and complete the scenario \"Jekserah's Plans\"",
-                                            id = 2
-                                        )
-                                    )
-                                )
-                            )
-                        ),
-                        PersonalQuestUI(
-                            id = "512",
-                            title = "Seeker of Xorn",
-                            description = "Ever since you were a child, you heard the call of Xorn. Once he was worshipped as a god, but his following has long since been destroyed. But you can hear his call. You traveled to Gloomhaven by his order. You will find his remains and free him. What happened once will happen again.",
-                            reward = QuestReward(
-                                classType = CharacterClassType.Plagueherald,
                             ),
-                            phases = persistentListOf(
-                                QuestTaskPhaseUI(
-                                    priority = 0,
-                                    tasks = persistentListOf(
-                                        CharacterTaskItem.Count(
-                                            priority = 0,
-                                            text = "Complete three scenarios with the name Crypt",
-                                            count = 3,
-                                            currentCount = 0,
-                                            id = 1
-                                        )
-                                    )
-                                ),
-                                QuestTaskPhaseUI(
-                                    priority = 1,
-                                    tasks = persistentListOf(
-                                        CharacterTaskItem.Check(
-                                            priority = 1,
-                                            text = "Open and complete the scenario \"Jekserah's Plans\"",
-                                            id = 2
-                                        )
-                                    )
-                                )
-                            )
-                        )
-                    )
-                ),
+                    ),
                 onAction = {},
             )
         }
