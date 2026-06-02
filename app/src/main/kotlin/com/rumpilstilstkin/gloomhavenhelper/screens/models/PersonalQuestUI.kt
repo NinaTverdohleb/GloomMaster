@@ -40,7 +40,7 @@ private fun List<CharacterTaskItem>.toImmutableListQuestTaskPhaseUIList() =
         QuestTaskPhaseUI(
             priority = priority,
             completed = tasks.all { it.completed },
-            tasks = tasks.map { it }.sortedBy { it.priority }.toImmutableList()
+            tasks = tasks.sortedBy { it.priority }.toImmutableList()
         )
     }.compile()
 

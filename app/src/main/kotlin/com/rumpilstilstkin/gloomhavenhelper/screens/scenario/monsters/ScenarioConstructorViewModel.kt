@@ -1,5 +1,6 @@
 package com.rumpilstilstkin.gloomhavenhelper.screens.scenario.monsters
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario.AddMonstersForCurrentScenarioUseCase
@@ -41,8 +42,18 @@ class ScenarioConstructorViewModel @Inject constructor(
                 ScenarioConstructorStateUi.Loading
             } else {
                 ScenarioConstructorStateUi.Content(
-                    availableMonsters = (state.allMonsters - state.selectedMonsters).toImmutableList(),
-                    selectedMonsters = state.selectedMonsters.toImmutableList(),
+                    availableMonsters = (state.allMonsters - state.selectedMonsters.keys).map { entry ->
+                        MonsterNameUi(
+                            entry.key,
+                            entry.value
+                        )
+                    }.toImmutableList(),
+                    selectedMonsters = state.selectedMonsters.map { entry ->
+                        MonsterNameUi(
+                            entry.key,
+                            entry.value
+                        )
+                    }.toImmutableList(),
                 )
             }
 
@@ -73,11 +84,12 @@ class ScenarioConstructorViewModel @Inject constructor(
 
                 is ScenarioConstructorAction.ToggleMonster -> {
                     logicState.update { state ->
-                        val newSelected = if (action.monster in state.selectedMonsters) {
-                            state.selectedMonsters - action.monster
-                        } else {
-                            state.selectedMonsters + action.monster
-                        }
+                        val newSelected: Map<String, String> =
+                            if (action.monster.slug in state.selectedMonsters.keys) {
+                                state.selectedMonsters - action.monster.slug
+                            } else {
+                                state.selectedMonsters + (action.monster.slug to action.monster.name)
+                            }
                         state.copy(selectedMonsters = newSelected)
                     }
                 }
@@ -85,7 +97,7 @@ class ScenarioConstructorViewModel @Inject constructor(
                 is ScenarioConstructorAction.AddMonsters -> {
                     async {
                         addMonstersForCurrentScenarioUseCase(
-                            logicState.value.selectedMonsters.toList()
+                            logicState.value.selectedMonsters.keys.toList()
                         )
                     }.await()
                     _navigationEvents.emit(GlHelperEvent.Back)

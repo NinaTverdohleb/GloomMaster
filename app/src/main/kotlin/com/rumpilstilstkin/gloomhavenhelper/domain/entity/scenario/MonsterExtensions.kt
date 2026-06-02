@@ -1,7 +1,5 @@
-package com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.state
+package com.rumpilstilstkin.gloomhavenhelper.domain.entity.scenario
 
-import com.rumpilstilstkin.gloomhavenhelper.screens.models.MonsterItem
-import com.rumpilstilstkin.gloomhavenhelper.screens.models.MonsterUnit
 import kotlinx.collections.immutable.toImmutableList
 
 fun List<MonsterItem>.updateMonster(

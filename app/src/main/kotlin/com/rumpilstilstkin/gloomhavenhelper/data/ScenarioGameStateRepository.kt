@@ -30,7 +30,8 @@ class ScenarioGameStateRepository @Inject constructor(
         availableCards = availableCards,
         activeMonsters = activeMonsters,
         magicCharges = magicChargeMap,
-        scenarioNumber = scenarioNumber
+        scenarioNumber = scenarioNumber,
+        level = level
     )
 
     private fun ScenarioGameState.toEntity() = ScenarioGameStateBd(
@@ -39,6 +40,7 @@ class ScenarioGameStateRepository @Inject constructor(
         availableCards = availableCards,
         activeMonsters = activeMonsters,
         magicChargeMap = magicCharges,
-        scenarioNumber = scenarioNumber
+        scenarioNumber = scenarioNumber,
+        level = level
     )
 }

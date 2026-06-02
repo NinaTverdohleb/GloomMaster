@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -21,8 +20,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.rumpilstilstkin.gloomhavenhelper.R
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterStatType
-import com.rumpilstilstkin.gloomhavenhelper.screens.models.MonsterItem
-import com.rumpilstilstkin.gloomhavenhelper.screens.models.MonsterUnit
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.scenario.MonsterItem
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.scenario.MonsterUnit
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomCard
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
 import kotlinx.collections.immutable.persistentListOf

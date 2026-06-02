@@ -1,18 +1,25 @@
 package com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play
 
 import androidx.lifecycle.DefaultLifecycleObserver
-import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.scenario.ScenarioBattleState
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario.ClearCurrentActiveScenarioUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario.CompleteScenarioUseCase
-import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario.GetMonsterStatsForLevelUseCase
+import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario.play.AddMonsterToBattleUseCase
+import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario.play.AddMonsterUnitsUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario.play.GetScenarioInfoUseCase
+import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario.play.NextRoundUseCase
+import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario.play.RemoveMonsterUseCase
+import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario.play.RemoveUnitUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario.play.SaveScenarioStateUseCase
+import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario.play.ToggleMagicChargeUseCase
+import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario.play.ToggleUnitEffectUseCase
+import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario.play.UpdateUnitLevelUseCase
+import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario.play.UpdateUnitLifeUseCase
 import com.rumpilstilstkin.gloomhavenhelper.navigation.GlHelperScreens
 import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEvent
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.state.ScenarioActions
-import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.state.ScenarioLogicState
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.state.ScenarioStateMapper
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.state.ScenarioStateUi
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -41,24 +48,35 @@ import kotlinx.coroutines.withContext
 class ScenarioViewModel @Inject constructor(
     private val getScenarioInfoUseCase: GetScenarioInfoUseCase,
     private val completeScenarioUseCase: CompleteScenarioUseCase,
-    private val getMonsterStatsForLevelUseCase: GetMonsterStatsForLevelUseCase,
     private val saveScenarioStateUseCase: SaveScenarioStateUseCase,
     private val clearCurrentActiveScenarioUseCase: ClearCurrentActiveScenarioUseCase,
+    private val addMonsterToBattleUseCase: AddMonsterToBattleUseCase,
+    private val addMonsterUnitsUseCase: AddMonsterUnitsUseCase,
+    private val nextRoundUseCase: NextRoundUseCase,
+    private val removeMonsterUseCase: RemoveMonsterUseCase,
+    private val removeUnitUseCase: RemoveUnitUseCase,
+    private val toggleMagicChargeUseCase: ToggleMagicChargeUseCase,
+    private val toggleUnitEffectUseCase: ToggleUnitEffectUseCase,
+    private val updateUnitLevelUseCase: UpdateUnitLevelUseCase,
+    private val updateUnitLifeUseCase: UpdateUnitLifeUseCase
 ) : ViewModel(), DefaultLifecycleObserver {
     private val _navigationEvents = MutableSharedFlow<GlHelperEvent>()
     val navigationEvents = _navigationEvents.asSharedFlow()
 
-    private val logicState = MutableStateFlow<ScenarioLogicState?>(null)
+    private val logicState = MutableStateFlow<ScenarioBattleState?>(null)
     val uiState: StateFlow<ScenarioStateUi> = logicState
         .filterNotNull()
-        .map { it.toUIState() }
+        .debounce(200)
+        .map {
+            it.toUIState()
+        }
         .stateIn(
             scope = viewModelScope,
-            started = SharingStarted.WhileSubscribed(5000),
+            started = SharingStarted.WhileSubscribed(500),
             initialValue = ScenarioStateUi()
         )
 
-    override fun onResume(owner: LifecycleOwner) {
+    init {
         loadScenario()
         logicState
             .filterNotNull()
@@ -76,9 +94,7 @@ class ScenarioViewModel @Inject constructor(
     private fun loadScenario() {
         viewModelScope.launch {
             getScenarioInfoUseCase().onSuccess { battleInfo ->
-                logicState.update {
-                    ScenarioLogicState.restore(battleInfo)
-                }
+                logicState.update { battleInfo }
             }
         }
     }
@@ -87,45 +103,49 @@ class ScenarioViewModel @Inject constructor(
         viewModelScope.launch {
             when (action) {
                 is ScenarioActions.AddMonster -> updateState {
-                    it.addMonster(action.monsterSlugs)
+                    addMonsterToBattleUseCase(it, action.monsterSlugs)
                 }
 
-                is ScenarioActions.RemoveMonster -> updateState { it.removeMonster(action.monsterSlug) }
+                is ScenarioActions.RemoveMonster -> updateState { removeMonsterUseCase(it, action.monsterSlug) }
                 is ScenarioActions.AddUnits -> updateState {
-                    it.addUnits(
+                    addMonsterUnitsUseCase(
+                        state = it,
                         numbers = action.numbers,
-                        monsterSlug = action.monsterSlug,
-                        isSpecial = action.isElite
+                        slug = action.monsterSlug,
+                        isElite = action.isElite
                     )
                 }
 
                 is ScenarioActions.RemoveUnit -> updateState {
-                    it.removeUnit(
+                    removeUnitUseCase(
+                        state = it,
                         number = action.number,
-                        monsterSlug = action.monsterSlug
+                        slug = action.monsterSlug
                     )
                 }
 
                 is ScenarioActions.UpdateUnitLife -> updateState {
-                    it.updateUnitLife(
+                    updateUnitLifeUseCase(
+                        state = it,
                         number = action.unitNumber,
-                        monsterSlug = action.monsterSlug,
-                        newValue = action.newValue
+                        slug = action.monsterSlug,
+                        newLife = action.newValue
                     )
                 }
 
-                is ScenarioActions.NextRound -> updateState { it.nextRound() }
+                is ScenarioActions.NextRound -> updateState { nextRoundUseCase(it) }
                 is ScenarioActions.SwitchUnitEffect -> updateState {
-                    it.addEffect(
+                    toggleUnitEffectUseCase(
+                        state = it,
                         number = action.unitNumber,
-                        monsterSlug = action.monsterSlug,
+                        slug = action.monsterSlug,
                         effect = action.effect
                     )
                 }
 
                 is ScenarioActions.CompleteScenario -> {
                     viewModelScope.async {
-                        val number = logicState.value?.scenarioInfo?.scenarioNumber
+                        val number = logicState.value?.scenarioNumber
                         if (number != null) {
                             completeScenarioUseCase(number)
                         } else {
@@ -135,18 +155,20 @@ class ScenarioViewModel @Inject constructor(
                     _navigationEvents.emit(GlHelperEvent.Back)
                 }
 
-                is ScenarioActions.UpdateMagic -> updateState { it.updateMagic(action.magic) }
+                is ScenarioActions.UpdateMagic -> updateState {
+                    toggleMagicChargeUseCase(
+                        state = it,
+                        magic = action.magic
+                    )
+                }
 
                 is ScenarioActions.UpdateUnitLevel -> updateState {
-                    val newStats = getMonsterStatsForLevelUseCase(
-                        action.monsterSlug,
-                        action.level,
-                        action.isElite
-                    )
-                    it.updateUnitStats(
-                        monsterSlug = action.monsterSlug,
-                        number = action.unitNumber,
-                        stats = newStats
+                    updateUnitLevelUseCase(
+                        state = it,
+                        slug = action.monsterSlug,
+                        level = action.level,
+                        isElite = action.isElite,
+                        number = action.unitNumber
                     )
                 }
 
@@ -160,7 +182,7 @@ class ScenarioViewModel @Inject constructor(
     }
 
     private suspend fun updateState(
-        update: suspend (ScenarioLogicState) -> ScenarioLogicState
+        update: suspend (ScenarioBattleState) -> ScenarioBattleState
     ) {
         val state = logicState.value ?: return
         withContext(Dispatchers.Default) {

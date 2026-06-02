@@ -5,6 +5,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class ScenarioGameState(
+    val level: Int,
     val scenarioNumber: Int?,
     val monsterSlugs: List<String>,
     val round: Int,
@@ -39,5 +40,6 @@ data class ScenarioGameStateMonsterUnit(
     val level: Int,
     val isElite: Boolean,
     val effects: List<MonsterStatType>,
-    val isNew: Boolean = false
+    val isNew: Boolean = false,
+    val maxLife: Int = 0
 )

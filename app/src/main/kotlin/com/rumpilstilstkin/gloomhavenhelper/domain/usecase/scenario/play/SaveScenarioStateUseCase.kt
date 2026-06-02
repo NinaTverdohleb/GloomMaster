@@ -2,7 +2,6 @@ package com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario.play
 
 import com.rumpilstilstkin.gloomhavenhelper.data.ScenarioGameStateRepository
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.ScenarioGameState
-import com.rumpilstilstkin.gloomhavenhelper.domain.entity.scenario.ScenarioBattleState
 import javax.inject.Inject
 
 class SaveScenarioStateUseCase @Inject constructor(

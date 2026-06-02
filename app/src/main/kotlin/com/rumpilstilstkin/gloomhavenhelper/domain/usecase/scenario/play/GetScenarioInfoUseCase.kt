@@ -1,10 +1,9 @@
 package com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario.play
 
+import android.util.Log
 import com.rumpilstilstkin.gloomhavenhelper.data.LevelInfoRepository
 import com.rumpilstilstkin.gloomhavenhelper.data.LocaleRepository
-import com.rumpilstilstkin.gloomhavenhelper.domain.entity.ScenarioBattleInfo
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.scenario.ScenarioBattleState
-import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario.RestoreScenarioStateUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.team.GetCurrentTeamUseCase
 import com.rumpilstilstkin.gloomhavenhelper.utils.toResult
 import kotlinx.coroutines.Dispatchers
@@ -18,7 +17,7 @@ class GetScenarioInfoUseCase @Inject constructor(
     private val restoreScenarioStateUseCase: RestoreScenarioStateUseCase,
     private val localeRepository: LocaleRepository,
 ) {
-    suspend operator fun invoke(): Result<ScenarioBattleInfo> = withContext(Dispatchers.Default) {
+    suspend operator fun invoke(): Result<ScenarioBattleState> = withContext(Dispatchers.Default) {
         getCurrentTeamUseCase().first().let { team ->
             if (team != null) {
                 val levelInfo = levelInfoRepository.getLevelInfo(team.level).getOrNull()

@@ -32,14 +32,13 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.rumpilstilstkin.gloomhavenhelper.R
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.Magic
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterStatType
-import com.rumpilstilstkin.gloomhavenhelper.screens.models.MonsterItem
-import com.rumpilstilstkin.gloomhavenhelper.screens.models.MonsterUnit
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.scenario.MonsterItem
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.scenario.MonsterUnit
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.components.AddMonsterCard
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.components.RegularMonsterCard
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.components.ScenarioHeader
-import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.state.MagicUi
-import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.state.MagicValue
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.state.ScenarioStateUi
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomToolbarStatus
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
@@ -58,7 +57,7 @@ internal fun ScenarioScreen(
     switchUnitEffect: (unitNumber: Int, monsterSlug: String, effect: MonsterStatType) -> Unit,
     nextRound: () -> Unit,
     addMonsterUnit: (unitNumbers: List<Int>, monsterSlug: String, isElite: Boolean) -> Unit,
-    clickMagic: (magic: MagicUi) -> Unit,
+    clickMagic: (magic: Magic) -> Unit,
     changeUnitLevel: (monsterSlug: String, unit: MonsterUnit, level: Int) -> Unit,
 ) = Scaffold(
     topBar = {
@@ -212,12 +211,12 @@ private fun ScenarioScreenPreview() {
                     MonsterItem.fixture()
                 ),
                 magicChargeList = persistentMapOf(
-                    MagicUi.FIRE to MagicValue(0),
-                    MagicUi.FROST to MagicValue(2),
-                    MagicUi.AIR to MagicValue(0),
-                    MagicUi.EARTH to MagicValue(2),
-                    MagicUi.SUN to MagicValue(1),
-                    MagicUi.MOON to MagicValue(2),
+                    Magic.FIRE to 0,
+                    Magic.FROST to 2,
+                    Magic.AIR to 0,
+                    Magic.EARTH to 2,
+                    Magic.SUN to 1,
+                    Magic.MOON to 2,
                 ),
                 availableEffects = MonsterStatType.mainEffectsPack,
             ),

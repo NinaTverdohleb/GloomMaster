@@ -14,5 +14,6 @@ data class ScenarioGameStateBd(
     val round: Int = 0,
     val availableCards: List<AvailableCard>,
     val activeMonsters: List<ScenarioGameStateMonsterItem>,
-    val magicChargeMap: List<ScenarioGameStateMagic>
+    val magicChargeMap: List<ScenarioGameStateMagic>,
+    val level: Int
 )

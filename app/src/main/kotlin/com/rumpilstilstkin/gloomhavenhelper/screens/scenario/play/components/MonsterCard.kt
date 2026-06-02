@@ -35,10 +35,12 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.state.MonsterAbilityCardUi
-import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.state.MonsterActionUi
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.IconCode.Companion.toIconCode
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterCard
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterCardAction
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.state.sampleDeck
 import com.rumpilstilstkin.gloomhavenhelper.ui.icons.GameIcon
+import com.rumpilstilstkin.gloomhavenhelper.ui.icons.GameIcon.Companion.toGameIcon
 import com.rumpilstilstkin.gloomhavenhelper.ui.icons.text.TextWithImagesByCode
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
 
@@ -63,7 +65,7 @@ val HexagonShape = GenericShape { size, _ ->
 @Composable
 fun MonsterCardView(
     monsterName: String,
-    card: MonsterAbilityCardUi,
+    card: MonsterCard,
     modifier: Modifier = Modifier
 ) {
     val cardShape = RoundedCornerShape(12.dp)
@@ -119,14 +121,14 @@ fun MonsterCardView(
 
 @Composable
 fun ActionMonsterEffect(
-    item: MonsterActionUi,
+    item: MonsterCardAction,
     fontSize: TextUnit = 18.sp
 ) {
     Row(
         verticalAlignment = Alignment.CenterVertically
     ) {
-        if (item.startEffect != null) {
-            ActionEffectImage(item.startEffect)
+        item.startEffect?.toIconCode()?.toGameIcon()?.let {
+            ActionEffectImage(it)
             Spacer(
                 Modifier.width(16.dp)
             )
@@ -151,11 +153,11 @@ fun ActionMonsterEffect(
             }
         }
 
-        if (item.endEffect != null) {
+        item.endEffect?.toIconCode()?.toGameIcon()?.let {
             Spacer(
                 Modifier.width(16.dp)
             )
-            ActionEffectImage(item.endEffect)
+            ActionEffectImage(it)
         }
     }
 }
