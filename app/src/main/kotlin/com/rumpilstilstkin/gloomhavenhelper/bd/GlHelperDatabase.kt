@@ -101,7 +101,7 @@ import com.rumpilstilstkin.gloomhavenhelper.bd.typeconverters.StringListTypeConv
         MonsterTextStatsBd::class,
         MonsterAbilityCardTranslationBd::class
     ],
-    version = 4
+    version = 5
 )
 abstract class GlHelperDatabase : RoomDatabase() {
     abstract fun characterDao(): CharacterDao
@@ -130,8 +130,8 @@ fun createGlHelperDatabase(
         GlHelperDatabase::class.java,
         DATABASE_NAME
     )
+        .fallbackToDestructiveMigrationFrom(false, 1, 2, 3)
         .addMigrations(*ALL_MIGRATIONS)
-        .fallbackToDestructiveMigrationFrom(false, 3, 4)
         .build()
 
 

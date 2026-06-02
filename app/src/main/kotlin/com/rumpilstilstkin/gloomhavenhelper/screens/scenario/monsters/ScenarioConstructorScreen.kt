@@ -33,12 +33,13 @@ import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomToolbarTitle
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomVariantCard
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
 import kotlinx.collections.immutable.persistentListOf
+import kotlinx.collections.immutable.persistentMapOf
 
 @Composable
 internal fun ScenarioConstructorScreen(
     state: ScenarioConstructorStateUi,
     back: () -> Unit,
-    toggleMonster: (String) -> Unit,
+    toggleMonster: (MonsterNameUi) -> Unit,
     startScenario: () -> Unit,
 ) {
     Scaffold(
@@ -76,7 +77,7 @@ internal fun ScenarioConstructorScreen(
                             }
                             items(state.selectedMonsters) { monster ->
                                 MonsterSelectCard(
-                                    monster = monster,
+                                    monster = monster.name,
                                     isSelected = true,
                                     onClick = { toggleMonster(monster) }
                                 )
@@ -94,7 +95,7 @@ internal fun ScenarioConstructorScreen(
 
                         items(state.availableMonsters) { monster ->
                             MonsterSelectCard(
-                                monster = monster,
+                                monster = monster.name,
                                 isSelected = false,
                                 onClick = { toggleMonster(monster) }
                             )
@@ -172,10 +173,13 @@ private fun ScenarioConstructorScreenPreview() {
         ScenarioConstructorScreen(
             state = ScenarioConstructorStateUi.Content(
                 availableMonsters = persistentListOf(
-                    "Bandit Archer",
-                    "Living Spirit",
+                    MonsterNameUi("1", "Bandit Archer"),
+                    MonsterNameUi("2", "Living Spirit"),
                 ),
-                selectedMonsters = persistentListOf("Living Bones", "Living Corpse"),
+                selectedMonsters = persistentListOf(
+                    MonsterNameUi("1", "Bandit Archer"),
+                    MonsterNameUi("2", "Living Spirit"),
+                ),
             ),
             back = {},
             toggleMonster = {},

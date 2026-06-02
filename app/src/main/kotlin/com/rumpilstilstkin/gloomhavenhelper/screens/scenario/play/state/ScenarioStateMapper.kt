@@ -1,26 +1,25 @@
 package com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.state
 
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.AvailableCard
-import com.rumpilstilstkin.gloomhavenhelper.domain.entity.ScenarioBattleInfo
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.ScenarioGameState
-import com.rumpilstilstkin.gloomhavenhelper.domain.entity.ScenarioGameStateMagic
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.ScenarioGameStateMonsterItem
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.ScenarioGameStateMonsterUnit
-import com.rumpilstilstkin.gloomhavenhelper.screens.models.MonsterItem
-import com.rumpilstilstkin.gloomhavenhelper.screens.models.MonsterUnit
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.scenario.ScenarioBattleState
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.scenario.MonsterItem
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.scenario.MonsterUnit
 import kotlinx.collections.immutable.toImmutableList
 import kotlinx.collections.immutable.toImmutableMap
 
 object ScenarioStateMapper {
 
-    fun toUiState(state: ScenarioLogicState): ScenarioStateUi {
+    fun toUiState(state: ScenarioBattleState): ScenarioStateUi {
         val existingSlugs = state.activeMonsters.map { it.slug }.toSet()
         return ScenarioStateUi(
-            name = state.scenarioInfo.name,
-            exp = state.scenarioInfo.exp,
-            gold = state.scenarioInfo.golds,
-            trapDamage = state.scenarioInfo.trapDamage,
-            level = state.scenarioInfo.monsterLevel,
+            name = state.name,
+            exp = state.exp,
+            gold = state.golds,
+            trapDamage = state.trapDamage,
+            level = state.monsterLevel,
             round = state.round,
             monsters = state.activeMonsters.map { monster ->
                 monster.copy(
@@ -30,8 +29,7 @@ object ScenarioStateMapper {
                     ).toImmutableList()
                 )
             }.sortedBy { it.currentCard?.initiative ?: 0 }.toImmutableList(),
-            showMonsterDialog = state.showMonsterDialog,
-            monstersForAdd = state.scenarioInfo.monsters
+            monstersForAdd = state.monsters
                 .filter { it.slug !in existingSlugs }
                 .map {
                     MonsterItem(
@@ -43,60 +41,16 @@ object ScenarioStateMapper {
                     )
                 }
                 .toImmutableList(),
-            magicChargeList = state.magicState.toMap().toImmutableMap(),
-            showUnitLevelDialog = state.showUnitLevelDialog,
+            magicChargeList = state.magicState.charges.toImmutableMap(),
             availableEffects = state.availableEffects
         )
     }
 
-    fun restore(battleInfo: ScenarioBattleInfo): ScenarioLogicState =
-        ScenarioLogicState(
-            scenarioInfo = battleInfo,
-            cardDeck = CardDeckState.create(battleInfo.availableCards),
-            activeMonsters = battleInfo.activeMonsters.map { item ->
-                val monster = battleInfo.monsters.first { it.slug == item.slug }
-                MonsterItem(
-                    slug = item.slug,
-                    name = monster.name,
-                    currentCard = item.currentCard?.let { currentCard ->
-                        battleInfo.monsters
-                            .flatMap { it.cards }
-                            .firstOrNull { card ->
-                                card.cardId == currentCard.cardId && card.deckName == currentCard.deck
-                            }
-                            ?.toUi()
-                    },
-                    isFly = monster.isFly,
-                    isBoss = monster.isBoss,
-                    units = item.units.map { stateUnit ->
-                        MonsterUnit.create(
-                            monster = monster,
-                            number = stateUnit.number,
-                            isElite = stateUnit.isElite,
-                            currentLife = stateUnit.currentLife,
-                            effects = stateUnit.effects.map {it}.toImmutableList()
-                        )
-                    }.toImmutableList(),
-                    deck = monster.deckName
-                )
-            },
-            round = battleInfo.round,
-            showMonsterDialog = false,
-            showUnitLevelDialog = false,
-            magicState = MagicState.restore(battleInfo.magicCharges),
-            availableEffects = battleInfo.availableEffects
-        )
-
-    fun stateForSave(state: ScenarioLogicState) =
+    fun stateForSave(state: ScenarioBattleState) =
         ScenarioGameState(
-            monsterSlugs = state.scenarioInfo.monsters.map { it.slug },
+            monsterSlugs = state.monsters.map { it.slug },
             round = state.round,
-            availableCards = state.cardDeck.getCards().map {
-                AvailableCard(
-                    deck = it.deckName,
-                    cardId = it.cardId
-                )
-            },
+            availableCards = state.deck.toAvailableCards(),
             activeMonsters = state.activeMonsters.map { monsterItem ->
                 ScenarioGameStateMonsterItem(
                     slug = monsterItem.slug,
@@ -112,17 +66,14 @@ object ScenarioStateMapper {
                             currentLife = unit.currentLife,
                             level = unit.level,
                             isElite = unit.isSpecial,
-                            effects = unit.effects
+                            effects = unit.effects,
+                            maxLife = unit.maxLife
                         )
                     },
                 )
             },
-            magicCharges = state.magicState.toList().map { (name, value) ->
-                ScenarioGameStateMagic(
-                    name = name,
-                    value = value
-                )
-            },
-            scenarioNumber = state.scenarioInfo.scenarioNumber
+            magicCharges = state.magicState.toSaveState(),
+            scenarioNumber = state.scenarioNumber,
+            level = state.generalLevel
         )
 }

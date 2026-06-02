@@ -48,8 +48,63 @@ interface MonsterDao {
         defaultLocale: String
     ): MonsterWithNameBd
 
-    @Query("SELECT * FROM MonsterBd WHERE pack IN (:packs)")
-    suspend fun getMonstersByPacks(packs: List<String>): List<MonsterBd>
+
+    @Query("""
+      SELECT g.*, COALESCE(t1.name, t2.name, g.slug) AS name
+      FROM MonsterBd g
+      LEFT JOIN MonsterTranslationsBd t1 ON g.slug = t1.slug AND t1.locale = :targetLocale
+      LEFT JOIN MonsterTranslationsBd t2 ON g.slug = t2.slug AND t2.locale = :defaultLocale
+      WHERE g.slug IN (:slugs)
+  """)
+    suspend fun getMonstersBySlugs(slugs: List<String>, targetLocale: String, defaultLocale: String): List<MonsterWithNameBd>
+
+    @Query("SELECT * FROM MonsterStatsBd WHERE monsterSlug IN (:slugs) AND scenarioLevel = :level")
+    suspend fun getStatsForMonsters(slugs: List<String>, level: Int): List<MonsterStatsBd>
+
+    @Query("""
+      SELECT * FROM MonsterTextStatsBd AS t
+      WHERE t.monsterSlug IN (:slugs) AND t.scenarioLevel = :level
+        AND (t.locale = :targetLocale
+             OR (t.locale = :defaultLocale
+                 AND NOT EXISTS (
+                     SELECT 1 FROM MonsterTextStatsBd
+                     WHERE monsterSlug = t.monsterSlug AND scenarioLevel = t.scenarioLevel
+                       AND isElite = t.isElite AND locale = :targetLocale
+                 )))
+  """)
+    suspend fun getTextStatsForMonsters(slugs: List<String>, level: Int, targetLocale: String, defaultLocale: String): List<MonsterTextStatsBd>
+
+    @Query("SELECT * FROM MonsterAbilityCardBd WHERE deckName IN (:deckNames)")
+    suspend fun getCardsByDeckNames(deckNames: List<String>): List<MonsterAbilityCardBd>
+
+    @Query("""
+      SELECT * FROM MonsterAbilityCardTranslationBd AS t
+      WHERE t.deckName IN (:decks)
+        AND (t.locale = :targetLocale
+             OR (t.locale = :defaultLocale
+                 AND NOT EXISTS (
+                     SELECT 1 FROM MonsterAbilityCardTranslationBd
+                     WHERE deckName = t.deckName AND cardId = t.cardId AND locale = :targetLocale
+                 )))
+  """)
+    suspend fun getActionCardsByDecks(decks: List<String>, targetLocale: String, defaultLocale: String): List<MonsterAbilityCardTranslationBd>
+
+    @Query(
+        """
+            SELECT 
+                g.*, 
+                COALESCE(t1.name, t2.name, g.slug) AS name
+            FROM MonsterBd g
+            LEFT JOIN MonsterTranslationsBd t1 ON g.slug = t1.slug AND t1.locale = :targetLocale
+            LEFT JOIN MonsterTranslationsBd t2 ON g.slug = t2.slug AND t2.locale = :defaultLocale
+            WHERE g.pack IN (:packs)
+         """
+    )
+    suspend fun getMonstersByPacks(
+        packs: List<String>,
+        targetLocale: String,
+        defaultLocale: String
+    ): List<MonsterWithNameBd>
 
     @Insert
     suspend fun insertMonster(monster: MonsterBd): Long

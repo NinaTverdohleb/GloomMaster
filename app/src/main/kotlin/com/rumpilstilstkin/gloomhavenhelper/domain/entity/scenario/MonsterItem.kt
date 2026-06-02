@@ -1,24 +1,22 @@
-package com.rumpilstilstkin.gloomhavenhelper.screens.models
+package com.rumpilstilstkin.gloomhavenhelper.domain.entity.scenario
 
 import androidx.compose.runtime.Immutable
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.Monster
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterAction
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterCard
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterStatType
-import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.state.MonsterAbilityCardUi
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.toImmutableList
-import kotlinx.serialization.Serializable
 import kotlin.String
 
-@Serializable
 @Immutable
 data class MonsterItem(
     val slug: String,
     val name: String,
     val isFly: Boolean,
     val deck: String,
-    val currentCard: MonsterAbilityCardUi? = null,
+    val currentCard: MonsterCard? = null,
     val units: ImmutableList<MonsterUnit> = persistentListOf(),
     val isBoss: Boolean = false,
 ) {
@@ -40,13 +38,11 @@ data class MonsterItem(
     }
 }
 
-@Serializable
-@Immutable
 data class MonsterUnit(
     val number: Int,
     val currentLife: Int,
     val maxLife: Int,
-    val stats: ImmutableList<EffectItem>,
+    val stats: ImmutableList<MonsterAction>,
     val isSpecial: Boolean,
     val effects: ImmutableList<MonsterStatType> = persistentListOf(),
     val immunity: ImmutableList<MonsterStatType> = persistentListOf(),
@@ -68,7 +64,7 @@ data class MonsterUnit(
                 number = number,
                 maxLife = maxLife,
                 currentLife = currentLife ?: maxLife,
-                stats = stats.map { EffectItem.fromCardAction(it) }.toImmutableList(),
+                stats = stats.toImmutableList(),
                 isSpecial = isElite,
                 level = monster.level,
                 effects = effects,
@@ -77,22 +73,6 @@ data class MonsterUnit(
                     .map { it }
                     .toImmutableList(),
                 isNew = isNew
-            )
-        }
-
-        fun createBoss(
-            monster: Monster,
-            gamersCount: Int
-        ): MonsterUnit {
-            val maxLife = if (monster.lifeMultiple) monster.life * gamersCount else monster.life
-            return MonsterUnit(
-                number = 1,
-                maxLife = maxLife,
-                currentLife = maxLife,
-                stats = monster.stats.map { EffectItem.fromCardAction(it) }.toImmutableList(),
-                isSpecial = false,
-                level = monster.level,
-                immunity = monster.immunity.map { it }.toImmutableList()
             )
         }
 
@@ -105,55 +85,23 @@ data class MonsterUnit(
             maxLife = 10,
             level = 1,
             stats = persistentListOf(
-                EffectItem.Action(
-                    type = ActionUi.MOVE,
+               MonsterAction.Action(
+                    statType = MonsterStatType.MOVE,
                     modifier = "3"
                 ),
-                EffectItem.Action(
-                    type = ActionUi.ATTACK,
+               MonsterAction.Action(
+                    statType = MonsterStatType.ATTACK,
                     modifier = "4"
                 ),
-                EffectItem.Action(
-                    type = ActionUi.SHIELD,
+               MonsterAction.Action(
+                   statType = MonsterStatType.SHIELD,
                     modifier = "2"
                 ),
-                EffectItem.Action(
-                    type = ActionUi.POISON,
+               MonsterAction.Action(
+                    statType = MonsterStatType.POISON,
                     modifier = ""
                 ),
             )
         )
-    }
-}
-
-sealed interface EffectItem {
-    val subLines: ImmutableList<EffectItem>?
-
-    data class Action(
-        val type: ActionUi,
-        val modifier: String,
-        override val subLines: ImmutableList<EffectItem>? = null
-    ) : EffectItem
-
-    data class Text(
-        val content: String,
-        override val subLines: ImmutableList<EffectItem>? = null
-    ) : EffectItem
-
-    companion object {
-        fun fromCardAction(action: MonsterAction): EffectItem = when (action) {
-            is MonsterAction.Action -> Action(
-                type = ActionUi.fromMonsterStatType(action.statType),
-                modifier = action.modifier,
-                subLines = action.subAction?.let { action -> action.map { fromCardAction(it) } }
-                    ?.toImmutableList()
-            )
-
-            is MonsterAction.Text -> Text(
-                content = action.content,
-                subLines = action.subAction?.let { action -> action.map { fromCardAction(it) } }
-                    ?.toImmutableList()
-            )
-        }
     }
 }

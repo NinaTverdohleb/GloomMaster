@@ -12,11 +12,11 @@ import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.Magic
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterStatType
 import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEventHelper
-import com.rumpilstilstkin.gloomhavenhelper.screens.models.MonsterUnit
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.scenario.MonsterUnit
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.components.MonsterListDialog
-import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.state.MagicUi
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.state.ScenarioActions
 
 @Composable
@@ -86,7 +86,7 @@ fun ScenarioRoute(
         )
     }
     val nextRound = { viewModel.onAction(ScenarioActions.NextRound) }
-    val clickMagic = { magic: MagicUi ->
+    val clickMagic = { magic: Magic ->
         viewModel.onAction(ScenarioActions.UpdateMagic(magic))
     }
     val changeUnitLevel = { monsterSlug: String, unit: MonsterUnit, level: Int ->
@@ -145,6 +145,7 @@ fun ScenarioRoute(
             },
             onDismiss = { showMonsterDialog = false },
             addNewMonsters = {
+                showMonsterDialog = false
                 viewModel.onAction(ScenarioActions.AddNewMonsters)
             }
         )

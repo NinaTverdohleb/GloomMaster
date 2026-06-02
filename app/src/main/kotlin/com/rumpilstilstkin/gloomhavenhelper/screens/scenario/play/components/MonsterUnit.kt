@@ -37,9 +37,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.rumpilstilstkin.gloomhavenhelper.R
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterAction
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterStatType
-import com.rumpilstilstkin.gloomhavenhelper.screens.models.EffectItem
-import com.rumpilstilstkin.gloomhavenhelper.screens.models.MonsterUnit
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.scenario.MonsterUnit
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomSize
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.NumberPickerProgress
 import com.rumpilstilstkin.gloomhavenhelper.ui.icons.GameIcon.Companion.toGameIcon
@@ -180,15 +180,16 @@ fun MonsterUnitCard(
                 horizontalArrangement = Arrangement.SpaceAround,
             ) {
                 unit.stats.forEach { stat ->
-                    if (stat is EffectItem.Action) {
+                    if (stat is MonsterAction.Action) {
                         Row(
                             verticalAlignment = Alignment.CenterVertically,
                         ) {
+                            val icon = stat.statType.toGameIcon()
                             Icon(
                                 modifier = Modifier.size(28.dp),
-                                painter = painterResource(id = stat.type.icon.imageRes),
+                                painter = painterResource(id = icon.imageRes),
                                 contentDescription = null,
-                                tint = stat.type.icon.color ?: Color.White
+                                tint = icon.color ?: Color.White
                             )
                             Spacer(modifier = Modifier.width(8.dp))
                             Text(
@@ -202,7 +203,7 @@ fun MonsterUnitCard(
             }
         }
 
-        val texts = unit.stats.filterIsInstance<EffectItem.Text>()
+        val texts = unit.stats.filterIsInstance<MonsterAction.Text>()
         if (texts.isNotEmpty()) {
             Spacer(
                 modifier.height(16.dp)

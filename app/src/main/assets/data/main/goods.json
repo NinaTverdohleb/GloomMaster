@@ -4,7 +4,7 @@
   {"number": 3, "type": "Body", "image": "item_3.webp", "cost": 10, "pack": "MAIN", "count": 2},
   {"number": 4, "type": "Body", "image": "item_4.webp", "cost": 20, "pack": "MAIN", "count": 2},
   {"number": 5, "type": "Body", "image": "item_5.webp", "cost": 20, "pack": "MAIN", "count": 2},
-  {"number": 6, "type": "Head", "image": "item_6.webp", "cost": 30, "pack": "MAIN", "count": 1},
+  {"number": 6, "type": "Head", "image": "item_6.webp", "cost": 30, "pack": "MAIN", "count": 2},
   {"number": 7, "type": "Head", "image": "item_7.webp", "cost": 10, "pack": "MAIN", "count": 2},
   {"number": 8, "type": "Arm", "image": "item_8.webp", "cost": 20, "pack": "MAIN", "count": 2},
   {"number": 9, "type": "DoubleArm", "image": "item_9.webp", "cost": 30, "pack": "MAIN", "count": 2},

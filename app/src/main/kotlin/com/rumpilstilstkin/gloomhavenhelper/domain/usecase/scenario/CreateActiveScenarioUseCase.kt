@@ -32,6 +32,7 @@ class CreateActiveScenarioUseCase @Inject constructor(
                     round = 0,
                     availableCards = monstersCard.distinct(),
                     activeMonsters = emptyList(),
+                    level = team.level,
                     magicCharges = listOf(
                         ScenarioGameStateMagic(
                             name = Magic.FIRE.name,

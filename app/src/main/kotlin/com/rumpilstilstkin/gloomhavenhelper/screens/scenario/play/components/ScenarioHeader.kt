@@ -24,8 +24,9 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.state.MagicUi
-import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.state.MagicValue
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.Magic
+import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.state.getChargeImage
+import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.state.toIcon
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
 
 @Composable
@@ -34,10 +35,10 @@ internal fun ScenarioHeader(
     exp: Int,
     gold: Int,
     trapDamage: Int,
-    magics: Map<MagicUi, MagicValue>,
+    magics: Map<Magic, Int>,
     title: String,
     modifier: Modifier = Modifier,
-    clickMagic: (magic: MagicUi) -> Unit,
+    clickMagic: (magic: Magic) -> Unit,
 ) = Column(
     modifier = modifier.padding(horizontal = 16.dp, vertical = 8.dp)
 ) {
@@ -82,7 +83,8 @@ internal fun ScenarioHeader(
                 onClick = { clickMagic(magic) },
                 modifier = Modifier.size(52.dp),
             ) {
-                magics[magic]?.getChargeImage()?.let { image ->
+                val charge =getChargeImage(magics[magic])
+                charge?.let { image ->
                     Icon(
                         painter = painterResource(id = image),
                         contentDescription = null,
@@ -91,13 +93,13 @@ internal fun ScenarioHeader(
                         tint = MaterialTheme.colorScheme.primary
                     )
                 }
-
+                val icon = magic.toIcon()
                 Icon(
-                    painter = painterResource(id = magic.icon.imageRes),
-                    contentDescription = stringResource(magic.icon.titleRes),
+                    painter = painterResource(id = icon.imageRes),
+                    contentDescription = stringResource(icon.titleRes),
                     modifier = modifier
                         .size(32.dp),
-                    tint = magic.icon.color?: Color.White
+                    tint = icon.color?: Color.White
                 )
             }
         }
@@ -114,12 +116,12 @@ private fun ScenarioHeaderPreview() {
             gold = 100,
             trapDamage = 3,
             magics = mapOf(
-                MagicUi.FIRE to MagicValue(0),
-                MagicUi.FROST to MagicValue(2),
-                MagicUi.AIR to MagicValue(0),
-                MagicUi.EARTH to MagicValue(2),
-                MagicUi.SUN to MagicValue(1),
-                MagicUi.MOON to MagicValue(2),
+                Magic.FIRE to 0,
+                Magic.FROST to 2,
+                Magic.AIR to 0,
+                Magic.EARTH to 2,
+                Magic.SUN to 1,
+                Magic.MOON to 2,
             ),
             title = "Black Barrow",
             clickMagic = {}

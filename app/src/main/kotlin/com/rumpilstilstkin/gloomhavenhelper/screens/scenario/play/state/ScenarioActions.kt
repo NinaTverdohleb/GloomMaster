@@ -1,5 +1,6 @@
 package com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.state
 
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.Magic
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterStatType
 
 sealed interface ScenarioActions {
@@ -17,7 +18,7 @@ sealed interface ScenarioActions {
     data class SwitchUnitEffect(val effect: MonsterStatType, val monsterSlug: String, val unitNumber: Int) :
         ScenarioActions
 
-    data class UpdateMagic(val magic: MagicUi) : ScenarioActions
+    data class UpdateMagic(val magic: Magic) : ScenarioActions
     data class UpdateUnitLevel(
         val monsterSlug: String,
         val unitNumber: Int,
