@@ -14,7 +14,7 @@ class AddMonsterUnitsUseCase @Inject constructor() {
         numbers: List<Int>,
         isElite: Boolean,
     ): ScenarioBattleState {
-        val monster = state.monsters.first { it.slug == slug }
+        val monster = state.monsters.getValue(slug)
         val newUnits =
             numbers.map { number ->
                 MonsterUnit.create(monster, number, isElite)

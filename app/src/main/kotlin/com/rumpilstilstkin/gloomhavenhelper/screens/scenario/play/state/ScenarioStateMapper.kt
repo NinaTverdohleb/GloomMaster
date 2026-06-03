@@ -35,14 +35,14 @@ object ScenarioStateMapper {
                     .toImmutableList(),
             monstersForAdd =
                 state.monsters
-                    .filter { it.slug !in existingSlugs }
-                    .map {
+                    .filterKeys { it !in existingSlugs }
+                    .map { (_, monster) ->
                         MonsterItem(
-                            slug = it.slug,
-                            name = it.name,
-                            isFly = it.isFly,
+                            slug = monster.slug,
+                            name = monster.name,
+                            isFly = monster.isFly,
                             currentCard = null,
-                            deck = it.deckName,
+                            deck = monster.deckName,
                         )
                     }.toImmutableList(),
             magicChargeList = state.magicState.charges.toImmutableMap(),
@@ -52,7 +52,7 @@ object ScenarioStateMapper {
 
     fun stateForSave(state: ScenarioBattleState) =
         ScenarioGameState(
-            monsterSlugs = state.monsters.map { it.slug },
+            monsterSlugs = state.monsters.keys.toList(),
             round = state.round,
             availableCards = state.deck.toAvailableCards(),
             activeMonsters =

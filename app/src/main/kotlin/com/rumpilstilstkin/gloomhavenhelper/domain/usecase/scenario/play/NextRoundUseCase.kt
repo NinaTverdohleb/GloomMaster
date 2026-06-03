@@ -12,7 +12,7 @@ class NextRoundUseCase @Inject constructor() {
         var newDeck = state.deck
         val newActive =
             state.activeMonsters.map { active ->
-                val monster = state.monsterBySlug.getValue(active.slug)
+                val monster = state.monsters.getValue(active.slug)
                 val draw = newDeck.drawCard(monster.deckName)
                 newDeck = draw.newState
                 active.withCardAndClearedIsNew(draw.card)

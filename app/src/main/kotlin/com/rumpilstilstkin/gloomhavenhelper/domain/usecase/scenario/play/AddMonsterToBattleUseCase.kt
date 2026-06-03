@@ -17,7 +17,7 @@ class AddMonsterToBattleUseCase @Inject constructor() {
 
         val freshMonsters =
             slugs.map { slug ->
-                val monster = state.monsterBySlug.getValue(slug)
+                val monster = state.monsters.getValue(slug)
                 val units =
                     if (monster.isBoss) {
                         listOf(createBossUnit(monster, state.gamersCount))
@@ -40,7 +40,7 @@ class AddMonsterToBattleUseCase @Inject constructor() {
             var newDeck = state.deck
             val withCards =
                 freshMonsters.map { active ->
-                    val monster = state.monsterBySlug.getValue(active.slug)
+                    val monster = state.monsters.getValue(active.slug)
                     val draw = newDeck.drawCard(monster.deckName, CardPicker.Random)
                     newDeck = draw.newState
                     active.copy(currentCard = draw.card)

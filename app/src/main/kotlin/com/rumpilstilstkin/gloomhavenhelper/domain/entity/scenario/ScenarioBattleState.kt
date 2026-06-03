@@ -9,7 +9,7 @@ data class ScenarioBattleState(
     val generalLevel: Int,
     val scenarioNumber: Int? = null,
     val name: String,
-    val monsters: List<Monster>,
+    val monsters: Map<String, Monster>,
     val golds: Int,
     val exp: Int,
     val trapDamage: Int,
@@ -21,9 +21,6 @@ data class ScenarioBattleState(
     val magicState: MagicChargeState = MagicChargeState.initial(),
     val availableEffects: Set<MonsterStatType>,
 ) {
-    val monsterBySlug: Map<String, Monster> by lazy(LazyThreadSafetyMode.NONE) {
-        monsters.associateBy { it.slug }
-    }
 
     inline fun updateUnit(
         slug: String,
@@ -45,6 +42,11 @@ data class ScenarioBattleState(
                     active.copy(units = newUnits.toImmutableList())
                 },
             )
+
+        buildString { }
+
         return copy(activeMonsters = newActive.toImmutableList())
     }
 }
+
+
