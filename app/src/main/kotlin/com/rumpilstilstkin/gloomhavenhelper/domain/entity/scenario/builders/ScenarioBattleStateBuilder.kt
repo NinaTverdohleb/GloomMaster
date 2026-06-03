@@ -25,7 +25,7 @@ class ScenarioBattleStateBuilder {
     private var gamersCount: Int = 0
     private var monsterLevel: Int = 0
     private var deck: MonsterDeckState = MonsterDeckState.create(emptyList())
-    private var activeMonsters: ActiveMonstersBuilder = ActiveMonstersBuilder()
+    private var activeMonsterBuilder: ActiveMonstersBuilder = ActiveMonstersBuilder()
     private var round: Int = 0
     private var magicState: MagicChargeState = MagicChargeState.initial()
     private var availableEffects: Set<MonsterStatType> = emptySet()
@@ -59,7 +59,7 @@ class ScenarioBattleStateBuilder {
         }
 
     fun activeMonsters(body: ActiveMonstersBuilder.() -> Unit) {
-        activeMonsters { body() }
+        activeMonsterBuilder.body()
     }
 
     fun availableEffects(packs: List<PackType>) =
@@ -86,7 +86,7 @@ class ScenarioBattleStateBuilder {
             gamersCount = gamersCount,
             monsterLevel = monsterLevel,
             deck = deck,
-            activeMonsters = activeMonsters.build(gamersCount),
+            activeMonsters = activeMonsterBuilder.build(gamersCount),
             round = round,
             magicState = magicState,
             availableEffects = availableEffects,
