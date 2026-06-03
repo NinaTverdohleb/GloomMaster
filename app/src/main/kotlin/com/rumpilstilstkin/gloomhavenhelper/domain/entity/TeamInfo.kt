@@ -97,6 +97,10 @@ data class ShortTeamInfo(
         fun fixture(
             teamId: Int = 1,
             teamName: String = "Name",
+            reputation: Int = 10,
+            prosperity: Int = 20,
+            packs: List<PackType> = listOf(PackType.MAIN),
+            difficultyLevel: DifficultyLevel = DifficultyLevel.NORMAL
         ) = ShortTeamInfo(
             teamId = teamId,
             name = teamName,
@@ -104,12 +108,12 @@ data class ShortTeamInfo(
                 Achievement.fixture("Achievement 1"),
                 Achievement.fixture("Achievement 2")
             ),
-            reputation = 10,
-            prosperity = 20,
-            packs = listOf(PackType.MAIN),
+            reputation = reputation,
+            prosperity = prosperity,
+            packs = packs,
             aliveCharacterIds = listOf(1, 2, 3),
             churchValue = 100,
-            difficultyLevel = DifficultyLevel.NORMAL,
+            difficultyLevel = difficultyLevel,
             countRetiredCharacters = 0,
         )
     }
