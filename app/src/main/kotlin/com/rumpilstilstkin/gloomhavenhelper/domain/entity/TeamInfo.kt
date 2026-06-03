@@ -66,7 +66,10 @@ data class ShortTeamInfoWithTranslations(
         ) = ShortTeamInfoWithTranslations(
             teamId = teamId,
             name = teamName,
-            achievements = listOf(AchievementWithName.fixture("Achievement 1"), AchievementWithName.fixture("Achievement 2")),
+            achievements = listOf(
+                AchievementWithName.fixture("Achievement 1"),
+                AchievementWithName.fixture("Achievement 2")
+            ),
             reputation = 10,
             prosperity = 20,
             packs = listOf(PackType.MAIN),
@@ -97,7 +100,10 @@ data class ShortTeamInfo(
         ) = ShortTeamInfo(
             teamId = teamId,
             name = teamName,
-            achievements = listOf(Achievement.fixture("Achievement 1"), Achievement.fixture("Achievement 2")),
+            achievements = listOf(
+                Achievement.fixture("Achievement 1"),
+                Achievement.fixture("Achievement 2")
+            ),
             reputation = 10,
             prosperity = 20,
             packs = listOf(PackType.MAIN),
@@ -114,4 +120,18 @@ data class TeamInfoForSave(
     val characters: List<CharacterForSave> = emptyList(),
     val packs: List<PackType>,
     val difficultyLevel: DifficultyLevel = DifficultyLevel.NORMAL,
-)
+) {
+    companion object {
+        fun fixture(
+            name: String = "TEEEEEEM",
+            characters: List<CharacterForSave> = emptyList(),
+            packs: List<PackType> = listOf(PackType.MAIN),
+            difficultyLevel: DifficultyLevel = DifficultyLevel.NORMAL,
+        ) = TeamInfoForSave(
+            name = name,
+            characters = characters,
+            packs = packs,
+            difficultyLevel = difficultyLevel,
+        )
+    }
+}
