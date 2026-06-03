@@ -16,14 +16,11 @@ class ActiveMonstersBuilder {
     private var lastLevel: Int = 0
     private var newLevel: Int = 0
 
-    fun scenarioMonsters(monsters: Map<String, Monster>) =
-        apply { this.scenarioMonsters = monsters }
+    fun scenarioMonsters(monsters: Map<String, Monster>) = apply { this.scenarioMonsters = monsters }
 
-    fun activeMonsters(monsters: List<ScenarioGameStateMonsterItem>) =
-        apply { this.activeMonsters = monsters }
+    fun activeMonsters(monsters: List<ScenarioGameStateMonsterItem>) = apply { this.activeMonsters = monsters }
 
-    fun cards(cards: Map<Pair<String, Int>, MonsterCard>) =
-        apply { this.cards = cards }
+    fun cards(cards: Map<Pair<String, Int>, MonsterCard>) = apply { this.cards = cards }
 
     fun levels(levels: Pair<Int, Int>) =
         apply {
@@ -35,10 +32,8 @@ class ActiveMonstersBuilder {
         this.getMonster = getMonster
     }
 
-    suspend fun build(
-        gamersCount: Int,
-    ): List<MonsterItem> {
-        return activeMonsters.map { item ->
+    suspend fun build(gamersCount: Int): List<MonsterItem> =
+        activeMonsters.map { item ->
             val monster = scenarioMonsters.getValue(item.slug)
             MonsterItem(
                 slug = item.slug,
@@ -57,13 +52,12 @@ class ActiveMonstersBuilder {
                                 lastLevel = lastLevel,
                                 newLevel = newLevel,
                                 gamersCount = gamersCount,
-                                getMonster = getMonster
+                                getMonster = getMonster,
                             )
                         }.toImmutableList(),
                 deck = monster.deckName,
             )
         }
-    }
 
     private suspend inline fun ScenarioGameStateMonsterUnit.createUnit(
         monster: Monster,
@@ -85,15 +79,16 @@ class ActiveMonstersBuilder {
 
     private fun ScenarioGameStateMonsterUnit.restore(
         monster: Monster,
-        gamersCount: Int
+        gamersCount: Int,
     ): MonsterUnit {
-        val maxMonsterLife = if (isElite) {
-            monster.eliteLife
-        } else if (monster.lifeMultiple) {
-            monster.life.times(gamersCount)
-        } else {
-            monster.life
-        }
+        val maxMonsterLife =
+            if (isElite) {
+                monster.eliteLife
+            } else if (monster.lifeMultiple) {
+                monster.life.times(gamersCount)
+            } else {
+                monster.life
+            }
         val newCurrentLife = maxMonsterLife - maxOf(maxLife - currentLife, 0)
         val stats = if (isElite) monster.eliteStats else monster.stats
         return MonsterUnit(

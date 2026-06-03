@@ -26,7 +26,8 @@ class RestoreScenarioStateUseCase @Inject constructor(
                     scenarioRepository.getScenario(gameState.scenarioNumber, locale).scenarioName
                 } ?: ""
             val monsterBySlug =
-                monsterRepository.getMonstersBySlugs(gameState.monsterSlugs, team.level, locale)
+                monsterRepository
+                    .getMonstersBySlugs(gameState.monsterSlugs, team.level, locale)
                     .associateBy { it.slug }
 
             val cardByKey =

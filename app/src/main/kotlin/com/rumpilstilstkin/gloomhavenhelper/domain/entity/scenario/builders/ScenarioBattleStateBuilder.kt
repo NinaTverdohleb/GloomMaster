@@ -11,9 +11,8 @@ import com.rumpilstilstkin.gloomhavenhelper.domain.entity.scenario.MagicChargeSt
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.scenario.MonsterDeckState
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.scenario.ScenarioBattleState
 
-suspend inline fun buildScenarioBattleState(builderAction: ScenarioBattleStateBuilder.() -> Unit): ScenarioBattleState {
-    return ScenarioBattleStateBuilder().apply(builderAction).build()
-}
+suspend inline fun buildScenarioBattleState(builderAction: ScenarioBattleStateBuilder.() -> Unit): ScenarioBattleState =
+    ScenarioBattleStateBuilder().apply(builderAction).build()
 
 class ScenarioBattleStateBuilder {
     private var generalLevel: Int = 0
@@ -40,36 +39,43 @@ class ScenarioBattleStateBuilder {
     }
 
     fun scenarioNumber(scenarioNumber: Int?) = apply { this.scenarioNumber = scenarioNumber }
-    fun name(name: String) = apply { this.name = name }
-    fun monsters(monsters: Map<String, Monster>) = apply { this.monsters = monsters }
-    fun gamersCount(gamersCount: Int) = apply { this.gamersCount = gamersCount }
-    fun cards(cards: List<MonsterCard>) = apply { this.deck = MonsterDeckState.create(cards) }
-    fun round(round: Int) = apply { this.round = round }
-    fun magicState(magicState: List<ScenarioGameStateMagic>) = apply {
-        this.magicState = MagicChargeState.restore(
-            magicState.associate { state -> Magic.valueOf(state.name) to state.value }
-        )
-    }
 
-    fun activeMonsters(
-        body: ActiveMonstersBuilder.() -> Unit
-    ) {
+    fun name(name: String) = apply { this.name = name }
+
+    fun monsters(monsters: Map<String, Monster>) = apply { this.monsters = monsters }
+
+    fun gamersCount(gamersCount: Int) = apply { this.gamersCount = gamersCount }
+
+    fun cards(cards: List<MonsterCard>) = apply { this.deck = MonsterDeckState.create(cards) }
+
+    fun round(round: Int) = apply { this.round = round }
+
+    fun magicState(magicState: List<ScenarioGameStateMagic>) =
+        apply {
+            this.magicState =
+                MagicChargeState.restore(
+                    magicState.associate { state -> Magic.valueOf(state.name) to state.value },
+                )
+        }
+
+    fun activeMonsters(body: ActiveMonstersBuilder.() -> Unit) {
         activeMonsters { body() }
     }
 
     fun availableEffects(packs: List<PackType>) =
         apply {
-            this.availableEffects = packs
-                .flatMapTo(mutableSetOf()) { pack ->
-                    when (pack) {
-                        PackType.MAIN -> MonsterStatType.mainEffectsPack
-                        PackType.FORGOTTEN_CIRCLES -> MonsterStatType.fcEffectsPack
-                    }
-                }.toSet()
+            this.availableEffects =
+                packs
+                    .flatMapTo(mutableSetOf()) { pack ->
+                        when (pack) {
+                            PackType.MAIN -> MonsterStatType.mainEffectsPack
+                            PackType.FORGOTTEN_CIRCLES -> MonsterStatType.fcEffectsPack
+                        }
+                    }.toSet()
         }
 
-    suspend fun build(): ScenarioBattleState {
-        return ScenarioBattleState(
+    suspend fun build(): ScenarioBattleState =
+        ScenarioBattleState(
             generalLevel = generalLevel,
             scenarioNumber = scenarioNumber,
             name = name,
@@ -83,7 +89,6 @@ class ScenarioBattleStateBuilder {
             activeMonsters = activeMonsters.build(gamersCount),
             round = round,
             magicState = magicState,
-            availableEffects = availableEffects
+            availableEffects = availableEffects,
         )
-    }
 }

@@ -18,12 +18,13 @@ data class GameLevelInfoBd(
             goldCount: Int = 30,
             trapDamage: Int = 2,
             experience: Int = 4,
-        ): GameLevelInfoBd = GameLevelInfoBd(
-            level = level,
-            monsterLevel = monsterLevel,
-            goldCount = goldCount,
-            trapDamage = trapDamage,
-            experience = experience,
-        )
+        ): GameLevelInfoBd =
+            GameLevelInfoBd(
+                level = level,
+                monsterLevel = monsterLevel,
+                goldCount = goldCount,
+                trapDamage = trapDamage,
+                experience = experience,
+            )
     }
 }
