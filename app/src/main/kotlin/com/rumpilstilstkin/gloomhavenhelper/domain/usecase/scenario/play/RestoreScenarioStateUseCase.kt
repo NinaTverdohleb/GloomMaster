@@ -20,58 +20,34 @@ class RestoreScenarioStateUseCase @Inject constructor(
         locale: String,
     ): ScenarioBattleState {
         val state = scenarioGameStateRepository.get()
-        return state?.let { gameState ->
-            val scenarioName =
-                gameState.scenarioNumber?.let {
-                    scenarioRepository.getScenario(gameState.scenarioNumber, locale).scenarioName
-                } ?: ""
-            val monsterBySlug =
-                monsterRepository
-                    .getMonstersBySlugs(gameState.monsterSlugs, team.level, locale)
-                    .associateBy { it.slug }
+        return buildScenarioBattleState {
+            levelInfo?.let { levelInfo(it) }
+            team(team)
 
-            val cardByKey =
-                monsterBySlug
-                    .values
-                    .asSequence()
-                    .flatMap { it.cards.asSequence() }
-                    .associateBy { it.deckName to it.cardId }
-
-            val availableCard =
-                gameState.availableCards
-                    .mapNotNull { (deck, cardId) -> cardByKey[deck to cardId] }
-            buildScenarioBattleState {
-                levelInfo?.let { levelInfo(it) }
+            state?.let { gameState ->
+                val scenarioName =
+                    gameState.scenarioNumber?.let {
+                        scenarioRepository.getScenario(it, locale).scenarioName
+                    } ?: ""
                 name(scenarioName)
-                gamersCount(team.aliveCharacters.size)
-                cards(availableCard)
 
-                round(state.round)
-                magicState(state.magicCharges)
-                scenarioNumber(state.scenarioNumber)
+                val monsterBySlug =
+                    monsterRepository
+                        .getMonstersBySlugs(gameState.monsterSlugs, team.level, locale)
+                        .associateBy { it.slug }
 
-                availableEffects(team.packs)
                 monsters(monsterBySlug)
-                activeMonsters {
-                    scenarioMonsters(monsterBySlug)
-                    activeMonsters(state.activeMonsters)
-                    cards(cardByKey)
-                    levels(state.level to team.level)
-                    additionalMonster { level, slug ->
-                        monsterRepository
-                            .getMonstersBySlugs(
-                                slugs = listOf(slug),
-                                level = level,
-                                locale = locale,
-                            ).firstOrNull()
-                    }
+                gameState(gameState)
+
+                getAdditionalMonster { level, slug ->
+                    monsterRepository
+                        .getMonstersBySlugs(
+                            slugs = listOf(slug),
+                            level = level,
+                            locale = locale,
+                        ).firstOrNull()
                 }
             }
         }
-            ?: buildScenarioBattleState {
-                levelInfo?.let { levelInfo(it) }
-                gamersCount(team.aliveCharacters.size)
-                availableEffects(team.packs)
-            }
     }
 }

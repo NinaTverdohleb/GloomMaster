@@ -3,16 +3,19 @@ package com.rumpilstilstkin.gloomhavenhelper.domain.entity.scenario.builders
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.LevelInfo
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.Magic
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.PackType
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.ScenarioGameState
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.ScenarioGameStateMagic
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.TeamInfo
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.Monster
-import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterCard
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterStatType
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.scenario.MagicChargeState
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.scenario.MonsterDeckState
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.scenario.ScenarioBattleState
 
-suspend inline fun buildScenarioBattleState(builderAction: ScenarioBattleStateBuilder.() -> Unit): ScenarioBattleState =
-    ScenarioBattleStateBuilder().apply(builderAction).build()
+suspend inline fun buildScenarioBattleState(crossinline builderAction: suspend ScenarioBattleStateBuilder.() -> Unit): ScenarioBattleState =
+    ScenarioBattleStateBuilder().apply {
+        builderAction()
+    }.build()
 
 class ScenarioBattleStateBuilder {
     private var generalLevel: Int = 0
@@ -23,34 +26,68 @@ class ScenarioBattleStateBuilder {
     private var exp: Int = 0
     private var trapDamage: Int = 0
     private var gamersCount: Int = 0
-    private var monsterLevel: Int = 0
+    private var newLevel: Int = 0
     private var deck: MonsterDeckState = MonsterDeckState.create(emptyList())
     private var activeMonsterBuilder: ActiveMonstersBuilder = ActiveMonstersBuilder()
     private var round: Int = 0
     private var magicState: MagicChargeState = MagicChargeState.initial()
     private var availableEffects: Set<MonsterStatType> = emptySet()
+    private var getMonster: suspend (level: Int, slug: String) -> Monster? = { _, _ -> null }
 
-    fun levelInfo(level: LevelInfo) {
-        golds = level.goldCount
-        exp = level.experience
-        trapDamage = level.trapDamage
-        monsterLevel = level.monsterLevel
-        generalLevel = level.level
-    }
+    fun levelInfo(level: LevelInfo) =
+        apply {
+            this.golds = level.goldCount
+            this.exp = level.experience
+            this.trapDamage = level.trapDamage
+            this.newLevel = level.monsterLevel
+            this.generalLevel = level.level
+        }
 
-    fun scenarioNumber(scenarioNumber: Int?) = apply { this.scenarioNumber = scenarioNumber }
+    fun team(team: TeamInfo) =
+        apply {
+            this.gamersCount = team.aliveCharacters.size
+            availableEffects(team.packs)
+        }
+
+    fun gameState(state: ScenarioGameState) =
+        apply {
+            this.round = state.round
+            this.scenarioNumber = state.scenarioNumber
+            magicState(state.magicCharges)
+
+            val cardByKey =
+                monsters
+                    .values
+                    .asSequence()
+                    .flatMap { it.cards.asSequence() }
+                    .associateBy { it.deckName to it.cardId }
+
+            this.deck =
+                MonsterDeckState.create(
+                    state.availableCards.mapNotNull { (deck, cardId) -> cardByKey[deck to cardId] },
+                )
+
+            activeMonsterBuilder.apply {
+                activeMonsters(state.activeMonsters)
+                cards(cardByKey)
+                levels(state.level to newLevel)
+            }
+        }
 
     fun name(name: String) = apply { this.name = name }
 
-    fun monsters(monsters: Map<String, Monster>) = apply { this.monsters = monsters }
+    fun monsters(monsters: Map<String, Monster>) =
+        apply {
+            this.monsters = monsters
+            activeMonsterBuilder.scenarioMonsters(monsters)
+        }
 
-    fun gamersCount(gamersCount: Int) = apply { this.gamersCount = gamersCount }
+    fun getAdditionalMonster(getMonster: suspend (level: Int, slug: String) -> Monster?) =
+        apply {
+            this.getMonster = getMonster
+        }
 
-    fun cards(cards: List<MonsterCard>) = apply { this.deck = MonsterDeckState.create(cards) }
-
-    fun round(round: Int) = apply { this.round = round }
-
-    fun magicState(magicState: List<ScenarioGameStateMagic>) =
+    private fun magicState(magicState: List<ScenarioGameStateMagic>) =
         apply {
             this.magicState =
                 MagicChargeState.restore(
@@ -58,11 +95,7 @@ class ScenarioBattleStateBuilder {
                 )
         }
 
-    fun activeMonsters(body: ActiveMonstersBuilder.() -> Unit) {
-        activeMonsterBuilder.body()
-    }
-
-    fun availableEffects(packs: List<PackType>) =
+    private fun availableEffects(packs: List<PackType>) =
         apply {
             this.availableEffects =
                 packs
@@ -84,9 +117,9 @@ class ScenarioBattleStateBuilder {
             exp = exp,
             trapDamage = trapDamage,
             gamersCount = gamersCount,
-            monsterLevel = monsterLevel,
+            monsterLevel = newLevel,
             deck = deck,
-            activeMonsters = activeMonsterBuilder.build(gamersCount),
+            activeMonsters = activeMonsterBuilder.build(gamersCount, getMonster),
             round = round,
             magicState = magicState,
             availableEffects = availableEffects,
