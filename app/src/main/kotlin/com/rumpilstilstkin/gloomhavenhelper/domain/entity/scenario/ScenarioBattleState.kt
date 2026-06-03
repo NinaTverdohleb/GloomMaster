@@ -21,7 +21,6 @@ data class ScenarioBattleState(
     val magicState: MagicChargeState = MagicChargeState.initial(),
     val availableEffects: Set<MonsterStatType>,
 ) {
-
     inline fun updateUnit(
         slug: String,
         number: Int,
@@ -48,5 +47,3 @@ data class ScenarioBattleState(
         return copy(activeMonsters = newActive.toImmutableList())
     }
 }
-
-

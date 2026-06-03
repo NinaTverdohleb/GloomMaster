@@ -66,10 +66,11 @@ data class ShortTeamInfoWithTranslations(
         ) = ShortTeamInfoWithTranslations(
             teamId = teamId,
             name = teamName,
-            achievements = listOf(
-                AchievementWithName.fixture("Achievement 1"),
-                AchievementWithName.fixture("Achievement 2")
-            ),
+            achievements =
+                listOf(
+                    AchievementWithName.fixture("Achievement 1"),
+                    AchievementWithName.fixture("Achievement 2"),
+                ),
             reputation = 10,
             prosperity = 20,
             packs = listOf(PackType.MAIN),
@@ -100,14 +101,15 @@ data class ShortTeamInfo(
             reputation: Int = 10,
             prosperity: Int = 20,
             packs: List<PackType> = listOf(PackType.MAIN),
-            difficultyLevel: DifficultyLevel = DifficultyLevel.NORMAL
+            difficultyLevel: DifficultyLevel = DifficultyLevel.NORMAL,
         ) = ShortTeamInfo(
             teamId = teamId,
             name = teamName,
-            achievements = listOf(
-                Achievement.fixture("Achievement 1"),
-                Achievement.fixture("Achievement 2")
-            ),
+            achievements =
+                listOf(
+                    Achievement.fixture("Achievement 1"),
+                    Achievement.fixture("Achievement 2"),
+                ),
             reputation = reputation,
             prosperity = prosperity,
             packs = packs,
