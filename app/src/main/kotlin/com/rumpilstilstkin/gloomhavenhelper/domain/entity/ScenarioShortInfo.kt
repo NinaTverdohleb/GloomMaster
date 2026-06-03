@@ -6,7 +6,23 @@ data class ScenarioShortInfo(
     val isCompleted: Boolean,
     val pack: PackType,
     val monsters: List<String>,
-)
+){
+    companion object {
+        fun fixture(
+            scenarioNumber: Int = 1,
+            isCompleted: Boolean = false,
+            scenarioRequirements: LogicalCondition = LogicalCondition(""),
+            pack: PackType = PackType.MAIN,
+            monster: List<String> =emptyList()
+        ): ScenarioShortInfo = ScenarioShortInfo(
+            scenarioNumber = scenarioNumber,
+            scenarioRequirements = scenarioRequirements,
+            isCompleted = isCompleted,
+            pack = pack,
+            monsters = monster,
+        )
+    }
+}
 
 data class ScenarioInfoWithName(
     val scenarioNumber: Int,
