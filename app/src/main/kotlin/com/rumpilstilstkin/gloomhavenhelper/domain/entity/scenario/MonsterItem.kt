@@ -48,6 +48,7 @@ data class MonsterUnit(
     val immunity: ImmutableList<MonsterStatType> = persistentListOf(),
     val level: Int,
     val isNew: Boolean = true,
+    val lifeMultiple: Boolean,
 ) {
     companion object {
         fun create(
@@ -55,15 +56,23 @@ data class MonsterUnit(
             number: Int,
             isElite: Boolean,
             currentLife: Int? = null,
+            gamersCount: Int,
             effects: ImmutableList<MonsterStatType> = persistentListOf(),
             isNew: Boolean = true,
         ): MonsterUnit {
-            val maxLife = if (isElite) monster.eliteLife else monster.life
+            val maxMonsterLife =
+                if (isElite) {
+                    monster.eliteLife
+                } else if (monster.lifeMultiple) {
+                    monster.life.times(gamersCount)
+                } else {
+                    monster.life
+                }
             val stats = if (isElite) monster.eliteStats else monster.stats
             return MonsterUnit(
                 number = number,
-                maxLife = maxLife,
-                currentLife = currentLife ?: maxLife,
+                maxLife = maxMonsterLife,
+                currentLife = currentLife ?: maxMonsterLife,
                 stats = stats.toImmutableList(),
                 isSpecial = isElite,
                 level = monster.level,
@@ -74,6 +83,7 @@ data class MonsterUnit(
                         .map { it }
                         .toImmutableList(),
                 isNew = isNew,
+                lifeMultiple = monster.lifeMultiple,
             )
         }
 
@@ -84,6 +94,7 @@ data class MonsterUnit(
                 currentLife = 10,
                 maxLife = 10,
                 level = 1,
+                lifeMultiple = false,
                 stats =
                     persistentListOf(
                         MonsterAction.Action(

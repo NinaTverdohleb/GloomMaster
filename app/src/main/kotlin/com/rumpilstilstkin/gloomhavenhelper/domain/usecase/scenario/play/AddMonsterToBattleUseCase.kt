@@ -66,6 +66,7 @@ class AddMonsterToBattleUseCase @Inject constructor() {
             isSpecial = false,
             level = monster.level,
             immunity = monster.immunity.toImmutableList(),
+            lifeMultiple = monster.lifeMultiple,
         )
     }
 }

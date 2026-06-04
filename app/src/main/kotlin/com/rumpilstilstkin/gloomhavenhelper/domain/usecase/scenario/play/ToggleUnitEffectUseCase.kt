@@ -14,7 +14,7 @@ class ToggleUnitEffectUseCase @Inject constructor() {
     ): ScenarioBattleState =
         state.updateUnit(slug, number) {
             val newEffects =
-                if (effect in it.effects) it.effects - effect else it.effects + effect
-            it.copy(effects = newEffects.toImmutableList())
+                if (effect in effects) effects - effect else effects + effect
+            copy(effects = newEffects.toImmutableList())
         }
 }

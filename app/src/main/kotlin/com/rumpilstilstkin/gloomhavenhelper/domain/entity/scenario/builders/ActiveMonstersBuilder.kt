@@ -18,8 +18,7 @@ class ActiveMonstersBuilder {
 
     fun cards(cards: Map<Pair<String, Int>, MonsterCard>) = apply { this.cards = cards }
 
-    fun levels(levels: Pair<Int, Int>) =
-        apply { this.levels = levels }
+    fun levels(levels: Pair<Int, Int>) = apply { this.levels = levels }
 
     suspend fun build(
         gamersCount: Int,
