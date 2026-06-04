@@ -9,5 +9,5 @@ class UpdateUnitLifeUseCase @Inject constructor() {
         slug: String,
         number: Int,
         newLife: Int,
-    ): ScenarioBattleState = state.updateUnit(slug, number) { it.copy(currentLife = newLife) }
+    ): ScenarioBattleState = state.updateUnit(slug, number) { copy(currentLife = newLife) }
 }

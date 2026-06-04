@@ -17,9 +17,17 @@ class UpdateUnitLevelUseCase @Inject constructor(
         val stats =
             getMonsterStatsForLevelUseCase(monsterSlug = slug, level = level, isElite = isElite)
         return state.updateUnit(slug, number) {
-            it.copy(
-                currentLife = stats.life,
+            val maxMonsterLife =
+                if (lifeMultiple) {
+                    stats.life.times(state.gamersCount)
+                } else {
+                    stats.life
+                }
+            val newCurrentLife = maxMonsterLife - maxOf(maxLife - currentLife, 0)
+            copy(
+                currentLife = newCurrentLife,
                 level = stats.level,
+                maxLife = maxMonsterLife,
             )
         }
     }

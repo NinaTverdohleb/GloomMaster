@@ -17,7 +17,12 @@ class AddMonsterUnitsUseCase @Inject constructor() {
         val monster = state.monsters.getValue(slug)
         val newUnits =
             numbers.map { number ->
-                MonsterUnit.create(monster, number, isElite)
+                MonsterUnit.create(
+                    monster = monster,
+                    number = number,
+                    isElite = isElite,
+                    gamersCount = state.gamersCount,
+                )
             }
         return state.copy(
             activeMonsters =

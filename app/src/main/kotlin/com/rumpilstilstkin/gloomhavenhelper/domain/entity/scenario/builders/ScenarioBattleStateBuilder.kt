@@ -13,9 +13,10 @@ import com.rumpilstilstkin.gloomhavenhelper.domain.entity.scenario.MonsterDeckSt
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.scenario.ScenarioBattleState
 
 suspend inline fun buildScenarioBattleState(crossinline builderAction: suspend ScenarioBattleStateBuilder.() -> Unit): ScenarioBattleState =
-    ScenarioBattleStateBuilder().apply {
-        builderAction()
-    }.build()
+    ScenarioBattleStateBuilder()
+        .apply {
+            builderAction()
+        }.build()
 
 class ScenarioBattleStateBuilder {
     private var generalLevel: Int = 0

@@ -13,15 +13,15 @@ class MonsterUnitBuilder(
     private var newLevel: Int = 0
     private var gamersCount: Int = 1
 
-    fun levels(levels: Pair<Int, Int>) = apply {
-        this.lastLevel = levels.first
-        this.newLevel = levels.second
-    }
+    fun levels(levels: Pair<Int, Int>) =
+        apply {
+            this.lastLevel = levels.first
+            this.newLevel = levels.second
+        }
 
     fun gamersCount(count: Int) = apply { this.gamersCount = count }
 
     suspend fun build(getMonster: suspend (level: Int, slug: String) -> Monster?): MonsterUnit {
-
         val unitMonster =
             if (lastLevel == stateUnit.level) {
                 baseMonster
@@ -52,6 +52,7 @@ class MonsterUnitBuilder(
             effects = stateUnit.effects.toImmutableList(),
             immunity = unitMonster.immunity.toImmutableList(),
             isNew = stateUnit.isNew,
+            lifeMultiple = unitMonster.lifeMultiple,
         )
     }
 }

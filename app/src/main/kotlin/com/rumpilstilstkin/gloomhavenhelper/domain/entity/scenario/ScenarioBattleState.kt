@@ -24,7 +24,7 @@ data class ScenarioBattleState(
     inline fun updateUnit(
         slug: String,
         number: Int,
-        transform: (MonsterUnit) -> MonsterUnit,
+        transform: MonsterUnit.() -> MonsterUnit,
     ): ScenarioBattleState {
         val newActive =
             activeMonsters.mapIf(
@@ -34,7 +34,7 @@ data class ScenarioBattleState(
                         active.units.mapIf(
                             predicate = { unit -> unit.number == number },
                             transform = { unit ->
-                                val transformed = transform(unit)
+                                val transformed = unit.transform()
                                 if (transformed == unit) unit else transformed
                             },
                         )
