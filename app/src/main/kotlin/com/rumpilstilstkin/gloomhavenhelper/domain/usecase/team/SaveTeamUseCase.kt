@@ -17,7 +17,7 @@ class SaveTeamUseCase @Inject constructor(
     private val addGoodsToTeamUseCase: AddGoodsToTeamByNumbersUseCase,
     private val getGoodsForLevelUseCase: GetGoodNumbersForLevelUseCase,
 ) {
-    suspend operator fun invoke(team: TeamInfoForSave): Result<Unit> {
+    suspend operator fun invoke(team: TeamInfoForSave) {
         val teamId = teamRepository.saveTeam(team)
         val startAvaliableClasses =
             listOf(
@@ -32,6 +32,5 @@ class SaveTeamUseCase @Inject constructor(
         scenarioRepository.saveTeamScenario(1, teamId)
         characterClassRepository.addAvailableClasses(teamId, startAvaliableClasses)
         addGoodsToTeamUseCase(teamId, startGoods)
-        return Unit.toResult()
     }
 }

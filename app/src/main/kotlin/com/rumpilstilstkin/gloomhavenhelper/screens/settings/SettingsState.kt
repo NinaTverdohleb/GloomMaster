@@ -2,7 +2,6 @@ package com.rumpilstilstkin.gloomhavenhelper.screens.settings
 
 import androidx.compose.runtime.Immutable
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.ShortTeamInfoUi
-import com.rumpilstilstkin.gloomhavenhelper.screens.teem.edit.TeamEditAction
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.persistentListOf
 

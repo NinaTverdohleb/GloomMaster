@@ -40,7 +40,7 @@ class SearchQuestViewModel @AssistedInject constructor(
             }.stateIn(
                 scope = viewModelScope,
                 initialValue = emptyList(),
-                started = SharingStarted.WhileSubscribed(100),
+                started = SharingStarted.WhileSubscribed(5000),
             )
 
     private val queryState: MutableStateFlow<String> = MutableStateFlow("")
@@ -55,7 +55,7 @@ class SearchQuestViewModel @AssistedInject constructor(
             }.stateIn(
                 scope = viewModelScope,
                 initialValue = SearchQuestState(),
-                started = SharingStarted.WhileSubscribed(100),
+                started = SharingStarted.WhileSubscribed(5000),
             )
 
     private fun PersonalQuestUI.filterResult(search: String): Boolean {

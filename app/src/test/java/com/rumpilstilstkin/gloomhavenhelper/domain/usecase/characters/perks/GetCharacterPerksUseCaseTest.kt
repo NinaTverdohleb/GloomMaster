@@ -23,7 +23,7 @@ class GetCharacterPerksUseCaseTest {
     fun `given current locale when invoked then forwards repo perks flow for character`() = runTest(UnconfinedTestDispatcher()) {
         // Given
         val perks = listOf(Perk(id = 1, text = "alpha"), Perk(id = 2, text = "beta"))
-        every { localeRepository.observeLocaleUnic } returns flowOf("ru")
+        every { localeRepository.observeLocale } returns flowOf("ru")
         every { characterRepository.getCharacterPerksFlow(5, "ru") } returns flowOf(perks)
         val sut = GetCharacterPerksUseCase(characterRepository, localeRepository)
 

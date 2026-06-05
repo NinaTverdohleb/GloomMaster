@@ -36,7 +36,7 @@ class GetCharacterPerksInfoUseCaseTest {
             Perk(id = 2, text = "two"),
             Perk(id = 3, text = "three"),
         )
-        every { localeRepository.observeLocaleUnic } returns flowOf("en")
+        every { localeRepository.observeLocale } returns flowOf("en")
         every { characterRepository.getCharacterByIdFlow(5) } returns flowOf(character)
         every { characterRepository.getCharacterPerksFlow(5, "en") } returns flowOf(acquired)
         coEvery { perksRepository.getPerksForCharacterClass(CharacterClassType.Brute, "en") } returns all
@@ -56,7 +56,7 @@ class GetCharacterPerksInfoUseCaseTest {
     @Test
     fun `given null character when invoked then returns empty info`() = runTest(UnconfinedTestDispatcher()) {
         // Given
-        every { localeRepository.observeLocaleUnic } returns flowOf("en")
+        every { localeRepository.observeLocale } returns flowOf("en")
         every { characterRepository.getCharacterByIdFlow(5) } returns flowOf(null)
         every { characterRepository.getCharacterPerksFlow(5, "en") } returns flowOf(emptyList())
         val sut = GetCharacterPerksInfoUseCase(characterRepository, perksRepository, localeRepository)

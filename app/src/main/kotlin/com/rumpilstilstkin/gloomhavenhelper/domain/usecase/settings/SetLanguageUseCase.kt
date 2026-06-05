@@ -4,7 +4,7 @@ import com.rumpilstilstkin.gloomhavenhelper.data.LocaleRepository
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import javax.inject.Inject
 
-class SetLanguageUseCase@Inject constructor(
+class SetLanguageUseCase @Inject constructor(
     private val localeRepository: LocaleRepository,
 ) {
     @OptIn(ExperimentalCoroutinesApi::class)

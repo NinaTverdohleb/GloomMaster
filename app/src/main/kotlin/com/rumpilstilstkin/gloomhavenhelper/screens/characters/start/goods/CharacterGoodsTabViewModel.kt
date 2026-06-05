@@ -38,7 +38,7 @@ class CharacterGoodsTabViewModel @AssistedInject constructor(
             }.stateIn(
                 scope = viewModelScope,
                 initialValue = emptyList(),
-                started = SharingStarted.WhileSubscribed(100),
+                started = SharingStarted.WhileSubscribed(5000),
             )
 
     fun onAction(action: CharacterItemsTabActions) {

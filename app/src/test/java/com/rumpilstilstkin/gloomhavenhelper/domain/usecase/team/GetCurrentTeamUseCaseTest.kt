@@ -50,7 +50,7 @@ class GetCurrentTeamUseCaseTest {
                     ),
             )
         every { teamRepository.currentTeam } returns flowOf(team)
-        every { localeRepository.observeLocaleUnic } returns flowOf("en")
+        every { localeRepository.observeLocale } returns flowOf("en")
         coEvery { achievementRepository.getAchievementsNameBySlugs(any(), "en") } returns
             mapOf("a1" to "Local A1", "a2" to "Global A2")
         every { characterRepository.getCharacterByTeamId(7) } returns flowOf(emptyList())
@@ -95,7 +95,7 @@ class GetCurrentTeamUseCaseTest {
     fun `given null current team when invoked then emits null`() = runTest(UnconfinedTestDispatcher()) {
         // Given
         every { teamRepository.currentTeam } returns flowOf(null)
-        every { localeRepository.observeLocaleUnic } returns flowOf("en")
+        every { localeRepository.observeLocale } returns flowOf("en")
         val sut =
             GetCurrentTeamUseCase(
                 teamRepository,

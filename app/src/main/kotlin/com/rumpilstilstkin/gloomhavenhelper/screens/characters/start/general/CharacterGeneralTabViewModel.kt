@@ -58,7 +58,7 @@ class CharacterGeneralTabViewModel @AssistedInject constructor(
             }.stateIn(
                 scope = viewModelScope,
                 initialValue = CharacterGeneralTabState.Empty,
-                started = SharingStarted.WhileSubscribed(100),
+                started = SharingStarted.WhileSubscribed(5000),
             )
 
     fun onAction(action: GeneralTabActions) {

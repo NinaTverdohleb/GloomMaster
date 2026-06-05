@@ -25,16 +25,16 @@ class LanguagesListUseCaseTest {
     @Test
     fun `given app locale is en when invoked then the en item is selected and system is not`() = runTest(UnconfinedTestDispatcher()) {
         // Given
-        every { localeRepository.observeLocaleUnic } returns MutableStateFlow("en")
+        every { localeRepository.observeLocale } returns MutableStateFlow("en")
         every { localeRepository.isLanguageDefault } returns false
-        every { localeRepository.avaliableLanguages } returns listOf("en", "ru")
+        every { localeRepository.availableLanguages } returns listOf("en", "ru")
         val sut = LanguagesListUseCase(localeRepository)
 
         // When / Then
         sut().test {
             val (currentLanguage, languages) = awaitItem()
 
-            expectThat(currentLanguage).isEqualTo(nativeName("en"))
+            expectThat(currentLanguage.languageName).isEqualTo(nativeName("en"))
             expectThat(languages).containsExactly(
                 LanguageItem(
                     languageTag = null,
@@ -60,9 +60,9 @@ class LanguagesListUseCaseTest {
     @Test
     fun `given app locale is null when invoked then the system item is selected and no language item is`() = runTest(UnconfinedTestDispatcher()) {
         // Given the user has not overridden the language, observeLocale resolves to the system locale ("en")
-        every { localeRepository.observeLocaleUnic } returns MutableStateFlow("en")
+        every { localeRepository.observeLocale } returns MutableStateFlow("en")
         every { localeRepository.isLanguageDefault } returns true
-        every { localeRepository.avaliableLanguages } returns listOf("en", "ru")
+        every { localeRepository.availableLanguages } returns listOf("en", "ru")
         val sut = LanguagesListUseCase(localeRepository)
 
         // When / Then
@@ -95,22 +95,22 @@ class LanguagesListUseCaseTest {
     fun `given observeLocale changes when collected then a new list with the updated selection is emitted`() = runTest(UnconfinedTestDispatcher()) {
         // Given
         val localeFlow = MutableStateFlow("en")
-        every { localeRepository.observeLocaleUnic } returns localeFlow
+        every { localeRepository.observeLocale } returns localeFlow
         every { localeRepository.isLanguageDefault } returns false
-        every { localeRepository.avaliableLanguages } returns listOf("en", "ru")
+        every { localeRepository.availableLanguages } returns listOf("en", "ru")
         val sut = LanguagesListUseCase(localeRepository)
 
         // When / Then
         sut().test {
             val first = awaitItem()
-            expectThat(first.first).isEqualTo(nativeName("en"))
+            expectThat(first.first.languageName).isEqualTo(nativeName("en"))
             expectThat(first.second.single { it.languageTag == "en" }.selected).isEqualTo(true)
             expectThat(first.second.single { it.languageTag == "ru" }.selected).isEqualTo(false)
 
             localeFlow.value = "ru"
 
             val second = awaitItem()
-            expectThat(second.first).isEqualTo(nativeName("ru"))
+            expectThat(second.first.languageName).isEqualTo(nativeName("ru"))
             expectThat(second.second.single { it.languageTag == "en" }.selected).isEqualTo(false)
             expectThat(second.second.single { it.languageTag == "ru" }.selected).isEqualTo(true)
 
@@ -121,9 +121,9 @@ class LanguagesListUseCaseTest {
     @Test
     fun `given empty available languages when invoked then only the system item is returned`() = runTest(UnconfinedTestDispatcher()) {
         // Given
-        every { localeRepository.observeLocaleUnic } returns MutableStateFlow("en")
+        every { localeRepository.observeLocale } returns MutableStateFlow("en")
         every { localeRepository.isLanguageDefault } returns true
-        every { localeRepository.avaliableLanguages } returns emptyList()
+        every { localeRepository.availableLanguages } returns emptyList()
         val sut = LanguagesListUseCase(localeRepository)
 
         // When / Then

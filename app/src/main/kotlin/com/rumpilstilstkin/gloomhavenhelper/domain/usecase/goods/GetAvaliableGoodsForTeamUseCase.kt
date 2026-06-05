@@ -18,7 +18,7 @@ class GetAvaliableGoodsForTeamUseCase @Inject constructor(
 ) {
     @OptIn(ExperimentalCoroutinesApi::class)
     operator fun invoke(): Flow<List<Good>> =
-        localeRepository.observeLocaleUnic.flatMapLatest { locale ->
+        localeRepository.observeLocale.flatMapLatest { locale ->
             teamRepository.currentTeam
                 .flatMapLatest { team ->
                     team?.let {

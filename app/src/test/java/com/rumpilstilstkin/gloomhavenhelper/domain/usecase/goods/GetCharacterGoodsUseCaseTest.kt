@@ -27,7 +27,7 @@ class GetCharacterGoodsUseCaseTest {
         val goods = listOf(
             Good(id = 1, displayNumber = 1, name = "G1", type = GoodType.Body, cost = 10, image = "", pack = PackType.MAIN),
         )
-        every { localeRepository.observeLocaleUnic } returns flowOf("ru")
+        every { localeRepository.observeLocale } returns flowOf("ru")
         every { goodsRepository.getCharacterGoods(5, "ru") } returns flowOf(goods)
         val sut = GetCharacterGoodsUseCase(goodsRepository, localeRepository)
 

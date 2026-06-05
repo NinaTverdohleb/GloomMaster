@@ -14,7 +14,7 @@ class GetCharacterGoodsUseCase @Inject constructor(
 ) {
     @OptIn(ExperimentalCoroutinesApi::class)
     operator fun invoke(characterId: Int): Flow<List<Good>> =
-        localeRepository.observeLocaleUnic.flatMapLatest { locale ->
+        localeRepository.observeLocale.flatMapLatest { locale ->
             goodsRepository.getCharacterGoods(characterId, locale)
         }
 }
