@@ -1,4 +1,4 @@
-package com.rumpilstilstkin.gloomhavenhelper.screens.teem.edit
+package com.rumpilstilstkin.gloomhavenhelper.screens.settings
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -7,11 +7,12 @@ import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEventHelper
+import kotlinx.collections.immutable.persistentListOf
 
 @Composable
-fun TeamEditRoute(
+fun SettingsRoute(
     navController: NavHostController,
-    viewModel: TeamEditViewModel = hiltViewModel(),
+    viewModel: SettingsViewModel = hiltViewModel(),
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     val navigationEvents by viewModel.navigationEvents.collectAsStateWithLifecycle(initialValue = null)
@@ -25,14 +26,14 @@ fun TeamEditRoute(
         }
     }
 
-    TeamEditScreen(
-        uiState = uiState,
-        onNameChange = { viewModel.onAction(TeamEditAction.ChangeTeamName(it)) },
-        onTogglePack = { viewModel.onAction(TeamEditAction.TogglePack(it)) },
-        back = { viewModel.onAction(TeamEditAction.Back) },
-        showDeleteDialog = { viewModel.onAction(TeamEditAction.ShowDeleteConfirmDialog) },
-        dismissDeleteDialog = { viewModel.onAction(TeamEditAction.DismissDeleteConfirmDialog) },
-        confirmDelete = { viewModel.onAction(TeamEditAction.ConfirmDelete) },
-        onDifficultyChange = { viewModel.onAction(TeamEditAction.ChangeDifficultyLevel(it)) },
+    SettingsScreen(
+        state = uiState,
+        back = { viewModel.onAction(SettingsAction.Back) },
+        share = { viewModel.onAction(SettingsAction.ShareTeam) },
+        settings = { viewModel.onAction(SettingsAction.TeamSetting) },
+        selectTeam = { viewModel.onAction(SettingsAction.SelectTeam(it.teamId)) },
+        showAllTeam = { viewModel.onAction(SettingsAction.ShowAllTeam) },
+        addTeam = { viewModel.onAction(SettingsAction.AddTeam) },
+        changeLanguage = { viewModel.onAction(SettingsAction.ChangeLanguage) },
     )
 }

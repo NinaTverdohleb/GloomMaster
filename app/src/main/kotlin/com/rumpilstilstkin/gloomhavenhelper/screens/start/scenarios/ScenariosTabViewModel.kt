@@ -7,8 +7,8 @@ import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario.CreateActive
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario.DeleteScenarioUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario.GetTeamScenariosUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario.RestoreScenarioUseCase
-import com.rumpilstilstkin.gloomhavenhelper.navigation.GlHelperScreens
-import com.rumpilstilstkin.gloomhavenhelper.navigation.GlHelperScreens.Scenario
+import com.rumpilstilstkin.gloomhavenhelper.navigation.GlHelperScreen
+import com.rumpilstilstkin.gloomhavenhelper.navigation.GlHelperScreen.Scenario
 import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEvent
 import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEvent.Screen
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.toUi
@@ -120,7 +120,7 @@ class ScenariosTabViewModel @Inject constructor(
                 }
 
                 ScenariosTabAction.AddScenario -> {
-                    _navigationEvents.emit(Screen(GlHelperScreens.AddScenarioForTeam))
+                    _navigationEvents.emit(Screen(GlHelperScreen.AddScenarioForTeam))
                 }
 
                 is ScenariosTabAction.DeleteScenario -> {

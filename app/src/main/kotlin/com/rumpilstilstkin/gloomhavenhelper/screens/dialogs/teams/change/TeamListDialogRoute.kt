@@ -1,4 +1,4 @@
-package com.rumpilstilstkin.gloomhavenhelper.screens.teem.edit
+package com.rumpilstilstkin.gloomhavenhelper.screens.dialogs.teams.change
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -9,9 +9,9 @@ import androidx.navigation.NavHostController
 import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEventHelper
 
 @Composable
-fun TeamEditRoute(
+fun TeamListDialogRoute(
     navController: NavHostController,
-    viewModel: TeamEditViewModel = hiltViewModel(),
+    viewModel: TeamListDialogViewModel = hiltViewModel(),
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     val navigationEvents by viewModel.navigationEvents.collectAsStateWithLifecycle(initialValue = null)
@@ -25,14 +25,9 @@ fun TeamEditRoute(
         }
     }
 
-    TeamEditScreen(
-        uiState = uiState,
-        onNameChange = { viewModel.onAction(TeamEditAction.ChangeTeamName(it)) },
-        onTogglePack = { viewModel.onAction(TeamEditAction.TogglePack(it)) },
-        back = { viewModel.onAction(TeamEditAction.Back) },
-        showDeleteDialog = { viewModel.onAction(TeamEditAction.ShowDeleteConfirmDialog) },
-        dismissDeleteDialog = { viewModel.onAction(TeamEditAction.DismissDeleteConfirmDialog) },
-        confirmDelete = { viewModel.onAction(TeamEditAction.ConfirmDelete) },
-        onDifficultyChange = { viewModel.onAction(TeamEditAction.ChangeDifficultyLevel(it)) },
+    TeamListDialog(
+        state = uiState,
+        onDismiss = { viewModel.onAction(TeamListDialogAction.Back) },
+        selectTeam = { viewModel.onAction(TeamListDialogAction.SelectTeam(it)) },
     )
 }

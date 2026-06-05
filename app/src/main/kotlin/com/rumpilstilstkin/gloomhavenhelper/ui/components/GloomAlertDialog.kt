@@ -27,6 +27,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -48,9 +49,8 @@ fun GloomAlertDialog(
     onNegativeRequest: (() -> Unit)? = null,
     onNeutralRequest: (() -> Unit)? = onDismissRequest,
     content: @Composable () -> Unit,
-) = BasicAlertDialog(
-    onDismissRequest = onDismissRequest,
-    modifier =
+) {
+    val dialogModifier =
         modifier
             .clip(RoundedCornerShape(16.dp))
             .background(MaterialTheme.colorScheme.surface)
@@ -58,8 +58,9 @@ fun GloomAlertDialog(
                 1.dp,
                 MaterialTheme.colorScheme.outlineVariant,
                 RoundedCornerShape(16.dp),
-            ).padding(16.dp),
-    content = {
+            ).padding(16.dp)
+
+    val dialogContent = @Composable {
         Column(
             verticalArrangement = Arrangement.spacedBy(16.dp),
         ) {
@@ -145,8 +146,20 @@ fun GloomAlertDialog(
                 }
             }
         }
-    },
-)
+    }
+
+    if (LocalInspectionMode.current) {
+        Box(modifier = dialogModifier) {
+            dialogContent()
+        }
+    } else {
+        BasicAlertDialog(
+            onDismissRequest = onDismissRequest,
+            modifier = dialogModifier,
+            content = dialogContent,
+        )
+    }
+}
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -157,9 +170,8 @@ fun GloomAlertDialogCustomActions(
     onDismissRequest: () -> Unit,
     content: @Composable () -> Unit,
     actions: @Composable () -> Unit,
-) = BasicAlertDialog(
-    onDismissRequest = onDismissRequest,
-    modifier =
+) {
+    val dialogModifier =
         modifier
             .clip(RoundedCornerShape(16.dp))
             .background(MaterialTheme.colorScheme.surface)
@@ -167,8 +179,9 @@ fun GloomAlertDialogCustomActions(
                 1.dp,
                 MaterialTheme.colorScheme.outlineVariant,
                 RoundedCornerShape(16.dp),
-            ).padding(16.dp),
-    content = {
+            ).padding(16.dp)
+
+    val dialogContent = @Composable {
         Column(
             verticalArrangement = Arrangement.spacedBy(16.dp),
         ) {
@@ -196,8 +209,20 @@ fun GloomAlertDialogCustomActions(
             content()
             actions()
         }
-    },
-)
+    }
+
+    if (LocalInspectionMode.current) {
+        Box(modifier = dialogModifier) {
+            dialogContent()
+        }
+    } else {
+        BasicAlertDialog(
+            onDismissRequest = onDismissRequest,
+            modifier = dialogModifier,
+            content = dialogContent,
+        )
+    }
+}
 
 @Preview
 @Composable

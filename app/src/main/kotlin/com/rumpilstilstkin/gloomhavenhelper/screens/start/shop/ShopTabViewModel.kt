@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.goods.GetGoodsForCurrentTeamUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.goods.RemoveGoodFromCurrentTeamUseCase
-import com.rumpilstilstkin.gloomhavenhelper.navigation.GlHelperScreens
+import com.rumpilstilstkin.gloomhavenhelper.navigation.GlHelperScreen
 import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEvent
 import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEvent.Screen
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.toUi
@@ -60,7 +60,7 @@ class ShopTabViewModel @Inject constructor(
         when (action) {
             is ShopTabAction.AddGood -> {
                 viewModelScope.launch {
-                    _navigationEvents.emit(Screen(GlHelperScreens.AddGoodsForTeam))
+                    _navigationEvents.emit(Screen(GlHelperScreen.AddGoodsForTeam))
                 }
             }
 

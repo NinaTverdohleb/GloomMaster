@@ -1,5 +1,9 @@
 package com.rumpilstilstkin.gloomhavenhelper.navigation
 
+import androidx.compose.animation.AnimatedContentTransitionScope
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -9,13 +13,17 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.compose.dialog
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
 import com.rumpilstilstkin.gloomhavenhelper.screens.characters.goods.add.AddGoodsForCharacterScreenRoute
 import com.rumpilstilstkin.gloomhavenhelper.screens.characters.quests.freeselect.SearchQuestScreen
 import com.rumpilstilstkin.gloomhavenhelper.screens.characters.start.CharacterDetailsRoute
+import com.rumpilstilstkin.gloomhavenhelper.screens.dialogs.teams.change.TeamListDialogRoute
+import com.rumpilstilstkin.gloomhavenhelper.screens.dialogs.teams.create.AddTeamDialogRoute
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.monsters.ScenarioConstructorRoute
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.ScenarioRoute
+import com.rumpilstilstkin.gloomhavenhelper.screens.settings.SettingsRoute
 import com.rumpilstilstkin.gloomhavenhelper.screens.start.StartScreenRoute
 import com.rumpilstilstkin.gloomhavenhelper.screens.teem.achievement.global.GlobalAchievementsRoute
 import com.rumpilstilstkin.gloomhavenhelper.screens.teem.achievement.team.TeamAchievementsRoute
@@ -31,71 +39,105 @@ fun GlHelperNavHost(
 ) {
     NavHost(
         navController = navController,
-        startDestination = GlHelperScreens.Start,
+        startDestination = GlHelperScreen.Start,
+        enterTransition = { fadeIn(animationSpec = tween(300)) },
+        exitTransition = { fadeOut(animationSpec = tween(300)) },
+        popEnterTransition = { fadeIn(animationSpec = tween(300)) },
+        popExitTransition = { fadeOut(animationSpec = tween(300)) },
         modifier =
             Modifier
                 .fillMaxSize()
                 .padding(innerPadding),
     ) {
-        composable<GlHelperScreens.Start> {
+        composable<GlHelperScreen.Start> {
             StartScreenRoute(
                 navController = navController,
             )
         }
-        composable<GlHelperScreens.EditCurrentTeam> {
+        composable<GlHelperScreen.EditCurrentTeam> {
             TeamEditRoute(
                 navController = navController,
             )
         }
-        composable<GlHelperScreens.Scenario> {
+        composable<GlHelperScreen.Scenario> {
             ScenarioRoute(
                 navController = navController,
                 widthSizeClass = widthSizeClass,
             )
         }
-        composable<GlHelperScreens.CharacterDetails> {
-            val args = it.toRoute<GlHelperScreens.CharacterDetails>()
+        composable<GlHelperScreen.CharacterDetails> {
+            val args = it.toRoute<GlHelperScreen.CharacterDetails>()
             CharacterDetailsRoute(
                 navController = navController,
                 characterId = args.characterId,
             )
         }
-        composable<GlHelperScreens.AddGoodsForCharacter> {
-            val args = it.toRoute<GlHelperScreens.AddGoodsForCharacter>()
+        composable<GlHelperScreen.AddGoodsForCharacter> {
+            val args = it.toRoute<GlHelperScreen.AddGoodsForCharacter>()
             AddGoodsForCharacterScreenRoute(
                 characterId = args.characterId,
                 navController = navController,
             )
         }
-        composable<GlHelperScreens.SearchPersonalQuest> {
-            val args = it.toRoute<GlHelperScreens.SearchPersonalQuest>()
+        composable<GlHelperScreen.SearchPersonalQuest> {
+            val args = it.toRoute<GlHelperScreen.SearchPersonalQuest>()
             SearchQuestScreen(
                 characterId = args.characterId,
                 navController = navController,
             )
         }
-        composable<GlHelperScreens.AddGoodsForTeam> {
+        composable<GlHelperScreen.AddGoodsForTeam> {
             AddGoodsForTeamScreenRoute(
                 navController = navController,
             )
         }
-        composable<GlHelperScreens.AddScenarioForTeam> {
+        composable<GlHelperScreen.AddScenarioForTeam> {
             AddScenarioForTeamRoute(
                 navController = navController,
             )
         }
-        composable<GlHelperScreens.TeamAchievements> {
+        composable<GlHelperScreen.TeamAchievements> {
             TeamAchievementsRoute(
                 navController = navController,
             )
         }
-        composable<GlHelperScreens.GlobalAchievements> {
+        composable<GlHelperScreen.GlobalAchievements> {
             GlobalAchievementsRoute(
                 navController = navController,
             )
         }
-        composable<GlHelperScreens.ScenarioConstructor> {
+        composable<GlHelperScreen.ScenarioConstructor> {
             ScenarioConstructorRoute(
+                navController = navController,
+            )
+        }
+        dialog<GlHelperDialog.AddTeamDialog> {
+            AddTeamDialogRoute(
+                navController = navController,
+            )
+        }
+
+        dialog<GlHelperDialog.TeamListDialog> {
+            TeamListDialogRoute(
+                navController = navController,
+            )
+        }
+
+        composable<GlHelperScreen.Settings>(
+            enterTransition = {
+                slideIntoContainer(
+                    towards = AnimatedContentTransitionScope.SlideDirection.Left,
+                    animationSpec = tween(400),
+                ) + fadeIn(animationSpec = tween(200))
+            },
+            popExitTransition = {
+                slideOutOfContainer(
+                    towards = AnimatedContentTransitionScope.SlideDirection.Right,
+                    animationSpec = tween(400),
+                ) + fadeOut(animationSpec = tween(200))
+            },
+        ) {
+            SettingsRoute(
                 navController = navController,
             )
         }

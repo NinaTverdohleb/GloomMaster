@@ -5,7 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.goods.DeleteCharacterGoodsUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.goods.GetCharacterGoodsUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.goods.SellGoodCharacterUseCase
-import com.rumpilstilstkin.gloomhavenhelper.navigation.GlHelperScreens
+import com.rumpilstilstkin.gloomhavenhelper.navigation.GlHelperScreen
 import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEvent
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.GoodUi
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.toUi
@@ -62,7 +62,7 @@ class CharacterGoodsTabViewModel @AssistedInject constructor(
                 CharacterItemsTabActions.AddGood -> {
                     _navigationEvents.emit(
                         GlHelperEvent.Screen(
-                            GlHelperScreens.AddGoodsForCharacter(
+                            GlHelperScreen.AddGoodsForCharacter(
                                 characterId = id,
                             ),
                         ),

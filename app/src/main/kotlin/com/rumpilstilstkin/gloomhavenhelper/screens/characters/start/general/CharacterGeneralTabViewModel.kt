@@ -9,8 +9,7 @@ import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.characters.MarksCheck
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.characters.UpdateGoldUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.characters.UpdateNotesUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.characters.quests.QuestTaskUpdateUseCase
-import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.team.DonateUseCase
-import com.rumpilstilstkin.gloomhavenhelper.navigation.GlHelperScreens
+import com.rumpilstilstkin.gloomhavenhelper.navigation.GlHelperScreen
 import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEvent
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.toUI
 import dagger.assisted.Assisted
@@ -88,7 +87,7 @@ class CharacterGeneralTabViewModel @AssistedInject constructor(
                 GeneralTabActions.ChoosePersonalQuest -> {
                     _navigationEvents.emit(
                         GlHelperEvent.Screen(
-                            GlHelperScreens.SearchPersonalQuest(
+                            GlHelperScreen.SearchPersonalQuest(
                                 id,
                             ),
                         ),
