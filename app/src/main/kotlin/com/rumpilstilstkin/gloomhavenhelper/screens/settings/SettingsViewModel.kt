@@ -5,15 +5,10 @@ import android.content.Intent
 import androidx.core.content.FileProvider
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.rumpilstilstkin.gloomhavenhelper.data.LocaleRepository
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.settings.LanguagesListUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.team.ChangeCurrentTeamUseCase
-import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.team.DeleteCurrentTeamUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.team.GetCurrentTeamWithTeamsUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.team.GetShareFileUseCase
-import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.team.SwitchPackForCurrentTeamUseCase
-import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.team.UpdateDifficultyLevelUseCase
-import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.team.UpdateNameForCurrentTeamUseCase
 import com.rumpilstilstkin.gloomhavenhelper.navigation.GlHelperDialog
 import com.rumpilstilstkin.gloomhavenhelper.navigation.GlHelperScreen
 import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEvent
@@ -51,7 +46,7 @@ class SettingsViewModel @Inject constructor(
             languagesListUseCase(),
         ) { (team, teams), (currentLocale, allLocales) ->
             if (team == null) {
-                SettingsStateUi(language = currentLocale)
+                SettingsStateUi(language = currentLocale.languageName)
             } else {
                 SettingsStateUi(
                     team =
@@ -69,7 +64,7 @@ class SettingsViewModel @Inject constructor(
                                     level = it.difficultyLevel,
                                 )
                             }.toImmutableList(),
-                    language = currentLocale,
+                    language = currentLocale.languageName,
                 )
             }
         }.stateIn(
@@ -106,36 +101,34 @@ class SettingsViewModel @Inject constructor(
                 }
 
                 SettingsAction.ShareTeam -> {
-                    viewModelScope.launch {
-                        getShareFileUseCase(File(context.filesDir, "exports"))
-                            .fold(
-                                onSuccess = { file ->
-                                    val contentUri =
-                                        FileProvider.getUriForFile(
-                                            context,
-                                            "${context.packageName}.fileprovider",
-                                            file,
-                                        )
+                    getShareFileUseCase(File(context.filesDir, "exports"))
+                        .fold(
+                            onSuccess = { file ->
+                                val contentUri =
+                                    FileProvider.getUriForFile(
+                                        context,
+                                        "${context.packageName}.fileprovider",
+                                        file,
+                                    )
 
-                                    val shareIntent =
-                                        Intent(Intent.ACTION_SEND).apply {
-                                            type = "application/json"
-                                            putExtra(Intent.EXTRA_STREAM, contentUri)
-                                            addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
-                                            addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                                        }
+                                val shareIntent =
+                                    Intent(Intent.ACTION_SEND).apply {
+                                        type = "application/json"
+                                        putExtra(Intent.EXTRA_STREAM, contentUri)
+                                        addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                                        addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                                    }
 
-                                    val chooser =
-                                        Intent.createChooser(shareIntent, "Share Team Data").apply {
-                                            addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                                        }
-                                    context.startActivity(chooser)
-                                },
-                                onFailure = { _ ->
-                                    _navigationEvents.emit(GlHelperEvent.Message("Oops, something went wrong!"))
-                                },
-                            )
-                    }
+                                val chooser =
+                                    Intent.createChooser(shareIntent, "Share Team Data").apply {
+                                        addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                                    }
+                                context.startActivity(chooser)
+                            },
+                            onFailure = { _ ->
+                                _navigationEvents.emit(GlHelperEvent.Message("Oops, something went wrong!"))
+                            },
+                        )
                 }
             }
         }

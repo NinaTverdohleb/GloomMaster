@@ -32,7 +32,7 @@ class GetAvaliableGoodsForTeamUseCaseTest {
         val team = ShortTeamInfo.fixture(teamId = 5, packs = listOf(PackType.MAIN))
         val all = listOf(good(1), good(2), good(3))
         val owned = listOf(good(2))
-        every { localeRepository.observeLocaleUnic } returns flowOf("en")
+        every { localeRepository.observeLocale } returns flowOf("en")
         every { teamRepository.currentTeam } returns flowOf(team)
         coEvery { goodsRepository.getGoods(setOf(PackType.MAIN), "en") } returns all
         every { goodsRepository.getGoodsForTeam(5, "en") } returns flowOf(owned)
@@ -48,7 +48,7 @@ class GetAvaliableGoodsForTeamUseCaseTest {
     @Test
     fun `given null team when invoked then returns empty list`() = runTest(UnconfinedTestDispatcher()) {
         // Given
-        every { localeRepository.observeLocaleUnic } returns flowOf("en")
+        every { localeRepository.observeLocale } returns flowOf("en")
         every { teamRepository.currentTeam } returns flowOf(null)
         val sut = GetAvaliableGoodsForTeamUseCase(teamRepository, goodsRepository, localeRepository)
 

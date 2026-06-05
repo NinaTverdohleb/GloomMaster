@@ -50,7 +50,7 @@ class CharacterPerksTabViewModel @AssistedInject constructor(
         }.stateIn(
             scope = viewModelScope,
             initialValue = CharacterPerksScreenStateUi(),
-            started = SharingStarted.WhileSubscribed(100),
+            started = SharingStarted.WhileSubscribed(5000),
         )
 
     fun onAction(action: CharacterPerksTabActions) {

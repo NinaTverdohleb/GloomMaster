@@ -20,8 +20,8 @@ import javax.inject.Inject
 @HiltViewModel
 class AddTeamDialogViewModel @Inject constructor(
     @param:ApplicationContext private val context: Context,
-    val saveTeamUseCase: SaveTeamUseCase,
-    val importTeamUseCase: ImportTeamUseCase,
+    private val saveTeamUseCase: SaveTeamUseCase,
+    private val importTeamUseCase: ImportTeamUseCase,
 ) : ViewModel() {
     private val _navigationEvents = MutableSharedFlow<GlHelperEvent>()
     val navigationEvents = _navigationEvents.asSharedFlow()
@@ -35,9 +35,8 @@ class AddTeamDialogViewModel @Inject constructor(
                             action.teamName,
                             packs = listOf(PackType.MAIN),
                         ),
-                    ).onSuccess {
-                        _navigationEvents.emit(GlHelperEvent.Back)
-                    }
+                    )
+                    _navigationEvents.emit(GlHelperEvent.Back)
                 }
 
                 AddTeamDialogAction.Back -> {

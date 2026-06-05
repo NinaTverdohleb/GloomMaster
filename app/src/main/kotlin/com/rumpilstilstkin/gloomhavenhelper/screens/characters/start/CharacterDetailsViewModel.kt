@@ -58,7 +58,7 @@ class CharacterDetailsViewModel @AssistedInject constructor(
         }.stateIn(
             scope = viewModelScope,
             initialValue = CharacterDetailsStateUi(),
-            started = SharingStarted.WhileSubscribed(100),
+            started = SharingStarted.WhileSubscribed(5000),
         )
 
     @AssistedFactory

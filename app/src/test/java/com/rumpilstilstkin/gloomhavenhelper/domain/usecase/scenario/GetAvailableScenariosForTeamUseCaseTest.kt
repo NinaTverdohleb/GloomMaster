@@ -32,7 +32,7 @@ class GetAvailableScenariosForTeamUseCaseTest {
         val team = ShortTeamInfo.fixture(teamId = 7, packs = listOf(PackType.MAIN))
         val all = listOf(scenario(1), scenario(2), scenario(3))
         every { teamRepository.currentTeam } returns flowOf(team)
-        every { localeRepository.observeLocaleUnic } returns flowOf("en")
+        every { localeRepository.observeLocale } returns flowOf("en")
         coEvery { scenarioRepository.getAllScenarios("en", listOf("MAIN")) } returns all
         every { scenarioRepository.getTeamScenariosFlow(7) } returns
             flowOf(listOf(com.rumpilstilstkin.gloomhavenhelper.domain.entity.ScenarioShortInfo.fixture(scenarioNumber = 2)))
@@ -49,7 +49,7 @@ class GetAvailableScenariosForTeamUseCaseTest {
     fun `given null current team when invoked then emits empty list`() = runTest(UnconfinedTestDispatcher()) {
         // Given
         every { teamRepository.currentTeam } returns flowOf(null)
-        every { localeRepository.observeLocaleUnic } returns flowOf("en")
+        every { localeRepository.observeLocale } returns flowOf("en")
         val sut = GetAvailableScenariosForTeamUseCase(teamRepository, scenarioRepository, localeRepository)
 
         // When / Then

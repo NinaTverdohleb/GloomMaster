@@ -72,7 +72,7 @@ class ScenarioViewModel @Inject constructor(
                 ScenarioStateMapper.toUiState(it)
             }.stateIn(
                 scope = viewModelScope,
-                started = SharingStarted.WhileSubscribed(500),
+                started = SharingStarted.WhileSubscribed(5000),
                 initialValue = ScenarioStateUi(),
             )
 

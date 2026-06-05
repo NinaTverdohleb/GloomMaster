@@ -11,5 +11,5 @@ class GetQuestsFlowUseCase @Inject constructor(
     private val localeRepository: LocaleRepository,
 ) {
     @OptIn(ExperimentalCoroutinesApi::class)
-    operator fun invoke() = localeRepository.observeLocaleUnic.mapLatest { locale -> questsRepository.getQuests(locale) }
+    operator fun invoke() = localeRepository.observeLocale.mapLatest { locale -> questsRepository.getQuests(locale) }
 }

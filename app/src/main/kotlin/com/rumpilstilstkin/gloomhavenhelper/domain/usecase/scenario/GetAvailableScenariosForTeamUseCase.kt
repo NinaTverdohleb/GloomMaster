@@ -21,7 +21,7 @@ class GetAvailableScenariosForTeamUseCase @Inject constructor(
     operator fun invoke(): Flow<List<ScenarioInfoWithName>> =
         teamRepository.currentTeam
             .combine(
-                localeRepository.observeLocaleUnic,
+                localeRepository.observeLocale,
             ) { team, locale -> team to locale }
             .flatMapLatest { (team, locale) ->
                 if (team == null) {

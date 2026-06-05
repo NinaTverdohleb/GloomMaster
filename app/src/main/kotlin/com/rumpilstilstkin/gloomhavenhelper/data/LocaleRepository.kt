@@ -4,10 +4,14 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.os.LocaleListCompat
 import com.rumpilstilstkin.gloomhavenhelper.data.datasource.LocaleDatasource
 import com.rumpilstilstkin.gloomhavenhelper.data.datasource.SystemLocaleDatasource
+import com.rumpilstilstkin.gloomhavenhelper.di.ApplicationScope
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.flow.shareIn
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -15,8 +19,9 @@ import javax.inject.Singleton
 class LocaleRepository @Inject constructor(
     private val systemLocaleDataSource: SystemLocaleDatasource,
     private val appLocaleDataSource: LocaleDatasource,
+    @ApplicationScope externalScope: CoroutineScope,
 ) {
-    val observeLocaleUnic: Flow<String> =
+    val observeLocale: Flow<String> =
         appLocaleDataSource
             .observeAppLocale()
             .onEach { locale ->
@@ -29,6 +34,11 @@ class LocaleRepository @Inject constructor(
             }.combine(systemLocaleDataSource.observeSystemLocale()) { appLocale, systemLocale ->
                 appLocale ?: systemLocale
             }.distinctUntilChanged()
+            .shareIn(
+                scope = externalScope,
+                started = SharingStarted.WhileSubscribed(stopTimeoutMillis = 5000),
+                replay = 1,
+            )
 
     fun getCurrentLocale(): String = appLocaleDataSource.locale ?: systemLocaleDataSource.getSystemLocale()
 
@@ -41,7 +51,7 @@ class LocaleRepository @Inject constructor(
             return appLocaleDataSource.locale == null
         }
 
-    val avaliableLanguages = listOf("en", "ru")
+    val availableLanguages = listOf("en", "ru")
 
     companion object {
         const val DEFAULT_LOCALE = "en"

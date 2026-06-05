@@ -31,7 +31,7 @@ class GetCurrentTeamUseCase @Inject constructor(
     operator fun invoke(): Flow<TeamInfo?> =
         combine(
             teamRepository.currentTeam,
-            localeRepository.observeLocaleUnic,
+            localeRepository.observeLocale,
             ::Pair,
         ).flatMapLatest { (team, locale) ->
 

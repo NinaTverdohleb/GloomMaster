@@ -7,14 +7,13 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.mapLatest
 import java.util.Locale
 import javax.inject.Inject
-import kotlin.to
 
 class LanguagesListUseCase @Inject constructor(
     private val localeRepository: LocaleRepository,
 ) {
     @OptIn(ExperimentalCoroutinesApi::class)
-    operator fun invoke(): Flow<Pair<String, List<LanguageItem>>> =
-        localeRepository.observeLocaleUnic.mapLatest { locale ->
+    operator fun invoke(): Flow<Pair<LanguageItem, List<LanguageItem>>> =
+        localeRepository.observeLocale.mapLatest { locale ->
             val currentLocale = Locale.forLanguageTag(locale)
             val selected = if (localeRepository.isLanguageDefault) null else locale
             val list =
@@ -24,7 +23,7 @@ class LanguagesListUseCase @Inject constructor(
                         languageName = "",
                     ),
                 ) +
-                    localeRepository.avaliableLanguages.map { tag ->
+                    localeRepository.availableLanguages.map { tag ->
                         LanguageItem(
                             languageTag = tag,
                             selected = selected == tag,
@@ -34,6 +33,13 @@ class LanguagesListUseCase @Inject constructor(
                                 },
                         )
                     }
-            currentLocale.getDisplayLanguage(currentLocale) to list
+            LanguageItem(
+                languageTag = locale,
+                selected = true,
+                languageName =
+                    currentLocale.let {
+                        it.getDisplayLanguage(it)
+                    },
+            ) to list
         }
 }
