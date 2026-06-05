@@ -1,6 +1,5 @@
 package com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario
 
-import android.util.Log
 import com.rumpilstilstkin.gloomhavenhelper.data.LocaleRepository
 import com.rumpilstilstkin.gloomhavenhelper.data.ScenarioRepository
 import com.rumpilstilstkin.gloomhavenhelper.data.TeamRepository
@@ -22,7 +21,7 @@ class GetAvailableScenariosForTeamUseCase @Inject constructor(
     operator fun invoke(): Flow<List<ScenarioInfoWithName>> =
         teamRepository.currentTeam
             .combine(
-                localeRepository.observeLocale,
+                localeRepository.observeLocaleUnic,
             ) { team, locale -> team to locale }
             .flatMapLatest { (team, locale) ->
                 if (team == null) {

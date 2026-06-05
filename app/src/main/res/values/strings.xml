@@ -168,4 +168,10 @@
     <string name="logical_and"> and </string>
     <string name="logical_or"> or </string>
     <string name="custom_scenario">Custom scenario</string>
+    <string name="system_language">Default</string>
+    <string name="settings_change_team">Change team</string>
+    <string name="settings_show_all_teams">Show all</string>
+    <string name="settings_add_team">Add team</string>
+    <string name="settings_language">Language</string>
+    <string name="settings_disclaimer">Unofficial fan app. Gloomhaven and all associated assets are trademarks of Cephalofair Games.</string>
 </resources>

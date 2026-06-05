@@ -28,7 +28,7 @@ class LocaleRepositoryTest {
         val sut = LocaleRepository(systemDs, appDs)
 
         // When / Then
-        sut.observeLocale.test {
+        sut.observeLocaleUnic.test {
             expectThat(awaitItem()).isEqualTo("ru")
             cancelAndIgnoreRemainingEvents()
         }
@@ -42,7 +42,7 @@ class LocaleRepositoryTest {
         val sut = LocaleRepository(systemDs, appDs)
 
         // When / Then
-        sut.observeLocale.test {
+        sut.observeLocaleUnic.test {
             expectThat(awaitItem()).isEqualTo("ru")
             cancelAndIgnoreRemainingEvents()
         }
@@ -57,7 +57,7 @@ class LocaleRepositoryTest {
         val sut = LocaleRepository(systemDs, appDs)
 
         // When / Then
-        sut.observeLocale.test {
+        sut.observeLocaleUnic.test {
             expectThat(awaitItem()).isEqualTo("en")
             appFlow.value = "ru"
             expectThat(awaitItem()).isEqualTo("ru")
@@ -74,7 +74,7 @@ class LocaleRepositoryTest {
         val sut = LocaleRepository(systemDs, appDs)
 
         // When / Then
-        sut.observeLocale.test {
+        sut.observeLocaleUnic.test {
             expectThat(awaitItem()).isEqualTo("ru")
             systemFlow.value = "ru"
             expectNoEvents()

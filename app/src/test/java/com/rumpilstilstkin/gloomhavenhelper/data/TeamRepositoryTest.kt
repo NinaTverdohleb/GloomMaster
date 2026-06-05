@@ -15,10 +15,10 @@ import com.rumpilstilstkin.gloomhavenhelper.domain.entity.TeamInfoForSave
 import io.mockk.Runs
 import io.mockk.coEvery
 import io.mockk.coVerify
-import io.mockk.coVerifyOrder
 import io.mockk.every
 import io.mockk.just
 import io.mockk.mockk
+import io.mockk.slot
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.flowOf
@@ -102,22 +102,32 @@ class TeamRepositoryTest {
     }
 
     @Test
-    fun `given a new team id when setCurrentTeam then datasource is written, scenario state is deleted, and then the team is reloaded`() = runTest(UnconfinedTestDispatcher()) {
-        // Given
-        every { currentTeamDatasource.currentTeam } returns CurrentTeamDatasource.EMPTY_TEAM
-        every { currentTeamDatasource.currentTeam = any() } just Runs
-        coEvery { teamDao.findById(any()) } returns null
+    fun `given a new team id when setCurrentTeam then datasource is updated, scenario state is cleared, and currentTeam emits the new team`() = runTest(UnconfinedTestDispatcher()) {
+        // Given prefs start empty and become 7 once setCurrentTeam writes them
+        val storedTeamId = slot<Int>()
+        every { currentTeamDatasource.currentTeam } answers {
+            if (storedTeamId.isCaptured) storedTeamId.captured else CurrentTeamDatasource.EMPTY_TEAM
+        }
+        every { currentTeamDatasource.currentTeam = capture(storedTeamId) } just Runs
+        coEvery { teamDao.findById(CurrentTeamDatasource.EMPTY_TEAM) } returns null
+        coEvery { teamDao.findById(7) } returns teamBdFixture(teamId = 7)
+        every { teamDao.getTeamFlow(7) } returns flowOf(teamBdFixture(teamId = 7))
+        every { characterDao.findByTeamIdFlow(7) } returns flowOf(emptyList())
         val sut = newSut(TestScope(UnconfinedTestDispatcher(testScheduler)))
         advanceUntilIdle()
 
         // When
         sut.setCurrentTeam(7)
+        advanceUntilIdle()
 
-        // Then
-        coVerifyOrder {
-            currentTeamDatasource.currentTeam = 7
-            scenarioGameStateRepository.delete()
-            currentTeamDatasource.currentTeam
+        // Then — observable state, not call order
+        expectThat(storedTeamId.captured).isEqualTo(7)
+        coVerify(exactly = 1) { scenarioGameStateRepository.delete() }
+        sut.currentTeam.test {
+            val emitted = awaitItem()
+            expectThat(emitted).isNotNull()
+            expectThat(emitted?.teamId).isEqualTo(7)
+            cancelAndIgnoreRemainingEvents()
         }
     }
 
@@ -182,13 +192,17 @@ class TeamRepositoryTest {
     }
 
     @Test
-    fun `given a team with characters when saveTeam then the team is inserted before characters and setCurrentTeam runs last`() = runTest(UnconfinedTestDispatcher()) {
+    fun `given a team with characters when saveTeam then the new id is returned, each character is persisted with that team id, and prefs point at it`() = runTest(UnconfinedTestDispatcher()) {
         // Given
-        every { currentTeamDatasource.currentTeam } returns CurrentTeamDatasource.EMPTY_TEAM
-        every { currentTeamDatasource.currentTeam = any() } just Runs
+        val storedTeamId = slot<Int>()
+        val insertedCharacters = mutableListOf<CharacterBd>()
+        every { currentTeamDatasource.currentTeam } answers {
+            if (storedTeamId.isCaptured) storedTeamId.captured else CurrentTeamDatasource.EMPTY_TEAM
+        }
+        every { currentTeamDatasource.currentTeam = capture(storedTeamId) } just Runs
         coEvery { teamDao.findById(any()) } returns null
         coEvery { teamDao.insert(any()) } returns 42L
-        coEvery { characterDao.insert(any()) } returns 0L
+        coEvery { characterDao.insert(capture(insertedCharacters)) } returns 0L
         val sut = newSut(TestScope(UnconfinedTestDispatcher(testScheduler)))
         advanceUntilIdle()
 
@@ -205,15 +219,14 @@ class TeamRepositoryTest {
         // When
         val id = sut.saveTeam(source)
 
-        // Then
+        // Then — observable results, not call order
         expectThat(id).isEqualTo(42)
-        coVerifyOrder {
-            teamDao.insert(any())
-            characterDao.insert(any())
-            characterDao.insert(any())
-            currentTeamDatasource.currentTeam = 42
-            scenarioGameStateRepository.delete()
-        }
+        expectThat(storedTeamId.captured).isEqualTo(42)
+        expectThat(insertedCharacters).hasSize(2)
+        expectThat(insertedCharacters.map { it.name }).isEqualTo(listOf("Brute", "Sun"))
+        expectThat(insertedCharacters.map { it.teamId }).isEqualTo(listOf(42, 42))
+        coVerify(exactly = 1) { teamDao.insert(match { it.name == "Squad" }) }
+        coVerify(exactly = 1) { scenarioGameStateRepository.delete() }
     }
 
     @Test
@@ -329,10 +342,13 @@ class TeamRepositoryTest {
     }
 
     @Test
-    fun `given another team exists as a fallback when deleteTeam then the fallback becomes the current team and the original team is deleted`() = runTest(UnconfinedTestDispatcher()) {
+    fun `given another team exists as a fallback when deleteTeam then prefs switch to the fallback and the original team row is removed`() = runTest(UnconfinedTestDispatcher()) {
         // Given
-        every { currentTeamDatasource.currentTeam } returns CurrentTeamDatasource.EMPTY_TEAM
-        every { currentTeamDatasource.currentTeam = any() } just Runs
+        val storedTeamId = slot<Int>()
+        every { currentTeamDatasource.currentTeam } answers {
+            if (storedTeamId.isCaptured) storedTeamId.captured else CurrentTeamDatasource.EMPTY_TEAM
+        }
+        every { currentTeamDatasource.currentTeam = capture(storedTeamId) } just Runs
         coEvery { teamDao.findById(any()) } returns null
         val target = ShortTeamInfo.fixture(teamId = 7)
         coEvery { teamDao.getAll() } returns listOf(
@@ -344,19 +360,20 @@ class TeamRepositoryTest {
         // When
         sut.deleteTeam(target)
 
-        // Then
-        coVerifyOrder {
-            currentTeamDatasource.currentTeam = 8
-            scenarioGameStateRepository.delete()
-            teamDao.delete(7)
-        }
+        // Then — observable state, not call order
+        expectThat(storedTeamId.captured).isEqualTo(8)
+        coVerify(exactly = 1) { teamDao.delete(7) }
+        coVerify(exactly = 1) { scenarioGameStateRepository.delete() }
     }
 
     @Test
-    fun `given the deleted team is the only team when deleteTeam then EMPTY_TEAM becomes the current team and the team is deleted`() = runTest(UnconfinedTestDispatcher()) {
+    fun `given the deleted team is the only team when deleteTeam then prefs reset to EMPTY_TEAM and the team row is removed`() = runTest(UnconfinedTestDispatcher()) {
         // Given
-        every { currentTeamDatasource.currentTeam } returns CurrentTeamDatasource.EMPTY_TEAM
-        every { currentTeamDatasource.currentTeam = any() } just Runs
+        val storedTeamId = slot<Int>()
+        every { currentTeamDatasource.currentTeam } answers {
+            if (storedTeamId.isCaptured) storedTeamId.captured else CurrentTeamDatasource.EMPTY_TEAM
+        }
+        every { currentTeamDatasource.currentTeam = capture(storedTeamId) } just Runs
         coEvery { teamDao.findById(any()) } returns null
         val target = ShortTeamInfo.fixture(teamId = 7)
         coEvery { teamDao.getAll() } returns listOf(teamBdFixture(teamId = 7))
@@ -365,12 +382,10 @@ class TeamRepositoryTest {
         // When
         sut.deleteTeam(target)
 
-        // Then
-        coVerifyOrder {
-            currentTeamDatasource.currentTeam = CurrentTeamDatasource.EMPTY_TEAM
-            scenarioGameStateRepository.delete()
-            teamDao.delete(7)
-        }
+        // Then — observable state, not call order
+        expectThat(storedTeamId.captured).isEqualTo(CurrentTeamDatasource.EMPTY_TEAM)
+        coVerify(exactly = 1) { teamDao.delete(7) }
+        coVerify(exactly = 1) { scenarioGameStateRepository.delete() }
     }
 
     companion object {

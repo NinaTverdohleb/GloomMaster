@@ -133,6 +133,8 @@ dependencies {
     implementation(libs.kotlinx.coroutines.android)
     implementation(libs.kotlinx.collections.immutable)
     implementation(libs.coil.compose)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.android.material)
 
     ksp(libs.hilt.compiler)
     ksp(libs.hilt.ext.compiler)

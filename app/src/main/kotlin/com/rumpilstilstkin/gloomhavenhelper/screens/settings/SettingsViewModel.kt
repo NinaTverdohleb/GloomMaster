@@ -6,6 +6,7 @@ import androidx.core.content.FileProvider
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.rumpilstilstkin.gloomhavenhelper.data.LocaleRepository
+import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.settings.LanguagesListUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.team.ChangeCurrentTeamUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.team.DeleteCurrentTeamUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.team.GetCurrentTeamWithTeamsUseCase
@@ -37,13 +38,9 @@ import javax.inject.Inject
 class SettingsViewModel @Inject constructor(
     @param:ApplicationContext private val context: Context,
     getCurrentTeamWithTeamsCountUseCase: GetCurrentTeamWithTeamsUseCase,
-    private val switchPackForCurrentTeamUseCase: SwitchPackForCurrentTeamUseCase,
-    private val updateNameForCurrentTeamUseCase: UpdateNameForCurrentTeamUseCase,
-    private val deleteCurrentTeamUseCase: DeleteCurrentTeamUseCase,
     private val changeCurrentTeamUseCase: ChangeCurrentTeamUseCase,
     private val getShareFileUseCase: GetShareFileUseCase,
-    private val updateDifficultyLevelUseCase: UpdateDifficultyLevelUseCase,
-    private val localeRepository: LocaleRepository,
+    languagesListUseCase: LanguagesListUseCase,
 ) : ViewModel() {
     private val _navigationEvents = MutableSharedFlow<GlHelperEvent>()
     val navigationEvents = _navigationEvents.asSharedFlow()
@@ -51,11 +48,10 @@ class SettingsViewModel @Inject constructor(
     val uiState: StateFlow<SettingsStateUi> =
         combine(
             getCurrentTeamWithTeamsCountUseCase(),
-            localeRepository.observeLocale,
-        ) { (team, teams), locale ->
-            val language = Locale.forLanguageTag(locale).displayName
+            languagesListUseCase(),
+        ) { (team, teams), (currentLocale, allLocales) ->
             if (team == null) {
-                SettingsStateUi(language = language)
+                SettingsStateUi(language = currentLocale)
             } else {
                 SettingsStateUi(
                     team =
@@ -73,7 +69,7 @@ class SettingsViewModel @Inject constructor(
                                     level = it.difficultyLevel,
                                 )
                             }.toImmutableList(),
-                    language = language,
+                    language = currentLocale,
                 )
             }
         }.stateIn(
@@ -90,7 +86,7 @@ class SettingsViewModel @Inject constructor(
                 }
 
                 SettingsAction.ChangeLanguage -> {
-                    TODO()
+                    _navigationEvents.emit(Dialog(GlHelperDialog.SelectLanguageDialog()))
                 }
 
                 SettingsAction.ShowAllTeam -> {

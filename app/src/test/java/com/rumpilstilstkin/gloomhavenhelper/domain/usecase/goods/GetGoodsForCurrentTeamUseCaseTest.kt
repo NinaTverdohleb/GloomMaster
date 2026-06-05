@@ -30,7 +30,7 @@ class GetGoodsForCurrentTeamUseCaseTest {
         // Given
         val team = ShortTeamInfo.fixture(teamId = 5).copy(aliveCharacterIds = listOf(10, 11))
         val all = listOf(good(1), good(2), good(3))
-        every { localeRepository.observeLocale } returns flowOf("en")
+        every { localeRepository.observeLocaleUnic } returns flowOf("en")
         every { teamRepository.currentTeam } returns flowOf(team)
         every { goodsRepository.getCharacterGoodIds(listOf(10, 11)) } returns flowOf(listOf(2))
         every { goodsRepository.getGoodsForTeam(5, "en") } returns flowOf(all)
@@ -46,7 +46,7 @@ class GetGoodsForCurrentTeamUseCaseTest {
     @Test
     fun `given null team when invoked then returns empty list`() = runTest(UnconfinedTestDispatcher()) {
         // Given
-        every { localeRepository.observeLocale } returns flowOf("en")
+        every { localeRepository.observeLocaleUnic } returns flowOf("en")
         every { teamRepository.currentTeam } returns flowOf(null)
         val sut = GetGoodsForCurrentTeamUseCase(teamRepository, goodsRepository, localeRepository)
 

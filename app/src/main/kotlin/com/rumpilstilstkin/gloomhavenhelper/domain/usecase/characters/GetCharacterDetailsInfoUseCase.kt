@@ -9,8 +9,6 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.flatMapLatest
-import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.flow.mapLatest
 import javax.inject.Inject
 
 class GetCharacterDetailsInfoUseCase @Inject constructor(
@@ -20,7 +18,7 @@ class GetCharacterDetailsInfoUseCase @Inject constructor(
 ) {
     @OptIn(ExperimentalCoroutinesApi::class)
     operator fun invoke(characterId: Int): Flow<CharacterFullInfo?> =
-        localeRepository.observeLocale.flatMapLatest { locale ->
+        localeRepository.observeLocaleUnic.flatMapLatest { locale ->
             characterRepository
                 .getCharacterByIdFlow(characterId)
                 .combine(

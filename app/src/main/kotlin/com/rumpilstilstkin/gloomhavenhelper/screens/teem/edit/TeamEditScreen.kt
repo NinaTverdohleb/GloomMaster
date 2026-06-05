@@ -12,12 +12,10 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
@@ -59,15 +57,6 @@ internal fun TeamEditScreen(
         GloomToolbarTitle(
             title = "",
             back = back,
-            actions = {
-                IconButton(onClick = showDeleteDialog) {
-                    Icon(
-                        Icons.Default.Delete,
-                        contentDescription = null,
-                        tint = MaterialTheme.colorScheme.error,
-                    )
-                }
-            },
         )
     },
 ) { paddingValues ->
@@ -132,6 +121,17 @@ internal fun TeamEditScreen(
         }
 
         Spacer(modifier = Modifier.weight(1f))
+
+        OutlinedButton(
+            onClick = showDeleteDialog,
+            border = BorderStroke(1.dp, MaterialTheme.colorScheme.error),
+            modifier = Modifier.fillMaxWidth(),
+        ) {
+            Text(
+                color = MaterialTheme.colorScheme.error,
+                text = stringResource(R.string.delete),
+            )
+        }
     }
 
     if (uiState.showDeleteConfirmDialog) {

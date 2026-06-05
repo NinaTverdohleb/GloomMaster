@@ -12,4 +12,7 @@ sealed class GlHelperDialog {
 
     @Serializable
     class TeamListDialog : GlHelperDialog()
+
+    @Serializable
+    class SelectLanguageDialog : GlHelperDialog()
 }

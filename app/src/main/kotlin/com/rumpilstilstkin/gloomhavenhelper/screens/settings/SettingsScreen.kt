@@ -4,6 +4,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -32,8 +33,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -44,6 +45,8 @@ import com.rumpilstilstkin.gloomhavenhelper.ui.team.toImage
 import com.rumpilstilstkin.gloomhavenhelper.ui.team.toLabel
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
 import kotlinx.collections.immutable.persistentListOf
+
+private const val VISIBLE_TEAMS_LIMIT = 2
 
 @Composable
 fun SettingsScreen(
@@ -66,185 +69,39 @@ fun SettingsScreen(
                 .padding(horizontal = 16.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        Box(
-            modifier =
-                Modifier
-                    .fillMaxWidth()
-                    .padding(vertical = 12.dp),
-        ) {
-            IconButton(
-                onClick = back,
-                modifier = Modifier.align(Alignment.CenterEnd),
-            ) {
-                Icon(
-                    imageVector = Icons.Default.Close,
-                    contentDescription = "Close",
-                    tint = Color.White,
-                )
-            }
-        }
+        SettingsHeader(onClose = back)
 
-        Box(modifier = Modifier.size(84.dp)) {
-            Box(
-                modifier =
-                    Modifier
-                        .size(80.dp)
-                        .clip(CircleShape)
-                        .background(MaterialTheme.colorScheme.outlineVariant),
-                contentAlignment = Alignment.Center,
-            ) {
-                Image(
-                    painter = painterResource(R.drawable.ic_launcher_foreground),
-                    contentDescription = null,
-                )
-            }
-        }
+        AppLogo()
 
-        state.team?.teamName?.let {
-            Column(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalAlignment = Alignment.CenterHorizontally,
-            ) {
-                Spacer(modifier = Modifier.height(16.dp))
-
-                Text(
-                    text = it,
-                    style = MaterialTheme.typography.titleLarge,
-                    color = Color.White,
-                )
-
-                Spacer(modifier = Modifier.height(12.dp))
-
-                Row {
-                    OutlinedButton(
-                        onClick = share,
-                        shape = RoundedCornerShape(20.dp),
-                        colors = ButtonDefaults.outlinedButtonColors(contentColor = Color.White),
-                    ) {
-                        Icon(
-                            Icons.Default.Share,
-                            contentDescription = null,
-                            tint = MaterialTheme.colorScheme.onSurface,
-                        )
-                    }
-
-                    Spacer(Modifier.width(32.dp))
-
-                    OutlinedButton(
-                        onClick = settings,
-                        shape = RoundedCornerShape(20.dp),
-                        colors = ButtonDefaults.outlinedButtonColors(contentColor = Color.White),
-                    ) {
-                        Icon(
-                            Icons.Default.Settings,
-                            contentDescription = null,
-                            tint = MaterialTheme.colorScheme.onSurface,
-                        )
-                    }
-                }
-            }
+        state.team?.let { team ->
+            Spacer(modifier = Modifier.height(16.dp))
+            TeamSummary(
+                teamName = team.teamName,
+                onShare = share,
+                onSettings = settings,
+            )
         }
 
         Spacer(modifier = Modifier.height(24.dp))
 
-        GloomCard(
-            modifier = Modifier.fillMaxWidth(),
-        ) {
-            Text(
-                text = "Сменить команду",
-                color = Color.White,
-                style = MaterialTheme.typography.bodyLarge,
-            )
-
-            Spacer(Modifier.height(8.dp))
-
-            state.teams.take(2).forEach {
-                Box(
-                    modifier =
-                        Modifier
-                            .fillMaxWidth()
-                            .padding(16.dp),
-                ) {
-                    TeamItem(
-                        team = it,
-                        selectTeam = selectTeam,
-                    )
-                }
-            }
-
-            if (state.teams.size > 2) {
-                Row(
-                    modifier =
-                        Modifier
-                            .fillMaxWidth()
-                            .clickable { },
-                    verticalAlignment = Alignment.CenterVertically,
-                ) {
-                    Text(
-                        modifier =
-                            Modifier
-                                .fillMaxWidth()
-                                .clickable { showAllTeam() }
-                                .padding(16.dp),
-                        text = "Показать все",
-                        style = MaterialTheme.typography.bodyMedium,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    )
-                }
-            }
-
-            Row(
-                modifier =
-                    Modifier
-                        .fillMaxWidth()
-                        .clickable { addTeam() }
-                        .padding(16.dp),
-                verticalAlignment = Alignment.CenterVertically,
-            ) {
-                Icon(
-                    imageVector = Icons.Default.Add,
-                    contentDescription = "Add team",
-                    tint = Color.White,
-                    modifier = Modifier.size(24.dp),
-                )
-                Spacer(modifier = Modifier.width(16.dp))
-                Text(
-                    text = "Добавить команду",
-                    style = MaterialTheme.typography.bodyMedium,
-                    color = Color.White,
-                )
-            }
-        }
+        TeamsCard(
+            teams = state.teams,
+            onSelectTeam = selectTeam,
+            onShowAllTeams = showAllTeam,
+            onAddTeam = addTeam,
+        )
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        GloomCard(
-            modifier =
-                Modifier
-                    .fillMaxWidth()
-                    .clickable { changeLanguage() },
-        ) {
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-            ) {
-                Text(
-                    text = "Язык",
-                    color = Color.White,
-                    style = MaterialTheme.typography.bodyLarge,
-                )
-                Spacer(modifier = Modifier.weight(1f))
-                Text(
-                    text = state.language,
-                    color = Color.White,
-                    style = MaterialTheme.typography.bodyMedium,
-                )
-            }
-        }
+        LanguageCard(
+            language = state.language,
+            onClick = changeLanguage,
+        )
 
         Spacer(modifier = Modifier.weight(1f))
 
         Text(
-            text = "Unofficial fan app. Gloomhaven and all associated assets are trademarks of Cephalofair Games.",
+            text = stringResource(R.string.settings_disclaimer),
             style = MaterialTheme.typography.labelMedium,
             textAlign = TextAlign.Center,
         )
@@ -254,10 +111,205 @@ fun SettingsScreen(
 }
 
 @Composable
+private fun SettingsHeader(
+    onClose: () -> Unit,
+    modifier: Modifier = Modifier,
+) {
+    Box(
+        modifier =
+            modifier
+                .fillMaxWidth()
+                .padding(vertical = 12.dp),
+    ) {
+        IconButton(
+            onClick = onClose,
+            modifier = Modifier.align(Alignment.CenterEnd),
+        ) {
+            Icon(
+                imageVector = Icons.Default.Close,
+                contentDescription = stringResource(R.string.close),
+                tint = MaterialTheme.colorScheme.onSurface,
+            )
+        }
+    }
+}
+
+@Composable
+private fun AppLogo(modifier: Modifier = Modifier) {
+    Box(
+        modifier =
+            modifier
+                .size(80.dp)
+                .clip(CircleShape)
+                .background(MaterialTheme.colorScheme.outlineVariant),
+        contentAlignment = Alignment.Center,
+    ) {
+        Image(
+            painter = painterResource(R.drawable.ic_launcher_foreground),
+            contentDescription = null,
+        )
+    }
+}
+
+@Composable
+private fun TeamSummary(
+    teamName: String,
+    onShare: () -> Unit,
+    onSettings: () -> Unit,
+    modifier: Modifier = Modifier,
+) {
+    Column(
+        modifier = modifier.fillMaxWidth(),
+        horizontalAlignment = Alignment.CenterHorizontally,
+    ) {
+        Text(
+            text = teamName,
+            style = MaterialTheme.typography.titleLarge,
+            color = MaterialTheme.colorScheme.onSurface,
+        )
+
+        Spacer(modifier = Modifier.height(12.dp))
+
+        Row(
+            horizontalArrangement = Arrangement.spacedBy(32.dp),
+        ) {
+            CircularIconButton(
+                icon = Icons.Default.Share,
+                onClick = onShare,
+            )
+            CircularIconButton(
+                icon = Icons.Default.Settings,
+                onClick = onSettings,
+            )
+        }
+    }
+}
+
+@Composable
+private fun CircularIconButton(
+    icon: androidx.compose.ui.graphics.vector.ImageVector,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier,
+) {
+    OutlinedButton(
+        onClick = onClick,
+        modifier = modifier,
+        shape = RoundedCornerShape(20.dp),
+        colors =
+            ButtonDefaults.outlinedButtonColors(
+                contentColor = MaterialTheme.colorScheme.onSurface,
+            ),
+    ) {
+        Icon(
+            imageVector = icon,
+            contentDescription = null,
+            tint = MaterialTheme.colorScheme.onSurface,
+        )
+    }
+}
+
+@Composable
+private fun TeamsCard(
+    teams: List<ShortTeamInfoUi>,
+    onSelectTeam: (ShortTeamInfoUi) -> Unit,
+    onShowAllTeams: () -> Unit,
+    onAddTeam: () -> Unit,
+    modifier: Modifier = Modifier,
+) {
+    GloomCard(
+        modifier = modifier.fillMaxWidth(),
+    ) {
+        Text(
+            text = stringResource(R.string.settings_change_team),
+            color = MaterialTheme.colorScheme.onSurface,
+            style = MaterialTheme.typography.bodyLarge,
+        )
+
+        Spacer(Modifier.height(8.dp))
+
+        teams.take(VISIBLE_TEAMS_LIMIT).forEach { team ->
+            TeamItem(
+                team = team,
+                selectTeam = onSelectTeam,
+                modifier =
+                    Modifier
+                        .fillMaxWidth()
+                        .padding(16.dp),
+            )
+        }
+
+        if (teams.size > VISIBLE_TEAMS_LIMIT) {
+            Text(
+                text = stringResource(R.string.settings_show_all_teams),
+                style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                modifier =
+                    Modifier
+                        .fillMaxWidth()
+                        .clickable { onShowAllTeams() }
+                        .padding(16.dp),
+            )
+        }
+
+        Row(
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .clickable { onAddTeam() }
+                    .padding(16.dp),
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
+            Icon(
+                imageVector = Icons.Default.Add,
+                contentDescription = null,
+                tint = MaterialTheme.colorScheme.onSurface,
+                modifier = Modifier.size(24.dp),
+            )
+            Spacer(modifier = Modifier.width(16.dp))
+            Text(
+                text = stringResource(R.string.settings_add_team),
+                style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.onSurface,
+            )
+        }
+    }
+}
+
+@Composable
+private fun LanguageCard(
+    language: String,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier,
+) {
+    GloomCard(
+        modifier =
+            modifier
+                .fillMaxWidth()
+                .clickable { onClick() },
+    ) {
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
+            Text(
+                text = stringResource(R.string.settings_language),
+                color = MaterialTheme.colorScheme.onSurface,
+                style = MaterialTheme.typography.bodyLarge,
+            )
+            Spacer(modifier = Modifier.weight(1f))
+            Text(
+                text = language,
+                color = MaterialTheme.colorScheme.onSurface,
+                style = MaterialTheme.typography.bodyMedium,
+            )
+        }
+    }
+}
+
+@Composable
 private fun TeamItem(
     team: ShortTeamInfoUi,
-    modifier: Modifier = Modifier,
     selectTeam: (ShortTeamInfoUi) -> Unit,
+    modifier: Modifier = Modifier,
 ) {
     val (_, tint) = team.level.toImage()
     val label = team.level.toLabel()
@@ -269,16 +321,24 @@ private fun TeamItem(
         Box(
             modifier =
                 Modifier
-                    .size(40.dp)
+                    .size(36.dp)
                     .clip(CircleShape)
-                    .background(Color.DarkGray),
-        )
+                    .background(MaterialTheme.colorScheme.surfaceVariant),
+            contentAlignment = Alignment.Center,
+        ) {
+            Icon(
+                painter = painterResource(id = R.drawable.ic_empty),
+                contentDescription = null,
+                modifier = Modifier.size(16.dp),
+                tint = MaterialTheme.colorScheme.onSurface,
+            )
+        }
         Spacer(modifier = Modifier.width(12.dp))
         Text(
             text = team.teamName,
+            color = MaterialTheme.colorScheme.onSurface,
         )
         Spacer(Modifier.weight(1f))
-        Spacer(Modifier.width(8.dp))
         Box(
             modifier =
                 Modifier
@@ -333,11 +393,12 @@ private fun SettingsScreenPreview() {
 private fun SettingsScreenEmptyTeamPreview() {
     GloomhavenMasterTheme {
         SettingsScreen(
-            SettingsStateUi(
-                team = null,
-                teams = persistentListOf(),
-                language = "English",
-            ),
+            state =
+                SettingsStateUi(
+                    team = null,
+                    teams = persistentListOf(),
+                    language = "English",
+                ),
             back = {},
             share = {},
             settings = {},

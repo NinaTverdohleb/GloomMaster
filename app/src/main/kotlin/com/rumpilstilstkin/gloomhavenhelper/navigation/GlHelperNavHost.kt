@@ -19,6 +19,7 @@ import androidx.navigation.toRoute
 import com.rumpilstilstkin.gloomhavenhelper.screens.characters.goods.add.AddGoodsForCharacterScreenRoute
 import com.rumpilstilstkin.gloomhavenhelper.screens.characters.quests.freeselect.SearchQuestScreen
 import com.rumpilstilstkin.gloomhavenhelper.screens.characters.start.CharacterDetailsRoute
+import com.rumpilstilstkin.gloomhavenhelper.screens.dialogs.language.SelectLanguageDialogRoute
 import com.rumpilstilstkin.gloomhavenhelper.screens.dialogs.teams.change.TeamListDialogRoute
 import com.rumpilstilstkin.gloomhavenhelper.screens.dialogs.teams.create.AddTeamDialogRoute
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.monsters.ScenarioConstructorRoute
@@ -123,6 +124,12 @@ fun GlHelperNavHost(
             )
         }
 
+        dialog<GlHelperDialog.SelectLanguageDialog> {
+            SelectLanguageDialogRoute(
+                navController = navController,
+            )
+        }
+
         composable<GlHelperScreen.Settings>(
             enterTransition = {
                 slideIntoContainer(
@@ -130,7 +137,7 @@ fun GlHelperNavHost(
                     animationSpec = tween(400),
                 ) + fadeIn(animationSpec = tween(200))
             },
-            popExitTransition = {
+            exitTransition = {
                 slideOutOfContainer(
                     towards = AnimatedContentTransitionScope.SlideDirection.Right,
                     animationSpec = tween(400),

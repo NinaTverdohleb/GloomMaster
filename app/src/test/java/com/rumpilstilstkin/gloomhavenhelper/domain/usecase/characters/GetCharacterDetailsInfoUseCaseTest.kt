@@ -34,7 +34,7 @@ class GetCharacterDetailsInfoUseCaseTest {
         // Given — level 2 → getNextLevel = 95; goldCount 12 → donate available
         val info = character(level = 2, goldCount = 12)
         val quest = quest()
-        every { localeRepository.observeLocale } returns flowOf("en")
+        every { localeRepository.observeLocaleUnic } returns flowOf("en")
         every { characterRepository.getCharacterByIdFlow(5) } returns flowOf(info)
         every { questsRepository.getCharacterPersonalQuestFlow(5, "en") } returns flowOf(quest)
         val sut = GetCharacterDetailsInfoUseCase(characterRepository, questsRepository, localeRepository)
@@ -53,7 +53,7 @@ class GetCharacterDetailsInfoUseCaseTest {
     @Test
     fun `given missing character when invoked then emits null`() = runTest(UnconfinedTestDispatcher()) {
         // Given
-        every { localeRepository.observeLocale } returns flowOf("en")
+        every { localeRepository.observeLocaleUnic } returns flowOf("en")
         every { characterRepository.getCharacterByIdFlow(5) } returns flowOf(null)
         every { questsRepository.getCharacterPersonalQuestFlow(5, "en") } returns flowOf(null)
         val sut = GetCharacterDetailsInfoUseCase(characterRepository, questsRepository, localeRepository)
