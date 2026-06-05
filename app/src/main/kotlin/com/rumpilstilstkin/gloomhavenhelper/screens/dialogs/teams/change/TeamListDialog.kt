@@ -1,9 +1,13 @@
-package com.rumpilstilstkin.gloomhavenhelper.screens.dialogs.teams
+package com.rumpilstilstkin.gloomhavenhelper.screens.dialogs.teams.change
 
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -19,8 +23,8 @@ import kotlinx.collections.immutable.persistentListOf
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun TeamsDialog(
-    teams: ImmutableList<ShortTeamInfoUi>,
+fun TeamListDialog(
+    state: TeamListDialogState,
     onDismiss: () -> Unit,
     selectTeam: (Int) -> Unit,
     modifier: Modifier = Modifier,
@@ -28,15 +32,22 @@ fun TeamsDialog(
     GloomAlertDialog(
         modifier = modifier,
         content = {
-            teams.forEach { team ->
-                TeamInfoItem(
-                    teamName = team.teamName,
-                    modifier =
-                        Modifier.clickable {
-                            selectTeam(team.teamId)
-                            onDismiss()
-                        },
-                )
+            LazyColumn(
+                verticalArrangement = Arrangement.spacedBy(8.dp),
+                contentPadding = PaddingValues(bottom = 16.dp),
+            ) {
+                items(
+                    items = state.teams,
+                    key = { it.teamId },
+                ) { team ->
+                    TeamInfoItem(
+                        teamName = team.teamName,
+                        modifier =
+                            Modifier.clickable {
+                                selectTeam(team.teamId)
+                            },
+                    )
+                }
             }
         },
         onDismissRequest = { onDismiss() },
@@ -67,13 +78,15 @@ private fun TeamInfoItem(
 @Composable
 private fun TeamListDialogPreview() {
     GloomhavenMasterTheme {
-        TeamsDialog(
-            teams =
-                persistentListOf(
-                    ShortTeamInfoUi(1, "Team 1"),
-                    ShortTeamInfoUi(2, "Team 2"),
-                    ShortTeamInfoUi(3, "Team 3"),
-                    ShortTeamInfoUi(4, "Team 4"),
+        TeamListDialog(
+            state =
+                TeamListDialogState(
+                    persistentListOf(
+                        ShortTeamInfoUi.fixture(teamId = 1, name = "Team 1"),
+                        ShortTeamInfoUi.fixture(teamId = 2, name = "Team 2"),
+                        ShortTeamInfoUi.fixture(teamId = 3, name = "Team 3"),
+                        ShortTeamInfoUi.fixture(teamId = 4, name = "Team 4"),
+                    ),
                 ),
             onDismiss = {},
             selectTeam = {},

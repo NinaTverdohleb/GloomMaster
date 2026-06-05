@@ -1,4 +1,4 @@
-package com.rumpilstilstkin.gloomhavenhelper.screens.dialogs.teams
+package com.rumpilstilstkin.gloomhavenhelper.screens.dialogs.teams.create
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.icons.Icons
@@ -18,7 +18,7 @@ import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomAlertDialog
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
 
 @Composable
-fun AddTeamDialog(
+internal fun AddTeamDialog(
     onDismiss: () -> Unit,
     onAdd: (String) -> Unit,
     openFile: () -> Unit,
@@ -34,11 +34,9 @@ fun AddTeamDialog(
         onDismissRequest = onDismiss,
         onConfirmRequest = {
             onAdd(teamName.trim())
-            onDismiss()
         },
         onNeutralRequest = {
             openFile()
-            onDismiss()
         },
     ) {
         OutlinedTextField(

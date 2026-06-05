@@ -3,6 +3,7 @@ package com.rumpilstilstkin.gloomhavenhelper.screens.models
 import androidx.compose.runtime.Immutable
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.Achievement
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.AchievementWithName
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.DifficultyLevel
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.Prosperity
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.persistentListOf
@@ -62,4 +63,17 @@ data class TeamUI(
 data class ShortTeamInfoUi(
     val teamId: Int,
     val teamName: String,
-)
+    val level: DifficultyLevel,
+) {
+    companion object {
+        fun fixture(
+            name: String = "TeamName",
+            teamId: Int = 1,
+            level: DifficultyLevel = DifficultyLevel.NORMAL,
+        ) = ShortTeamInfoUi(
+            teamId = teamId,
+            teamName = name,
+            level = level,
+        )
+    }
+}

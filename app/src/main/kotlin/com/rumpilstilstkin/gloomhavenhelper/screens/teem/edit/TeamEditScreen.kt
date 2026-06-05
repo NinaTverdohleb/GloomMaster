@@ -1,7 +1,6 @@
 package com.rumpilstilstkin.gloomhavenhelper.screens.teem.edit
 
 import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -15,18 +14,10 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Delete
-import androidx.compose.material.icons.filled.Share
-import androidx.compose.material.icons.rounded.AdminPanelSettings
-import androidx.compose.material.icons.rounded.Dangerous
-import androidx.compose.material.icons.rounded.Eco
-import androidx.compose.material.icons.rounded.ElectricBolt
-import androidx.compose.material.icons.rounded.Whatshot
 import androidx.compose.material3.Checkbox
-import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
@@ -38,7 +29,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -47,9 +37,10 @@ import com.rumpilstilstkin.gloomhavenhelper.R
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.DifficultyLevel
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.PackType
 import com.rumpilstilstkin.gloomhavenhelper.screens.dialogs.teams.DeleteTeamDialog
-import com.rumpilstilstkin.gloomhavenhelper.screens.dialogs.teams.TeamsDialog
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomCard
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomToolbarTitle
+import com.rumpilstilstkin.gloomhavenhelper.ui.team.toImage
+import com.rumpilstilstkin.gloomhavenhelper.ui.team.toLabel
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
 import kotlinx.collections.immutable.persistentListOf
 
@@ -63,10 +54,6 @@ internal fun TeamEditScreen(
     showDeleteDialog: () -> Unit,
     dismissDeleteDialog: () -> Unit,
     confirmDelete: () -> Unit,
-    showTeamListDialog: () -> Unit,
-    dismissTeamListDialog: () -> Unit,
-    selectTeam: (Int) -> Unit,
-    shareTeamData: () -> Unit,
 ) = Scaffold(
     topBar = {
         GloomToolbarTitle(
@@ -78,13 +65,6 @@ internal fun TeamEditScreen(
                         Icons.Default.Delete,
                         contentDescription = null,
                         tint = MaterialTheme.colorScheme.error,
-                    )
-                }
-                IconButton(onClick = shareTeamData) {
-                    Icon(
-                        Icons.Default.Share,
-                        contentDescription = null,
-                        tint = MaterialTheme.colorScheme.onSurface,
                     )
                 }
             },
@@ -152,15 +132,6 @@ internal fun TeamEditScreen(
         }
 
         Spacer(modifier = Modifier.weight(1f))
-
-        if (uiState.showChangeTeamButton) {
-            OutlinedButton(
-                onClick = showTeamListDialog,
-                modifier = Modifier.fillMaxWidth(),
-            ) {
-                Text(text = stringResource(R.string.change_team_button))
-            }
-        }
     }
 
     if (uiState.showDeleteConfirmDialog) {
@@ -168,14 +139,6 @@ internal fun TeamEditScreen(
             teamName = uiState.teamName,
             onDismiss = dismissDeleteDialog,
             onConfirm = confirmDelete,
-        )
-    }
-
-    if (uiState.showTeamListDialog) {
-        TeamsDialog(
-            teams = uiState.teamsForSelect,
-            onDismiss = dismissTeamListDialog,
-            selectTeam = selectTeam,
         )
     }
 }
@@ -215,13 +178,7 @@ private fun DifficultyItem(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    val (icon, tint) =
-        when (level) {
-            DifficultyLevel.EASY -> Icons.Rounded.Eco to Color(0xFF3B6D11)
-            DifficultyLevel.NORMAL -> Icons.Rounded.Whatshot to Color(0xFF185FA5)
-            DifficultyLevel.HARD -> Icons.Rounded.ElectricBolt to Color(0xFF854F0B)
-            DifficultyLevel.VERY_HARD -> Icons.Rounded.AdminPanelSettings to Color(0xFFA32D2D)
-        }
+    val (icon, tint) = level.toImage()
     val bgColor =
         if (isSelected) {
             tint.copy(alpha = 0.12f)
@@ -259,15 +216,6 @@ private fun DifficultyItem(
     }
 }
 
-@Composable
-private fun DifficultyLevel.toLabel() =
-    when (this) {
-        DifficultyLevel.EASY -> stringResource(R.string.difficulty_easy)
-        DifficultyLevel.NORMAL -> stringResource(R.string.difficulty_normal)
-        DifficultyLevel.HARD -> stringResource(R.string.difficulty_hard)
-        DifficultyLevel.VERY_HARD -> stringResource(R.string.difficulty_very_hard)
-    }
-
 @Preview(showBackground = true, backgroundColor = 0xFF1A1C24)
 @Composable
 private fun TeamEditScreenPreview() {
@@ -283,7 +231,6 @@ private fun TeamEditScreenPreview() {
                                 isEnabled = false,
                             ),
                         ),
-                    showChangeTeamButton = true,
                 ),
             onNameChange = {},
             onTogglePack = {},
@@ -291,10 +238,6 @@ private fun TeamEditScreenPreview() {
             showDeleteDialog = {},
             dismissDeleteDialog = {},
             confirmDelete = {},
-            showTeamListDialog = {},
-            dismissTeamListDialog = {},
-            selectTeam = {},
-            shareTeamData = {},
             onDifficultyChange = {},
         )
     }

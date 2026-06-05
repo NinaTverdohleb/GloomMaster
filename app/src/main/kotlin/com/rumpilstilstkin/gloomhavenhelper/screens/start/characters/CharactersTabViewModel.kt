@@ -9,7 +9,7 @@ import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.characters.UpdateChar
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.classes.AddCharacterClassForTeamUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.classes.GetAvaliableClassesForCurrentTeamUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.classes.RemoveCharacterClassForTeamUseCase
-import com.rumpilstilstkin.gloomhavenhelper.navigation.GlHelperScreens
+import com.rumpilstilstkin.gloomhavenhelper.navigation.GlHelperScreen
 import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEvent
 import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEvent.Screen
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.CharacterClassTypeUI
@@ -110,7 +110,7 @@ class CharactersTabViewModel @Inject constructor(
                 }
 
                 is CharactersTabAction.CharacterDetails -> {
-                    _navigationEvents.emit(Screen(GlHelperScreens.CharacterDetails(characterId = action.characterId)))
+                    _navigationEvents.emit(Screen(GlHelperScreen.CharacterDetails(characterId = action.characterId)))
                 }
 
                 is CharactersTabAction.SwitchClassAvailability -> {

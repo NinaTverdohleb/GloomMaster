@@ -25,6 +25,12 @@ object GlHelperEventHelper {
                         Toast.LENGTH_LONG,
                     ).show()
             }
+
+            is GlHelperEvent.Dialog -> {
+                navController.navigate(event.dialog) {
+                    launchSingleTop = true
+                }
+            }
         }
     }
 }

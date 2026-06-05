@@ -10,8 +10,8 @@ import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.team.GetCurrentTeamUs
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.team.GetNextChurchValueUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.team.UpdateTeamProsperityUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.team.UpdateTeamReputationUseCase
-import com.rumpilstilstkin.gloomhavenhelper.navigation.GlHelperScreens
-import com.rumpilstilstkin.gloomhavenhelper.navigation.GlHelperScreens.Scenario
+import com.rumpilstilstkin.gloomhavenhelper.navigation.GlHelperScreen
+import com.rumpilstilstkin.gloomhavenhelper.navigation.GlHelperScreen.Scenario
 import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEvent
 import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEvent.Screen
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.TeamUI
@@ -100,11 +100,11 @@ class TeamTabViewModel @Inject constructor(
                 }
 
                 TeamTabAction.OpenGlobalAchievements -> {
-                    _navigationEvents.emit(Screen(GlHelperScreens.GlobalAchievements))
+                    _navigationEvents.emit(Screen(GlHelperScreen.GlobalAchievements))
                 }
 
                 TeamTabAction.OpenTeamAchievements -> {
-                    _navigationEvents.emit(Screen(GlHelperScreens.TeamAchievements))
+                    _navigationEvents.emit(Screen(GlHelperScreen.TeamAchievements))
                 }
 
                 TeamTabAction.RestoreLastScenario -> {

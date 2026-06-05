@@ -16,7 +16,7 @@ import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario.play.ToggleM
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario.play.ToggleUnitEffectUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario.play.UpdateUnitLevelUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario.play.UpdateUnitLifeUseCase
-import com.rumpilstilstkin.gloomhavenhelper.navigation.GlHelperScreens
+import com.rumpilstilstkin.gloomhavenhelper.navigation.GlHelperScreen
 import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEvent
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.state.ScenarioActions
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.state.ScenarioStateMapper
@@ -198,7 +198,7 @@ class ScenarioViewModel @Inject constructor(
 
                 ScenarioActions.AddNewMonsters -> {
                     _navigationEvents.emit(
-                        GlHelperEvent.Screen(GlHelperScreens.ScenarioConstructor),
+                        GlHelperEvent.Screen(GlHelperScreen.ScenarioConstructor),
                     )
                 }
             }

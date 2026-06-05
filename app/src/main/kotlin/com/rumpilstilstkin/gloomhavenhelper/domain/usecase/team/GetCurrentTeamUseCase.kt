@@ -1,5 +1,6 @@
 package com.rumpilstilstkin.gloomhavenhelper.domain.usecase.team
 
+import android.util.Log
 import com.rumpilstilstkin.gloomhavenhelper.data.AchievementRepository
 import com.rumpilstilstkin.gloomhavenhelper.data.CharacterRepository
 import com.rumpilstilstkin.gloomhavenhelper.data.LocaleRepository
@@ -34,8 +35,9 @@ class GetCurrentTeamUseCase @Inject constructor(
             localeRepository.observeLocale,
             ::Pair,
         ).flatMapLatest { (team, locale) ->
-            if (team == null) return@flatMapLatest flowOf(null)
 
+            if (team == null) return@flatMapLatest flowOf(null)
+            Log.d("Dto", "GetCurrentTeamUseCase get newdata ${team.teamId}")
             val achievementsNames =
                 achievementRepository.getAchievementsNameBySlugs(
                     team.achievements.map { it.slug },

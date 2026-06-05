@@ -7,6 +7,7 @@ import com.rumpilstilstkin.gloomhavenhelper.domain.entity.CharacterClassType
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.TeamInfoForSave
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.goods.AddGoodsToTeamByNumbersUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.goods.GetGoodNumbersForLevelUseCase
+import com.rumpilstilstkin.gloomhavenhelper.utils.toResult
 import javax.inject.Inject
 
 class SaveTeamUseCase @Inject constructor(
@@ -16,7 +17,7 @@ class SaveTeamUseCase @Inject constructor(
     private val addGoodsToTeamUseCase: AddGoodsToTeamByNumbersUseCase,
     private val getGoodsForLevelUseCase: GetGoodNumbersForLevelUseCase,
 ) {
-    suspend operator fun invoke(team: TeamInfoForSave) {
+    suspend operator fun invoke(team: TeamInfoForSave): Result<Unit> {
         val teamId = teamRepository.saveTeam(team)
         val startAvaliableClasses =
             listOf(
@@ -31,5 +32,6 @@ class SaveTeamUseCase @Inject constructor(
         scenarioRepository.saveTeamScenario(1, teamId)
         characterClassRepository.addAvailableClasses(teamId, startAvaliableClasses)
         addGoodsToTeamUseCase(teamId, startGoods)
+        return Unit.toResult()
     }
 }

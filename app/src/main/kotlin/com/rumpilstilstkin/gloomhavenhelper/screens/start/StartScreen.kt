@@ -1,10 +1,17 @@
 package com.rumpilstilstkin.gloomhavenhelper.screens.start
 
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Close
+import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -14,7 +21,9 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -22,7 +31,6 @@ import com.rumpilstilstkin.gloomhavenhelper.R
 import com.rumpilstilstkin.gloomhavenhelper.screens.start.characters.CharactersTabScreen
 import com.rumpilstilstkin.gloomhavenhelper.screens.start.characters.CharactersTabStateUi
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomBottomNavigationBar
-import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomToolbarStatus
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomToolbarTitle
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.NavItem
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
@@ -31,8 +39,8 @@ import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
 internal fun StartScreen(
     state: StartScreenState,
     selectTab: @Composable (StartScreenTab) -> Unit,
+    settings: () -> Unit,
     addTeam: () -> Unit,
-    editTeam: () -> Unit,
 ) {
     var selectedTab by rememberSaveable { mutableStateOf(StartScreenTab.TEAM) }
 
@@ -46,35 +54,32 @@ internal fun StartScreen(
                 },
             )
         },
-        topBar = {
-            if (state is StartScreenState.Team) {
-                GloomToolbarStatus(
-                    status = state.name,
-                    actions = {
-                        IconButton(onClick = addTeam) {
-                            Icon(
-                                Icons.Default.Add,
-                                contentDescription = null,
-                                tint = MaterialTheme.colorScheme.onSurface,
-                            )
-                        }
-                    },
-                    statusClick = editTeam,
-                )
-            } else {
-                GloomToolbarTitle(
-                    title = stringResource(R.string.app_name),
-                )
-            }
-        },
+        contentWindowInsets = WindowInsets(0, 0, 0, 0),
     ) { paddingValues ->
-        Box(
+        Column(
             modifier =
                 Modifier
                     .fillMaxSize()
                     .padding(paddingValues)
-                    .padding(top = 32.dp, start = 16.dp, end = 16.dp),
+                    .padding(16.dp),
         ) {
+            Box(
+                modifier =
+                    Modifier
+                        .fillMaxWidth(),
+            ) {
+                IconButton(
+                    onClick = settings,
+                    modifier = Modifier.align(Alignment.CenterEnd),
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.Settings,
+                        contentDescription = "Settings",
+                        tint = Color.White,
+                    )
+                }
+            }
+            Spacer(Modifier.height(16.dp))
             when (state) {
                 StartScreenState.Empty -> {
                     EmptyTeamScreen(
@@ -106,9 +111,9 @@ private fun StartScreenEmptyPreview() {
     GloomhavenMasterTheme {
         StartScreen(
             state = StartScreenState.Empty,
-            addTeam = {},
+            settings = {},
             selectTab = {},
-            editTeam = {},
+            addTeam = {},
         )
     }
 }
@@ -123,6 +128,7 @@ private fun StartScreenPreview() {
                     id = 1,
                     name = "Superteam",
                 ),
+            settings = {},
             addTeam = {},
             selectTab = {
                 CharactersTabScreen(
@@ -134,7 +140,6 @@ private fun StartScreenPreview() {
                     changeLevel = { _, _ -> },
                 )
             },
-            editTeam = {},
         )
     }
 }
