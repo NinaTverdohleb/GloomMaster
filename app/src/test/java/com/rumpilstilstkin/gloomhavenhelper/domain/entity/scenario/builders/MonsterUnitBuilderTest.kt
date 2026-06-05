@@ -3,6 +3,7 @@ package com.rumpilstilstkin.gloomhavenhelper.domain.entity.scenario.builders
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.ScenarioGameStateMonsterUnit
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.Monster
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterAction
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterCard
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterStatType
 import io.mockk.coEvery
 import io.mockk.coVerify
@@ -245,7 +246,7 @@ class MonsterUnitBuilderTest {
         lifeMultiple: Boolean = false,
         immunity: List<MonsterStatType> = emptyList(),
         deckName: String = "deck",
-        cards: List<com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterCard> = emptyList(),
+        cards: List<MonsterCard> = emptyList(),
         isBoss: Boolean = false,
         isFly: Boolean = false,
     ) = Monster(

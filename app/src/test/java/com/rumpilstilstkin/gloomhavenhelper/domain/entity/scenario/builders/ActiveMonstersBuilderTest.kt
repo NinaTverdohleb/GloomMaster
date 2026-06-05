@@ -8,6 +8,7 @@ import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterCard
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.runTest
+import org.junit.Assert.assertThrows
 import org.junit.Test
 import strikt.api.expectThat
 import strikt.assertions.containsExactly
@@ -112,7 +113,7 @@ class ActiveMonstersBuilderTest {
     }
 
     @Test
-    fun `given active monster slug not in scenarioMonsters when build then throws NoSuchElementException`() = runTest(UnconfinedTestDispatcher()) {
+    fun `given active monster slug not in scenarioMonsters when build then throws NoSuchElementException`() {
         // Given
         val active = ScenarioGameStateMonsterItem(slug = "missing", currentCard = null, units = emptyList())
         val builder =
@@ -122,13 +123,12 @@ class ActiveMonstersBuilderTest {
                 .cards(emptyMap())
                 .levels(1 to 1)
 
-        // When
-        val thrown =
-            runCatching { builder.build(gamersCount = 1) { _, _ -> null } }
-                .exceptionOrNull()
-
-        // Then
-        expectThat(thrown is NoSuchElementException).isTrue()
+        // When / Then
+        assertThrows(NoSuchElementException::class.java) {
+            runTest(UnconfinedTestDispatcher()) {
+                builder.build(gamersCount = 1) { _, _ -> null }
+            }
+        }
     }
 
     @Test

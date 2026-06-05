@@ -83,14 +83,11 @@ class MagicChargeStateTest {
     }
 
     @Test
-    fun `given toggle for unknown magic key when restore omits a magic then no-op`() {
-        // Given — restore explicitly with only FIRE in the map. restore() fills defaults
-        // for every Magic entry, so toggle never hits the "unknown magic" branch in practice;
-        // verify charges map is unchanged when toggling a magic absent from the underlying map
-        // by reflection of the cycle on a value present at zero (returns 2, not the same state).
+    fun `given toggle on a different magic when invoked then other magics are unaffected`() {
+        // Given
         val state = MagicChargeState.restore(mapOf(Magic.FIRE to 1))
 
-        // When — toggling a different magic still works because restore filled it in at 0
+        // When
         val next = state.toggle(Magic.AIR)
 
         // Then
