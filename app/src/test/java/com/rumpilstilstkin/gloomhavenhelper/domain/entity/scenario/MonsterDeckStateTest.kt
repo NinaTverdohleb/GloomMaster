@@ -58,8 +58,7 @@ class MonsterDeckStateTest {
 
     @Test
     fun `given empty deck when drawCard then returns null and same state instance`() {
-        // Given — a deck name that exists but has no cards isn't possible via create()
-        // (groupBy only produces non-empty buckets). Use the no-such-deck path instead.
+        // Given
         val state = MonsterDeckState.create(emptyList())
 
         // When
