@@ -14,7 +14,7 @@ class GetCharacterPerksUseCase @Inject constructor(
 ) {
     @OptIn(ExperimentalCoroutinesApi::class)
     operator fun invoke(characterId: Int): Flow<List<Perk>> =
-        localeRepository.observeLocale.flatMapLatest { locale ->
+        localeRepository.observeLocaleUnic.flatMapLatest { locale ->
             characterRepository.getCharacterPerksFlow(characterId, locale)
         }
 }

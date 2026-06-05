@@ -168,4 +168,10 @@
     <string name="logical_and"> и </string>
     <string name="logical_or"> или </string>
     <string name="custom_scenario">Свой сценарий</string>
+    <string name="system_language">Системный</string>
+    <string name="settings_change_team">Сменить команду</string>
+    <string name="settings_show_all_teams">Показать все</string>
+    <string name="settings_add_team">Добавить команду</string>
+    <string name="settings_language">Язык</string>
+    <string name="settings_disclaimer">Неофициальное фан-приложение. Gloomhaven и все связанные с ним материалы являются торговыми марками Cephalofair Games.</string>
 </resources>

@@ -37,7 +37,7 @@ class AchievementRepositoryTest {
     @Test
     fun `given DAO returns translations when dictionary is collected then the first emission is the loaded snapshot`() = runTest(UnconfinedTestDispatcher()) {
         // Given
-        every { localeRepository.observeLocale } returns flowOf("ru")
+        every { localeRepository.observeLocaleUnic } returns flowOf("ru")
         coEvery {
             dao.getAllTranslations(targetLocale = "ru", defaultLocale = "en")
         } returns listOf(
@@ -58,7 +58,7 @@ class AchievementRepositoryTest {
     @Test
     fun `given DAO returns translations when currentDictionary is awaited then it returns the loaded map`() = runTest(UnconfinedTestDispatcher()) {
         // Given
-        every { localeRepository.observeLocale } returns flowOf("ru")
+        every { localeRepository.observeLocaleUnic } returns flowOf("ru")
         coEvery {
             dao.getAllTranslations(targetLocale = "ru", defaultLocale = "en")
         } returns listOf(
@@ -76,7 +76,7 @@ class AchievementRepositoryTest {
     @Test
     fun `given DAO returns an empty list when currentDictionary is awaited then it returns an empty map without hanging`() = runTest(UnconfinedTestDispatcher()) {
         // Given
-        every { localeRepository.observeLocale } returns flowOf("ru")
+        every { localeRepository.observeLocaleUnic } returns flowOf("ru")
         coEvery {
             dao.getAllTranslations(targetLocale = "ru", defaultLocale = "en")
         } returns emptyList()
@@ -93,7 +93,7 @@ class AchievementRepositoryTest {
     fun `given the locale flow emits ru then en when dictionary is collected then DAO is invoked twice`() = runTest(UnconfinedTestDispatcher()) {
         // Given
         val localeFlow = MutableSharedFlow<String>(replay = 1)
-        every { localeRepository.observeLocale } returns localeFlow
+        every { localeRepository.observeLocaleUnic } returns localeFlow
         coEvery {
             dao.getAllTranslations(targetLocale = "ru", defaultLocale = "en")
         } returns listOf(AchievementTranslateBd(slug = "ach", locale = "ru", name = "Достижение"))
@@ -117,7 +117,7 @@ class AchievementRepositoryTest {
     @Test
     fun `given DAO returns global achievements when getGlobalAchievementsByPacks then maxRang is mapped to maxValue and value is one`() = runTest(UnconfinedTestDispatcher()) {
         // Given
-        every { localeRepository.observeLocale } returns flowOf("ru")
+        every { localeRepository.observeLocaleUnic } returns flowOf("ru")
         coEvery { dao.getGlobalAchievementsByPacks(listOf(PackType.MAIN.name)) } returns listOf(
             AchievementBd(slug = "g1", pack = PackType.MAIN.name, maxRang = 3, isGlobal = true),
             AchievementBd(slug = "g2", pack = PackType.MAIN.name, maxRang = 1, isGlobal = true),
@@ -138,7 +138,7 @@ class AchievementRepositoryTest {
     @Test
     fun `given DAO returns team achievements when getTeamAchievementsByPacks then maxRang is mapped to maxValue and isGlobal is false`() = runTest(UnconfinedTestDispatcher()) {
         // Given
-        every { localeRepository.observeLocale } returns flowOf("ru")
+        every { localeRepository.observeLocaleUnic } returns flowOf("ru")
         coEvery { dao.getTeamAchievementsByPacks(listOf(PackType.MAIN.name)) } returns listOf(
             AchievementBd(slug = "t1", pack = PackType.MAIN.name, maxRang = 2, isGlobal = false),
         )
@@ -157,7 +157,7 @@ class AchievementRepositoryTest {
     @Test
     fun `given DAO returns translations by slugs when getAchievementsNameBySlugs then result is a slug to name map`() = runTest(UnconfinedTestDispatcher()) {
         // Given
-        every { localeRepository.observeLocale } returns flowOf("ru")
+        every { localeRepository.observeLocaleUnic } returns flowOf("ru")
         coEvery {
             dao.getTeamAchievementsBySlugs(
                 slugs = listOf("ach_1", "ach_2"),

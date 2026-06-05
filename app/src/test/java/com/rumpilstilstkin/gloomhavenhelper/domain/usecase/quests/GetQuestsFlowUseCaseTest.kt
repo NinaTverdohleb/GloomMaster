@@ -27,7 +27,7 @@ class GetQuestsFlowUseCaseTest {
     fun `given locale emits ru when invoked then mapped quests from repo are emitted`() = runTest(UnconfinedTestDispatcher()) {
         // Given
         val quests = listOf(quest("alpha"), quest("beta"))
-        every { localeRepository.observeLocale } returns flowOf("ru")
+        every { localeRepository.observeLocaleUnic } returns flowOf("ru")
         coEvery { questsRepository.getQuests("ru") } returns quests
         val sut = GetQuestsFlowUseCase(questsRepository, localeRepository)
 

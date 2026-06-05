@@ -1,7 +1,6 @@
 package com.rumpilstilstkin.gloomhavenhelper.data
 
 import android.content.res.Resources.NotFoundException
-import android.util.Log
 import com.rumpilstilstkin.gloomhavenhelper.bd.dao.CharacterDao
 import com.rumpilstilstkin.gloomhavenhelper.bd.dao.TeamDao
 import com.rumpilstilstkin.gloomhavenhelper.data.datasource.CurrentTeamDatasource
@@ -40,7 +39,6 @@ class TeamRepository @Inject constructor(
     val currentTeam: Flow<ShortTeamInfo?> =
         _currentTeam
             .flatMapLatest { result ->
-                Log.d("Dto", "TeamRepository get newdata ${result.isSuccess}")
                 result.fold(
                     onSuccess = { teamId ->
                         combine(
@@ -61,12 +59,8 @@ class TeamRepository @Inject constructor(
     }
 
     suspend fun setCurrentTeam(teamId: Int) {
-        Log.d("Dto", "TeamRepository set new team $teamId")
-
         scenarioGameStateRepository.delete()
-        Log.d("Dto", "scenarioGameStateRepository.delete $teamId")
         currentTeamDatasource.currentTeam = teamId
-        Log.d("Dto", "currentTeamDatasource.currentTeam $teamId")
         updateCurrentTeam()
     }
 
@@ -89,8 +83,6 @@ class TeamRepository @Inject constructor(
         }
 
     suspend fun saveTeam(team: TeamInfoForSave): Int {
-        Log.d("Dto", "save team ${team.name}")
-
         val savedTeamId = teamDao.insert(team.toBd()).toInt()
         team.characters.forEach {
             characterDao.insert(it.copy(teamId = savedTeamId).toBd())
@@ -133,17 +125,13 @@ class TeamRepository @Inject constructor(
     }
 
     private suspend fun updateCurrentTeam() {
-        Log.d("Dto", "updateCurrentTeam ")
         val currentTeamId = currentTeamDatasource.currentTeam
         val team = teamDao.findById(currentTeamId)
-        Log.d("Dto", "get team ")
         if (currentTeamId != CurrentTeamDatasource.EMPTY_TEAM && team != null) {
-            Log.d("Dto", "updateCurrentTeam success")
             _currentTeam.emit(
                 Result.success(team.teamId),
             )
         } else {
-            Log.d("Dto", "updateCurrentTeam failure")
             _currentTeam.emit(Result.failure(NotFoundException()))
         }
     }

@@ -23,7 +23,7 @@ class AchievementRepository @Inject constructor(
     // Hot, app-scoped snapshot of the achievement-name dictionary for the active locale.
     // null = not loaded yet; an empty map is a valid loaded state. Recomputed once per locale.
     private val dictionaryState: StateFlow<Map<String, String>?> =
-        localeRepository.observeLocale
+        localeRepository.observeLocaleUnic
             .map { locale ->
                 achievementDao
                     .getAllTranslations(

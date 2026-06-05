@@ -8,9 +8,7 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.flatMapLatest
-import kotlinx.coroutines.flow.map
 import javax.inject.Inject
-import kotlin.math.max
 
 class GetCharacterPerksInfoUseCase @Inject constructor(
     private val characterRepository: CharacterRepository,
@@ -19,7 +17,7 @@ class GetCharacterPerksInfoUseCase @Inject constructor(
 ) {
     @OptIn(ExperimentalCoroutinesApi::class)
     operator fun invoke(characterId: Int): Flow<CharacterPerksInfo> {
-        return localeRepository.observeLocale.flatMapLatest { locale ->
+        return localeRepository.observeLocaleUnic.flatMapLatest { locale ->
             combine(
                 characterRepository.getCharacterByIdFlow(characterId),
                 characterRepository.getCharacterPerksFlow(characterId, locale),
