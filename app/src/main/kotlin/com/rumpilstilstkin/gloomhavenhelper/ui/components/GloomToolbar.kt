@@ -5,6 +5,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -15,19 +16,16 @@ import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.PlatformTextStyle
-import androidx.compose.ui.text.style.LineHeightStyle
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -50,25 +48,17 @@ fun GloomToolbarStatus(
                     ).heightIn(min = 24.dp)
                     .clickable {
                         statusClick()
-                    }.padding(horizontal = 10.dp, vertical = 2.dp),
+                    }.padding(horizontal = 16.dp, vertical = 2.dp),
             contentAlignment = Alignment.Center,
         ) {
             Text(
                 modifier = Modifier.padding(4.dp),
                 text = status,
-                style =
-                    LocalTextStyle.current.copy(
-                        fontSize = 14.sp,
-                        lineHeight = 12.sp,
-                        platformStyle = PlatformTextStyle(includeFontPadding = false),
-                        lineHeightStyle =
-                            LineHeightStyle(
-                                alignment = LineHeightStyle.Alignment.Center,
-                                trim = LineHeightStyle.Trim.Both,
-                            ),
-                    ),
+                style = MaterialTheme.typography.titleSmall,
                 color = MaterialTheme.colorScheme.primary,
+                maxLines = 1,
                 textAlign = TextAlign.Center,
+                overflow = TextOverflow.Ellipsis
             )
         }
     },
@@ -96,6 +86,7 @@ fun GloomToolbarTitle(
     windowInsets = WindowInsets(0, 0, 0, 0),
     title = {
         Text(
+            modifier = Modifier.fillMaxWidth(),
             text = title,
             style = MaterialTheme.typography.titleMedium,
             color = MaterialTheme.colorScheme.onSurface,
@@ -121,7 +112,7 @@ fun GloomToolbarTitle(
 private fun GloomToolbarStatusPreview() {
     GloomhavenMasterTheme {
         GloomToolbarStatus(
-            status = "Status",
+            status = "Status shgfjshgdfjhgsdajhfgsjadhgfjhasgdfjhgasjdhgfahsgdfhasgdfh",
             back = {},
             actions = {
                 IconButton(onClick = {}) {

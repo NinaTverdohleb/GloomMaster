@@ -92,7 +92,7 @@ data class ShortTeamInfo(
     val packs: List<PackType>,
     val churchValue: Int,
     val difficultyLevel: DifficultyLevel = DifficultyLevel.NORMAL,
-    val countRetiredCharacters: Int,
+    val countRetiredCharacters: Int = 0,
 ) {
     companion object {
         fun fixture(
