@@ -2,15 +2,11 @@ package com.rumpilstilstkin.gloomhavenhelper.screens.start
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -23,15 +19,13 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.rumpilstilstkin.gloomhavenhelper.R
-import com.rumpilstilstkin.gloomhavenhelper.screens.start.characters.CharactersTabScreen
-import com.rumpilstilstkin.gloomhavenhelper.screens.start.characters.CharactersTabStateUi
+import com.rumpilstilstkin.gloomhavenhelper.screens.models.TeamUI
+import com.rumpilstilstkin.gloomhavenhelper.screens.start.team.TeamTabScreen
+import com.rumpilstilstkin.gloomhavenhelper.screens.start.team.TeamTabUiState
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomBottomNavigationBar
-import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomToolbarTitle
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.NavItem
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
 
@@ -64,9 +58,7 @@ internal fun StartScreen(
                     .padding(16.dp),
         ) {
             Box(
-                modifier =
-                    Modifier
-                        .fillMaxWidth(),
+                modifier = Modifier.fillMaxWidth(),
             ) {
                 IconButton(
                     onClick = settings,
@@ -79,7 +71,6 @@ internal fun StartScreen(
                     )
                 }
             }
-            Spacer(Modifier.height(16.dp))
             when (state) {
                 StartScreenState.Empty -> {
                     EmptyTeamScreen(
@@ -131,13 +122,20 @@ private fun StartScreenPreview() {
             settings = {},
             addTeam = {},
             selectTab = {
-                CharactersTabScreen(
-                    state = CharactersTabStateUi.fixture(),
-                    switchAlive = {},
-                    addCharacter = {},
-                    openCharacterDetails = {},
-                    toggleClass = {},
-                    changeLevel = { _, _ -> },
+                TeamTabScreen(
+                    state =
+                        TeamTabUiState.Data(
+                            currentTeam = TeamUI.fixture(),
+                        ),
+                    completeScenario = {},
+                    startScenario = {},
+                    updateProsperity = {},
+                    updateReputation = {},
+                    openTeamAchievements = {},
+                    openGlobalAchievements = {},
+                    playCurrentScenario = {},
+                    donate = {},
+                    deleteScenario = {},
                 )
             },
         )

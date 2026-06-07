@@ -1,5 +1,7 @@
 package com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play
 
+import androidx.lifecycle.DefaultLifecycleObserver
+import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.scenario.ScenarioBattleState
@@ -59,7 +61,7 @@ class ScenarioViewModel @Inject constructor(
     private val toggleUnitEffectUseCase: ToggleUnitEffectUseCase,
     private val updateUnitLevelUseCase: UpdateUnitLevelUseCase,
     private val updateUnitLifeUseCase: UpdateUnitLifeUseCase,
-) : ViewModel() {
+) : ViewModel(), DefaultLifecycleObserver {
     private val _navigationEvents = MutableSharedFlow<GlHelperEvent>()
     val navigationEvents = _navigationEvents.asSharedFlow()
 
@@ -77,7 +79,12 @@ class ScenarioViewModel @Inject constructor(
             )
 
     init {
-        loadScenario()
+        viewModelScope.launch {
+            delay(200)
+            getScenarioInfoUseCase().onSuccess { battleInfo ->
+                logicState.update { battleInfo }
+            }
+        }
         logicState
             .filterNotNull()
             .map { logicState ->
@@ -88,13 +95,14 @@ class ScenarioViewModel @Inject constructor(
             }.launchIn(viewModelScope)
     }
 
-    private fun loadScenario() {
+    override fun onResume(owner: LifecycleOwner) {
+        super.onResume(owner)
         viewModelScope.launch {
-            delay(200)
             getScenarioInfoUseCase().onSuccess { battleInfo ->
                 logicState.update { battleInfo }
             }
         }
+
     }
 
     fun onAction(action: ScenarioActions) {
