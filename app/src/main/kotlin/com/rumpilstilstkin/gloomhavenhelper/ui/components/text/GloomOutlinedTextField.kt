@@ -32,8 +32,8 @@ fun GloomOutlinedTextField(
     },
     shape = RoundedCornerShape(12.dp),
     colors = OutlinedTextFieldDefaults.colors(
-        focusedBorderColor = MaterialTheme.colorScheme.outlineVariant,
-        unfocusedBorderColor = MaterialTheme.colorScheme.outlineVariant,
+        focusedBorderColor = MaterialTheme.colorScheme.outline,
+        unfocusedBorderColor = MaterialTheme.colorScheme.outline,
         focusedLabelColor = MaterialTheme.colorScheme.onSurface,
         unfocusedLabelColor = MaterialTheme.colorScheme.onSurface,
     ),

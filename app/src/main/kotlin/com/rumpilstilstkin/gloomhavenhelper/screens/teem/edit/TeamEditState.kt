@@ -14,11 +14,6 @@ data class TeamEditStateUi(
     val teamName: String = "",
     val availablePacks: ImmutableList<PackItemUi> = persistentListOf(),
     val difficultyLevel: DifficultyLevel = DifficultyLevel.NORMAL,
-    val showDeleteConfirmDialog: Boolean = false,
-)
-
-data class TeamEditStateLogic(
-    val showDeleteConfirmDialog: Boolean = false,
 )
 
 @Immutable
@@ -44,12 +39,6 @@ sealed interface TeamEditAction {
     ) : TeamEditAction
 
     data object Back : TeamEditAction
-
-    data object ShowDeleteConfirmDialog : TeamEditAction
-
-    data object DismissDeleteConfirmDialog : TeamEditAction
-
-    data object ConfirmDelete : TeamEditAction
 
     data class ChangeDifficultyLevel(
         val level: DifficultyLevel,

@@ -10,13 +10,12 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedButton
-import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -34,8 +33,12 @@ import androidx.compose.ui.unit.dp
 import com.rumpilstilstkin.gloomhavenhelper.R
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.DifficultyLevel
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.PackType
-import com.rumpilstilstkin.gloomhavenhelper.screens.dialogs.teams.DeleteTeamDialog
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomCard
+import com.rumpilstilstkin.gloomhavenhelper.ui.components.items.GloomListFilledItem
+import com.rumpilstilstkin.gloomhavenhelper.ui.components.items.GloomListItem
+import com.rumpilstilstkin.gloomhavenhelper.ui.components.items.RightItemChecker
+import com.rumpilstilstkin.gloomhavenhelper.ui.components.text.GloomHeader
+import com.rumpilstilstkin.gloomhavenhelper.ui.components.text.GloomOutlinedTextField
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.toolbar.GloomToolbar
 import com.rumpilstilstkin.gloomhavenhelper.ui.team.toImage
 import com.rumpilstilstkin.gloomhavenhelper.ui.team.toLabel
@@ -49,13 +52,10 @@ internal fun TeamEditScreen(
     onTogglePack: (PackType) -> Unit,
     onDifficultyChange: (DifficultyLevel) -> Unit,
     back: () -> Unit,
-    showDeleteDialog: () -> Unit,
-    dismissDeleteDialog: () -> Unit,
-    confirmDelete: () -> Unit,
 ) = Scaffold(
     topBar = {
         GloomToolbar(
-            title = "",
+            title = stringResource(R.string.team_settings),
             back = back,
         )
     },
@@ -67,79 +67,51 @@ internal fun TeamEditScreen(
                 .padding(paddingValues)
                 .padding(16.dp)
                 .verticalScroll(rememberScrollState()),
-        verticalArrangement = Arrangement.spacedBy(16.dp),
     ) {
         var localName by remember(uiState.teamName) { mutableStateOf(uiState.teamName) }
-        OutlinedTextField(
+        Spacer(modifier = Modifier.height(16.dp))
+        GloomOutlinedTextField(
             value = localName,
             onValueChange = { newValue ->
                 localName = newValue
                 onNameChange(newValue)
             },
             modifier = Modifier.fillMaxWidth(),
-            label = { Text(stringResource(R.string.team_name_label)) },
-            singleLine = true,
+            label = stringResource(R.string.team_name_label),
         )
 
-        Spacer(modifier = Modifier.height(8.dp))
+        Spacer(modifier = Modifier.height(32.dp))
+
+        GloomHeader(
+            text = stringResource(R.string.difficulty_level_label),
+        )
+        Spacer(Modifier.height(16.dp))
 
         DifficultySelector(
             selected = uiState.difficultyLevel,
             onSelect = onDifficultyChange,
         )
 
-        Spacer(modifier = Modifier.height(8.dp))
+        Spacer(modifier = Modifier.height(32.dp))
 
-        Text(
-            text = stringResource(R.string.expansions_title),
-            style = MaterialTheme.typography.titleMedium,
-            color = MaterialTheme.colorScheme.primary,
-        )
+        GloomHeader(text = stringResource(R.string.expansions_title))
 
+        Spacer(modifier = Modifier.height(16.dp))
         uiState.availablePacks.forEach { packItem ->
-            GloomCard {
-                Row(
-                    modifier =
-                        Modifier
-                            .fillMaxWidth()
-                            .padding(vertical = 4.dp),
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.SpaceBetween,
-                ) {
-                    Text(
-                        text = stringResource(packItem.displayNameRes),
-                        style = MaterialTheme.typography.bodyLarge,
-                        color = MaterialTheme.colorScheme.onSurface,
-                        modifier = Modifier.weight(1f),
-                    )
-                    Checkbox(
-                        checked = packItem.isEnabled,
-                        onCheckedChange = { onTogglePack(packItem.pack) },
-                    )
-                }
+            Column(
+                verticalArrangement = Arrangement.spacedBy(4.dp)
+            ) {
+                GloomListFilledItem(
+                    title = stringResource(packItem.displayNameRes),
+                    rightComponent = {
+                        RightItemChecker(
+                            checked = packItem.isEnabled,
+                            onCheckedChange = { onTogglePack(packItem.pack) },
+                        )
+                    },
+                )
             }
         }
-
-        Spacer(modifier = Modifier.weight(1f))
-
-        OutlinedButton(
-            onClick = showDeleteDialog,
-            border = BorderStroke(1.dp, MaterialTheme.colorScheme.error),
-            modifier = Modifier.fillMaxWidth(),
-        ) {
-            Text(
-                color = MaterialTheme.colorScheme.error,
-                text = stringResource(R.string.delete),
-            )
-        }
-    }
-
-    if (uiState.showDeleteConfirmDialog) {
-        DeleteTeamDialog(
-            teamName = uiState.teamName,
-            onDismiss = dismissDeleteDialog,
-            onConfirm = confirmDelete,
-        )
     }
 }
 
@@ -147,26 +119,18 @@ internal fun TeamEditScreen(
 fun DifficultySelector(
     selected: DifficultyLevel,
     onSelect: (DifficultyLevel) -> Unit,
-    modifier: Modifier = Modifier,
 ) {
     val items = remember { DifficultyLevel.entries }
-
-    Column(modifier = modifier) {
-        Text(
-            text = stringResource(R.string.difficulty_level_label),
-            style = MaterialTheme.typography.labelSmall,
-            color = MaterialTheme.colorScheme.onSurfaceVariant,
-        )
-        Spacer(Modifier.height(8.dp))
-        Row(horizontalArrangement = Arrangement.spacedBy(6.dp)) {
-            items.forEach { level ->
-                DifficultyItem(
-                    level = level,
-                    isSelected = level == selected,
-                    onClick = { onSelect(level) },
-                    modifier = Modifier.weight(1f),
-                )
-            }
+    Row(
+        modifier = Modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.SpaceBetween
+    ) {
+        items.forEach { level ->
+            DifficultyItem(
+                level = level,
+                isSelected = level == selected,
+                onClick = { onSelect(level) },
+            )
         }
     }
 }
@@ -178,39 +142,39 @@ private fun DifficultyItem(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    val (icon, tint) = level.toImage()
-    val bgColor =
+    val icon = level.toImage()
+    val contentColor =
         if (isSelected) {
-            tint.copy(alpha = 0.12f)
+            MaterialTheme.colorScheme.primary
         } else {
-            MaterialTheme.colorScheme.surface
-        }
-    val borderColor =
-        if (isSelected) {
-            tint
-        } else {
-            MaterialTheme.colorScheme.outlineVariant
+            MaterialTheme.colorScheme.onSurfaceVariant
         }
 
     Surface(
         onClick = onClick,
-        modifier = modifier,
-        shape = MaterialTheme.shapes.small,
-        color = bgColor,
-        border = BorderStroke(0.5.dp, borderColor),
+        modifier = modifier.width(84.dp),
+        shape = MaterialTheme.shapes.large,
+        color = MaterialTheme.colorScheme.surfaceContainer,
+        border = BorderStroke(1.dp, contentColor),
     ) {
         Column(
             modifier =
                 Modifier
-                    .padding(vertical = 10.dp, horizontal = 6.dp),
+                    .padding(8.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.spacedBy(3.dp),
+            verticalArrangement = Arrangement.SpaceBetween,
         ) {
-            Icon(icon, contentDescription = null, tint = tint, modifier = Modifier.size(18.dp))
+            Icon(
+                icon,
+                contentDescription = null,
+                tint = contentColor,
+                modifier = Modifier.size(32.dp)
+            )
             Text(
                 text = level.toLabel(),
-                style = MaterialTheme.typography.labelSmall,
+                style = MaterialTheme.typography.bodyLarge,
                 textAlign = TextAlign.Center,
+                color = contentColor
             )
         }
     }
@@ -235,9 +199,6 @@ private fun TeamEditScreenPreview() {
             onNameChange = {},
             onTogglePack = {},
             back = {},
-            showDeleteDialog = {},
-            dismissDeleteDialog = {},
-            confirmDelete = {},
             onDifficultyChange = {},
         )
     }

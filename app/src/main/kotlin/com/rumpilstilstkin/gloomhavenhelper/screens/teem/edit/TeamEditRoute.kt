@@ -30,9 +30,6 @@ fun TeamEditRoute(
         onNameChange = { viewModel.onAction(TeamEditAction.ChangeTeamName(it)) },
         onTogglePack = { viewModel.onAction(TeamEditAction.TogglePack(it)) },
         back = { viewModel.onAction(TeamEditAction.Back) },
-        showDeleteDialog = { viewModel.onAction(TeamEditAction.ShowDeleteConfirmDialog) },
-        dismissDeleteDialog = { viewModel.onAction(TeamEditAction.DismissDeleteConfirmDialog) },
-        confirmDelete = { viewModel.onAction(TeamEditAction.ConfirmDelete) },
         onDifficultyChange = { viewModel.onAction(TeamEditAction.ChangeDifficultyLevel(it)) },
     )
 }

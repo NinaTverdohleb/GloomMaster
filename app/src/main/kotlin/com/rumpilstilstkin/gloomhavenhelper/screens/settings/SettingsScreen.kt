@@ -2,7 +2,6 @@ package com.rumpilstilstkin.gloomhavenhelper.screens.settings
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -13,9 +12,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -38,8 +35,6 @@ import com.rumpilstilstkin.gloomhavenhelper.ui.components.items.LeftItemIcon
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.items.RightItemText
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.toolbar.GloomToolbar
 import com.rumpilstilstkin.gloomhavenhelper.ui.team.TeamItem
-import com.rumpilstilstkin.gloomhavenhelper.ui.team.toImage
-import com.rumpilstilstkin.gloomhavenhelper.ui.team.toLabel
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
 import kotlinx.collections.immutable.persistentListOf
 
@@ -118,7 +113,7 @@ private fun AppLogo(modifier: Modifier = Modifier) {
     Box(
         modifier =
             modifier
-                .size(120.dp)
+                .size(100.dp)
                 .clip(CircleShape)
                 .background(MaterialTheme.colorScheme.secondaryContainer.copy(alpha = 0.2f))
                 .border(
@@ -242,62 +237,6 @@ private fun LanguageCard(
                 rightComponent = {
                     RightItemText(text = language)
                 }
-            )
-        }
-    }
-}
-
-@Composable
-private fun TeamItem(
-    team: ShortTeamInfoUi,
-    selectTeam: (ShortTeamInfoUi) -> Unit,
-    modifier: Modifier = Modifier,
-) {
-    val (_, tint) = team.level.toImage()
-    val label = team.level.toLabel()
-
-    Row(
-        modifier = modifier.clickable { selectTeam(team) },
-        verticalAlignment = Alignment.CenterVertically,
-    ) {
-        Box(
-            modifier =
-                Modifier
-                    .size(36.dp)
-                    .clip(CircleShape)
-                    .background(MaterialTheme.colorScheme.surfaceVariant),
-            contentAlignment = Alignment.Center,
-        ) {
-            Icon(
-                painter = painterResource(id = R.drawable.ic_empty),
-                contentDescription = null,
-                modifier = Modifier.size(16.dp),
-                tint = MaterialTheme.colorScheme.onSurface,
-            )
-        }
-        Spacer(modifier = Modifier.width(12.dp))
-        Text(
-            text = team.teamName,
-            color = MaterialTheme.colorScheme.onSurface,
-        )
-        Spacer(Modifier.weight(1f))
-        Box(
-            modifier =
-                Modifier
-                    .border(
-                        width = 1.dp,
-                        color = tint,
-                        shape = RoundedCornerShape(16.dp),
-                    )
-                    .padding(horizontal = 10.dp, vertical = 2.dp),
-            contentAlignment = Alignment.Center,
-        ) {
-            Text(
-                modifier = Modifier.padding(4.dp),
-                text = label,
-                color = tint,
-                textAlign = TextAlign.Center,
-                style = MaterialTheme.typography.bodySmall,
             )
         }
     }
