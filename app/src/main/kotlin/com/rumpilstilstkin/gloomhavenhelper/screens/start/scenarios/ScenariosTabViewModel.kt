@@ -42,8 +42,8 @@ class ScenariosTabViewModel @Inject constructor(
         MutableStateFlow(
             mapOf(
                 ScenarioSectionType.ACCESS to true,
-                ScenarioSectionType.BLOCKED to false,
-                ScenarioSectionType.FINISHED to false,
+                ScenarioSectionType.BLOCKED to true,
+                ScenarioSectionType.FINISHED to true,
             ),
         )
 

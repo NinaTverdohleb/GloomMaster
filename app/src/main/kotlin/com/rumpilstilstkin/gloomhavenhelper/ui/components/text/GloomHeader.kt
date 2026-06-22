@@ -13,5 +13,5 @@ fun GloomHeader(
     modifier = modifier,
     text = text,
     style = MaterialTheme.typography.titleLarge,
-    color = MaterialTheme.colorScheme.primaryContainer,
+    color = MaterialTheme.colorScheme.primary,
 )

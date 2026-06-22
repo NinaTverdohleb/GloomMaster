@@ -14,6 +14,7 @@ import androidx.navigation.NavHostController
 import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEvent
 import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEventHelper
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.dialogs.GloomBasicDialog
+import kotlinx.coroutines.launch
 
 sealed interface ScreenEffect {
     data class OpenBottomSheet(val session: OverlaySession) : ScreenEffect
@@ -60,19 +61,19 @@ fun <Input, Output> createOverlaySession(
 fun LaunchedScreenEffect(navController: NavHostController, effect: ScreenEffect?) {
     var currentBottomSheetSession by remember { mutableStateOf<OverlaySession?>(null) }
     var currentDialogSession by remember { mutableStateOf<OverlaySession?>(null) }
-    val sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)
+    val sheetState = rememberModalBottomSheetState()
 
     LaunchedEffect(effect) {
         effect?.let {
             when (it) {
                 is ScreenEffect.OpenBottomSheet -> {
                     currentBottomSheetSession = it.session
-                    sheetState.show()
                 }
 
                 ScreenEffect.CloseBottomSheet -> {
-                    sheetState.hide()
-                    currentBottomSheetSession = null
+                    launch { sheetState.hide() }.invokeOnCompletion {
+                        currentBottomSheetSession = null
+                    }
                 }
 
                 is ScreenEffect.Navigation -> GlHelperEventHelper.event(

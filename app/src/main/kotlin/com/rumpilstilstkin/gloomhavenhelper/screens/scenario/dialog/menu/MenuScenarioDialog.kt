@@ -40,24 +40,22 @@ fun MenuScenarioDialog(
             scenarioName = scenario.scenarioName,
             location = scenario.location,
         )
-        if (scenario.scenarioRequirements.isNotBlank()) {
-            Column(
-                modifier = Modifier.fillMaxWidth(),
-                verticalArrangement = Arrangement.spacedBy(12.dp),
-            ) {
-                Text(
-                    text = stringResource(R.string.requirements),
-                    style = MaterialTheme.typography.bodyLarge,
-                    color = MaterialTheme.colorScheme.onSurface,
-                )
+        Column(
+            modifier = Modifier.fillMaxWidth(),
+            verticalArrangement = Arrangement.spacedBy(12.dp),
+        ) {
+            Text(
+                text = stringResource(R.string.requirements),
+                style = MaterialTheme.typography.bodyLarge,
+                color = MaterialTheme.colorScheme.onSurface,
+            )
 
-                Text(
-                    text = scenario.scenarioRequirements.toHumanReadable(),
-                    style = MaterialTheme.typography.bodyMedium,
-                    color = MaterialTheme.colorScheme.onSurface,
-                    modifier = Modifier.padding(top = 8.dp),
-                )
-            }
+            Text(
+                text = scenario.scenarioRequirements.toHumanReadable(),
+                style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.onSurface,
+                modifier = Modifier.padding(top = 8.dp),
+            )
         }
         Column(
             modifier = Modifier.fillMaxWidth(),
@@ -81,7 +79,7 @@ fun MenuScenarioDialog(
                     icon = painterResource(R.drawable.ic_restore),
                 )
             }
-            if (scenario.avaliable){
+            if (scenario.avaliable) {
                 GloomOutlineButton(
                     text = stringResource(R.string.complete_scenario),
                     onClick = competeScenario,
