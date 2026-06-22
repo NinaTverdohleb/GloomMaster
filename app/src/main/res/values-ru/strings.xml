@@ -174,4 +174,10 @@
     <string name="settings_add_team">Добавить команду</string>
     <string name="settings_language">Язык</string>
     <string name="settings_disclaimer">Неофициальное фан-приложение. Gloomhaven и все связанные с ним материалы являются торговыми марками Cephalofair Games.</string>
+    <string name="back">Назад</string>
+    <string name="settings">Настройки</string>
+    <string name="delete_team_dialog_title">Удалить команду?</string>
+    <string name="delete_team_dialog_description">Удалить команду %1$s и всех ее персонажей</string>
+    <string name="delete_team">Удалить команду</string>
+    <string name="select_team">Выбрать команду</string>
 </resources>

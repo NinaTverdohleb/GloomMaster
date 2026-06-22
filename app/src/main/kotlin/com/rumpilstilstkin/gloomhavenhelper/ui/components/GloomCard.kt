@@ -19,28 +19,20 @@ import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
 @Composable
 fun GloomCard(
     modifier: Modifier = Modifier,
-    active: Boolean = true,
     content: @Composable ColumnScope.() -> Unit,
 ) = Card(
     modifier = modifier,
     colors =
         cardColors(
-            containerColor = MaterialTheme.colorScheme.primaryContainer,
+            containerColor = MaterialTheme.colorScheme.surfaceContainer,
         ),
     border =
         BorderStroke(
             1.dp,
-            if (active) MaterialTheme.colorScheme.outline else MaterialTheme.colorScheme.outlineVariant,
+            MaterialTheme.colorScheme.outline,
         ),
-) {
-    Column(
-        modifier =
-            Modifier
-                .fillMaxWidth()
-                .padding(16.dp),
-        content = content,
-    )
-}
+    content = content
+)
 
 @Preview
 @Composable

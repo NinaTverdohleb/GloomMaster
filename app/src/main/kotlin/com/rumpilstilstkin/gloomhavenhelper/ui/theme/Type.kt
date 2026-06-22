@@ -111,7 +111,7 @@ val Typography =
             ),
         bodyMedium =
             TextStyle(
-                fontStyle = FontStyle.Italic,
+                fontStyle = FontStyle.Normal,
                 fontWeight = FontWeight.Normal,
                 fontSize = 14.sp,
                 lineHeight = 20.sp,
@@ -120,7 +120,7 @@ val Typography =
             ),
         bodySmall =
             TextStyle(
-                fontStyle = FontStyle.Italic,
+                fontStyle = FontStyle.Normal,
                 fontWeight = FontWeight.Normal,
                 fontSize = 12.sp,
                 lineHeight = 16.sp,
@@ -129,7 +129,7 @@ val Typography =
         // Used for Button
         labelLarge =
             TextStyle(
-                fontStyle = FontStyle.Italic,
+                fontStyle = FontStyle.Normal,
                 fontWeight = FontWeight.Medium,
                 fontSize = 14.sp,
                 lineHeight = 20.sp,

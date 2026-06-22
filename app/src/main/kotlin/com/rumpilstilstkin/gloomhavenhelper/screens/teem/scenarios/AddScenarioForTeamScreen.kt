@@ -24,7 +24,7 @@ import com.rumpilstilstkin.gloomhavenhelper.R
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.ShortScenarioUI
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.toHumanReadable
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomAlertDialog
-import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomToolbarTitle
+import com.rumpilstilstkin.gloomhavenhelper.ui.components.toolbar.GloomToolbar
 import com.rumpilstilstkin.gloomhavenhelper.ui.scenario.ScenarioInfoCardItem
 import com.rumpilstilstkin.gloomhavenhelper.ui.scenario.ScenarioInfoItem
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
@@ -40,7 +40,7 @@ internal fun AddScenarioForTeamScreen(
     onBack: () -> Unit,
 ) = Scaffold(
     topBar = {
-        GloomToolbarTitle(
+        GloomToolbar(
             title = stringResource(R.string.add_scenario_title),
             back = onBack,
         )

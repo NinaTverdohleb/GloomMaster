@@ -36,7 +36,7 @@ import com.rumpilstilstkin.gloomhavenhelper.domain.entity.DifficultyLevel
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.PackType
 import com.rumpilstilstkin.gloomhavenhelper.screens.dialogs.teams.DeleteTeamDialog
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomCard
-import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomToolbarTitle
+import com.rumpilstilstkin.gloomhavenhelper.ui.components.toolbar.GloomToolbar
 import com.rumpilstilstkin.gloomhavenhelper.ui.team.toImage
 import com.rumpilstilstkin.gloomhavenhelper.ui.team.toLabel
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
@@ -54,7 +54,7 @@ internal fun TeamEditScreen(
     confirmDelete: () -> Unit,
 ) = Scaffold(
     topBar = {
-        GloomToolbarTitle(
+        GloomToolbar(
             title = "",
             back = back,
         )

@@ -37,7 +37,6 @@ fun GoodItem(
     clickItem: (GoodUi) -> Unit,
 ) = GloomCard(
     modifier = modifier.clickable { clickItem(good) },
-    active = active,
 ) {
     Row(
         modifier = modifier.fillMaxWidth(),

@@ -358,7 +358,7 @@ class TeamRepositoryTest {
         val sut = newSut(TestScope(UnconfinedTestDispatcher(testScheduler)))
 
         // When
-        sut.deleteTeam(target)
+        sut.deleteCurrentTeam(target)
 
         // Then — observable state, not call order
         expectThat(storedTeamId.captured).isEqualTo(8)
@@ -380,7 +380,7 @@ class TeamRepositoryTest {
         val sut = newSut(TestScope(UnconfinedTestDispatcher(testScheduler)))
 
         // When
-        sut.deleteTeam(target)
+        sut.deleteCurrentTeam(target)
 
         // Then — observable state, not call order
         expectThat(storedTeamId.captured).isEqualTo(CurrentTeamDatasource.EMPTY_TEAM)

@@ -1,4 +1,4 @@
-package com.rumpilstilstkin.gloomhavenhelper.screens.dialogs.teams.create
+package com.rumpilstilstkin.gloomhavenhelper.screens.teem.create
 
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts

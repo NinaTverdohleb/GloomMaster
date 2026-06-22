@@ -23,9 +23,13 @@ sealed interface SettingsAction {
 
     data object AddTeam : SettingsAction
 
+    data object DeleteCurrentTeam : SettingsAction
+
     data object ShareTeam : SettingsAction
 
     data class SelectTeam(
-        val teamId: Int,
+        val team: ShortTeamInfoUi,
     ) : SettingsAction
+
+    data object CloseBottomSheet : SettingsAction
 }
