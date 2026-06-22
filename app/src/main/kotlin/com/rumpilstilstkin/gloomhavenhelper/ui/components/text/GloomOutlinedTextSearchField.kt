@@ -31,22 +31,22 @@ fun GloomOutlinedTextSearchField(
     placeholder = {
         Text(
             text = placeholder,
-            style = MaterialTheme.typography.labelSmall,
+            style = MaterialTheme.typography.bodyLarge,
         )
     },
     leadingIcon = {
         Icon(
             imageVector = Icons.Default.Search,
             contentDescription = null,
-            tint = MaterialTheme.colorScheme.onSurfaceVariant,
+            tint = MaterialTheme.colorScheme.outlineVariant,
         )
     },
     shape = RoundedCornerShape(12.dp),
     colors = OutlinedTextFieldDefaults.colors(
         focusedBorderColor = MaterialTheme.colorScheme.outline,
         unfocusedBorderColor = MaterialTheme.colorScheme.outline,
-        focusedLabelColor = MaterialTheme.colorScheme.onSurface,
-        unfocusedLabelColor = MaterialTheme.colorScheme.onSurfaceVariant,
+        focusedPlaceholderColor = MaterialTheme.colorScheme.outlineVariant,
+        unfocusedPlaceholderColor = MaterialTheme.colorScheme.outlineVariant,
     ),
     singleLine = true
 )
@@ -57,7 +57,7 @@ private fun GloomOutlinedTextSearchFieldPreview() {
     GloomhavenMasterTheme {
         Box(modifier = Modifier.padding(40.dp)) {
             GloomOutlinedTextSearchField(
-                value = "Some text",
+                value = "",
                 placeholder = "label",
                 onValueChange = {}
             )
