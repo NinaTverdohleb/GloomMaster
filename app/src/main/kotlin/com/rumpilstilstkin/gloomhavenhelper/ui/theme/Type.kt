@@ -60,7 +60,7 @@ val Typography =
                 letterSpacing = 0.sp,
                 lineHeightStyle =
                     LineHeightStyle(
-                        alignment = Alignment.Bottom,
+                        alignment = Alignment.Center,
                         trim = Trim.None,
                     ),
                 fontFamily = FontFamily.Serif,

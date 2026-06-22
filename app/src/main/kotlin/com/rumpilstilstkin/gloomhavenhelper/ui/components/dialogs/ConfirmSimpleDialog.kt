@@ -24,53 +24,47 @@ import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
 fun ConfirmationDeleteDialog(
     title: String,
     description: String,
-    onDismissRequest: () -> Unit,
     onDeleteConfirm: () -> Unit,
-    modifier: Modifier = Modifier
+    onClose: () -> Unit,
 ) {
-    GloomBasicDialog(
-        onDismissRequest = onDismissRequest,
-        modifier = modifier
-    ) {
-        Column {
-            Text(
-                text = title,
-                color = MaterialTheme.colorScheme.onSurface,
-                style = MaterialTheme.typography.titleLarge,
+    Column {
+        Text(
+            text = title,
+            color = MaterialTheme.colorScheme.onSurface,
+            style = MaterialTheme.typography.titleLarge,
+        )
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        Text(
+            text = description,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+            style = MaterialTheme.typography.bodyLarge,
+        )
+
+        Spacer(modifier = Modifier.height(24.dp))
+
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.spacedBy(24.dp)
+        ) {
+            // Кнопка Delete
+            GloomOutlineButton(
+                text = stringResource(R.string.delete),
+                onClick = onDeleteConfirm,
+                modifier = Modifier
+                    .weight(1f),
+                isError = true,
+                icon = painterResource(R.drawable.ic_delete),
             )
 
-            Spacer(modifier = Modifier.height(16.dp))
-
-            Text(
-                text = description,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
-                style = MaterialTheme.typography.bodyLarge,
+            GloomOutlineButton(
+                text = stringResource(R.string.close),
+                onClick = onClose,
+                modifier = Modifier.weight(1f),
+                isError = false,
+                icon = painterResource(R.drawable.ic_close),
             )
-
-            Spacer(modifier = Modifier.height(24.dp))
-
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.spacedBy(24.dp)
-            ) {
-                // Кнопка Delete
-                GloomOutlineButton(
-                    text = stringResource(R.string.delete),
-                    onClick = onDeleteConfirm,
-                    modifier = Modifier
-                        .weight(1f),
-                    isError = true,
-                    icon = painterResource(R.drawable.ic_delete),
-                )
-
-                GloomOutlineButton(
-                    text = stringResource(R.string.close),
-                    onClick = onDeleteConfirm,
-                    modifier = Modifier.weight(1f),
-                    isError = false,
-                    icon = painterResource(R.drawable.ic_close),
-                )
-            }
         }
     }
 }
@@ -82,8 +76,8 @@ private fun ConfirmationDeleteDialogPreview() {
         ConfirmationDeleteDialog(
             title = "Delete something",
             description = "Are you sure?",
-            onDismissRequest = {},
-            onDeleteConfirm = {}
+            onDeleteConfirm = {},
+            onClose = {}
         )
     }
 }

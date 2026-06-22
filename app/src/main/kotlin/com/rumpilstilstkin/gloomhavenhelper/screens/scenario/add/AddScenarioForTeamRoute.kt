@@ -1,12 +1,11 @@
-package com.rumpilstilstkin.gloomhavenhelper.screens.teem.scenarios
+package com.rumpilstilstkin.gloomhavenhelper.screens.scenario.add
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
-import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEventHelper
+import com.rumpilstilstkin.gloomhavenhelper.screens.core.LaunchedScreenEffect
 
 @Composable
 fun AddScenarioForTeamRoute(
@@ -14,23 +13,17 @@ fun AddScenarioForTeamRoute(
     viewModel: AddScenarioForTeamViewModel = hiltViewModel(),
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
-    val navigationEvents by viewModel.navigationEvents.collectAsStateWithLifecycle(initialValue = null)
-
-    LaunchedEffect(navigationEvents) {
-        navigationEvents?.let { event ->
-            GlHelperEventHelper.event(
-                event = event,
-                navController = navController,
-            )
-        }
-    }
+    val screenEffect by viewModel.screenEvents.collectAsStateWithLifecycle(initialValue = null)
 
     AddScenarioForTeamScreen(
         uiState = uiState,
         onSearchTextChange = { viewModel.onAction(AddScenarioForTeamAction.SearchTextChange(it)) },
         onScenarioClick = { viewModel.onAction(AddScenarioForTeamAction.SelectScenario(it)) },
-        onDismissDialog = { viewModel.onAction(AddScenarioForTeamAction.DismissDialog) },
-        onConfirmAdd = { viewModel.onAction(AddScenarioForTeamAction.ConfirmAddScenario) },
         onBack = { viewModel.onAction(AddScenarioForTeamAction.Back) },
+    )
+
+    LaunchedScreenEffect(
+        effect = screenEffect,
+        navController = navController
     )
 }

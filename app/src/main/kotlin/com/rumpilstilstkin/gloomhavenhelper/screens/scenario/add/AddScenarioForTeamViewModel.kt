@@ -1,12 +1,14 @@
-package com.rumpilstilstkin.gloomhavenhelper.screens.teem.scenarios
+package com.rumpilstilstkin.gloomhavenhelper.screens.scenario.add
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario.AddScenarioToTeamUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario.GetAvailableScenariosForTeamUseCase
-import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEvent
+import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEvent.Back
+import com.rumpilstilstkin.gloomhavenhelper.screens.core.ScreenEffect
+import com.rumpilstilstkin.gloomhavenhelper.screens.core.createOverlaySession
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.ShortScenarioUI
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.toUi
+import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.dialog.add.AddScenarioDialogContract
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -23,10 +25,9 @@ import javax.inject.Inject
 @HiltViewModel
 class AddScenarioForTeamViewModel @Inject constructor(
     getAvailableScenariosUseCase: GetAvailableScenariosForTeamUseCase,
-    private val addScenarioToTeamUseCase: AddScenarioToTeamUseCase,
 ) : ViewModel() {
-    private val _navigationEvents = MutableSharedFlow<GlHelperEvent>()
-    val navigationEvents = _navigationEvents.asSharedFlow()
+    private val _screenEvents = MutableSharedFlow<ScreenEffect>()
+    val screenEvents = _screenEvents.asSharedFlow()
 
     private val logicState = MutableStateFlow(AddScenarioForTeamLogicState())
 
@@ -50,7 +51,6 @@ class AddScenarioForTeamViewModel @Inject constructor(
             AddScenarioForTeamUiState(
                 scenarios = filteredScenarios.toImmutableList(),
                 searchText = state.searchText,
-                selectedScenario = state.selectedScenario,
             )
         }.stateIn(
             scope = viewModelScope,
@@ -66,22 +66,18 @@ class AddScenarioForTeamViewModel @Inject constructor(
                 }
 
                 is AddScenarioForTeamAction.SelectScenario -> {
-                    logicState.update { it.copy(selectedScenario = action.scenario) }
-                }
-
-                is AddScenarioForTeamAction.DismissDialog -> {
-                    logicState.update { it.copy(selectedScenario = null) }
-                }
-
-                is AddScenarioForTeamAction.ConfirmAddScenario -> {
-                    logicState.value.selectedScenario?.let { scenario ->
-                        addScenarioToTeamUseCase(scenario.scenarioNumber)
-                        logicState.update { it.copy(selectedScenario = null) }
-                    }
+                    val session = createOverlaySession(
+                        contract = AddScenarioDialogContract,
+                        input = action.scenario,
+                        onResult = {
+                            ScreenEffect.Message("Scenario added!")
+                        }
+                    )
+                    _screenEvents.emit(ScreenEffect.OpenBottomSheet(session))
                 }
 
                 is AddScenarioForTeamAction.Back -> {
-                    _navigationEvents.emit(GlHelperEvent.Back)
+                    _screenEvents.emit(ScreenEffect.Navigation(Back))
                 }
             }
         }

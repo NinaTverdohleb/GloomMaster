@@ -20,6 +20,7 @@ import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
 @Composable
 fun GloomCard(
     modifier: Modifier = Modifier,
+    active: Boolean = false,
     content: @Composable ColumnScope.() -> Unit,
 ) = Card(
     modifier = modifier,
@@ -31,7 +32,7 @@ fun GloomCard(
     border =
         BorderStroke(
             1.dp,
-            MaterialTheme.colorScheme.outline,
+            if(active) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.outline,
         ),
     content = content
 )
@@ -42,6 +43,7 @@ private fun GloomCardPreview() {
     GloomhavenMasterTheme {
         GloomCard(
             modifier = Modifier.fillMaxWidth(),
+            active = true
         ) {
             Box(
                 modifier = Modifier.height(40.dp),

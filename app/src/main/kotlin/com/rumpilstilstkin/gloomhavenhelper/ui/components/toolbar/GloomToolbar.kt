@@ -1,5 +1,7 @@
 package com.rumpilstilstkin.gloomhavenhelper.ui.components.toolbar
 
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.width
@@ -11,6 +13,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
@@ -67,6 +70,50 @@ fun GloomToolbarAction(
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
+fun GloomToolbarNoBackAction(
+    title: String,
+    titleIcon: Painter,
+    modifier: Modifier = Modifier,
+    actionClick: () -> Unit = {},
+    actionIcon: Painter = painterResource(R.drawable.ic_settings),
+) = TopAppBar(
+    modifier = modifier,
+    title = {
+        Row(
+            horizontalArrangement = Arrangement.Center,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Spacer(Modifier.width(16.dp))
+            Icon(
+                titleIcon,
+                contentDescription = null,
+                tint = MaterialTheme.colorScheme.onSurface,
+            )
+            Spacer(Modifier.width(8.dp))
+            Text(
+                text = title,
+                style = MaterialTheme.typography.titleLarge
+            )
+        }
+    },
+    actions = {
+        IconButton(onClick = actionClick) {
+            Icon(
+                actionIcon,
+                contentDescription = null,
+                tint = MaterialTheme.colorScheme.onSurface,
+            )
+        }
+    },
+    colors = TopAppBarDefaults.topAppBarColors(
+        containerColor = MaterialTheme.colorScheme.surface,
+        titleContentColor = MaterialTheme.colorScheme.onSurface,
+        navigationIconContentColor = MaterialTheme.colorScheme.onSurface
+    ),
+)
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
 fun GloomToolbar(
     title: String,
     modifier: Modifier = Modifier,
@@ -103,22 +150,27 @@ fun GloomToolbar(
 
 @Preview
 @Composable
-private fun GloomToolbarActionPreview() {
-    GloomhavenMasterTheme {
-        GloomToolbarAction(
-            title = "Status",
-            back = {},
-        )
-    }
-}
-
-@Preview
-@Composable
 private fun GloomToolbarPreview() {
     GloomhavenMasterTheme {
-        GloomToolbar(
-            title = "Status",
-            back = {},
-        )
+        Column(
+            verticalArrangement = Arrangement.spacedBy(16.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            GloomToolbarNoBackAction(
+                title = "Status",
+                titleIcon = painterResource(R.drawable.ic_team)
+            )
+
+
+            GloomToolbarAction(
+                title = "Status",
+                back = {},
+            )
+
+            GloomToolbar(
+                title = "Status",
+                back = {},
+            )
+        }
     }
 }

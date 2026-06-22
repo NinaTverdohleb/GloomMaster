@@ -7,12 +7,11 @@ import com.rumpilstilstkin.gloomhavenhelper.domain.entity.PackType
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.TeamInfoForSave
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.team.ImportTeamUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.team.SaveTeamUseCase
-import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEvent
 import com.rumpilstilstkin.gloomhavenhelper.utils.flatMap
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
-import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.asSharedFlow
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import java.io.IOException
 import javax.inject.Inject
@@ -23,27 +22,23 @@ class AddTeamDialogViewModel @Inject constructor(
     private val saveTeamUseCase: SaveTeamUseCase,
     private val importTeamUseCase: ImportTeamUseCase,
 ) : ViewModel() {
-    private val _navigationEvents = MutableSharedFlow<GlHelperEvent>()
-    val navigationEvents = _navigationEvents.asSharedFlow()
+    private val _complete = Channel<AddTeamDialogComplete>(Channel.BUFFERED)
+    val complete = _complete.receiveAsFlow()
 
-    fun onAction(action: AddTeamDialogAction) {
+    fun onAction(action: AddTeamDialogState) {
         viewModelScope.launch {
             when (action) {
-                is AddTeamDialogAction.CreateTeam -> {
+                is AddTeamDialogState.CreateTeam -> {
                     saveTeamUseCase(
                         TeamInfoForSave(
                             action.teamName,
                             packs = listOf(PackType.MAIN),
                         ),
                     )
-                    _navigationEvents.emit(GlHelperEvent.Back)
+                    _complete.send(AddTeamDialogComplete(true))
                 }
 
-                AddTeamDialogAction.Back -> {
-                    _navigationEvents.emit(GlHelperEvent.Back)
-                }
-
-                is AddTeamDialogAction.ImportTeam -> {
+                is AddTeamDialogState.ImportTeam -> {
                     runCatching {
                         context.contentResolver.openInputStream(action.uri)?.use { inputStream ->
                             inputStream.bufferedReader().use { it.readText() }
@@ -51,8 +46,8 @@ class AddTeamDialogViewModel @Inject constructor(
                     }.flatMap { data ->
                         importTeamUseCase(data)
                     }.fold(
-                        onSuccess = { _navigationEvents.emit(GlHelperEvent.Back) },
-                        onFailure = { _navigationEvents.emit(GlHelperEvent.Message("Oops, something went wrong!")) },
+                        onSuccess = { _complete.send(AddTeamDialogComplete(true)) },
+                        onFailure = { _complete.send(AddTeamDialogComplete(false))},
                     )
                 }
             }

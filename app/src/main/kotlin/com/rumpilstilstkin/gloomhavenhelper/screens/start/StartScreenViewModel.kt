@@ -3,10 +3,8 @@ package com.rumpilstilstkin.gloomhavenhelper.screens.start
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.team.GetCurrentTeamUseCase
-import com.rumpilstilstkin.gloomhavenhelper.navigation.GlHelperDialog
 import com.rumpilstilstkin.gloomhavenhelper.navigation.GlHelperScreen
 import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEvent
-import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEvent.Dialog
 import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEvent.Screen
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -45,7 +43,7 @@ class StartScreenViewModel @Inject constructor(
     fun onAction(action: StartScreenAction) {
         viewModelScope.launch {
             when (action) {
-                StartScreenAction.AddTeam -> _navigationEvents.emit(Dialog(GlHelperDialog.AddTeamDialog()))
+                StartScreenAction.AddTeam -> {}
                 StartScreenAction.Settings -> _navigationEvents.emit(Screen(GlHelperScreen.Settings))
             }
         }

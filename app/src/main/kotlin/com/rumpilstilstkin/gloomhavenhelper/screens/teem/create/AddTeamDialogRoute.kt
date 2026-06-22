@@ -7,34 +7,40 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.navigation.NavHostController
-import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEventHelper
+import com.rumpilstilstkin.gloomhavenhelper.screens.core.OverlayContract
+
+object AddTeamDialogContract : OverlayContract<Unit, Boolean> {
+
+    @Composable
+    override fun Content(input: Unit, onDismissWithResult: (Boolean?) -> Unit) {
+        AddTeamDialogRoute(
+            close = onDismissWithResult
+        )
+    }
+}
 
 @Composable
 fun AddTeamDialogRoute(
-    navController: NavHostController,
+    close: (Boolean?) -> Unit,
     viewModel: AddTeamDialogViewModel = hiltViewModel(),
 ) {
-    val navigationEvents by viewModel.navigationEvents.collectAsStateWithLifecycle(initialValue = null)
+    val complete by viewModel.complete.collectAsStateWithLifecycle(initialValue = null)
 
-    LaunchedEffect(navigationEvents) {
-        navigationEvents?.let { event ->
-            GlHelperEventHelper.event(
-                event = event,
-                navController = navController,
-            )
+    LaunchedEffect(complete) {
+        complete?.let { event ->
+            close(event.success)
         }
     }
+
     val openDocumentLauncher =
         rememberLauncherForActivityResult(
             contract = ActivityResultContracts.OpenDocument(),
-            onResult = { uri -> uri?.let { viewModel.onAction(AddTeamDialogAction.ImportTeam(it)) } },
+            onResult = { uri -> uri?.let { viewModel.onAction(AddTeamDialogState.ImportTeam(it)) } },
         )
     AddTeamDialog(
-        onDismiss = { viewModel.onAction(AddTeamDialogAction.Back) },
         openFile = { openDocumentLauncher.launch(arrayOf("application/json")) },
         onAdd = { name ->
-            viewModel.onAction(AddTeamDialogAction.CreateTeam(name))
+            viewModel.onAction(AddTeamDialogState.CreateTeam(name))
         },
     )
 }

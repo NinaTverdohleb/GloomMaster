@@ -2,16 +2,20 @@ package com.rumpilstilstkin.gloomhavenhelper.screens.start.scenarios
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario.CompleteScenarioUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario.CreateActiveScenarioUseCase
-import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario.DeleteScenarioUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario.GetTeamScenariosUseCase
-import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario.RestoreScenarioUseCase
 import com.rumpilstilstkin.gloomhavenhelper.navigation.GlHelperScreen
 import com.rumpilstilstkin.gloomhavenhelper.navigation.GlHelperScreen.Scenario
-import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEvent
 import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEvent.Screen
+import com.rumpilstilstkin.gloomhavenhelper.screens.core.ScreenEffect
+import com.rumpilstilstkin.gloomhavenhelper.screens.core.createOverlaySession
+import com.rumpilstilstkin.gloomhavenhelper.screens.models.ShortScenarioUI
+import com.rumpilstilstkin.gloomhavenhelper.screens.models.ShortTeamInfoUi
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.toUi
+import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.dialog.delete.DeleteScenarioDialogContract
+import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.dialog.menu.MenuScenarioDialogContract
+import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.dialog.menu.MenuScenarioResult
+import com.rumpilstilstkin.gloomhavenhelper.screens.teem.delete.DeleteTeamDialogContract
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.collections.immutable.toImmutableList
 import kotlinx.collections.immutable.toImmutableMap
@@ -29,13 +33,10 @@ import javax.inject.Inject
 @HiltViewModel
 class ScenariosTabViewModel @Inject constructor(
     getTeamScenariosUseCase: GetTeamScenariosUseCase,
-    private val completeScenarioUseCase: CompleteScenarioUseCase,
     private val createActiveScenarioUseCase: CreateActiveScenarioUseCase,
-    private val restoreScenarioUseCase: RestoreScenarioUseCase,
-    private val deleteScenarioUseCase: DeleteScenarioUseCase,
 ) : ViewModel() {
-    private val _navigationEvents = MutableSharedFlow<GlHelperEvent>()
-    val navigationEvents = _navigationEvents.asSharedFlow()
+    private val _screenEvents = MutableSharedFlow<ScreenEffect>()
+    val screenEvents = _screenEvents.asSharedFlow()
 
     private val sectionsExpanded =
         MutableStateFlow(
@@ -71,7 +72,7 @@ class ScenariosTabViewModel @Inject constructor(
                             ScenariosSection(
                                 scenarios =
                                     teamScenarios.blockedScenarios
-                                        .map { it.toUi() }
+                                        .map { it.toUi(false) }
                                         .toImmutableList(),
                                 isExpanded = expandedMap[ScenarioSectionType.BLOCKED] ?: false,
                             ),
@@ -109,27 +110,50 @@ class ScenariosTabViewModel @Inject constructor(
                     }
                 }
 
-                is ScenariosTabAction.StartScenario -> {
-                    createActiveScenarioUseCase(action.scenarioId).onSuccess {
-                        _navigationEvents.emit(Screen(Scenario))
-                    }
-                }
-
-                is ScenariosTabAction.CompleteScenario -> {
-                    completeScenarioUseCase.invoke(scenarioNumber = action.scenarioId)
-                }
-
                 ScenariosTabAction.AddScenario -> {
-                    _navigationEvents.emit(Screen(GlHelperScreen.AddScenarioForTeam))
+                    _screenEvents.emit(ScreenEffect.Navigation(Screen(GlHelperScreen.AddScenarioForTeam)))
                 }
 
-                is ScenariosTabAction.DeleteScenario -> {
-                    deleteScenarioUseCase.invoke(action.scenarioNumber)
-                }
+                is ScenariosTabAction.SelectScenario -> {
+                    val session = createOverlaySession(
+                        contract = MenuScenarioDialogContract,
+                        input = action.scenario,
+                        onResult = { result ->
+                            when (result) {
+                                is MenuScenarioResult.DeleteScenarioRequest -> {
+                                    openDeleteScenarioDialog(result.scenario)
+                                }
 
-                is ScenariosTabAction.RestoreScenario -> {
-                    restoreScenarioUseCase.invoke(action.scenarioNumber)
+                                is MenuScenarioResult.PlayScenario -> {
+                                    viewModelScope.launch {
+                                        createActiveScenarioUseCase(action.scenario.scenarioNumber)
+                                            .onSuccess {
+                                                _screenEvents.emit(
+                                                    ScreenEffect.Navigation(
+                                                        (Screen(Scenario))
+                                                    )
+                                                )
+                                            }
+                                    }
+                                }
+
+                                else -> {}
+                            }
+                        }
+                    )
+                    _screenEvents.emit(ScreenEffect.OpenBottomSheet(session))
                 }
             }
         }
+
+    private fun openDeleteScenarioDialog(scenario: ShortScenarioUI) {
+        viewModelScope.launch {
+            val session = createOverlaySession(
+                contract = DeleteScenarioDialogContract,
+                input = scenario,
+                onResult = { }
+            )
+            _screenEvents.emit(ScreenEffect.OpenDialog(session))
+        }
+    }
 }

@@ -5,10 +5,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Delete
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.PrimaryTabRow
 import androidx.compose.material3.Scaffold
@@ -31,7 +27,7 @@ import com.rumpilstilstkin.gloomhavenhelper.screens.dialogs.character.CharacterE
 import com.rumpilstilstkin.gloomhavenhelper.screens.dialogs.character.DeleteCharacterDialog
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.CharacterClassTypeUI
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.toolbar.GloomToolbar
-import com.rumpilstilstkin.gloomhavenhelper.ui.components.NavItem
+import com.rumpilstilstkin.gloomhavenhelper.ui.components.tabs.NavItem
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
 
 @Composable

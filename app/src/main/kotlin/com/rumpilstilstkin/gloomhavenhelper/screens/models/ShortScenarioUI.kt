@@ -11,6 +11,7 @@ data class ShortScenarioUI(
     val scenarioRequirements: LogicalCondition,
     val location: String,
     val completed: Boolean,
+    val avaliable: Boolean = true
 ) {
     companion object {
         fun fixture(number: Int = 1) =
@@ -19,16 +20,17 @@ data class ShortScenarioUI(
                 scenarioName = "Scenario 1",
                 scenarioRequirements = LogicalCondition("!Global Achievement"),
                 location = "Bad place",
-                completed = true,
+                completed = false,
             )
     }
 }
 
-fun ScenarioInfoWithName.toUi() =
+fun ScenarioInfoWithName.toUi(avaliable: Boolean = true) =
     ShortScenarioUI(
         scenarioNumber = this.scenarioNumber,
         scenarioName = this.scenarioName,
         scenarioRequirements = this.scenarioRequirements,
         location = this.location,
         completed = this.isCompleted,
+        avaliable = avaliable
     )
