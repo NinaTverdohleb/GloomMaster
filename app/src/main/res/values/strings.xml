@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Gloom Master</string>
-    <string name="tab_team">Party</string>
+    <string name="tab_team">Team</string>
     <string name="tab_characters">Characters</string>
     <string name="tab_shop">Shop</string>
     <string name="tab_scenarios">Scenarios</string>
@@ -14,7 +14,7 @@
     <string name="team_achievements">Party Achievements</string>
     <string name="available_scenarios">Available Scenarios</string>
     <string name="continue_button">Continue</string>
-    <string name="play">Play</string>
+    <string name="play_scenario">Play Scenario</string>
     <string name="add_scenario">Add Scenario</string>
     <string name="available_scenarios_tab">Available</string>
     <string name="blocked_scenarios_tab">Locked</string>
@@ -32,9 +32,10 @@
     <string name="save">Save</string>
     <string name="scenario_number_format"># %1$d</string>
     <string name="location_format">Region: %1$s</string>
-    <string name="complete">Complete</string>
+    <string name="complete">Complete Scenario</string>
+    <string name="complete_scenario">Complete Scenario</string>
     <string name="requirements">Requirements: </string>
-    <string name="restore">Restore</string>
+    <string name="restore">Restore Scenario</string>
     <string name="close">Close</string>
     <string name="select">Select</string>
     <string name="icon_light">Element</string>
@@ -181,4 +182,7 @@
     <string name="delete_team">Delete Team</string>
     <string name="select_team">Select Team</string>
     <string name="team_settings">Team Settings</string>
+    <string name="delete_scenario">Delete Scenario</string>
+    <string name="delete_scenario_dialog_title">Delete scenario.</string>
+    <string name="delete_scenario_dialog_description">Are you sure you want to delete scenario %1$s from the scenario list?</string>
 </resources>

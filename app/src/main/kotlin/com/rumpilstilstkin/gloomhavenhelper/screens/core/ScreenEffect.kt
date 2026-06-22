@@ -9,36 +9,39 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.navigation.NavHostController
 import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEvent
 import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEventHelper
-import kotlinx.coroutines.launch
+import com.rumpilstilstkin.gloomhavenhelper.ui.components.dialogs.GloomBasicDialog
 
 sealed interface ScreenEffect {
-    data class OpenBottomSheet(val session: BottomSheetSession) : ScreenEffect
+    data class OpenBottomSheet(val session: OverlaySession) : ScreenEffect
+    data class OpenDialog(val session: OverlaySession) : ScreenEffect
+
     data object CloseBottomSheet : ScreenEffect
+    data object CloseDialog : ScreenEffect
+
     data class Navigation(val event: GlHelperEvent) : ScreenEffect
+
     data class Message(val message: String) : ScreenEffect
 }
 
-interface BottomSheetContract<Input, Output> {
+interface OverlayContract<Input, Output> {
     @Composable
     fun Content(input: Input, onDismissWithResult: (Output?) -> Unit)
 }
 
-interface BottomSheetSession {
+interface OverlaySession {
     @Composable
     fun Render(onDismiss: () -> Unit)
 }
 
-fun <Input, Output> createBottomSheetSession(
-    contract: BottomSheetContract<Input, Output>,
+fun <Input, Output> createOverlaySession(
+    contract: OverlayContract<Input, Output>,
     input: Input,
     onResult: (Output?) -> Unit
-): BottomSheetSession = object : BottomSheetSession {
+): OverlaySession = object : OverlaySession {
 
     @Composable
     override fun Render(onDismiss: () -> Unit) {
@@ -55,14 +58,23 @@ fun <Input, Output> createBottomSheetSession(
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun LaunchedScreenEffect(navController: NavHostController, effect: ScreenEffect?) {
-    var currentSession by remember { mutableStateOf<BottomSheetSession?>(null) }
-    val sheetState = rememberModalBottomSheetState()
+    var currentBottomSheetSession by remember { mutableStateOf<OverlaySession?>(null) }
+    var currentDialogSession by remember { mutableStateOf<OverlaySession?>(null) }
+    val sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)
 
     LaunchedEffect(effect) {
         effect?.let {
             when (it) {
-                is ScreenEffect.OpenBottomSheet -> currentSession = it.session
-                ScreenEffect.CloseBottomSheet -> currentSession = null
+                is ScreenEffect.OpenBottomSheet -> {
+                    currentBottomSheetSession = it.session
+                    sheetState.show()
+                }
+
+                ScreenEffect.CloseBottomSheet -> {
+                    sheetState.hide()
+                    currentBottomSheetSession = null
+                }
+
                 is ScreenEffect.Navigation -> GlHelperEventHelper.event(
                     event = it.event,
                     navController = navController
@@ -71,19 +83,37 @@ fun LaunchedScreenEffect(navController: NavHostController, effect: ScreenEffect?
                 is ScreenEffect.Message -> {
                     Toast.makeText(navController.context, it.message, Toast.LENGTH_LONG).show()
                 }
+
+                ScreenEffect.CloseDialog -> {
+                    currentDialogSession = null
+                }
+
+                is ScreenEffect.OpenDialog -> {
+                    currentDialogSession = it.session
+                }
             }
         }
     }
 
-    currentSession?.let { session ->
+    currentBottomSheetSession?.let { session ->
         ModalBottomSheet(
             onDismissRequest = {
-                currentSession = null
+                currentBottomSheetSession = null
             },
             sheetState = sheetState
         ) {
             session.Render(
-                onDismiss = { currentSession = null }
+                onDismiss = { currentBottomSheetSession = null }
+            )
+        }
+    }
+
+    currentDialogSession?.let { session ->
+        GloomBasicDialog(
+            onDismissRequest = { currentDialogSession = null },
+        ) {
+            session.Render(
+                onDismiss = { currentDialogSession = null }
             )
         }
     }

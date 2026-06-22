@@ -5,10 +5,10 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.rumpilstilstkin.gloomhavenhelper.screens.core.BottomSheetContract
+import com.rumpilstilstkin.gloomhavenhelper.screens.core.OverlayContract
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.ShortTeamInfoUi
 
-object TeamListDialogContract : BottomSheetContract<Unit, ShortTeamInfoUi> {
+object TeamListDialogContract : OverlayContract<Unit, ShortTeamInfoUi> {
 
     @Composable
     override fun Content(input: Unit, onDismissWithResult: (ShortTeamInfoUi?) -> Unit) {

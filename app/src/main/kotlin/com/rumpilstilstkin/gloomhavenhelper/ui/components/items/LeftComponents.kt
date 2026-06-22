@@ -5,9 +5,12 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.magnifier
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
@@ -47,13 +50,41 @@ fun LeftItemImage(
             shape = RoundedCornerShape(8.dp),
             color = MaterialTheme.colorScheme.onSurfaceVariant,
         )
-        .padding(8.dp)
+        .widthIn(min = 48.dp)
+        .heightIn(min = 48.dp),
+    contentAlignment = Alignment.Center
 ){
     Icon(
         painter = icon,
         contentDescription = null,
-        modifier = Modifier.size(28.dp),
+        modifier = Modifier.size(32.dp),
         tint = MaterialTheme.colorScheme.onSurfaceVariant,
+    )
+}
+
+@Composable
+fun LeftItemNumber(
+    number: String
+) = Box(
+    modifier = Modifier
+        .background(
+            color = MaterialTheme.colorScheme.surfaceContainerLow,
+            shape = RoundedCornerShape(8.dp)
+        )
+        .border(
+            width = 1.dp,
+            shape = RoundedCornerShape(8.dp),
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+        )
+        .widthIn(min = 48.dp)
+        .heightIn(min = 48.dp)
+        .padding(horizontal = 6.dp),
+    contentAlignment = Alignment.Center
+){
+    Text(
+        text = number,
+        style = MaterialTheme.typography.headlineSmall,
+        color = MaterialTheme.colorScheme.onSurfaceVariant
     )
 }
 
@@ -61,15 +92,19 @@ fun LeftItemImage(
 @Composable
 private fun GloomItemLeftItemComponentsPreview() {
     GloomhavenMasterTheme {
-        Column(
-            verticalArrangement = Arrangement.spacedBy(16.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
+        Row(
+            horizontalArrangement = Arrangement.spacedBy(16.dp),
+            verticalAlignment = Alignment.CenterVertically
         ) {
             LeftItemIcon(
                 icon = painterResource(R.drawable.ic_plus)
             )
             LeftItemImage(
                 icon = painterResource(R.drawable.ic_team)
+            )
+
+            LeftItemNumber(
+                number = "#150"
             )
         }
     }

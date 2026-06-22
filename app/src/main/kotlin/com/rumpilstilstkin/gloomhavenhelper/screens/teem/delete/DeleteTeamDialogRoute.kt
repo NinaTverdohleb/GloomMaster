@@ -5,33 +5,37 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.navigation.NavHostController
-import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEventHelper
+import com.rumpilstilstkin.gloomhavenhelper.screens.core.OverlayContract
+import com.rumpilstilstkin.gloomhavenhelper.screens.models.ShortTeamInfoUi
+
+object DeleteTeamDialogContract : OverlayContract<ShortTeamInfoUi, Unit> {
+
+    @Composable
+    override fun Content(input: ShortTeamInfoUi, onDismissWithResult: (Unit?) -> Unit) {
+        DeleteTeamDialogRoute(
+            team = input,
+            close = onDismissWithResult
+        )
+    }
+}
 
 @Composable
 fun DeleteTeamDialogRoute(
-    teamId: Int,
-    teamName: String,
-    navController: NavHostController,
+    team: ShortTeamInfoUi,
+    close: (Unit?) -> Unit,
+    viewModel: DeleteTeamDialogViewModel = hiltViewModel(),
 ) {
-    val viewModel =
-        hiltViewModel<DeleteTeamDialogViewModel, DeleteTeamDialogViewModel.Factory> { factory ->
-            factory.create(teamId, teamName)
-        }
-    val navigationEvents by viewModel.navigationEvents.collectAsStateWithLifecycle(initialValue = null)
+    val complete by viewModel.complete.collectAsStateWithLifecycle(initialValue = null)
 
-    LaunchedEffect(navigationEvents) {
-        navigationEvents?.let { event ->
-            GlHelperEventHelper.event(
-                event = event,
-                navController = navController,
-            )
+    LaunchedEffect(complete) {
+        complete?.let {
+            close(Unit)
         }
     }
 
     DeleteTeamDialogScreen(
-        teamName = viewModel.uiState,
-        back = { viewModel.onAction(DeleteTeamDialogAction.Back) },
-        deleteTeam = { viewModel.onAction(DeleteTeamDialogAction.DeleteTeam) }
+        teamName = team.teamName,
+        close = { close(null) },
+        deleteTeam = { viewModel.onAction(DeleteTeamDialogAction.DeleteTeam(team.teamId)) }
     )
 }

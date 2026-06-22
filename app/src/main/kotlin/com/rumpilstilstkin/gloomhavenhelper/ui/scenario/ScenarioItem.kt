@@ -3,6 +3,7 @@ package com.rumpilstilstkin.gloomhavenhelper.ui.scenario
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -23,6 +24,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.rumpilstilstkin.gloomhavenhelper.R
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomCard
+import com.rumpilstilstkin.gloomhavenhelper.ui.components.items.GloomListFilledItem
+import com.rumpilstilstkin.gloomhavenhelper.ui.components.items.GloomListItem
+import com.rumpilstilstkin.gloomhavenhelper.ui.components.items.LeftItemNumber
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
 
 @Composable
@@ -32,20 +36,42 @@ fun ScenarioInfoCardItem(
     location: String,
     modifier: Modifier = Modifier,
     onClick: (Int) -> Unit = {},
-) = GloomCard(
+) = GloomListFilledItem(
     modifier = modifier,
-) {
-    ScenarioInfoItem(
-        scenarioNumber = scenarioNumber,
-        scenarioName = scenarioName,
-        location = location,
-        modifier = modifier,
-        onClick = onClick,
-    )
-}
+    title = scenarioName,
+    description = location,
+    onClick = { onClick(scenarioNumber) },
+    leftComponent = {
+        LeftItemNumber(
+            number = stringResource(R.string.scenario_number_format, scenarioNumber)
+        )
+    }
+)
 
 @Composable
 fun ScenarioInfoItem(
+    scenarioNumber: Int,
+    scenarioName: String,
+    location: String,
+    modifier: Modifier = Modifier,
+    onClick: (Int) -> Unit = {},
+) {
+    GloomListItem(
+        modifier = modifier,
+        title = scenarioName,
+        description = location,
+        onClick = { onClick(scenarioNumber) },
+        leftComponent = {
+            LeftItemNumber(
+                number = stringResource(R.string.scenario_number_format, scenarioNumber)
+            )
+        }
+    )
+}
+
+
+@Composable
+fun ScenarioInfoItem2(
     scenarioNumber: Int,
     scenarioName: String,
     location: String,
@@ -65,7 +91,8 @@ fun ScenarioInfoItem(
                     .background(
                         color = MaterialTheme.colorScheme.secondaryContainer,
                         shape = RoundedCornerShape(8.dp),
-                    ).border(
+                    )
+                    .border(
                         shape = RoundedCornerShape(8.dp),
                         color = MaterialTheme.colorScheme.outline,
                         width = 1.dp,
@@ -107,10 +134,21 @@ fun ScenarioInfoItem(
 @Composable
 private fun Sample() {
     GloomhavenMasterTheme {
-        ScenarioInfoCardItem(
-            scenarioNumber = 99,
-            scenarioName = "Name",
-            location = "Bad place",
-        )
+        Column(
+            verticalArrangement = Arrangement.spacedBy(16.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            ScenarioInfoCardItem(
+                scenarioNumber = 99,
+                scenarioName = "Name",
+                location = "Bad place",
+            )
+
+            ScenarioInfoItem(
+                scenarioNumber = 99,
+                scenarioName = "Name",
+                location = "Bad place",
+            )
+        }
     }
 }

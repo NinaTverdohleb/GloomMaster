@@ -8,13 +8,13 @@ import com.rumpilstilstkin.gloomhavenhelper.ui.components.dialogs.ConfirmationDe
 @Composable
 fun DeleteTeamDialogScreen(
     teamName: String,
-    back: () -> Unit,
+    close: () -> Unit,
     deleteTeam: () -> Unit,
 ) {
     ConfirmationDeleteDialog(
         title = stringResource(R.string.delete_team_dialog_title),
         description = stringResource(R.string.delete_team_dialog_description, teamName),
-        onDismissRequest = back,
+        onClose = close,
         onDeleteConfirm = deleteTeam,
     )
 }

@@ -8,16 +8,15 @@ import androidx.lifecycle.viewModelScope
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.settings.LanguagesListUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.team.GetCurrentTeamWithTeamsUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.team.GetShareFileUseCase
-import com.rumpilstilstkin.gloomhavenhelper.navigation.GlHelperDialog.AddTeamDialog
-import com.rumpilstilstkin.gloomhavenhelper.navigation.GlHelperDialog.DeleteTeamDialog
 import com.rumpilstilstkin.gloomhavenhelper.navigation.GlHelperScreen
 import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEvent.Back
-import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEvent.Dialog
 import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEvent.Screen
 import com.rumpilstilstkin.gloomhavenhelper.screens.core.ScreenEffect
-import com.rumpilstilstkin.gloomhavenhelper.screens.core.createBottomSheetSession
+import com.rumpilstilstkin.gloomhavenhelper.screens.core.createOverlaySession
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.ShortTeamInfoUi
 import com.rumpilstilstkin.gloomhavenhelper.screens.settings.language.SelectLanguageContract
+import com.rumpilstilstkin.gloomhavenhelper.screens.teem.create.AddTeamDialogContract
+import com.rumpilstilstkin.gloomhavenhelper.screens.teem.delete.DeleteTeamDialogContract
 import com.rumpilstilstkin.gloomhavenhelper.screens.teem.list.TeamListDialogContract
 import com.rumpilstilstkin.gloomhavenhelper.screens.teem.menu.TeamMenuDialogContract
 import com.rumpilstilstkin.gloomhavenhelper.screens.teem.menu.TeamMenuResult
@@ -86,7 +85,7 @@ class SettingsViewModel @Inject constructor(
                 }
 
                 SettingsAction.ChangeLanguage -> {
-                    val session = createBottomSheetSession(
+                    val session = createOverlaySession(
                         contract = SelectLanguageContract,
                         input = Unit,
                         onResult = { }
@@ -95,7 +94,7 @@ class SettingsViewModel @Inject constructor(
                 }
 
                 SettingsAction.ShowAllTeam -> {
-                    val session = createBottomSheetSession(
+                    val session = createOverlaySession(
                         contract = TeamListDialogContract,
                         input = Unit,
                         onResult = { team ->
@@ -106,24 +105,13 @@ class SettingsViewModel @Inject constructor(
                 }
 
                 is SettingsAction.SelectTeam -> {
-                    val session = createBottomSheetSession(
+                    val session = createOverlaySession(
                         contract = TeamMenuDialogContract,
                         input = action.team,
                         onResult = { result ->
                             when (result) {
                                 is TeamMenuResult.DeleteTeamRequest -> {
-                                    viewModelScope.launch {
-                                        _screenEvents.emit(
-                                            ScreenEffect.Navigation(
-                                                Dialog(
-                                                    DeleteTeamDialog(
-                                                        teamId = result.team.teamId,
-                                                        teamName = result.team.teamName
-                                                    )
-                                                )
-                                            )
-                                        )
-                                    }
+                                    openDeleteTeamDialog(result.team)
                                 }
 
                                 else -> {}
@@ -138,7 +126,7 @@ class SettingsViewModel @Inject constructor(
                 }
 
                 SettingsAction.AddTeam -> {
-                    _screenEvents.emit(ScreenEffect.Navigation(Dialog(AddTeamDialog())))
+                    openAddTeamDialog()
                 }
 
                 SettingsAction.ShareTeam -> {
@@ -174,16 +162,7 @@ class SettingsViewModel @Inject constructor(
 
                 SettingsAction.DeleteCurrentTeam -> {
                     uiState.value.team?.also { team ->
-                        _screenEvents.emit(
-                            ScreenEffect.Navigation(
-                                Dialog(
-                                    DeleteTeamDialog(
-                                        teamId = team.teamId,
-                                        teamName = team.teamName
-                                    )
-                                )
-                            )
-                        )
+                        openDeleteTeamDialog(team)
                     }
                 }
 
@@ -191,6 +170,43 @@ class SettingsViewModel @Inject constructor(
                     _screenEvents.emit(ScreenEffect.CloseBottomSheet)
                 }
             }
+        }
+    }
+
+    private fun openDeleteTeamDialog(team: ShortTeamInfoUi) {
+        viewModelScope.launch {
+            val session = createOverlaySession(
+                contract = DeleteTeamDialogContract,
+                input = team,
+                onResult = {
+                    viewModelScope.launch {
+                        _screenEvents.emit(ScreenEffect.Message("Team deleted."))
+                    }
+                }
+            )
+            _screenEvents.emit(ScreenEffect.OpenDialog(session))
+        }
+    }
+
+    private fun openAddTeamDialog() {
+        viewModelScope.launch {
+            val session = createOverlaySession(
+                contract = AddTeamDialogContract,
+                input = Unit,
+                onResult = { result ->
+                    viewModelScope.launch {
+                        result?.let { success ->
+                            val message = if (success) {
+                                "Team created"
+                            } else {
+                                "Oops, something went wrong!"
+                            }
+                            _screenEvents.emit(ScreenEffect.Message(message))
+                        }
+                    }
+                }
+            )
+            _screenEvents.emit(ScreenEffect.OpenDialog(session))
         }
     }
 }

@@ -28,7 +28,7 @@ fun ScenarioActionDialog(
     scenarioName: String,
     scenarioRequirements: String,
     location: String,
-    confirmText: String = stringResource(R.string.play),
+    confirmText: String = stringResource(R.string.play_scenario),
     onDismiss: () -> Unit,
     completeScenario: () -> Unit,
     startScenario: () -> Unit,

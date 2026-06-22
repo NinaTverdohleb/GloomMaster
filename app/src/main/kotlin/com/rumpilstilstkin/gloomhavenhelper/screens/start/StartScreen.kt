@@ -19,14 +19,21 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.rumpilstilstkin.gloomhavenhelper.R
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.TeamUI
+import com.rumpilstilstkin.gloomhavenhelper.screens.start.scenarios.ScenariosTabScreen
+import com.rumpilstilstkin.gloomhavenhelper.screens.start.scenarios.ScenariosTabStateUi
 import com.rumpilstilstkin.gloomhavenhelper.screens.start.team.TeamTabScreen
 import com.rumpilstilstkin.gloomhavenhelper.screens.start.team.TeamTabUiState
-import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomBottomNavigationBar
-import com.rumpilstilstkin.gloomhavenhelper.ui.components.NavItem
+import com.rumpilstilstkin.gloomhavenhelper.ui.components.tabs.GloomBottomNavigationBar
+import com.rumpilstilstkin.gloomhavenhelper.ui.components.tabs.NavItem
+import com.rumpilstilstkin.gloomhavenhelper.ui.components.toolbar.GloomToolbar
+import com.rumpilstilstkin.gloomhavenhelper.ui.components.toolbar.GloomToolbarAction
+import com.rumpilstilstkin.gloomhavenhelper.ui.components.toolbar.GloomToolbarNoBackAction
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
 
 @Composable
@@ -39,6 +46,13 @@ internal fun StartScreen(
     var selectedTab by rememberSaveable { mutableStateOf(StartScreenTab.TEAM) }
 
     Scaffold(
+        topBar = {
+            GloomToolbarNoBackAction(
+                title = stringResource(selectedTab.titleRes),
+                titleIcon = painterResource(selectedTab.iconRes),
+                actionClick = settings
+            )
+        },
         bottomBar = {
             GloomBottomNavigationBar(
                 items = StartScreenTab.entries,
@@ -57,20 +71,6 @@ internal fun StartScreen(
                     .padding(paddingValues)
                     .padding(16.dp),
         ) {
-            Box(
-                modifier = Modifier.fillMaxWidth(),
-            ) {
-                IconButton(
-                    onClick = settings,
-                    modifier = Modifier.align(Alignment.CenterEnd),
-                ) {
-                    Icon(
-                        imageVector = Icons.Default.Settings,
-                        contentDescription = null,
-                        tint = MaterialTheme.colorScheme.onSurface,
-                    )
-                }
-            }
             when (state) {
                 StartScreenState.Empty -> {
                     EmptyTeamScreen(
@@ -90,10 +90,10 @@ internal enum class StartScreenTab(
     override val titleRes: Int,
     override val iconRes: Int,
 ) : NavItem {
-    TEAM(R.string.tab_team, R.drawable.ic_company),
+    TEAM(R.string.tab_team, R.drawable.ic_team),
     CHARACTERS(R.string.tab_characters, R.drawable.ic_characters),
     SHOP(R.string.tab_shop, R.drawable.ic_shop),
-    SCENARIOS(R.string.tab_scenarios, R.drawable.ic_scenario),
+    SCENARIOS(R.string.tab_scenarios, R.drawable.ic_scenarios),
 }
 
 @Preview
@@ -122,20 +122,11 @@ private fun StartScreenPreview() {
             settings = {},
             addTeam = {},
             selectTab = {
-                TeamTabScreen(
-                    state =
-                        TeamTabUiState.Data(
-                            currentTeam = TeamUI.fixture(),
-                        ),
-                    completeScenario = {},
-                    startScenario = {},
-                    updateProsperity = {},
-                    updateReputation = {},
-                    openTeamAchievements = {},
-                    openGlobalAchievements = {},
-                    playCurrentScenario = {},
-                    donate = {},
-                    deleteScenario = {},
+                ScenariosTabScreen(
+                    state = ScenariosTabStateUi.fixture(),
+                    toggleSection = {},
+                    addScenario = {},
+                    selectScenario = {},
                 )
             },
         )

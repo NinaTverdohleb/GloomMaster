@@ -5,9 +5,9 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.rumpilstilstkin.gloomhavenhelper.screens.core.BottomSheetContract
+import com.rumpilstilstkin.gloomhavenhelper.screens.core.OverlayContract
 
-object SelectLanguageContract : BottomSheetContract<Unit, Unit> {
+object SelectLanguageContract : OverlayContract<Unit, Unit> {
 
     @Composable
     override fun Content(input: Unit, onDismissWithResult: (Unit?) -> Unit) {

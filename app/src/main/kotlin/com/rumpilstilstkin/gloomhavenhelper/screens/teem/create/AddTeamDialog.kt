@@ -23,48 +23,43 @@ import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
 
 @Composable
 internal fun AddTeamDialog(
-    onDismiss: () -> Unit,
     onAdd: (String) -> Unit,
     openFile: () -> Unit,
 ) {
     var teamName by rememberSaveable { mutableStateOf("") }
 
-    GloomBasicDialog(
-        onDismissRequest = onDismiss
+    Column(
+        verticalArrangement = Arrangement.spacedBy(24.dp)
     ) {
-        Column(
-            verticalArrangement = Arrangement.spacedBy(24.dp)
-        ) {
-            Text(
-                text = stringResource(R.string.new_team_title),
-                color = MaterialTheme.colorScheme.onSurface,
-                style = MaterialTheme.typography.titleLarge,
-            )
+        Text(
+            text = stringResource(R.string.new_team_title),
+            color = MaterialTheme.colorScheme.onSurface,
+            style = MaterialTheme.typography.titleLarge,
+        )
 
-            GloomOutlinedTextField(
-                modifier = Modifier.fillMaxWidth(),
-                value = teamName,
-                onValueChange = { teamName = it },
-                label = stringResource(R.string.team_name_label)
-            )
+        GloomOutlinedTextField(
+            modifier = Modifier.fillMaxWidth(),
+            value = teamName,
+            onValueChange = { teamName = it },
+            label = stringResource(R.string.team_name_label)
+        )
 
-            GloomOutlineButton(
-                text = stringResource(R.string.import_button),
-                onClick = openFile,
-                modifier = Modifier.fillMaxWidth(),
-                isError = false,
-                icon = painterResource(R.drawable.ic_restore),
-            )
+        GloomOutlineButton(
+            text = stringResource(R.string.import_button),
+            onClick = openFile,
+            modifier = Modifier.fillMaxWidth(),
+            isError = false,
+            icon = painterResource(R.drawable.ic_restore),
+        )
 
-            GloomOutlineButton(
-                text = stringResource(R.string.add),
-                onClick = { onAdd(teamName.trim()) },
-                modifier = Modifier.fillMaxWidth(),
-                isError = false,
-                enabled = teamName.isNotBlank(),
-                icon = painterResource(R.drawable.ic_plus),
-            )
-        }
+        GloomOutlineButton(
+            text = stringResource(R.string.add),
+            onClick = { onAdd(teamName.trim()) },
+            modifier = Modifier.fillMaxWidth(),
+            isError = false,
+            enabled = teamName.isNotBlank(),
+            icon = painterResource(R.drawable.ic_plus),
+        )
     }
 }
 
@@ -73,7 +68,6 @@ internal fun AddTeamDialog(
 private fun AddTeamDialogPreview() {
     GloomhavenMasterTheme {
         AddTeamDialog(
-            onDismiss = {},
             onAdd = {},
             openFile = {},
         )

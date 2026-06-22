@@ -14,7 +14,7 @@
     <string name="team_achievements">Достижения отряда</string>
     <string name="available_scenarios">Доступные сценарии</string>
     <string name="continue_button">Продолжить</string>
-    <string name="play">Играть</string>
+    <string name="play_scenario">Играть сценарий</string>
     <string name="add_scenario">Добавить сценарий</string>
     <string name="available_scenarios_tab">Доступные сценарии</string>
     <string name="blocked_scenarios_tab">Недоступные сценарии</string>
@@ -33,8 +33,9 @@
     <string name="scenario_number_format"># %1$d</string>
     <string name="location_format">Регион: %1$s</string>
     <string name="complete">Завершить</string>
+    <string name="complete_scenario">Завершить сценарий</string>
     <string name="requirements">Требования: </string>
-    <string name="restore">Восстановить</string>
+    <string name="restore">Восстановить сценарий</string>
     <string name="close">Закрыть</string>
     <string name="select">Выбрать</string>
     <string name="icon_light">Стихия</string>
@@ -181,4 +182,7 @@
     <string name="delete_team">Удалить команду</string>
     <string name="select_team">Выбрать команду</string>
     <string name="team_settings">Настройки команды</string>
+    <string name="delete_scenario">Удалить сценарий</string>
+    <string name="delete_scenario_dialog_title">Удалить сценарий.</string>
+    <string name="delete_scenario_dialog_description">Вы точно хотите удалить сценарий %1$s из списка сценариев команды</string>
 </resources>
