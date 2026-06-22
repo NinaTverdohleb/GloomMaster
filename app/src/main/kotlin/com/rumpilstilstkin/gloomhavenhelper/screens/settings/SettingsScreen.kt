@@ -1,6 +1,5 @@
 package com.rumpilstilstkin.gloomhavenhelper.screens.settings
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -17,17 +16,9 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.filled.Close
-import androidx.compose.material.icons.filled.Settings
-import androidx.compose.material.icons.filled.Share
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedButton
-import androidx.compose.material3.Surface
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -41,6 +32,12 @@ import androidx.compose.ui.unit.dp
 import com.rumpilstilstkin.gloomhavenhelper.R
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.ShortTeamInfoUi
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomCard
+import com.rumpilstilstkin.gloomhavenhelper.ui.components.buttons.GloomOutlineFilledButtonIcon
+import com.rumpilstilstkin.gloomhavenhelper.ui.components.items.GloomListItem
+import com.rumpilstilstkin.gloomhavenhelper.ui.components.items.LeftItemIcon
+import com.rumpilstilstkin.gloomhavenhelper.ui.components.items.RightItemText
+import com.rumpilstilstkin.gloomhavenhelper.ui.components.toolbar.GloomToolbar
+import com.rumpilstilstkin.gloomhavenhelper.ui.team.TeamItem
 import com.rumpilstilstkin.gloomhavenhelper.ui.team.toImage
 import com.rumpilstilstkin.gloomhavenhelper.ui.team.toLabel
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
@@ -54,35 +51,40 @@ fun SettingsScreen(
     back: () -> Unit,
     share: () -> Unit,
     settings: () -> Unit,
+    deleteCurrentTeam: () -> Unit,
     selectTeam: (ShortTeamInfoUi) -> Unit,
     showAllTeam: () -> Unit,
     addTeam: () -> Unit,
     changeLanguage: () -> Unit,
-    modifier: Modifier = Modifier,
-) = Surface(
-    modifier = modifier.fillMaxSize(),
-) {
+) = Scaffold(
+    topBar = {
+        GloomToolbar(
+            title = stringResource(R.string.settings),
+            back = back,
+        )
+    },
+) { paddingValues ->
     Column(
         modifier =
             Modifier
                 .fillMaxSize()
-                .padding(horizontal = 16.dp),
+                .padding(paddingValues)
+                .padding(start = 16.dp, end = 16.dp, top = 28.dp, bottom = 16.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        SettingsHeader(onClose = back)
-
         AppLogo()
 
         state.team?.let { team ->
             Spacer(modifier = Modifier.height(16.dp))
             TeamSummary(
                 teamName = team.teamName,
-                onShare = share,
-                onSettings = settings,
+                share = share,
+                openSettings = settings,
+                delete = deleteCurrentTeam
             )
         }
 
-        Spacer(modifier = Modifier.height(24.dp))
+        Spacer(modifier = Modifier.height(32.dp))
 
         TeamsCard(
             teams = state.teams,
@@ -104,33 +106,10 @@ fun SettingsScreen(
             text = stringResource(R.string.settings_disclaimer),
             style = MaterialTheme.typography.labelMedium,
             textAlign = TextAlign.Center,
+            color = MaterialTheme.colorScheme.onSurface
         )
 
         Spacer(modifier = Modifier.height(16.dp))
-    }
-}
-
-@Composable
-private fun SettingsHeader(
-    onClose: () -> Unit,
-    modifier: Modifier = Modifier,
-) {
-    Box(
-        modifier =
-            modifier
-                .fillMaxWidth()
-                .padding(vertical = 12.dp),
-    ) {
-        IconButton(
-            onClick = onClose,
-            modifier = Modifier.align(Alignment.CenterEnd),
-        ) {
-            Icon(
-                imageVector = Icons.Default.Close,
-                contentDescription = stringResource(R.string.close),
-                tint = MaterialTheme.colorScheme.onSurface,
-            )
-        }
     }
 }
 
@@ -139,14 +118,20 @@ private fun AppLogo(modifier: Modifier = Modifier) {
     Box(
         modifier =
             modifier
-                .size(80.dp)
+                .size(120.dp)
                 .clip(CircleShape)
-                .background(MaterialTheme.colorScheme.outlineVariant),
+                .background(MaterialTheme.colorScheme.secondaryContainer.copy(alpha = 0.2f))
+                .border(
+                    shape = CircleShape,
+                    color = MaterialTheme.colorScheme.secondary,
+                    width = 1.dp,
+                ),
         contentAlignment = Alignment.Center,
     ) {
-        Image(
+        Icon(
             painter = painterResource(R.drawable.ic_launcher_foreground),
             contentDescription = null,
+            tint = MaterialTheme.colorScheme.secondary,
         )
     }
 }
@@ -154,8 +139,9 @@ private fun AppLogo(modifier: Modifier = Modifier) {
 @Composable
 private fun TeamSummary(
     teamName: String,
-    onShare: () -> Unit,
-    onSettings: () -> Unit,
+    share: () -> Unit,
+    openSettings: () -> Unit,
+    delete: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Column(
@@ -164,47 +150,31 @@ private fun TeamSummary(
     ) {
         Text(
             text = teamName,
-            style = MaterialTheme.typography.titleLarge,
-            color = MaterialTheme.colorScheme.onSurface,
+            style = MaterialTheme.typography.headlineMedium,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
         )
 
-        Spacer(modifier = Modifier.height(12.dp))
+        Spacer(modifier = Modifier.height(16.dp))
 
         Row(
-            horizontalArrangement = Arrangement.spacedBy(32.dp),
+            horizontalArrangement = Arrangement.spacedBy(12.dp),
         ) {
-            CircularIconButton(
-                icon = Icons.Default.Share,
-                onClick = onShare,
+            GloomOutlineFilledButtonIcon(
+                isError = true,
+                icon = painterResource(R.drawable.ic_delete),
+                onClick = delete
             )
-            CircularIconButton(
-                icon = Icons.Default.Settings,
-                onClick = onSettings,
+
+            GloomOutlineFilledButtonIcon(
+                icon = painterResource(R.drawable.ic_share),
+                onClick = share
+            )
+
+            GloomOutlineFilledButtonIcon(
+                icon = painterResource(R.drawable.ic_settings),
+                onClick = openSettings
             )
         }
-    }
-}
-
-@Composable
-private fun CircularIconButton(
-    icon: androidx.compose.ui.graphics.vector.ImageVector,
-    onClick: () -> Unit,
-    modifier: Modifier = Modifier,
-) {
-    OutlinedButton(
-        onClick = onClick,
-        modifier = modifier,
-        shape = RoundedCornerShape(20.dp),
-        colors =
-            ButtonDefaults.outlinedButtonColors(
-                contentColor = MaterialTheme.colorScheme.onSurface,
-            ),
-    ) {
-        Icon(
-            imageVector = icon,
-            contentDescription = null,
-            tint = MaterialTheme.colorScheme.onSurface,
-        )
     }
 }
 
@@ -217,59 +187,35 @@ private fun TeamsCard(
     modifier: Modifier = Modifier,
 ) {
     GloomCard(
-        modifier = modifier.fillMaxWidth(),
+        modifier = modifier
+            .fillMaxWidth(),
     ) {
-        Text(
-            text = stringResource(R.string.settings_change_team),
-            color = MaterialTheme.colorScheme.onSurface,
-            style = MaterialTheme.typography.bodyLarge,
-        )
-
-        Spacer(Modifier.height(8.dp))
-
-        teams.take(VISIBLE_TEAMS_LIMIT).forEach { team ->
-            TeamItem(
-                team = team,
-                selectTeam = onSelectTeam,
-                modifier =
-                    Modifier
-                        .fillMaxWidth()
-                        .padding(16.dp),
-            )
-        }
-
-        if (teams.size > VISIBLE_TEAMS_LIMIT) {
-            Text(
-                text = stringResource(R.string.settings_show_all_teams),
-                style = MaterialTheme.typography.bodyMedium,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
-                modifier =
-                    Modifier
-                        .fillMaxWidth()
-                        .clickable { onShowAllTeams() }
-                        .padding(16.dp),
-            )
-        }
-
-        Row(
-            modifier =
-                Modifier
-                    .fillMaxWidth()
-                    .clickable { onAddTeam() }
-                    .padding(16.dp),
-            verticalAlignment = Alignment.CenterVertically,
+        Column(
+            modifier = Modifier.padding(vertical = 8.dp, horizontal = 20.dp),
+            verticalArrangement = Arrangement.spacedBy(4.dp)
         ) {
-            Icon(
-                imageVector = Icons.Default.Add,
-                contentDescription = null,
-                tint = MaterialTheme.colorScheme.onSurface,
-                modifier = Modifier.size(24.dp),
-            )
-            Spacer(modifier = Modifier.width(16.dp))
-            Text(
-                text = stringResource(R.string.settings_add_team),
-                style = MaterialTheme.typography.bodyMedium,
-                color = MaterialTheme.colorScheme.onSurface,
+            teams.take(VISIBLE_TEAMS_LIMIT).forEach { team ->
+                TeamItem(
+                    team = team,
+                    onClick = { onSelectTeam(team) }
+                )
+            }
+
+            if (teams.size > VISIBLE_TEAMS_LIMIT) {
+                GloomListItem(
+                    onClick = onShowAllTeams,
+                    title = stringResource(R.string.settings_show_all_teams),
+                )
+            }
+
+            GloomListItem(
+                onClick = onAddTeam,
+                title = stringResource(R.string.settings_add_team),
+                leftComponent = {
+                    LeftItemIcon(
+                        icon = painterResource(R.drawable.ic_plus)
+                    )
+                }
             )
         }
     }
@@ -279,27 +225,23 @@ private fun TeamsCard(
 private fun LanguageCard(
     language: String,
     onClick: () -> Unit,
-    modifier: Modifier = Modifier,
 ) {
     GloomCard(
-        modifier =
-            modifier
-                .fillMaxWidth()
-                .clickable { onClick() },
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding()
     ) {
-        Row(
-            verticalAlignment = Alignment.CenterVertically,
+        Column(
+            modifier = Modifier.padding(horizontal = 20.dp),
+            verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
-            Text(
-                text = stringResource(R.string.settings_language),
-                color = MaterialTheme.colorScheme.onSurface,
-                style = MaterialTheme.typography.bodyLarge,
-            )
-            Spacer(modifier = Modifier.weight(1f))
-            Text(
-                text = language,
-                color = MaterialTheme.colorScheme.onSurface,
-                style = MaterialTheme.typography.bodyMedium,
+            GloomListItem(
+                modifier = Modifier.fillMaxWidth(),
+                onClick = onClick,
+                title = stringResource(R.string.settings_language),
+                rightComponent = {
+                    RightItemText(text = language)
+                }
             )
         }
     }
@@ -346,7 +288,8 @@ private fun TeamItem(
                         width = 1.dp,
                         color = tint,
                         shape = RoundedCornerShape(16.dp),
-                    ).padding(horizontal = 10.dp, vertical = 2.dp),
+                    )
+                    .padding(horizontal = 10.dp, vertical = 2.dp),
             contentAlignment = Alignment.Center,
         ) {
             Text(
@@ -384,6 +327,7 @@ private fun SettingsScreenPreview() {
             showAllTeam = {},
             addTeam = {},
             changeLanguage = {},
+            deleteCurrentTeam = {}
         )
     }
 }
@@ -406,6 +350,7 @@ private fun SettingsScreenEmptyTeamPreview() {
             showAllTeam = {},
             addTeam = {},
             changeLanguage = {},
+            deleteCurrentTeam = {}
         )
     }
 }

@@ -30,7 +30,7 @@ import com.rumpilstilstkin.gloomhavenhelper.screens.dialogs.character.CharacterE
 import com.rumpilstilstkin.gloomhavenhelper.screens.dialogs.character.CharacterEditNameDialog
 import com.rumpilstilstkin.gloomhavenhelper.screens.dialogs.character.DeleteCharacterDialog
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.CharacterClassTypeUI
-import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomToolbarTitle
+import com.rumpilstilstkin.gloomhavenhelper.ui.components.toolbar.GloomToolbar
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.NavItem
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
 
@@ -79,18 +79,9 @@ internal fun CharacterDetailsScreen(
 
     Scaffold(
         topBar = {
-            GloomToolbarTitle(
+            GloomToolbar(
                 title = stringResource(R.string.character_details_title),
                 back = back,
-                actions = {
-                    IconButton(onClick = showDeleteDialog) {
-                        Icon(
-                            Icons.Default.Delete,
-                            contentDescription = null,
-                            tint = MaterialTheme.colorScheme.error,
-                        )
-                    }
-                },
             )
         },
     ) { paddingValues ->

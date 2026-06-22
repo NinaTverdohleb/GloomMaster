@@ -1,4 +1,4 @@
-package com.rumpilstilstkin.gloomhavenhelper.screens.dialogs.teams.change
+package com.rumpilstilstkin.gloomhavenhelper.screens.teem.delete
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -9,11 +9,15 @@ import androidx.navigation.NavHostController
 import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEventHelper
 
 @Composable
-fun TeamListDialogRoute(
+fun DeleteTeamDialogRoute(
+    teamId: Int,
+    teamName: String,
     navController: NavHostController,
-    viewModel: TeamListDialogViewModel = hiltViewModel(),
 ) {
-    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+    val viewModel =
+        hiltViewModel<DeleteTeamDialogViewModel, DeleteTeamDialogViewModel.Factory> { factory ->
+            factory.create(teamId, teamName)
+        }
     val navigationEvents by viewModel.navigationEvents.collectAsStateWithLifecycle(initialValue = null)
 
     LaunchedEffect(navigationEvents) {
@@ -25,9 +29,9 @@ fun TeamListDialogRoute(
         }
     }
 
-    TeamListDialog(
-        state = uiState,
-        onDismiss = { viewModel.onAction(TeamListDialogAction.Back) },
-        selectTeam = { viewModel.onAction(TeamListDialogAction.SelectTeam(it)) },
+    DeleteTeamDialogScreen(
+        teamName = viewModel.uiState,
+        back = { viewModel.onAction(DeleteTeamDialogAction.Back) },
+        deleteTeam = { viewModel.onAction(DeleteTeamDialogAction.DeleteTeam) }
     )
 }

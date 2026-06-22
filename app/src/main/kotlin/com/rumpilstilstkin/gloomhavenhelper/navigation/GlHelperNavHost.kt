@@ -1,12 +1,8 @@
 package com.rumpilstilstkin.gloomhavenhelper.navigation
 
-import androidx.compose.animation.AnimatedContentTransitionScope
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
-import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.windowsizeclass.WindowWidthSizeClass
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -19,15 +15,14 @@ import androidx.navigation.toRoute
 import com.rumpilstilstkin.gloomhavenhelper.screens.characters.goods.add.AddGoodsForCharacterScreenRoute
 import com.rumpilstilstkin.gloomhavenhelper.screens.characters.quests.freeselect.SearchQuestScreen
 import com.rumpilstilstkin.gloomhavenhelper.screens.characters.start.CharacterDetailsRoute
-import com.rumpilstilstkin.gloomhavenhelper.screens.dialogs.language.SelectLanguageDialogRoute
-import com.rumpilstilstkin.gloomhavenhelper.screens.dialogs.teams.change.TeamListDialogRoute
-import com.rumpilstilstkin.gloomhavenhelper.screens.dialogs.teams.create.AddTeamDialogRoute
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.monsters.ScenarioConstructorRoute
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.ScenarioRoute
 import com.rumpilstilstkin.gloomhavenhelper.screens.settings.SettingsRoute
 import com.rumpilstilstkin.gloomhavenhelper.screens.start.StartScreenRoute
 import com.rumpilstilstkin.gloomhavenhelper.screens.teem.achievement.global.GlobalAchievementsRoute
 import com.rumpilstilstkin.gloomhavenhelper.screens.teem.achievement.team.TeamAchievementsRoute
+import com.rumpilstilstkin.gloomhavenhelper.screens.teem.create.AddTeamDialogRoute
+import com.rumpilstilstkin.gloomhavenhelper.screens.teem.delete.DeleteTeamDialogRoute
 import com.rumpilstilstkin.gloomhavenhelper.screens.teem.edit.TeamEditRoute
 import com.rumpilstilstkin.gloomhavenhelper.screens.teem.goods.AddGoodsForTeamScreenRoute
 import com.rumpilstilstkin.gloomhavenhelper.screens.teem.scenarios.AddScenarioForTeamRoute
@@ -35,7 +30,7 @@ import com.rumpilstilstkin.gloomhavenhelper.screens.teem.scenarios.AddScenarioFo
 @Composable
 fun GlHelperNavHost(
     navController: NavHostController = rememberNavController(),
-    innerPadding: PaddingValues,
+    modifier: Modifier,
     widthSizeClass: WindowWidthSizeClass,
 ) {
     NavHost(
@@ -45,10 +40,7 @@ fun GlHelperNavHost(
         exitTransition = { fadeOut(animationSpec = tween(300)) },
         popEnterTransition = { fadeIn(animationSpec = tween(300)) },
         popExitTransition = { fadeOut(animationSpec = tween(300)) },
-        modifier =
-            Modifier
-                .fillMaxSize()
-                .padding(innerPadding),
+        modifier = modifier,
     ) {
         composable<GlHelperScreen.Start> {
             StartScreenRoute(
@@ -118,32 +110,16 @@ fun GlHelperNavHost(
             )
         }
 
-        dialog<GlHelperDialog.TeamListDialog> {
-            TeamListDialogRoute(
+        dialog<GlHelperDialog.DeleteTeamDialog> {
+            val args = it.toRoute<GlHelperDialog.DeleteTeamDialog>()
+            DeleteTeamDialogRoute(
+                teamId = args.teamId,
+                teamName = args.teamName,
                 navController = navController,
             )
         }
 
-        dialog<GlHelperDialog.SelectLanguageDialog> {
-            SelectLanguageDialogRoute(
-                navController = navController,
-            )
-        }
-
-        composable<GlHelperScreen.Settings>(
-            enterTransition = {
-                slideIntoContainer(
-                    towards = AnimatedContentTransitionScope.SlideDirection.Left,
-                    animationSpec = tween(400),
-                ) + fadeIn(animationSpec = tween(200))
-            },
-            exitTransition = {
-                slideOutOfContainer(
-                    towards = AnimatedContentTransitionScope.SlideDirection.Right,
-                    animationSpec = tween(400),
-                ) + fadeOut(animationSpec = tween(200))
-            },
-        ) {
+        composable<GlHelperScreen.Settings> {
             SettingsRoute(
                 navController = navController,
             )

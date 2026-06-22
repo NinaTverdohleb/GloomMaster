@@ -6,15 +6,21 @@ import androidx.core.content.FileProvider
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.settings.LanguagesListUseCase
-import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.team.ChangeCurrentTeamUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.team.GetCurrentTeamWithTeamsUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.team.GetShareFileUseCase
-import com.rumpilstilstkin.gloomhavenhelper.navigation.GlHelperDialog
+import com.rumpilstilstkin.gloomhavenhelper.navigation.GlHelperDialog.AddTeamDialog
+import com.rumpilstilstkin.gloomhavenhelper.navigation.GlHelperDialog.DeleteTeamDialog
 import com.rumpilstilstkin.gloomhavenhelper.navigation.GlHelperScreen
-import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEvent
+import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEvent.Back
 import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEvent.Dialog
 import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEvent.Screen
+import com.rumpilstilstkin.gloomhavenhelper.screens.core.ScreenEffect
+import com.rumpilstilstkin.gloomhavenhelper.screens.core.createBottomSheetSession
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.ShortTeamInfoUi
+import com.rumpilstilstkin.gloomhavenhelper.screens.settings.language.SelectLanguageContract
+import com.rumpilstilstkin.gloomhavenhelper.screens.teem.list.TeamListDialogContract
+import com.rumpilstilstkin.gloomhavenhelper.screens.teem.menu.TeamMenuDialogContract
+import com.rumpilstilstkin.gloomhavenhelper.screens.teem.menu.TeamMenuResult
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.collections.immutable.toImmutableList
@@ -33,12 +39,11 @@ import javax.inject.Inject
 class SettingsViewModel @Inject constructor(
     @param:ApplicationContext private val context: Context,
     getCurrentTeamWithTeamsCountUseCase: GetCurrentTeamWithTeamsUseCase,
-    private val changeCurrentTeamUseCase: ChangeCurrentTeamUseCase,
     private val getShareFileUseCase: GetShareFileUseCase,
     languagesListUseCase: LanguagesListUseCase,
 ) : ViewModel() {
-    private val _navigationEvents = MutableSharedFlow<GlHelperEvent>()
-    val navigationEvents = _navigationEvents.asSharedFlow()
+    private val _screenEvents = MutableSharedFlow<ScreenEffect>()
+    val screenEvents = _screenEvents.asSharedFlow()
 
     val uiState: StateFlow<SettingsStateUi> =
         combine(
@@ -77,27 +82,63 @@ class SettingsViewModel @Inject constructor(
         viewModelScope.launch {
             when (action) {
                 is SettingsAction.Back -> {
-                    _navigationEvents.emit(GlHelperEvent.Back)
+                    _screenEvents.emit(ScreenEffect.Navigation(Back))
                 }
 
                 SettingsAction.ChangeLanguage -> {
-                    _navigationEvents.emit(Dialog(GlHelperDialog.SelectLanguageDialog()))
+                    val session = createBottomSheetSession(
+                        contract = SelectLanguageContract,
+                        input = Unit,
+                        onResult = { }
+                    )
+                    _screenEvents.emit(ScreenEffect.OpenBottomSheet(session))
                 }
 
                 SettingsAction.ShowAllTeam -> {
-                    _navigationEvents.emit(Dialog(GlHelperDialog.TeamListDialog()))
+                    val session = createBottomSheetSession(
+                        contract = TeamListDialogContract,
+                        input = Unit,
+                        onResult = { team ->
+                            team?.also { onAction(SettingsAction.SelectTeam(it)) }
+                        }
+                    )
+                    _screenEvents.emit(ScreenEffect.OpenBottomSheet(session))
                 }
 
                 is SettingsAction.SelectTeam -> {
-                    changeCurrentTeamUseCase(action.teamId)
+                    val session = createBottomSheetSession(
+                        contract = TeamMenuDialogContract,
+                        input = action.team,
+                        onResult = { result ->
+                            when (result) {
+                                is TeamMenuResult.DeleteTeamRequest -> {
+                                    viewModelScope.launch {
+                                        _screenEvents.emit(
+                                            ScreenEffect.Navigation(
+                                                Dialog(
+                                                    DeleteTeamDialog(
+                                                        teamId = result.team.teamId,
+                                                        teamName = result.team.teamName
+                                                    )
+                                                )
+                                            )
+                                        )
+                                    }
+                                }
+
+                                else -> {}
+                            }
+                        }
+                    )
+                    _screenEvents.emit(ScreenEffect.OpenBottomSheet(session))
                 }
 
                 SettingsAction.TeamSetting -> {
-                    _navigationEvents.emit(Screen(GlHelperScreen.EditCurrentTeam))
+                    _screenEvents.emit(ScreenEffect.Navigation(Screen(GlHelperScreen.EditCurrentTeam)))
                 }
 
                 SettingsAction.AddTeam -> {
-                    _navigationEvents.emit(Dialog(GlHelperDialog.AddTeamDialog()))
+                    _screenEvents.emit(ScreenEffect.Navigation(Dialog(AddTeamDialog())))
                 }
 
                 SettingsAction.ShareTeam -> {
@@ -126,9 +167,28 @@ class SettingsViewModel @Inject constructor(
                                 context.startActivity(chooser)
                             },
                             onFailure = { _ ->
-                                _navigationEvents.emit(GlHelperEvent.Message("Oops, something went wrong!"))
+                                _screenEvents.emit(ScreenEffect.Message("Oops, something went wrong!"))
                             },
                         )
+                }
+
+                SettingsAction.DeleteCurrentTeam -> {
+                    uiState.value.team?.also { team ->
+                        _screenEvents.emit(
+                            ScreenEffect.Navigation(
+                                Dialog(
+                                    DeleteTeamDialog(
+                                        teamId = team.teamId,
+                                        teamName = team.teamName
+                                    )
+                                )
+                            )
+                        )
+                    }
+                }
+
+                SettingsAction.CloseBottomSheet -> {
+                    _screenEvents.emit(ScreenEffect.CloseBottomSheet)
                 }
             }
         }

@@ -9,6 +9,6 @@ class DeleteCurrentTeamUseCase @Inject constructor(
 ) {
     suspend operator fun invoke() {
         val currentTeam = teamRepository.currentTeam.first() ?: return
-        teamRepository.deleteTeam(currentTeam)
+        teamRepository.deleteCurrentTeam(currentTeam)
     }
 }

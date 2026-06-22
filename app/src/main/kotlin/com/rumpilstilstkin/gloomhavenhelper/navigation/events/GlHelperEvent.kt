@@ -18,3 +18,4 @@ sealed interface GlHelperEvent {
         val text: String,
     ) : GlHelperEvent
 }
+

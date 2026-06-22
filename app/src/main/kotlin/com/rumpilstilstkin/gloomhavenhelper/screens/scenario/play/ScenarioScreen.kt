@@ -27,6 +27,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -40,7 +41,8 @@ import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.components.Add
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.components.RegularMonsterCard
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.components.ScenarioHeader
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.state.ScenarioStateUi
-import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomToolbarStatus
+import com.rumpilstilstkin.gloomhavenhelper.ui.components.toolbar.GloomToolbar
+import com.rumpilstilstkin.gloomhavenhelper.ui.components.toolbar.GloomToolbarAction
 import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.persistentMapOf
@@ -122,18 +124,11 @@ private fun CombatToolbar(
     roundNumber: Int,
     complete: () -> Unit,
     back: () -> Unit,
-) = GloomToolbarStatus(
-    status = stringResource(R.string.round_status, roundNumber),
+) = GloomToolbarAction(
+    title = stringResource(R.string.round_status, roundNumber),
     back = back,
-    actions = {
-        IconButton(onClick = complete) {
-            Icon(
-                Icons.Default.Check,
-                contentDescription = null,
-                tint = MaterialTheme.colorScheme.onSurface,
-            )
-        }
-    },
+    actionClick = complete,
+    actionIcon = painterResource(R.drawable.ic_check),
 )
 
 @Composable

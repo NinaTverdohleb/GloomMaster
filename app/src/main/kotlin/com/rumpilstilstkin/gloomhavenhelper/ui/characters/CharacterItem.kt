@@ -40,7 +40,6 @@ fun CharacterItem(
             .clickable {
                 onItemClick.invoke(character.id)
             },
-    active = character.isAlive,
 ) {
     Row(
         modifier = Modifier.fillMaxWidth(),

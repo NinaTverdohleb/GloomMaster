@@ -1,4 +1,4 @@
-package com.rumpilstilstkin.gloomhavenhelper.screens.dialogs.teams.create
+package com.rumpilstilstkin.gloomhavenhelper.screens.teem.create
 
 import android.content.Context
 import androidx.lifecycle.ViewModel

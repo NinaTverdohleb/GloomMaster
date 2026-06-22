@@ -11,8 +11,8 @@ sealed class GlHelperDialog {
     class AddTeamDialog : GlHelperDialog()
 
     @Serializable
-    class TeamListDialog : GlHelperDialog()
-
-    @Serializable
-    class SelectLanguageDialog : GlHelperDialog()
+    class DeleteTeamDialog(
+        val teamId: Int,
+        val teamName: String
+    ) : GlHelperDialog()
 }

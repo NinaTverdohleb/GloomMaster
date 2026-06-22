@@ -17,6 +17,7 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.map
@@ -115,7 +116,17 @@ class TeamRepository @Inject constructor(
         teamDao.update(team.toBd())
     }
 
-    suspend fun deleteTeam(team: ShortTeamInfo) {
+    suspend fun deleteTeam(teamId: Int) {
+        val currentTeamId = currentTeamDatasource.currentTeam
+        if (teamId == currentTeamId) {
+            val team = currentTeam.first() ?: return
+            deleteCurrentTeam(team)
+        } else {
+            teamDao.delete(teamId)
+        }
+    }
+
+    suspend fun deleteCurrentTeam(team: ShortTeamInfo) {
         val teams = teamDao.getAll()
         val newTeamId =
             teams.firstOrNull { it.teamId != team.teamId }?.teamId
