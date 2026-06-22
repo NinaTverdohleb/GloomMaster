@@ -3,6 +3,8 @@ package com.rumpilstilstkin.gloomhavenhelper.ui.components.items
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.size
+import androidx.compose.material3.Checkbox
+import androidx.compose.material3.CheckboxDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -35,6 +37,19 @@ fun RightItemIcon(
     tint = MaterialTheme.colorScheme.onSurface,
 )
 
+@Composable
+fun RightItemChecker(
+    checked: Boolean,
+    onCheckedChange: ((Boolean) -> Unit)?,
+) = Checkbox(
+    checked = checked,
+    colors = CheckboxDefaults.colors(
+        uncheckedColor = MaterialTheme.colorScheme.primary,
+
+    ),
+    onCheckedChange = onCheckedChange,
+)
+
 @Preview
 @Composable
 private fun GloomItemRightItemComponentsPreview() {
@@ -49,6 +64,16 @@ private fun GloomItemRightItemComponentsPreview() {
 
             RightItemIcon(
                 icon = painterResource(R.drawable.ic_check)
+            )
+
+            RightItemChecker(
+                checked = true,
+                onCheckedChange = null
+            )
+
+            RightItemChecker(
+                checked = false,
+                onCheckedChange = null
             )
         }
     }

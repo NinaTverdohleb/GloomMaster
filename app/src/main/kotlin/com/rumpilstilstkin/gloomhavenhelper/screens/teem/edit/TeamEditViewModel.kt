@@ -17,6 +17,7 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
@@ -27,44 +28,38 @@ class TeamEditViewModel @Inject constructor(
     getCurrentTeamWithTeamsCountUseCase: GetCurrentTeamWithTeamsUseCase,
     private val switchPackForCurrentTeamUseCase: SwitchPackForCurrentTeamUseCase,
     private val updateNameForCurrentTeamUseCase: UpdateNameForCurrentTeamUseCase,
-    private val deleteCurrentTeamUseCase: DeleteCurrentTeamUseCase,
     private val updateDifficultyLevelUseCase: UpdateDifficultyLevelUseCase,
 ) : ViewModel() {
     private val _navigationEvents = MutableSharedFlow<GlHelperEvent>()
     val navigationEvents = _navigationEvents.asSharedFlow()
 
-    private val logicState: MutableStateFlow<TeamEditStateLogic> =
-        MutableStateFlow(TeamEditStateLogic())
 
     val uiState: StateFlow<TeamEditStateUi> =
-        combine(
-            getCurrentTeamWithTeamsCountUseCase(),
-            logicState,
-        ) { (team, teams), logicState ->
-            if (team == null) {
-                TeamEditStateUi()
-            } else {
-                val currentPacks = team.packs.toSet()
+        getCurrentTeamWithTeamsCountUseCase()
+            .map { (team, teams) ->
+                if (team == null) {
+                    TeamEditStateUi()
+                } else {
+                    val currentPacks = team.packs.toSet()
 
-                TeamEditStateUi(
-                    teamName = team.name,
-                    difficultyLevel = team.difficultyLevel,
-                    availablePacks =
-                        selectablePacks
-                            .map { packType ->
-                                PackItemUi(
-                                    pack = packType,
-                                    isEnabled = packType in currentPacks,
-                                )
-                            }.toImmutableList(),
-                    showDeleteConfirmDialog = logicState.showDeleteConfirmDialog,
-                )
-            }
-        }.stateIn(
-            scope = viewModelScope,
-            initialValue = TeamEditStateUi(),
-            started = SharingStarted.WhileSubscribed(5000),
-        )
+                    TeamEditStateUi(
+                        teamName = team.name,
+                        difficultyLevel = team.difficultyLevel,
+                        availablePacks =
+                            selectablePacks
+                                .map { packType ->
+                                    PackItemUi(
+                                        pack = packType,
+                                        isEnabled = packType in currentPacks,
+                                    )
+                                }.toImmutableList(),
+                    )
+                }
+            }.stateIn(
+                scope = viewModelScope,
+                initialValue = TeamEditStateUi(),
+                started = SharingStarted.WhileSubscribed(5000),
+            )
 
     fun onAction(action: TeamEditAction) {
         viewModelScope.launch {
@@ -78,20 +73,6 @@ class TeamEditViewModel @Inject constructor(
                 }
 
                 is TeamEditAction.Back -> {
-                    _navigationEvents.emit(GlHelperEvent.Back)
-                }
-
-                is TeamEditAction.ShowDeleteConfirmDialog -> {
-                    logicState.update { it.copy(showDeleteConfirmDialog = true) }
-                }
-
-                is TeamEditAction.DismissDeleteConfirmDialog -> {
-                    logicState.update { it.copy(showDeleteConfirmDialog = false) }
-                }
-
-                is TeamEditAction.ConfirmDelete -> {
-                    logicState.update { it.copy(showDeleteConfirmDialog = false) }
-                    deleteCurrentTeamUseCase()
                     _navigationEvents.emit(GlHelperEvent.Back)
                 }
 

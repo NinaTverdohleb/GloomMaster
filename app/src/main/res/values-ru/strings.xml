@@ -133,11 +133,11 @@
     <string name="team_name_label">Название команды</string>
     <string name="expansions_title">Дополнения</string>
     <string name="change_team_button">Сменить команду</string>
-    <string name="difficulty_level_label">УРОВЕНЬ СЛОЖНОСТИ</string>
+    <string name="difficulty_level_label">Уровень сложности</string>
     <string name="difficulty_easy">Легко</string>
     <string name="difficulty_normal">Нормально</string>
-    <string name="difficulty_hard">Высоко</string>
-    <string name="difficulty_very_hard">Для героев!</string>
+    <string name="difficulty_hard">Тяжело</string>
+    <string name="difficulty_very_hard">Героически!</string>
     <string name="pack_main">Gloomhaven</string>
     <string name="pack_forgotten_circles">Забытые круги</string>
     <string name="available_gold_format">Доступно : %1$d G</string>
@@ -180,4 +180,5 @@
     <string name="delete_team_dialog_description">Удалить команду %1$s и всех ее персонажей</string>
     <string name="delete_team">Удалить команду</string>
     <string name="select_team">Выбрать команду</string>
+    <string name="team_settings">Настройки команды</string>
 </resources>
