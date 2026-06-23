@@ -4,8 +4,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.team.GetCurrentTeamUseCase
 import com.rumpilstilstkin.gloomhavenhelper.navigation.GlHelperScreen
-import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEvent
 import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEvent.Screen
+import com.rumpilstilstkin.gloomhavenhelper.screens.core.ScreenEffect
+import com.rumpilstilstkin.gloomhavenhelper.screens.core.createOverlaySession
+import com.rumpilstilstkin.gloomhavenhelper.screens.teem.create.AddTeamDialogContract
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -20,8 +22,8 @@ import javax.inject.Inject
 class StartScreenViewModel @Inject constructor(
     getCurrentTeamUseCase: GetCurrentTeamUseCase,
 ) : ViewModel() {
-    private val _navigationEvents = MutableSharedFlow<GlHelperEvent>()
-    val navigationEvents = _navigationEvents.asSharedFlow()
+    private val _screenEvents = MutableSharedFlow<ScreenEffect>()
+    val screenEvents = _screenEvents.asSharedFlow()
 
     val uiState: StateFlow<StartScreenState> =
         getCurrentTeamUseCase()
@@ -43,9 +45,37 @@ class StartScreenViewModel @Inject constructor(
     fun onAction(action: StartScreenAction) {
         viewModelScope.launch {
             when (action) {
-                StartScreenAction.AddTeam -> {}
-                StartScreenAction.Settings -> _navigationEvents.emit(Screen(GlHelperScreen.Settings))
+                StartScreenAction.AddTeam -> openAddTeamDialog()
+                StartScreenAction.Settings -> _screenEvents.emit(
+                    ScreenEffect.Navigation(
+                        Screen(
+                            GlHelperScreen.Settings
+                        )
+                    )
+                )
             }
+        }
+    }
+
+    private fun openAddTeamDialog() {
+        viewModelScope.launch {
+            val session = createOverlaySession(
+                contract = AddTeamDialogContract,
+                input = Unit,
+                onResult = { result ->
+                    viewModelScope.launch {
+                        result?.let { success ->
+                            val message = if (success) {
+                                "Team created"
+                            } else {
+                                "Oops, something went wrong!"
+                            }
+                            _screenEvents.emit(ScreenEffect.Message(message))
+                        }
+                    }
+                }
+            )
+            _screenEvents.emit(ScreenEffect.OpenDialog(session))
         }
     }
 }

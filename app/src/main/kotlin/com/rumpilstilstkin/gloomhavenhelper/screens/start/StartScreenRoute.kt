@@ -7,6 +7,7 @@ import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEventHelper
+import com.rumpilstilstkin.gloomhavenhelper.screens.core.LaunchedScreenEffect
 import com.rumpilstilstkin.gloomhavenhelper.screens.start.characters.CharactersTabRoute
 import com.rumpilstilstkin.gloomhavenhelper.screens.start.scenarios.ScenariosTabRoute
 import com.rumpilstilstkin.gloomhavenhelper.screens.start.shop.ShopTabRoute
@@ -18,16 +19,8 @@ fun StartScreenRoute(
     viewModel: StartScreenViewModel = hiltViewModel(),
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
-    val navigationEvents by viewModel.navigationEvents.collectAsStateWithLifecycle(initialValue = null)
+    val screenEffect by viewModel.screenEvents.collectAsStateWithLifecycle(initialValue = null)
 
-    LaunchedEffect(navigationEvents) {
-        navigationEvents?.let { event ->
-            GlHelperEventHelper.event(
-                event = event,
-                navController = navController,
-            )
-        }
-    }
     StartScreen(
         state = uiState,
         settings = { viewModel.onAction(StartScreenAction.Settings) },
@@ -40,5 +33,10 @@ fun StartScreenRoute(
             }
         },
         addTeam = { viewModel.onAction(StartScreenAction.AddTeam) },
+    )
+
+    LaunchedScreenEffect(
+        effect = screenEffect,
+        navController = navController
     )
 }

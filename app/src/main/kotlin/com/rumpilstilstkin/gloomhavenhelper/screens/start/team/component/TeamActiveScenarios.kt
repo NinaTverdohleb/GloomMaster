@@ -24,6 +24,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.rumpilstilstkin.gloomhavenhelper.R
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.buttons.GloomButton
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.text.GloomHeader
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.ShortScenarioUI
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.toHumanReadable
 import com.rumpilstilstkin.gloomhavenhelper.ui.scenario.ScenarioActionDialog
@@ -35,80 +37,35 @@ fun ScenarioBlock(
     scenarios: List<ShortScenarioUI>,
     canRestore: Boolean,
     modifier: Modifier = Modifier,
-    completeScenario: (Int) -> Unit,
-    startScenario: (Int?) -> Unit,
+    selectScenario: (ShortScenarioUI) -> Unit,
     playCurrentScenario: () -> Unit,
-    deleteScenario: (Int) -> Unit,
 ) = Column(
     modifier = modifier,
+    verticalArrangement = Arrangement.spacedBy(20.dp)
 ) {
-    Row(
-        modifier = Modifier.fillMaxWidth(),
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.SpaceBetween,
-    ) {
-        Text(
-            style = MaterialTheme.typography.labelLarge,
-            text = stringResource(R.string.available_scenarios).uppercase(),
-            color = MaterialTheme.colorScheme.primary,
-        )
+    GloomHeader(
+        stringResource(R.string.available_scenarios)
+    )
 
-        IconButton(onClick = { startScenario(null) }) {
-            Icon(
-                Icons.Default.Add,
-                contentDescription = null,
-                tint = MaterialTheme.colorScheme.onSurface,
-            )
-        }
-    }
     if (canRestore) {
-        Button(
-            modifier =
-                Modifier
-                    .fillMaxWidth(),
+        GloomButton(
+            text = stringResource(R.string.continue_button),
+            modifier = Modifier.fillMaxWidth(),
             onClick = { playCurrentScenario() },
-        ) {
-            Text(stringResource(R.string.continue_button))
-        }
-    }
-    Spacer(modifier = Modifier.height(16.dp))
-
-    var selectedScenario by remember { mutableStateOf<ShortScenarioUI?>(null) }
-
-    scenarios.forEachIndexed { index, scenario ->
-        ScenarioInfoCardItem(
-            scenarioNumber = scenario.scenarioNumber,
-            scenarioName = scenario.scenarioName,
-            location = scenario.location,
-        ) { selectedScenario = scenario }
-        if (index != scenarios.lastIndex) {
-            Spacer(
-                modifier = Modifier.height(8.dp),
-            )
-        }
-    }
-    selectedScenario?.let { scenario ->
-        ScenarioActionDialog(
-            scenarioNumber = scenario.scenarioNumber,
-            scenarioName = scenario.scenarioName,
-            scenarioRequirements = scenario.scenarioRequirements.toHumanReadable(),
-            onDismiss = { selectedScenario = null },
-            confirmText = stringResource(R.string.play_scenario),
-            completeScenario = {
-                completeScenario(scenario.scenarioNumber)
-                selectedScenario = null
-            },
-            location = scenario.location,
-            startScenario = {
-                startScenario(scenario.scenarioNumber)
-                selectedScenario = null
-            },
-            deleteScenario = {
-                deleteScenario(it)
-                selectedScenario = null
-            },
         )
     }
+    Column(
+        verticalArrangement = Arrangement.spacedBy(16.dp)
+    ) {
+        scenarios.forEachIndexed { index, scenario ->
+            ScenarioInfoCardItem(
+                scenarioNumber = scenario.scenarioNumber,
+                scenarioName = scenario.scenarioName,
+                location = scenario.location,
+            ) { selectScenario(scenario) }
+        }
+    }
+
 }
 
 @Preview
@@ -121,10 +78,8 @@ private fun ScenarioBlockPreview() {
                     ShortScenarioUI.fixture(1),
                 ),
             canRestore = true,
-            completeScenario = {},
-            startScenario = {},
+            selectScenario = {},
             playCurrentScenario = {},
-            deleteScenario = {},
         )
     }
 }

@@ -1,4 +1,4 @@
-package com.rumpilstilstkin.gloomhavenhelper.ui.components.dialogs
+package com.rumpilstilstkin.gloomhavenhelper.designsystem.components.dialogs
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
