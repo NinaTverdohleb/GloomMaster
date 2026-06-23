@@ -23,7 +23,7 @@ import androidx.compose.ui.unit.dp
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.CharacterClassTypeUI
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomSize
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.RoundButton
-import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
 
 @Composable
 internal fun CharacterHeader(

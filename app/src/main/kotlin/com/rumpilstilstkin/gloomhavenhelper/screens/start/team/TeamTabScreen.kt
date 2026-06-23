@@ -19,7 +19,7 @@ import com.rumpilstilstkin.gloomhavenhelper.screens.start.team.component.TeamAch
 import com.rumpilstilstkin.gloomhavenhelper.screens.start.team.component.TeamHeader
 import com.rumpilstilstkin.gloomhavenhelper.screens.start.team.component.TeamProsperity
 import com.rumpilstilstkin.gloomhavenhelper.screens.start.team.component.TeamReputation
-import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
 
 @Composable
 internal fun TeamTabScreen(

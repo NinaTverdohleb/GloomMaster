@@ -16,10 +16,10 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.rumpilstilstkin.gloomhavenhelper.R
-import com.rumpilstilstkin.gloomhavenhelper.ui.components.buttons.GloomOutlineButton
-import com.rumpilstilstkin.gloomhavenhelper.ui.components.dialogs.GloomBasicDialog
-import com.rumpilstilstkin.gloomhavenhelper.ui.components.text.GloomOutlinedTextField
-import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.buttons.GloomOutlineButton
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.text.GloomOutlinedTextField
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.icons.AppIcon
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
 
 @Composable
 internal fun AddTeamDialog(
@@ -49,7 +49,7 @@ internal fun AddTeamDialog(
             onClick = openFile,
             modifier = Modifier.fillMaxWidth(),
             isError = false,
-            icon = painterResource(R.drawable.ic_restore),
+            icon = AppIcon.Restore,
         )
 
         GloomOutlineButton(
@@ -58,7 +58,7 @@ internal fun AddTeamDialog(
             modifier = Modifier.fillMaxWidth(),
             isError = false,
             enabled = teamName.isNotBlank(),
-            icon = painterResource(R.drawable.ic_plus),
+            icon = AppIcon.Plus,
         )
     }
 }

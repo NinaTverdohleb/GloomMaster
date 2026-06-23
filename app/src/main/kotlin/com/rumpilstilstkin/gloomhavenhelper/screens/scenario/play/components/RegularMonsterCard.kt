@@ -22,8 +22,8 @@ import com.rumpilstilstkin.gloomhavenhelper.R
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterStatType
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.scenario.MonsterItem
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.scenario.MonsterUnit
-import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomCard
-import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.GloomCard
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
 import kotlinx.collections.immutable.persistentListOf
 
 @Composable

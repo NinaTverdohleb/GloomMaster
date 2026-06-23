@@ -9,16 +9,16 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.rumpilstilstkin.gloomhavenhelper.R
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.buttons.GloomOutlineButton
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.icons.AppIcon
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.ShortScenarioUI
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.toHumanReadable
-import com.rumpilstilstkin.gloomhavenhelper.ui.components.buttons.GloomOutlineButton
 import com.rumpilstilstkin.gloomhavenhelper.ui.scenario.ScenarioInfoItem
-import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -67,7 +67,7 @@ fun MenuScenarioDialog(
                 onClick = deleteScenario,
                 modifier = Modifier.fillMaxWidth(),
                 isError = true,
-                icon = painterResource(R.drawable.ic_delete),
+                icon = AppIcon.Delete,
             )
 
             if (scenario.completed) {
@@ -76,7 +76,7 @@ fun MenuScenarioDialog(
                     onClick = restoreScenario,
                     modifier = Modifier.fillMaxWidth(),
                     isError = false,
-                    icon = painterResource(R.drawable.ic_restore),
+                    icon = AppIcon.Restore,
                 )
             }
             if (scenario.avaliable) {
@@ -85,7 +85,7 @@ fun MenuScenarioDialog(
                     onClick = competeScenario,
                     modifier = Modifier.fillMaxWidth(),
                     isError = false,
-                    icon = painterResource(R.drawable.ic_check),
+                    icon = AppIcon.Check,
                 )
 
                 GloomOutlineButton(
@@ -93,7 +93,7 @@ fun MenuScenarioDialog(
                     onClick = playScenario,
                     modifier = Modifier.fillMaxWidth(),
                     isError = false,
-                    icon = painterResource(R.drawable.ic_play),
+                    icon = AppIcon.Play,
                 )
             }
         }

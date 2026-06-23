@@ -14,11 +14,12 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.rumpilstilstkin.gloomhavenhelper.R
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.buttons.GloomOutlineButton
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.icons.AppIcon
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.ShortScenarioUI
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.toHumanReadable
-import com.rumpilstilstkin.gloomhavenhelper.ui.components.buttons.GloomOutlineButton
 import com.rumpilstilstkin.gloomhavenhelper.ui.scenario.ScenarioInfoItem
-import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -60,7 +61,7 @@ fun AddScenarioDialog(
             onClick = addScenario,
             modifier = Modifier.fillMaxWidth(),
             isError = false,
-            icon = painterResource(R.drawable.ic_check),
+            icon = AppIcon.Check,
         )
     }
 }

@@ -26,7 +26,7 @@ import com.rumpilstilstkin.gloomhavenhelper.screens.dialogs.goods.GoodDetailsDia
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.GoodUi
 import com.rumpilstilstkin.gloomhavenhelper.ui.goods.GoodFilters
 import com.rumpilstilstkin.gloomhavenhelper.ui.goods.GoodItem
-import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
 import kotlinx.collections.immutable.persistentListOf
 
 @Composable

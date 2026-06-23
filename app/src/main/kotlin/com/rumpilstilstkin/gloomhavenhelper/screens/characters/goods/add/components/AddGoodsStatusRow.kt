@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.dp
 import com.rumpilstilstkin.gloomhavenhelper.R
 import com.rumpilstilstkin.gloomhavenhelper.screens.characters.goods.add.AddGoodsForCharacterScreenActions
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomVariantCard
-import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
 
 @Composable
 fun AddGoodsStatusRow(

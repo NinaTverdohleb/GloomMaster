@@ -28,7 +28,7 @@ import com.rumpilstilstkin.gloomhavenhelper.R
 import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEventHelper
 import com.rumpilstilstkin.gloomhavenhelper.screens.characters.quests.components.PersonalQuestItem
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.PersonalQuestUI
-import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
 import kotlinx.collections.immutable.persistentListOf
 
 @Composable

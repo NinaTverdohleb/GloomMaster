@@ -27,7 +27,7 @@ import com.rumpilstilstkin.gloomhavenhelper.R
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.CharacterClassTypeUI
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomAlertDialog
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.NumberPicker
-import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
 
 @Composable
 fun CharacterEditLevelDialog(

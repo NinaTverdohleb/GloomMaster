@@ -28,7 +28,7 @@ import com.rumpilstilstkin.gloomhavenhelper.screens.models.ShortScenarioUI
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.toHumanReadable
 import com.rumpilstilstkin.gloomhavenhelper.ui.scenario.ScenarioActionDialog
 import com.rumpilstilstkin.gloomhavenhelper.ui.scenario.ScenarioInfoCardItem
-import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
 
 @Composable
 fun ScenarioBlock(

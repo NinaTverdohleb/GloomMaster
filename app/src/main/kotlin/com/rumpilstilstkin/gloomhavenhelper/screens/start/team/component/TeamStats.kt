@@ -20,11 +20,11 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.rumpilstilstkin.gloomhavenhelper.R
-import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomCard
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.GloomCard
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomVariantCard
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.NumberPicker
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.NumberPickerProgress
-import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
 
 @Composable
 internal fun TeamStats(

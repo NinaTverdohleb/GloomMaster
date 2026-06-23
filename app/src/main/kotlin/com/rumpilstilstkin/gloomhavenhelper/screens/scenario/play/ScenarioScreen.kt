@@ -41,9 +41,10 @@ import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.components.Add
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.components.RegularMonsterCard
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.components.ScenarioHeader
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.state.ScenarioStateUi
-import com.rumpilstilstkin.gloomhavenhelper.ui.components.toolbar.GloomToolbar
-import com.rumpilstilstkin.gloomhavenhelper.ui.components.toolbar.GloomToolbarAction
-import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.toolbar.GloomToolbar
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.toolbar.GloomToolbarAction
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.icons.AppIcon
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.persistentMapOf
 
@@ -128,7 +129,7 @@ private fun CombatToolbar(
     title = stringResource(R.string.round_status, roundNumber),
     back = back,
     actionClick = complete,
-    actionIcon = painterResource(R.drawable.ic_check),
+    actionIcon = AppIcon.Check,
 )
 
 @Composable

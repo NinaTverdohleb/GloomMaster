@@ -24,7 +24,7 @@ import com.rumpilstilstkin.gloomhavenhelper.screens.models.PersonalQuestUI
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.QuestTaskPhaseUI
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomAlertDialog
 import com.rumpilstilstkin.gloomhavenhelper.ui.icons.toImage
-import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
 import kotlinx.collections.immutable.ImmutableList
 
 @OptIn(ExperimentalMaterial3Api::class)

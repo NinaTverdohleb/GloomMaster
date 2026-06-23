@@ -1,0 +1,5 @@
+<resources>
+    <string name="design_system_back">Назад</string>
+    <string name="design_system_delete">Удалить</string>
+    <string name="design_system_close">Закрыть</string>
+</resources>
