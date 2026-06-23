@@ -1,8 +1,12 @@
-package com.rumpilstilstkin.gloomhavenhelper.screens.dialogs.goods
+package com.rumpilstilstkin.gloomhavenhelper.screens.goods
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -12,45 +16,41 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
 import com.rumpilstilstkin.gloomhavenhelper.R
-import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomAlertDialog
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.buttons.GloomOutlineButton
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.icons.AppIcon
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomAlertDialogCustomActions
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
+import com.rumpilstilstkin.gloomhavenhelper.screens.models.GoodUi
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun GoodDetailsDialog(
-    imagePath: String,
-    modifier: Modifier = Modifier,
-    buttonText: String = stringResource(R.string.add),
-    isActionPositive: Boolean = true,
+    good: GoodUi,
     dismiss: () -> Unit,
-    confirm: () -> Unit = {},
 ) {
-    GloomAlertDialog(
-        modifier = modifier,
-        content = {
-            Column(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalAlignment = Alignment.CenterHorizontally,
-            ) {
-                AsyncImage(
-                    modifier =
-                        Modifier.size(
-                            width = 240.dp,
-                            height = 350.dp,
-                        ),
-                    model = imagePath,
-                    contentDescription = null,
-                )
-            }
-        },
-        onDismissRequest = dismiss,
-        onConfirmRequest = if (isActionPositive) confirm else null,
-        confirmText = buttonText,
-        negativeText = buttonText,
-        onNegativeRequest = if (isActionPositive) null else confirm,
-        onNeutralRequest = null,
-    )
+    Column(
+        modifier = Modifier
+            .fillMaxWidth(),
+        horizontalAlignment = Alignment.CenterHorizontally,
+    ) {
+        AsyncImage(
+            modifier =
+                Modifier.size(
+                    width = 240.dp,
+                    height = 350.dp,
+                ),
+            model = good.imagePath,
+            contentDescription = null,
+        )
+        Spacer(Modifier.height(24.dp))
+        GloomOutlineButton(
+            text = stringResource(R.string.ok),
+            onClick = dismiss,
+            modifier = Modifier.fillMaxWidth(),
+            isError = false,
+            icon = AppIcon.Check,
+        )
+    }
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -89,7 +89,7 @@ fun GoodDetailsDialogCustomActions(
 private fun GoodDetailsDialogPreview() {
     GloomhavenMasterTheme {
         GoodDetailsDialog(
-            imagePath = "",
+            good = GoodUi.fixture(),
             dismiss = {},
         )
     }

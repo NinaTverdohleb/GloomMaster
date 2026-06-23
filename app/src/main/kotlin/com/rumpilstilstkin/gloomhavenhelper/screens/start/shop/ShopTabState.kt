@@ -34,4 +34,8 @@ sealed interface ShopTabAction {
     data class SearchTextChange(
         val text: String,
     ) : ShopTabAction
+
+    data class OpenGood(
+        val good: GoodUi
+    ) : ShopTabAction
 }

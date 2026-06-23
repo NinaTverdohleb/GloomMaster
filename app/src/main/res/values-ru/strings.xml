@@ -185,4 +185,5 @@
     <string name="delete_scenario">Удалить сценарий</string>
     <string name="delete_scenario_dialog_title">Удалить сценарий.</string>
     <string name="delete_scenario_dialog_description">Вы точно хотите удалить сценарий %1$s из списка сценариев команды</string>
+    <string name="ok">Ok</string>
 </resources>

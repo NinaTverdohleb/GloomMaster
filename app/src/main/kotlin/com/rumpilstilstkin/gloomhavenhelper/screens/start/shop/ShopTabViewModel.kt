@@ -5,8 +5,10 @@ import androidx.lifecycle.viewModelScope
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.goods.GetGoodsForCurrentTeamUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.goods.RemoveGoodFromCurrentTeamUseCase
 import com.rumpilstilstkin.gloomhavenhelper.navigation.GlHelperScreen
-import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEvent
 import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEvent.Screen
+import com.rumpilstilstkin.gloomhavenhelper.screens.core.ScreenEffect
+import com.rumpilstilstkin.gloomhavenhelper.screens.core.createOverlaySession
+import com.rumpilstilstkin.gloomhavenhelper.screens.goods.GoodDetailsDialogContract
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.toUi
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.collections.immutable.toImmutableList
@@ -26,8 +28,8 @@ class ShopTabViewModel @Inject constructor(
     getGoodsForCurrentTeamUseCase: GetGoodsForCurrentTeamUseCase,
     private val removeGoodFromTeamUseCase: RemoveGoodFromCurrentTeamUseCase,
 ) : ViewModel() {
-    private val _navigationEvents = MutableSharedFlow<GlHelperEvent>()
-    val navigationEvents = _navigationEvents.asSharedFlow()
+    private val _screenEvents = MutableSharedFlow<ScreenEffect>()
+    val screenEvents = _screenEvents.asSharedFlow()
 
     private val logicState = MutableStateFlow(ShopTabStateLogic())
     val uiState: StateFlow<ShopTabStateUi> =
@@ -57,30 +59,41 @@ class ShopTabViewModel @Inject constructor(
         )
 
     fun onAction(action: ShopTabAction) {
-        when (action) {
-            is ShopTabAction.AddGood -> {
-                viewModelScope.launch {
-                    _navigationEvents.emit(Screen(GlHelperScreen.AddGoodsForTeam))
+        viewModelScope.launch {
+            when (action) {
+                is ShopTabAction.AddGood -> {
+                    viewModelScope.launch {
+                        _screenEvents.emit(ScreenEffect.Navigation(Screen(GlHelperScreen.AddGoodsForTeam)))
+                    }
                 }
-            }
 
-            is ShopTabAction.RemoveGood -> {
-                viewModelScope.launch { removeGoodFromTeamUseCase(action.id) }
-            }
+                is ShopTabAction.RemoveGood -> {
+                    viewModelScope.launch { removeGoodFromTeamUseCase(action.id) }
+                }
 
-            is ShopTabAction.SearchTextChange -> {
-                logicState.update { it.copy(searchText = action.text) }
-            }
+                is ShopTabAction.SearchTextChange -> {
+                    logicState.update { it.copy(searchText = action.text) }
+                }
 
-            is ShopTabAction.SelectFilter -> {
-                logicState.update {
-                    val newFilter =
-                        if (it.selectedFilter == action.type) {
-                            null
-                        } else {
-                            action.type
-                        }
-                    it.copy(selectedFilter = newFilter)
+                is ShopTabAction.SelectFilter -> {
+                    logicState.update {
+                        val newFilter =
+                            if (it.selectedFilter == action.type) {
+                                null
+                            } else {
+                                action.type
+                            }
+                        it.copy(selectedFilter = newFilter)
+                    }
+                }
+
+                is ShopTabAction.OpenGood -> {
+                    val session = createOverlaySession(
+                        contract = GoodDetailsDialogContract,
+                        input = action.good,
+                        onResult = { }
+                    )
+                    _screenEvents.emit(ScreenEffect.OpenDialog(session))
                 }
             }
         }

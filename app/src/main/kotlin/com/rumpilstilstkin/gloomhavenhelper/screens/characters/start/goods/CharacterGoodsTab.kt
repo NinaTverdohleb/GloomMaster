@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -27,7 +28,9 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.rumpilstilstkin.gloomhavenhelper.R
-import com.rumpilstilstkin.gloomhavenhelper.screens.dialogs.goods.GoodDetailsDialogCustomActions
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.items.GloomItemActionIcon
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.icons.AppIcon
+import com.rumpilstilstkin.gloomhavenhelper.screens.goods.GoodDetailsDialogCustomActions
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.GoodUi
 import com.rumpilstilstkin.gloomhavenhelper.ui.goods.GoodItem
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
@@ -58,7 +61,14 @@ fun CharacterItemsTabScreen(
                     good = good,
                     active = true,
                     clickItem = { selectedGood = it },
-                )
+                ){
+                    GloomItemActionIcon(
+                        modifier = Modifier.fillMaxHeight(),
+                        icon = AppIcon.Delete,
+                        isError = true,
+                        onClick = {}
+                    )
+                }
             }
         }
 

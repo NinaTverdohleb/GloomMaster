@@ -34,6 +34,7 @@ internal fun AddGoodsScreen(
         changeSearchText = { onAction(AddGoodsForCharacterScreenActions.SearchTextChange(it)) },
         selectGood = { onAction(AddGoodsForCharacterScreenActions.SelectGood(it)) },
         unselectGood = { onAction(AddGoodsForCharacterScreenActions.UnselectGood(it)) },
+        clickGood = {}
     ) {
         AddGoodsStatusRow(
             allGold = uiState.allGold,
