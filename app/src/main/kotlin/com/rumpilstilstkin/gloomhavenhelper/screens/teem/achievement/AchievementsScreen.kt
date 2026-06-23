@@ -34,7 +34,7 @@ import com.rumpilstilstkin.gloomhavenhelper.screens.teem.achievement.components.
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.GloomCard
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomSize
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.toolbar.GloomToolbar
-import com.rumpilstilstkin.gloomhavenhelper.ui.components.NumberPicker
+import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomNumberPicker
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
 import kotlinx.collections.immutable.persistentListOf
 
@@ -143,7 +143,7 @@ private fun AchievementItem(
                     Spacer(
                         modifier = Modifier.height(8.dp),
                     )
-                    NumberPicker(
+                    GloomNumberPicker(
                         value = achievement.value,
                         intRange = 1..achievement.maxValue,
                         size = GloomSize.S,

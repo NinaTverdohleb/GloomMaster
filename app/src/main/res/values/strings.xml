@@ -114,7 +114,7 @@
     <string name="reward">Reward</string>
     <string name="unlock_class">Unlock Class: </string>
     <string name="name_label">Name</string>
-    <string name="character_level_label">Character Level</string>
+    <string name="character_level_label">Level</string>
     <string name="delete_character_title">Delete or retire character?</string>
     <string name="retire">Retire</string>
     <string name="delete_warning">This action cannot be undone.</string>

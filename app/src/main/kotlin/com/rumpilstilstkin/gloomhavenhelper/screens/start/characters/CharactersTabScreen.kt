@@ -1,6 +1,5 @@
 package com.rumpilstilstkin.gloomhavenhelper.screens.start.characters
 
-import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -13,9 +12,9 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material3.Button
+import androidx.compose.material3.FabPosition
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Switch
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -25,106 +24,106 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.rumpilstilstkin.gloomhavenhelper.R
-import com.rumpilstilstkin.gloomhavenhelper.screens.dialogs.character.CharacterEditLevelDialog
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.GloomSwitch
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.buttons.GloomFab
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.icons.AppIcon
+import com.rumpilstilstkin.gloomhavenhelper.screens.characters.dialogs.character.CharacterEditLevelDialog
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.CharacterClassTypeUI
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.CharacterUI
 import com.rumpilstilstkin.gloomhavenhelper.screens.start.characters.components.CharacterAvailableClasses
 import com.rumpilstilstkin.gloomhavenhelper.screens.start.characters.components.EmptyCharacters
-import com.rumpilstilstkin.gloomhavenhelper.ui.characters.CharacterItem
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
+import com.rumpilstilstkin.gloomhavenhelper.ui.characters.CharacterItemFilled
 import kotlinx.collections.immutable.persistentListOf
 
 @Composable
 internal fun CharactersTabScreen(
     state: CharactersTabStateUi,
     addCharacter: () -> Unit,
-    openCharacterDetails: (Int) -> Unit,
+    openCharacterMenu: (CharacterUI) -> Unit,
     switchAlive: (Boolean) -> Unit,
     toggleClass: (CharacterClassTypeUI) -> Unit,
     changeLevel: (Int, Int) -> Unit,
-) = Column(
-    modifier = Modifier.fillMaxSize(),
-) {
-    var selectedCharacter by remember { mutableStateOf<CharacterUI?>(null) }
-
-    selectedCharacter?.let { character ->
-        CharacterEditLevelDialog(
-            characterLevel = character.level,
-            characterName = character.name,
-            characterClass = character.characterClass,
-            dismiss = { selectedCharacter = null },
-            changeLevel = {
-                changeLevel(character.id, it)
-                selectedCharacter = null
-            },
-        )
-    }
-
-    CharacterAvailableClasses(
-        availableClasses = state.avaliableClasses,
-        onToggle = toggleClass,
-    )
-    Spacer(
-        modifier = Modifier.height(8.dp),
-    )
-    Row(
-        modifier = Modifier.fillMaxWidth(),
-        verticalAlignment = Alignment.CenterVertically,
-    ) {
-        Text(
-            modifier = Modifier.weight(1f),
-            text = stringResource(R.string.show_only_active),
-            color = MaterialTheme.colorScheme.onSurface,
-            style = MaterialTheme.typography.labelSmall,
-            textAlign = TextAlign.End,
-        )
-        Spacer(
-            modifier = Modifier.width(8.dp),
-        )
-        Switch(
-            checked = state.filterAlive,
-            onCheckedChange = switchAlive,
-        )
-    }
-
-    if (state.characters.isEmpty()) {
-        EmptyCharacters(
-            modifier = Modifier.weight(1f),
-        )
-    } else {
-        LazyColumn(
-            modifier = Modifier.weight(1f),
-            verticalArrangement = Arrangement.spacedBy(16.dp),
-            contentPadding = PaddingValues(vertical = 16.dp),
-        ) {
-            items(state.characters) { character ->
-                CharacterItem(
-                    character = character,
-                    onItemClick = openCharacterDetails,
-                    onLevelClick = { selectedCharacter = character },
-                )
-            }
+) = Scaffold(
+    floatingActionButtonPosition = FabPosition.End,
+    floatingActionButton = {
+        if (state.canAdd) {
+            GloomFab(
+                icon = AppIcon.Plus,
+                onClick = addCharacter,
+            )
         }
     }
+) { innerPadding ->
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(innerPadding),
+    ) {
+        var selectedCharacter by remember { mutableStateOf<CharacterUI?>(null) }
 
-    if (state.canAdd) {
-        Button(
-            modifier =
-                Modifier
-                    .fillMaxWidth()
-                    .padding(16.dp),
-            onClick = addCharacter,
-            contentPadding = PaddingValues(16.dp),
-        ) {
-            Text(
-                text = stringResource(R.string.add_character),
-                fontSize = 16.sp,
+        selectedCharacter?.let { character ->
+            CharacterEditLevelDialog(
+                characterLevel = character.level,
+                characterName = character.name,
+                characterClass = character.characterClass,
+                dismiss = { selectedCharacter = null },
+                changeLevel = {
+                    changeLevel(character.id, it)
+                    selectedCharacter = null
+                },
             )
+        }
+
+        CharacterAvailableClasses(
+            availableClasses = state.avaliableClasses,
+            onToggle = toggleClass,
+        )
+        Spacer(
+            modifier = Modifier.height(24.dp),
+        )
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
+            GloomSwitch(
+                selected = state.filterAlive,
+                onCheckedChange = switchAlive,
+            )
+
+            Spacer(
+                modifier = Modifier.width(8.dp),
+            )
+            Text(
+                text = stringResource(R.string.show_only_active),
+                color = MaterialTheme.colorScheme.onSurface,
+                style = MaterialTheme.typography.bodyMedium,
+            )
+        }
+
+        if (state.characters.isEmpty()) {
+            EmptyCharacters(
+                modifier = Modifier.weight(1f),
+            )
+        } else {
+            LazyColumn(
+                modifier = Modifier.weight(1f),
+                verticalArrangement = Arrangement.spacedBy(16.dp),
+                contentPadding = PaddingValues(vertical = 16.dp),
+            ) {
+                items(
+                    items = state.characters,
+                    key = { character -> character.id }
+                ) { character ->
+                    CharacterItemFilled(
+                        character = character,
+                        onClick = { openCharacterMenu(character) }
+                    )
+                }
+            }
         }
     }
 }
@@ -137,7 +136,7 @@ private fun CharactersTabScreenPreview() {
             state = CharactersTabStateUi.fixture(),
             switchAlive = {},
             addCharacter = {},
-            openCharacterDetails = {},
+            openCharacterMenu = {},
             toggleClass = {},
             changeLevel = { _, _ -> },
         )
@@ -152,7 +151,7 @@ private fun CharactersTabScreenEmptyPreview() {
             state = CharactersTabStateUi.fixture(characters = persistentListOf()),
             switchAlive = {},
             addCharacter = {},
-            openCharacterDetails = {},
+            openCharacterMenu = {},
             toggleClass = {},
             changeLevel = { _, _ -> },
         )

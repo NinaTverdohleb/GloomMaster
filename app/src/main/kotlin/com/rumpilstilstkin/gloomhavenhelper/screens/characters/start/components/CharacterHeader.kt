@@ -46,7 +46,7 @@ internal fun CharacterHeader(
             verticalAlignment = Alignment.CenterVertically,
         ) {
             Icon(
-                painter = painterResource(characterClass.image),
+                painter = characterClass.image.painter(),
                 contentDescription = null,
                 modifier = Modifier.size(48.dp),
                 tint = MaterialTheme.colorScheme.primary,

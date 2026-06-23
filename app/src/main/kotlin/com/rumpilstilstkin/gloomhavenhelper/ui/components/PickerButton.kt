@@ -27,17 +27,17 @@ fun PickerButton(
 ) {
     val sizeDp =
         when (size) {
-            GloomSize.S -> 32.dp
-            GloomSize.M -> 48.dp
+            GloomSize.S -> 24.dp
+            GloomSize.M -> 36.dp
         }
     IconButton(
         modifier =
             modifier
                 .background(
-                    color = MaterialTheme.colorScheme.secondaryContainer,
-                    shape = RoundedCornerShape(16.dp),
+                    color = MaterialTheme.colorScheme.surfaceBright,
+                    shape = RoundedCornerShape(10.dp),
                 ).border(
-                    shape = RoundedCornerShape(16.dp),
+                    shape = RoundedCornerShape(10.dp),
                     color = MaterialTheme.colorScheme.outline,
                     width = 1.dp,
                 ).size(sizeDp),

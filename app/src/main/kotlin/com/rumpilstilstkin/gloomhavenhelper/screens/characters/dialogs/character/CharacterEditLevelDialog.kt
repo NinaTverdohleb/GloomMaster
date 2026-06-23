@@ -1,4 +1,4 @@
-package com.rumpilstilstkin.gloomhavenhelper.screens.dialogs.character
+package com.rumpilstilstkin.gloomhavenhelper.screens.characters.dialogs.character
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -18,7 +18,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -26,7 +25,7 @@ import androidx.compose.ui.unit.dp
 import com.rumpilstilstkin.gloomhavenhelper.R
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.CharacterClassTypeUI
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomAlertDialog
-import com.rumpilstilstkin.gloomhavenhelper.ui.components.NumberPicker
+import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomNumberPicker
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
 
 @Composable
@@ -51,7 +50,7 @@ fun CharacterEditLevelDialog(
                     verticalAlignment = Alignment.CenterVertically,
                 ) {
                     Icon(
-                        painter = painterResource(id = characterClass.image),
+                        painter = characterClass.image.painter(),
                         contentDescription = null,
                         modifier = Modifier.size(32.dp),
                         tint = MaterialTheme.colorScheme.primary,
@@ -59,7 +58,6 @@ fun CharacterEditLevelDialog(
                     Spacer(modifier = Modifier.width(8.dp))
 
                     Text(
-                        modifier = Modifier,
                         text = characterName,
                         textAlign = TextAlign.Center,
                         style = MaterialTheme.typography.headlineSmall,
@@ -71,7 +69,7 @@ fun CharacterEditLevelDialog(
                     verticalArrangement = Arrangement.spacedBy(16.dp),
                     horizontalAlignment = Alignment.CenterHorizontally,
                 ) {
-                    NumberPicker(
+                    GloomNumberPicker(
                         modifier = Modifier.fillMaxWidth(),
                         value = level,
                         intRange = IntRange(0, 9),

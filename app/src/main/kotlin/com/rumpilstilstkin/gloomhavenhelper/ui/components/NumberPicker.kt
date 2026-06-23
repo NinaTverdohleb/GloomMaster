@@ -29,7 +29,7 @@ import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterT
 import java.util.Locale
 
 @Composable
-fun NumberPicker(
+fun GloomNumberPicker(
     value: Int,
     intRange: IntRange,
     modifier: Modifier = Modifier,
@@ -206,9 +206,9 @@ private fun checkRange(
 
 @Preview
 @Composable
-private fun NumberPickerMPreview() {
+private fun GloomNumberPickerMPreview() {
     GloomhavenMasterTheme {
-        NumberPicker(
+        GloomNumberPicker(
             value = 5,
             intRange = IntRange(0, 15),
             onValueChange = {},
@@ -218,9 +218,9 @@ private fun NumberPickerMPreview() {
 
 @Preview
 @Composable
-private fun NumberPickerSPreview() {
+private fun GloomNumberPickerSPreview() {
     GloomhavenMasterTheme {
-        NumberPicker(
+        GloomNumberPicker(
             size = GloomSize.S,
             value = 5,
             intRange = IntRange(0, 15),

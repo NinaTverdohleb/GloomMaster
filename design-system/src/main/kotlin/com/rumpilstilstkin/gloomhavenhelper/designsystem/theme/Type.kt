@@ -40,7 +40,7 @@ val Typography =
             TextStyle(
                 fontWeight = FontWeight.Normal,
                 fontSize = 32.sp,
-                lineHeight = 40.sp,
+                lineHeight = 32.sp,
                 letterSpacing = 0.sp,
                 fontFamily = FontFamily.Serif,
             ),

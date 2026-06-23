@@ -1,4 +1,4 @@
-package com.rumpilstilstkin.gloomhavenhelper.screens.dialogs.character
+package com.rumpilstilstkin.gloomhavenhelper.screens.characters.dialogs.character
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement

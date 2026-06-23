@@ -20,9 +20,11 @@ data class CharactersTabStateUi(
             characters: ImmutableList<CharacterUI> =
                 persistentListOf(
                     CharacterUI.fixture(
+                        id = 1,
                         name = "Character 1",
                     ),
                     CharacterUI.fixture(
+                        id = 2,
                         name = "Character 2",
                     ),
                 ),
@@ -68,5 +70,9 @@ sealed interface CharactersTabAction {
     data class ChangeLevel(
         val characterId: Int,
         val level: Int,
+    ) : CharactersTabAction
+
+    data class CharacterMenu(
+        val character: CharacterUI,
     ) : CharactersTabAction
 }

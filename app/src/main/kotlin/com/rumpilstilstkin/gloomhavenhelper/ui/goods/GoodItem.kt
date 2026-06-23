@@ -1,7 +1,5 @@
 package com.rumpilstilstkin.gloomhavenhelper.ui.goods
 
-import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -9,12 +7,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import com.rumpilstilstkin.gloomhavenhelper.R
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.items.ActionWidth
-import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.items.GloomItemActionIcon
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.items.GloomListFilledItem
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.items.GloomSwipeableListItem
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.items.LeftItemImage
-import com.rumpilstilstkin.gloomhavenhelper.designsystem.icons.AppIcon
-import com.rumpilstilstkin.gloomhavenhelper.designsystem.icons.GoodIcon
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.GoodUi
 
