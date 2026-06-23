@@ -23,6 +23,7 @@ import com.rumpilstilstkin.gloomhavenhelper.ui.characters.CharacterItem
 @Composable
 fun MenuCharacterDialog(
     character: CharacterUI,
+    level: Int,
     deleteCharacter: () -> Unit,
     updateLevel: (Int) -> Unit,
     leaveCharacter: () -> Unit,
@@ -49,7 +50,7 @@ fun MenuCharacterDialog(
                 )
 
                 GloomCounterFull(
-                    value = character.level,
+                    value = level,
                     intRange = IntRange(1, 9),
                 ) { updateLevel(it) }
             }
@@ -102,6 +103,7 @@ private fun MenuCharacterDialogPreview() {
             character = CharacterUI.fixture(
                 isAlive = false
             ),
+            level = 2,
             deleteCharacter = {},
             updateLevel = {},
             leaveCharacter = {},

@@ -35,16 +35,12 @@ fun CharacterDetailsRoute(
     CharacterDetailsScreen(
         state = uiState,
         back = { viewModel.onAction(CharacterDetailsAction.Back) },
-        showDeleteDialog = { viewModel.onAction(CharacterDetailsAction.ShowDeleteDialog) },
-        hideDeleteDialog = { viewModel.onAction(CharacterDetailsAction.HideDeleteDialog) },
-        confirmDelete = { viewModel.onAction(CharacterDetailsAction.ConfirmDelete) },
         showNameDialog = { viewModel.onAction(CharacterDetailsAction.ShowNameDialog) },
         hideNameDialog = { viewModel.onAction(CharacterDetailsAction.HideNameDialog) },
         saveName = { name -> viewModel.onAction(CharacterDetailsAction.SaveName(name)) },
         showChangeLevelDialog = { viewModel.onAction(CharacterDetailsAction.ShowChangeLevelDialog) },
         hideChangeLevelDialog = { viewModel.onAction(CharacterDetailsAction.HideChangeLevelDialog) },
         changeLevel = { level -> viewModel.onAction(CharacterDetailsAction.ChangeLevel(level)) },
-        retire = { viewModel.onAction(CharacterDetailsAction.Retire) },
         selectTab = { tab ->
             when (tab) {
                 CharacterDetailsTab.GENERAL -> CharacterGeneralTab(characterId, navController)

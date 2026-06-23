@@ -23,9 +23,14 @@ object MenuCharacterDialogContract : OverlayContract<CharacterUI, MenuCharacterR
 fun MenuCharacterDialogRoute(
     character: CharacterUI,
     close: (MenuCharacterResult) -> Unit,
-    viewModel: MenuCharacterDialogViewModel = hiltViewModel(),
 ) {
+    val viewModel =
+        hiltViewModel<MenuCharacterDialogViewModel, MenuCharacterDialogViewModel.Factory> { factory ->
+            factory.create(character.level)
+        }
     val complete by viewModel.complete.collectAsStateWithLifecycle(initialValue = null)
+
+    val state = viewModel.state.collectAsStateWithLifecycle()
 
     LaunchedEffect(complete) {
         complete?.let { event ->
@@ -35,10 +40,23 @@ fun MenuCharacterDialogRoute(
 
     MenuCharacterDialog(
         character = character,
+        level = state.value,
         deleteCharacter = { viewModel.onAction(MenuCharacterDialogAction.DeleteCharacter(character)) },
         updateLevel = { viewModel.onAction(MenuCharacterDialogAction.UpdateLevel(character, it)) },
         leaveCharacter = { viewModel.onAction(MenuCharacterDialogAction.LeaveCharacter(character)) },
-        makeCharacterAlive = { viewModel.onAction(MenuCharacterDialogAction.MakeCharacterAlive(character)) },
-        openCharacterDetails = { viewModel.onAction(MenuCharacterDialogAction.OpenCharacterDetails(character)) },
+        makeCharacterAlive = {
+            viewModel.onAction(
+                MenuCharacterDialogAction.MakeCharacterAlive(
+                    character
+                )
+            )
+        },
+        openCharacterDetails = {
+            viewModel.onAction(
+                MenuCharacterDialogAction.OpenCharacterDetails(
+                    character
+                )
+            )
+        },
     )
 }
