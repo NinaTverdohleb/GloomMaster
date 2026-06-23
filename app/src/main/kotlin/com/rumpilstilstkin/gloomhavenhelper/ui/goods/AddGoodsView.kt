@@ -1,17 +1,13 @@
 package com.rumpilstilstkin.gloomhavenhelper.ui.goods
 
-import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -22,10 +18,11 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.rumpilstilstkin.gloomhavenhelper.R
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.text.GloomHeader
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.GoodType
 import com.rumpilstilstkin.gloomhavenhelper.screens.dialogs.goods.GoodDetailsDialog
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.GoodUi
-import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
 
 @Composable
 fun AddGoodsView(
@@ -52,22 +49,16 @@ fun AddGoodsView(
             changeSearchText = changeSearchText,
         )
         Spacer(
-            modifier = Modifier.height(16.dp),
+            modifier = Modifier.height(24.dp),
         )
         LazyColumn(
             modifier = Modifier.weight(1f),
-            verticalArrangement = Arrangement.spacedBy(8.dp),
-            contentPadding = PaddingValues(vertical = 16.dp),
+            verticalArrangement = Arrangement.spacedBy(16.dp),
         ) {
             if (state.selectedGoods.isNotEmpty()) {
                 item {
-                    Text(
-                        text = stringResource(R.string.selected_goods),
-                        style = MaterialTheme.typography.titleLarge,
-                    )
-                    Spacer(
-                        modifier = Modifier.height(16.dp),
-                    )
+                    GloomHeader(text = stringResource(R.string.selected_goods),)
+                    Spacer(modifier = Modifier.height(4.dp),)
                 }
                 items(state.selectedGoods) { good ->
                     GoodItem(
@@ -79,13 +70,8 @@ fun AddGoodsView(
                 }
             }
             item {
-                Text(
-                    text = stringResource(R.string.available_goods),
-                    style = MaterialTheme.typography.titleLarge,
-                )
-                Spacer(
-                    modifier = Modifier.height(16.dp),
-                )
+                GloomHeader(text = stringResource(R.string.available_goods),)
+                Spacer(modifier = Modifier.height(4.dp),)
             }
 
             items(state.availableGoods) { good ->

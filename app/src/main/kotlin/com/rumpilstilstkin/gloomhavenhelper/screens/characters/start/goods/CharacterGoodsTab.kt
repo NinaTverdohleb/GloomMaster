@@ -30,9 +30,6 @@ import com.rumpilstilstkin.gloomhavenhelper.R
 import com.rumpilstilstkin.gloomhavenhelper.screens.dialogs.goods.GoodDetailsDialogCustomActions
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.GoodUi
 import com.rumpilstilstkin.gloomhavenhelper.ui.goods.GoodItem
-import com.rumpilstilstkin.gloomhavenhelper.ui.icons.GloomhavenIcons
-import com.rumpilstilstkin.gloomhavenhelper.ui.icons.goods.Arm
-import com.rumpilstilstkin.gloomhavenhelper.ui.icons.goods.Foot
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
 
 @Composable

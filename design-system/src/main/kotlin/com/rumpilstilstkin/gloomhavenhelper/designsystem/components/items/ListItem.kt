@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
@@ -20,6 +21,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.GloomCard
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.icons.AppIcon
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.icons.GoodIcon
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
 
 @Composable
@@ -28,11 +30,13 @@ fun GloomListFilledItem(
     modifier: Modifier = Modifier,
     description: String? = null,
     onClick: (() -> Unit)? = null,
+    active: Boolean = false,
     rightComponent: (@Composable RowScope.() -> Unit)? = null,
     leftComponent: (@Composable RowScope.() -> Unit)? = null,
 ) {
     GloomCard(
         modifier = modifier,
+        active = active
     ) {
         Box(
             modifier = Modifier
@@ -78,6 +82,7 @@ fun GloomListItem(
             color = MaterialTheme.colorScheme.onSurface
         )
         description?.let {
+            Spacer(Modifier.height(4.dp))
             Text(
                 text = description,
                 style = MaterialTheme.typography.labelMedium,
@@ -129,6 +134,15 @@ private fun GloomListItemPreview() {
                 title = "Some title",
                 rightComponent = {
                     RightItemChecker(true, {})
+                }
+            )
+
+            GloomListFilledItem(
+                modifier = Modifier.fillMaxWidth(),
+                title = "Some title",
+                description = "desctiption",
+                leftComponent = {
+                    LeftItemImage(GoodIcon.SmallThing)
                 }
             )
         }

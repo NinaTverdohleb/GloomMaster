@@ -3,8 +3,6 @@ package com.rumpilstilstkin.gloomhavenhelper.ui.goods
 import androidx.compose.runtime.Immutable
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.GoodType
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.GoodUi
-import com.rumpilstilstkin.gloomhavenhelper.ui.icons.GloomhavenIcons
-import com.rumpilstilstkin.gloomhavenhelper.ui.icons.goods.Foot
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.persistentListOf
 
