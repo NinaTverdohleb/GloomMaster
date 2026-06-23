@@ -35,16 +35,12 @@ import com.rumpilstilstkin.gloomhavenhelper.screens.models.CharacterClassTypeUI
 internal fun CharacterDetailsScreen(
     state: CharacterDetailsStateUi,
     back: () -> Unit,
-    showDeleteDialog: () -> Unit,
-    hideDeleteDialog: () -> Unit,
-    confirmDelete: () -> Unit,
     showNameDialog: () -> Unit,
     hideNameDialog: () -> Unit,
     saveName: (String) -> Unit,
     showChangeLevelDialog: () -> Unit,
     hideChangeLevelDialog: () -> Unit,
     changeLevel: (Int) -> Unit,
-    retire: () -> Unit,
     selectTab: @Composable (CharacterDetailsTab) -> Unit,
 ) {
 
@@ -153,16 +149,12 @@ private fun CharacterDetailsScreenPreview() {
                     teamName = "Team",
                 ),
             back = {},
-            showDeleteDialog = {},
-            hideDeleteDialog = {},
-            confirmDelete = {},
             showNameDialog = {},
             hideNameDialog = {},
             saveName = {},
             showChangeLevelDialog = {},
             hideChangeLevelDialog = {},
             changeLevel = {},
-            retire = {},
             selectTab = {
                 CharacterGeneralTabContent(
                     content =
