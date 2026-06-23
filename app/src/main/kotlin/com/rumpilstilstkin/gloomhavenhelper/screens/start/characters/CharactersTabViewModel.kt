@@ -13,6 +13,9 @@ import com.rumpilstilstkin.gloomhavenhelper.navigation.GlHelperScreen
 import com.rumpilstilstkin.gloomhavenhelper.navigation.GlHelperScreen.*
 import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEvent
 import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEvent.Screen
+import com.rumpilstilstkin.gloomhavenhelper.screens.characters.dialogs.add.AddCharacterDialogContract
+import com.rumpilstilstkin.gloomhavenhelper.screens.core.ScreenEffect
+import com.rumpilstilstkin.gloomhavenhelper.screens.core.createOverlaySession
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.CharacterClassTypeUI
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.CharacterClassTypeUI.Companion.toCharacterClassTypeUI
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.toUi
@@ -39,8 +42,8 @@ class CharactersTabViewModel @Inject constructor(
     private val addCharacterClassForTeamUseCase: AddCharacterClassForTeamUseCase,
     private val updateCharacterLevelUseCase: UpdateCharacterLevelUseCase,
 ) : ViewModel() {
-    private val _navigationEvents = MutableSharedFlow<GlHelperEvent>()
-    val navigationEvents = _navigationEvents.asSharedFlow()
+    private val _screenEvents = MutableSharedFlow<ScreenEffect>()
+    val screenEvents = _screenEvents.asSharedFlow()
 
     private val charactersList: StateFlow<List<CharacterInfo>> =
         getCharactersForCurrentTeamUseCase()
@@ -103,7 +106,12 @@ class CharactersTabViewModel @Inject constructor(
                 }
 
                 is CharactersTabAction.ShowAddCharacterDialog -> {
-                    logicState.update { it.copy(showAddCharacterDialog = true) }
+                    val session = createOverlaySession(
+                        contract = AddCharacterDialogContract,
+                        input = Unit,
+                        onResult = {},
+                    )
+                    _screenEvents.emit(ScreenEffect.OpenDialog(session))
                 }
 
                 is CharactersTabAction.CloseAddCharacterDialog -> {
@@ -111,7 +119,7 @@ class CharactersTabViewModel @Inject constructor(
                 }
 
                 is CharactersTabAction.CharacterDetails -> {
-                    _navigationEvents.emit(Screen(CharacterDetails(characterId = action.characterId)))
+                    _screenEvents.emit(ScreenEffect.Navigation(Screen(CharacterDetails(characterId = action.characterId))))
                 }
 
                 is CharactersTabAction.SwitchClassAvailability -> {

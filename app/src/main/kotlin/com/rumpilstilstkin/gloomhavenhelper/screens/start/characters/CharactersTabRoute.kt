@@ -7,7 +7,7 @@ import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEventHelper
-import com.rumpilstilstkin.gloomhavenhelper.screens.characters.dialogs.add.AddCharacterDialog
+import com.rumpilstilstkin.gloomhavenhelper.screens.core.LaunchedScreenEffect
 
 @Composable
 fun CharactersTabRoute(
@@ -15,16 +15,7 @@ fun CharactersTabRoute(
     viewModel: CharactersTabViewModel = hiltViewModel(),
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
-    val navigationEvents by viewModel.navigationEvents.collectAsStateWithLifecycle(initialValue = null)
-
-    LaunchedEffect(navigationEvents) {
-        navigationEvents?.let { event ->
-            GlHelperEventHelper.event(
-                event = event,
-                navController = navController,
-            )
-        }
-    }
+    val screenEffect by viewModel.screenEvents.collectAsStateWithLifecycle(initialValue = null)
 
     CharactersTabScreen(
         state = uiState,
@@ -35,19 +26,8 @@ fun CharactersTabRoute(
         changeLevel = { characterId, level -> viewModel.onAction(CharactersTabAction.ChangeLevel(characterId, level)) },
     )
 
-    /*if (uiState.showAddCharacterDialog) {
-        AddCharacterDialog(
-            avaliableClasses = uiState.avaliableClasses,
-            onDismiss = { viewModel.onAction(CharactersTabAction.CloseAddCharacterDialog) },
-            addCharacter = { name, level, classType ->
-                viewModel.onAction(
-                    CharactersTabAction.AddCharacter(
-                        name = name,
-                        level = level,
-                        characterType = classType,
-                    ),
-                )
-            },
-        )
-    }*/
+    LaunchedScreenEffect(
+        effect = screenEffect,
+        navController = navController,
+    )
 }

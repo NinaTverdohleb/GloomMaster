@@ -23,7 +23,7 @@
     <string name="next_prosperity_at">Next prosperity level at %1$d</string>
     <string name="shop_discount">Shop discount:</string>
     <string name="show_only_active">Show active only</string>
-    <string name="add_character">Add Character</string>
+    <string name="add_character">Create Character</string>
     <string name="empty_active_characters">No active characters</string>
     <string name="add_character_to_company">Add a character to the campaign</string>
     <string name="round_label">Round</string>
