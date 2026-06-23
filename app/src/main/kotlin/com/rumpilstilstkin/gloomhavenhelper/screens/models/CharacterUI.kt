@@ -22,12 +22,14 @@ data class CharacterUI(
             level: Int = 6,
             characterClass: CharacterClassTypeUI = CharacterClassTypeUI.Brute,
             teamName: String? = null,
+            isAlive: Boolean = true,
         ) = CharacterUI(
             id = id,
             name = name,
             level = level,
             characterClass = characterClass,
             teamName = teamName,
+            isAlive = isAlive
         )
     }
 }

@@ -8,7 +8,6 @@ import kotlinx.collections.immutable.persistentListOf
 
 @Immutable
 data class CharactersTabStateUi(
-    val showAddCharacterDialog: Boolean = false,
     val filterAlive: Boolean = true,
     val canAdd: Boolean = true,
     val characters: ImmutableList<CharacterUI> = persistentListOf(),
@@ -43,33 +42,16 @@ data class CharactersTabStateUi(
 
 data class CharactersTabStateLogic(
     val filterAlive: Boolean = true,
-    val showAddCharacterDialog: Boolean = false,
 )
 
 sealed interface CharactersTabAction {
-    data class AddCharacter(
-        val name: String,
-        val level: Int,
-        val characterType: CharacterClassTypeUI,
-    ) : CharactersTabAction
 
     data object SwitchAlive : CharactersTabAction
 
     data object ShowAddCharacterDialog : CharactersTabAction
 
-    data object CloseAddCharacterDialog : CharactersTabAction
-
-    data class CharacterDetails(
-        val characterId: Int,
-    ) : CharactersTabAction
-
     data class SwitchClassAvailability(
         val type: CharacterClassTypeUI,
-    ) : CharactersTabAction
-
-    data class ChangeLevel(
-        val characterId: Int,
-        val level: Int,
     ) : CharactersTabAction
 
     data class CharacterMenu(

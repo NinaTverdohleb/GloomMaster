@@ -115,7 +115,7 @@
     <string name="unlock_class">Unlock Class: </string>
     <string name="name_label">Name</string>
     <string name="character_level_label">Level</string>
-    <string name="delete_character_title">Delete or retire character?</string>
+    <string name="delete_character_title">Delete %1$s?</string>
     <string name="retire">Retire</string>
     <string name="delete_warning">This action cannot be undone.</string>
     <string name="available_perks_title">Available Perks</string>
@@ -186,4 +186,8 @@
     <string name="delete_scenario_dialog_title">Delete scenario.</string>
     <string name="delete_scenario_dialog_description">Are you sure you want to delete scenario %1$s from the scenario list?</string>
     <string name="ok">Ok</string>
+    <string name="character_details">Character details</string>
+    <string name="leave_character">Leave character</string>
+    <string name="make_alive">Make alive</string>
+    <string name="delete_character">Delete character</string>
 </resources>

@@ -17,10 +17,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -30,12 +26,11 @@ import com.rumpilstilstkin.gloomhavenhelper.R
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.GloomSwitch
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.buttons.GloomFab
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.icons.AppIcon
-import com.rumpilstilstkin.gloomhavenhelper.screens.characters.dialogs.character.CharacterEditLevelDialog
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.CharacterClassTypeUI
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.CharacterUI
 import com.rumpilstilstkin.gloomhavenhelper.screens.start.characters.components.CharacterAvailableClasses
 import com.rumpilstilstkin.gloomhavenhelper.screens.start.characters.components.EmptyCharacters
-import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
 import com.rumpilstilstkin.gloomhavenhelper.ui.characters.CharacterItemFilled
 import kotlinx.collections.immutable.persistentListOf
 
@@ -46,7 +41,6 @@ internal fun CharactersTabScreen(
     openCharacterMenu: (CharacterUI) -> Unit,
     switchAlive: (Boolean) -> Unit,
     toggleClass: (CharacterClassTypeUI) -> Unit,
-    changeLevel: (Int, Int) -> Unit,
 ) = Scaffold(
     floatingActionButtonPosition = FabPosition.End,
     floatingActionButton = {
@@ -63,21 +57,6 @@ internal fun CharactersTabScreen(
             .fillMaxSize()
             .padding(innerPadding),
     ) {
-        var selectedCharacter by remember { mutableStateOf<CharacterUI?>(null) }
-
-        selectedCharacter?.let { character ->
-            CharacterEditLevelDialog(
-                characterLevel = character.level,
-                characterName = character.name,
-                characterClass = character.characterClass,
-                dismiss = { selectedCharacter = null },
-                changeLevel = {
-                    changeLevel(character.id, it)
-                    selectedCharacter = null
-                },
-            )
-        }
-
         CharacterAvailableClasses(
             availableClasses = state.avaliableClasses,
             onToggle = toggleClass,
@@ -138,7 +117,6 @@ private fun CharactersTabScreenPreview() {
             addCharacter = {},
             openCharacterMenu = {},
             toggleClass = {},
-            changeLevel = { _, _ -> },
         )
     }
 }
@@ -153,7 +131,6 @@ private fun CharactersTabScreenEmptyPreview() {
             addCharacter = {},
             openCharacterMenu = {},
             toggleClass = {},
-            changeLevel = { _, _ -> },
         )
     }
 }

@@ -160,6 +160,12 @@ class CharacterRepository @Inject constructor(
         }
     }
 
+    suspend fun makeAlive(id: Int) {
+        characterDao.getCharacterById(id)?.let {
+            characterDao.update(it.copy(isAlive = true))
+        }
+    }
+
     suspend fun setTeam(
         characterId: Int,
         teamId: Int,
