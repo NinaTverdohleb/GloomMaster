@@ -18,7 +18,16 @@ class GetAvaliableClassesForCurrentTeamUseCase @Inject constructor(
         teamRepository.currentTeam
             .flatMapLatest { team ->
                 if (team == null) {
-                    flowOf(emptyList())
+                    flowOf(
+                        listOf(
+                            CharacterClassType.Brute,
+                            CharacterClassType.Tinkerer,
+                            CharacterClassType.Spellweaver,
+                            CharacterClassType.Scoundrel,
+                            CharacterClassType.Cragheart,
+                            CharacterClassType.Mindthief,
+                        )
+                    )
                 } else {
                     characterClassRepository.getAvailableClassesForTeam(team.teamId)
                 }

@@ -1,19 +1,21 @@
 package com.rumpilstilstkin.gloomhavenhelper.screens.characters.dialogs.add
 
+import androidx.compose.runtime.Immutable
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.CharacterClassTypeUI
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.persistentListOf
 
+@Immutable
 data class AddCharacterDialogState(
     val name: String = "",
-    val level: Int = 0,
-    val avaliableClasses: ImmutableList<CharacterClassTypeUI>,
-    val selectedClass: CharacterClassTypeUI = avaliableClasses.first(),
+    val level: Int = 1,
+    val avaliableClasses: ImmutableList<CharacterClassTypeUI> = persistentListOf(CharacterClassTypeUI.Brute),
+    val selectedClass: CharacterClassTypeUI = avaliableClasses.firstOrNull() ?: CharacterClassTypeUI.Brute,
 ) {
     companion object {
         fun fixture(
             name: String = "",
-            level: Int = 0,
+            level: Int = 1,
             avaliableClasses: ImmutableList<CharacterClassTypeUI> = persistentListOf(
                 CharacterClassTypeUI.Brute,
                 CharacterClassTypeUI.Spellweaver,

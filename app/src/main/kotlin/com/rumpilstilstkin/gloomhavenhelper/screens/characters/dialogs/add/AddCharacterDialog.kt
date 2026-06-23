@@ -97,7 +97,7 @@ fun AddCharacterDialog(
         }
 
         GloomOutlineButton(
-            text = stringResource(R.string.add_scenario),
+            text = stringResource(R.string.add_character),
             onClick = createCharacter,
             modifier = Modifier.fillMaxWidth(),
             isError = false,
