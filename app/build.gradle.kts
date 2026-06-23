@@ -1,14 +1,10 @@
-import com.diffplug.gradle.spotless.SpotlessExtension
-import org.gradle.kotlin.dsl.configure
-
 plugins {
-    alias(libs.plugins.android.application)
-    alias(libs.plugins.compose.compiler)
-    alias(libs.plugins.ksp)
+    alias(libs.plugins.chaosknight.android.application)
+    alias(libs.plugins.chaosknight.android.application.compose)
+    alias(libs.plugins.chaosknight.hilt)
+    alias(libs.plugins.baselineprofile)
     alias(libs.plugins.kotlin.serialization)
-    alias(libs.plugins.hilt)
     alias(libs.plugins.room)
-    alias(libs.plugins.spotless)
 }
 
 android {
@@ -27,11 +23,6 @@ android {
             useSupportLibrary = true
         }
     }
-
-    buildFeatures {
-        buildConfig = true
-    }
-
     buildTypes {
         release {
             isMinifyEnabled = true
@@ -46,13 +37,6 @@ android {
             manifestPlaceholders["appLabelSuffix"] = " (Debug)"
         }
     }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
-    }
-    buildFeatures {
-        compose = true
-    }
 
     packaging {
         resources {
@@ -65,85 +49,27 @@ room {
     schemaDirectory("$projectDir/schemas")
 }
 
-kotlin {
-    compilerOptions {
-        languageVersion = org.jetbrains.kotlin.gradle.dsl.KotlinVersion.KOTLIN_2_3
-    }
-}
-
-configure<SpotlessExtension> {
-    kotlin {
-        target("src/**/*.kt")
-        targetExclude(
-            "**/ui/icons/**/*.kt",
-            "src/test/**/*.kt",
-            "src/androidTest/**/*.kt"
-        )
-        val ktlintVersion = extensions.getByType<VersionCatalogsExtension>()
-            .named("libs")
-            .findVersion("ktlint")
-            .get()
-            .requiredVersion
-
-        ktlint(ktlintVersion).editorConfigOverride(
-            mapOf(
-                "android" to "true",
-                "ktlint_code_style" to "ktlint_official",
-                "ij_kotlin_allow_trailing_comma" to "true",
-                "ij_kotlin_allow_trailing_comma_on_call_site" to "true",
-                "ktlint_function_naming_ignore_when_annotated_with" to "Composable",
-                "ktlint_standard_annotation" to "disabled",
-                "ij_kotlin_variable_annotation_wrap" to "off",
-                "ij_kotlin_annotation_wrap" to "off",
-                "ktlint_experimental_suppress-annotation" to "enabled",
-                "ktlint_standard_backing-property-naming" to "disabled",
-            )
-        )
-        endWithNewline()
-    }
-
-    format("kts") {
-        target("*.kts")
-        endWithNewline()
-    }
-
-    format("xml") {
-        target("src/**/*.xml")
-        endWithNewline()
-    }
-}
-
 dependencies {
-
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.lifecycle.runtime.ktx)
-    implementation(libs.androidx.activity.compose)
-    implementation(platform(libs.androidx.compose.bom))
-    implementation(libs.androidx.ui)
-    implementation(libs.androidx.ui.graphics)
-    implementation(libs.androidx.ui.tooling.preview)
-    implementation(libs.androidx.material3)
-    implementation(libs.androidx.material.icons.extended)
-    implementation(libs.androidx.navigation.compose)
-    implementation(libs.androidx.hilt.navigation.compose)
-    implementation(libs.androidx.splashscreen)
-    implementation(libs.androidx.window.size)
-    implementation(libs.kotlinx.serialization.json)
-    implementation(libs.kotlinx.coroutines.core)
-    implementation(libs.kotlinx.coroutines.android)
-    implementation(libs.kotlinx.collections.immutable)
-    implementation(libs.coil.compose)
-    implementation(libs.androidx.appcompat)
-    implementation(libs.android.material)
-
-    ksp(libs.hilt.compiler)
-    ksp(libs.hilt.ext.compiler)
-    implementation(libs.hilt.android)
-    implementation(libs.hilt.core)
+    implementation(project(":design-system"))
 
     ksp(libs.room.compiler)
     implementation(libs.room.runtime)
     implementation(libs.room.ktx)
+
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.androidx.activity.compose)
+    implementation(libs.androidx.ui.tooling.preview)
+    implementation(libs.androidx.material3)
+    implementation(libs.android.material)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.androidx.splashscreen)
+    implementation(libs.androidx.window.size)
+    implementation(libs.kotlinx.serialization.json)
+    implementation(libs.kotlinx.collections.immutable)
+    implementation(libs.androidx.navigation.compose)
+    implementation(libs.androidx.hilt.navigation.compose)
+    implementation(libs.coil.compose)
 
     testImplementation(libs.junit)
     testImplementation(libs.kotlinx.coroutines.test)
@@ -160,4 +86,15 @@ dependencies {
 
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+}
+
+baselineProfile {
+    automaticGenerationDuringBuild = false
+    dexLayoutOptimization = true
+}
+
+dependencyGuard {
+    configuration("benchmarkReleaseCompileClasspath") {
+        tree = true
+    }
 }

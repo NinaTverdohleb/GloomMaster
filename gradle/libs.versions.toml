@@ -26,12 +26,23 @@ mockk = "1.14.11"
 strikt = "0.35.1"
 appcompat = "1.7.1"
 material = "1.14.0"
+androidTools = "32.1.0"
+firebaseCrashlyticsPlugin = "3.0.6"
+firebasePerfPlugin = "2.0.2"
+uiTestJunit4 = "1.9.0-rc01"
+truth = "1.4.4"
+androidxLintGradle = "1.0.0-alpha03"
+roborazzi = "1.59.0"
+dependencyGuard = "0.5.0"
+androidxMacroBenchmark = "1.5.0-alpha05"
+desugarJdkLibs = "2.1.5"
 
 [libraries]
 # AndroidX Core & Lifecycle - Основные библиотеки Android и жизненного цикла
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycleRuntimeKtx" }
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+android-desugarJdkLibs = { group = "com.android.tools", name = "desugar_jdk_libs", version.ref = "desugarJdkLibs" }
 
 # UI: Jetpack Compose - Библиотеки для построения интерфейса на Compose
 androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activityCompose" }
@@ -83,17 +94,56 @@ androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-co
 androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
 
+# Dependencies of the included build-logic
+android-gradlePlugin = { group = "com.android.tools.build", name = "gradle-api", version.ref = "agp" }
+android-tools-common = { group = "com.android.tools", name = "common", version.ref = "androidTools" }
+compose-gradlePlugin = { module = "org.jetbrains.kotlin:compose-compiler-gradle-plugin", version.ref = "kotlin" }
+firebase-crashlytics-gradlePlugin = { group = "com.google.firebase", name = "firebase-crashlytics-gradle", version.ref = "firebaseCrashlyticsPlugin" }
+firebase-performance-gradlePlugin = { group = "com.google.firebase", name = "perf-plugin", version.ref = "firebasePerfPlugin" }
+kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
+ksp-gradlePlugin = { group = "com.google.devtools.ksp", name = "com.google.devtools.ksp.gradle.plugin", version.ref = "ksp" }
+room-gradlePlugin = { group = "androidx.room", name = "room-gradle-plugin", version.ref = "room" }
+androidx-compose-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4", version.ref = "uiTestJunit4" }
+spotless-gradlePlugin = { group = "com.diffplug.spotless", name = "spotless-plugin-gradle", version.ref = "spotless" }
+truth = { group = "com.google.truth", name = "truth", version.ref = "truth" }
+androidx-lint-gradle = { group = "androidx.lint", name = "lint-gradle", version.ref = "androidxLintGradle" }
+
+kotlin-metadata = { module = "org.jetbrains.kotlin:kotlin-metadata-jvm", version.ref = "kotlin" }
+kotlin-test = { group = "org.jetbrains.kotlin", name = "kotlin-test", version.ref = "kotlin" }
+
 [plugins]
+chaosknight-android-application = { id = "chaosknight.android.application" }
+chaosknight-android-application-compose = { id = "chaosknight.android.application.compose" }
+chaosknight-android-feature = { id = "chaosknight.android.feature" }
+chaosknight-android-library = { id = "chaosknight.android.library" }
+chaosknight-android-library-compose = { id = "chaosknight.android.library.compose" }
+chaosknight-android-lint = { id = "chaosknight.android.lint" }
+chaosknight-hilt = { id = "chaosknight.hilt" }
+chaosknight-android-application-firebase = { id = "chaosknight.android.application.firebase" }
+
 # Android Application & Tooling - Базовые плагины для приложения и форматирования
 android-application = { id = "com.android.application", version.ref = "agp" }
+android-library = { id = "com.android.library", version.ref = "agp" }
 spotless = { id = "com.diffplug.spotless", version.ref = "spotless" }
+android-lint = { id = "com.android.lint", version.ref = "agp" }
 
 # Kotlin & Compose - Плагины для Kotlin, сериализации и Compose
-compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 
 # Dependency Injection & Database - Плагины для Hilt и Room
 hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 room = { id = "androidx.room", version.ref = "room" }
+
+roborazzi = { id = "io.github.takahirom.roborazzi", version.ref = "roborazzi" }
+firebase-crashlytics = { id = "com.google.firebase.crashlytics", version.ref = "firebaseCrashlyticsPlugin" }
+firebase-perf = { id = "com.google.firebase.firebase-perf", version.ref = "firebasePerfPlugin" }
+dependencyGuard = { id = "com.dropbox.dependency-guard", version.ref = "dependencyGuard" }
+kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+baselineprofile = { id = "androidx.baselineprofile", version.ref = "androidxMacroBenchmark"}
+android-test = { id = "com.android.test", version.ref = "agp" }
+
+
+
 
