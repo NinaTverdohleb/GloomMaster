@@ -21,6 +21,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.rumpilstilstkin.gloomhavenhelper.R
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.text.GloomOutlinedTextSearchField
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.GoodType
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.toImage
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
@@ -36,10 +37,7 @@ fun GoodFilters(
     modifier = modifier,
 ) {
     Row(
-        modifier =
-            Modifier
-                .fillMaxWidth()
-                .padding(8.dp),
+        modifier = Modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.SpaceBetween,
     ) {
         GoodType.entries.forEach {
@@ -51,23 +49,16 @@ fun GoodFilters(
         }
     }
     Spacer(
-        modifier = Modifier.height(4.dp),
+        modifier = Modifier.height(24.dp),
     )
 
-    OutlinedTextField(
+    GloomOutlinedTextSearchField(
         modifier =
             Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 8.dp),
+                .fillMaxWidth(),
         value = searchText,
-        leadingIcon = {
-            Icon(
-                imageVector = Icons.Default.Search,
-                contentDescription = null,
-            )
-        },
         onValueChange = changeSearchText,
-        label = { Text(stringResource(R.string.search_hint)) },
+        placeholder = stringResource(R.string.search_hint),
     )
 }
 
@@ -86,7 +77,7 @@ private fun FilterButton(
                 .clickable {
                     onSelectedChanged(type)
                 },
-        imageVector = type.toImage(),
+        painter = type.toImage().painter(),
         contentDescription = null,
         tint = if (isChecked) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.outlineVariant,
     )

@@ -1,23 +1,17 @@
 package com.rumpilstilstkin.gloomhavenhelper.screens.models
 
 import androidx.compose.runtime.Immutable
-import androidx.compose.ui.graphics.vector.ImageVector
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.icons.GloomIcon
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.icons.GoodIcon
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.Good
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.GoodType
-import com.rumpilstilstkin.gloomhavenhelper.ui.icons.GloomhavenIcons
-import com.rumpilstilstkin.gloomhavenhelper.ui.icons.goods.Arm
-import com.rumpilstilstkin.gloomhavenhelper.ui.icons.goods.Body
-import com.rumpilstilstkin.gloomhavenhelper.ui.icons.goods.Foot
-import com.rumpilstilstkin.gloomhavenhelper.ui.icons.goods.Head
-import com.rumpilstilstkin.gloomhavenhelper.ui.icons.goods.Smallthing
-import com.rumpilstilstkin.gloomhavenhelper.ui.icons.goods.Twoarm
 
 @Immutable
 data class GoodUi(
     val goodId: Int,
     val number: Int,
     val name: String,
-    val typeImage: ImageVector,
+    val icon: GloomIcon,
     val cost: Int,
     val characterGoodId: Int? = null,
     val image: String,
@@ -31,7 +25,7 @@ data class GoodUi(
                 goodId = id,
                 number = 14,
                 name = "Seven-league boots, feast on these sweet French brioches",
-                typeImage = GloomhavenIcons.GoodTypes.Foot,
+                icon = GoodIcon.Foot,
                 cost = 20,
                 image = "",
             )
@@ -43,7 +37,7 @@ fun Good.toUi() =
         goodId = this.id,
         number = this.displayNumber,
         name = this.name,
-        typeImage = this.type.toImage(),
+        icon = this.type.toImage(),
         cost = this.cost,
         characterGoodId = this.characterGoodId,
         image = this.image,
@@ -51,10 +45,10 @@ fun Good.toUi() =
 
 fun GoodType.toImage() =
     when (this) {
-        GoodType.Body -> GloomhavenIcons.GoodTypes.Body
-        GoodType.Head -> GloomhavenIcons.GoodTypes.Head
-        GoodType.Foot -> GloomhavenIcons.GoodTypes.Foot
-        GoodType.Arm -> GloomhavenIcons.GoodTypes.Arm
-        GoodType.DoubleArm -> GloomhavenIcons.GoodTypes.Twoarm
-        GoodType.SmallThing -> GloomhavenIcons.GoodTypes.Smallthing
+        GoodType.Body -> GoodIcon.Body
+        GoodType.Head -> GoodIcon.Head
+        GoodType.Foot -> GoodIcon.Foot
+        GoodType.Arm -> GoodIcon.Arm
+        GoodType.DoubleArm -> GoodIcon.TwoArm
+        GoodType.SmallThing -> GoodIcon.SmallThing
     }
