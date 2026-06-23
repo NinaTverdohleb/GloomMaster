@@ -1,101 +1,78 @@
 package com.rumpilstilstkin.gloomhavenhelper.ui.characters
 
-import androidx.compose.foundation.background
-import androidx.compose.foundation.border
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.rumpilstilstkin.gloomhavenhelper.screens.models.CharacterUI
-import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.GloomCard
-import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomSize
-import com.rumpilstilstkin.gloomhavenhelper.ui.components.RoundButton
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.items.GloomListFilledItem
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.items.GloomListItem
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.items.LeftItemImage
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.items.RightItemNumber
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
+import com.rumpilstilstkin.gloomhavenhelper.screens.models.CharacterUI
+
+@Composable
+fun CharacterItemFilled(
+    character: CharacterUI,
+    modifier: Modifier = Modifier,
+    onClick: (CharacterUI) -> Unit,
+) = GloomListFilledItem(
+    modifier = modifier,
+    title = character.name,
+    description = stringResource(character.characterClass.titleRes),
+    leftComponent = {
+        LeftItemImage(
+            icon = character.characterClass.image
+        )
+    },
+    rightComponent = {
+        RightItemNumber(
+            number = character.level.toString()
+        )
+    },
+    active = character.isAlive,
+    onClick = { onClick(character) }
+)
 
 @Composable
 fun CharacterItem(
     character: CharacterUI,
     modifier: Modifier = Modifier,
-    onItemClick: (Int) -> Unit,
-    onLevelClick: (Int) -> Unit = {},
-) = GloomCard(
-    modifier =
-        modifier
-            .clickable {
-                onItemClick.invoke(character.id)
-            },
-) {
-    Row(
-        modifier = Modifier.fillMaxWidth(),
-        verticalAlignment = Alignment.CenterVertically,
-    ) {
-        Box(
-            modifier =
-                modifier
-                    .size(52.dp)
-                    .background(
-                        color = MaterialTheme.colorScheme.secondaryContainer,
-                        shape = RoundedCornerShape(8.dp),
-                    ).border(
-                        shape = RoundedCornerShape(8.dp),
-                        color = MaterialTheme.colorScheme.outline,
-                        width = 1.dp,
-                    ),
-            contentAlignment = Alignment.Center,
-        ) {
-            Icon(
-                modifier = Modifier.size(40.dp),
-                painter = painterResource(character.characterClass.image),
-                contentDescription = null,
-            )
-        }
-        Spacer(modifier = Modifier.width(16.dp))
-        Column(
-            modifier = Modifier.weight(1f),
-        ) {
-            Text(
-                text = character.name,
-                style = MaterialTheme.typography.bodyLarge,
-                color = MaterialTheme.colorScheme.onSurface,
-            )
-            Spacer(modifier = Modifier.height(8.dp))
-            Text(
-                text = stringResource(character.characterClass.titleRes),
-                style = MaterialTheme.typography.bodyMedium,
-                color = MaterialTheme.colorScheme.onSurface,
-            )
-        }
-        RoundButton(
-            size = GloomSize.M,
-            text = character.level.toString(),
-            onClick = { onLevelClick(character.id) },
+) = GloomListItem(
+    modifier = modifier,
+    title = character.name,
+    description = stringResource(character.characterClass.titleRes),
+    leftComponent = {
+        LeftItemImage(
+            icon = character.characterClass.image
+        )
+    },
+    rightComponent = {
+        RightItemNumber(
+            number = character.level.toString()
         )
     }
-}
+)
 
 @Preview
 @Composable
 private fun CharacterItemPreview() {
     GloomhavenMasterTheme {
-        CharacterItem(
-            character = CharacterUI.fixture(),
-            onItemClick = {},
-        )
+        Column(
+            verticalArrangement = Arrangement.spacedBy(16.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            CharacterItem(
+                character = CharacterUI.fixture(),
+            )
+            CharacterItemFilled(
+                character = CharacterUI.fixture(),
+                onClick = {}
+            )
+        }
     }
 }

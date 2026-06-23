@@ -162,7 +162,7 @@ private fun DifficultyItem(
             verticalArrangement = Arrangement.SpaceBetween,
         ) {
             Icon(
-                icon,
+                icon.painter(),
                 contentDescription = null,
                 tint = contentColor,
                 modifier = Modifier.size(32.dp)

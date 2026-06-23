@@ -17,11 +17,13 @@ data class CharacterUI(
 ) {
     companion object {
         fun fixture(
+            id: Int = 1,
             name: String = "Name2",
             level: Int = 6,
             characterClass: CharacterClassTypeUI = CharacterClassTypeUI.Brute,
             teamName: String? = null,
         ) = CharacterUI(
+            id = id,
             name = name,
             level = level,
             characterClass = characterClass,

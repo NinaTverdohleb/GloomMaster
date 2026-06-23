@@ -11,13 +11,12 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.rumpilstilstkin.gloomhavenhelper.screens.models.CharacterClassTypeUI
-import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomVariantCard
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.GloomCard
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
+import com.rumpilstilstkin.gloomhavenhelper.screens.models.CharacterClassTypeUI
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.persistentListOf
 
@@ -29,9 +28,9 @@ fun CharacterAvailableClasses(
 ) {
     val availableTypes = availableClasses.toSet()
 
-    GloomVariantCard(modifier = modifier) {
+    GloomCard(modifier = modifier) {
         LazyVerticalGrid(
-            modifier = Modifier.padding(4.dp),
+            modifier = Modifier.padding(16.dp),
             columns = GridCells.Adaptive(48.dp),
             horizontalArrangement = Arrangement.spacedBy(8.dp),
             verticalArrangement = Arrangement.spacedBy(8.dp),
@@ -39,7 +38,7 @@ fun CharacterAvailableClasses(
             items(CharacterClassTypeUI.entries) { classType ->
                 val isAvailable = classType in availableTypes
                 Icon(
-                    painter = painterResource(id = classType.image),
+                    painter = classType.image.painter(),
                     contentDescription = stringResource(classType.titleRes),
                     modifier =
                         Modifier

@@ -35,7 +35,7 @@ import com.rumpilstilstkin.gloomhavenhelper.screens.models.PersonalQuestUI
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.QuestTaskPhaseUI
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.GloomCard
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomSize
-import com.rumpilstilstkin.gloomhavenhelper.ui.components.NumberPicker
+import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomNumberPicker
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
 import kotlinx.collections.immutable.persistentListOf
 
@@ -175,7 +175,7 @@ private fun CountTask(
                 modifier = Modifier.width(16.dp),
             )
 
-            NumberPicker(
+            GloomNumberPicker(
                 size = GloomSize.S,
                 value = questTask.currentCount,
                 intRange = IntRange(0, questTask.count),

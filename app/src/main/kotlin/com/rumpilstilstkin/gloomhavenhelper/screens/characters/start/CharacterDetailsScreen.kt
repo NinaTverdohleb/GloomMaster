@@ -26,9 +26,9 @@ import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterT
 import com.rumpilstilstkin.gloomhavenhelper.screens.characters.start.components.CharacterHeader
 import com.rumpilstilstkin.gloomhavenhelper.screens.characters.start.general.CharacterGeneralTabContent
 import com.rumpilstilstkin.gloomhavenhelper.screens.characters.start.general.CharacterGeneralTabState
-import com.rumpilstilstkin.gloomhavenhelper.screens.dialogs.character.CharacterEditLevelDialog
-import com.rumpilstilstkin.gloomhavenhelper.screens.dialogs.character.CharacterEditNameDialog
-import com.rumpilstilstkin.gloomhavenhelper.screens.dialogs.character.DeleteCharacterDialog
+import com.rumpilstilstkin.gloomhavenhelper.screens.characters.dialogs.character.CharacterEditLevelDialog
+import com.rumpilstilstkin.gloomhavenhelper.screens.characters.dialogs.character.CharacterEditNameDialog
+import com.rumpilstilstkin.gloomhavenhelper.screens.characters.dialogs.character.DeleteCharacterDialog
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.CharacterClassTypeUI
 
 @Composable

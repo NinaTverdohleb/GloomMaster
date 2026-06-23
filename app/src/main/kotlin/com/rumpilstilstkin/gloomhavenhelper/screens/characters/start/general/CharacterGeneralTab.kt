@@ -16,7 +16,6 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Check
-import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.CheckboxDefaults
@@ -50,7 +49,7 @@ import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEventHelpe
 import com.rumpilstilstkin.gloomhavenhelper.screens.characters.start.general.components.PersonalQuestView
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.PersonalQuestUI
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomAlertDialog
-import com.rumpilstilstkin.gloomhavenhelper.ui.components.NumberPicker
+import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomNumberPicker
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
 
 @Composable
@@ -359,7 +358,7 @@ fun GoldRow(
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically,
         ) {
-            NumberPicker(
+            GloomNumberPicker(
                 value = goldCount,
                 intRange = goldRange,
                 onValueChange = onGoldChanged,
@@ -391,7 +390,7 @@ fun ExperienceRow(
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically,
         ) {
-            NumberPicker(
+            GloomNumberPicker(
                 value = experience,
                 intRange = levelRange,
                 onValueChange = onExperienceChanged,

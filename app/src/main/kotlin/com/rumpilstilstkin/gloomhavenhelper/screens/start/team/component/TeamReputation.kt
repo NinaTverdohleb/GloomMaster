@@ -20,10 +20,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.rumpilstilstkin.gloomhavenhelper.R
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.GloomCard
-import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomVariantCard
-import com.rumpilstilstkin.gloomhavenhelper.ui.components.NumberPicker
+import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomNumberPicker
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
-import java.util.Locale
 
 @Composable
 internal fun TeamReputation(
@@ -48,7 +46,7 @@ internal fun TeamReputation(
             modifier = Modifier.height(16.dp),
         )
 
-        NumberPicker(
+        GloomNumberPicker(
             value = reputation,
             showSign = true,
             intRange = IntRange(-20, 20),
@@ -58,7 +56,7 @@ internal fun TeamReputation(
         Spacer(
             modifier = Modifier.height(8.dp),
         )
-        GloomVariantCard {
+        GloomCard {
             Row(
                 modifier = Modifier.padding(4.dp),
                 verticalAlignment = Alignment.CenterVertically,

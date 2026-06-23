@@ -1,26 +1,26 @@
 package com.rumpilstilstkin.gloomhavenhelper.ui.icons
 
-import com.rumpilstilstkin.gloomhavenhelper.R
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.icons.CharacterIcon
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.CharacterClassType
 
 fun CharacterClassType.toImage() =
     when (this) {
-        CharacterClassType.Brute -> R.drawable.ic_br
-        CharacterClassType.BeastTyrant -> R.drawable.ic_bt
-        CharacterClassType.Cragheart -> R.drawable.ic_ch
-        CharacterClassType.Doomstalker -> R.drawable.ic_ds
-        CharacterClassType.Elementalist -> R.drawable.ic_el
-        CharacterClassType.Soothsinger -> R.drawable.ic_ss
-        CharacterClassType.Sawbones -> R.drawable.ic_sb
-        CharacterClassType.Plagueherald -> R.drawable.ic_ph
-        CharacterClassType.Tinkerer -> R.drawable.ic_ti
-        CharacterClassType.Nightshroud -> R.drawable.ic_ns
-        CharacterClassType.Spellweaver -> R.drawable.ic_sw
-        CharacterClassType.Summoner -> R.drawable.ic_su
-        CharacterClassType.Sunkeeper -> R.drawable.ic_sk
-        CharacterClassType.Mindthief -> R.drawable.ic_mt
-        CharacterClassType.Scoundrel -> R.drawable.ic_sc
-        CharacterClassType.Quartermaster -> R.drawable.ic_qm
-        CharacterClassType.Diviner -> R.drawable.ic_dr
-        CharacterClassType.Berserker -> R.drawable.ic_be
+        CharacterClassType.Brute -> CharacterIcon.Brute
+        CharacterClassType.BeastTyrant -> CharacterIcon.BeastTyrant
+        CharacterClassType.Cragheart -> CharacterIcon.Cragheart
+        CharacterClassType.Doomstalker -> CharacterIcon.Doomstalker
+        CharacterClassType.Elementalist -> CharacterIcon.Elementalist
+        CharacterClassType.Soothsinger -> CharacterIcon.Soothsinger
+        CharacterClassType.Sawbones -> CharacterIcon.Sawbones
+        CharacterClassType.Plagueherald -> CharacterIcon.Plagueherald
+        CharacterClassType.Tinkerer -> CharacterIcon.Tinkerer
+        CharacterClassType.Nightshroud -> CharacterIcon.Nightshroud
+        CharacterClassType.Spellweaver -> CharacterIcon.Spellweaver
+        CharacterClassType.Summoner -> CharacterIcon.Summoner
+        CharacterClassType.Sunkeeper -> CharacterIcon.Sunkeeper
+        CharacterClassType.Mindthief -> CharacterIcon.Mindthief
+        CharacterClassType.Scoundrel -> CharacterIcon.Scoundrel
+        CharacterClassType.Quartermaster -> CharacterIcon.Quartermaster
+        CharacterClassType.Diviner -> CharacterIcon.Diviner
+        CharacterClassType.Berserker -> CharacterIcon.Berserker
     }

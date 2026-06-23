@@ -1,4 +1,4 @@
-package com.rumpilstilstkin.gloomhavenhelper.screens.dialogs.character
+package com.rumpilstilstkin.gloomhavenhelper.screens.characters.dialogs.character
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.OutlinedTextField

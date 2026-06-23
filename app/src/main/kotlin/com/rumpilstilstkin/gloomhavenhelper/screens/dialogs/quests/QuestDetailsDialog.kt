@@ -114,7 +114,7 @@ private fun Rewards(
                 Text(text = stringResource(R.string.unlock_class))
                 Image(
                     modifier = Modifier.size(32.dp),
-                    painter = painterResource(id = classType.toImage()),
+                    painter = classType.toImage().painter(),
                     colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.primary),
                     contentDescription = null,
                 )
