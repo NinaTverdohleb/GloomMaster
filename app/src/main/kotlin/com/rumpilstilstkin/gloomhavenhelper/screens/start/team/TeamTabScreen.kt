@@ -2,16 +2,16 @@ package com.rumpilstilstkin.gloomhavenhelper.screens.start.team
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
+import com.rumpilstilstkin.gloomhavenhelper.screens.models.ShortScenarioUI
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.TeamUI
 import com.rumpilstilstkin.gloomhavenhelper.screens.start.team.component.GlobalAchievement
 import com.rumpilstilstkin.gloomhavenhelper.screens.start.team.component.ScenarioBlock
@@ -19,84 +19,62 @@ import com.rumpilstilstkin.gloomhavenhelper.screens.start.team.component.TeamAch
 import com.rumpilstilstkin.gloomhavenhelper.screens.start.team.component.TeamHeader
 import com.rumpilstilstkin.gloomhavenhelper.screens.start.team.component.TeamProsperity
 import com.rumpilstilstkin.gloomhavenhelper.screens.start.team.component.TeamReputation
-import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
 
 @Composable
 internal fun TeamTabScreen(
     state: TeamTabUiState,
-    completeScenario: (Int) -> Unit,
-    startScenario: (Int?) -> Unit,
+    selectScenario: (ShortScenarioUI) -> Unit,
     updateProsperity: (Int) -> Unit,
     updateReputation: (Int) -> Unit,
     openTeamAchievements: () -> Unit,
     openGlobalAchievements: () -> Unit,
     playCurrentScenario: () -> Unit,
     donate: () -> Unit,
-    deleteScenario: (Int) -> Unit,
 ) {
     if (state is TeamTabUiState.Data) {
         val team = state.currentTeam
         Column(
-            modifier = Modifier.fillMaxSize(),
+            modifier = Modifier
+                .fillMaxSize()
+                .verticalScroll(rememberScrollState()),
+            verticalArrangement = Arrangement.spacedBy(32.dp)
         ) {
             TeamHeader(
                 teamName = team.teamName,
                 teamLevel = team.teamLevel,
                 modifier = Modifier.fillMaxWidth(),
             )
-            Spacer(modifier = Modifier.height(32.dp))
-
-            LazyColumn(
-                modifier = Modifier.fillMaxWidth(),
-                verticalArrangement = Arrangement.spacedBy(32.dp),
-                contentPadding = PaddingValues(bottom = 16.dp),
-            ) {
-                item {
-                    TeamReputation(
-                        reputation = team.teamReputation,
-                        discount = team.shopDiscount,
-                        updateReputation = updateReputation,
-                    )
-                }
-                item {
-                    TeamProsperity(
-                        prosperity = team.prosperity,
-                        updateProsperity = updateProsperity,
-                        churchValue = team.churchValue,
-                        churchValueForNextProsperity = team.churchValueForNextProsperity,
-                        donate = donate,
-                    )
-                }
-
-                item {
-                    ScenarioBlock(
-                        scenarios = team.teamScenario,
-                        completeScenario = completeScenario,
-                        startScenario = startScenario,
-                        canRestore = team.hasActiveScenario,
-                        playCurrentScenario = playCurrentScenario,
-                        deleteScenario = deleteScenario,
-                    )
-                }
-                item {
-                    GlobalAchievement(
-                        globalAchievements = team.globalAchievements,
-                        clickGlobalAchievement = openGlobalAchievements,
-                    )
-                }
-
-                item {
-                    TeamAchievement(
-                        teamAchievements = team.teamAchievements,
-                        clickTeamAchievement = openTeamAchievements,
-                    )
-                }
-            }
+            TeamReputation(
+                reputation = team.teamReputation,
+                discount = team.shopDiscount,
+                updateReputation = updateReputation,
+            )
+            TeamProsperity(
+                prosperity = team.prosperity,
+                updateProsperity = updateProsperity,
+                churchValue = team.churchValue,
+                churchValueForNextProsperity = team.churchValueForNextProsperity,
+                donate = donate,
+            )
+            ScenarioBlock(
+                scenarios = team.teamScenario,
+                selectScenario = selectScenario,
+                canRestore = team.hasActiveScenario,
+                playCurrentScenario = playCurrentScenario,
+            )
+            GlobalAchievement(
+                globalAchievements = team.globalAchievements,
+                clickGlobalAchievement = openGlobalAchievements,
+            )
+            TeamAchievement(
+                teamAchievements = team.teamAchievements,
+                clickTeamAchievement = openTeamAchievements,
+            )
         }
     }
 }
 
-@Preview(showBackground = true, backgroundColor = 0xFF1A1C24)
+@Preview(showBackground = true, backgroundColor = 0xFF1A1C24, heightDp = 1150,)
 @Composable
 private fun TeamTabScreenPreview() {
     GloomhavenMasterTheme {
@@ -105,15 +83,13 @@ private fun TeamTabScreenPreview() {
                 TeamTabUiState.Data(
                     currentTeam = TeamUI.fixture(),
                 ),
-            completeScenario = {},
-            startScenario = {},
+            selectScenario = {},
             updateProsperity = {},
             updateReputation = {},
             openTeamAchievements = {},
             openGlobalAchievements = {},
             playCurrentScenario = {},
             donate = {},
-            deleteScenario = {},
         )
     }
 }

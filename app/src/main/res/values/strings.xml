@@ -19,9 +19,9 @@
     <string name="available_scenarios_tab">Available</string>
     <string name="blocked_scenarios_tab">Locked</string>
     <string name="finished_scenarios_tab">Completed</string>
-    <string name="level_label">Level: %1$d</string>
+    <string name="level_label">Level</string>
     <string name="next_prosperity_at">Next prosperity level at %1$d</string>
-    <string name="shop_discount">Shop discount:</string>
+    <string name="shop_discount">Discount</string>
     <string name="show_only_active">Show active only</string>
     <string name="add_character">Create Character</string>
     <string name="empty_active_characters">No active characters</string>
@@ -151,8 +151,7 @@
     <string name="available_label">Available</string>
     <string name="delete_achievement_title">Delete achievement?</string>
     <string name="delete_achievement_warning">Are you sure you want to delete achievement?</string>
-    <string name="add_achievement_title">Add Achievement</string>
-    <string name="add_achievement_button">Add Achievement</string>
+    <string name="add_achievement">Add Achievement</string>
     <string name="add_goods_to_shop_title">Add Items</string>
     <string name="change_button">Change</string>
     <string name="new_team_title">New Team</string>

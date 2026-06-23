@@ -19,9 +19,9 @@
     <string name="available_scenarios_tab">Доступные сценарии</string>
     <string name="blocked_scenarios_tab">Недоступные сценарии</string>
     <string name="finished_scenarios_tab">Пройденные сценарии</string>
-    <string name="level_label">Уровень: %1$d</string>
+    <string name="level_label">Уровень</string>
     <string name="next_prosperity_at">Следующее повышение процветания при %1$d</string>
-    <string name="shop_discount">Скидка в магазине:</string>
+    <string name="shop_discount">Скидка</string>
     <string name="show_only_active">Показывать только активных</string>
     <string name="add_character">Добавить персонажа</string>
     <string name="empty_active_characters">Нет активных персонажей</string>
@@ -151,8 +151,7 @@
     <string name="available_label">Доступные</string>
     <string name="delete_achievement_title">Удалить достижение?</string>
     <string name="delete_achievement_warning">Вы уверены, что хотите удалить достижение?</string>
-    <string name="add_achievement_title">Добавить достижение</string>
-    <string name="add_achievement_button">Добавить достижение</string>
+    <string name="add_achievement">Добавить достижение</string>
     <string name="add_goods_to_shop_title">Добавить товары</string>
     <string name="change_button">Сменить</string>
     <string name="new_team_title">Новая команда</string>

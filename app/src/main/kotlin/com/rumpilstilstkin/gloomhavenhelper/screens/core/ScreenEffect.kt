@@ -11,9 +11,9 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.navigation.NavHostController
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.dialogs.GloomBasicDialog
 import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEvent
 import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEventHelper
-import com.rumpilstilstkin.gloomhavenhelper.ui.components.dialogs.GloomBasicDialog
 import kotlinx.coroutines.launch
 
 sealed interface ScreenEffect {

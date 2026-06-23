@@ -2,9 +2,7 @@ package com.rumpilstilstkin.gloomhavenhelper.screens.start.team
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario.CompleteScenarioUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario.CreateActiveScenarioUseCase
-import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario.DeleteScenarioUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.team.DonateUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.team.GetCurrentTeamUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.team.GetNextChurchValueUseCase
@@ -12,10 +10,15 @@ import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.team.UpdateTeamProspe
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.team.UpdateTeamReputationUseCase
 import com.rumpilstilstkin.gloomhavenhelper.navigation.GlHelperScreen
 import com.rumpilstilstkin.gloomhavenhelper.navigation.GlHelperScreen.Scenario
-import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEvent
 import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEvent.Screen
+import com.rumpilstilstkin.gloomhavenhelper.screens.core.ScreenEffect
+import com.rumpilstilstkin.gloomhavenhelper.screens.core.createOverlaySession
+import com.rumpilstilstkin.gloomhavenhelper.screens.models.ShortScenarioUI
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.TeamUI
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.toUi
+import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.dialog.delete.DeleteScenarioDialogContract
+import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.dialog.menu.MenuScenarioDialogContract
+import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.dialog.menu.MenuScenarioResult
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -30,16 +33,14 @@ import javax.inject.Inject
 @HiltViewModel
 class TeamTabViewModel @Inject constructor(
     getCurrentTeamUseCase: GetCurrentTeamUseCase,
-    private val completeScenarioUseCase: CompleteScenarioUseCase,
     private val updateTeamProsperityUseCase: UpdateTeamProsperityUseCase,
     private val updateTeamReputationUseCase: UpdateTeamReputationUseCase,
     private val createActiveScenarioUseCase: CreateActiveScenarioUseCase,
     private val donateUseCase: DonateUseCase,
     private val getNextChurchValueUseCase: GetNextChurchValueUseCase,
-    private val deleteScenarioUseCase: DeleteScenarioUseCase,
 ) : ViewModel() {
-    private val _navigationEvents = MutableSharedFlow<GlHelperEvent>()
-    val navigationEvents = _navigationEvents.asSharedFlow()
+    private val _screenEvents = MutableSharedFlow<ScreenEffect>()
+    val screenEvents = _screenEvents.asSharedFlow()
 
     val uiState: StateFlow<TeamTabUiState> =
         getCurrentTeamUseCase()
@@ -89,26 +90,16 @@ class TeamTabViewModel @Inject constructor(
                     }
                 }
 
-                is TeamTabAction.StartScenario -> {
-                    createActiveScenarioUseCase(action.scenarioId).onSuccess {
-                        _navigationEvents.emit(Screen(Scenario))
-                    }
-                }
-
-                is TeamTabAction.CompleteScenario -> {
-                    completeScenarioUseCase.invoke(scenarioNumber = action.scenarioId)
-                }
-
                 TeamTabAction.OpenGlobalAchievements -> {
-                    _navigationEvents.emit(Screen(GlHelperScreen.GlobalAchievements))
+                    _screenEvents.emit(ScreenEffect.Navigation(Screen(GlHelperScreen.GlobalAchievements)))
                 }
 
                 TeamTabAction.OpenTeamAchievements -> {
-                    _navigationEvents.emit(Screen(GlHelperScreen.TeamAchievements))
+                    _screenEvents.emit(ScreenEffect.Navigation(Screen(GlHelperScreen.TeamAchievements)))
                 }
 
                 TeamTabAction.RestoreLastScenario -> {
-                    _navigationEvents.emit(Screen(Scenario))
+                    _screenEvents.emit(ScreenEffect.Navigation(Screen(Scenario)))
                 }
 
                 TeamTabAction.Donate -> {
@@ -117,40 +108,47 @@ class TeamTabViewModel @Inject constructor(
                     )
                 }
 
-                is TeamTabAction.DeleteScenario -> {
-                    deleteScenarioUseCase(action.scenarioNumber)
+                is TeamTabAction.SelectScenario -> {
+                    val session = createOverlaySession(
+                        contract = MenuScenarioDialogContract,
+                        input = action.scenario,
+                        onResult = { result ->
+                            when (result) {
+                                is MenuScenarioResult.DeleteScenarioRequest -> {
+                                    openDeleteScenarioDialog(result.scenario)
+                                }
+
+                                is MenuScenarioResult.PlayScenario -> {
+                                    viewModelScope.launch {
+                                        createActiveScenarioUseCase(action.scenario.scenarioNumber)
+                                            .onSuccess {
+                                                _screenEvents.emit(
+                                                    ScreenEffect.Navigation(
+                                                        (Screen(Scenario))
+                                                    )
+                                                )
+                                            }
+                                    }
+                                }
+
+                                else -> {}
+                            }
+                        }
+                    )
+                    _screenEvents.emit(ScreenEffect.OpenBottomSheet(session))
                 }
             }
         }
     }
-}
 
-sealed interface TeamTabAction {
-    data class StartScenario(
-        val scenarioId: Int?,
-    ) : TeamTabAction
-
-    data class CompleteScenario(
-        val scenarioId: Int,
-    ) : TeamTabAction
-
-    data class UpdateReputation(
-        val value: Int,
-    ) : TeamTabAction
-
-    data class UpdateProsperity(
-        val value: Int,
-    ) : TeamTabAction
-
-    data object OpenTeamAchievements : TeamTabAction
-
-    data object OpenGlobalAchievements : TeamTabAction
-
-    data object RestoreLastScenario : TeamTabAction
-
-    data object Donate : TeamTabAction
-
-    data class DeleteScenario(
-        val scenarioNumber: Int,
-    ) : TeamTabAction
+    private fun openDeleteScenarioDialog(scenario: ShortScenarioUI) {
+        viewModelScope.launch {
+            val session = createOverlaySession(
+                contract = DeleteScenarioDialogContract,
+                input = scenario,
+                onResult = { }
+            )
+            _screenEvents.emit(ScreenEffect.OpenDialog(session))
+        }
+    }
 }

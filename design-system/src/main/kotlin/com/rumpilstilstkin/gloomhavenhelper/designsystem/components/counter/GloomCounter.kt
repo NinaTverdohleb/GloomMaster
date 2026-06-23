@@ -5,23 +5,54 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.defaultMinSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
+import java.util.Locale
+import androidx.compose.ui.platform.LocalLocale
+
+@Composable
+fun GloomGloomCounterProgress(
+    value: Int,
+    intRange: IntRange,
+    modifier: Modifier = Modifier
+) {
+    val progress = (value.toFloat() / (intRange.last - intRange.first)).coerceIn(0f, 1f)
+
+    LinearProgressIndicator(
+        progress = { progress },
+        modifier = modifier
+            .fillMaxWidth()
+            .height(12.dp)
+            .clip(RoundedCornerShape(50)),
+        color = MaterialTheme.colorScheme.secondary,
+        trackColor = MaterialTheme.colorScheme.surfaceContainerHighest,
+        strokeCap = StrokeCap.Round,
+        gapSize = 0.dp,
+        drawStopIndicator = {},
+    )
+}
 
 @Composable
 fun GloomCounterFull(
     value: Int,
     intRange: IntRange,
     modifier: Modifier = Modifier,
+    showSign: Boolean = false,
     onValueChange: (Int) -> Unit,
 ) {
 
@@ -46,7 +77,12 @@ fun GloomCounterFull(
                     .padding(bottom = 4.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
-            val text = value.toString()
+            val text =
+                if (showSign) {
+                    String.format(LocalLocale.current.platformLocale, "%+d", value)
+                } else {
+                    value.toString()
+                }
             Box {
                 Text(
                     modifier =
@@ -93,6 +129,11 @@ private fun GloomCounterPreview() {
                 value = 5,
                 intRange = IntRange(0, 15),
                 onValueChange = {},
+            )
+
+            GloomGloomCounterProgress(
+                value = 5,
+                intRange = IntRange(0, 15),
             )
 
         }

@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -19,10 +20,15 @@ import androidx.compose.ui.unit.dp
 import com.rumpilstilstkin.gloomhavenhelper.R
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.Prosperity
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.GloomCard
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.counter.GloomCountButton
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.counter.GloomCounterFull
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.counter.GloomGloomCounterProgress
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.text.GloomHeader
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.text.GloomRoundLabel
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomSize
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.NumberPickerProgress
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.PickerButton
-import com.rumpilstilstkin.gloomhavenhelper.ui.components.PickerButtonType
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.counter.PickerButtonType
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
 
 @Composable
@@ -33,81 +39,85 @@ internal fun TeamProsperity(
     modifier: Modifier = Modifier,
     updateProsperity: (Int) -> Unit,
     donate: () -> Unit,
-) = GloomCard(
+) = Column(
     modifier = modifier,
+    verticalArrangement = Arrangement.spacedBy(20.dp)
 ) {
-    Column(
-        modifier = Modifier.fillMaxWidth(),
-        horizontalAlignment = Alignment.CenterHorizontally,
+    GloomHeader(
+        stringResource(R.string.prosperity)
+    )
+    GloomCard(
+        modifier = modifier,
     ) {
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceBetween,
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(24.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
         ) {
-            Text(
-                style = MaterialTheme.typography.labelLarge,
-                text = stringResource(R.string.prosperity).uppercase(),
-                color = MaterialTheme.colorScheme.primary,
-            )
-            Text(
-                style = MaterialTheme.typography.labelMedium,
-                text = stringResource(R.string.level_label, prosperity.prosperityLevel),
-            )
-        }
+            Column(
+                verticalArrangement = Arrangement.spacedBy(20.dp)
+            ) {
+                LevelWithCounterView(
+                    modifier = Modifier
+                        .fillMaxWidth(),
+                    label = stringResource(R.string.level_label),
+                    level = prosperity.prosperityLevel.toString(),
+                    showSign = false,
+                    range = prosperity.prosperityRange,
+                    counterValue = prosperity.prosperityLevelValue
+                ) { newValue ->
+                    updateProsperity(newValue)
+                }
 
-        Spacer(
-            modifier = Modifier.height(16.dp),
-        )
-
-        NumberPickerProgress(
-            value = prosperity.prosperityLevelValue,
-            showSign = false,
-            intRange = prosperity.prosperityRange,
-        ) { newValue ->
-            updateProsperity(newValue)
-        }
-        Spacer(
-            modifier = Modifier.height(32.dp),
-        )
-        Text(
-            modifier = Modifier.fillMaxWidth(),
-            style = MaterialTheme.typography.labelLarge,
-            text = stringResource(R.string.donations),
-            color = MaterialTheme.colorScheme.primary,
-        )
-        Spacer(
-            modifier = Modifier.height(16.dp),
-        )
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            verticalAlignment = Alignment.CenterVertically,
-        ) {
-            Text(
-                text = churchValue.toString(),
-                style = MaterialTheme.typography.headlineSmall,
-                color = MaterialTheme.colorScheme.onSurface,
-            )
+                GloomGloomCounterProgress(
+                    value =prosperity.prosperityLevelValue,
+                    intRange = prosperity.prosperityRange,
+                    modifier = Modifier.fillMaxWidth()
+                )
+            }
             Spacer(
-                modifier = Modifier.width(16.dp),
+                modifier = Modifier.height(32.dp),
             )
-            PickerButton(
-                size = GloomSize.M,
-                value = churchValue,
-                type = PickerButtonType.PLUS,
-                onValueChange = { donate() },
-            )
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                Column(
+                    verticalArrangement = Arrangement.spacedBy(4.dp)
+                ) {
+                    Text(
+                        style = MaterialTheme.typography.titleMedium,
+                        text = stringResource(R.string.donations),
+                        color = MaterialTheme.colorScheme.onSurface,
+                    )
+                    Text(
+                        style = MaterialTheme.typography.bodySmall,
+                        text = stringResource(
+                            R.string.next_prosperity_at,
+                            churchValueForNextProsperity
+                        ),
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    )
+                }
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.spacedBy(16.dp)
+                ) {
+                    Text(
+                        text = churchValue.toString(),
+                        style = MaterialTheme.typography.headlineLarge,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    )
 
-            Spacer(
-                modifier = Modifier.width(16.dp),
-            )
-            Text(
-                modifier = Modifier.weight(1f),
-                text = stringResource(R.string.next_prosperity_at, churchValueForNextProsperity),
-                style = MaterialTheme.typography.bodySmall,
-                color = MaterialTheme.colorScheme.onSurface,
-                textAlign = TextAlign.End,
-            )
+                    GloomCountButton(
+                        value = churchValue,
+                        type = PickerButtonType.PLUS,
+                        onValueChange = { donate() },
+                    )
+                }
+            }
         }
     }
 }
