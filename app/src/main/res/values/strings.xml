@@ -185,4 +185,5 @@
     <string name="delete_scenario">Delete Scenario</string>
     <string name="delete_scenario_dialog_title">Delete scenario.</string>
     <string name="delete_scenario_dialog_description">Are you sure you want to delete scenario %1$s from the scenario list?</string>
+    <string name="ok">Ok</string>
 </resources>

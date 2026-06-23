@@ -23,7 +23,7 @@ data class AddGoodsViewState(
                             id = 2,
                         ),
                         GoodUi.fixture(
-                            id = 2,
+                            id = 5,
                         ),
                     ),
                 selectedGoods =

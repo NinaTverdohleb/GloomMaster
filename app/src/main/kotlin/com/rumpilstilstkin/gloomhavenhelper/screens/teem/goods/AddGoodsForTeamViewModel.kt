@@ -5,6 +5,9 @@ import androidx.lifecycle.viewModelScope
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.goods.AddGoodToTeamUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.goods.GetAvaliableGoodsForTeamUseCase
 import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEvent
+import com.rumpilstilstkin.gloomhavenhelper.screens.core.ScreenEffect
+import com.rumpilstilstkin.gloomhavenhelper.screens.core.createOverlaySession
+import com.rumpilstilstkin.gloomhavenhelper.screens.goods.GoodDetailsDialogContract
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.GoodUi
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.toUi
 import com.rumpilstilstkin.gloomhavenhelper.ui.goods.AddGoodsViewState
@@ -27,8 +30,8 @@ class AddGoodsForTeamViewModel @Inject constructor(
     getGoodsUseCase: GetAvaliableGoodsForTeamUseCase,
     private val addGoodToTeamUseCase: AddGoodToTeamUseCase,
 ) : ViewModel() {
-    private val _navigationEvents = MutableSharedFlow<GlHelperEvent>()
-    val navigationEvents = _navigationEvents.asSharedFlow()
+    private val _screenEvents = MutableSharedFlow<ScreenEffect>()
+    val screenEvents = _screenEvents.asSharedFlow()
 
     private val logicState = MutableStateFlow(AddGoodsForTeamLogicState())
 
@@ -82,7 +85,7 @@ class AddGoodsForTeamViewModel @Inject constructor(
                         val goodIds = logicState.value.selectedGoods.map { it.goodId }
                         addGoodToTeamUseCase(goodIds)
                     }.await()
-                    _navigationEvents.emit(GlHelperEvent.Back)
+                    _screenEvents.emit(ScreenEffect.Navigation(GlHelperEvent.Back))
                 }
 
                 is AddGoodsForTeamAction.SelectFilter -> {
@@ -96,7 +99,16 @@ class AddGoodsForTeamViewModel @Inject constructor(
                 }
 
                 AddGoodsForTeamAction.Back -> {
-                    _navigationEvents.emit(GlHelperEvent.Back)
+                    _screenEvents.emit(ScreenEffect.Navigation(GlHelperEvent.Back))
+                }
+
+                is AddGoodsForTeamAction.OpenGood -> {
+                    val session = createOverlaySession(
+                        contract = GoodDetailsDialogContract,
+                        input = action.good,
+                        onResult = { }
+                    )
+                    _screenEvents.emit(ScreenEffect.OpenDialog(session))
                 }
             }
         }
