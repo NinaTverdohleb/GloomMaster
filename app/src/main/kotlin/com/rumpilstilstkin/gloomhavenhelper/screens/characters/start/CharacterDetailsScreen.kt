@@ -28,7 +28,7 @@ import com.rumpilstilstkin.gloomhavenhelper.screens.characters.start.general.Cha
 import com.rumpilstilstkin.gloomhavenhelper.screens.characters.start.general.CharacterGeneralTabState
 import com.rumpilstilstkin.gloomhavenhelper.screens.characters.dialogs.character.CharacterEditLevelDialog
 import com.rumpilstilstkin.gloomhavenhelper.screens.characters.dialogs.character.CharacterEditNameDialog
-import com.rumpilstilstkin.gloomhavenhelper.screens.characters.dialogs.character.DeleteCharacterDialog
+import com.rumpilstilstkin.gloomhavenhelper.screens.characters.dialogs.delete.DeleteCharacterDialog
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.CharacterClassTypeUI
 
 @Composable
@@ -47,14 +47,6 @@ internal fun CharacterDetailsScreen(
     retire: () -> Unit,
     selectTab: @Composable (CharacterDetailsTab) -> Unit,
 ) {
-    if (state.showDeleteDialog) {
-        DeleteCharacterDialog(
-            onDismiss = hideDeleteDialog,
-            delete = confirmDelete,
-            retire = retire,
-            canRetire = state.isActive,
-        )
-    }
 
     if (state.showNameDialog) {
         CharacterEditNameDialog(

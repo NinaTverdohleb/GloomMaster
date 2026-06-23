@@ -50,11 +50,6 @@ fun CharacterItem(
         LeftItemImage(
             icon = character.characterClass.image
         )
-    },
-    rightComponent = {
-        RightItemNumber(
-            number = character.level.toString()
-        )
     }
 )
 

@@ -3,21 +3,20 @@ package com.rumpilstilstkin.gloomhavenhelper.screens.start.characters
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.CharacterInfo
-import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.characters.CreateCharacterUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.characters.GetCharactersForCurrentTeamUseCase
-import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.characters.UpdateCharacterLevelUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.classes.AddCharacterClassForTeamUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.classes.GetAvaliableClassesForCurrentTeamUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.classes.RemoveCharacterClassForTeamUseCase
-import com.rumpilstilstkin.gloomhavenhelper.navigation.GlHelperScreen
-import com.rumpilstilstkin.gloomhavenhelper.navigation.GlHelperScreen.*
-import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEvent
+import com.rumpilstilstkin.gloomhavenhelper.navigation.GlHelperScreen.CharacterDetails
 import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEvent.Screen
 import com.rumpilstilstkin.gloomhavenhelper.screens.characters.dialogs.add.AddCharacterDialogContract
+import com.rumpilstilstkin.gloomhavenhelper.screens.characters.dialogs.menu.MenuCharacterDialogContract
+import com.rumpilstilstkin.gloomhavenhelper.screens.characters.dialogs.menu.MenuCharacterResult
 import com.rumpilstilstkin.gloomhavenhelper.screens.core.ScreenEffect
 import com.rumpilstilstkin.gloomhavenhelper.screens.core.createOverlaySession
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.CharacterClassTypeUI
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.CharacterClassTypeUI.Companion.toCharacterClassTypeUI
+import com.rumpilstilstkin.gloomhavenhelper.screens.models.CharacterUI
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.toUi
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.collections.immutable.toImmutableList
@@ -37,10 +36,8 @@ import javax.inject.Inject
 class CharactersTabViewModel @Inject constructor(
     getCharactersForCurrentTeamUseCase: GetCharactersForCurrentTeamUseCase,
     getAvaliableClassesForCurrentTeamUseCase: GetAvaliableClassesForCurrentTeamUseCase,
-    private val createCharacterUseCase: CreateCharacterUseCase,
     private val removeCharacterClassForTeamUseCase: RemoveCharacterClassForTeamUseCase,
     private val addCharacterClassForTeamUseCase: AddCharacterClassForTeamUseCase,
-    private val updateCharacterLevelUseCase: UpdateCharacterLevelUseCase,
 ) : ViewModel() {
     private val _screenEvents = MutableSharedFlow<ScreenEffect>()
     val screenEvents = _screenEvents.asSharedFlow()
@@ -72,7 +69,6 @@ class CharactersTabViewModel @Inject constructor(
         ) { characters, logicState, classes ->
             val alive = characters.filter { it.isAlive }
             CharactersTabStateUi(
-                showAddCharacterDialog = logicState.showAddCharacterDialog,
                 filterAlive = logicState.filterAlive,
                 characters =
                     (if (logicState.filterAlive) alive else characters)
@@ -92,14 +88,6 @@ class CharactersTabViewModel @Inject constructor(
     fun onAction(action: CharactersTabAction) {
         viewModelScope.launch {
             when (action) {
-                is CharactersTabAction.AddCharacter -> {
-                    logicState.update { it.copy(showAddCharacterDialog = false) }
-                    createCharacterUseCase(
-                        name = action.name,
-                        level = action.level,
-                        characterType = action.characterType.type,
-                    )
-                }
 
                 is CharactersTabAction.SwitchAlive -> {
                     logicState.update { it.copy(filterAlive = !logicState.value.filterAlive) }
@@ -114,14 +102,6 @@ class CharactersTabViewModel @Inject constructor(
                     _screenEvents.emit(ScreenEffect.OpenDialog(session))
                 }
 
-                is CharactersTabAction.CloseAddCharacterDialog -> {
-                    logicState.update { it.copy(showAddCharacterDialog = false) }
-                }
-
-                is CharactersTabAction.CharacterDetails -> {
-                    _screenEvents.emit(ScreenEffect.Navigation(Screen(CharacterDetails(characterId = action.characterId))))
-                }
-
                 is CharactersTabAction.SwitchClassAvailability -> {
                     if (uiState.value.avaliableClasses.contains(action.type)) {
                         removeCharacterClassForTeamUseCase(action.type.type)
@@ -130,12 +110,37 @@ class CharactersTabViewModel @Inject constructor(
                     }
                 }
 
-                is CharactersTabAction.ChangeLevel -> {
-                    updateCharacterLevelUseCase(action.characterId, action.level)
-                }
+                is CharactersTabAction.CharacterMenu -> {
+                    val session = createOverlaySession(
+                        contract = MenuCharacterDialogContract,
+                        input = action.character,
+                        onResult = { result ->
+                            when (result) {
+                                is MenuCharacterResult.OpenCharacterDetails -> {
+                                    viewModelScope.launch {
+                                        _screenEvents.emit(
+                                            ScreenEffect.Navigation(
+                                                Screen(CharacterDetails(characterId = result.character.id)),
+                                            ),
+                                        )
+                                    }
+                                }
 
-                is CharactersTabAction.CharacterMenu -> TODO()
+                                is MenuCharacterResult.DeleteCharacterRequest -> {
+                                    showDeleteCharacterDialog(result.character)
+                                }
+
+                                else -> {}
+                            }
+                        },
+                    )
+                    _screenEvents.emit(ScreenEffect.OpenBottomSheet(session))
+                }
             }
         }
+    }
+
+    private fun showDeleteCharacterDialog(character: CharacterUI) {
+
     }
 }

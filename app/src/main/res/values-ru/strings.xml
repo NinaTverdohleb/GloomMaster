@@ -114,8 +114,8 @@
     <string name="reward">Награда</string>
     <string name="unlock_class">Откройте класс: </string>
     <string name="name_label">Имя</string>
-    <string name="character_level_label">Уровень персонажа</string>
-    <string name="delete_character_title">Удалить или увести на покой персонажа?</string>
+    <string name="character_level_label">Уровень</string>
+    <string name="delete_character_title">Удалить %1$s?</string>
     <string name="retire">На покой</string>
     <string name="delete_warning">Это действие нельзя отменить.</string>
     <string name="available_perks_title">Доступные навыки</string>
@@ -186,4 +186,8 @@
     <string name="delete_scenario_dialog_title">Удалить сценарий.</string>
     <string name="delete_scenario_dialog_description">Вы точно хотите удалить сценарий %1$s из списка сценариев команды</string>
     <string name="ok">Ok</string>
+    <string name="character_details">Детали персонажа</string>
+    <string name="leave_character">Уйти на покой</string>
+    <string name="make_alive">Восстановить</string>
+    <string name="delete_character">Delete character</string>
 </resources>
