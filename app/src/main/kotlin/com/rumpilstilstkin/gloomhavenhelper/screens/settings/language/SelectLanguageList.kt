@@ -15,9 +15,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.rumpilstilstkin.gloomhavenhelper.R
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.LanguageItem
-import com.rumpilstilstkin.gloomhavenhelper.ui.components.items.GloomListItem
-import com.rumpilstilstkin.gloomhavenhelper.ui.components.items.RightItemIcon
-import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.items.GloomListItem
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.items.RightItemIcon
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.icons.AppIcon
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
 import kotlinx.collections.immutable.persistentListOf
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -60,9 +61,7 @@ private fun LanguageItemRow(
         onClick = { selectLanguage(language.languageTag) },
         rightComponent = {
             if (language.selected) {
-                RightItemIcon(
-                    painterResource(R.drawable.ic_check)
-                )
+                RightItemIcon(AppIcon.Check)
             }
         }
     )

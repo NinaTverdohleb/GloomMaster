@@ -31,11 +31,11 @@ import com.rumpilstilstkin.gloomhavenhelper.domain.entity.AchievementWithName
 import com.rumpilstilstkin.gloomhavenhelper.screens.teem.achievement.components.AddAchievementDialog
 import com.rumpilstilstkin.gloomhavenhelper.screens.teem.achievement.components.DeleteAchievementConfirmDialog
 import com.rumpilstilstkin.gloomhavenhelper.screens.teem.achievement.components.EmptyAchievements
-import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomCard
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.GloomCard
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomSize
-import com.rumpilstilstkin.gloomhavenhelper.ui.components.toolbar.GloomToolbar
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.toolbar.GloomToolbar
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.NumberPicker
-import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
 import kotlinx.collections.immutable.persistentListOf
 
 @Composable

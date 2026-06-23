@@ -27,15 +27,16 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.rumpilstilstkin.gloomhavenhelper.R
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.GloomCard
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.buttons.GloomOutlineFilledButtonIcon
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.items.GloomListItem
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.items.LeftItemIcon
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.items.RightItemText
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.toolbar.GloomToolbar
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.icons.AppIcon
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.ShortTeamInfoUi
-import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomCard
-import com.rumpilstilstkin.gloomhavenhelper.ui.components.buttons.GloomOutlineFilledButtonIcon
-import com.rumpilstilstkin.gloomhavenhelper.ui.components.items.GloomListItem
-import com.rumpilstilstkin.gloomhavenhelper.ui.components.items.LeftItemIcon
-import com.rumpilstilstkin.gloomhavenhelper.ui.components.items.RightItemText
-import com.rumpilstilstkin.gloomhavenhelper.ui.components.toolbar.GloomToolbar
 import com.rumpilstilstkin.gloomhavenhelper.ui.team.TeamItem
-import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
 import kotlinx.collections.immutable.persistentListOf
 
 private const val VISIBLE_TEAMS_LIMIT = 2
@@ -156,17 +157,17 @@ private fun TeamSummary(
         ) {
             GloomOutlineFilledButtonIcon(
                 isError = true,
-                icon = painterResource(R.drawable.ic_delete),
+                icon = AppIcon.Delete,
                 onClick = delete
             )
 
             GloomOutlineFilledButtonIcon(
-                icon = painterResource(R.drawable.ic_share),
+                icon = AppIcon.Share,
                 onClick = share
             )
 
             GloomOutlineFilledButtonIcon(
-                icon = painterResource(R.drawable.ic_settings),
+                icon = AppIcon.Settings,
                 onClick = openSettings
             )
         }
@@ -208,7 +209,7 @@ private fun TeamsCard(
                 title = stringResource(R.string.settings_add_team),
                 leftComponent = {
                     LeftItemIcon(
-                        icon = painterResource(R.drawable.ic_plus)
+                        icon = AppIcon.Plus
                     )
                 }
             )

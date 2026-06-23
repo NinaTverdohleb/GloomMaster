@@ -1,40 +1,27 @@
 package com.rumpilstilstkin.gloomhavenhelper.screens.start
 
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Settings
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.rumpilstilstkin.gloomhavenhelper.R
-import com.rumpilstilstkin.gloomhavenhelper.screens.models.TeamUI
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.tabs.GloomBottomNavigationBar
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.tabs.NavItem
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.toolbar.GloomToolbarNoBackAction
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.icons.NavigationIcon
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
 import com.rumpilstilstkin.gloomhavenhelper.screens.start.scenarios.ScenariosTabScreen
 import com.rumpilstilstkin.gloomhavenhelper.screens.start.scenarios.ScenariosTabStateUi
-import com.rumpilstilstkin.gloomhavenhelper.screens.start.team.TeamTabScreen
-import com.rumpilstilstkin.gloomhavenhelper.screens.start.team.TeamTabUiState
-import com.rumpilstilstkin.gloomhavenhelper.ui.components.tabs.GloomBottomNavigationBar
-import com.rumpilstilstkin.gloomhavenhelper.ui.components.tabs.NavItem
-import com.rumpilstilstkin.gloomhavenhelper.ui.components.toolbar.GloomToolbar
-import com.rumpilstilstkin.gloomhavenhelper.ui.components.toolbar.GloomToolbarAction
-import com.rumpilstilstkin.gloomhavenhelper.ui.components.toolbar.GloomToolbarNoBackAction
-import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
 
 @Composable
 internal fun StartScreen(
@@ -48,8 +35,8 @@ internal fun StartScreen(
     Scaffold(
         topBar = {
             GloomToolbarNoBackAction(
-                title = stringResource(selectedTab.titleRes),
-                titleIcon = painterResource(selectedTab.iconRes),
+                title = selectedTab.getTitle(),
+                titleIcon = selectedTab.icon,
                 actionClick = settings
             )
         },
@@ -87,13 +74,16 @@ internal fun StartScreen(
 }
 
 internal enum class StartScreenTab(
-    override val titleRes: Int,
-    override val iconRes: Int,
+    private val titleRes: Int,
+    override val icon: NavigationIcon,
 ) : NavItem {
-    TEAM(R.string.tab_team, R.drawable.ic_team),
-    CHARACTERS(R.string.tab_characters, R.drawable.ic_characters),
-    SHOP(R.string.tab_shop, R.drawable.ic_shop),
-    SCENARIOS(R.string.tab_scenarios, R.drawable.ic_scenarios),
+    TEAM(R.string.tab_team, NavigationIcon.Team),
+    CHARACTERS(R.string.tab_characters, NavigationIcon.Character),
+    SHOP(R.string.tab_shop, NavigationIcon.Shop),
+    SCENARIOS(R.string.tab_scenarios, NavigationIcon.Scenarios);
+
+    @Composable
+    override fun getTitle(): String = stringResource(titleRes)
 }
 
 @Preview

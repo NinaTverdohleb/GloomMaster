@@ -36,7 +36,7 @@ import com.rumpilstilstkin.gloomhavenhelper.screens.models.CharacterUI
 import com.rumpilstilstkin.gloomhavenhelper.screens.start.characters.components.CharacterAvailableClasses
 import com.rumpilstilstkin.gloomhavenhelper.screens.start.characters.components.EmptyCharacters
 import com.rumpilstilstkin.gloomhavenhelper.ui.characters.CharacterItem
-import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
 import kotlinx.collections.immutable.persistentListOf
 
 @Composable

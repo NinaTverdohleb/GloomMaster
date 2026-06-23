@@ -1,13 +1,12 @@
 package com.rumpilstilstkin.gloomhavenhelper.ui.team
 
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
-import com.rumpilstilstkin.gloomhavenhelper.R
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.items.GloomListItem
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.items.LeftItemImage
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.icons.AppIcon
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.ShortTeamInfoUi
-import com.rumpilstilstkin.gloomhavenhelper.ui.components.items.GloomListItem
-import com.rumpilstilstkin.gloomhavenhelper.ui.components.items.LeftItemImage
-import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
 
 @Composable
 fun TeamItem(
@@ -19,7 +18,7 @@ fun TeamItem(
         onClick = onClick,
         leftComponent = {
             LeftItemImage(
-                icon = painterResource(R.drawable.ic_team)
+                icon = AppIcon.Team
             )
         }
     )

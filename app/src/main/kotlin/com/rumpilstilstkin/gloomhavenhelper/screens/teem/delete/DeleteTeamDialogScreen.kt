@@ -3,7 +3,7 @@ package com.rumpilstilstkin.gloomhavenhelper.screens.teem.delete
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
 import com.rumpilstilstkin.gloomhavenhelper.R
-import com.rumpilstilstkin.gloomhavenhelper.ui.components.dialogs.ConfirmationDeleteDialog
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.dialogs.ConfirmationDeleteDialog
 
 @Composable
 fun DeleteTeamDialogScreen(

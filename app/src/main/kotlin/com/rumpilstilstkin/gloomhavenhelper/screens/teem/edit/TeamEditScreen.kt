@@ -13,7 +13,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.Checkbox
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -31,18 +30,16 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.rumpilstilstkin.gloomhavenhelper.R
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.items.GloomListFilledItem
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.items.RightItemChecker
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.text.GloomHeader
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.text.GloomOutlinedTextField
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.toolbar.GloomToolbar
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.DifficultyLevel
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.PackType
-import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomCard
-import com.rumpilstilstkin.gloomhavenhelper.ui.components.items.GloomListFilledItem
-import com.rumpilstilstkin.gloomhavenhelper.ui.components.items.GloomListItem
-import com.rumpilstilstkin.gloomhavenhelper.ui.components.items.RightItemChecker
-import com.rumpilstilstkin.gloomhavenhelper.ui.components.text.GloomHeader
-import com.rumpilstilstkin.gloomhavenhelper.ui.components.text.GloomOutlinedTextField
-import com.rumpilstilstkin.gloomhavenhelper.ui.components.toolbar.GloomToolbar
 import com.rumpilstilstkin.gloomhavenhelper.ui.team.toImage
 import com.rumpilstilstkin.gloomhavenhelper.ui.team.toLabel
-import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
 import kotlinx.collections.immutable.persistentListOf
 
 @Composable

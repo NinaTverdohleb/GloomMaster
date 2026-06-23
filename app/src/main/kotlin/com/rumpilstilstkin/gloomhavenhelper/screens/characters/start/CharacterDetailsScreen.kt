@@ -19,6 +19,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.rumpilstilstkin.gloomhavenhelper.R
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.tabs.NavItem
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.toolbar.GloomToolbar
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.icons.NavigationIcon
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
 import com.rumpilstilstkin.gloomhavenhelper.screens.characters.start.components.CharacterHeader
 import com.rumpilstilstkin.gloomhavenhelper.screens.characters.start.general.CharacterGeneralTabContent
 import com.rumpilstilstkin.gloomhavenhelper.screens.characters.start.general.CharacterGeneralTabState
@@ -26,9 +30,6 @@ import com.rumpilstilstkin.gloomhavenhelper.screens.dialogs.character.CharacterE
 import com.rumpilstilstkin.gloomhavenhelper.screens.dialogs.character.CharacterEditNameDialog
 import com.rumpilstilstkin.gloomhavenhelper.screens.dialogs.character.DeleteCharacterDialog
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.CharacterClassTypeUI
-import com.rumpilstilstkin.gloomhavenhelper.ui.components.toolbar.GloomToolbar
-import com.rumpilstilstkin.gloomhavenhelper.ui.components.tabs.NavItem
-import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
 
 @Composable
 internal fun CharacterDetailsScreen(
@@ -104,12 +105,15 @@ internal fun CharacterDetailsScreen(
 }
 
 internal enum class CharacterDetailsTab(
-    override val titleRes: Int,
-    override val iconRes: Int,
+    private val titleRes: Int,
+    override val icon: NavigationIcon,
 ) : NavItem {
-    GENERAL(R.string.tab_general, R.drawable.ic_company),
-    STUFF(R.string.tab_items, R.drawable.ic_shop),
-    SKILLS(R.string.tab_skills, R.drawable.ic_scenario),
+    GENERAL(R.string.tab_general, NavigationIcon.CharacterGeneral),
+    STUFF(R.string.tab_items, NavigationIcon.CharacterGoods),
+    SKILLS(R.string.tab_skills, NavigationIcon.CharacterPerks);
+
+    @Composable
+    override fun getTitle(): String = stringResource(titleRes)
 }
 
 @Composable
@@ -134,7 +138,7 @@ internal fun CharactersTabs(
         ) {
             tabs.forEach { tab ->
                 Tab(
-                    text = { Text(text = stringResource(tab.titleRes)) },
+                    text = { Text(text = tab.getTitle()) },
                     selected = selectedTab == tab,
                     onClick = { selectedTab = tab },
                 )

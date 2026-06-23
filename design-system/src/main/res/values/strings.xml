@@ -1,0 +1,5 @@
+<resources>
+    <string name="design_system_back">Back</string>
+    <string name="design_system_delete">Delete</string>
+    <string name="design_system_close">Close</string>
+</resources>

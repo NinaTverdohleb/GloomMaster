@@ -23,11 +23,10 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.rumpilstilstkin.gloomhavenhelper.R
-import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomCard
-import com.rumpilstilstkin.gloomhavenhelper.ui.components.items.GloomListFilledItem
-import com.rumpilstilstkin.gloomhavenhelper.ui.components.items.GloomListItem
-import com.rumpilstilstkin.gloomhavenhelper.ui.components.items.LeftItemNumber
-import com.rumpilstilstkin.gloomhavenhelper.ui.theme.GloomhavenMasterTheme
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.items.GloomListFilledItem
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.items.GloomListItem
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.items.LeftItemNumber
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
 
 @Composable
 fun ScenarioInfoCardItem(
