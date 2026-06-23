@@ -10,6 +10,7 @@ import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.classes.RemoveCharact
 import com.rumpilstilstkin.gloomhavenhelper.navigation.GlHelperScreen.CharacterDetails
 import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEvent.Screen
 import com.rumpilstilstkin.gloomhavenhelper.screens.characters.dialogs.add.AddCharacterDialogContract
+import com.rumpilstilstkin.gloomhavenhelper.screens.characters.dialogs.delete.DeleteCharacterDialogContract
 import com.rumpilstilstkin.gloomhavenhelper.screens.characters.dialogs.menu.MenuCharacterDialogContract
 import com.rumpilstilstkin.gloomhavenhelper.screens.characters.dialogs.menu.MenuCharacterResult
 import com.rumpilstilstkin.gloomhavenhelper.screens.core.ScreenEffect
@@ -141,6 +142,19 @@ class CharactersTabViewModel @Inject constructor(
     }
 
     private fun showDeleteCharacterDialog(character: CharacterUI) {
-
+        viewModelScope.launch {
+            val session = createOverlaySession(
+                contract = DeleteCharacterDialogContract,
+                input = character,
+                onResult = { result ->
+                    result?.let {
+                        viewModelScope.launch {
+                            _screenEvents.emit(ScreenEffect.Message("Character deleted"))
+                        }
+                    }
+                },
+            )
+            _screenEvents.emit(ScreenEffect.OpenDialog(session))
+        }
     }
 }
