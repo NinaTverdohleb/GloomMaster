@@ -7,19 +7,16 @@ import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.characters.GetCharact
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.characters.LevelUpUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.characters.MarksCheckedChangeUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.characters.UpdateGoldUseCase
-import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.characters.UpdateNotesUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.characters.quests.QuestTaskUpdateUseCase
-import com.rumpilstilstkin.gloomhavenhelper.navigation.GlHelperScreen
-import com.rumpilstilstkin.gloomhavenhelper.navigation.GlHelperScreen.*
-import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEvent
-import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEvent.*
+import com.rumpilstilstkin.gloomhavenhelper.navigation.GlHelperScreen.SearchPersonalQuest
+import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEvent.Screen
 import com.rumpilstilstkin.gloomhavenhelper.screens.characters.quests.dialog.QuestDetailsDialogContract
 import com.rumpilstilstkin.gloomhavenhelper.screens.characters.quests.dialog.QuestDetailsDialogInput
+import com.rumpilstilstkin.gloomhavenhelper.screens.characters.start.general.text.EditTextDialogContract
 import com.rumpilstilstkin.gloomhavenhelper.screens.core.ScreenEffect
 import com.rumpilstilstkin.gloomhavenhelper.screens.core.createOverlaySession
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.PersonalQuestUI
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.toUI
-import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.dialog.delete.DeleteScenarioDialogContract
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
@@ -40,7 +37,6 @@ class CharacterGeneralTabViewModel @AssistedInject constructor(
     private val updateGoldUseCase: UpdateGoldUseCase,
     private val experienceChangeUseCase: ExperienceChangeUseCase,
     private val checkedChangeUseCase: MarksCheckedChangeUseCase,
-    private val updateNotesUseCase: UpdateNotesUseCase,
     private val questTaskUpdateUseCase: QuestTaskUpdateUseCase,
 ) : ViewModel() {
     private val _screenEvents = MutableSharedFlow<ScreenEffect>()
@@ -116,7 +112,10 @@ class CharacterGeneralTabViewModel @AssistedInject constructor(
                     )
                 }
 
-                GeneralTabActions.OpenNotes -> TODO()
+                GeneralTabActions.OpenNotes -> {
+                    openNotesDialog(characterId = id)
+                }
+
                 GeneralTabActions.OpenQuest -> {
                     val quest = uiState.value.personalQuest ?: return@launch
                     openQuestDialog(
@@ -133,8 +132,17 @@ class CharacterGeneralTabViewModel @AssistedInject constructor(
         fun create(id: Int): CharacterGeneralTabViewModel
     }
 
-    private fun openNotesDialog() {
-
+    private fun openNotesDialog(
+        characterId: Int,
+    ) {
+        viewModelScope.launch {
+            val session = createOverlaySession(
+                contract = EditTextDialogContract,
+                input = characterId,
+                onResult = { },
+            )
+            _screenEvents.emit(ScreenEffect.OpenBottomSheet(session))
+        }
     }
 
     private fun openQuestDialog(

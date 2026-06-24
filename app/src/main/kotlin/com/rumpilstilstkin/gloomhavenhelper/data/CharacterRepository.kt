@@ -73,7 +73,8 @@ class CharacterRepository @Inject constructor(
             }
         }
 
-    suspend fun getCharacterByTeamIdSync(teamId: Int): List<CharacterInfo> = characterDao.findByTeamId(teamId).map { it.toDomain(null) }
+    suspend fun getCharacterByTeamIdSync(teamId: Int): List<CharacterInfo> =
+        characterDao.findByTeamId(teamId).map { it.toDomain(null) }
 
     fun getCharacterByIdFlow(id: Int): Flow<CharacterInfo?> =
         characterDao.getCharacterByIdFlow(id).map { character ->
@@ -91,9 +92,11 @@ class CharacterRepository @Inject constructor(
             character?.toDomain(team)
         }
 
-    suspend fun getCharacterById(id: Int): CharacterShortInfo? = characterDao.getCharacterById(id)?.toShortDomain()
+    suspend fun getCharacterById(id: Int): CharacterShortInfo? =
+        characterDao.getCharacterById(id)?.toShortDomain()
 
-    suspend fun addCharacter(character: CharacterForSave): Int = characterDao.insert(character.toBd()).toInt()
+    suspend fun addCharacter(character: CharacterForSave): Int =
+        characterDao.insert(character.toBd()).toInt()
 
     suspend fun deleteCharacter(id: Int) {
         characterDao.deleteById(id)
@@ -123,6 +126,7 @@ class CharacterRepository @Inject constructor(
         notes: String,
     ) {
         characterDao.getCharacterById(id)?.let {
+            if (it.notes == notes) return
             characterDao.update(it.copy(notes = notes))
         }
     }

@@ -141,7 +141,7 @@ private fun Rewards(
 
 @Preview
 @Composable
-private fun GoodDetailsDialogSelectedPreview() {
+private fun QuestDetailsDialogSelectedPreview() {
     GloomhavenMasterTheme {
         QuestDetailsDialog(
             quest = PersonalQuestUI.fixture(),
@@ -153,7 +153,7 @@ private fun GoodDetailsDialogSelectedPreview() {
 
 @Preview
 @Composable
-private fun GoodDetailsDialogPreview() {
+private fun QuestDetailsDialogPreview() {
     GloomhavenMasterTheme {
         QuestDetailsDialog(
             quest = PersonalQuestUI.fixture(),
