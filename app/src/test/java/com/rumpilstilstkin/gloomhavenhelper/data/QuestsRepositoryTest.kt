@@ -65,7 +65,7 @@ class QuestsRepositoryTest {
         // Then
         expectThat(quests).hasSize(1)
         val q = quests[0]
-        expectThat(q.questId).isEqualTo("Q1")
+        expectThat(q.questNumber).isEqualTo("Q1")
         expectThat(q.title).isEqualTo("Title RU")
         expectThat(q.descriptions).isEqualTo("Desc RU")
         expectThat(q.reward.classType).isEqualTo(CharacterClassType.Brute)

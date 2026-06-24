@@ -27,10 +27,10 @@ data class PersonalQuestUI(
                     """
                     Ever since you were a child, you heard the call of Xorn. 
                     Once he was worshipped as a god, but his following has long since been destroyed.
-                     But you can hear his call. 
-                     You traveled to Gloomhaven by his order.
-                      You will find his remains and free him. 
-                      What happened once will happen again.
+                    But you can hear his call. 
+                    You traveled to Gloomhaven by his order.
+                    You will find his remains and free him. 
+                    What happened once will happen again.
                     """.trimIndent(),
                 reward =
                     QuestReward(

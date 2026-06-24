@@ -3,13 +3,9 @@ package com.rumpilstilstkin.gloomhavenhelper.screens.characters.start
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.PrimaryTabRow
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Tab
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -19,32 +15,27 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.rumpilstilstkin.gloomhavenhelper.R
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.tabs.GloomTopNavigationBar
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.tabs.NavItem
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.toolbar.GloomToolbar
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.icons.NavigationIcon
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
-import com.rumpilstilstkin.gloomhavenhelper.screens.characters.start.components.CharacterHeader
-import com.rumpilstilstkin.gloomhavenhelper.screens.characters.start.general.CharacterGeneralTabContent
+import com.rumpilstilstkin.gloomhavenhelper.screens.characters.start.general.CharacterGeneralTab
 import com.rumpilstilstkin.gloomhavenhelper.screens.characters.start.general.CharacterGeneralTabState
-import com.rumpilstilstkin.gloomhavenhelper.screens.characters.dialogs.character.CharacterEditLevelDialog
-import com.rumpilstilstkin.gloomhavenhelper.screens.characters.dialogs.character.CharacterEditNameDialog
-import com.rumpilstilstkin.gloomhavenhelper.screens.characters.dialogs.delete.DeleteCharacterDialog
-import com.rumpilstilstkin.gloomhavenhelper.screens.models.CharacterClassTypeUI
+import com.rumpilstilstkin.gloomhavenhelper.screens.models.CharacterUI
+import com.rumpilstilstkin.gloomhavenhelper.ui.characters.CharacterHeaderItem
 
 @Composable
 internal fun CharacterDetailsScreen(
     state: CharacterDetailsStateUi,
     back: () -> Unit,
-    showNameDialog: () -> Unit,
+    showNameDialog: (CharacterUI) -> Unit,
     hideNameDialog: () -> Unit,
     saveName: (String) -> Unit,
-    showChangeLevelDialog: () -> Unit,
-    hideChangeLevelDialog: () -> Unit,
-    changeLevel: (Int) -> Unit,
     selectTab: @Composable (CharacterDetailsTab) -> Unit,
 ) {
 
-    if (state.showNameDialog) {
+    /*if (state.showNameDialog) {
         CharacterEditNameDialog(
             currentName = state.name,
             onDismiss = hideNameDialog,
@@ -60,7 +51,7 @@ internal fun CharacterDetailsScreen(
             dismiss = hideChangeLevelDialog,
             changeLevel = changeLevel,
         )
-    }
+    }*/
 
     Scaffold(
         topBar = {
@@ -74,15 +65,13 @@ internal fun CharacterDetailsScreen(
             modifier =
                 Modifier
                     .fillMaxSize()
+                    .background(MaterialTheme.colorScheme.surfaceContainer)
                     .padding(paddingValues),
         ) {
-            CharacterHeader(
-                modifier = Modifier.background(MaterialTheme.colorScheme.surface),
-                characterClass = state.type,
-                name = state.name,
-                level = state.level,
-                onNameClick = showNameDialog,
-                clickLevel = showChangeLevelDialog,
+            CharacterHeaderItem(
+                character = state.character,
+                onClick = showNameDialog
+
             )
 
             CharactersTabs(
@@ -111,27 +100,17 @@ internal fun CharactersTabs(
 ) {
     var selectedTab by rememberSaveable { mutableStateOf(CharacterDetailsTab.GENERAL) }
 
-    val tabs = CharacterDetailsTab.entries
-
     Column(
         modifier =
             modifier
                 .background(MaterialTheme.colorScheme.background)
                 .fillMaxSize(),
     ) {
-        PrimaryTabRow(
-            selectedTabIndex = tabs.indexOf(selectedTab),
-            modifier = Modifier.fillMaxWidth(),
-            containerColor = MaterialTheme.colorScheme.surface,
-        ) {
-            tabs.forEach { tab ->
-                Tab(
-                    text = { Text(text = tab.getTitle()) },
-                    selected = selectedTab == tab,
-                    onClick = { selectedTab = tab },
-                )
-            }
-        }
+        GloomTopNavigationBar(
+            items = CharacterDetailsTab.entries,
+            selectedItem = selectedTab,
+            selectTab = { tab -> selectedTab = tab as CharacterDetailsTab},
+        )
         selectTab(selectedTab)
     }
 }
@@ -143,21 +122,16 @@ private fun CharacterDetailsScreenPreview() {
         CharacterDetailsScreen(
             state =
                 CharacterDetailsStateUi(
-                    name = "Character",
-                    level = 1,
-                    type = CharacterClassTypeUI.Brute,
+                    character = CharacterUI.fixture(),
                     teamName = "Team",
                 ),
             back = {},
             showNameDialog = {},
             hideNameDialog = {},
             saveName = {},
-            showChangeLevelDialog = {},
-            hideChangeLevelDialog = {},
-            changeLevel = {},
             selectTab = {
-                CharacterGeneralTabContent(
-                    content =
+                CharacterGeneralTab(
+                    state =
                         CharacterGeneralTabState(
                             experience = 150,
                             goldCount = 10,

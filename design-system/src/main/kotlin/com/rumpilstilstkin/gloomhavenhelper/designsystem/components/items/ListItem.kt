@@ -99,7 +99,12 @@ fun GloomListItem(
     modifier = modifier
         .fillMaxWidth()
         .heightIn(min = 64.dp)
-        .clickable { onClick?.invoke() }
+        .then(
+            if (onClick != null)
+                Modifier.clickable(onClick = onClick)
+            else
+                Modifier
+        )
         .padding(horizontal = 4.dp),
     verticalAlignment = Alignment.CenterVertically
 ) {
@@ -107,7 +112,9 @@ fun GloomListItem(
         leftComponent()
         Spacer(Modifier.width(16.dp))
     }
-    Column {
+    Column(
+        modifier = Modifier.weight(1f)
+    ) {
         Text(
             text = title,
             style = MaterialTheme.typography.titleMedium,
@@ -122,7 +129,6 @@ fun GloomListItem(
             )
         }
     }
-    Spacer(Modifier.weight(1f))
     rightComponent?.let {
         Spacer(Modifier.width(8.dp))
         rightComponent()
@@ -193,6 +199,15 @@ private fun GloomListItemPreview() {
             GloomListOutlineItem(
                 modifier = Modifier.fillMaxWidth(),
                 title = "Achivment",
+            )
+
+            GloomListOutlineItem(
+                modifier = Modifier.fillMaxWidth(),
+                title = "Achivmentdsfsadfasdfasdfasdfasdfsdasdfasdfasdfsadfsa",
+                rightComponent = {
+                    RightItemChecker(true, {})
+                }
+
             )
         }
     }

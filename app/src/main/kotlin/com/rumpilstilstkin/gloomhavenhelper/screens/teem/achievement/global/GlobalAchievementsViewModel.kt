@@ -85,7 +85,7 @@ class GlobalAchievementsViewModel @Inject constructor(
                 input = available,
                 onResult = { },
             )
-            _screenEvents.emit(ScreenEffect.OpenDialog(session))
+            _screenEvents.emit(ScreenEffect.OpenBottomSheet(session))
         }
     }
 

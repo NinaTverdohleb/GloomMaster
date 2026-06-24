@@ -42,7 +42,7 @@ fun ScenarioInfoCardItem(
     onClick = { onClick(scenarioNumber) },
     leftComponent = {
         LeftItemNumber(
-            number = stringResource(R.string.scenario_number_format, scenarioNumber)
+            number = stringResource(R.string.scenario_number_format, scenarioNumber.toString())
         )
     }
 )
@@ -62,7 +62,7 @@ fun ScenarioInfoItem(
         onClick = { onClick(scenarioNumber) },
         leftComponent = {
             LeftItemNumber(
-                number = stringResource(R.string.scenario_number_format, scenarioNumber)
+                number = stringResource(R.string.scenario_number_format, scenarioNumber.toString())
             )
         }
     )

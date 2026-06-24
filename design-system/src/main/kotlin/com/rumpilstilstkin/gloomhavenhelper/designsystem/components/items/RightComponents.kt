@@ -56,8 +56,7 @@ fun RightItemChecker(
     checked = checked,
     colors = CheckboxDefaults.colors(
         uncheckedColor = MaterialTheme.colorScheme.primary,
-
-        ),
+    ),
     onCheckedChange = onCheckedChange,
 )
 

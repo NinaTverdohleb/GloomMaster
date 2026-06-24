@@ -7,7 +7,7 @@ import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEventHelper
-import com.rumpilstilstkin.gloomhavenhelper.screens.characters.start.general.CharacterGeneralTab
+import com.rumpilstilstkin.gloomhavenhelper.screens.characters.start.general.CharacterGeneralTabRoute
 import com.rumpilstilstkin.gloomhavenhelper.screens.characters.start.goods.CharacterItemsTabRoute
 import com.rumpilstilstkin.gloomhavenhelper.screens.characters.start.perks.CharacterPerksTabRoute
 
@@ -38,12 +38,9 @@ fun CharacterDetailsRoute(
         showNameDialog = { viewModel.onAction(CharacterDetailsAction.ShowNameDialog) },
         hideNameDialog = { viewModel.onAction(CharacterDetailsAction.HideNameDialog) },
         saveName = { name -> viewModel.onAction(CharacterDetailsAction.SaveName(name)) },
-        showChangeLevelDialog = { viewModel.onAction(CharacterDetailsAction.ShowChangeLevelDialog) },
-        hideChangeLevelDialog = { viewModel.onAction(CharacterDetailsAction.HideChangeLevelDialog) },
-        changeLevel = { level -> viewModel.onAction(CharacterDetailsAction.ChangeLevel(level)) },
         selectTab = { tab ->
             when (tab) {
-                CharacterDetailsTab.GENERAL -> CharacterGeneralTab(characterId, navController)
+                CharacterDetailsTab.GENERAL -> CharacterGeneralTabRoute(characterId, navController)
                 CharacterDetailsTab.STUFF -> CharacterItemsTabRoute(characterId, navController)
                 CharacterDetailsTab.SKILLS -> CharacterPerksTabRoute(characterId)
             }

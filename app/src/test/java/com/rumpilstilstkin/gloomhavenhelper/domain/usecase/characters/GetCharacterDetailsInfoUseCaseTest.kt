@@ -84,7 +84,7 @@ class GetCharacterDetailsInfoUseCaseTest {
 
     private fun quest() =
         CharacterPersonalQuest(
-            questId = "q1",
+            questNumber = "q1",
             title = "T",
             descriptions = "D",
             reward = QuestReward(classType = null, alternativeReward = ""),
