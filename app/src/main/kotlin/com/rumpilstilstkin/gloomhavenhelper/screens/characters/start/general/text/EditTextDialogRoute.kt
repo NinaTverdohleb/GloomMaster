@@ -7,7 +7,6 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.rumpilstilstkin.gloomhavenhelper.screens.core.OverlayContract
 
 object EditTextDialogContract : OverlayContract<Int, Unit> {
-
     @Composable
     override fun Content(
         input: Int,
@@ -20,9 +19,7 @@ object EditTextDialogContract : OverlayContract<Int, Unit> {
 }
 
 @Composable
-fun EditTextDialogRoute(
-    characterId: Int,
-) {
+fun EditTextDialogRoute(characterId: Int) {
     val viewModel =
         hiltViewModel<EditTextDialogViewModel, EditTextDialogViewModel.Factory> { factory ->
             factory.create(characterId)
@@ -32,6 +29,6 @@ fun EditTextDialogRoute(
 
     EditTextDialog(
         text = state,
-        onTextChanged = { viewModel.onAction(EditTextDialogAction.UpdateText(it)) }
+        onTextChanged = { viewModel.onAction(EditTextDialogAction.UpdateText(it)) },
     )
 }

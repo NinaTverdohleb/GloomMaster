@@ -42,9 +42,9 @@ fun ScenarioInfoCardItem(
     onClick = { onClick(scenarioNumber) },
     leftComponent = {
         LeftItemNumber(
-            number = stringResource(R.string.scenario_number_format, scenarioNumber.toString())
+            number = stringResource(R.string.scenario_number_format, scenarioNumber.toString()),
         )
-    }
+    },
 )
 
 @Composable
@@ -62,9 +62,9 @@ fun ScenarioInfoItem(
         onClick = { onClick(scenarioNumber) },
         leftComponent = {
             LeftItemNumber(
-                number = stringResource(R.string.scenario_number_format, scenarioNumber.toString())
+                number = stringResource(R.string.scenario_number_format, scenarioNumber.toString()),
             )
-        }
+        },
     )
 }
 
@@ -74,7 +74,7 @@ private fun Sample() {
     GloomhavenMasterTheme {
         Column(
             verticalArrangement = Arrangement.spacedBy(16.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
+            horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             ScenarioInfoCardItem(
                 scenarioNumber = 99,

@@ -29,16 +29,16 @@ fun CharacterItemFilled(
     description = stringResource(character.characterClass.titleRes),
     leftComponent = {
         LeftItemImage(
-            icon = character.characterClass.image
+            icon = character.characterClass.image,
         )
     },
     rightComponent = {
         RightItemNumber(
-            number = character.level.toString()
+            number = character.level.toString(),
         )
     },
     active = character.isAlive,
-    onClick = { onClick(character) }
+    onClick = { onClick(character) },
 )
 
 @Composable
@@ -51,9 +51,9 @@ fun CharacterItem(
     description = stringResource(character.characterClass.titleRes),
     leftComponent = {
         LeftItemImage(
-            icon = character.characterClass.image
+            icon = character.characterClass.image,
         )
-    }
+    },
 )
 
 @Composable
@@ -62,21 +62,22 @@ fun CharacterHeaderItem(
     onClick: (CharacterUI) -> Unit,
     modifier: Modifier = Modifier,
 ) = GloomListItem(
-    modifier = modifier
-        .padding(16.dp),
+    modifier =
+        modifier
+            .padding(16.dp),
     title = character.name,
     description = stringResource(character.characterClass.titleRes),
     leftComponent = {
         LeftItemImage(
-            icon = character.characterClass.image
+            icon = character.characterClass.image,
         )
     },
     rightComponent = {
         RightItemNumber(
-            number = character.level.toString()
+            number = character.level.toString(),
         )
     },
-    onClick = { onClick(character) }
+    onClick = { onClick(character) },
 )
 
 @Preview
@@ -85,19 +86,19 @@ private fun CharacterItemPreview() {
     GloomhavenMasterTheme {
         Column(
             verticalArrangement = Arrangement.spacedBy(16.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
+            horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             CharacterItem(
                 character = CharacterUI.fixture(),
             )
             CharacterItemFilled(
                 character = CharacterUI.fixture(),
-                onClick = {}
+                onClick = {},
             )
 
             CharacterHeaderItem(
                 character = CharacterUI.fixture(),
-                onClick = {}
+                onClick = {},
             )
         }
     }

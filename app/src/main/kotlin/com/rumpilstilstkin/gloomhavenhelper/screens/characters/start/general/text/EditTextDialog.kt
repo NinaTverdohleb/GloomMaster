@@ -20,10 +20,11 @@ fun EditTextDialog(
     onTextChanged: (String) -> Unit,
 ) {
     GloomOutlinedTextField(
-        modifier = Modifier
-            .padding(16.dp)
-            .fillMaxWidth()
-            .defaultMinSize(minHeight = 240.dp),
+        modifier =
+            Modifier
+                .padding(16.dp)
+                .fillMaxWidth()
+                .defaultMinSize(minHeight = 240.dp),
         value = text,
         singleLine = false,
         onValueChange = onTextChanged,
@@ -37,7 +38,7 @@ private fun EditTextDialogPreview() {
     GloomhavenMasterTheme {
         EditTextDialog(
             text = "text",
-            onTextChanged = {}
+            onTextChanged = {},
         )
     }
 }

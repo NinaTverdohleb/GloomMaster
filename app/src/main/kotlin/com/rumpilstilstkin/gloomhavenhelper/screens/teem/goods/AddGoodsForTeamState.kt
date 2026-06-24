@@ -35,7 +35,7 @@ sealed interface AddGoodsForTeamAction {
     ) : AddGoodsForTeamAction
 
     data class OpenGood(
-        val good: GoodUi
+        val good: GoodUi,
     ) : AddGoodsForTeamAction
 
     data object Back : AddGoodsForTeamAction

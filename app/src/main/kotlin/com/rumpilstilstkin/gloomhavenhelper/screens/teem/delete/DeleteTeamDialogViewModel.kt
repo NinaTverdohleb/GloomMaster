@@ -13,7 +13,6 @@ import kotlinx.coroutines.launch
 class DeleteTeamDialogViewModel @Inject constructor(
     private val deleteTeamUseCase: DeleteTeamUseCase,
 ) : ViewModel() {
-
     private val _complete = Channel<DeleteTeamDialogComplete>(Channel.BUFFERED)
     val complete = _complete.receiveAsFlow()
 

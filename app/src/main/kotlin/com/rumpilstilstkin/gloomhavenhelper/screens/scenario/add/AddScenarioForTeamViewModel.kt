@@ -66,13 +66,14 @@ class AddScenarioForTeamViewModel @Inject constructor(
                 }
 
                 is AddScenarioForTeamAction.SelectScenario -> {
-                    val session = createOverlaySession(
-                        contract = AddScenarioDialogContract,
-                        input = action.scenario,
-                        onResult = {
-                            ScreenEffect.Message("Scenario added!")
-                        }
-                    )
+                    val session =
+                        createOverlaySession(
+                            contract = AddScenarioDialogContract,
+                            input = action.scenario,
+                            onResult = {
+                                ScreenEffect.Message("Scenario added!")
+                            },
+                        )
                     _screenEvents.emit(ScreenEffect.OpenBottomSheet(session))
                 }
 

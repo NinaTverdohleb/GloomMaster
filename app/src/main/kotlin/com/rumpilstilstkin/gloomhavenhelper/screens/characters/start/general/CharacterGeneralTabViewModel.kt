@@ -87,8 +87,8 @@ class CharacterGeneralTabViewModel @AssistedInject constructor(
                 GeneralTabActions.ChoosePersonalQuest -> {
                     _screenEvents.emit(
                         ScreenEffect.Navigation(
-                            (Screen(SearchPersonalQuest(id)))
-                        )
+                            (Screen(SearchPersonalQuest(id))),
+                        ),
                     )
                 }
 
@@ -132,15 +132,14 @@ class CharacterGeneralTabViewModel @AssistedInject constructor(
         fun create(id: Int): CharacterGeneralTabViewModel
     }
 
-    private fun openNotesDialog(
-        characterId: Int,
-    ) {
+    private fun openNotesDialog(characterId: Int) {
         viewModelScope.launch {
-            val session = createOverlaySession(
-                contract = EditTextDialogContract,
-                input = characterId,
-                onResult = { },
-            )
+            val session =
+                createOverlaySession(
+                    contract = EditTextDialogContract,
+                    input = characterId,
+                    onResult = { },
+                )
             _screenEvents.emit(ScreenEffect.OpenBottomSheet(session))
         }
     }
@@ -150,19 +149,20 @@ class CharacterGeneralTabViewModel @AssistedInject constructor(
         characterId: Int,
     ) {
         viewModelScope.launch {
-            val session = createOverlaySession(
-                contract = QuestDetailsDialogContract,
-                input = QuestDetailsDialogInput(
-                    quest = quest,
-                    characterId = characterId,
-                    selected = true
-                ),
-                onResult = {
-                    onAction(GeneralTabActions.ChoosePersonalQuest)
-                }
-            )
+            val session =
+                createOverlaySession(
+                    contract = QuestDetailsDialogContract,
+                    input =
+                        QuestDetailsDialogInput(
+                            quest = quest,
+                            characterId = characterId,
+                            selected = true,
+                        ),
+                    onResult = {
+                        onAction(GeneralTabActions.ChoosePersonalQuest)
+                    },
+                )
             _screenEvents.emit(ScreenEffect.OpenDialog(session))
         }
-
     }
 }

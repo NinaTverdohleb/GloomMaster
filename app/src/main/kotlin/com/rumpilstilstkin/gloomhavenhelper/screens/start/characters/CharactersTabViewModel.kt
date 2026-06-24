@@ -89,17 +89,17 @@ class CharactersTabViewModel @Inject constructor(
     fun onAction(action: CharactersTabAction) {
         viewModelScope.launch {
             when (action) {
-
                 is CharactersTabAction.SwitchAlive -> {
                     logicState.update { it.copy(filterAlive = !logicState.value.filterAlive) }
                 }
 
                 is CharactersTabAction.ShowAddCharacterDialog -> {
-                    val session = createOverlaySession(
-                        contract = AddCharacterDialogContract,
-                        input = Unit,
-                        onResult = {},
-                    )
+                    val session =
+                        createOverlaySession(
+                            contract = AddCharacterDialogContract,
+                            input = Unit,
+                            onResult = {},
+                        )
                     _screenEvents.emit(ScreenEffect.OpenDialog(session))
                 }
 
@@ -112,29 +112,30 @@ class CharactersTabViewModel @Inject constructor(
                 }
 
                 is CharactersTabAction.CharacterMenu -> {
-                    val session = createOverlaySession(
-                        contract = MenuCharacterDialogContract,
-                        input = action.character,
-                        onResult = { result ->
-                            when (result) {
-                                is MenuCharacterResult.OpenCharacterDetails -> {
-                                    viewModelScope.launch {
-                                        _screenEvents.emit(
-                                            ScreenEffect.Navigation(
-                                                Screen(CharacterDetails(characterId = result.character.id)),
-                                            ),
-                                        )
+                    val session =
+                        createOverlaySession(
+                            contract = MenuCharacterDialogContract,
+                            input = action.character,
+                            onResult = { result ->
+                                when (result) {
+                                    is MenuCharacterResult.OpenCharacterDetails -> {
+                                        viewModelScope.launch {
+                                            _screenEvents.emit(
+                                                ScreenEffect.Navigation(
+                                                    Screen(CharacterDetails(characterId = result.character.id)),
+                                                ),
+                                            )
+                                        }
                                     }
-                                }
 
-                                is MenuCharacterResult.DeleteCharacterRequest -> {
-                                    showDeleteCharacterDialog(result.character)
-                                }
+                                    is MenuCharacterResult.DeleteCharacterRequest -> {
+                                        showDeleteCharacterDialog(result.character)
+                                    }
 
-                                else -> {}
-                            }
-                        },
-                    )
+                                    else -> {}
+                                }
+                            },
+                        )
                     _screenEvents.emit(ScreenEffect.OpenBottomSheet(session))
                 }
             }
@@ -143,17 +144,18 @@ class CharactersTabViewModel @Inject constructor(
 
     private fun showDeleteCharacterDialog(character: CharacterUI) {
         viewModelScope.launch {
-            val session = createOverlaySession(
-                contract = DeleteCharacterDialogContract,
-                input = character,
-                onResult = { result ->
-                    result?.let {
-                        viewModelScope.launch {
-                            _screenEvents.emit(ScreenEffect.Message("Character deleted"))
+            val session =
+                createOverlaySession(
+                    contract = DeleteCharacterDialogContract,
+                    input = character,
+                    onResult = { result ->
+                        result?.let {
+                            viewModelScope.launch {
+                                _screenEvents.emit(ScreenEffect.Message("Character deleted"))
+                            }
                         }
-                    }
-                },
-            )
+                    },
+                )
             _screenEvents.emit(ScreenEffect.OpenDialog(session))
         }
     }

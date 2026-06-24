@@ -41,12 +41,13 @@ internal fun ShopTabScreen(
                 onClick = addItems,
             )
         }
-    }
+    },
 ) { innerPadding ->
     Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(innerPadding),
+        modifier =
+            Modifier
+                .fillMaxSize()
+                .padding(innerPadding),
     ) {
         GoodFilters(
             searchText = state.searchText,
@@ -72,14 +73,13 @@ internal fun ShopTabScreen(
                         modifier = Modifier.fillMaxHeight(),
                         icon = AppIcon.Delete,
                         isError = true,
-                        onClick = { deleteItem(good.goodId) }
+                        onClick = { deleteItem(good.goodId) },
                     )
                 }
             }
         }
     }
 }
-
 
 @Preview(showBackground = true, backgroundColor = 0xFF1A1C24)
 @Composable
@@ -102,7 +102,7 @@ private fun ShopTabScreenPreview() {
             selectFilter = {},
             enterSearchText = {},
             addItems = {},
-            selectItem = {}
+            selectItem = {},
         )
     }
 }

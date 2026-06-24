@@ -59,7 +59,7 @@ private fun TeamMenuDialogPreview() {
         TeamMenuDialog(
             team = ShortTeamInfoUi.fixture(teamId = 4, name = "Team 4"),
             selectTeam = {},
-            deleteTeam = {}
+            deleteTeam = {},
         )
     }
 }

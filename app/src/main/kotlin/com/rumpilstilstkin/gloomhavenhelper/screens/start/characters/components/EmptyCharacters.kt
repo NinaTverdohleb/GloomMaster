@@ -15,15 +15,14 @@ import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterT
 internal fun EmptyCharacters(modifier: Modifier = Modifier) =
     Box(
         modifier = modifier,
-        contentAlignment = Alignment.Center
+        contentAlignment = Alignment.Center,
     ) {
-    EmptyView(
-        icon = EmptyIcon.Characters,
-        title = stringResource(R.string.empty_active_characters),
-        description = stringResource(R.string.add_character_to_company)
-    )
-}
-
+        EmptyView(
+            icon = EmptyIcon.Characters,
+            title = stringResource(R.string.empty_active_characters),
+            description = stringResource(R.string.add_character_to_company),
+        )
+    }
 
 @Preview(showBackground = true, backgroundColor = 0xFF1A1C24)
 @Composable

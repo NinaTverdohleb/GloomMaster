@@ -15,13 +15,13 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.rumpilstilstkin.gloomhavenhelper.R
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.buttons.GloomFab
-import com.rumpilstilstkin.gloomhavenhelper.domain.entity.GoodType
-import com.rumpilstilstkin.gloomhavenhelper.screens.models.GoodUi
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.toolbar.GloomToolbar
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.icons.AppIcon
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.GoodType
+import com.rumpilstilstkin.gloomhavenhelper.screens.models.GoodUi
 import com.rumpilstilstkin.gloomhavenhelper.ui.goods.AddGoodsView
 import com.rumpilstilstkin.gloomhavenhelper.ui.goods.AddGoodsViewState
-import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
 
 @Composable
 internal fun AddGoodsForTeamScreen(
@@ -46,7 +46,7 @@ internal fun AddGoodsForTeamScreen(
             icon = AppIcon.Check,
             onClick = addGoods,
         )
-    }
+    },
 ) { paddingValues ->
     AddGoodsView(
         state = uiState.goodsState,
@@ -58,7 +58,7 @@ internal fun AddGoodsForTeamScreen(
         changeSearchText = changeSearchText,
         selectGood = selectGood,
         unselectGood = unselectGood,
-        clickGood = openGood
+        clickGood = openGood,
     ) {
         Row(
             modifier =
@@ -85,7 +85,7 @@ private fun AddGoodsForTeamScreenPreview() {
             unselectGood = {},
             addGoods = {},
             back = {},
-            openGood = {}
+            openGood = {},
         )
     }
 }

@@ -18,9 +18,9 @@ import coil3.compose.AsyncImage
 import com.rumpilstilstkin.gloomhavenhelper.R
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.buttons.GloomOutlineButton
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.icons.AppIcon
-import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomAlertDialogCustomActions
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.GoodUi
+import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomAlertDialogCustomActions
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -29,8 +29,9 @@ fun GoodDetailsDialog(
     dismiss: () -> Unit,
 ) {
     Column(
-        modifier = Modifier
-            .fillMaxWidth(),
+        modifier =
+            Modifier
+                .fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         AsyncImage(

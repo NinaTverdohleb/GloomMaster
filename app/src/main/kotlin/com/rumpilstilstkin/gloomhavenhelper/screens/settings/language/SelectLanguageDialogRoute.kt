@@ -8,11 +8,13 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.rumpilstilstkin.gloomhavenhelper.screens.core.OverlayContract
 
 object SelectLanguageContract : OverlayContract<Unit, Unit> {
-
     @Composable
-    override fun Content(input: Unit, onDismissWithResult: (Unit?) -> Unit) {
+    override fun Content(
+        input: Unit,
+        onDismissWithResult: (Unit?) -> Unit,
+    ) {
         SelectLanguageDialogRoute(
-            close = onDismissWithResult
+            close = onDismissWithResult,
         )
     }
 }
@@ -20,7 +22,7 @@ object SelectLanguageContract : OverlayContract<Unit, Unit> {
 @Composable
 fun SelectLanguageDialogRoute(
     viewModel: SelectLanguageDialogViewModel = hiltViewModel(),
-    close: (Unit) -> Unit
+    close: (Unit) -> Unit,
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     val complete by viewModel.complete.collectAsStateWithLifecycle(initialValue = null)

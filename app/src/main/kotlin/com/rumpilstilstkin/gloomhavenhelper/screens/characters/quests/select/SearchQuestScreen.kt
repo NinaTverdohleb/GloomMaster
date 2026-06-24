@@ -44,7 +44,7 @@ internal fun SearchQuestScreen(
                 .padding(innerPadding)
                 .fillMaxSize()
                 .padding(16.dp),
-        verticalArrangement = Arrangement.spacedBy(24.dp)
+        verticalArrangement = Arrangement.spacedBy(24.dp),
     ) {
         GloomOutlinedTextSearchField(
             modifier = Modifier.fillMaxWidth(),
@@ -54,7 +54,7 @@ internal fun SearchQuestScreen(
         )
         LazyColumn(
             modifier = Modifier.weight(1f),
-            verticalArrangement = Arrangement.spacedBy(16.dp)
+            verticalArrangement = Arrangement.spacedBy(16.dp),
         ) {
             items(state.quests) { quest ->
                 QuestItemFilled(

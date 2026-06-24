@@ -9,12 +9,14 @@ import com.rumpilstilstkin.gloomhavenhelper.screens.core.OverlayContract
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.ShortScenarioUI
 
 object MenuScenarioDialogContract : OverlayContract<ShortScenarioUI, MenuScenarioResult> {
-
     @Composable
-    override fun Content(input: ShortScenarioUI, onDismissWithResult: (MenuScenarioResult?) -> Unit) {
+    override fun Content(
+        input: ShortScenarioUI,
+        onDismissWithResult: (MenuScenarioResult?) -> Unit,
+    ) {
         MenuScenarioDialogRoute(
             scenario = input,
-            close = onDismissWithResult
+            close = onDismissWithResult,
         )
     }
 }
@@ -35,9 +37,9 @@ fun MenuScenarioDialogRoute(
 
     MenuScenarioDialog(
         scenario = scenario,
-        deleteScenario = {viewModel.onAction(MenuScenarioDialogAction.DeleteScenario(scenario))},
-        restoreScenario = {viewModel.onAction(MenuScenarioDialogAction.RestoreScenario(scenario))},
-        competeScenario = {viewModel.onAction(MenuScenarioDialogAction.CompleteScenario(scenario))},
-        playScenario = {viewModel.onAction(MenuScenarioDialogAction.StartScenario(scenario))},
+        deleteScenario = { viewModel.onAction(MenuScenarioDialogAction.DeleteScenario(scenario)) },
+        restoreScenario = { viewModel.onAction(MenuScenarioDialogAction.RestoreScenario(scenario)) },
+        competeScenario = { viewModel.onAction(MenuScenarioDialogAction.CompleteScenario(scenario)) },
+        playScenario = { viewModel.onAction(MenuScenarioDialogAction.StartScenario(scenario)) },
     )
 }

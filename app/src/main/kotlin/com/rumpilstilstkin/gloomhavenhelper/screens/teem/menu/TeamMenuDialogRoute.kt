@@ -9,12 +9,14 @@ import com.rumpilstilstkin.gloomhavenhelper.screens.core.OverlayContract
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.ShortTeamInfoUi
 
 object TeamMenuDialogContract : OverlayContract<ShortTeamInfoUi, TeamMenuResult> {
-
     @Composable
-    override fun Content(input: ShortTeamInfoUi, onDismissWithResult: (TeamMenuResult?) -> Unit) {
+    override fun Content(
+        input: ShortTeamInfoUi,
+        onDismissWithResult: (TeamMenuResult?) -> Unit,
+    ) {
         TeamListDialogRoute(
             team = input,
-            close = onDismissWithResult
+            close = onDismissWithResult,
         )
     }
 }
@@ -36,6 +38,6 @@ fun TeamListDialogRoute(
     TeamMenuDialog(
         team = team,
         selectTeam = { viewModel.onAction(TeamMenuDialogAction.SelectTeam(team)) },
-        deleteTeam = { viewModel.onAction(TeamMenuDialogAction.DeleteTeam(team)) }
+        deleteTeam = { viewModel.onAction(TeamMenuDialogAction.DeleteTeam(team)) },
     )
 }

@@ -13,5 +13,5 @@ sealed interface AddTeamDialogState {
 }
 
 data class AddTeamDialogComplete(
-    val success: Boolean
+    val success: Boolean,
 )

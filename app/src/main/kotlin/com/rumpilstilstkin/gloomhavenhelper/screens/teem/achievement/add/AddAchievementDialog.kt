@@ -31,7 +31,7 @@ fun AddAchievementDialog(
         ) { achievement ->
             GloomListOutlineItem(
                 title = achievement.name,
-                onClick = { onSelect(achievement) }
+                onClick = { onSelect(achievement) },
             )
         }
     }

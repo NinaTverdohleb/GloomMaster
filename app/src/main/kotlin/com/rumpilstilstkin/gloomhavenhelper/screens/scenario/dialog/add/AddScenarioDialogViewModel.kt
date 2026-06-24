@@ -13,7 +13,6 @@ import kotlinx.coroutines.launch
 class AddScenarioDialogViewModel @Inject constructor(
     private val addScenarioToTeamUseCase: AddScenarioToTeamUseCase,
 ) : ViewModel() {
-
     private val _complete = Channel<AddScenarioDialogComplete>(Channel.BUFFERED)
     val complete = _complete.receiveAsFlow()
 

@@ -26,7 +26,7 @@ class GetAvaliableClassesForCurrentTeamUseCase @Inject constructor(
                             CharacterClassType.Scoundrel,
                             CharacterClassType.Cragheart,
                             CharacterClassType.Mindthief,
-                        )
+                        ),
                     )
                 } else {
                     characterClassRepository.getAvailableClassesForTeam(team.teamId)

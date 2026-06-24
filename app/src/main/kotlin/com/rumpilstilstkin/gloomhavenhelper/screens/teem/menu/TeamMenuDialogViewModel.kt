@@ -13,7 +13,6 @@ import kotlinx.coroutines.launch
 class TeamMenuDialogViewModel @Inject constructor(
     private val changeCurrentTeamUseCase: ChangeCurrentTeamUseCase,
 ) : ViewModel() {
-
     private val _complete = Channel<TeamMenuDialogComplete>(Channel.BUFFERED)
     val complete = _complete.receiveAsFlow()
 

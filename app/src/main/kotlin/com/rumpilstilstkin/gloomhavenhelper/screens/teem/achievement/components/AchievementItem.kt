@@ -21,7 +21,7 @@ fun AchievementItem(
                 onValueChange = changeValue,
             )
         }
-    }
+    },
 )
 
 @Preview
@@ -30,7 +30,7 @@ private fun AchievementItemPreview() {
     GloomhavenMasterTheme {
         AchievementItem(
             achievement = AchievementWithName.fixture(),
-            changeValue = {}
+            changeValue = {},
         )
     }
 }

@@ -12,13 +12,13 @@ import com.rumpilstilstkin.gloomhavenhelper.screens.models.CharacterUI
 fun DeleteCharacterDialog(
     character: CharacterUI,
     delete: () -> Unit,
-    close: () -> Unit
+    close: () -> Unit,
 ) {
     ConfirmationDeleteDialog(
         title = stringResource(R.string.delete_character_title, character.name),
         description = stringResource(R.string.delete_warning),
         onDeleteConfirm = delete,
-        onClose = close
+        onClose = close,
     )
 }
 

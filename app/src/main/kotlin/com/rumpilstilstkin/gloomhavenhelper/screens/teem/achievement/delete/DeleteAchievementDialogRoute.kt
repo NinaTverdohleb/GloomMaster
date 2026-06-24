@@ -9,9 +9,11 @@ import com.rumpilstilstkin.gloomhavenhelper.domain.entity.AchievementWithName
 import com.rumpilstilstkin.gloomhavenhelper.screens.core.OverlayContract
 
 object DeleteAchievementDialogContract : OverlayContract<AchievementWithName, Unit> {
-
     @Composable
-    override fun Content(input: AchievementWithName, onDismissWithResult: (Unit?) -> Unit) {
+    override fun Content(
+        input: AchievementWithName,
+        onDismissWithResult: (Unit?) -> Unit,
+    ) {
         DeleteAchievementDialogRoute(
             achievement = input,
             close = onDismissWithResult,

@@ -4,19 +4,19 @@ import com.rumpilstilstkin.gloomhavenhelper.screens.models.ShortScenarioUI
 
 sealed interface MenuScenarioDialogAction {
     data class StartScenario(
-        val scenario: ShortScenarioUI
+        val scenario: ShortScenarioUI,
     ) : MenuScenarioDialogAction
 
     data class CompleteScenario(
-        val scenario: ShortScenarioUI
+        val scenario: ShortScenarioUI,
     ) : MenuScenarioDialogAction
 
     data class DeleteScenario(
-        val scenario: ShortScenarioUI
+        val scenario: ShortScenarioUI,
     ) : MenuScenarioDialogAction
 
     data class RestoreScenario(
-        val scenario: ShortScenarioUI
+        val scenario: ShortScenarioUI,
     ) : MenuScenarioDialogAction
 }
 
@@ -25,8 +25,19 @@ data class MenuScenarioDialogComplete(
 )
 
 sealed interface MenuScenarioResult {
-    data class ScenarioRestored(val scenario: ShortScenarioUI) : MenuScenarioResult
-    data class ScenarioCompleted(val scenario: ShortScenarioUI) : MenuScenarioResult
-    data class PlayScenario(val scenario: ShortScenarioUI) : MenuScenarioResult
-    data class DeleteScenarioRequest(val scenario: ShortScenarioUI) : MenuScenarioResult
+    data class ScenarioRestored(
+        val scenario: ShortScenarioUI,
+    ) : MenuScenarioResult
+
+    data class ScenarioCompleted(
+        val scenario: ShortScenarioUI,
+    ) : MenuScenarioResult
+
+    data class PlayScenario(
+        val scenario: ShortScenarioUI,
+    ) : MenuScenarioResult
+
+    data class DeleteScenarioRequest(
+        val scenario: ShortScenarioUI,
+    ) : MenuScenarioResult
 }

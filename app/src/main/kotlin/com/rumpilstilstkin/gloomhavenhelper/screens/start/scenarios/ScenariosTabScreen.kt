@@ -25,16 +25,16 @@ import com.rumpilstilstkin.gloomhavenhelper.R
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.buttons.GloomFab
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.text.GloomHeader
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.icons.AppIcon
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.ShortScenarioUI
 import com.rumpilstilstkin.gloomhavenhelper.ui.scenario.ScenarioInfoCardItem
-import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
 
 @Composable
 internal fun ScenariosTabScreen(
     state: ScenariosTabStateUi,
     toggleSection: (ScenarioSectionType) -> Unit,
     addScenario: () -> Unit,
-    selectScenario: (ShortScenarioUI) -> Unit
+    selectScenario: (ShortScenarioUI) -> Unit,
 ) = Scaffold(
     floatingActionButtonPosition = FabPosition.End,
     floatingActionButton = {
@@ -42,14 +42,14 @@ internal fun ScenariosTabScreen(
             icon = AppIcon.Plus,
             onClick = addScenario,
         )
-    }
+    },
 ) { innerPadding ->
     Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(innerPadding),
+        modifier =
+            Modifier
+                .fillMaxSize()
+                .padding(innerPadding),
     ) {
-
         LazyColumn(
             modifier = Modifier.weight(1f),
             verticalArrangement = Arrangement.spacedBy(8.dp),
@@ -63,8 +63,7 @@ internal fun ScenariosTabScreen(
                                 .fillMaxWidth()
                                 .clickable {
                                     toggleSection(key)
-                                }
-                                .padding(vertical = 16.dp),
+                                }.padding(vertical = 16.dp),
                     ) {
                         GloomHeader(
                             text = stringResource(key.titleRes),

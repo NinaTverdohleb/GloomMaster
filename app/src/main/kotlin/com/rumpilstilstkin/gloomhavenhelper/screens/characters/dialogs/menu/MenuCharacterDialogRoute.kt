@@ -9,9 +9,11 @@ import com.rumpilstilstkin.gloomhavenhelper.screens.core.OverlayContract
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.CharacterUI
 
 object MenuCharacterDialogContract : OverlayContract<CharacterUI, MenuCharacterResult> {
-
     @Composable
-    override fun Content(input: CharacterUI, onDismissWithResult: (MenuCharacterResult?) -> Unit) {
+    override fun Content(
+        input: CharacterUI,
+        onDismissWithResult: (MenuCharacterResult?) -> Unit,
+    ) {
         MenuCharacterDialogRoute(
             character = input,
             close = onDismissWithResult,
@@ -47,15 +49,15 @@ fun MenuCharacterDialogRoute(
         makeCharacterAlive = {
             viewModel.onAction(
                 MenuCharacterDialogAction.MakeCharacterAlive(
-                    character
-                )
+                    character,
+                ),
             )
         },
         openCharacterDetails = {
             viewModel.onAction(
                 MenuCharacterDialogAction.OpenCharacterDetails(
-                    character
-                )
+                    character,
+                ),
             )
         },
     )

@@ -61,7 +61,8 @@ class ScenarioViewModel @Inject constructor(
     private val toggleUnitEffectUseCase: ToggleUnitEffectUseCase,
     private val updateUnitLevelUseCase: UpdateUnitLevelUseCase,
     private val updateUnitLifeUseCase: UpdateUnitLifeUseCase,
-) : ViewModel(), DefaultLifecycleObserver {
+) : ViewModel(),
+    DefaultLifecycleObserver {
     private val _navigationEvents = MutableSharedFlow<GlHelperEvent>()
     val navigationEvents = _navigationEvents.asSharedFlow()
 
@@ -102,7 +103,6 @@ class ScenarioViewModel @Inject constructor(
                 logicState.update { battleInfo }
             }
         }
-
     }
 
     fun onAction(action: ScenarioActions) {

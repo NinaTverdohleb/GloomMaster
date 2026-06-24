@@ -58,7 +58,7 @@ fun AddGoodsView(
                 }
                 items(
                     items = state.selectedGoods,
-                    key = { item -> item.goodId }
+                    key = { item -> item.goodId },
                 ) { good ->
                     GoodItem(
                         modifier = Modifier.animateItem(),
@@ -70,13 +70,13 @@ fun AddGoodsView(
                             modifier = Modifier.fillMaxHeight(),
                             icon = AppIcon.Delete,
                             isError = true,
-                            onClick = { unselectGood(good) }
+                            onClick = { unselectGood(good) },
                         )
                     }
                 }
             }
             item(
-                key = "UnselectHeader"
+                key = "UnselectHeader",
             ) {
                 GloomHeader(text = stringResource(R.string.available_goods))
                 Spacer(modifier = Modifier.height(4.dp))
@@ -84,7 +84,7 @@ fun AddGoodsView(
 
             items(
                 items = state.availableGoods,
-                key = { item -> item.goodId }
+                key = { item -> item.goodId },
             ) { good ->
                 GoodItem(
                     modifier = Modifier.animateItem(),
@@ -95,7 +95,7 @@ fun AddGoodsView(
                         modifier = Modifier.fillMaxHeight(),
                         icon = AppIcon.Plus,
                         isError = false,
-                        onClick = { selectGood(good) }
+                        onClick = { selectGood(good) },
                     )
                 }
             }
@@ -115,7 +115,7 @@ private fun GoodFiltersPreview() {
             changeSearchText = {},
             selectGood = {},
             unselectGood = {},
-            clickGood = {}
+            clickGood = {},
         )
     }
 }

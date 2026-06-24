@@ -14,11 +14,11 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.rumpilstilstkin.gloomhavenhelper.R
-import com.rumpilstilstkin.gloomhavenhelper.domain.entity.LanguageItem
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.items.GloomListItem
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.items.RightItemIcon
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.icons.AppIcon
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.LanguageItem
 import kotlinx.collections.immutable.persistentListOf
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -37,7 +37,7 @@ fun SelectLanguageList(
         ) { language ->
             LanguageItemRow(
                 language = language,
-                selectLanguage = selectLanguage
+                selectLanguage = selectLanguage,
             )
         }
     }
@@ -63,7 +63,7 @@ private fun LanguageItemRow(
             if (language.selected) {
                 RightItemIcon(AppIcon.Check)
             }
-        }
+        },
     )
 }
 

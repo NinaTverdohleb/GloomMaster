@@ -9,9 +9,11 @@ import com.rumpilstilstkin.gloomhavenhelper.screens.core.OverlayContract
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.CharacterUI
 
 object DeleteCharacterDialogContract : OverlayContract<CharacterUI, Unit> {
-
     @Composable
-    override fun Content(input: CharacterUI, onDismissWithResult: (Unit?) -> Unit) {
+    override fun Content(
+        input: CharacterUI,
+        onDismissWithResult: (Unit?) -> Unit,
+    ) {
         DeleteCharacterDialogRoute(
             character = input,
             close = onDismissWithResult,

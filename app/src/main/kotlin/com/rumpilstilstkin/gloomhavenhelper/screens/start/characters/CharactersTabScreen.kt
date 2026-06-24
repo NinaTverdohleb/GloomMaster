@@ -50,12 +50,13 @@ internal fun CharactersTabScreen(
                 onClick = addCharacter,
             )
         }
-    }
+    },
 ) { innerPadding ->
     Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(innerPadding),
+        modifier =
+            Modifier
+                .fillMaxSize()
+                .padding(innerPadding),
     ) {
         CharacterAvailableClasses(
             availableClasses = state.avaliableClasses,
@@ -95,11 +96,11 @@ internal fun CharactersTabScreen(
             ) {
                 items(
                     items = state.characters,
-                    key = { character -> character.id }
+                    key = { character -> character.id },
                 ) { character ->
                     CharacterItemFilled(
                         character = character,
-                        onClick = { openCharacterMenu(character) }
+                        onClick = { openCharacterMenu(character) },
                     )
                 }
             }

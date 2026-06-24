@@ -8,9 +8,11 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.rumpilstilstkin.gloomhavenhelper.screens.core.OverlayContract
 
 object AddCharacterDialogContract : OverlayContract<Unit, Unit> {
-
     @Composable
-    override fun Content(input: Unit, onDismissWithResult: (Unit?) -> Unit) {
+    override fun Content(
+        input: Unit,
+        onDismissWithResult: (Unit?) -> Unit,
+    ) {
         AddCharacterDialogRoute(
             close = onDismissWithResult,
         )

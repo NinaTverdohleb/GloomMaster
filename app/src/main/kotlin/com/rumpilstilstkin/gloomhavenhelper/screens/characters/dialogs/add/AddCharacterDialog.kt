@@ -35,11 +35,10 @@ fun AddCharacterDialog(
     createCharacter: () -> Unit,
     updateName: (String) -> Unit,
     updateLevel: (Int) -> Unit,
-    changeType: (CharacterClassTypeUI) -> Unit
+    changeType: (CharacterClassTypeUI) -> Unit,
 ) {
-
     Column(
-        verticalArrangement = Arrangement.spacedBy(24.dp)
+        verticalArrangement = Arrangement.spacedBy(24.dp),
     ) {
         GloomCard {
             LazyVerticalGrid(
@@ -84,10 +83,10 @@ fun AddCharacterDialog(
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.CenterVertically
+            verticalAlignment = Alignment.CenterVertically,
         ) {
             GloomHeader(
-                text = stringResource(R.string.character_level_label)
+                text = stringResource(R.string.character_level_label),
             )
 
             GloomCounterFull(

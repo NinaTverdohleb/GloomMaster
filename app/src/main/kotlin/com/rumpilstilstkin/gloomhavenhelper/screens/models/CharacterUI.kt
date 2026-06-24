@@ -29,7 +29,7 @@ data class CharacterUI(
             level = level,
             characterClass = characterClass,
             teamName = teamName,
-            isAlive = isAlive
+            isAlive = isAlive,
         )
     }
 }

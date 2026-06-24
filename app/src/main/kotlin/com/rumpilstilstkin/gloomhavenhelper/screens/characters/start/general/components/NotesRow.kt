@@ -28,7 +28,6 @@ import com.rumpilstilstkin.gloomhavenhelper.designsystem.icons.AppIcon
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomAlertDialog
 
-
 @Composable
 fun NotesRow(
     notes: String,
@@ -37,15 +36,16 @@ fun NotesRow(
 ) {
     Column(
         modifier = modifier.fillMaxWidth(),
-        verticalArrangement = Arrangement.spacedBy(20.dp)
+        verticalArrangement = Arrangement.spacedBy(20.dp),
     ) {
         GloomHeader(stringResource(R.string.text_label))
 
         if (notes.isNotEmpty()) {
             GloomCard(
-                modifier = modifier
-                    .fillMaxWidth()
-                    .clickable { openNotes() }
+                modifier =
+                    modifier
+                        .fillMaxWidth()
+                        .clickable { openNotes() },
             ) {
                 Text(
                     modifier = Modifier.padding(16.dp),
@@ -58,12 +58,11 @@ fun NotesRow(
             GloomOutlineButton(
                 icon = AppIcon.Plus,
                 text = stringResource(R.string.edit_text_button),
-                onClick = openNotes
+                onClick = openNotes,
             )
         }
     }
 }
-
 
 @Preview
 @Composable
@@ -71,7 +70,7 @@ private fun NotesRowPreview() {
     GloomhavenMasterTheme {
         Column(
             verticalArrangement = Arrangement.spacedBy(16.dp),
-            horizontalAlignment = Alignment.Start
+            horizontalAlignment = Alignment.Start,
         ) {
             NotesRow(
                 notes = "",
@@ -85,7 +84,6 @@ private fun NotesRowPreview() {
         }
     }
 }
-
 
 @Composable
 fun NotesDialog(

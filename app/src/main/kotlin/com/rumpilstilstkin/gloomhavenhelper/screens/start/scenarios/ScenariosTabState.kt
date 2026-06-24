@@ -52,7 +52,6 @@ enum class ScenarioSectionType(
 }
 
 sealed interface ScenariosTabAction {
-
     data class ToggleSection(
         val sectionType: ScenarioSectionType,
     ) : ScenariosTabAction
@@ -60,6 +59,6 @@ sealed interface ScenariosTabAction {
     data object AddScenario : ScenariosTabAction
 
     data class SelectScenario(
-        val scenario: ShortScenarioUI
+        val scenario: ShortScenarioUI,
     ) : ScenariosTabAction
 }

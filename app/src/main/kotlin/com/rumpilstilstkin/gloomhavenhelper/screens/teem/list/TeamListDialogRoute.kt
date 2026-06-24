@@ -9,11 +9,13 @@ import com.rumpilstilstkin.gloomhavenhelper.screens.core.OverlayContract
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.ShortTeamInfoUi
 
 object TeamListDialogContract : OverlayContract<Unit, ShortTeamInfoUi> {
-
     @Composable
-    override fun Content(input: Unit, onDismissWithResult: (ShortTeamInfoUi?) -> Unit) {
+    override fun Content(
+        input: Unit,
+        onDismissWithResult: (ShortTeamInfoUi?) -> Unit,
+    ) {
         TeamListDialogRoute(
-            close = onDismissWithResult
+            close = onDismissWithResult,
         )
     }
 }

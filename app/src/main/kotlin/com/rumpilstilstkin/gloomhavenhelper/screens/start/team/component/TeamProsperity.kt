@@ -18,18 +18,18 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.rumpilstilstkin.gloomhavenhelper.R
-import com.rumpilstilstkin.gloomhavenhelper.domain.entity.Prosperity
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.GloomCard
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.counter.GloomCountButton
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.counter.GloomCounterFull
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.counter.GloomGloomCounterProgress
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.counter.PickerButtonType
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.text.GloomHeader
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.text.GloomRoundLabel
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.Prosperity
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomSize
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.NumberPickerProgress
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.PickerButton
-import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.counter.PickerButtonType
-import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
 
 @Composable
 internal fun TeamProsperity(
@@ -41,39 +41,41 @@ internal fun TeamProsperity(
     donate: () -> Unit,
 ) = Column(
     modifier = modifier,
-    verticalArrangement = Arrangement.spacedBy(20.dp)
+    verticalArrangement = Arrangement.spacedBy(20.dp),
 ) {
     GloomHeader(
-        stringResource(R.string.prosperity)
+        stringResource(R.string.prosperity),
     )
     GloomCard(
         modifier = modifier,
     ) {
         Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(24.dp),
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .padding(24.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             Column(
-                verticalArrangement = Arrangement.spacedBy(20.dp)
+                verticalArrangement = Arrangement.spacedBy(20.dp),
             ) {
                 LevelWithCounterView(
-                    modifier = Modifier
-                        .fillMaxWidth(),
+                    modifier =
+                        Modifier
+                            .fillMaxWidth(),
                     label = stringResource(R.string.level_label),
                     level = prosperity.prosperityLevel.toString(),
                     showSign = false,
                     range = prosperity.prosperityRange,
-                    counterValue = prosperity.prosperityLevelValue
+                    counterValue = prosperity.prosperityLevelValue,
                 ) { newValue ->
                     updateProsperity(newValue)
                 }
 
                 GloomGloomCounterProgress(
-                    value =prosperity.prosperityLevelValue,
+                    value = prosperity.prosperityLevelValue,
                     intRange = prosperity.prosperityRange,
-                    modifier = Modifier.fillMaxWidth()
+                    modifier = Modifier.fillMaxWidth(),
                 )
             }
             Spacer(
@@ -82,10 +84,10 @@ internal fun TeamProsperity(
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.SpaceBetween
+                horizontalArrangement = Arrangement.SpaceBetween,
             ) {
                 Column(
-                    verticalArrangement = Arrangement.spacedBy(4.dp)
+                    verticalArrangement = Arrangement.spacedBy(4.dp),
                 ) {
                     Text(
                         style = MaterialTheme.typography.titleMedium,
@@ -94,16 +96,17 @@ internal fun TeamProsperity(
                     )
                     Text(
                         style = MaterialTheme.typography.bodySmall,
-                        text = stringResource(
-                            R.string.next_prosperity_at,
-                            churchValueForNextProsperity
-                        ),
+                        text =
+                            stringResource(
+                                R.string.next_prosperity_at,
+                                churchValueForNextProsperity,
+                            ),
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                     )
                 }
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.spacedBy(16.dp)
+                    horizontalArrangement = Arrangement.spacedBy(16.dp),
                 ) {
                     Text(
                         text = churchValue.toString(),

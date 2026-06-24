@@ -10,7 +10,6 @@ import com.rumpilstilstkin.gloomhavenhelper.screens.core.OverlayContract
 import kotlinx.collections.immutable.ImmutableList
 
 object AddAchievementDialogContract : OverlayContract<ImmutableList<AchievementWithName>, Unit> {
-
     @Composable
     override fun Content(
         input: ImmutableList<AchievementWithName>,

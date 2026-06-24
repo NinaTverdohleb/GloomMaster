@@ -88,11 +88,12 @@ class ShopTabViewModel @Inject constructor(
                 }
 
                 is ShopTabAction.OpenGood -> {
-                    val session = createOverlaySession(
-                        contract = GoodDetailsDialogContract,
-                        input = action.good,
-                        onResult = { }
-                    )
+                    val session =
+                        createOverlaySession(
+                            contract = GoodDetailsDialogContract,
+                            input = action.good,
+                            onResult = { },
+                        )
                     _screenEvents.emit(ScreenEffect.OpenDialog(session))
                 }
             }

@@ -47,7 +47,7 @@ class AddTeamDialogViewModel @Inject constructor(
                         importTeamUseCase(data)
                     }.fold(
                         onSuccess = { _complete.send(AddTeamDialogComplete(true)) },
-                        onFailure = { _complete.send(AddTeamDialogComplete(false))},
+                        onFailure = { _complete.send(AddTeamDialogComplete(false)) },
                     )
                 }
             }

@@ -34,10 +34,11 @@ internal fun TeamTabScreen(
     if (state is TeamTabUiState.Data) {
         val team = state.currentTeam
         Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .verticalScroll(rememberScrollState()),
-            verticalArrangement = Arrangement.spacedBy(32.dp)
+            modifier =
+                Modifier
+                    .fillMaxSize()
+                    .verticalScroll(rememberScrollState()),
+            verticalArrangement = Arrangement.spacedBy(32.dp),
         ) {
             TeamHeader(
                 teamName = team.teamName,
@@ -74,7 +75,7 @@ internal fun TeamTabScreen(
     }
 }
 
-@Preview(showBackground = true, backgroundColor = 0xFF1A1C24, heightDp = 1150,)
+@Preview(showBackground = true, backgroundColor = 0xFF1A1C24, heightDp = 1150)
 @Composable
 private fun TeamTabScreenPreview() {
     GloomhavenMasterTheme {

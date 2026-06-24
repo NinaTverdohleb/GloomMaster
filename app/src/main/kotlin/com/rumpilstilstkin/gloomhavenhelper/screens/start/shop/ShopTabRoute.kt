@@ -21,11 +21,11 @@ fun ShopTabRoute(
         selectFilter = { viewModel.onAction(ShopTabAction.SelectFilter(it)) },
         enterSearchText = { viewModel.onAction(ShopTabAction.SearchTextChange(it)) },
         addItems = { viewModel.onAction(ShopTabAction.AddGood) },
-        selectItem = { viewModel.onAction(ShopTabAction.OpenGood(it)) }
+        selectItem = { viewModel.onAction(ShopTabAction.OpenGood(it)) },
     )
 
     LaunchedScreenEffect(
         effect = screenEffect,
-        navController = navController
+        navController = navController,
     )
 }

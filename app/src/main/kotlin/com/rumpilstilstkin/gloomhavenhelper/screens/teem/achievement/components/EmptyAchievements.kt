@@ -9,11 +9,12 @@ import com.rumpilstilstkin.gloomhavenhelper.designsystem.icons.EmptyIcon
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
 
 @Composable
-fun EmptyAchievements() = EmptyView(
-    icon = EmptyIcon.Perks,
-    title = stringResource(R.string.empty_team_achievements),
-    description = stringResource(R.string.empty_team_achievements_description)
-)
+fun EmptyAchievements() =
+    EmptyView(
+        icon = EmptyIcon.Perks,
+        title = stringResource(R.string.empty_team_achievements),
+        description = stringResource(R.string.empty_team_achievements_description),
+    )
 
 @Preview
 @Composable

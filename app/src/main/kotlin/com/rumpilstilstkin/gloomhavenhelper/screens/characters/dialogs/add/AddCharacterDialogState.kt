@@ -16,10 +16,11 @@ data class AddCharacterDialogState(
         fun fixture(
             name: String = "",
             level: Int = 1,
-            avaliableClasses: ImmutableList<CharacterClassTypeUI> = persistentListOf(
-                CharacterClassTypeUI.Brute,
-                CharacterClassTypeUI.Spellweaver,
-            ),
+            avaliableClasses: ImmutableList<CharacterClassTypeUI> =
+                persistentListOf(
+                    CharacterClassTypeUI.Brute,
+                    CharacterClassTypeUI.Spellweaver,
+                ),
             selectedClass: CharacterClassTypeUI = avaliableClasses.first(),
         ) = AddCharacterDialogState(
             name = name,
@@ -32,9 +33,18 @@ data class AddCharacterDialogState(
 
 sealed interface AddCharacterDialogAction {
     data object AddCharacter : AddCharacterDialogAction
-    data class UpdateName(val name: String) : AddCharacterDialogAction
-    data class UpdateLevel(val level: Int) : AddCharacterDialogAction
-    data class SelectType(val type: CharacterClassTypeUI) : AddCharacterDialogAction
+
+    data class UpdateName(
+        val name: String,
+    ) : AddCharacterDialogAction
+
+    data class UpdateLevel(
+        val level: Int,
+    ) : AddCharacterDialogAction
+
+    data class SelectType(
+        val type: CharacterClassTypeUI,
+    ) : AddCharacterDialogAction
 }
 
 data object AddCharacterDialogComplete

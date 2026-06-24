@@ -24,8 +24,8 @@ import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.GloomCard
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.counter.GloomCounterFull
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.text.GloomHeader
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.text.GloomRoundLabel
-import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomNumberPicker
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
+import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomNumberPicker
 
 @Composable
 internal fun TeamReputation(
@@ -35,21 +35,22 @@ internal fun TeamReputation(
     updateReputation: (Int) -> Unit,
 ) = Column(
     modifier = modifier,
-    verticalArrangement = Arrangement.spacedBy(20.dp)
+    verticalArrangement = Arrangement.spacedBy(20.dp),
 ) {
     GloomHeader(
-        stringResource(R.string.reputation)
+        stringResource(R.string.reputation),
     )
     GloomCard {
         LevelWithCounterView(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(24.dp),
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .padding(24.dp),
             label = stringResource(R.string.shop_discount),
             level = discount.toString(),
             showSign = true,
             range = IntRange(-20, 20),
-            counterValue = reputation
+            counterValue = reputation,
         ) { newValue ->
             updateReputation(newValue)
         }

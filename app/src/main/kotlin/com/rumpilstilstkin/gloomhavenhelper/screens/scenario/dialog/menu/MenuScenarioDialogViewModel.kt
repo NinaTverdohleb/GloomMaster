@@ -15,7 +15,6 @@ class MenuScenarioDialogViewModel @Inject constructor(
     private val restoreScenarioUseCase: RestoreScenarioUseCase,
     private val completeScenarioUseCase: CompleteScenarioUseCase,
 ) : ViewModel() {
-
     private val _complete = Channel<MenuScenarioDialogComplete>(Channel.BUFFERED)
     val complete = _complete.receiveAsFlow()
 
@@ -27,28 +26,30 @@ class MenuScenarioDialogViewModel @Inject constructor(
                     _complete.send(
                         MenuScenarioDialogComplete(
                             MenuScenarioResult.ScenarioCompleted(
-                                action.scenario
-                            )
-                        )
+                                action.scenario,
+                            ),
+                        ),
                     )
                 }
+
                 is MenuScenarioDialogAction.DeleteScenario -> {
                     _complete.send(
                         MenuScenarioDialogComplete(
                             MenuScenarioResult.DeleteScenarioRequest(
-                                action.scenario
-                            )
-                        )
+                                action.scenario,
+                            ),
+                        ),
                     )
                 }
+
                 is MenuScenarioDialogAction.RestoreScenario -> {
                     restoreScenarioUseCase(action.scenario.scenarioNumber)
                     _complete.send(
                         MenuScenarioDialogComplete(
                             MenuScenarioResult.ScenarioRestored(
-                                action.scenario
-                            )
-                        )
+                                action.scenario,
+                            ),
+                        ),
                     )
                 }
 

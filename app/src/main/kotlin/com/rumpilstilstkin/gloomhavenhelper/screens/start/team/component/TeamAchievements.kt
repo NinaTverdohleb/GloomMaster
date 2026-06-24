@@ -33,7 +33,7 @@ internal fun GlobalAchievement(
     modifier = modifier,
     title = stringResource(R.string.global_achievements),
     achievements = globalAchievements,
-    clickAchievement = clickGlobalAchievement
+    clickAchievement = clickGlobalAchievement,
 )
 
 @Composable
@@ -45,7 +45,7 @@ internal fun TeamAchievement(
     modifier = modifier,
     title = stringResource(R.string.team_achievements),
     achievements = teamAchievements,
-    clickAchievement = clickTeamAchievement
+    clickAchievement = clickTeamAchievement,
 )
 
 @Composable
@@ -56,41 +56,44 @@ private fun AchievementView(
     clickAchievement: () -> Unit,
 ) = Column(
     modifier = modifier,
-    verticalArrangement = Arrangement.spacedBy(12.dp)
+    verticalArrangement = Arrangement.spacedBy(12.dp),
 ) {
     GloomHeaderVariant(text = title)
     GloomCard(
-        modifier = modifier
-            .fillMaxWidth()
-            .clickable { clickAchievement() }
-    ) {
-        val paddings = if(achievements.isEmpty()) 8.dp else 24.dp
-        Box(
-            modifier = Modifier
+        modifier =
+            modifier
                 .fillMaxWidth()
-                .padding(
-                    vertical = paddings,
-                    horizontal = 16.dp
-                ),
+                .clickable { clickAchievement() },
+    ) {
+        val paddings = if (achievements.isEmpty()) 8.dp else 24.dp
+        Box(
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .padding(
+                        vertical = paddings,
+                        horizontal = 16.dp,
+                    ),
         ) {
             if (achievements.isEmpty()) {
                 GloomListItem(
                     title = stringResource(R.string.add_achievement),
                     leftComponent = {
                         LeftItemIcon(
-                            AppIcon.Plus
+                            AppIcon.Plus,
                         )
-                    }
+                    },
                 )
             } else {
                 Text(
-                    text = achievements.joinToString(separator = ", ") { achievement ->
-                        if (achievement.maxValue > 1) {
-                            "${achievement.name} - ${achievement.value}"
-                        } else {
-                            achievement.name
-                        }
-                    },
+                    text =
+                        achievements.joinToString(separator = ", ") { achievement ->
+                            if (achievement.maxValue > 1) {
+                                "${achievement.name} - ${achievement.value}"
+                            } else {
+                                achievement.name
+                            }
+                        },
                     style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.onSurface,
                 )
