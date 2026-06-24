@@ -9,21 +9,10 @@ import kotlinx.collections.immutable.persistentListOf
 data class AchievementsStateUi(
     val achievements: ImmutableList<AchievementWithName> = persistentListOf(),
     val availableAchievements: ImmutableList<AchievementWithName> = persistentListOf(),
-    val showAddDialog: Boolean = false,
-)
-
-data class AchievementsStateLogic(
-    val showAddDialog: Boolean = false,
 )
 
 sealed interface AchievementsAction {
     data object ShowAddDialog : AchievementsAction
-
-    data object DismissAddDialog : AchievementsAction
-
-    data class AddAchievement(
-        val achievement: AchievementWithName,
-    ) : AchievementsAction
 
     data class DeleteAchievement(
         val achievement: AchievementWithName,

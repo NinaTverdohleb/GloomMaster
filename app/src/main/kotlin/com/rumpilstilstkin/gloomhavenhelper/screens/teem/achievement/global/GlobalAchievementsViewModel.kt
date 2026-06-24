@@ -4,26 +4,25 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.AchievementWithName
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.achievement.GetAvailableGlobalAchievementsUseCase
-import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.achievement.UpdateAchievementUseCase
+import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.achievement.AddOrUpdateAchievementUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.team.GetCurrentTeamShortInfoUseCase
 import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEvent
 import com.rumpilstilstkin.gloomhavenhelper.screens.core.ScreenEffect
 import com.rumpilstilstkin.gloomhavenhelper.screens.core.createOverlaySession
 import com.rumpilstilstkin.gloomhavenhelper.screens.teem.achievement.AchievementsAction
-import com.rumpilstilstkin.gloomhavenhelper.screens.teem.achievement.AchievementsStateLogic
 import com.rumpilstilstkin.gloomhavenhelper.screens.teem.achievement.AchievementsStateUi
+import com.rumpilstilstkin.gloomhavenhelper.screens.teem.achievement.add.AddAchievementDialogContract
 import com.rumpilstilstkin.gloomhavenhelper.screens.teem.achievement.delete.DeleteAchievementDialogContract
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.stateIn
-import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -31,19 +30,16 @@ import javax.inject.Inject
 class GlobalAchievementsViewModel @Inject constructor(
     getCurrentTeamShortInfoUseCase: GetCurrentTeamShortInfoUseCase,
     getAvailableAchievementsUseCase: GetAvailableGlobalAchievementsUseCase,
-    private val updateAchievementUseCase: UpdateAchievementUseCase,
+    private val addOrUpdateAchievementUseCase: AddOrUpdateAchievementUseCase,
 ) : ViewModel() {
     private val _screenEvents = MutableSharedFlow<ScreenEffect>()
     val screenEvents = _screenEvents.asSharedFlow()
-
-    private val logicState = MutableStateFlow(AchievementsStateLogic())
 
     val uiState: StateFlow<AchievementsStateUi> =
         combine(
             getCurrentTeamShortInfoUseCase(),
             getAvailableAchievementsUseCase(),
-            logicState,
-        ) { team, availableAchievements, logic ->
+        ) { team, availableAchievements ->
             AchievementsStateUi(
                 achievements =
                     team
@@ -51,7 +47,6 @@ class GlobalAchievementsViewModel @Inject constructor(
                         ?.filter { it.isGlobal }
                         ?.toImmutableList() ?: persistentListOf(),
                 availableAchievements = availableAchievements.toImmutableList(),
-                showAddDialog = logic.showAddDialog,
             )
         }.stateIn(
             scope = viewModelScope,
@@ -63,16 +58,7 @@ class GlobalAchievementsViewModel @Inject constructor(
         viewModelScope.launch {
             when (action) {
                 is AchievementsAction.ShowAddDialog -> {
-                    logicState.update { it.copy(showAddDialog = true) }
-                }
-
-                is AchievementsAction.DismissAddDialog -> {
-                    logicState.update { it.copy(showAddDialog = false) }
-                }
-
-                is AchievementsAction.AddAchievement -> {
-                    updateAchievementUseCase(action.achievement.toAchievement())
-                    logicState.update { it.copy(showAddDialog = false) }
+                    showAddAchievementDialog(uiState.value.availableAchievements)
                 }
 
                 is AchievementsAction.DeleteAchievement -> {
@@ -84,11 +70,22 @@ class GlobalAchievementsViewModel @Inject constructor(
                 }
 
                 is AchievementsAction.UpdateAchievement -> {
-                    updateAchievementUseCase(
+                    addOrUpdateAchievementUseCase(
                         action.achievement.copy(value = action.value).toAchievement(),
                     )
                 }
             }
+        }
+    }
+
+    private fun showAddAchievementDialog(available: ImmutableList<AchievementWithName>) {
+        viewModelScope.launch {
+            val session = createOverlaySession(
+                contract = AddAchievementDialogContract,
+                input = available,
+                onResult = { },
+            )
+            _screenEvents.emit(ScreenEffect.OpenDialog(session))
         }
     }
 
