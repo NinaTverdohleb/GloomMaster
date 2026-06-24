@@ -1,0 +1,34 @@
+package com.rumpilstilstkin.gloomhavenhelper.screens.characters.quests.select
+
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.navigation.NavHostController
+import com.rumpilstilstkin.gloomhavenhelper.screens.core.LaunchedScreenEffect
+
+@Composable
+fun SearchQuestRoute(
+    characterId: Int,
+    navController: NavHostController,
+) {
+    val viewModel =
+        hiltViewModel<SearchQuestViewModel, SearchQuestViewModel.Factory> { factory ->
+            factory.create(characterId)
+        }
+
+    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+    val screenEffect by viewModel.screenEvents.collectAsStateWithLifecycle(initialValue = null)
+
+    SearchQuestScreen(
+        state = uiState,
+        back = { viewModel.onAction(SearchQuestActions.Close) },
+        searchTextChange = { viewModel.onAction(SearchQuestActions.SearchTextChange(it)) },
+        openQuest = { viewModel.onAction(SearchQuestActions.OpenQuest(it)) },
+    )
+
+    LaunchedScreenEffect(
+        effect = screenEffect,
+        navController = navController,
+    )
+}

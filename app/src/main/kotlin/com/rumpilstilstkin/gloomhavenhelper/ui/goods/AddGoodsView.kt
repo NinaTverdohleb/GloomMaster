@@ -38,7 +38,7 @@ fun AddGoodsView(
         modifier =
             modifier
                 .fillMaxSize()
-                .padding(8.dp),
+                .padding(16.dp),
     ) {
         GoodFilters(
             searchText = state.searchText,

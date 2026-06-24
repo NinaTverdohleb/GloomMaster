@@ -5,13 +5,10 @@ import androidx.lifecycle.viewModelScope
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.characters.MakeCharacterAliveUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.characters.RetireCharacterUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.characters.UpdateCharacterLevelUseCase
-import com.rumpilstilstkin.gloomhavenhelper.screens.characters.dialogs.add.AddCharacterDialogState
-import com.rumpilstilstkin.gloomhavenhelper.screens.characters.quests.freeselect.SearchQuestViewModel
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
 import dagger.hilt.android.lifecycle.HiltViewModel
-import jakarta.inject.Inject
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
