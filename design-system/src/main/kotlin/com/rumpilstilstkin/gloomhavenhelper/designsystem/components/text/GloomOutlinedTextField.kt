@@ -18,7 +18,8 @@ fun GloomOutlinedTextField(
     value: String,
     onValueChange: (String) -> Unit,
     label: String,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    singleLine : Boolean = true
 ) = OutlinedTextField(
     value = value,
     onValueChange = onValueChange,
@@ -37,7 +38,7 @@ fun GloomOutlinedTextField(
         focusedLabelColor = MaterialTheme.colorScheme.onSurface,
         unfocusedLabelColor = MaterialTheme.colorScheme.onSurface,
     ),
-    singleLine = true
+    singleLine = singleLine
 )
 
 @Preview
