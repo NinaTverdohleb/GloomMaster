@@ -30,7 +30,7 @@
     <string name="round_status">Round: %1$d</string>
     <string name="add_monster">Add Monster</string>
     <string name="save">Save</string>
-    <string name="scenario_number_format"># %1$d</string>
+    <string name="scenario_number_format"># %1$s</string>
     <string name="location_format">Region: %1$s</string>
     <string name="complete">Complete Scenario</string>
     <string name="complete_scenario">Complete Scenario</string>
@@ -126,9 +126,9 @@
     <string name="notes_title">Notes</string>
     <string name="personal_quest_title">Personal Quest</string>
     <string name="text_label">Text</string>
-    <string name="edit_text_button">Edit Text</string>
+    <string name="edit_text_button">Add Text</string>
     <string name="gold_title">Gold</string>
-    <string name="experience_title">XP</string>
+    <string name="experience_title">Experience</string>
     <string name="level_up_button">Level Up</string>
     <string name="next_level_format">Next Level: %1$d</string>
     <string name="team_name_label">Team Name</string>
@@ -191,4 +191,5 @@
     <string name="delete_character">Delete character</string>
     <string name="empty_team_achievements_description">Add Achievements for team</string>
     <string name="delete_achivment_dialog_description">Do you want to delete %1$s achievement</string>
+    <string name="add_personal_quest">Add quest</string>
 </resources>

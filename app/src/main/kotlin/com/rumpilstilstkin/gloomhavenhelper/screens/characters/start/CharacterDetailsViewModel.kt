@@ -10,6 +10,7 @@ import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.characters.UpdateChar
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.characters.UpdateCharacterNameUseCase
 import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEvent
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.CharacterClassTypeUI.Companion.toCharacterClassTypeUI
+import com.rumpilstilstkin.gloomhavenhelper.screens.models.toUi
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
@@ -46,10 +47,8 @@ class CharacterDetailsViewModel @AssistedInject constructor(
             logicState,
         ) { character, logic ->
             CharacterDetailsStateUi(
-                level = character.level,
-                name = character.name,
+                character = character.toUi(),
                 teamName = character.team?.name ?: "",
-                type = character.characterType.toCharacterClassTypeUI(),
                 showDeleteDialog = logic.showDeleteDialog,
                 showNameDialog = logic.showNameDialog,
                 showChangeLevelDialog = logic.showChangeLevelDialog,

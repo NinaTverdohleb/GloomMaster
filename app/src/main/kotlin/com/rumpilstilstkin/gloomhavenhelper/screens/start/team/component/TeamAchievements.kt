@@ -17,6 +17,7 @@ import com.rumpilstilstkin.gloomhavenhelper.R
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.GloomCard
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.items.GloomListItem
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.items.LeftItemIcon
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.text.GloomHeaderVariant
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.icons.AppIcon
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.AchievementWithName
@@ -57,11 +58,7 @@ private fun AchievementView(
     modifier = modifier,
     verticalArrangement = Arrangement.spacedBy(12.dp)
 ) {
-    Text(
-        text = title,
-        style = MaterialTheme.typography.bodyMedium,
-        color = MaterialTheme.colorScheme.primaryContainer,
-    )
+    GloomHeaderVariant(text = title)
     GloomCard(
         modifier = modifier
             .fillMaxWidth()
@@ -71,7 +68,6 @@ private fun AchievementView(
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .clickable { clickAchievement() }
                 .padding(
                     vertical = paddings,
                     horizontal = 16.dp

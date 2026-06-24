@@ -58,7 +58,8 @@ fun GloomButton(
 
 @Preview
 @Composable
-private fun GloomButtonPreview() {
+private fun
+        GloomButtonPreview() {
     GloomhavenMasterTheme {
         Column(
             verticalArrangement = Arrangement.spacedBy(16.dp),

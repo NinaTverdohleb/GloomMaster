@@ -30,7 +30,7 @@
     <string name="round_status">Раунд: %1$d</string>
     <string name="add_monster">Добавить монстра</string>
     <string name="save">Сохранить</string>
-    <string name="scenario_number_format"># %1$d</string>
+    <string name="scenario_number_format"># %1$s</string>
     <string name="location_format">Регион: %1$s</string>
     <string name="complete">Завершить</string>
     <string name="complete_scenario">Завершить сценарий</string>
@@ -191,4 +191,5 @@
     <string name="delete_character">Delete character</string>
     <string name="empty_team_achievements_description">Add Achivments for team</string>
     <string name="delete_achivment_dialog_description">Do you want to delete %1$s achievement</string>
+    <string name="add_personal_quest">Add quest</string>
 </resources>

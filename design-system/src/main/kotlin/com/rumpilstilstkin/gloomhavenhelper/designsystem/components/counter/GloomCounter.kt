@@ -1,5 +1,6 @@
 package com.rumpilstilstkin.gloomhavenhelper.designsystem.components.counter
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -38,7 +39,8 @@ fun GloomGloomCounterProgress(
         modifier = modifier
             .fillMaxWidth()
             .height(12.dp)
-            .clip(RoundedCornerShape(50)),
+            .clip(RoundedCornerShape(50))
+            .background(MaterialTheme.colorScheme.surfaceContainerHighest),
         color = MaterialTheme.colorScheme.secondary,
         trackColor = MaterialTheme.colorScheme.surfaceContainerHighest,
         strokeCap = StrokeCap.Round,

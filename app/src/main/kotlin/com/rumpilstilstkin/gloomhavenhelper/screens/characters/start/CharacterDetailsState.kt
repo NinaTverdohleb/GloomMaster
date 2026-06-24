@@ -2,6 +2,7 @@ package com.rumpilstilstkin.gloomhavenhelper.screens.characters.start
 
 import androidx.compose.runtime.Immutable
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.CharacterClassTypeUI
+import com.rumpilstilstkin.gloomhavenhelper.screens.models.CharacterUI
 
 sealed interface CharacterDetailsAction {
     data object Back : CharacterDetailsAction
@@ -43,9 +44,7 @@ data class CharacterDetailsStateLogic(
 
 @Immutable
 data class CharacterDetailsStateUi(
-    val level: Int = 0,
-    val name: String = "",
-    val type: CharacterClassTypeUI = CharacterClassTypeUI.Brute,
+    val character: CharacterUI = CharacterUI.fixture(),
     val teamName: String = "",
     val showDeleteDialog: Boolean = false,
     val showNameDialog: Boolean = false,

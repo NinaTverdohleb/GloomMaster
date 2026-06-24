@@ -1,7 +1,10 @@
 package com.rumpilstilstkin.gloomhavenhelper.ui.characters
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -53,6 +56,29 @@ fun CharacterItem(
     }
 )
 
+@Composable
+fun CharacterHeaderItem(
+    character: CharacterUI,
+    onClick: (CharacterUI) -> Unit,
+    modifier: Modifier = Modifier,
+) = GloomListItem(
+    modifier = modifier
+        .padding(16.dp),
+    title = character.name,
+    description = stringResource(character.characterClass.titleRes),
+    leftComponent = {
+        LeftItemImage(
+            icon = character.characterClass.image
+        )
+    },
+    rightComponent = {
+        RightItemNumber(
+            number = character.level.toString()
+        )
+    },
+    onClick = { onClick(character) }
+)
+
 @Preview
 @Composable
 private fun CharacterItemPreview() {
@@ -65,6 +91,11 @@ private fun CharacterItemPreview() {
                 character = CharacterUI.fixture(),
             )
             CharacterItemFilled(
+                character = CharacterUI.fixture(),
+                onClick = {}
+            )
+
+            CharacterHeaderItem(
                 character = CharacterUI.fixture(),
                 onClick = {}
             )
