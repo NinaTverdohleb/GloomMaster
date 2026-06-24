@@ -55,6 +55,7 @@ fun GloomCounterFull(
     intRange: IntRange,
     modifier: Modifier = Modifier,
     showSign: Boolean = false,
+    repeat: Boolean = false,
     onValueChange: (Int) -> Unit,
 ) {
 
@@ -66,6 +67,7 @@ fun GloomCounterFull(
         GloomCountButton(
             value = value,
             type = PickerButtonType.MINUS,
+            repeat = repeat,
             onValueChange = {
                 onValueChange(checkRange(it, intRange))
             },
@@ -88,6 +90,7 @@ fun GloomCounterFull(
         GloomCountButton(
             value = value,
             type = PickerButtonType.PLUS,
+            repeat = repeat,
             onValueChange = {
                 onValueChange(checkRange(it, intRange))
             },

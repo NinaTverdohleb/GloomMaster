@@ -60,6 +60,7 @@ fun ExperienceRow(
             GloomCounterFull(
                 value = experience,
                 intRange = levelRange,
+                repeat = true,
                 onValueChange = onExperienceChanged,
             )
         }

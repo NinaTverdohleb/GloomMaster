@@ -2,6 +2,7 @@ package com.rumpilstilstkin.gloomhavenhelper.designsystem.components.counter
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -12,14 +13,19 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.icons.AppIcon
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.icons.GloomIcon
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import kotlin.time.Duration.Companion.milliseconds
 
 @Composable
 fun GloomCountButtonSmall(
@@ -54,9 +60,13 @@ fun GloomCountButtonSmall(
 fun GloomCountButton(
     value: Int,
     modifier: Modifier = Modifier,
+    repeat: Boolean = false,
     type: PickerButtonType = PickerButtonType.PLUS,
     onValueChange: (Int) -> Unit = {},
 ) {
+    val scope = rememberCoroutineScope()
+    val initialDelayMillis = 500.milliseconds
+    val repeatIntervalMillis = 100.milliseconds
     IconButton(
         modifier =
             modifier
@@ -69,8 +79,31 @@ fun GloomCountButton(
                     color = MaterialTheme.colorScheme.outline,
                     width = 1.dp,
                 )
-                .size(36.dp),
-        onClick = { onValueChange(type.action(value)) },
+                .size(36.dp)
+                .pointerInput(Unit) {
+                    detectTapGestures(
+                        onTap = {
+                            onValueChange(type.action(value))
+                        },
+                        onPress = {
+                            if (repeat) {
+                                val job = scope.launch {
+                                    delay(initialDelayMillis)
+                                    while (true) {
+                                        onValueChange(type.action(value))
+                                        delay(repeatIntervalMillis)
+                                    }
+                                }
+                                try {
+                                    awaitRelease()
+                                } finally {
+                                    job.cancel()
+                                }
+                            }
+                        }
+                    )
+                },
+        onClick = { },
     ) {
         Box(
             modifier = Modifier.size(36.dp),
