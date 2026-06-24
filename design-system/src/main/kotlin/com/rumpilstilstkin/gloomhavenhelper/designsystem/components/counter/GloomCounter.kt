@@ -68,34 +68,65 @@ fun GloomCounterFull(
                 onValueChange(checkRange(it, intRange))
             },
         )
-        Column(
+        val text =
+            if (showSign) {
+                String.format(LocalLocale.current.platformLocale, "%+d", value)
+            } else {
+                value.toString()
+            }
+        Text(
             modifier =
                 Modifier
-                    .align(CenterVertically)
-                    .weight(1f, fill = false)
-                    .defaultMinSize(minWidth = 48.dp)
-                    .padding(bottom = 4.dp),
-            horizontalAlignment = Alignment.CenterHorizontally,
-        ) {
-            val text =
-                if (showSign) {
-                    String.format(LocalLocale.current.platformLocale, "%+d", value)
-                } else {
-                    value.toString()
-                }
-            Box {
-                Text(
-                    modifier =
-                        Modifier
-                            .padding(12.dp),
-                    style = MaterialTheme.typography.headlineLarge,
-                    text = text,
-                    textAlign = TextAlign.Center,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                )
-            }
-        }
+                    .padding(horizontal = 12.dp),
+            style = MaterialTheme.typography.headlineLarge,
+            text = text,
+            textAlign = TextAlign.Center,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+        )
         GloomCountButton(
+            value = value,
+            type = PickerButtonType.PLUS,
+            onValueChange = {
+                onValueChange(checkRange(it, intRange))
+            },
+        )
+    }
+}
+
+@Composable
+fun GloomCounterSmall(
+    value: Int,
+    intRange: IntRange,
+    modifier: Modifier = Modifier,
+    showSign: Boolean = false,
+    onValueChange: (Int) -> Unit,
+) {
+    Row(
+        modifier = modifier,
+        horizontalArrangement = Arrangement.SpaceBetween,
+        verticalAlignment = CenterVertically,
+    ) {
+        GloomCountButtonSmall(
+            value = value,
+            type = PickerButtonType.MINUS,
+            onValueChange = {
+                onValueChange(checkRange(it, intRange))
+            },
+        )
+        val text =
+            if (showSign) {
+                String.format(LocalLocale.current.platformLocale, "%+d", value)
+            } else {
+                value.toString()
+            }
+        Text(
+            modifier = Modifier.padding(horizontal = 8.dp),
+            style = MaterialTheme.typography.titleLarge,
+            text = text,
+            textAlign = TextAlign.Center,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+        )
+        GloomCountButtonSmall(
             value = value,
             type = PickerButtonType.PLUS,
             onValueChange = {
@@ -125,6 +156,12 @@ private fun GloomCounterPreview() {
             verticalArrangement = Arrangement.spacedBy(16.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
+            GloomCounterSmall(
+                value = 5,
+                intRange = IntRange(0, 15),
+                onValueChange = {},
+            )
+
             GloomCounterFull(
                 value = 5,
                 intRange = IntRange(0, 15),

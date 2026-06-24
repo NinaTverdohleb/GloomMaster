@@ -17,6 +17,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.rumpilstilstkin.gloomhavenhelper.R
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.buttons.GloomButton
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.empty.EmptyIconView
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.icons.EmptyIcon
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
@@ -35,17 +36,11 @@ internal fun EmptyTeamScreen(
 ) {
     EmptyIconView(EmptyIcon.Logo)
     Spacer(modifier = Modifier.height(48.dp))
-    Button(
+    GloomButton(
         modifier = Modifier.fillMaxWidth(),
+        text = stringResource(R.string.start_adventure),
         onClick = addTeam,
-    ) {
-        Text(
-            modifier = Modifier.padding(8.dp),
-            text = stringResource(R.string.start_adventure),
-            style = MaterialTheme.typography.bodyLarge,
-            color = MaterialTheme.colorScheme.onPrimary,
-        )
-    }
+    )
 }
 
 @Preview

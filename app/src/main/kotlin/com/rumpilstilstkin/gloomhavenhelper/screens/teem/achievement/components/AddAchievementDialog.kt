@@ -28,7 +28,7 @@ fun AddAchievementDialog(
     onSelect: (AchievementWithName) -> Unit,
 ) {
     GloomAlertDialog(
-        title = stringResource(R.string.add_achievement_title),
+        title = stringResource(R.string.add_achievement),
         onDismissRequest = onDismiss,
         onConfirmRequest = null,
         onNeutralRequest = onDismiss,

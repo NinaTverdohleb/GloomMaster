@@ -27,7 +27,7 @@ fun GloomOutlinedTextField(
     label = {
         Text(
             text = label,
-            style = MaterialTheme.typography.labelSmall,
+            style = MaterialTheme.typography.labelLarge,
         )
     },
     shape = RoundedCornerShape(12.dp),
@@ -46,7 +46,7 @@ private fun GloomOutlinedTextFieldPreview() {
     GloomhavenMasterTheme {
         Box(modifier = Modifier.padding(40.dp)) {
             GloomOutlinedTextField(
-                value = "Some text",
+                value = "",
                 label = "label",
                 onValueChange = {}
             )
