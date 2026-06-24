@@ -35,14 +35,14 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.text.image.TextWithImagesByCode
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.icons.game.IconCode.Companion.toIconCode
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
-import com.rumpilstilstkin.gloomhavenhelper.domain.entity.IconCode.Companion.toIconCode
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterCard
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterCardAction
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.state.sampleDeck
 import com.rumpilstilstkin.gloomhavenhelper.ui.icons.GameIcon
 import com.rumpilstilstkin.gloomhavenhelper.ui.icons.GameIcon.Companion.toGameIcon
-import com.rumpilstilstkin.gloomhavenhelper.ui.icons.text.TextWithImagesByCode
 
 private const val SQRT_3_OVER_2 = 0.8660254f
 
@@ -146,7 +146,6 @@ fun ActionMonsterEffect(
                 if (item.text.contains(Regex("\\p{L}"))) fontSize else fontSize.div(0.8)
             TextWithImagesByCode(
                 text = item.text,
-                fontSize = adaptiveFontSize,
                 textAlign = TextAlign.Center,
             )
 

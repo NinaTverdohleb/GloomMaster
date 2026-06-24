@@ -3,7 +3,7 @@ package com.rumpilstilstkin.gloomhavenhelper.ui.icons
 import androidx.annotation.StringRes
 import androidx.compose.ui.graphics.Color
 import com.rumpilstilstkin.gloomhavenhelper.R
-import com.rumpilstilstkin.gloomhavenhelper.domain.entity.IconCode
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.icons.game.IconCode
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterStatType
 
 enum class GameIcon(

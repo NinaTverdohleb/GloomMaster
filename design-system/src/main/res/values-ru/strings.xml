@@ -2,4 +2,37 @@
     <string name="design_system_back">Назад</string>
     <string name="design_system_delete">Удалить</string>
     <string name="design_system_close">Закрыть</string>
+
+    <string name="design_system_icon_light">Стихия</string>
+    <string name="design_system_icon_area">Область:</string>
+    <string name="design_system_icon_next">Следующий</string>
+    <string name="design_system_icon_push">Толкнуть</string>
+    <string name="design_system_icon_pierce">Пробитие</string>
+    <string name="design_system_icon_stun">Оглушение</string>
+    <string name="design_system_icon_disarm">Разоружить</string>
+    <string name="design_system_icon_confuse">Смятение</string>
+    <string name="design_system_icon_target">Цель</string>
+    <string name="design_system_icon_wound">Рана</string>
+    <string name="design_system_icon_pull">Притянуть</string>
+    <string name="design_system_icon_immobilize">Обездвижить</string>
+    <string name="design_system_icon_poison">Отравление</string>
+    <string name="design_system_icon_curse">Проклятие</string>
+    <string name="design_system_icon_invisibility">Невидимость</string>
+    <string name="design_system_icon_bless">Благословение</string>
+    <string name="design_system_icon_strength">Усиление</string>
+    <string name="design_system_icon_retaliate">Ответный удар</string>
+    <string name="design_system_icon_ranged_attack">Дальний удар</string>
+    <string name="design_system_icon_move">Движение</string>
+    <string name="design_system_icon_regenerate">Регенерация</string>
+    <string name="design_system_icon_shield">Защита</string>
+    <string name="design_system_icon_heal">Лечение</string>
+    <string name="design_system_icon_attack">Атака</string>
+    <string name="design_system_icon_loot">Добыча</string>
+    <string name="design_system_icon_plus_1">+1</string>
+    <string name="design_system_icon_plus_2">+2</string>
+    <string name="design_system_icon_plus_3">+3</string>
+    <string name="design_system_icon_plus_4">+4</string>
+    <string name="design_system_icon_plus_0">+0</string>
+    <string name="design_system_icon_minus_1">−1</string>
+    <string name="design_system_icon_minus_2">−2</string>
 </resources>

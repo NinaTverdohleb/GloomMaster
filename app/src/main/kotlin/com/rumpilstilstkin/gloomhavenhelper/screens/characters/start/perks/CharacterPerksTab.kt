@@ -3,8 +3,6 @@ package com.rumpilstilstkin.gloomhavenhelper.screens.characters.start.perks
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -15,21 +13,17 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.rumpilstilstkin.gloomhavenhelper.R
-import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.GloomCard
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.buttons.GloomFab
-import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.items.GloomItemActionIcon
-import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.items.GloomSwipeableListItem
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.icons.AppIcon
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
 import com.rumpilstilstkin.gloomhavenhelper.screens.characters.start.perks.components.EmptyPerks
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.PerkUI
-import com.rumpilstilstkin.gloomhavenhelper.ui.icons.text.TextWithImagesByCode
+import com.rumpilstilstkin.gloomhavenhelper.ui.perks.PerkActionItem
 import kotlinx.collections.immutable.toImmutableList
 
 @Composable
@@ -55,7 +49,8 @@ fun CharacterPerkTabScreen(
     ) {
         Text(
             text = stringResource(R.string.available_to_add_format, uiState.avaliablePerksCount),
-            style = MaterialTheme.typography.headlineSmall,
+            style = MaterialTheme.typography.titleMedium,
+            color = MaterialTheme.colorScheme.onSurface
         )
 
         if (uiState.characterPerks.isEmpty()) {
@@ -75,44 +70,12 @@ fun CharacterPerkTabScreen(
                     items = uiState.characterPerks,
                     key = { perk -> perk.id },
                 ) { perk ->
-                    GloomSwipeableListItem(
-                        menuContent = {
-                            GloomItemActionIcon(
-                                modifier = Modifier.fillMaxHeight(),
-                                icon = AppIcon.Delete,
-                                isError = true,
-                                onClick = { deletePerk(perk) },
-                            )
-                        },
-                        item = {
-                            PerkItem(
-                                modifier = Modifier.animateItem(),
-                                perk = perk,
-                            )
-                        },
+                    PerkActionItem(
+                        perk = perk,
+                        delete = deletePerk
                     )
                 }
             }
-        }
-    }
-}
-
-@Composable
-private fun PerkItem(
-    perk: PerkUI,
-    modifier: Modifier = Modifier,
-) {
-    GloomCard(
-        modifier = modifier.fillMaxWidth(),
-    ) {
-        Row(
-            modifier =
-                Modifier
-                    .fillMaxWidth()
-                    .padding(16.dp),
-            verticalAlignment = Alignment.CenterVertically,
-        ) {
-            TextWithImagesByCode(modifier = Modifier.weight(1f), text = perk.text)
         }
     }
 }

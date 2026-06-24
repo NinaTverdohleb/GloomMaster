@@ -39,9 +39,14 @@ fun TextImageFilledItem(
             modifier = Modifier
                 .fillMaxWidth()
                 .heightIn(min = 64.dp)
-                .padding(vertical = 8.dp, horizontal = 12.dp)
+                .padding(vertical = 8.dp, horizontal = 12.dp),
+            contentAlignment = Alignment.Center
         ) {
-            TextWithImagesByCode(text = text)
+            TextWithImagesByCode(
+                modifier = Modifier.fillMaxWidth(),
+                style = MaterialTheme.typography.bodyLarge,
+                text = text
+            )
         }
     }
 }
@@ -228,6 +233,10 @@ private fun GloomListItemPreview() {
                     RightItemChecker(true, {})
                 }
 
+            )
+
+            TextImageFilledItem(
+                text = "Replace one card #01 with one card #03"
             )
         }
     }
