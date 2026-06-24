@@ -37,6 +37,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.rumpilstilstkin.gloomhavenhelper.R
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.text.image.TextWithImagesByCode
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterAction
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterStatType
@@ -44,7 +45,6 @@ import com.rumpilstilstkin.gloomhavenhelper.domain.entity.scenario.MonsterUnit
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomSize
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.NumberPickerProgress
 import com.rumpilstilstkin.gloomhavenhelper.ui.icons.GameIcon.Companion.toGameIcon
-import com.rumpilstilstkin.gloomhavenhelper.ui.icons.text.TextWithImagesByCode
 
 @Composable
 fun MonsterUnitCard(

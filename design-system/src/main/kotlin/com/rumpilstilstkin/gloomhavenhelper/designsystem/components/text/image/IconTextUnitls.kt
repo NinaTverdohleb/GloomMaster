@@ -8,7 +8,6 @@ import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.Placeholder
@@ -55,14 +54,14 @@ fun rememberIconsInlineContent(fontSize: TextUnit): Map<String, InlineTextConten
 
                     if (icon.color != null) {
                         Icon(
-                            painter = painterResource(id = icon.imageRes),
+                            painter = icon.image.painter(),
                             contentDescription = stringResource(id = icon.titleRes),
                             tint = icon.color,
                             modifier = modifier,
                         )
                     } else {
                         Image(
-                            painter = painterResource(id = icon.imageRes),
+                            painter = icon.image.painter(),
                             contentDescription = stringResource(id = icon.titleRes),
                             modifier = modifier,
                         )

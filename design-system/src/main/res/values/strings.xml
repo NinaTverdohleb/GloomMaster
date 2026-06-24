@@ -2,4 +2,37 @@
     <string name="design_system_back">Back</string>
     <string name="design_system_delete">Delete</string>
     <string name="design_system_close">Close</string>
+
+    <string name="design_system_icon_light">Element</string>
+    <string name="design_system_icon_area">Area:</string>
+    <string name="design_system_icon_next">Next</string>
+    <string name="design_system_icon_push">Push</string>
+    <string name="design_system_icon_pierce">Pierce</string>
+    <string name="design_system_icon_stun">Stun</string>
+    <string name="design_system_icon_disarm">Disarm</string>
+    <string name="design_system_icon_confuse">Muddle</string>
+    <string name="design_system_icon_target">Target</string>
+    <string name="design_system_icon_wound">Wound</string>
+    <string name="design_system_icon_pull">Pull</string>
+    <string name="design_system_icon_immobilize">Immobilize</string>
+    <string name="design_system_icon_poison">Poison</string>
+    <string name="design_system_icon_curse">Curse</string>
+    <string name="design_system_icon_invisibility">Invisibility</string>
+    <string name="design_system_icon_bless">Bless</string>
+    <string name="design_system_icon_strength">Strengthen</string>
+    <string name="design_system_icon_retaliate">Retaliate</string>
+    <string name="design_system_icon_ranged_attack">Ranged Attack</string>
+    <string name="design_system_icon_move">Move</string>
+    <string name="design_system_icon_shield">Shield</string>
+    <string name="design_system_icon_heal">Heal</string>
+    <string name="design_system_icon_attack">Attack</string>
+    <string name="design_system_icon_loot">Loot</string>
+    <string name="design_system_icon_regenerate">Regenerate</string>
+    <string name="design_system_icon_plus_1">+1</string>
+    <string name="design_system_icon_plus_2">+2</string>
+    <string name="design_system_icon_plus_3">+3</string>
+    <string name="design_system_icon_plus_4">+4</string>
+    <string name="design_system_icon_plus_0">+0</string>
+    <string name="design_system_icon_minus_1">−1</string>
+    <string name="design_system_icon_minus_2">−2</string>
 </resources>
