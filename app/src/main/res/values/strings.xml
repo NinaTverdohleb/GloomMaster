@@ -157,11 +157,17 @@
     <string name="new_team_title">New Team</string>
     <string name="import_button">Import</string>
     <string name="sell_button">Sell</string>
+    <string name="delete_good_dialog_title">Delete item?</string>
+    <string name="delete_good_dialog_description">Are you sure you want to delete %1$s?</string>
+    <string name="sell_good_dialog_title">Sell item?</string>
+    <string name="sell_good_dialog_description">Sell %1$s for %2$d gold?</string>
     <string name="available_to_add_format">Available to add: %1$d</string>
     <string name="delete_perk_desc">Delete perk</string>
     <string name="delete_team_confirm_title">Delete party?</string>
     <string name="delete_team_confirm_warning">Are you sure you want to delete party \"%1$s\"? This action cannot be undone.</string>
     <string name="empty_team_achievements">No party achievements</string>
+    <string name="empty_character_goods">No items</string>
+    <string name="empty_character_goods_description">Add items for character</string>
     <string name="no_conditions">No requirements</string>
     <string name="achievement_obtained_format">Achievement gained: %1$s</string>
     <string name="achievement_not_obtained_format">Achievement missing: %1$s</string>

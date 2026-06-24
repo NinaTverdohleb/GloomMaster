@@ -2,17 +2,25 @@ package com.rumpilstilstkin.gloomhavenhelper.screens.characters.start.goods
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.goods.DeleteCharacterGoodsUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.goods.GetCharacterGoodsUseCase
-import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.goods.SellGoodCharacterUseCase
 import com.rumpilstilstkin.gloomhavenhelper.navigation.GlHelperScreen
 import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEvent
+import com.rumpilstilstkin.gloomhavenhelper.screens.characters.start.goods.delete.DeleteGoodDialogContract
+import com.rumpilstilstkin.gloomhavenhelper.screens.characters.start.goods.delete.DeleteGoodDialogInput
+import com.rumpilstilstkin.gloomhavenhelper.screens.characters.start.goods.sell.SellGoodDialogContract
+import com.rumpilstilstkin.gloomhavenhelper.screens.characters.start.goods.sell.SellGoodDialogInput
+import com.rumpilstilstkin.gloomhavenhelper.screens.core.ScreenEffect
+import com.rumpilstilstkin.gloomhavenhelper.screens.core.createOverlaySession
+import com.rumpilstilstkin.gloomhavenhelper.screens.goods.GoodDetailsDialogContract
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.GoodUi
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.toUi
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.collections.immutable.ImmutableList
+import kotlinx.collections.immutable.persistentListOf
+import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -25,19 +33,20 @@ import kotlinx.coroutines.launch
 class CharacterGoodsTabViewModel @AssistedInject constructor(
     @Assisted val id: Int,
     getCharacterGoodsUseCase: GetCharacterGoodsUseCase,
-    private val deleteCharacterGoodsUseCase: DeleteCharacterGoodsUseCase,
-    private val sellGoodCharacterUseCase: SellGoodCharacterUseCase,
 ) : ViewModel() {
-    private val _navigationEvents = MutableSharedFlow<GlHelperEvent>()
-    val navigationEvents = _navigationEvents.asSharedFlow()
+    private val _screenEvents = MutableSharedFlow<ScreenEffect>()
+    val screenEvents = _screenEvents.asSharedFlow()
 
-    val uiState: StateFlow<List<GoodUi>> =
+    val uiState: StateFlow<ImmutableList<GoodUi>> =
         getCharacterGoodsUseCase(id)
             .map { item ->
-                item.map { good -> good.toUi() }.sortedBy { it.number }
+                item
+                    .map { good -> good.toUi() }
+                    .sortedBy { it.number }
+                    .toImmutableList()
             }.stateIn(
                 scope = viewModelScope,
-                initialValue = emptyList(),
+                initialValue = persistentListOf(),
                 started = SharingStarted.WhileSubscribed(5000),
             )
 
@@ -45,25 +54,53 @@ class CharacterGoodsTabViewModel @AssistedInject constructor(
         viewModelScope.launch {
             when (action) {
                 is CharacterItemsTabActions.DeleteGood -> {
-                    deleteCharacterGoodsUseCase(
-                        goodId = action.goodId,
-                        characterId = id,
-                    )
+                    val session =
+                        createOverlaySession(
+                            contract = DeleteGoodDialogContract,
+                            input =
+                                DeleteGoodDialogInput(
+                                    goodId = action.good.goodId,
+                                    characterId = id,
+                                    name = action.good.name,
+                                ),
+                            onResult = { },
+                        )
+                    _screenEvents.emit(ScreenEffect.OpenDialog(session))
                 }
 
                 is CharacterItemsTabActions.SellGood -> {
-                    sellGoodCharacterUseCase(
-                        goodId = action.goodId,
-                        characterId = id,
-                        cost = action.cost,
-                    )
+                    val session =
+                        createOverlaySession(
+                            contract = SellGoodDialogContract,
+                            input =
+                                SellGoodDialogInput(
+                                    goodId = action.good.goodId,
+                                    characterId = id,
+                                    name = action.good.name,
+                                    cost = action.good.cost,
+                                ),
+                            onResult = { },
+                        )
+                    _screenEvents.emit(ScreenEffect.OpenDialog(session))
+                }
+
+                is CharacterItemsTabActions.GoodDetails -> {
+                    val session =
+                        createOverlaySession(
+                            contract = GoodDetailsDialogContract,
+                            input = action.good,
+                            onResult = { },
+                        )
+                    _screenEvents.emit(ScreenEffect.OpenDialog(session))
                 }
 
                 CharacterItemsTabActions.AddGood -> {
-                    _navigationEvents.emit(
-                        GlHelperEvent.Screen(
-                            GlHelperScreen.AddGoodsForCharacter(
-                                characterId = id,
+                    _screenEvents.emit(
+                        ScreenEffect.Navigation(
+                            GlHelperEvent.Screen(
+                                GlHelperScreen.AddGoodsForCharacter(
+                                    characterId = id,
+                                ),
                             ),
                         ),
                     )
