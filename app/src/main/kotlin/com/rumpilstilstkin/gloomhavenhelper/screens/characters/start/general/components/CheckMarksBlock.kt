@@ -71,7 +71,7 @@ fun CheckMarks(
                             Checkbox(
                                 modifier = Modifier.padding(2.dp),
                                 checked = isChecked,
-                                onCheckedChange = { onClick(isChecked) },
+                                onCheckedChange = { onClick(!isChecked) },
                                 colors = CheckboxDefaults.colors(
                                     checkedColor = MaterialTheme.colorScheme.primary,
                                     checkmarkColor = MaterialTheme.colorScheme.onPrimary,

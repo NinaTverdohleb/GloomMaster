@@ -10,8 +10,16 @@ import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.characters.UpdateGold
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.characters.UpdateNotesUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.characters.quests.QuestTaskUpdateUseCase
 import com.rumpilstilstkin.gloomhavenhelper.navigation.GlHelperScreen
+import com.rumpilstilstkin.gloomhavenhelper.navigation.GlHelperScreen.*
 import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEvent
+import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEvent.*
+import com.rumpilstilstkin.gloomhavenhelper.screens.characters.quests.dialog.QuestDetailsDialogContract
+import com.rumpilstilstkin.gloomhavenhelper.screens.characters.quests.dialog.QuestDetailsDialogInput
+import com.rumpilstilstkin.gloomhavenhelper.screens.core.ScreenEffect
+import com.rumpilstilstkin.gloomhavenhelper.screens.core.createOverlaySession
+import com.rumpilstilstkin.gloomhavenhelper.screens.models.PersonalQuestUI
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.toUI
+import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.dialog.delete.DeleteScenarioDialogContract
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
@@ -35,8 +43,8 @@ class CharacterGeneralTabViewModel @AssistedInject constructor(
     private val updateNotesUseCase: UpdateNotesUseCase,
     private val questTaskUpdateUseCase: QuestTaskUpdateUseCase,
 ) : ViewModel() {
-    private val _navigationEvents = MutableSharedFlow<GlHelperEvent>()
-    val navigationEvents = _navigationEvents.asSharedFlow()
+    private val _screenEvents = MutableSharedFlow<ScreenEffect>()
+    val screenEvents = _screenEvents.asSharedFlow()
 
     val uiState: StateFlow<CharacterGeneralTabState> =
         getCharacterUseCase(id)
@@ -80,17 +88,11 @@ class CharacterGeneralTabViewModel @AssistedInject constructor(
                     checkedChangeUseCase.invoke(id, action.isChecked)
                 }
 
-                is GeneralTabActions.NotesChanged -> {
-                    updateNotesUseCase.invoke(id, action.notes)
-                }
-
                 GeneralTabActions.ChoosePersonalQuest -> {
-                    _navigationEvents.emit(
-                        GlHelperEvent.Screen(
-                            GlHelperScreen.SearchPersonalQuest(
-                                id,
-                            ),
-                        ),
+                    _screenEvents.emit(
+                        ScreenEffect.Navigation(
+                            (Screen(SearchPersonalQuest(id)))
+                        )
                     )
                 }
 
@@ -113,6 +115,15 @@ class CharacterGeneralTabViewModel @AssistedInject constructor(
                             ),
                     )
                 }
+
+                GeneralTabActions.OpenNotes -> TODO()
+                GeneralTabActions.OpenQuest -> {
+                    val quest = uiState.value.personalQuest ?: return@launch
+                    openQuestDialog(
+                        quest = quest,
+                        characterId = id,
+                    )
+                }
             }
         }
     }
@@ -120,5 +131,30 @@ class CharacterGeneralTabViewModel @AssistedInject constructor(
     @AssistedFactory
     interface Factory {
         fun create(id: Int): CharacterGeneralTabViewModel
+    }
+
+    private fun openNotesDialog() {
+
+    }
+
+    private fun openQuestDialog(
+        quest: PersonalQuestUI,
+        characterId: Int,
+    ) {
+        viewModelScope.launch {
+            val session = createOverlaySession(
+                contract = QuestDetailsDialogContract,
+                input = QuestDetailsDialogInput(
+                    quest = quest,
+                    characterId = characterId,
+                    selected = true
+                ),
+                onResult = {
+                    onAction(GeneralTabActions.ChoosePersonalQuest)
+                }
+            )
+            _screenEvents.emit(ScreenEffect.OpenDialog(session))
+        }
+
     }
 }

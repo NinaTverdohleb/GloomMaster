@@ -41,16 +41,6 @@ internal fun CharacterDetailsScreen(
             onDismiss = hideNameDialog,
             onSave = saveName,
         )
-    }
-
-    if (state.showChangeLevelDialog) {
-        CharacterEditLevelDialog(
-            characterLevel = state.level,
-            characterName = state.name,
-            characterClass = state.type,
-            dismiss = hideChangeLevelDialog,
-            changeLevel = changeLevel,
-        )
     }*/
 
     Scaffold(
@@ -109,7 +99,7 @@ internal fun CharactersTabs(
         GloomTopNavigationBar(
             items = CharacterDetailsTab.entries,
             selectedItem = selectedTab,
-            selectTab = { tab -> selectedTab = tab as CharacterDetailsTab},
+            selectTab = { tab -> selectedTab = tab as CharacterDetailsTab },
         )
         selectTab(selectedTab)
     }
@@ -141,7 +131,15 @@ private fun CharacterDetailsScreenPreview() {
                             nextLevel = 175,
                             notes = "Some notes",
                         ),
-                    onAction = {},
+                    openNotes = {},
+                    onLevelUp = {},
+                    onGoldChanged = {},
+                    onExperienceChanged = {},
+                    onCheckedChange = {},
+                    choosePersonalQuest = {},
+                    onTaskCheckedChange = {},
+                    showQuestDetails = {},
+                    onTaskCountChanged = { _, _ -> },
                 )
             },
         )

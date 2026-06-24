@@ -39,8 +39,7 @@ fun QuestDetailsDialog(
 ) {
     Column(
         modifier = Modifier
-            .fillMaxWidth()
-            .padding(16.dp),
+            .fillMaxWidth(),
         verticalArrangement = Arrangement.spacedBy(20.dp)
     ) {
         GloomHeader(
@@ -107,7 +106,7 @@ private fun Rewards(
     alternativeReward: String,
 ) {
     Column(
-        verticalArrangement = Arrangement.spacedBy(8.dp)
+        verticalArrangement = Arrangement.spacedBy(4.dp)
     ) {
         GloomHeaderVariant(
             modifier = Modifier.fillMaxWidth(),
