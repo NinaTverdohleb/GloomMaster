@@ -1,10 +1,8 @@
-package com.rumpilstilstkin.gloomhavenhelper.ui.icons
+package com.rumpilstilstkin.gloomhavenhelper.designsystem.icons.game
 
 import androidx.annotation.StringRes
 import androidx.compose.ui.graphics.Color
-import com.rumpilstilstkin.gloomhavenhelper.R
-import com.rumpilstilstkin.gloomhavenhelper.domain.entity.IconCode
-import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterStatType
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.R
 
 enum class GameIcon(
     val textCode: IconCode,
@@ -92,31 +90,6 @@ enum class GameIcon(
     ;
 
     companion object {
-        fun IconCode.toGameIcon(): GameIcon = GameIcon.entries.first { it.textCode == this }
-
-        fun MonsterStatType.toGameIcon(): GameIcon =
-            when (this) {
-                MonsterStatType.ATTACK -> ATTACK
-                MonsterStatType.MOVE -> MOVE
-                MonsterStatType.RANGE -> RANGED_ATTACK
-                MonsterStatType.SHIELD -> SHIELD
-                MonsterStatType.RETALIATE -> RETALIATE
-                MonsterStatType.TARGET -> TARGET
-                MonsterStatType.POISON -> POISON
-                MonsterStatType.WOUND -> WOUND
-                MonsterStatType.MUDDLE -> CONFUSE
-                MonsterStatType.STUN -> STUN
-                MonsterStatType.IMMOBILIZE -> IMMOBILIZE
-                MonsterStatType.DISARM -> DISARM
-                MonsterStatType.CURSE -> CURSE
-                MonsterStatType.STRENGTHEN -> STRENGTH
-                MonsterStatType.INVISIBLE -> INVISIBILITY
-                MonsterStatType.HEAL -> HEAL
-                MonsterStatType.PUSH -> PUSH
-                MonsterStatType.BLESS -> BLESS
-                MonsterStatType.PULL -> PULL
-                MonsterStatType.PIERCE -> PIERCE
-                MonsterStatType.REGENERATE -> REGENERATE
-            }
+        fun IconCode.toGameIcon(): GameIcon = entries.first { it.textCode == this }
     }
 }

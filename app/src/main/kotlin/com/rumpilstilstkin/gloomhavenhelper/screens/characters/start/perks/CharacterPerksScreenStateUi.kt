@@ -10,9 +10,4 @@ data class CharacterPerksScreenStateUi(
     val characterPerks: ImmutableList<PerkUI> = persistentListOf(),
     val avaliablePerks: ImmutableList<PerkUI> = persistentListOf(),
     val avaliablePerksCount: Int = 0,
-    val showAddPerksDialog: Boolean = false,
-)
-
-data class CharacterPerksScreenStateLogic(
-    val showAddPerksDialog: Boolean = false,
 )

@@ -22,9 +22,29 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.GloomCard
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.text.image.TextWithImagesByCode
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.icons.AppIcon
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.icons.GoodIcon
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
+
+@Composable
+fun TextImageFilledItem(
+    text: String,
+    modifier: Modifier = Modifier
+) {
+    GloomCard(
+        modifier = modifier,
+    ) {
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .heightIn(min = 64.dp)
+                .padding(vertical = 8.dp, horizontal = 12.dp)
+        ) {
+            TextWithImagesByCode(text = text)
+        }
+    }
+}
 
 @Composable
 fun GloomListFilledItem(

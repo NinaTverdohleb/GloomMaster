@@ -50,7 +50,7 @@ fun QuestItemFilled(
 
 @Preview
 @Composable
-private fun GoodItemPreview() {
+private fun QuestItemPreview() {
     GloomhavenMasterTheme {
         Column(
             verticalArrangement = Arrangement.spacedBy(16.dp),

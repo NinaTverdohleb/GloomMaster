@@ -42,7 +42,7 @@ fun CharacterDetailsRoute(
             when (tab) {
                 CharacterDetailsTab.GENERAL -> CharacterGeneralTabRoute(characterId, navController)
                 CharacterDetailsTab.STUFF -> CharacterItemsTabRoute(characterId, navController)
-                CharacterDetailsTab.SKILLS -> CharacterPerksTabRoute(characterId)
+                CharacterDetailsTab.SKILLS -> CharacterPerksTabRoute(characterId, navController)
             }
         },
     )

@@ -4,27 +4,33 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.navigation.NavHostController
+import com.rumpilstilstkin.gloomhavenhelper.screens.core.LaunchedScreenEffect
 
 @Composable
-fun CharacterPerksTabRoute(characterId: Int) {
+fun CharacterPerksTabRoute(
+    characterId: Int,
+    navController: NavHostController,
+) {
     val viewModel =
         hiltViewModel<CharacterPerksTabViewModel, CharacterPerksTabViewModel.Factory> { factory ->
             factory.create(characterId)
         }
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+    val screenEffect by viewModel.screenEvents.collectAsStateWithLifecycle(initialValue = null)
+
     CharacterPerkTabScreen(
         uiState = uiState,
         addPerk = {
-            viewModel.onAction(CharacterPerksTabActions.OpenAddPerkDialog)
-        },
-        closeAddPerkDialog = {
-            viewModel.onAction(CharacterPerksTabActions.CloseAddPerkDialog)
+            viewModel.onAction(CharacterPerksTabActions.AddPerk)
         },
         deletePerk = {
             viewModel.onAction(CharacterPerksTabActions.DeletePerk(it))
         },
-        addPerks = {
-            viewModel.onAction(CharacterPerksTabActions.AddPerks(it))
-        },
+    )
+
+    LaunchedScreenEffect(
+        effect = screenEffect,
+        navController = navController,
     )
 }
