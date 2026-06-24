@@ -1,18 +1,19 @@
-package com.rumpilstilstkin.gloomhavenhelper.screens.characters.quests.freeselect
+package com.rumpilstilstkin.gloomhavenhelper.screens.characters.quests.select
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.characters.quests.SetQuestForCharacterUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.quests.GetQuestsFlowUseCase
 import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEvent
+import com.rumpilstilstkin.gloomhavenhelper.screens.characters.quests.dialog.QuestDetailsDialogContract
+import com.rumpilstilstkin.gloomhavenhelper.screens.characters.quests.dialog.QuestDetailsDialogInput
+import com.rumpilstilstkin.gloomhavenhelper.screens.core.ScreenEffect
+import com.rumpilstilstkin.gloomhavenhelper.screens.core.createOverlaySession
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.PersonalQuestUI
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.toUI
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.collections.immutable.ImmutableList
-import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -28,10 +29,9 @@ import kotlinx.coroutines.launch
 class SearchQuestViewModel @AssistedInject constructor(
     @Assisted val id: Int,
     getQuestsFlowUseCase: GetQuestsFlowUseCase,
-    private val setQuestForCharacterUseCase: SetQuestForCharacterUseCase,
 ) : ViewModel() {
-    private val _navigationEvents = MutableSharedFlow<GlHelperEvent>()
-    val navigationEvents = _navigationEvents.asSharedFlow()
+    private val _screenEvents = MutableSharedFlow<ScreenEffect>()
+    val screenEvents = _screenEvents.asSharedFlow()
 
     private val quests: StateFlow<List<PersonalQuestUI>> =
         getQuestsFlowUseCase()
@@ -81,16 +81,12 @@ class SearchQuestViewModel @AssistedInject constructor(
     fun onAction(action: SearchQuestActions) {
         viewModelScope.launch {
             when (action) {
-                is SearchQuestActions.ChooseQuest -> {
-                    setQuestForCharacterUseCase(
-                        questId = action.questId,
-                        characterId = id,
-                    )
-                    _navigationEvents.emit(GlHelperEvent.Back)
+                is SearchQuestActions.OpenQuest -> {
+                    openQuestDialog(action.quest)
                 }
 
                 is SearchQuestActions.Close -> {
-                    _navigationEvents.emit(GlHelperEvent.Back)
+                    _screenEvents.emit(ScreenEffect.Navigation(GlHelperEvent.Back))
                 }
 
                 is SearchQuestActions.SearchTextChange -> {
@@ -99,21 +95,23 @@ class SearchQuestViewModel @AssistedInject constructor(
             }
         }
     }
-}
 
-internal data class SearchQuestState(
-    val quests: ImmutableList<PersonalQuestUI> = persistentListOf(),
-    val searchText: String = "",
-)
-
-sealed interface SearchQuestActions {
-    data class ChooseQuest(
-        val questId: String,
-    ) : SearchQuestActions
-
-    data object Close : SearchQuestActions
-
-    data class SearchTextChange(
-        val text: String,
-    ) : SearchQuestActions
+    private fun openQuestDialog(quest: PersonalQuestUI) {
+        viewModelScope.launch {
+            val session = createOverlaySession(
+                contract = QuestDetailsDialogContract,
+                input = QuestDetailsDialogInput(
+                    quest = quest,
+                    characterId = id,
+                    selected = false,
+                ),
+                onResult = {
+                    viewModelScope.launch {
+                        _screenEvents.emit(ScreenEffect.Navigation(GlHelperEvent.Back))
+                    }
+                },
+            )
+            _screenEvents.emit(ScreenEffect.OpenDialog(session))
+        }
+    }
 }
