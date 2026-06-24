@@ -31,7 +31,9 @@ fun GoldRow(
     modifier = modifier,
 ) {
     Row(
-        modifier = modifier.fillMaxWidth().padding(16.dp),
+        modifier = modifier
+            .fillMaxWidth()
+            .padding(16.dp),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween,
     ) {
@@ -48,6 +50,7 @@ fun GoldRow(
 
         GloomCounterFull(
             value = goldCount,
+            repeat = true,
             intRange = goldRange,
             onValueChange = onGoldChanged,
         )

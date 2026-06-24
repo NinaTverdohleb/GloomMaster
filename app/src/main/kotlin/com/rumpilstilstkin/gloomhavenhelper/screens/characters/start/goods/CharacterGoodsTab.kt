@@ -46,7 +46,7 @@ fun CharacterItemsTabScreen(
             Modifier
                 .fillMaxSize()
                 .padding(innerPadding)
-                .padding(8.dp),
+                .padding(16.dp),
     ) {
         if (goods.isEmpty()) {
             EmptyGoods(
@@ -56,7 +56,6 @@ fun CharacterItemsTabScreen(
             LazyColumn(
                 modifier = Modifier.weight(1f),
                 verticalArrangement = Arrangement.spacedBy(16.dp),
-                contentPadding = PaddingValues(vertical = 24.dp),
             ) {
                 items(
                     items = goods,
