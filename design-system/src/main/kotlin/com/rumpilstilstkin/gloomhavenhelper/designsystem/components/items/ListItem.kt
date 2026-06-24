@@ -1,5 +1,6 @@
 package com.rumpilstilstkin.gloomhavenhelper.designsystem.components.items
 
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -12,6 +13,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -52,6 +54,36 @@ fun GloomListFilledItem(
                 leftComponent = leftComponent,
             )
         }
+    }
+}
+
+@Composable
+fun GloomListOutlineItem(
+    title: String,
+    modifier: Modifier = Modifier,
+    description: String? = null,
+    onClick: (() -> Unit)? = null,
+    rightComponent: (@Composable RowScope.() -> Unit)? = null,
+    leftComponent: (@Composable RowScope.() -> Unit)? = null,
+) {
+    Box(
+        modifier = modifier
+            .border(
+                shape = RoundedCornerShape(16.dp),
+                color = MaterialTheme.colorScheme.outline,
+                width = 1.dp,
+            )
+            .fillMaxWidth()
+            .padding(vertical = 8.dp, horizontal = 12.dp)
+    ) {
+        GloomListItem(
+            modifier = Modifier.fillMaxWidth(),
+            title = title,
+            description = description,
+            onClick = onClick,
+            rightComponent = rightComponent,
+            leftComponent = leftComponent,
+        )
     }
 }
 
@@ -156,6 +188,11 @@ private fun GloomListItemPreview() {
                         onValueChange = {},
                     )
                 }
+            )
+
+            GloomListOutlineItem(
+                modifier = Modifier.fillMaxWidth(),
+                title = "Achivment",
             )
         }
     }

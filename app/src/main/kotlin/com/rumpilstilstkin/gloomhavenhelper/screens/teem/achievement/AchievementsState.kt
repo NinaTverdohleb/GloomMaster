@@ -1,7 +1,6 @@
 package com.rumpilstilstkin.gloomhavenhelper.screens.teem.achievement
 
 import androidx.compose.runtime.Immutable
-import com.rumpilstilstkin.gloomhavenhelper.domain.entity.Achievement
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.AchievementWithName
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.persistentListOf
@@ -11,12 +10,10 @@ data class AchievementsStateUi(
     val achievements: ImmutableList<AchievementWithName> = persistentListOf(),
     val availableAchievements: ImmutableList<AchievementWithName> = persistentListOf(),
     val showAddDialog: Boolean = false,
-    val achievementToDelete: String? = null,
 )
 
 data class AchievementsStateLogic(
     val showAddDialog: Boolean = false,
-    val achievementToDelete: String? = null,
 )
 
 sealed interface AchievementsAction {
@@ -28,13 +25,9 @@ sealed interface AchievementsAction {
         val achievement: AchievementWithName,
     ) : AchievementsAction
 
-    data class ShowDeleteConfirmDialog(
-        val achievementSlug: String,
+    data class DeleteAchievement(
+        val achievement: AchievementWithName,
     ) : AchievementsAction
-
-    data object DismissDeleteConfirmDialog : AchievementsAction
-
-    data object ConfirmDelete : AchievementsAction
 
     data object Back : AchievementsAction
 

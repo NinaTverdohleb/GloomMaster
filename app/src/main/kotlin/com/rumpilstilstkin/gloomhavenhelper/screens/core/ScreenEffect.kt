@@ -61,7 +61,7 @@ fun <Input, Output> createOverlaySession(
 fun LaunchedScreenEffect(navController: NavHostController, effect: ScreenEffect?) {
     var currentBottomSheetSession by remember { mutableStateOf<OverlaySession?>(null) }
     var currentDialogSession by remember { mutableStateOf<OverlaySession?>(null) }
-    val sheetState = rememberModalBottomSheetState()
+    val sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)
 
     LaunchedEffect(effect) {
         effect?.let {
