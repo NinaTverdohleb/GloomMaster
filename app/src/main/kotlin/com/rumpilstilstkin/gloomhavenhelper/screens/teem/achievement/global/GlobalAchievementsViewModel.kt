@@ -3,8 +3,8 @@ package com.rumpilstilstkin.gloomhavenhelper.screens.teem.achievement.global
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.AchievementWithName
-import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.achievement.GetAvailableGlobalAchievementsUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.achievement.AddOrUpdateAchievementUseCase
+import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.achievement.GetAvailableGlobalAchievementsUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.team.GetCurrentTeamShortInfoUseCase
 import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEvent
 import com.rumpilstilstkin.gloomhavenhelper.screens.core.ScreenEffect
@@ -80,22 +80,24 @@ class GlobalAchievementsViewModel @Inject constructor(
 
     private fun showAddAchievementDialog(available: ImmutableList<AchievementWithName>) {
         viewModelScope.launch {
-            val session = createOverlaySession(
-                contract = AddAchievementDialogContract,
-                input = available,
-                onResult = { },
-            )
+            val session =
+                createOverlaySession(
+                    contract = AddAchievementDialogContract,
+                    input = available,
+                    onResult = { },
+                )
             _screenEvents.emit(ScreenEffect.OpenBottomSheet(session))
         }
     }
 
     private fun showDeleteAchievementDialog(achievement: AchievementWithName) {
         viewModelScope.launch {
-            val session = createOverlaySession(
-                contract = DeleteAchievementDialogContract,
-                input = achievement,
-                onResult = { },
-            )
+            val session =
+                createOverlaySession(
+                    contract = DeleteAchievementDialogContract,
+                    input = achievement,
+                    onResult = { },
+                )
             _screenEvents.emit(ScreenEffect.OpenDialog(session))
         }
     }

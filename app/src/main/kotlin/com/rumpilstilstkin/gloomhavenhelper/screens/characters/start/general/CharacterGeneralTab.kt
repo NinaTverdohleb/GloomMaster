@@ -60,7 +60,7 @@ fun CharacterGeneralTab(
                 .verticalScroll(rememberScrollState())
                 .padding(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.spacedBy(24.dp)
+        verticalArrangement = Arrangement.spacedBy(24.dp),
     ) {
         ExperienceRow(
             experience = state.experience,

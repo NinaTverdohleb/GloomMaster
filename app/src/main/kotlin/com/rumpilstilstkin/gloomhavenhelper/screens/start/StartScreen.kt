@@ -37,7 +37,7 @@ internal fun StartScreen(
             GloomToolbarNoBackAction(
                 title = selectedTab.getTitle(),
                 titleIcon = selectedTab.icon,
-                actionClick = settings
+                actionClick = settings,
             )
         },
         bottomBar = {
@@ -80,7 +80,8 @@ internal enum class StartScreenTab(
     TEAM(R.string.tab_team, NavigationIcon.Team),
     CHARACTERS(R.string.tab_characters, NavigationIcon.Character),
     SHOP(R.string.tab_shop, NavigationIcon.Shop),
-    SCENARIOS(R.string.tab_scenarios, NavigationIcon.Scenarios);
+    SCENARIOS(R.string.tab_scenarios, NavigationIcon.Scenarios),
+    ;
 
     @Composable
     override fun getTitle(): String = stringResource(titleRes)

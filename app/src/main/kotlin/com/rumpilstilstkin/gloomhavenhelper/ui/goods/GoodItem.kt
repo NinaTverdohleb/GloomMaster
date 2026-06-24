@@ -33,11 +33,11 @@ fun GoodItem(
             onClick = { clickItem(good) },
             leftComponent = {
                 LeftItemImage(
-                    icon = good.icon
+                    icon = good.icon,
                 )
-            }
+            },
         )
-    }
+    },
 )
 
 @Preview
@@ -51,7 +51,6 @@ private fun GoodItemPreview() {
                 ),
             clickItem = {},
         ) {
-
         }
     }
 }

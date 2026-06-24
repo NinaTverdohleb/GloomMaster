@@ -39,7 +39,7 @@ fun PersonalQuestView(
 ) {
     Column(
         modifier = modifier.fillMaxWidth(),
-        verticalArrangement = Arrangement.spacedBy(20.dp)
+        verticalArrangement = Arrangement.spacedBy(20.dp),
     ) {
         GloomHeader(stringResource(R.string.personal_quest_title))
         if (quest == null) {
@@ -47,14 +47,14 @@ fun PersonalQuestView(
                 modifier = Modifier.fillMaxWidth(),
                 text = stringResource(R.string.add_personal_quest),
                 onClick = choosePersonalQuest,
-                icon = AppIcon.Plus
+                icon = AppIcon.Plus,
             )
         } else {
             PersonalQuest(
                 quest = quest,
                 onTaskCheckedChange = onTaskCheckedChange,
                 onTaskCountChanged = onTaskCountChanged,
-                showQuestDetails = showQuestDetails
+                showQuestDetails = showQuestDetails,
             )
         }
     }
@@ -68,7 +68,7 @@ fun PersonalQuest(
     onTaskCountChanged: (CharacterTaskItem.Count, Int) -> Unit,
     modifier: Modifier = Modifier,
 ) = GloomCard(
-    modifier = modifier
+    modifier = modifier,
 ) {
     Column(
         modifier =
@@ -76,11 +76,11 @@ fun PersonalQuest(
                 .fillMaxWidth()
                 .clickable { showQuestDetails(quest) }
                 .padding(16.dp),
-        verticalArrangement = Arrangement.spacedBy(12.dp)
+        verticalArrangement = Arrangement.spacedBy(12.dp),
     ) {
         QuestItem(
             quest = quest,
-            clickItem = showQuestDetails
+            clickItem = showQuestDetails,
         )
         quest.phases.forEach { phase ->
             if (phase.visible) {
@@ -91,11 +91,11 @@ fun PersonalQuest(
                                 title = task.text,
                                 rightComponent = {
                                     RightItemChecker(
-                                        task.isChecked
+                                        task.isChecked,
                                     ) {
                                         onTaskCheckedChange(task)
                                     }
-                                }
+                                },
                             )
                         }
 
@@ -110,7 +110,7 @@ fun PersonalQuest(
                                             onTaskCountChanged(task, value)
                                         },
                                     )
-                                }
+                                },
                             )
                         }
                     }
@@ -126,14 +126,14 @@ private fun PersonalQuestPreview() {
     GloomhavenMasterTheme {
         Column(
             verticalArrangement = Arrangement.spacedBy(32.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
+            horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             PersonalQuestView(
                 quest = null,
                 onTaskCheckedChange = {},
                 onTaskCountChanged = { i, k -> },
                 choosePersonalQuest = {},
-                showQuestDetails = {}
+                showQuestDetails = {},
             )
             PersonalQuestView(
                 quest =
@@ -180,7 +180,7 @@ private fun PersonalQuestPreview() {
                 onTaskCheckedChange = {},
                 onTaskCountChanged = { i, k -> },
                 choosePersonalQuest = {},
-                showQuestDetails = {}
+                showQuestDetails = {},
             )
         }
     }

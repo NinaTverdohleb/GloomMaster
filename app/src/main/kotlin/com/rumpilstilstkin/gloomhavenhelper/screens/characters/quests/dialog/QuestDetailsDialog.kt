@@ -38,9 +38,10 @@ fun QuestDetailsDialog(
     onAction: () -> Unit,
 ) {
     Column(
-        modifier = Modifier
-            .fillMaxWidth(),
-        verticalArrangement = Arrangement.spacedBy(20.dp)
+        modifier =
+            Modifier
+                .fillMaxWidth(),
+        verticalArrangement = Arrangement.spacedBy(20.dp),
     ) {
         GloomHeader(
             text = quest.title,
@@ -62,22 +63,24 @@ fun QuestDetailsDialog(
             alternativeReward = quest.reward.alternativeReward,
         )
 
-        val buttonText = if (selected) {
-            stringResource(R.string.change_button)
-        } else {
-            stringResource(R.string.select)
-        }
-        val buttonIcon = if (selected) {
-            AppIcon.Restore
-        } else {
-            AppIcon.Check
-        }
+        val buttonText =
+            if (selected) {
+                stringResource(R.string.change_button)
+            } else {
+                stringResource(R.string.select)
+            }
+        val buttonIcon =
+            if (selected) {
+                AppIcon.Restore
+            } else {
+                AppIcon.Check
+            }
 
         GloomOutlineButton(
             modifier = Modifier.fillMaxWidth(),
             text = buttonText,
             icon = buttonIcon,
-            onClick = onAction
+            onClick = onAction,
         )
     }
 }
@@ -86,14 +89,14 @@ fun QuestDetailsDialog(
 private fun Task(phases: ImmutableList<QuestTaskPhaseUI>) {
     Column(
         modifier = Modifier.fillMaxWidth(),
-        verticalArrangement = Arrangement.spacedBy(8.dp)
+        verticalArrangement = Arrangement.spacedBy(8.dp),
     ) {
         phases.forEach { phase ->
             phase.tasks.forEach { task ->
                 Text(
                     text = task.text,
                     style = MaterialTheme.typography.labelMedium,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
             }
         }
@@ -106,7 +109,7 @@ private fun Rewards(
     alternativeReward: String,
 ) {
     Column(
-        verticalArrangement = Arrangement.spacedBy(4.dp)
+        verticalArrangement = Arrangement.spacedBy(4.dp),
     ) {
         GloomHeaderVariant(
             modifier = Modifier.fillMaxWidth(),
@@ -119,7 +122,7 @@ private fun Rewards(
                 Text(
                     text = stringResource(R.string.unlock_class),
                     style = MaterialTheme.typography.bodyMedium,
-                    color = MaterialTheme.colorScheme.onSurface
+                    color = MaterialTheme.colorScheme.onSurface,
                 )
                 Image(
                     modifier = Modifier.size(32.dp),
@@ -133,7 +136,7 @@ private fun Rewards(
             Text(
                 text = alternativeReward,
                 style = MaterialTheme.typography.labelMedium,
-                color = MaterialTheme.colorScheme.onSurfaceVariant
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
         }
     }

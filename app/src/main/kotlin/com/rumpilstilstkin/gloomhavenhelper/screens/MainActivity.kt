@@ -67,11 +67,11 @@ class MainActivity : AppCompatActivity() {
             GloomhavenMasterTheme {
                 val windowSizeClass = calculateWindowSizeClass(this)
                 Surface(
-                    modifier = Modifier.fillMaxSize()
+                    modifier = Modifier.fillMaxSize(),
                 ) {
                     GlHelperNavHost(
                         modifier = Modifier.safeDrawingPadding().fillMaxSize(),
-                        widthSizeClass = windowSizeClass.widthSizeClass
+                        widthSizeClass = windowSizeClass.widthSizeClass,
                     )
                 }
             }

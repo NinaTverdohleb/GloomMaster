@@ -10,11 +10,13 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.rumpilstilstkin.gloomhavenhelper.screens.core.OverlayContract
 
 object AddTeamDialogContract : OverlayContract<Unit, Boolean> {
-
     @Composable
-    override fun Content(input: Unit, onDismissWithResult: (Boolean?) -> Unit) {
+    override fun Content(
+        input: Unit,
+        onDismissWithResult: (Boolean?) -> Unit,
+    ) {
         AddTeamDialogRoute(
-            close = onDismissWithResult
+            close = onDismissWithResult,
         )
     }
 }

@@ -25,6 +25,6 @@ fun TeamEditRoute(
 
     LaunchedScreenEffect(
         effect = screenEffect,
-        navController = navController
+        navController = navController,
     )
 }

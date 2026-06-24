@@ -30,9 +30,10 @@ fun MenuScenarioDialog(
     playScenario: () -> Unit,
 ) {
     Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(16.dp),
+        modifier =
+            Modifier
+                .fillMaxWidth()
+                .padding(16.dp),
         verticalArrangement = Arrangement.spacedBy(32.dp),
     ) {
         ScenarioInfoItem(
@@ -61,7 +62,6 @@ fun MenuScenarioDialog(
             modifier = Modifier.fillMaxWidth(),
             verticalArrangement = Arrangement.spacedBy(20.dp),
         ) {
-
             GloomOutlineButton(
                 text = stringResource(R.string.delete_scenario),
                 onClick = deleteScenario,

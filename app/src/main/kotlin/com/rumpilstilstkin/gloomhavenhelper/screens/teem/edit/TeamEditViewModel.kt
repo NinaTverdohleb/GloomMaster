@@ -30,7 +30,6 @@ class TeamEditViewModel @Inject constructor(
     private val _screenEvents = MutableSharedFlow<ScreenEffect>()
     val screenEvents = _screenEvents.asSharedFlow()
 
-
     val uiState: StateFlow<TeamEditStateUi> =
         getCurrentTeamWithTeamsCountUseCase()
             .map { (team, teams) ->

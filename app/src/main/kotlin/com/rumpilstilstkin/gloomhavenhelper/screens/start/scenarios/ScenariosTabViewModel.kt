@@ -115,32 +115,33 @@ class ScenariosTabViewModel @Inject constructor(
                 }
 
                 is ScenariosTabAction.SelectScenario -> {
-                    val session = createOverlaySession(
-                        contract = MenuScenarioDialogContract,
-                        input = action.scenario,
-                        onResult = { result ->
-                            when (result) {
-                                is MenuScenarioResult.DeleteScenarioRequest -> {
-                                    openDeleteScenarioDialog(result.scenario)
-                                }
-
-                                is MenuScenarioResult.PlayScenario -> {
-                                    viewModelScope.launch {
-                                        createActiveScenarioUseCase(action.scenario.scenarioNumber)
-                                            .onSuccess {
-                                                _screenEvents.emit(
-                                                    ScreenEffect.Navigation(
-                                                        (Screen(Scenario))
-                                                    )
-                                                )
-                                            }
+                    val session =
+                        createOverlaySession(
+                            contract = MenuScenarioDialogContract,
+                            input = action.scenario,
+                            onResult = { result ->
+                                when (result) {
+                                    is MenuScenarioResult.DeleteScenarioRequest -> {
+                                        openDeleteScenarioDialog(result.scenario)
                                     }
-                                }
 
-                                else -> {}
-                            }
-                        }
-                    )
+                                    is MenuScenarioResult.PlayScenario -> {
+                                        viewModelScope.launch {
+                                            createActiveScenarioUseCase(action.scenario.scenarioNumber)
+                                                .onSuccess {
+                                                    _screenEvents.emit(
+                                                        ScreenEffect.Navigation(
+                                                            (Screen(Scenario)),
+                                                        ),
+                                                    )
+                                                }
+                                        }
+                                    }
+
+                                    else -> {}
+                                }
+                            },
+                        )
                     _screenEvents.emit(ScreenEffect.OpenBottomSheet(session))
                 }
             }
@@ -148,11 +149,12 @@ class ScenariosTabViewModel @Inject constructor(
 
     private fun openDeleteScenarioDialog(scenario: ShortScenarioUI) {
         viewModelScope.launch {
-            val session = createOverlaySession(
-                contract = DeleteScenarioDialogContract,
-                input = scenario,
-                onResult = { }
-            )
+            val session =
+                createOverlaySession(
+                    contract = DeleteScenarioDialogContract,
+                    input = scenario,
+                    onResult = { },
+                )
             _screenEvents.emit(ScreenEffect.OpenDialog(session))
         }
     }

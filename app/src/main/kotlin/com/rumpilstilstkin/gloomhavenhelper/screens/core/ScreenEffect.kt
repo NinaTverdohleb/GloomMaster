@@ -17,20 +17,33 @@ import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEventHelpe
 import kotlinx.coroutines.launch
 
 sealed interface ScreenEffect {
-    data class OpenBottomSheet(val session: OverlaySession) : ScreenEffect
-    data class OpenDialog(val session: OverlaySession) : ScreenEffect
+    data class OpenBottomSheet(
+        val session: OverlaySession,
+    ) : ScreenEffect
+
+    data class OpenDialog(
+        val session: OverlaySession,
+    ) : ScreenEffect
 
     data object CloseBottomSheet : ScreenEffect
+
     data object CloseDialog : ScreenEffect
 
-    data class Navigation(val event: GlHelperEvent) : ScreenEffect
+    data class Navigation(
+        val event: GlHelperEvent,
+    ) : ScreenEffect
 
-    data class Message(val message: String) : ScreenEffect
+    data class Message(
+        val message: String,
+    ) : ScreenEffect
 }
 
 interface OverlayContract<Input, Output> {
     @Composable
-    fun Content(input: Input, onDismissWithResult: (Output?) -> Unit)
+    fun Content(
+        input: Input,
+        onDismissWithResult: (Output?) -> Unit,
+    )
 }
 
 interface OverlaySession {
@@ -41,24 +54,27 @@ interface OverlaySession {
 fun <Input, Output> createOverlaySession(
     contract: OverlayContract<Input, Output>,
     input: Input,
-    onResult: (Output?) -> Unit
-): OverlaySession = object : OverlaySession {
-
-    @Composable
-    override fun Render(onDismiss: () -> Unit) {
-        contract.Content(
-            input = input,
-            onDismissWithResult = { result ->
-                onResult(result)
-                onDismiss()
-            }
-        )
+    onResult: (Output?) -> Unit,
+): OverlaySession =
+    object : OverlaySession {
+        @Composable
+        override fun Render(onDismiss: () -> Unit) {
+            contract.Content(
+                input = input,
+                onDismissWithResult = { result ->
+                    onResult(result)
+                    onDismiss()
+                },
+            )
+        }
     }
-}
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun LaunchedScreenEffect(navController: NavHostController, effect: ScreenEffect?) {
+fun LaunchedScreenEffect(
+    navController: NavHostController,
+    effect: ScreenEffect?,
+) {
     var currentBottomSheetSession by remember { mutableStateOf<OverlaySession?>(null) }
     var currentDialogSession by remember { mutableStateOf<OverlaySession?>(null) }
     val sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)
@@ -76,10 +92,12 @@ fun LaunchedScreenEffect(navController: NavHostController, effect: ScreenEffect?
                     }
                 }
 
-                is ScreenEffect.Navigation -> GlHelperEventHelper.event(
-                    event = it.event,
-                    navController = navController
-                )
+                is ScreenEffect.Navigation -> {
+                    GlHelperEventHelper.event(
+                        event = it.event,
+                        navController = navController,
+                    )
+                }
 
                 is ScreenEffect.Message -> {
                     Toast.makeText(navController.context, it.message, Toast.LENGTH_LONG).show()
@@ -101,10 +119,10 @@ fun LaunchedScreenEffect(navController: NavHostController, effect: ScreenEffect?
             onDismissRequest = {
                 currentBottomSheetSession = null
             },
-            sheetState = sheetState
+            sheetState = sheetState,
         ) {
             session.Render(
-                onDismiss = { currentBottomSheetSession = null }
+                onDismiss = { currentBottomSheetSession = null },
             )
         }
     }
@@ -114,7 +132,7 @@ fun LaunchedScreenEffect(navController: NavHostController, effect: ScreenEffect?
             onDismissRequest = { currentDialogSession = null },
         ) {
             session.Render(
-                onDismiss = { currentDialogSession = null }
+                onDismiss = { currentDialogSession = null },
             )
         }
     }

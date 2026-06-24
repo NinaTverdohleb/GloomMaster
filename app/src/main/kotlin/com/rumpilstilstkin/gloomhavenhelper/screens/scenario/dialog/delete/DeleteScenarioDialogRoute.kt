@@ -9,12 +9,14 @@ import com.rumpilstilstkin.gloomhavenhelper.screens.core.OverlayContract
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.ShortScenarioUI
 
 object DeleteScenarioDialogContract : OverlayContract<ShortScenarioUI, Unit> {
-
     @Composable
-    override fun Content(input: ShortScenarioUI, onDismissWithResult: (Unit?) -> Unit) {
+    override fun Content(
+        input: ShortScenarioUI,
+        onDismissWithResult: (Unit?) -> Unit,
+    ) {
         DeleteScenarioDialogRoute(
             scenario = input,
-            close = onDismissWithResult
+            close = onDismissWithResult,
         )
     }
 }
@@ -36,6 +38,6 @@ fun DeleteScenarioDialogRoute(
     DeleteScenarioDialogScreen(
         scenario = scenario,
         close = { close(null) },
-        deleteScenario = { viewModel.onAction(DeleteScenarioDialogAction.DeleteScenario(scenario.scenarioNumber)) }
+        deleteScenario = { viewModel.onAction(DeleteScenarioDialogAction.DeleteScenario(scenario.scenarioNumber)) },
     )
 }

@@ -45,7 +45,6 @@ data class CharactersTabStateLogic(
 )
 
 sealed interface CharactersTabAction {
-
     data object SwitchAlive : CharactersTabAction
 
     data object ShowAddCharacterDialog : CharactersTabAction

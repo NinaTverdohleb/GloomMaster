@@ -23,7 +23,6 @@ class MenuCharacterDialogViewModel @AssistedInject constructor(
     private val retireCharacterUseCase: RetireCharacterUseCase,
     private val makeCharacterAliveUseCase: MakeCharacterAliveUseCase,
 ) : ViewModel() {
-
     private val _state = MutableStateFlow(level)
     val state: StateFlow<Int> = _state.asStateFlow()
 

@@ -96,7 +96,7 @@ internal fun TeamEditScreen(
         Spacer(modifier = Modifier.height(16.dp))
         uiState.availablePacks.forEach { packItem ->
             Column(
-                verticalArrangement = Arrangement.spacedBy(4.dp)
+                verticalArrangement = Arrangement.spacedBy(4.dp),
             ) {
                 GloomListFilledItem(
                     title = stringResource(packItem.displayNameRes),
@@ -120,7 +120,7 @@ fun DifficultySelector(
     val items = remember { DifficultyLevel.entries }
     Row(
         modifier = Modifier.fillMaxWidth(),
-        horizontalArrangement = Arrangement.SpaceBetween
+        horizontalArrangement = Arrangement.SpaceBetween,
     ) {
         items.forEach { level ->
             DifficultyItem(
@@ -165,13 +165,13 @@ private fun DifficultyItem(
                 icon.painter(),
                 contentDescription = null,
                 tint = contentColor,
-                modifier = Modifier.size(32.dp)
+                modifier = Modifier.size(32.dp),
             )
             Text(
                 text = level.toLabel(),
                 style = MaterialTheme.typography.bodyLarge,
                 textAlign = TextAlign.Center,
-                color = contentColor
+                color = contentColor,
             )
         }
     }

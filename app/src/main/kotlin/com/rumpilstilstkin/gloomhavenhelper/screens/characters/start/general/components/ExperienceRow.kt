@@ -33,21 +33,22 @@ fun ExperienceRow(
     onLevelUp: () -> Unit,
     onExperienceChanged: (Int) -> Unit,
 ) = GloomCard(
-    modifier = modifier
+    modifier = modifier,
 ) {
     Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(16.dp),
+        modifier =
+            Modifier
+                .fillMaxWidth()
+                .padding(16.dp),
     ) {
         Row(
             modifier = modifier.fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceBetween
+            horizontalArrangement = Arrangement.SpaceBetween,
         ) {
             Row(
                 verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(8.dp)
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
             ) {
                 Text(
                     style = MaterialTheme.typography.headlineSmall,
@@ -66,7 +67,7 @@ fun ExperienceRow(
         GloomGloomCounterProgress(
             value = experience,
             intRange = levelRange,
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier.fillMaxWidth(),
         )
         Spacer(modifier = Modifier.height(24.dp))
 

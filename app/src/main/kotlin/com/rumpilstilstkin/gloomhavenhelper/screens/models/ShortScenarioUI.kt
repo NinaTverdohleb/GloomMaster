@@ -11,7 +11,7 @@ data class ShortScenarioUI(
     val scenarioRequirements: LogicalCondition,
     val location: String,
     val completed: Boolean,
-    val avaliable: Boolean = true
+    val avaliable: Boolean = true,
 ) {
     companion object {
         fun fixture(number: Int = 1) =
@@ -32,5 +32,5 @@ fun ScenarioInfoWithName.toUi(avaliable: Boolean = true) =
         scenarioRequirements = this.scenarioRequirements,
         location = this.location,
         completed = this.isCompleted,
-        avaliable = avaliable
+        avaliable = avaliable,
     )

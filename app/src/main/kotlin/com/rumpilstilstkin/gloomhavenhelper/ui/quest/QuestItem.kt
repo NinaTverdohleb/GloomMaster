@@ -27,9 +27,9 @@ fun QuestItem(
     onClick = { clickItem(quest) },
     leftComponent = {
         LeftItemNumber(
-            number = stringResource(R.string.scenario_number_format, quest.id)
+            number = stringResource(R.string.scenario_number_format, quest.id),
         )
-    }
+    },
 )
 
 @Composable
@@ -43,9 +43,9 @@ fun QuestItemFilled(
     onClick = { clickItem(quest) },
     leftComponent = {
         LeftItemNumber(
-            number = stringResource(R.string.scenario_number_format, quest.id)
+            number = stringResource(R.string.scenario_number_format, quest.id),
         )
-    }
+    },
 )
 
 @Preview
@@ -54,7 +54,7 @@ private fun GoodItemPreview() {
     GloomhavenMasterTheme {
         Column(
             verticalArrangement = Arrangement.spacedBy(16.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
+            horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             QuestItem(
                 quest = PersonalQuestUI.fixture(),

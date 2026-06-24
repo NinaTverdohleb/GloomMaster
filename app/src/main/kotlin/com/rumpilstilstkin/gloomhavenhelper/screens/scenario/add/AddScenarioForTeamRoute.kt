@@ -24,6 +24,6 @@ fun AddScenarioForTeamRoute(
 
     LaunchedScreenEffect(
         effect = screenEffect,
-        navController = navController
+        navController = navController,
     )
 }

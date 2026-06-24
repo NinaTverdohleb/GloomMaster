@@ -26,9 +26,9 @@ import androidx.compose.ui.unit.dp
 import com.rumpilstilstkin.gloomhavenhelper.R
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.buttons.GloomButton
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.text.GloomHeader
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.ShortScenarioUI
 import com.rumpilstilstkin.gloomhavenhelper.ui.scenario.ScenarioInfoCardItem
-import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
 
 @Composable
 fun ScenarioBlock(
@@ -39,10 +39,10 @@ fun ScenarioBlock(
     playCurrentScenario: () -> Unit,
 ) = Column(
     modifier = modifier,
-    verticalArrangement = Arrangement.spacedBy(20.dp)
+    verticalArrangement = Arrangement.spacedBy(20.dp),
 ) {
     GloomHeader(
-        stringResource(R.string.available_scenarios)
+        stringResource(R.string.available_scenarios),
     )
 
     if (canRestore) {
@@ -53,7 +53,7 @@ fun ScenarioBlock(
         )
     }
     Column(
-        verticalArrangement = Arrangement.spacedBy(16.dp)
+        verticalArrangement = Arrangement.spacedBy(16.dp),
     ) {
         scenarios.forEachIndexed { index, scenario ->
             ScenarioInfoCardItem(
@@ -63,7 +63,6 @@ fun ScenarioBlock(
             ) { selectScenario(scenario) }
         }
     }
-
 }
 
 @Preview

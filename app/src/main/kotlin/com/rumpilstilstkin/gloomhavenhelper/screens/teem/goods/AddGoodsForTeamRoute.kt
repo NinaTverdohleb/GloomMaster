@@ -25,11 +25,11 @@ fun AddGoodsForTeamScreenRoute(
         },
         addGoods = { viewModel.onAction(AddGoodsForTeamAction.AddSelectedGoods) },
         back = { viewModel.onAction(AddGoodsForTeamAction.Back) },
-        openGood = {}
+        openGood = {},
     )
 
     LaunchedScreenEffect(
         effect = screenEffect,
-        navController = navController
+        navController = navController,
     )
 }

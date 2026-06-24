@@ -22,7 +22,6 @@ class SelectLanguageDialogViewModel @Inject constructor(
     languagesListUseCase: LanguagesListUseCase,
     private val setLanguageUseCase: SetLanguageUseCase,
 ) : ViewModel() {
-
     private val _complete = Channel<SelectLanguageDialogComplete>(Channel.BUFFERED)
     val complete = _complete.receiveAsFlow()
 
@@ -41,7 +40,6 @@ class SelectLanguageDialogViewModel @Inject constructor(
     fun onAction(action: SelectLanguageDialogAction) {
         viewModelScope.launch {
             when (action) {
-
                 is SelectLanguageDialogAction.SelectLanguage -> {
                     setLanguageUseCase(action.languageTag)
                     _complete.send(SelectLanguageDialogComplete)

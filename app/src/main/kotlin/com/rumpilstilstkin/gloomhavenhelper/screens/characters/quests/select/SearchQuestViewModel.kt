@@ -98,19 +98,21 @@ class SearchQuestViewModel @AssistedInject constructor(
 
     private fun openQuestDialog(quest: PersonalQuestUI) {
         viewModelScope.launch {
-            val session = createOverlaySession(
-                contract = QuestDetailsDialogContract,
-                input = QuestDetailsDialogInput(
-                    quest = quest,
-                    characterId = id,
-                    selected = false,
-                ),
-                onResult = {
-                    viewModelScope.launch {
-                        _screenEvents.emit(ScreenEffect.Navigation(GlHelperEvent.Back))
-                    }
-                },
-            )
+            val session =
+                createOverlaySession(
+                    contract = QuestDetailsDialogContract,
+                    input =
+                        QuestDetailsDialogInput(
+                            quest = quest,
+                            characterId = id,
+                            selected = false,
+                        ),
+                    onResult = {
+                        viewModelScope.launch {
+                            _screenEvents.emit(ScreenEffect.Navigation(GlHelperEvent.Back))
+                        }
+                    },
+                )
             _screenEvents.emit(ScreenEffect.OpenDialog(session))
         }
     }

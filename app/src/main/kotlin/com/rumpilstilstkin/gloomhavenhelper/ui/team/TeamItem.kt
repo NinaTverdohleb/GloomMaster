@@ -12,16 +12,15 @@ import com.rumpilstilstkin.gloomhavenhelper.screens.models.ShortTeamInfoUi
 fun TeamItem(
     team: ShortTeamInfoUi,
     onClick: (() -> Unit)? = null,
-) =
-    GloomListItem(
-        title = team.teamName,
-        onClick = onClick,
-        leftComponent = {
-            LeftItemImage(
-                icon = AppIcon.Team
-            )
-        }
-    )
+) = GloomListItem(
+    title = team.teamName,
+    onClick = onClick,
+    leftComponent = {
+        LeftItemImage(
+            icon = AppIcon.Team,
+        )
+    },
+)
 
 @Preview
 @Composable

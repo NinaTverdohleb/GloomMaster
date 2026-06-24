@@ -10,8 +10,7 @@ sealed interface TeamTabUiState {
         val currentTeam: TeamUI,
     ) : TeamTabUiState {
         companion object {
-            fun fixture(team: TeamUI = TeamUI.fixture()) =
-                Data(currentTeam = team)
+            fun fixture(team: TeamUI = TeamUI.fixture()) = Data(currentTeam = team)
         }
     }
 }
@@ -34,7 +33,6 @@ sealed interface TeamTabAction {
     data object Donate : TeamTabAction
 
     data class SelectScenario(
-        val scenario: ShortScenarioUI
+        val scenario: ShortScenarioUI,
     ) : TeamTabAction
 }
-

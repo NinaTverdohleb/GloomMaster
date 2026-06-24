@@ -24,6 +24,6 @@ fun ScenariosTabRoute(
 
     LaunchedScreenEffect(
         effect = screenEffect,
-        navController = navController
+        navController = navController,
     )
 }

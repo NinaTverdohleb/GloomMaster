@@ -34,9 +34,9 @@ import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.items.LeftIt
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.items.RightItemText
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.toolbar.GloomToolbar
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.icons.AppIcon
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.ShortTeamInfoUi
 import com.rumpilstilstkin.gloomhavenhelper.ui.team.TeamItem
-import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
 import kotlinx.collections.immutable.persistentListOf
 
 private const val VISIBLE_TEAMS_LIMIT = 2
@@ -76,7 +76,7 @@ fun SettingsScreen(
                 teamName = team.teamName,
                 share = share,
                 openSettings = settings,
-                delete = deleteCurrentTeam
+                delete = deleteCurrentTeam,
             )
         }
 
@@ -102,7 +102,7 @@ fun SettingsScreen(
             text = stringResource(R.string.settings_disclaimer),
             style = MaterialTheme.typography.labelMedium,
             textAlign = TextAlign.Center,
-            color = MaterialTheme.colorScheme.onSurface
+            color = MaterialTheme.colorScheme.onSurface,
         )
 
         Spacer(modifier = Modifier.height(16.dp))
@@ -158,17 +158,17 @@ private fun TeamSummary(
             GloomOutlineFilledButtonIcon(
                 isError = true,
                 icon = AppIcon.Delete,
-                onClick = delete
+                onClick = delete,
             )
 
             GloomOutlineFilledButtonIcon(
                 icon = AppIcon.Share,
-                onClick = share
+                onClick = share,
             )
 
             GloomOutlineFilledButtonIcon(
                 icon = AppIcon.Settings,
-                onClick = openSettings
+                onClick = openSettings,
             )
         }
     }
@@ -183,17 +183,18 @@ private fun TeamsCard(
     modifier: Modifier = Modifier,
 ) {
     GloomCard(
-        modifier = modifier
-            .fillMaxWidth(),
+        modifier =
+            modifier
+                .fillMaxWidth(),
     ) {
         Column(
             modifier = Modifier.padding(vertical = 8.dp, horizontal = 20.dp),
-            verticalArrangement = Arrangement.spacedBy(4.dp)
+            verticalArrangement = Arrangement.spacedBy(4.dp),
         ) {
             teams.take(VISIBLE_TEAMS_LIMIT).forEach { team ->
                 TeamItem(
                     team = team,
-                    onClick = { onSelectTeam(team) }
+                    onClick = { onSelectTeam(team) },
                 )
             }
 
@@ -209,9 +210,9 @@ private fun TeamsCard(
                 title = stringResource(R.string.settings_add_team),
                 leftComponent = {
                     LeftItemIcon(
-                        icon = AppIcon.Plus
+                        icon = AppIcon.Plus,
                     )
-                }
+                },
             )
         }
     }
@@ -223,13 +224,14 @@ private fun LanguageCard(
     onClick: () -> Unit,
 ) {
     GloomCard(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding()
+        modifier =
+            Modifier
+                .fillMaxWidth()
+                .padding(),
     ) {
         Column(
             modifier = Modifier.padding(horizontal = 20.dp),
-            verticalArrangement = Arrangement.spacedBy(8.dp)
+            verticalArrangement = Arrangement.spacedBy(8.dp),
         ) {
             GloomListItem(
                 modifier = Modifier.fillMaxWidth(),
@@ -237,7 +239,7 @@ private fun LanguageCard(
                 title = stringResource(R.string.settings_language),
                 rightComponent = {
                     RightItemText(text = language)
-                }
+                },
             )
         }
     }
@@ -267,7 +269,7 @@ private fun SettingsScreenPreview() {
             showAllTeam = {},
             addTeam = {},
             changeLanguage = {},
-            deleteCurrentTeam = {}
+            deleteCurrentTeam = {},
         )
     }
 }
@@ -290,7 +292,7 @@ private fun SettingsScreenEmptyTeamPreview() {
             showAllTeam = {},
             addTeam = {},
             changeLanguage = {},
-            deleteCurrentTeam = {}
+            deleteCurrentTeam = {},
         )
     }
 }

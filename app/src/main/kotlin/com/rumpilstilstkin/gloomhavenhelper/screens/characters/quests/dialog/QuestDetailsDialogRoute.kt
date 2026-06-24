@@ -8,7 +8,6 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.rumpilstilstkin.gloomhavenhelper.screens.core.OverlayContract
 
 object QuestDetailsDialogContract : OverlayContract<QuestDetailsDialogInput, Unit> {
-
     @Composable
     override fun Content(
         input: QuestDetailsDialogInput,

@@ -30,16 +30,16 @@ fun CheckMarksBlock(
 ) {
     Column(
         modifier = modifier.fillMaxWidth(),
-        verticalArrangement = Arrangement.spacedBy(20.dp)
+        verticalArrangement = Arrangement.spacedBy(20.dp),
     ) {
         GloomHeader(
-            stringResource(R.string.notes_title)
+            stringResource(R.string.notes_title),
         )
 
         CheckMarks(
             modifier = Modifier.fillMaxWidth(),
             checkedCount = checkMarkCount,
-            onClick = onCheckedChange
+            onClick = onCheckedChange,
         )
     }
 }
@@ -51,7 +51,7 @@ fun CheckMarks(
     onClick: (Boolean) -> Unit,
     perksPerGroup: Int = 3,
     groupsPerRow: Int = 3,
-    total: Int = 18
+    total: Int = 18,
 ) {
     GloomCard(modifier = modifier) {
         FlowRow(
@@ -72,11 +72,12 @@ fun CheckMarks(
                                 modifier = Modifier.padding(2.dp),
                                 checked = isChecked,
                                 onCheckedChange = { onClick(!isChecked) },
-                                colors = CheckboxDefaults.colors(
-                                    checkedColor = MaterialTheme.colorScheme.primary,
-                                    checkmarkColor = MaterialTheme.colorScheme.onPrimary,
-                                    uncheckedColor = MaterialTheme.colorScheme.outline,
-                                ),
+                                colors =
+                                    CheckboxDefaults.colors(
+                                        checkedColor = MaterialTheme.colorScheme.primary,
+                                        checkmarkColor = MaterialTheme.colorScheme.onPrimary,
+                                        uncheckedColor = MaterialTheme.colorScheme.outline,
+                                    ),
                             )
                         }
                     }

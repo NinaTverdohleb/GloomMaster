@@ -42,13 +42,13 @@ internal fun AchievementsScreen(
     },
     floatingActionButtonPosition = FabPosition.End,
     floatingActionButton = {
-        if(uiState.availableAchievements.isNotEmpty()) {
+        if (uiState.availableAchievements.isNotEmpty()) {
             GloomFab(
                 icon = AppIcon.Plus,
                 onClick = addAchievement,
             )
         }
-    }
+    },
 ) { innerPadding ->
     Column(
         modifier =
@@ -77,7 +77,7 @@ internal fun AchievementsScreen(
                                 modifier = Modifier.fillMaxHeight(),
                                 icon = AppIcon.Delete,
                                 isError = true,
-                                onClick = { deleteAchievement(achievement) }
+                                onClick = { deleteAchievement(achievement) },
                             )
                         },
                         item = {
@@ -85,7 +85,7 @@ internal fun AchievementsScreen(
                                 achievement = achievement,
                                 changeValue = { updateAchievement(it, achievement) },
                             )
-                        }
+                        },
                     )
                 }
             }

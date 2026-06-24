@@ -9,4 +9,3 @@ sealed interface GlHelperEvent {
 
     data object Back : GlHelperEvent
 }
-

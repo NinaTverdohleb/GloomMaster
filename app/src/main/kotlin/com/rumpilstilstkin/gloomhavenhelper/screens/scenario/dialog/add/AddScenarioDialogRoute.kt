@@ -9,12 +9,14 @@ import com.rumpilstilstkin.gloomhavenhelper.screens.core.OverlayContract
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.ShortScenarioUI
 
 object AddScenarioDialogContract : OverlayContract<ShortScenarioUI, Unit> {
-
     @Composable
-    override fun Content(input: ShortScenarioUI, onDismissWithResult: (Unit?) -> Unit) {
+    override fun Content(
+        input: ShortScenarioUI,
+        onDismissWithResult: (Unit?) -> Unit,
+    ) {
         AddScenarioDialogRoute(
             scenario = input,
-            close = onDismissWithResult
+            close = onDismissWithResult,
         )
     }
 }

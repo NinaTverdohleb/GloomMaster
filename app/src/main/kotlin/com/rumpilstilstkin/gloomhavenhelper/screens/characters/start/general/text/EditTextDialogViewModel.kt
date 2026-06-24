@@ -29,7 +29,6 @@ class EditTextDialogViewModel @AssistedInject constructor(
     getCharacterUseCase: GetCharacterDetailsInfoUseCase,
     private val updateNotesUseCase: UpdateNotesUseCase,
 ) : ViewModel() {
-
     private val _uiState = MutableStateFlow("")
     val uiState = _uiState.asStateFlow()
 
@@ -37,6 +36,7 @@ class EditTextDialogViewModel @AssistedInject constructor(
     interface Factory {
         fun create(characterId: Int): EditTextDialogViewModel
     }
+
     init {
         viewModelScope.launch {
             val character = getCharacterUseCase(characterId).first()

@@ -29,7 +29,7 @@ internal fun AddTeamDialog(
     var teamName by rememberSaveable { mutableStateOf("") }
 
     Column(
-        verticalArrangement = Arrangement.spacedBy(24.dp)
+        verticalArrangement = Arrangement.spacedBy(24.dp),
     ) {
         Text(
             text = stringResource(R.string.new_team_title),
@@ -41,7 +41,7 @@ internal fun AddTeamDialog(
             modifier = Modifier.fillMaxWidth(),
             value = teamName,
             onValueChange = { teamName = it },
-            label = stringResource(R.string.team_name_label)
+            label = stringResource(R.string.team_name_label),
         )
 
         GloomOutlineButton(

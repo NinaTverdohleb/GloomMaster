@@ -36,6 +36,6 @@ sealed interface ShopTabAction {
     ) : ShopTabAction
 
     data class OpenGood(
-        val good: GoodUi
+        val good: GoodUi,
     ) : ShopTabAction
 }

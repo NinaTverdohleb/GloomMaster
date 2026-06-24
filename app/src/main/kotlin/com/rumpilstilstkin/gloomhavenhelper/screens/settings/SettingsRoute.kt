@@ -26,11 +26,11 @@ fun SettingsRoute(
         showAllTeam = { viewModel.onAction(SettingsAction.ShowAllTeam) },
         addTeam = { viewModel.onAction(SettingsAction.AddTeam) },
         changeLanguage = { viewModel.onAction(SettingsAction.ChangeLanguage) },
-        deleteCurrentTeam = { viewModel.onAction(SettingsAction.DeleteCurrentTeam) }
+        deleteCurrentTeam = { viewModel.onAction(SettingsAction.DeleteCurrentTeam) },
     )
 
     LaunchedScreenEffect(
         effect = screenEffect,
-        navController = navController
+        navController = navController,
     )
 }

@@ -30,8 +30,19 @@ data class MenuCharacterDialogComplete(
 )
 
 sealed interface MenuCharacterResult {
-    data class CharacterLeft(val character: CharacterUI) : MenuCharacterResult
-    data class CharacterMadeAlive(val character: CharacterUI) : MenuCharacterResult
-    data class OpenCharacterDetails(val character: CharacterUI) : MenuCharacterResult
-    data class DeleteCharacterRequest(val character: CharacterUI) : MenuCharacterResult
+    data class CharacterLeft(
+        val character: CharacterUI,
+    ) : MenuCharacterResult
+
+    data class CharacterMadeAlive(
+        val character: CharacterUI,
+    ) : MenuCharacterResult
+
+    data class OpenCharacterDetails(
+        val character: CharacterUI,
+    ) : MenuCharacterResult
+
+    data class DeleteCharacterRequest(
+        val character: CharacterUI,
+    ) : MenuCharacterResult
 }

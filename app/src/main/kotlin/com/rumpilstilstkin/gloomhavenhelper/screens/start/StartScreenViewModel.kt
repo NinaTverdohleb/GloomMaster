@@ -45,36 +45,43 @@ class StartScreenViewModel @Inject constructor(
     fun onAction(action: StartScreenAction) {
         viewModelScope.launch {
             when (action) {
-                StartScreenAction.AddTeam -> openAddTeamDialog()
-                StartScreenAction.Settings -> _screenEvents.emit(
-                    ScreenEffect.Navigation(
-                        Screen(
-                            GlHelperScreen.Settings
-                        )
+                StartScreenAction.AddTeam -> {
+                    openAddTeamDialog()
+                }
+
+                StartScreenAction.Settings -> {
+                    _screenEvents.emit(
+                        ScreenEffect.Navigation(
+                            Screen(
+                                GlHelperScreen.Settings,
+                            ),
+                        ),
                     )
-                )
+                }
             }
         }
     }
 
     private fun openAddTeamDialog() {
         viewModelScope.launch {
-            val session = createOverlaySession(
-                contract = AddTeamDialogContract,
-                input = Unit,
-                onResult = { result ->
-                    viewModelScope.launch {
-                        result?.let { success ->
-                            val message = if (success) {
-                                "Team created"
-                            } else {
-                                "Oops, something went wrong!"
+            val session =
+                createOverlaySession(
+                    contract = AddTeamDialogContract,
+                    input = Unit,
+                    onResult = { result ->
+                        viewModelScope.launch {
+                            result?.let { success ->
+                                val message =
+                                    if (success) {
+                                        "Team created"
+                                    } else {
+                                        "Oops, something went wrong!"
+                                    }
+                                _screenEvents.emit(ScreenEffect.Message(message))
                             }
-                            _screenEvents.emit(ScreenEffect.Message(message))
                         }
-                    }
-                }
-            )
+                    },
+                )
             _screenEvents.emit(ScreenEffect.OpenDialog(session))
         }
     }

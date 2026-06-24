@@ -27,9 +27,10 @@ fun AddScenarioDialog(
     addScenario: () -> Unit,
 ) {
     Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(16.dp),
+        modifier =
+            Modifier
+                .fillMaxWidth()
+                .padding(16.dp),
         verticalArrangement = Arrangement.spacedBy(32.dp),
     ) {
         ScenarioInfoItem(

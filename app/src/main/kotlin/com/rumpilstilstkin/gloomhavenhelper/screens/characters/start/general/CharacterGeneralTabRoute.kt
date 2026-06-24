@@ -37,14 +37,14 @@ fun CharacterGeneralTabRoute(
             viewModel.onAction(
                 GeneralTabActions.TaskCountChanged(
                     task,
-                    value
-                )
+                    value,
+                ),
             )
         },
     )
 
     LaunchedScreenEffect(
         effect = screenEffect,
-        navController = navController
+        navController = navController,
     )
 }

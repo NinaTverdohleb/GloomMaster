@@ -31,22 +31,22 @@ fun MenuCharacterDialog(
     openCharacterDetails: () -> Unit,
 ) {
     Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(16.dp),
-        verticalArrangement = Arrangement.spacedBy(24.dp)
+        modifier =
+            Modifier
+                .fillMaxWidth()
+                .padding(16.dp),
+        verticalArrangement = Arrangement.spacedBy(24.dp),
     ) {
-
         CharacterItem(character = character)
 
         if (character.isAlive) {
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
+                verticalAlignment = Alignment.CenterVertically,
             ) {
                 GloomHeader(
-                    text = stringResource(R.string.character_level_label)
+                    text = stringResource(R.string.character_level_label),
                 )
 
                 GloomCounterFull(
@@ -57,7 +57,7 @@ fun MenuCharacterDialog(
         }
 
         Column(
-            verticalArrangement = Arrangement.spacedBy(20.dp)
+            verticalArrangement = Arrangement.spacedBy(20.dp),
         ) {
             if (character.isAlive) {
                 GloomOutlineButton(
@@ -100,9 +100,10 @@ fun MenuCharacterDialog(
 private fun MenuCharacterDialogPreview() {
     GloomhavenMasterTheme {
         MenuCharacterDialog(
-            character = CharacterUI.fixture(
-                isAlive = false
-            ),
+            character =
+                CharacterUI.fixture(
+                    isAlive = false,
+                ),
             level = 2,
             deleteCharacter = {},
             updateLevel = {},

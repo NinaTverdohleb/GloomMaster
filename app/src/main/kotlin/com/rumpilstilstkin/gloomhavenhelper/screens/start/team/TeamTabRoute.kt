@@ -30,6 +30,6 @@ fun TeamTabRoute(
 
     LaunchedScreenEffect(
         effect = screenEffect,
-        navController = navController
+        navController = navController,
     )
 }

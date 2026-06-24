@@ -34,7 +34,6 @@ internal fun CharacterDetailsScreen(
     saveName: (String) -> Unit,
     selectTab: @Composable (CharacterDetailsTab) -> Unit,
 ) {
-
     /*if (state.showNameDialog) {
         CharacterEditNameDialog(
             currentName = state.name,
@@ -60,8 +59,7 @@ internal fun CharacterDetailsScreen(
         ) {
             CharacterHeaderItem(
                 character = state.character,
-                onClick = showNameDialog
-
+                onClick = showNameDialog,
             )
 
             CharactersTabs(
@@ -77,7 +75,8 @@ internal enum class CharacterDetailsTab(
 ) : NavItem {
     GENERAL(R.string.tab_general, NavigationIcon.CharacterGeneral),
     STUFF(R.string.tab_items, NavigationIcon.CharacterGoods),
-    SKILLS(R.string.tab_skills, NavigationIcon.CharacterPerks);
+    SKILLS(R.string.tab_skills, NavigationIcon.CharacterPerks),
+    ;
 
     @Composable
     override fun getTitle(): String = stringResource(titleRes)

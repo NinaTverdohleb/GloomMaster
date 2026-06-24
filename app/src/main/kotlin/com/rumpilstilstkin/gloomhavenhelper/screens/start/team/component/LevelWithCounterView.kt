@@ -22,19 +22,19 @@ fun LevelWithCounterView(
     showSign: Boolean,
     range: IntRange,
     modifier: Modifier = Modifier,
-    onValueChange: (Int) -> Unit
+    onValueChange: (Int) -> Unit,
 ) {
     Row(
         modifier = modifier.fillMaxWidth(),
         verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.SpaceBetween
+        horizontalArrangement = Arrangement.SpaceBetween,
     ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(8.dp)
+            horizontalArrangement = Arrangement.spacedBy(8.dp),
         ) {
             GloomRoundLabel(
-                label = level
+                label = level,
             )
             Text(
                 style = MaterialTheme.typography.headlineSmall,
@@ -47,7 +47,7 @@ fun LevelWithCounterView(
             value = counterValue,
             showSign = showSign,
             intRange = range,
-            onValueChange = onValueChange
+            onValueChange = onValueChange,
         )
     }
 }
@@ -62,7 +62,7 @@ private fun TeamProsperitySample() {
             counterValue = 2,
             showSign = true,
             range = IntRange(-20, 20),
-            onValueChange = {}
+            onValueChange = {},
         )
     }
 }

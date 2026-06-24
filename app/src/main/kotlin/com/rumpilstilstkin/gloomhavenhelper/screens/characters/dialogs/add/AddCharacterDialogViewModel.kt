@@ -6,6 +6,7 @@ import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.characters.CreateChar
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.classes.GetAvaliableClassesForCurrentTeamUseCase
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.CharacterClassTypeUI.Companion.toCharacterClassTypeUI
 import dagger.hilt.android.lifecycle.HiltViewModel
+import jakarta.inject.Inject
 import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -17,14 +18,12 @@ import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import jakarta.inject.Inject
 
 @HiltViewModel
 class AddCharacterDialogViewModel @Inject constructor(
     getAvaliableClassesForCurrentTeamUseCase: GetAvaliableClassesForCurrentTeamUseCase,
     private val createCharacterUseCase: CreateCharacterUseCase,
 ) : ViewModel() {
-
     private val _state = MutableStateFlow(AddCharacterDialogState())
     val state: StateFlow<AddCharacterDialogState> = _state.asStateFlow()
 

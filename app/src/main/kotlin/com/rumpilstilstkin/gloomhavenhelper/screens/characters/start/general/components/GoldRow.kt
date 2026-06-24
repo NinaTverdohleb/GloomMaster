@@ -28,17 +28,16 @@ fun GoldRow(
     goldRange: IntRange = 0..1000000,
     onGoldChanged: (Int) -> Unit,
 ) = GloomCard(
-    modifier = modifier
+    modifier = modifier,
 ) {
-
     Row(
         modifier = modifier.fillMaxWidth().padding(16.dp),
         verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.SpaceBetween
+        horizontalArrangement = Arrangement.SpaceBetween,
     ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(8.dp)
+            horizontalArrangement = Arrangement.spacedBy(8.dp),
         ) {
             Text(
                 style = MaterialTheme.typography.headlineSmall,

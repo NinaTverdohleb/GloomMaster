@@ -20,7 +20,6 @@ import javax.inject.Inject
 class TeamListDialogViewModel @Inject constructor(
     getCurrentTeamWithTeamsCountUseCase: GetCurrentTeamWithTeamsUseCase,
 ) : ViewModel() {
-
     private val _complete = Channel<TeamListDialogComplete>(Channel.BUFFERED)
     val complete = _complete.receiveAsFlow()
 
@@ -28,13 +27,15 @@ class TeamListDialogViewModel @Inject constructor(
         getCurrentTeamWithTeamsCountUseCase()
             .map { (team, teams) ->
                 TeamListDialogState(
-                    teams = teams.map {
-                        ShortTeamInfoUi(
-                            teamId = it.teamId,
-                            teamName = it.name,
-                            level = it.difficultyLevel,
-                        )
-                    }.toImmutableList(),
+                    teams =
+                        teams
+                            .map {
+                                ShortTeamInfoUi(
+                                    teamId = it.teamId,
+                                    teamName = it.name,
+                                    level = it.difficultyLevel,
+                                )
+                            }.toImmutableList(),
                 )
             }.stateIn(
                 scope = viewModelScope,

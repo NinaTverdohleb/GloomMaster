@@ -85,39 +85,42 @@ class SettingsViewModel @Inject constructor(
                 }
 
                 SettingsAction.ChangeLanguage -> {
-                    val session = createOverlaySession(
-                        contract = SelectLanguageContract,
-                        input = Unit,
-                        onResult = { }
-                    )
+                    val session =
+                        createOverlaySession(
+                            contract = SelectLanguageContract,
+                            input = Unit,
+                            onResult = { },
+                        )
                     _screenEvents.emit(ScreenEffect.OpenBottomSheet(session))
                 }
 
                 SettingsAction.ShowAllTeam -> {
-                    val session = createOverlaySession(
-                        contract = TeamListDialogContract,
-                        input = Unit,
-                        onResult = { team ->
-                            team?.also { onAction(SettingsAction.SelectTeam(it)) }
-                        }
-                    )
+                    val session =
+                        createOverlaySession(
+                            contract = TeamListDialogContract,
+                            input = Unit,
+                            onResult = { team ->
+                                team?.also { onAction(SettingsAction.SelectTeam(it)) }
+                            },
+                        )
                     _screenEvents.emit(ScreenEffect.OpenBottomSheet(session))
                 }
 
                 is SettingsAction.SelectTeam -> {
-                    val session = createOverlaySession(
-                        contract = TeamMenuDialogContract,
-                        input = action.team,
-                        onResult = { result ->
-                            when (result) {
-                                is TeamMenuResult.DeleteTeamRequest -> {
-                                    openDeleteTeamDialog(result.team)
-                                }
+                    val session =
+                        createOverlaySession(
+                            contract = TeamMenuDialogContract,
+                            input = action.team,
+                            onResult = { result ->
+                                when (result) {
+                                    is TeamMenuResult.DeleteTeamRequest -> {
+                                        openDeleteTeamDialog(result.team)
+                                    }
 
-                                else -> {}
-                            }
-                        }
-                    )
+                                    else -> {}
+                                }
+                            },
+                        )
                     _screenEvents.emit(ScreenEffect.OpenBottomSheet(session))
                 }
 
@@ -175,37 +178,40 @@ class SettingsViewModel @Inject constructor(
 
     private fun openDeleteTeamDialog(team: ShortTeamInfoUi) {
         viewModelScope.launch {
-            val session = createOverlaySession(
-                contract = DeleteTeamDialogContract,
-                input = team,
-                onResult = {
-                    viewModelScope.launch {
-                        _screenEvents.emit(ScreenEffect.Message("Team deleted."))
-                    }
-                }
-            )
+            val session =
+                createOverlaySession(
+                    contract = DeleteTeamDialogContract,
+                    input = team,
+                    onResult = {
+                        viewModelScope.launch {
+                            _screenEvents.emit(ScreenEffect.Message("Team deleted."))
+                        }
+                    },
+                )
             _screenEvents.emit(ScreenEffect.OpenDialog(session))
         }
     }
 
     private fun openAddTeamDialog() {
         viewModelScope.launch {
-            val session = createOverlaySession(
-                contract = AddTeamDialogContract,
-                input = Unit,
-                onResult = { result ->
-                    viewModelScope.launch {
-                        result?.let { success ->
-                            val message = if (success) {
-                                "Team created"
-                            } else {
-                                "Oops, something went wrong!"
+            val session =
+                createOverlaySession(
+                    contract = AddTeamDialogContract,
+                    input = Unit,
+                    onResult = { result ->
+                        viewModelScope.launch {
+                            result?.let { success ->
+                                val message =
+                                    if (success) {
+                                        "Team created"
+                                    } else {
+                                        "Oops, something went wrong!"
+                                    }
+                                _screenEvents.emit(ScreenEffect.Message(message))
                             }
-                            _screenEvents.emit(ScreenEffect.Message(message))
                         }
-                    }
-                }
-            )
+                    },
+                )
             _screenEvents.emit(ScreenEffect.OpenDialog(session))
         }
     }

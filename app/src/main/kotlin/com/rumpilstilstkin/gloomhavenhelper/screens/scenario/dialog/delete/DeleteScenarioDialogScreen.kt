@@ -10,15 +10,16 @@ import com.rumpilstilstkin.gloomhavenhelper.screens.models.ShortScenarioUI
 fun DeleteScenarioDialogScreen(
     scenario: ShortScenarioUI,
     deleteScenario: () -> Unit,
-    close: () -> Unit
+    close: () -> Unit,
 ) {
     ConfirmationDeleteDialog(
         title = stringResource(R.string.delete_scenario_dialog_title),
-        description = stringResource(
-            R.string.delete_scenario_dialog_description,
-            scenario.scenarioName
-        ),
+        description =
+            stringResource(
+                R.string.delete_scenario_dialog_description,
+                scenario.scenarioName,
+            ),
         onDeleteConfirm = deleteScenario,
-        onClose = close
+        onClose = close,
     )
 }
