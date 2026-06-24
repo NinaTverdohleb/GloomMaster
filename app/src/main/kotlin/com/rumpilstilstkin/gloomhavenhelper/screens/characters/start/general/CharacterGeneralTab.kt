@@ -30,52 +30,62 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.rumpilstilstkin.gloomhavenhelper.R
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.quest.CharacterTaskItem
 import com.rumpilstilstkin.gloomhavenhelper.screens.characters.start.general.components.CheckMarksBlock
 import com.rumpilstilstkin.gloomhavenhelper.screens.characters.start.general.components.ExperienceRow
 import com.rumpilstilstkin.gloomhavenhelper.screens.characters.start.general.components.GoldRow
 import com.rumpilstilstkin.gloomhavenhelper.screens.characters.start.general.components.NotesRow
 import com.rumpilstilstkin.gloomhavenhelper.screens.characters.start.general.components.PersonalQuestView
+import com.rumpilstilstkin.gloomhavenhelper.screens.models.PersonalQuestUI
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomAlertDialog
 
 @Composable
 fun CharacterGeneralTab(
     state: CharacterGeneralTabState,
     modifier: Modifier = Modifier,
-    onAction: (GeneralTabActions) -> Unit,
+    openNotes: () -> Unit,
+    onLevelUp: () -> Unit,
+    onGoldChanged: (Int) -> Unit,
+    onExperienceChanged: (Int) -> Unit,
+    onCheckedChange: (Boolean) -> Unit,
+    choosePersonalQuest: () -> Unit,
+    onTaskCheckedChange: (CharacterTaskItem.Check) -> Unit,
+    showQuestDetails: (PersonalQuestUI) -> Unit,
+    onTaskCountChanged: (CharacterTaskItem.Count, Int) -> Unit,
 ) {
     Column(
         modifier =
             modifier
-                .padding(16.dp)
                 .fillMaxSize()
-                .verticalScroll(rememberScrollState()),
+                .verticalScroll(rememberScrollState())
+                .padding(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.spacedBy(24.dp)
     ) {
         ExperienceRow(
             experience = state.experience,
             nextLevelExperience = state.nextLevel,
-            onLevelUp = { onAction(GeneralTabActions.LevelUp) },
-            onExperienceChanged = { onAction(GeneralTabActions.ExperienceChanged(it)) },
+            onLevelUp = onLevelUp,
+            onExperienceChanged = onExperienceChanged,
         )
         GoldRow(
             goldCount = state.goldCount,
-            onGoldChanged = { onAction(GeneralTabActions.GoldChanged(it)) },
+            onGoldChanged = onGoldChanged,
         )
         CheckMarksBlock(
             checkMarkCount = state.checkMarkCount,
-            onCheckedChange = { onAction(GeneralTabActions.CheckedChange(it)) },
+            onCheckedChange = onCheckedChange,
         )
         PersonalQuestView(
             quest = state.personalQuest,
-            onTaskCheckedChange =  { onAction(GeneralTabActions.TaskCheckedChange(it)) },
-            onTaskCountChanged = { i, k -> onAction(GeneralTabActions.TaskCountChanged(i, k)) },
-            showQuestDetails = {},
-            choosePersonalQuest = { onAction(GeneralTabActions.ChoosePersonalQuest) },
+            onTaskCheckedChange = onTaskCheckedChange,
+            onTaskCountChanged = onTaskCountChanged,
+            showQuestDetails = showQuestDetails,
+            choosePersonalQuest = choosePersonalQuest,
         )
         NotesRow(
             notes = state.notes,
-            openNotes = { },
+            openNotes = openNotes,
         )
     }
 }
@@ -96,7 +106,15 @@ private fun Sample() {
                     notes = "Some notes about my journey.",
                 ),
             modifier = Modifier.background(MaterialTheme.colorScheme.background),
-            onAction = {},
+            openNotes = {},
+            onLevelUp = {},
+            onGoldChanged = {},
+            onExperienceChanged = {},
+            onCheckedChange = {},
+            choosePersonalQuest = {},
+            onTaskCheckedChange = {},
+            showQuestDetails = {},
+            onTaskCountChanged = { _, _ -> },
         )
     }
 }
