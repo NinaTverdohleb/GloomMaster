@@ -23,9 +23,7 @@ fun EmptyView(
     description: String,
     modifier: Modifier = Modifier
 ) = Column(
-    modifier =
-        modifier
-            .fillMaxSize(),
+    modifier = modifier.fillMaxSize(),
     horizontalAlignment = Alignment.CenterHorizontally,
     verticalArrangement = Arrangement.Center,
 ) {

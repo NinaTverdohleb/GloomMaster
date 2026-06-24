@@ -23,7 +23,6 @@ import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterT
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.AchievementWithName
 import com.rumpilstilstkin.gloomhavenhelper.screens.teem.achievement.components.AchievementItem
 import com.rumpilstilstkin.gloomhavenhelper.screens.teem.achievement.components.AddAchievementDialog
-import com.rumpilstilstkin.gloomhavenhelper.screens.teem.achievement.delete.DeleteAchievementConfirmDialog
 import com.rumpilstilstkin.gloomhavenhelper.screens.teem.achievement.components.EmptyAchievements
 import kotlinx.collections.immutable.persistentListOf
 
@@ -34,9 +33,7 @@ internal fun AchievementsScreen(
     showAddDialog: () -> Unit,
     dismissAddDialog: () -> Unit,
     addAchievement: (AchievementWithName) -> Unit,
-    showDeleteDialog: (String) -> Unit,
-    dismissDeleteDialog: () -> Unit,
-    confirmDelete: () -> Unit,
+    deleteAchievement: (AchievementWithName) -> Unit,
     back: () -> Unit,
     updateAchievement: (Int, AchievementWithName) -> Unit,
 ) = Scaffold(
@@ -48,10 +45,12 @@ internal fun AchievementsScreen(
     },
     floatingActionButtonPosition = FabPosition.End,
     floatingActionButton = {
-        GloomFab(
-            icon = AppIcon.Plus,
-            onClick = showAddDialog,
-        )
+        if(uiState.availableAchievements.isNotEmpty()) {
+            GloomFab(
+                icon = AppIcon.Plus,
+                onClick = showAddDialog,
+            )
+        }
     }
 ) { innerPadding ->
     Column(
@@ -83,7 +82,7 @@ internal fun AchievementsScreen(
                                 modifier = Modifier.fillMaxHeight(),
                                 icon = AppIcon.Delete,
                                 isError = true,
-                                onClick = { showDeleteDialog(achievement.slug) }
+                                onClick = { deleteAchievement(achievement) }
                             )
                         },
                         item = {
@@ -103,13 +102,6 @@ internal fun AchievementsScreen(
             availableAchievements = uiState.availableAchievements,
             onDismiss = dismissAddDialog,
             onSelect = addAchievement,
-        )
-    }
-
-    uiState.achievementToDelete?.let { achievement ->
-        DeleteAchievementConfirmDialog(
-            onDismiss = dismissDeleteDialog,
-            onConfirm = confirmDelete,
         )
     }
 }
@@ -136,9 +128,7 @@ private fun AchievementsScreenPreview() {
             showAddDialog = {},
             dismissAddDialog = {},
             addAchievement = {},
-            showDeleteDialog = {},
-            dismissDeleteDialog = {},
-            confirmDelete = {},
+            deleteAchievement = {},
             back = {},
             updateAchievement = { _, _ -> },
         )
@@ -155,9 +145,7 @@ private fun AchievementsScreenEmptyPreview() {
             showAddDialog = {},
             dismissAddDialog = {},
             addAchievement = {},
-            showDeleteDialog = {},
-            dismissDeleteDialog = {},
-            confirmDelete = {},
+            deleteAchievement = {},
             back = {},
             updateAchievement = { _, _ -> },
         )

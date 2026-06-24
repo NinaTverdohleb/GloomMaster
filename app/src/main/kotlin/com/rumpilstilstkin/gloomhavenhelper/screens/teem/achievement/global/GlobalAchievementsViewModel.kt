@@ -2,14 +2,17 @@ package com.rumpilstilstkin.gloomhavenhelper.screens.teem.achievement.global
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.AchievementWithName
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.achievement.GetAvailableGlobalAchievementsUseCase
-import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.achievement.RemoveAchievementUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.achievement.UpdateAchievementUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.team.GetCurrentTeamShortInfoUseCase
 import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEvent
+import com.rumpilstilstkin.gloomhavenhelper.screens.core.ScreenEffect
+import com.rumpilstilstkin.gloomhavenhelper.screens.core.createOverlaySession
 import com.rumpilstilstkin.gloomhavenhelper.screens.teem.achievement.AchievementsAction
 import com.rumpilstilstkin.gloomhavenhelper.screens.teem.achievement.AchievementsStateLogic
 import com.rumpilstilstkin.gloomhavenhelper.screens.teem.achievement.AchievementsStateUi
+import com.rumpilstilstkin.gloomhavenhelper.screens.teem.achievement.delete.DeleteAchievementDialogContract
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.toImmutableList
@@ -29,10 +32,9 @@ class GlobalAchievementsViewModel @Inject constructor(
     getCurrentTeamShortInfoUseCase: GetCurrentTeamShortInfoUseCase,
     getAvailableAchievementsUseCase: GetAvailableGlobalAchievementsUseCase,
     private val updateAchievementUseCase: UpdateAchievementUseCase,
-    private val removeAchievementUseCase: RemoveAchievementUseCase,
 ) : ViewModel() {
-    private val _navigationEvents = MutableSharedFlow<GlHelperEvent>()
-    val navigationEvents = _navigationEvents.asSharedFlow()
+    private val _screenEvents = MutableSharedFlow<ScreenEffect>()
+    val screenEvents = _screenEvents.asSharedFlow()
 
     private val logicState = MutableStateFlow(AchievementsStateLogic())
 
@@ -50,7 +52,6 @@ class GlobalAchievementsViewModel @Inject constructor(
                         ?.toImmutableList() ?: persistentListOf(),
                 availableAchievements = availableAchievements.toImmutableList(),
                 showAddDialog = logic.showAddDialog,
-                achievementToDelete = logic.achievementToDelete,
             )
         }.stateIn(
             scope = viewModelScope,
@@ -74,23 +75,12 @@ class GlobalAchievementsViewModel @Inject constructor(
                     logicState.update { it.copy(showAddDialog = false) }
                 }
 
-                is AchievementsAction.ShowDeleteConfirmDialog -> {
-                    logicState.update { it.copy(achievementToDelete = action.achievementSlug) }
-                }
-
-                is AchievementsAction.DismissDeleteConfirmDialog -> {
-                    logicState.update { it.copy(achievementToDelete = null) }
-                }
-
-                is AchievementsAction.ConfirmDelete -> {
-                    logicState.value.achievementToDelete?.let { achievement ->
-                        removeAchievementUseCase(achievement)
-                    }
-                    logicState.update { it.copy(achievementToDelete = null) }
+                is AchievementsAction.DeleteAchievement -> {
+                    showDeleteAchievementDialog(action.achievement)
                 }
 
                 is AchievementsAction.Back -> {
-                    _navigationEvents.emit(GlHelperEvent.Back)
+                    _screenEvents.emit(ScreenEffect.Navigation(GlHelperEvent.Back))
                 }
 
                 is AchievementsAction.UpdateAchievement -> {
@@ -99,6 +89,17 @@ class GlobalAchievementsViewModel @Inject constructor(
                     )
                 }
             }
+        }
+    }
+
+    private fun showDeleteAchievementDialog(achievement: AchievementWithName) {
+        viewModelScope.launch {
+            val session = createOverlaySession(
+                contract = DeleteAchievementDialogContract,
+                input = achievement,
+                onResult = { },
+            )
+            _screenEvents.emit(ScreenEffect.OpenDialog(session))
         }
     }
 }
