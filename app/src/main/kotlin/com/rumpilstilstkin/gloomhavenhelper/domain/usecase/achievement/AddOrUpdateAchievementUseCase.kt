@@ -5,7 +5,7 @@ import com.rumpilstilstkin.gloomhavenhelper.domain.entity.Achievement
 import kotlinx.coroutines.flow.first
 import javax.inject.Inject
 
-class UpdateAchievementUseCase @Inject constructor(
+class AddOrUpdateAchievementUseCase @Inject constructor(
     private val teamRepository: TeamRepository,
 ) {
     suspend operator fun invoke(achievement: Achievement) {

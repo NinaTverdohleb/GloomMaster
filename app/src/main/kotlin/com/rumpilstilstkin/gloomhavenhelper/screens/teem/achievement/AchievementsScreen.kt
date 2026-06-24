@@ -22,7 +22,6 @@ import com.rumpilstilstkin.gloomhavenhelper.designsystem.icons.AppIcon
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.AchievementWithName
 import com.rumpilstilstkin.gloomhavenhelper.screens.teem.achievement.components.AchievementItem
-import com.rumpilstilstkin.gloomhavenhelper.screens.teem.achievement.components.AddAchievementDialog
 import com.rumpilstilstkin.gloomhavenhelper.screens.teem.achievement.components.EmptyAchievements
 import kotlinx.collections.immutable.persistentListOf
 
@@ -30,9 +29,7 @@ import kotlinx.collections.immutable.persistentListOf
 internal fun AchievementsScreen(
     uiState: AchievementsStateUi,
     title: String,
-    showAddDialog: () -> Unit,
-    dismissAddDialog: () -> Unit,
-    addAchievement: (AchievementWithName) -> Unit,
+    addAchievement: () -> Unit,
     deleteAchievement: (AchievementWithName) -> Unit,
     back: () -> Unit,
     updateAchievement: (Int, AchievementWithName) -> Unit,
@@ -48,7 +45,7 @@ internal fun AchievementsScreen(
         if(uiState.availableAchievements.isNotEmpty()) {
             GloomFab(
                 icon = AppIcon.Plus,
-                onClick = showAddDialog,
+                onClick = addAchievement,
             )
         }
     }
@@ -60,9 +57,7 @@ internal fun AchievementsScreen(
                 .fillMaxSize(),
     ) {
         if (uiState.achievements.isEmpty()) {
-            EmptyAchievements(
-                modifier = Modifier.weight(1f),
-            )
+            EmptyAchievements()
         } else {
             LazyColumn(
                 modifier =
@@ -96,14 +91,6 @@ internal fun AchievementsScreen(
             }
         }
     }
-
-    if (uiState.showAddDialog) {
-        AddAchievementDialog(
-            availableAchievements = uiState.availableAchievements,
-            onDismiss = dismissAddDialog,
-            onSelect = addAchievement,
-        )
-    }
 }
 
 @Preview(showBackground = true, backgroundColor = 0xFF1A1C24)
@@ -125,8 +112,6 @@ private fun AchievementsScreenPreview() {
                             AchievementWithName.fixture("Treasure Map"),
                         ),
                 ),
-            showAddDialog = {},
-            dismissAddDialog = {},
             addAchievement = {},
             deleteAchievement = {},
             back = {},
@@ -142,8 +127,6 @@ private fun AchievementsScreenEmptyPreview() {
         AchievementsScreen(
             title = "Party Achievements",
             uiState = AchievementsStateUi(),
-            showAddDialog = {},
-            dismissAddDialog = {},
             addAchievement = {},
             deleteAchievement = {},
             back = {},

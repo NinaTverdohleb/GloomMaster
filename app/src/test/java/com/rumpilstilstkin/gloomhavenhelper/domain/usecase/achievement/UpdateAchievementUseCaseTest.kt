@@ -36,7 +36,7 @@ class UpdateAchievementUseCaseTest {
         val capturedTeam = slot<ShortTeamInfo>()
         every { teamRepository.currentTeam } returns flowOf(team)
         coJustRun { teamRepository.updateTeam(capture(capturedTeam)) }
-        val sut = UpdateAchievementUseCase(teamRepository)
+        val sut = AddOrUpdateAchievementUseCase(teamRepository)
 
         // When
         sut(updated)

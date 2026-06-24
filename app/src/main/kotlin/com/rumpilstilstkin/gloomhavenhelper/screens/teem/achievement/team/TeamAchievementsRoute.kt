@@ -22,9 +22,7 @@ fun TeamAchievementsRoute(
     AchievementsScreen(
         title = stringResource(R.string.team_achievements),
         uiState = uiState,
-        showAddDialog = { viewModel.onAction(AchievementsAction.ShowAddDialog) },
-        dismissAddDialog = { viewModel.onAction(AchievementsAction.DismissAddDialog) },
-        addAchievement = { viewModel.onAction(AchievementsAction.AddAchievement(it)) },
+        addAchievement = { viewModel.onAction(AchievementsAction.ShowAddDialog) },
         deleteAchievement = { viewModel.onAction(AchievementsAction.DeleteAchievement(it)) },
         back = { viewModel.onAction(AchievementsAction.Back) },
         updateAchievement = { value, achievement ->
