@@ -40,6 +40,7 @@ enum class DragAnchors {
 object ActionWidth {
     @Stable
     val OneIconAction: Dp = 64.dp
+    val TwoIconAction: Dp = 144.dp
 }
 
 @Composable
@@ -81,7 +82,8 @@ fun GloomSwipeableListItem(
                 .fillMaxHeight()
                 .width(menuWidthDp)
                 .padding(start = 12.dp)
-                .align(Alignment.CenterEnd)
+                .align(Alignment.CenterEnd),
+            horizontalArrangement = Arrangement.spacedBy(8.dp)
         ) {
             menuContent()
         }
@@ -110,11 +112,18 @@ private fun GloomSwipeListListItemPreviewGloom() {
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             GloomSwipeableListItem(
+                menuWidthDp = ActionWidth.TwoIconAction,
                 menuContent = {
                     GloomItemActionIcon(
                         modifier = Modifier.fillMaxHeight(),
                         icon = AppIcon.Delete,
                         isError = true,
+                        onClick = {}
+                    )
+                    GloomItemActionIcon(
+                        modifier = Modifier.fillMaxHeight(),
+                        icon = AppIcon.Buy,
+                        isError = false,
                         onClick = {}
                     )
                 },

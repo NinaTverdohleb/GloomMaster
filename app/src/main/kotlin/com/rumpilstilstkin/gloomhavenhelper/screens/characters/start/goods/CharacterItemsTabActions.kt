@@ -1,13 +1,18 @@
 package com.rumpilstilstkin.gloomhavenhelper.screens.characters.start.goods
 
+import com.rumpilstilstkin.gloomhavenhelper.screens.models.GoodUi
+
 sealed interface CharacterItemsTabActions {
     data class DeleteGood(
-        val goodId: Int,
+        val good: GoodUi,
     ) : CharacterItemsTabActions
 
     data class SellGood(
-        val goodId: Int,
-        val cost: Int,
+        val good: GoodUi,
+    ) : CharacterItemsTabActions
+
+    data class GoodDetails(
+        val good: GoodUi,
     ) : CharacterItemsTabActions
 
     data object AddGood : CharacterItemsTabActions

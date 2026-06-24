@@ -1,12 +1,11 @@
 package com.rumpilstilstkin.gloomhavenhelper.screens.characters.start.goods
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
-import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEventHelper
+import com.rumpilstilstkin.gloomhavenhelper.screens.core.LaunchedScreenEffect
 
 @Composable
 fun CharacterItemsTabRoute(
@@ -18,16 +17,7 @@ fun CharacterItemsTabRoute(
             factory.create(characterId)
         }
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
-    val navigationEvents by viewModel.navigationEvents.collectAsStateWithLifecycle(initialValue = null)
-
-    LaunchedEffect(navigationEvents) {
-        navigationEvents?.let { event ->
-            GlHelperEventHelper.event(
-                event = event,
-                navController = navController,
-            )
-        }
-    }
+    val screenEffect by viewModel.screenEvents.collectAsStateWithLifecycle(initialValue = null)
 
     CharacterItemsTabScreen(
         goods = uiState,
@@ -37,8 +27,16 @@ fun CharacterItemsTabRoute(
         addGoods = {
             viewModel.onAction(CharacterItemsTabActions.AddGood)
         },
-        sellGood = { number, cost ->
-            viewModel.onAction(CharacterItemsTabActions.SellGood(number, cost))
+        goodDetails = {
+            viewModel.onAction(CharacterItemsTabActions.GoodDetails(it))
         },
+        sellGood = {
+            viewModel.onAction(CharacterItemsTabActions.SellGood(it))
+        },
+    )
+
+    LaunchedScreenEffect(
+        effect = screenEffect,
+        navController = navController,
     )
 }
