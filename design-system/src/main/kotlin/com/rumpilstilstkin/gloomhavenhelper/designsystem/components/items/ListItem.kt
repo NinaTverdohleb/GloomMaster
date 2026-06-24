@@ -145,6 +145,18 @@ private fun GloomListItemPreview() {
                     LeftItemImage(GoodIcon.SmallThing)
                 }
             )
+
+            GloomListFilledItem(
+                modifier = Modifier.fillMaxWidth(),
+                title = "Achivment",
+                rightComponent = {
+                    CounterRightItem(
+                        value = 5,
+                        intRange = IntRange(0, 15),
+                        onValueChange = {},
+                    )
+                }
+            )
         }
     }
 }

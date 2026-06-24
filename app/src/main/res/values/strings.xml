@@ -189,4 +189,6 @@
     <string name="leave_character">Leave character</string>
     <string name="make_alive">Make alive</string>
     <string name="delete_character">Delete character</string>
+    <string name="empty_team_achievements_description">Add Achievements for team</string>
+    <string name="delete_achivment_dialog_description">Do you want to delete %1$s achievement</string>
 </resources>

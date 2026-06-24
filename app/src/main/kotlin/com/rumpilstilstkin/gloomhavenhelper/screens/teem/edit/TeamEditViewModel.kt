@@ -3,23 +3,20 @@ package com.rumpilstilstkin.gloomhavenhelper.screens.teem.edit
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.selectablePacks
-import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.team.DeleteCurrentTeamUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.team.GetCurrentTeamWithTeamsUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.team.SwitchPackForCurrentTeamUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.team.UpdateDifficultyLevelUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.team.UpdateNameForCurrentTeamUseCase
 import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEvent
+import com.rumpilstilstkin.gloomhavenhelper.screens.core.ScreenEffect
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asSharedFlow
-import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
-import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -30,8 +27,8 @@ class TeamEditViewModel @Inject constructor(
     private val updateNameForCurrentTeamUseCase: UpdateNameForCurrentTeamUseCase,
     private val updateDifficultyLevelUseCase: UpdateDifficultyLevelUseCase,
 ) : ViewModel() {
-    private val _navigationEvents = MutableSharedFlow<GlHelperEvent>()
-    val navigationEvents = _navigationEvents.asSharedFlow()
+    private val _screenEvents = MutableSharedFlow<ScreenEffect>()
+    val screenEvents = _screenEvents.asSharedFlow()
 
 
     val uiState: StateFlow<TeamEditStateUi> =
@@ -73,7 +70,7 @@ class TeamEditViewModel @Inject constructor(
                 }
 
                 is TeamEditAction.Back -> {
-                    _navigationEvents.emit(GlHelperEvent.Back)
+                    _screenEvents.emit(ScreenEffect.Navigation(GlHelperEvent.Back))
                 }
 
                 is TeamEditAction.ChangeDifficultyLevel -> {

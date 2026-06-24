@@ -11,6 +11,7 @@ import androidx.compose.material3.CardDefaults.cardColors
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
@@ -19,13 +20,14 @@ import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterT
 fun GloomCard(
     modifier: Modifier = Modifier,
     active: Boolean = false,
+    backgroundColor: Color = MaterialTheme.colorScheme.surfaceContainer,
     content: @Composable ColumnScope.() -> Unit,
 ) = Card(
     modifier = modifier,
     shape = RoundedCornerShape(16.dp),
     colors =
         cardColors(
-            containerColor = MaterialTheme.colorScheme.surfaceContainer,
+            containerColor = backgroundColor,
         ),
     border =
         BorderStroke(
@@ -41,7 +43,7 @@ private fun GloomCardPreview() {
     GloomhavenMasterTheme {
         GloomCard(
             modifier = Modifier.fillMaxWidth(),
-            active = true
+            active = false
         ) {
             Box(
                 modifier = Modifier.height(40.dp),

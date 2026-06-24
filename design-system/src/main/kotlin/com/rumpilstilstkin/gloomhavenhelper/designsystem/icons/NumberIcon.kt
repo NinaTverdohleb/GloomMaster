@@ -2,7 +2,7 @@ package com.rumpilstilstkin.gloomhavenhelper.designsystem.icons
 
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.R
 
-enum class NumberIcon(override val resId: Int): GloomIcon {
+enum class NumberIcon(override val resId: Int) : GloomIcon {
     Number0(R.drawable.ic_0),
     Number1(R.drawable.ic_1),
     Number2(R.drawable.ic_2),
@@ -21,7 +21,7 @@ enum class NumberIcon(override val resId: Int): GloomIcon {
     Number15(R.drawable.ic_15);
 }
 
-fun Int.toNumberIcon() = when(this){
+fun Int.toNumberIcon() = when (this) {
     1 -> NumberIcon.Number1
     2 -> NumberIcon.Number2
     3 -> NumberIcon.Number3
@@ -38,7 +38,6 @@ fun Int.toNumberIcon() = when(this){
     14 -> NumberIcon.Number14
     15 -> NumberIcon.Number15
     else -> NumberIcon.Number0
-
 
 
 }

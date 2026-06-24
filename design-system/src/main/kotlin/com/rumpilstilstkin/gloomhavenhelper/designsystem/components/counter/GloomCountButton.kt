@@ -3,7 +3,9 @@ package com.rumpilstilstkin.gloomhavenhelper.designsystem.components.counter
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
@@ -12,11 +14,41 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.icons.AppIcon
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.icons.GloomIcon
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
+
+@Composable
+fun GloomCountButtonSmall(
+    value: Int,
+    modifier: Modifier = Modifier,
+    type: PickerButtonType = PickerButtonType.PLUS,
+    onValueChange: (Int) -> Unit = {},
+) {
+    IconButton(
+        modifier =
+            modifier
+                .background(color = Color.Transparent)
+                .size(24.dp),
+        onClick = { onValueChange(type.action(value)) },
+    ) {
+        Box(
+            modifier = Modifier
+                .size(24.dp)
+                .padding(4.dp)
+        ) {
+            Icon(
+                painter = type.image.painter(),
+                contentDescription = null,
+                tint = MaterialTheme.colorScheme.onSurface,
+            )
+        }
+    }
+}
+
 
 @Composable
 fun GloomCountButton(
@@ -40,12 +72,17 @@ fun GloomCountButton(
                 .size(36.dp),
         onClick = { onValueChange(type.action(value)) },
     ) {
-        Icon(
-            modifier = modifier.size(24.dp),
-            painter = type.image.painter(),
-            contentDescription = null,
-            tint = MaterialTheme.colorScheme.onSurface,
-        )
+        Box(
+            modifier = Modifier.size(36.dp),
+            contentAlignment = Alignment.Center
+        ) {
+            Icon(
+                modifier = modifier.size(24.dp),
+                painter = type.image.painter(),
+                contentDescription = null,
+                tint = MaterialTheme.colorScheme.onSurface,
+            )
+        }
     }
 
 }
@@ -74,6 +111,16 @@ private fun GloomCountButtonPreview() {
             )
 
             GloomCountButton(
+                value = 0,
+                type = PickerButtonType.MINUS
+            )
+
+            GloomCountButtonSmall(
+                value = 0,
+                type = PickerButtonType.PLUS
+            )
+
+            GloomCountButtonSmall(
                 value = 0,
                 type = PickerButtonType.MINUS
             )
