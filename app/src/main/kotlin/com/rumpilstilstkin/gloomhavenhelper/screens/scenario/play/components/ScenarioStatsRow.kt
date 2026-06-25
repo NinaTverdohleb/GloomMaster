@@ -59,7 +59,11 @@ internal fun StatItem(
     image: Int,
 ) {
     Row {
-        Icon(painter = painterResource(id = image), contentDescription = null, tint = MaterialTheme.colorScheme.primary)
+        Icon(
+            painter = painterResource(id = image),
+            contentDescription = null,
+            tint = MaterialTheme.colorScheme.primary
+        )
         Spacer(modifier = Modifier.width(4.dp))
         Text(value)
     }

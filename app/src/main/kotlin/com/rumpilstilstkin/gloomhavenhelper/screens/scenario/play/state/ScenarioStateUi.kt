@@ -2,6 +2,7 @@ package com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.state
 
 import androidx.compose.runtime.Immutable
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.Magic
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.ScenarioShortInfo
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterStatType
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.scenario.MonsterItem
 import kotlinx.collections.immutable.ImmutableList
@@ -11,7 +12,9 @@ import kotlinx.collections.immutable.persistentMapOf
 
 @Immutable
 data class ScenarioStateUi(
-    val name: String = "",
+    val scenarioNumber: Int? = null,
+    val scenarioLocation: String? = null,
+    val scenarioName: String = "",
     val exp: Int = 0,
     val gold: Int = 0,
     val trapDamage: Int = 0,

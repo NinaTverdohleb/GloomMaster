@@ -1,5 +1,6 @@
 package com.rumpilstilstkin.gloomhavenhelper.designsystem.components.toolbar
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -15,6 +16,7 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -31,6 +33,7 @@ import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterT
 fun GloomToolbarAction(
     title: String,
     modifier: Modifier = Modifier,
+    backgroundColor: Color = MaterialTheme.colorScheme.surface,
     actionClick: () -> Unit = {},
     actionIcon: GloomIcon = AppIcon.Settings,
     back: (() -> Unit)? = null,
@@ -65,7 +68,7 @@ fun GloomToolbarAction(
         }
     },
     colors = TopAppBarDefaults.topAppBarColors(
-        containerColor = MaterialTheme.colorScheme.surface,
+        containerColor = backgroundColor,
         titleContentColor = MaterialTheme.colorScheme.onSurface,
         navigationIconContentColor = MaterialTheme.colorScheme.onSurface
     ),

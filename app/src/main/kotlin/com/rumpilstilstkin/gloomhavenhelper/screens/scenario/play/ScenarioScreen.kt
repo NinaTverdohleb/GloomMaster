@@ -19,12 +19,14 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.painterResource
@@ -33,6 +35,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.rumpilstilstkin.gloomhavenhelper.R
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.buttons.GloomButton
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.buttons.GloomFab
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.toolbar.GloomToolbar
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.toolbar.GloomToolbarAction
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.icons.AppIcon
@@ -42,6 +46,7 @@ import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterStatTyp
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.scenario.MonsterItem
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.scenario.MonsterUnit
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.components.AddMonsterCard
+import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.components.PageIndicator
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.components.RegularMonsterCard
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.components.ScenarioHeader
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.state.ScenarioStateUi
@@ -64,10 +69,12 @@ internal fun ScenarioScreen(
     changeUnitLevel: (monsterSlug: String, unit: MonsterUnit, level: Int) -> Unit,
 ) = Scaffold(
     topBar = {
-        CombatToolbar(
-            roundNumber = state.round,
+        GloomToolbarAction(
+            title = stringResource(R.string.round_status, state.round),
             back = back,
-            complete = complete,
+            backgroundColor = MaterialTheme.colorScheme.surfaceContainer,
+            actionClick = complete,
+            actionIcon = AppIcon.Check,
         )
     },
 ) { paddingValues ->
@@ -75,21 +82,20 @@ internal fun ScenarioScreen(
         modifier =
             Modifier
                 .fillMaxSize()
-                .padding(paddingValues)
-                .padding(top = 16.dp),
+                .padding(paddingValues),
     ) {
         ScenarioHeader(
-            title = state.name.ifBlank { stringResource(R.string.custom_scenario) },
+            scenarioNumber = state.scenarioNumber,
+            scenarioName = state.scenarioName.ifBlank { stringResource(R.string.custom_scenario) },
+            location = state.scenarioLocation,
             magics = state.magicChargeList,
             clickMagic = clickMagic,
-            level = state.level,
-            exp = state.exp,
-            gold = state.gold,
             trapDamage = state.trapDamage,
         )
-
-        Spacer(
-            modifier = Modifier.height(8.dp),
+        HorizontalDivider(
+            modifier = Modifier.fillMaxWidth(),
+            thickness = 1.dp,
+            color = MaterialTheme.colorScheme.outline
         )
         ScenarioScreenContent(
             modifier = Modifier.weight(1f),
@@ -103,34 +109,26 @@ internal fun ScenarioScreen(
             changeUnitLevel = changeUnitLevel,
             availableEffects = state.availableEffects,
         )
-        Button(
+        Column(
             modifier =
                 Modifier
                     .fillMaxWidth()
                     .padding(16.dp),
-            onClick = nextRound,
-            contentPadding = PaddingValues(16.dp),
+            verticalArrangement = Arrangement.spacedBy(12.dp),
+            horizontalAlignment = Alignment.End
         ) {
-            Text(
+            GloomFab(
+                icon = AppIcon.Plus,
+                onClick = addMonster
+            )
+            GloomButton(
                 text = stringResource(R.string.round_label),
-                fontSize = 16.sp,
+                modifier = Modifier.fillMaxWidth(),
+                onClick = nextRound,
             )
         }
     }
 }
-
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-private fun CombatToolbar(
-    roundNumber: Int,
-    complete: () -> Unit,
-    back: () -> Unit,
-) = GloomToolbarAction(
-    title = stringResource(R.string.round_status, roundNumber),
-    back = back,
-    actionClick = complete,
-    actionIcon = AppIcon.Check,
-)
 
 @Composable
 fun ScenarioScreenContent(
@@ -144,57 +142,32 @@ fun ScenarioScreenContent(
     addMonsterUnit: (unitNumbers: List<Int>, monsterSlug: String, isElite: Boolean) -> Unit,
     changeUnitLevel: (monsterSlug: String, unit: MonsterUnit, level: Int) -> Unit,
     modifier: Modifier = Modifier,
+) = Column(
+    modifier = modifier
+        .fillMaxWidth()
+        .padding(top = 24.dp),
+    verticalArrangement = Arrangement.spacedBy(24.dp)
 ) {
-    val pageCount = monsters.size + 1
+    val pageCount = monsters.size
     val pagerState = rememberPagerState(pageCount = { pageCount })
-    Row(
-        Modifier
-            .height(10.dp)
-            .fillMaxWidth(),
-        horizontalArrangement = Arrangement.Center,
-    ) {
-        repeat(pagerState.pageCount) { iteration ->
-            val color =
-                if (pagerState.currentPage == iteration) {
-                    MaterialTheme.colorScheme.primary
-                } else {
-                    MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.5f)
-                }
-
-            Box(
-                modifier =
-                    Modifier
-                        .padding(2.dp)
-                        .clip(CircleShape)
-                        .background(color)
-                        .size(8.dp),
-            )
-        }
-    }
+    PageIndicator(pagerState)
     HorizontalPager(
-        modifier = modifier.padding(top = 24.dp),
         state = pagerState,
         contentPadding = PaddingValues(horizontal = 16.dp),
         pageSpacing = 16.dp,
     ) { page ->
-        Box(modifier = modifier.fillMaxSize()) {
-            if (page == pageCount - 1) {
-                AddMonsterCard(
-                    addMonster = addMonster,
-                )
-            } else {
-                val currentCard = monsters[page]
-                RegularMonsterCard(
-                    item = currentCard,
-                    delete = delete,
-                    deleteUnit = deleteUnit,
-                    updateUnitLife = updateUnitLife,
-                    switchUnitEffect = switchUnitEffect,
-                    addMonsterUnit = addMonsterUnit,
-                    changeUnitLevel = changeUnitLevel,
-                    availableEffects = availableEffects,
-                )
-            }
+        Box(modifier = Modifier.fillMaxSize()) {
+            val currentCard = monsters[page]
+            RegularMonsterCard(
+                item = currentCard,
+                delete = delete,
+                deleteUnit = deleteUnit,
+                updateUnitLife = updateUnitLife,
+                switchUnitEffect = switchUnitEffect,
+                addMonsterUnit = addMonsterUnit,
+                changeUnitLevel = changeUnitLevel,
+                availableEffects = availableEffects,
+            )
         }
     }
 }
@@ -206,7 +179,7 @@ private fun ScenarioScreenPreview() {
         ScenarioScreen(
             state =
                 ScenarioStateUi(
-                    name = "Bad place",
+                    scenarioName = "Bad place",
                     monsters =
                         persistentListOf(
                             MonsterItem.fixture(),
@@ -244,7 +217,7 @@ private fun ScenarioScreenEmptyPreview() {
         ScenarioScreen(
             state =
                 ScenarioStateUi(
-                    name = "Bad place",
+                    scenarioName = "Bad place",
                     availableEffects = MonsterStatType.mainEffectsPack,
                 ),
             addMonster = {},

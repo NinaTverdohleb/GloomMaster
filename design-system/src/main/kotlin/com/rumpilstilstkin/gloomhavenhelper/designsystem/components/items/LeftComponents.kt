@@ -16,6 +16,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -61,6 +62,8 @@ fun LeftItemImage(
 
 @Composable
 fun LeftItemNumber(
+    borderColor: Color = MaterialTheme.colorScheme.onSurfaceVariant,
+    contentColor: Color = MaterialTheme.colorScheme.onSurfaceVariant,
     number: String
 ) = Box(
     modifier = Modifier
@@ -71,7 +74,7 @@ fun LeftItemNumber(
         .border(
             width = 1.dp,
             shape = RoundedCornerShape(8.dp),
-            color = MaterialTheme.colorScheme.onSurfaceVariant,
+            color = borderColor,
         )
         .widthIn(min = 48.dp)
         .heightIn(min = 48.dp)
@@ -81,7 +84,7 @@ fun LeftItemNumber(
     Text(
         text = number,
         style = MaterialTheme.typography.headlineSmall,
-        color = MaterialTheme.colorScheme.onSurfaceVariant
+        color = contentColor
     )
 }
 

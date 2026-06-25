@@ -14,7 +14,7 @@ object ScenarioStateMapper {
     fun toUiState(state: ScenarioBattleState): ScenarioStateUi {
         val existingSlugs = state.activeMonsters.map { it.slug }.toSet()
         return ScenarioStateUi(
-            name = state.name,
+            scenarioName = state.name,
             exp = state.exp,
             gold = state.golds,
             trapDamage = state.trapDamage,

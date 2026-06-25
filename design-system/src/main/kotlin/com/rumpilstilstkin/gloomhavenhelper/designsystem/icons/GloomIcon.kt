@@ -1,9 +1,11 @@
 package com.rumpilstilstkin.gloomhavenhelper.designsystem.icons
 
+import androidx.annotation.DrawableRes
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.painterResource
 
 interface GloomIcon{
+    @get:DrawableRes
     val resId: Int
 
     @Composable

@@ -20,6 +20,7 @@ import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario.play.UpdateU
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario.play.UpdateUnitLifeUseCase
 import com.rumpilstilstkin.gloomhavenhelper.navigation.GlHelperScreen
 import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEvent
+import com.rumpilstilstkin.gloomhavenhelper.screens.core.ScreenEffect
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.state.ScenarioActions
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.state.ScenarioStateMapper
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.state.ScenarioStateUi
@@ -63,8 +64,8 @@ class ScenarioViewModel @Inject constructor(
     private val updateUnitLifeUseCase: UpdateUnitLifeUseCase,
 ) : ViewModel(),
     DefaultLifecycleObserver {
-    private val _navigationEvents = MutableSharedFlow<GlHelperEvent>()
-    val navigationEvents = _navigationEvents.asSharedFlow()
+    private val _screenEvents = MutableSharedFlow<ScreenEffect>()
+    val screenEvents = _screenEvents.asSharedFlow()
 
     private val logicState = MutableStateFlow<ScenarioBattleState?>(null)
     val uiState: StateFlow<ScenarioStateUi> =
@@ -180,7 +181,7 @@ class ScenarioViewModel @Inject constructor(
                                 clearCurrentActiveScenarioUseCase()
                             }
                         }.await()
-                    _navigationEvents.emit(GlHelperEvent.Back)
+                    _screenEvents.emit(ScreenEffect.Navigation(GlHelperEvent.Back))
                 }
 
                 is ScenarioActions.UpdateMagic -> {
@@ -205,9 +206,9 @@ class ScenarioViewModel @Inject constructor(
                 }
 
                 ScenarioActions.AddNewMonsters -> {
-                    _navigationEvents.emit(
+                    _screenEvents.emit(ScreenEffect.Navigation(
                         GlHelperEvent.Screen(GlHelperScreen.ScenarioConstructor),
-                    )
+                    ))
                 }
             }
         }

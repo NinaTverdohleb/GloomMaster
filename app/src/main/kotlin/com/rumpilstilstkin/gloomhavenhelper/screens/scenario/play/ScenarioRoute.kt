@@ -16,6 +16,7 @@ import com.rumpilstilstkin.gloomhavenhelper.domain.entity.Magic
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterStatType
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.scenario.MonsterUnit
 import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEventHelper
+import com.rumpilstilstkin.gloomhavenhelper.screens.core.LaunchedScreenEffect
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.components.MonsterListDialog
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.state.ScenarioActions
 
@@ -25,7 +26,7 @@ fun ScenarioRoute(
     widthSizeClass: WindowWidthSizeClass,
     viewModel: ScenarioViewModel = hiltViewModel(),
 ) {
-    val navigationEvents by viewModel.navigationEvents.collectAsStateWithLifecycle(initialValue = null)
+    val screenEffect by viewModel.screenEvents.collectAsStateWithLifecycle(initialValue = null)
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
     val lifecycleOwner = LocalLifecycleOwner.current
@@ -33,15 +34,6 @@ fun ScenarioRoute(
         lifecycleOwner.lifecycle.addObserver(viewModel)
         onDispose {
             lifecycleOwner.lifecycle.removeObserver(viewModel)
-        }
-    }
-
-    LaunchedEffect(navigationEvents) {
-        navigationEvents?.let { event ->
-            GlHelperEventHelper.event(
-                event = event,
-                navController = navController,
-            )
         }
     }
     var showMonsterDialog by remember { mutableStateOf(false) }
@@ -101,41 +93,20 @@ fun ScenarioRoute(
         )
     }
 
-    when (widthSizeClass) {
-        WindowWidthSizeClass.Compact -> {
-            ScenarioScreen(
-                state = uiState,
-                addMonster = addMonster,
-                back = back,
-                complete = complete,
-                deleteMonster = deleteMonster,
-                deleteUnit = deleteUnit,
-                updateUnitLife = updateUnitLife,
-                switchUnitEffect = switchUnitEffect,
-                addMonsterUnit = addMonsterUnit,
-                nextRound = nextRound,
-                clickMagic = clickMagic,
-                changeUnitLevel = changeUnitLevel,
-            )
-        }
-
-        else -> {
-            ScenarioScreen(
-                state = uiState,
-                addMonster = addMonster,
-                back = back,
-                complete = complete,
-                deleteMonster = deleteMonster,
-                deleteUnit = deleteUnit,
-                updateUnitLife = updateUnitLife,
-                switchUnitEffect = switchUnitEffect,
-                addMonsterUnit = addMonsterUnit,
-                nextRound = nextRound,
-                clickMagic = clickMagic,
-                changeUnitLevel = changeUnitLevel,
-            )
-        }
-    }
+    ScenarioScreen(
+        state = uiState,
+        addMonster = addMonster,
+        back = back,
+        complete = complete,
+        deleteMonster = deleteMonster,
+        deleteUnit = deleteUnit,
+        updateUnitLife = updateUnitLife,
+        switchUnitEffect = switchUnitEffect,
+        addMonsterUnit = addMonsterUnit,
+        nextRound = nextRound,
+        clickMagic = clickMagic,
+        changeUnitLevel = changeUnitLevel,
+    )
 
     if (showMonsterDialog) {
         MonsterListDialog(
@@ -151,4 +122,9 @@ fun ScenarioRoute(
             },
         )
     }
+
+    LaunchedScreenEffect(
+        effect = screenEffect,
+        navController = navController,
+    )
 }
