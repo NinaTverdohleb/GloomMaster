@@ -47,7 +47,7 @@ fun AddCharacterDialog(
                 horizontalArrangement = Arrangement.spacedBy(8.dp),
                 verticalArrangement = Arrangement.spacedBy(8.dp),
             ) {
-                items(state.avaliableClasses) { classType ->
+                items(items = state.avaliableClasses) { classType ->
                     val isSelected = classType == state.selectedClass
                     Icon(
                         painter = classType.image.painter(),

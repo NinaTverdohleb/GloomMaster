@@ -1,43 +1,27 @@
 package com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
-import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Check
-import androidx.compose.material3.Button
-import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.FabPosition
 import androidx.compose.material3.HorizontalDivider
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.rumpilstilstkin.gloomhavenhelper.R
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.buttons.GloomButton
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.buttons.GloomFab
-import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.toolbar.GloomToolbar
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.toolbar.GloomToolbarAction
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.icons.AppIcon
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
@@ -45,7 +29,6 @@ import com.rumpilstilstkin.gloomhavenhelper.domain.entity.Magic
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterStatType
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.scenario.MonsterItem
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.scenario.MonsterUnit
-import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.components.AddMonsterCard
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.components.PageIndicator
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.components.RegularMonsterCard
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.components.ScenarioHeader
@@ -64,7 +47,7 @@ internal fun ScenarioScreen(
     updateUnitLife: (unitNumber: Int, monsterSlug: String, life: Int) -> Unit,
     switchUnitEffect: (unitNumber: Int, monsterSlug: String, effect: MonsterStatType) -> Unit,
     nextRound: () -> Unit,
-    addMonsterUnit: (unitNumbers: List<Int>, monsterSlug: String, isElite: Boolean) -> Unit,
+    addMonsterUnits: (unitNumbers: List<Int>, monsterSlug: String, monsterName: String) -> Unit,
     clickMagic: (magic: Magic) -> Unit,
     changeUnitLevel: (monsterSlug: String, unit: MonsterUnit, level: Int) -> Unit,
 ) = Scaffold(
@@ -77,12 +60,34 @@ internal fun ScenarioScreen(
             actionIcon = AppIcon.Check,
         )
     },
+    floatingActionButtonPosition = FabPosition.End,
+    floatingActionButton = {
+        Column(
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .padding(start = 32.dp),
+            verticalArrangement = Arrangement.spacedBy(12.dp),
+            horizontalAlignment = Alignment.End
+        ) {
+            GloomFab(
+                icon = AppIcon.Plus,
+                onClick = addMonster
+            )
+            GloomButton(
+                text = stringResource(R.string.round_label),
+                modifier = Modifier.fillMaxWidth(),
+                onClick = nextRound,
+            )
+        }
+    }
 ) { paddingValues ->
     Column(
         modifier =
             Modifier
                 .fillMaxSize()
-                .padding(paddingValues),
+                .padding(paddingValues)
+                .padding(bottom = 80.dp),
     ) {
         ScenarioHeader(
             scenarioNumber = state.scenarioNumber,
@@ -105,28 +110,10 @@ internal fun ScenarioScreen(
             deleteUnit = deleteUnit,
             updateUnitLife = updateUnitLife,
             switchUnitEffect = switchUnitEffect,
-            addMonsterUnit = addMonsterUnit,
+            addMonsterUnits = addMonsterUnits,
             changeUnitLevel = changeUnitLevel,
             availableEffects = state.availableEffects,
         )
-        Column(
-            modifier =
-                Modifier
-                    .fillMaxWidth()
-                    .padding(16.dp),
-            verticalArrangement = Arrangement.spacedBy(12.dp),
-            horizontalAlignment = Alignment.End
-        ) {
-            GloomFab(
-                icon = AppIcon.Plus,
-                onClick = addMonster
-            )
-            GloomButton(
-                text = stringResource(R.string.round_label),
-                modifier = Modifier.fillMaxWidth(),
-                onClick = nextRound,
-            )
-        }
     }
 }
 
@@ -139,14 +126,14 @@ fun ScenarioScreenContent(
     deleteUnit: (unitNumber: Int, monsterSlug: String) -> Unit,
     updateUnitLife: (unitNumber: Int, monsterSlug: String, life: Int) -> Unit,
     switchUnitEffect: (unitNumber: Int, monsterSlug: String, effect: MonsterStatType) -> Unit,
-    addMonsterUnit: (unitNumbers: List<Int>, monsterSlug: String, isElite: Boolean) -> Unit,
+    addMonsterUnits: (unitNumbers: List<Int>, monsterSlug: String, monsterName: String) -> Unit,
     changeUnitLevel: (monsterSlug: String, unit: MonsterUnit, level: Int) -> Unit,
     modifier: Modifier = Modifier,
 ) = Column(
     modifier = modifier
         .fillMaxWidth()
-        .padding(top = 24.dp),
-    verticalArrangement = Arrangement.spacedBy(24.dp)
+        .padding(top = 16.dp),
+    verticalArrangement = Arrangement.spacedBy(16.dp)
 ) {
     val pageCount = monsters.size
     val pagerState = rememberPagerState(pageCount = { pageCount })
@@ -164,7 +151,7 @@ fun ScenarioScreenContent(
                 deleteUnit = deleteUnit,
                 updateUnitLife = updateUnitLife,
                 switchUnitEffect = switchUnitEffect,
-                addMonsterUnit = addMonsterUnit,
+                addMonsterUnits = addMonsterUnits,
                 changeUnitLevel = changeUnitLevel,
                 availableEffects = availableEffects,
             )
@@ -203,7 +190,7 @@ private fun ScenarioScreenPreview() {
             updateUnitLife = { _, _, _ -> },
             switchUnitEffect = { _, _, _ -> },
             nextRound = {},
-            addMonsterUnit = { _, _, _ -> },
+            addMonsterUnits = { _, _, _ -> },
             clickMagic = {},
             changeUnitLevel = { _, _, _ -> },
         )
@@ -228,7 +215,7 @@ private fun ScenarioScreenEmptyPreview() {
             updateUnitLife = { _, _, _ -> },
             switchUnitEffect = { _, _, _ -> },
             nextRound = {},
-            addMonsterUnit = { _, _, _ -> },
+            addMonsterUnits = { _, _, _ -> },
             clickMagic = {},
             changeUnitLevel = { _, _, _ -> },
         )

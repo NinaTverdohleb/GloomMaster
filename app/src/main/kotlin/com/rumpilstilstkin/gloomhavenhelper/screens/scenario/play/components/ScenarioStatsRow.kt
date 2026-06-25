@@ -48,7 +48,7 @@ fun ScenarioStatsRow(
 
         StatItem(
             value = trapDamage.toString(),
-            image = R.drawable.ic_trap,
+            image = R.drawable.ic_gold,
         )
     }
 }

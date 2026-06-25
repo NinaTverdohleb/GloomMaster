@@ -29,6 +29,7 @@ import androidx.compose.ui.unit.dp
 import com.rumpilstilstkin.gloomhavenhelper.R
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.GloomCard
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.items.LeftItemNumber
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.icons.ActionIcon
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.icons.AppIcon
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterCard
@@ -61,7 +62,7 @@ fun MonsterCard(
             if (isFly) {
                 Icon(
                     modifier = Modifier.size(28.dp),
-                    painter = painterResource(id = R.drawable.ic_fly),
+                    painter = ActionIcon.Fly.painter(),
                     contentDescription = null,
                     tint = MaterialTheme.colorScheme.onSurface,
                 )
@@ -75,7 +76,7 @@ fun MonsterCard(
             Spacer(Modifier.weight(1f))
             if (onAddUnit != null) {
                 IconButton(
-                    onClick = delete,
+                    onClick = onAddUnit,
                     modifier = Modifier.size(28.dp),
                 ) {
                     Icon(

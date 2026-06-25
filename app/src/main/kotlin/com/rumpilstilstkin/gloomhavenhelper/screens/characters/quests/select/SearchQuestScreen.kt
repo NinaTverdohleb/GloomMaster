@@ -56,7 +56,7 @@ internal fun SearchQuestScreen(
             modifier = Modifier.weight(1f),
             verticalArrangement = Arrangement.spacedBy(16.dp),
         ) {
-            items(state.quests) { quest ->
+            items(items = state.quests) { quest ->
                 QuestItemFilled(
                     modifier = Modifier.animateItem(),
                     quest = quest,

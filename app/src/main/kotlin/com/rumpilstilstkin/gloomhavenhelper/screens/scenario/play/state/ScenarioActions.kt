@@ -5,9 +5,9 @@ import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterStatTyp
 
 sealed interface ScenarioActions {
     data class AddUnits(
-        val numbers: List<Int>,
+        val unitNumbers: List<Int>,
         val monsterSlug: String,
-        val isElite: Boolean,
+        val monsterName: String,
     ) : ScenarioActions
 
     data class RemoveUnit(
@@ -51,4 +51,6 @@ sealed interface ScenarioActions {
     ) : ScenarioActions
 
     data object AddNewMonsters : ScenarioActions
+
+    data object OpenAddMonster : ScenarioActions
 }

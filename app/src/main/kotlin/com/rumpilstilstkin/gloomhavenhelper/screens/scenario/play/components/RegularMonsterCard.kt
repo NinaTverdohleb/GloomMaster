@@ -4,6 +4,7 @@ import androidx.compose.animation.core.spring
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -20,7 +21,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.rumpilstilstkin.gloomhavenhelper.R
-import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.GloomCard
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterStatType
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.scenario.MonsterItem
@@ -35,12 +35,10 @@ fun RegularMonsterCard(
     deleteUnit: (unitNumber: Int, monsterSlug: String) -> Unit,
     updateUnitLife: (unitNumber: Int, monsterSlug: String, life: Int) -> Unit,
     switchUnitEffect: (unitNumber: Int, monsterSlug: String, effect: MonsterStatType) -> Unit,
-    addMonsterUnit: (unitNumbers: List<Int>, monsterSlug: String, isSpecial: Boolean) -> Unit,
+    addMonsterUnits: (unitNumbers: List<Int>, monsterSlug: String, monsterName: String) -> Unit,
     changeUnitLevel: (monsterSlug: String, unit: MonsterUnit, level: Int) -> Unit,
 ) {
-    var showSpawnDialog by remember { mutableStateOf(false) }
-    var selectedUnit by remember { mutableStateOf<MonsterUnit?>(null) }
-
+    val existingNumbers = item.units.map { it.number }.toSet()
     Column {
         MonsterCard(
             card = item.currentCard,
@@ -51,11 +49,17 @@ fun RegularMonsterCard(
                 if (item.isBoss) {
                     null
                 } else {
-                    { showSpawnDialog = true }
+                    {
+                        addMonsterUnits(
+                            (1..15).toList().filter { it !in existingNumbers },
+                            item.slug,
+                            item.name,
+                        )
+                    }
                 },
         )
-        /*LazyColumn(
-            modifier = modifier,
+        LazyColumn(
+            modifier = Modifier.fillMaxSize(),
             verticalArrangement = Arrangement.spacedBy(8.dp),
         ) {
             item {
@@ -99,12 +103,12 @@ fun RegularMonsterCard(
                             )
                         },
                         levelClick = {
-                            selectedUnit = it
+
                         },
                     )
                 }
             }
-        }*/
+        }
     }
 }
 
@@ -131,7 +135,7 @@ private fun RegularMonsterCardPreview() {
             deleteUnit = { _, _ -> },
             updateUnitLife = { _, _, _ -> },
             switchUnitEffect = { _, _, _ -> },
-            addMonsterUnit = { _, _, _ -> },
+            addMonsterUnits = { _, _, _ -> },
             changeUnitLevel = { _, _, _ -> },
         )
     }

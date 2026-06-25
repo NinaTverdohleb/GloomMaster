@@ -1,7 +1,8 @@
-package com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.components
+package com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.unit
 
 import androidx.annotation.StringRes
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -11,78 +12,60 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Person
-import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.rumpilstilstkin.gloomhavenhelper.R
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.buttons.GloomOutlineButton
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.text.GloomHeader
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.icons.AppIcon
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
-import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomAlertDialog
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SpawnMonsterDialog(
+fun AddMonsterUnitDialog(
     monsterName: String,
     availableIds: List<Int>,
-    onDismiss: () -> Unit,
-    onSpawn: (numbers: List<Int>, isElite: Boolean) -> Unit,
+    selectedTier: UnitTier,
+    selectedIds: List<Int>,
+    selectTier: (UnitTier) -> Unit,
+    toggleId: (Int) -> Unit,
+    spawn: () -> Unit,
 ) {
-    var selectedTier by remember { mutableStateOf(UnitTier.Normal) }
-    var selectedIds by remember { mutableStateOf<List<Int>>(emptyList()) }
-    GloomAlertDialog(
-        title = monsterName,
-        titleIcon = Icons.Default.Person,
-        onDismissRequest = onDismiss,
-        onConfirmRequest = {
-            onSpawn(selectedIds, selectedTier == UnitTier.Elite)
-        },
-        confirmEnabled = selectedIds.isNotEmpty(),
+    Column(
+        verticalArrangement = Arrangement.spacedBy(24.dp),
     ) {
-        Column(
-            verticalArrangement = Arrangement.spacedBy(16.dp),
-        ) {
-            TierSelector(
-                selected = selectedTier,
-                onSelect = { selectedTier = it },
-            )
+        GloomHeader(
+            monsterName
+        )
+        TierSelector(
+            selected = selectedTier,
+            onSelect = selectTier,
+        )
 
-            // ── Assign Unit ID ─────────────────────────────────────────────
-            UnitIdGrid(
-                ids = availableIds,
-                selectedIds = selectedIds,
-                onSelect = { number ->
-                    selectedIds =
-                        if (selectedIds.contains(number)) {
-                            selectedIds - number
-                        } else {
-                            selectedIds + number
-                        }
-                },
-            )
-        }
+        UnitIdGrid(
+            ids = availableIds,
+            selectedIds = selectedIds,
+            onSelect = toggleId,
+        )
+        GloomOutlineButton(
+            modifier = Modifier.fillMaxWidth(),
+            icon = AppIcon.Check,
+            text = stringResource(R.string.ok),
+            onClick = spawn,
+        )
     }
 }
 
-// ─── Tier selector ────────────────────────────────────────────────────────────
 
 enum class UnitTier(
     @param:StringRes val textRes: Int,
@@ -101,7 +84,7 @@ private fun TierSelector(
             Modifier
                 .fillMaxWidth()
                 .clip(RoundedCornerShape(8.dp))
-                .background(MaterialTheme.colorScheme.secondaryContainer)
+                .background(MaterialTheme.colorScheme.surfaceContainerHighest)
                 .padding(4.dp),
         horizontalArrangement = Arrangement.spacedBy(4.dp),
     ) {
@@ -113,8 +96,9 @@ private fun TierSelector(
                         .weight(1f)
                         .clip(RoundedCornerShape(6.dp))
                         .background(
-                            if (isSelected) MaterialTheme.colorScheme.secondary else Color.Transparent,
-                        ).clickable { onSelect(tier) }
+                            if (isSelected) MaterialTheme.colorScheme.primary else Color.Transparent,
+                        )
+                        .clickable { onSelect(tier) }
                         .padding(vertical = 8.dp),
                 contentAlignment = Alignment.Center,
             ) {
@@ -123,15 +107,7 @@ private fun TierSelector(
                     horizontalArrangement = Arrangement.spacedBy(4.dp),
                 ) {
                     val contentColor =
-                        if (isSelected) MaterialTheme.colorScheme.onSurface else MaterialTheme.colorScheme.onSurfaceVariant
-                    if (tier == UnitTier.Elite) {
-                        Icon(
-                            imageVector = Icons.Default.Star,
-                            contentDescription = null,
-                            tint = contentColor,
-                            modifier = Modifier.size(12.dp),
-                        )
-                    }
+                        if (isSelected) MaterialTheme.colorScheme.onPrimary else MaterialTheme.colorScheme.onSurfaceVariant
                     Text(
                         text = stringResource(tier.textRes),
                         style = MaterialTheme.typography.bodyMedium,
@@ -143,7 +119,6 @@ private fun TierSelector(
     }
 }
 
-// ─── Unit ID grid ─────────────────────────────────────────────────────────────
 
 @Composable
 private fun UnitIdGrid(
@@ -193,29 +168,43 @@ private fun UnitIdCell(
                     if (isSelected) {
                         MaterialTheme.colorScheme.primary
                     } else {
-                        MaterialTheme.colorScheme.secondaryContainer
+                        Color.Unspecified
                     },
-                ).clickable(onClick = onClick),
+                )
+                .border(
+                    shape = RoundedCornerShape(8.dp),
+                    color = MaterialTheme.colorScheme.onSurface,
+                    width = 1.dp,
+                )
+                .clickable(onClick = onClick),
         contentAlignment = Alignment.Center,
     ) {
         Text(
             text = id.toString(),
-            fontSize = 14.sp,
-            fontWeight = if (isSelected) FontWeight.Bold else FontWeight.Normal,
-            color = if (isSelected) MaterialTheme.colorScheme.onSurface else MaterialTheme.colorScheme.onSurfaceVariant,
+            style = MaterialTheme.typography.labelLarge,
+            color = if (isSelected) MaterialTheme.colorScheme.onBackground else MaterialTheme.colorScheme.onSurface,
         )
     }
 }
 
 @Preview
 @Composable
-private fun SpawnMonsterDialogPreview() {
+private fun AddMonsterUnitDialogPreview() {
     GloomhavenMasterTheme {
-        SpawnMonsterDialog(
-            monsterName = "Living Bones",
-            availableIds = (1..14).toList(),
-            onDismiss = { },
-            onSpawn = { _, _ -> },
-        )
+        Box(
+            Modifier
+                .background(MaterialTheme.colorScheme.surfaceContainerHigh)
+                .padding(16.dp)
+        ) {
+            AddMonsterUnitDialog(
+                monsterName = "Living Bones",
+                availableIds = (1..15).toList(),
+                selectedTier = UnitTier.Normal,
+                selectedIds = listOf(1, 5),
+                selectTier = {},
+                toggleId = {},
+                spawn = {},
+            )
+        }
     }
 }
