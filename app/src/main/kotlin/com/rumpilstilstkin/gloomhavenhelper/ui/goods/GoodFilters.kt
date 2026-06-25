@@ -33,8 +33,10 @@ fun GoodFilters(
     selectFilter: (GoodType) -> Unit,
     changeSearchText: (String) -> Unit,
     modifier: Modifier = Modifier,
+    additionalContent: (@Composable () -> Unit)? = null,
 ) = Column(
     modifier = modifier,
+    verticalArrangement = Arrangement.spacedBy(24.dp)
 ) {
     Row(
         modifier = Modifier.fillMaxWidth(),
@@ -48,9 +50,7 @@ fun GoodFilters(
             )
         }
     }
-    Spacer(
-        modifier = Modifier.height(24.dp),
-    )
+    additionalContent?.invoke()
 
     GloomOutlinedTextSearchField(
         modifier =

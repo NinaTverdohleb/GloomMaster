@@ -7,6 +7,7 @@ import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEventHelper
+import com.rumpilstilstkin.gloomhavenhelper.screens.core.LaunchedScreenEffect
 
 @Composable
 fun AddGoodsForCharacterScreenRoute(
@@ -18,19 +19,22 @@ fun AddGoodsForCharacterScreenRoute(
             factory.create(characterId)
         }
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
-    val navigationEvents by viewModel.navigationEvents.collectAsStateWithLifecycle(initialValue = null)
-
-    LaunchedEffect(navigationEvents) {
-        navigationEvents?.let { event ->
-            GlHelperEventHelper.event(
-                event = event,
-                navController = navController,
-            )
-        }
-    }
+    val screenEffect by viewModel.screenEvents.collectAsStateWithLifecycle(initialValue = null)
 
     AddGoodsScreen(
         uiState = uiState,
-        onAction = { viewModel.onAction(it) },
+        selectFilter = {viewModel.onAction(AddGoodsForCharacterScreenActions.SelectFilter(it))},
+        changeSearchText = {viewModel.onAction(AddGoodsForCharacterScreenActions.SearchTextChange(it))},
+        selectGood = {viewModel.onAction(AddGoodsForCharacterScreenActions.SelectGood(it))},
+        unselectGood = {viewModel.onAction(AddGoodsForCharacterScreenActions.UnselectGood(it))},
+        addGoods = {viewModel.onAction(AddGoodsForCharacterScreenActions.AddSelectedGoods)},
+        back = {viewModel.onAction(AddGoodsForCharacterScreenActions.Close)},
+        openGood = {viewModel.onAction(AddGoodsForCharacterScreenActions.OpenGood(it))},
+        buyGoods = {viewModel.onAction(AddGoodsForCharacterScreenActions.BuySelectedGoods)}
+    )
+
+    LaunchedScreenEffect(
+        effect = screenEffect,
+        navController = navController,
     )
 }

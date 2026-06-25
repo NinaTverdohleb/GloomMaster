@@ -2,26 +2,63 @@ package com.rumpilstilstkin.gloomhavenhelper.screens.characters.goods.add
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.FabPosition
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import com.rumpilstilstkin.gloomhavenhelper.R
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.buttons.FabContextMenuItem
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.buttons.GloomFabWithContextMenu
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.toolbar.GloomToolbar
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.icons.AppIcon
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.GoodType
 import com.rumpilstilstkin.gloomhavenhelper.screens.characters.goods.add.components.AddGoodsStatusRow
+import com.rumpilstilstkin.gloomhavenhelper.screens.models.GoodUi
 import com.rumpilstilstkin.gloomhavenhelper.ui.goods.AddGoodsView
 import com.rumpilstilstkin.gloomhavenhelper.ui.goods.AddGoodsViewState
 
 @Composable
 internal fun AddGoodsScreen(
     uiState: AddGoodsForCharacterScreenUiState,
-    onAction: (AddGoodsForCharacterScreenActions) -> Unit,
+    selectFilter: (GoodType) -> Unit,
+    changeSearchText: (String) -> Unit,
+    selectGood: (GoodUi) -> Unit,
+    unselectGood: (GoodUi) -> Unit,
+    openGood: (GoodUi) -> Unit,
+    addGoods: () -> Unit,
+    buyGoods: () -> Unit,
+    back: () -> Unit,
 ) = Scaffold(
     topBar = {
         GloomToolbar(
-            title = "",
-            back = { onAction(AddGoodsForCharacterScreenActions.Close) },
+            title = stringResource(R.string.add_goods_to_shop_title),
+            back = back,
         )
+    },
+    floatingActionButtonPosition = FabPosition.End,
+    floatingActionButton = {
+        if (uiState.goodsState.selectedGoods.isNotEmpty()) {
+            GloomFabWithContextMenu(
+                icon = AppIcon.Check,
+            ) {
+                if (uiState.allGold >= uiState.goodsGold) {
+                    FabContextMenuItem(
+                        icon = AppIcon.Buy,
+                        text = stringResource(R.string.buy),
+                        isError = false,
+                    ) { buyGoods() }
+                }
+
+                FabContextMenuItem(
+                    icon = AppIcon.Get,
+                    text = stringResource(R.string.get),
+                    isError = false,
+                ) { addGoods() }
+            }
+        }
     },
 ) { paddingValues ->
     AddGoodsView(
@@ -30,16 +67,15 @@ internal fun AddGoodsScreen(
             Modifier
                 .fillMaxWidth()
                 .padding(paddingValues),
-        selectFilter = { onAction(AddGoodsForCharacterScreenActions.SelectFilter(it)) },
-        changeSearchText = { onAction(AddGoodsForCharacterScreenActions.SearchTextChange(it)) },
-        selectGood = { onAction(AddGoodsForCharacterScreenActions.SelectGood(it)) },
-        unselectGood = { onAction(AddGoodsForCharacterScreenActions.UnselectGood(it)) },
-        clickGood = {},
+        selectFilter = selectFilter,
+        changeSearchText = changeSearchText,
+        selectGood = selectGood,
+        unselectGood = unselectGood,
+        clickGood = openGood,
     ) {
         AddGoodsStatusRow(
             allGold = uiState.allGold,
             goodsGold = uiState.goodsGold,
-            onAction = { onAction(it) },
         )
     }
 }
@@ -53,7 +89,14 @@ private fun AddGoodsScreenPreview() {
                 AddGoodsForCharacterScreenUiState(
                     goodsState = AddGoodsViewState.fixture(),
                 ),
-            onAction = {},
+            selectFilter = {},
+            changeSearchText = {},
+            selectGood = {},
+            unselectGood = {},
+            addGoods = {},
+            back = {},
+            openGood = {},
+            buyGoods = {}
         )
     }
 }

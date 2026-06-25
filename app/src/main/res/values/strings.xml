@@ -111,6 +111,7 @@
     <string name="available_goods">Available Items</string>
     <string name="remove">Remove</string>
     <string name="add">Add</string>
+    <string name="get">Get</string>
     <string name="reward">Reward</string>
     <string name="unlock_class">Unlock Class: </string>
     <string name="name_label">Name</string>

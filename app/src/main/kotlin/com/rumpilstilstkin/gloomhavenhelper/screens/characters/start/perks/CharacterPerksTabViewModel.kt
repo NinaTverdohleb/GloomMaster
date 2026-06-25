@@ -80,7 +80,7 @@ class CharacterPerksTabViewModel @AssistedInject constructor(
                     ),
                 onResult = { },
             )
-        _screenEvents.emit(ScreenEffect.OpenDialog(session))
+        _screenEvents.emit(ScreenEffect.OpenBottomSheet(session))
     }
 
     private suspend fun showDeletePerkDialog(perk: PerkUI) {

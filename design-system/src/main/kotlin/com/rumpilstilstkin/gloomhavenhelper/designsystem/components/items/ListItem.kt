@@ -4,6 +4,7 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
@@ -30,26 +31,74 @@ import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterT
 @Composable
 fun TextImageFilledItem(
     text: String,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onClick: (() -> Unit)? = null,
+    rightComponent: (@Composable RowScope.() -> Unit)? = null,
+    leftComponent: (@Composable RowScope.() -> Unit)? = null,
+) = GloomCard(
+    modifier = modifier,
 ) {
-    GloomCard(
-        modifier = modifier,
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(vertical = 8.dp, horizontal = 12.dp)
     ) {
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .heightIn(min = 64.dp)
-                .padding(vertical = 8.dp, horizontal = 12.dp),
-            contentAlignment = Alignment.Center
-        ) {
-            TextWithImagesByCode(
-                modifier = Modifier.fillMaxWidth(),
-                style = MaterialTheme.typography.bodyLarge,
-                text = text
-            )
-        }
+        TextImageItem(
+            modifier = Modifier.fillMaxWidth(),
+            text = text,
+            leftComponent = leftComponent,
+            rightComponent = rightComponent,
+            onClick = onClick
+        )
     }
 }
+
+@Composable
+fun TextImageOutlineItem(
+    text: String,
+    modifier: Modifier = Modifier,
+    onClick: (() -> Unit)? = null,
+    rightComponent: (@Composable RowScope.() -> Unit)? = null,
+    leftComponent: (@Composable RowScope.() -> Unit)? = null,
+) = Box(
+    modifier = modifier
+        .border(
+            shape = RoundedCornerShape(16.dp),
+            color = MaterialTheme.colorScheme.outline,
+            width = 1.dp,
+        )
+        .fillMaxWidth()
+        .padding(vertical = 8.dp, horizontal = 12.dp)
+) {
+    TextImageItem(
+        modifier = Modifier.fillMaxWidth(),
+        text = text,
+        leftComponent = leftComponent,
+        rightComponent = rightComponent,
+        onClick = onClick
+    )
+}
+
+@Composable
+fun TextImageItem(
+    text: String,
+    modifier: Modifier = Modifier,
+    onClick: (() -> Unit)? = null,
+    rightComponent: (@Composable RowScope.() -> Unit)? = null,
+    leftComponent: (@Composable RowScope.() -> Unit)? = null,
+) = GloomBaseListItem(
+    modifier = modifier,
+    middleComponent = {
+        TextWithImagesByCode(
+            modifier = Modifier.fillMaxWidth(),
+            style = MaterialTheme.typography.titleMedium,
+            text = text
+        )
+    },
+    leftComponent = leftComponent,
+    rightComponent = rightComponent,
+    onClick = onClick
+)
 
 @Composable
 fun GloomListFilledItem(
@@ -120,6 +169,39 @@ fun GloomListItem(
     onClick: (() -> Unit)? = null,
     rightComponent: (@Composable RowScope.() -> Unit)? = null,
     leftComponent: (@Composable RowScope.() -> Unit)? = null,
+) = GloomBaseListItem(
+    modifier = modifier,
+    middleComponent = {
+        Column(
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Text(
+                text = title,
+                style = MaterialTheme.typography.titleMedium,
+                color = MaterialTheme.colorScheme.onSurface
+            )
+            description?.let {
+                Spacer(Modifier.height(4.dp))
+                Text(
+                    text = description,
+                    style = MaterialTheme.typography.labelMedium,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                )
+            }
+        }
+    },
+    leftComponent = leftComponent,
+    rightComponent = rightComponent,
+    onClick = onClick
+)
+
+@Composable
+fun GloomBaseListItem(
+    middleComponent: (@Composable BoxScope.() -> Unit),
+    modifier: Modifier = Modifier,
+    onClick: (() -> Unit)? = null,
+    rightComponent: (@Composable RowScope.() -> Unit)? = null,
+    leftComponent: (@Composable RowScope.() -> Unit)? = null,
 ) = Row(
     modifier = modifier
         .fillMaxWidth()
@@ -137,22 +219,8 @@ fun GloomListItem(
         leftComponent()
         Spacer(Modifier.width(16.dp))
     }
-    Column(
-        modifier = Modifier.weight(1f)
-    ) {
-        Text(
-            text = title,
-            style = MaterialTheme.typography.titleMedium,
-            color = MaterialTheme.colorScheme.onSurface
-        )
-        description?.let {
-            Spacer(Modifier.height(4.dp))
-            Text(
-                text = description,
-                style = MaterialTheme.typography.labelMedium,
-                color = MaterialTheme.colorScheme.onSurfaceVariant
-            )
-        }
+    Box(modifier = Modifier.weight(1f)) {
+        middleComponent()
     }
     rightComponent?.let {
         Spacer(Modifier.width(8.dp))
