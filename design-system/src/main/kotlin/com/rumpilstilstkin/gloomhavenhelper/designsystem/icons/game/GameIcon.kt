@@ -14,127 +14,127 @@ enum class GameIcon(
     val textCode: IconCode,
     @param:StringRes val titleRes: Int,
     val image: GloomIcon,
-    val color: Color?,
+    val color: Color,
 ) {
     SUN(
         textCode = IconCode.SUN,
         titleRes = R.string.design_system_icon_light,
         image = MagicIcon.Sun,
-        color = Color(0xFFC29240)
+        color = MagicIcon.Sun.tintColor
     ),
     MOON(
         textCode = IconCode.MOON,
         titleRes = R.string.design_system_icon_light,
         image = MagicIcon.Moon,
-        color = Color(0xFF111113)
+        color = MagicIcon.Moon.tintColor
     ),
     FIRE(
         textCode = IconCode.FIRE,
         titleRes = R.string.design_system_icon_light,
         image = MagicIcon.Fire,
-        color = Color(0xFF903E3E)
+        color = MagicIcon.Fire.tintColor
     ),
     AIR(
         textCode = IconCode.AIR,
         titleRes = R.string.design_system_icon_light,
         image = MagicIcon.Air,
-        color = Color(0xFF2F4C81)
+        color = MagicIcon.Air.tintColor
     ),
     FROST(
         textCode = IconCode.FROST,
         titleRes = R.string.design_system_icon_light,
         image = MagicIcon.Frost,
-        color = Color(0xFF3B9FC6)
+        color = MagicIcon.Frost.tintColor
     ),
     EARTH(
         textCode = IconCode.EARTH,
         titleRes = R.string.design_system_icon_light,
         image = MagicIcon.Earth,
-        color = Color(0xFF407538)
+        color = MagicIcon.Earth.tintColor
     ),
     AREA_0(
         textCode = IconCode.AREA_0,
         titleRes = R.string.design_system_icon_area,
         image = AreaIcon.Area0,
-        color = null
+        color = Color.Unspecified
     ),
     AREA_1(
         textCode = IconCode.AREA_1,
         titleRes = R.string.design_system_icon_area,
         image = AreaIcon.Area1,
-        color = null
+        color = Color.Unspecified
     ),
     AREA_2(
         textCode = IconCode.AREA_2,
         titleRes = R.string.design_system_icon_area,
         image = AreaIcon.Area2,
-        color = null
+        color = Color.Unspecified
     ),
     AREA_3(
         textCode = IconCode.AREA_3,
         titleRes = R.string.design_system_icon_area,
         image = AreaIcon.Area3,
-        color = null
+        color = Color.Unspecified
     ),
     AREA_4(
         textCode = IconCode.AREA_4,
         titleRes = R.string.design_system_icon_area,
         image = AreaIcon.AREA_4,
-        color = null
+        color = Color.Unspecified
     ),
     AREA_5(
         textCode = IconCode.AREA_5,
         titleRes = R.string.design_system_icon_area,
         image = AreaIcon.AREA_5,
-        color = null
+        color = Color.Unspecified
     ),
     AREA_6(
         textCode = IconCode.AREA_6,
         titleRes = R.string.design_system_icon_area,
         image = AreaIcon.AREA_6,
-        color = null
+        color = Color.Unspecified
     ),
     PLUS_1(
         textCode = IconCode.PLUS1,
         titleRes = R.string.design_system_icon_plus_1,
         image = ModifierIcon.PLUS_1,
-        color = null
+        color = Color.Unspecified
     ),
     PLUS_2(
         textCode = IconCode.PLUS2,
         titleRes = R.string.design_system_icon_plus_2,
         image = ModifierIcon.PLUS_2,
-        color = null
+        color = Color.Unspecified
     ),
     PLUS_3(
         textCode = IconCode.PLUS3,
         titleRes = R.string.design_system_icon_plus_3,
         image = ModifierIcon.PLUS_3,
-        color = null
+        color = Color.Unspecified
     ),
     PLUS_4(
         textCode = IconCode.PLUS4,
         titleRes = R.string.design_system_icon_plus_4,
         image = ModifierIcon.PLUS_4,
-        color = null
+        color = Color.Unspecified
     ),
     PLUS_0(
         textCode = IconCode.ZERO,
         titleRes = R.string.design_system_icon_plus_0,
         image = ModifierIcon.PLUS_0,
-        color = null
+        color = Color.Unspecified
     ),
     MINUS_1(
         textCode = IconCode.MINUS1,
         titleRes = R.string.design_system_icon_minus_1,
         image = ModifierIcon.MINUS_1,
-        color = null
+        color = Color.Unspecified
     ),
     MINUS_2(
         textCode = IconCode.MINUS2,
         titleRes = R.string.design_system_icon_minus_2,
         image = ModifierIcon.MINUS_2,
-        color = null
+        color = Color.Unspecified
     ),
     NEXT(
         textCode = IconCode.NEXT,
@@ -266,73 +266,73 @@ enum class GameIcon(
         textCode = IconCode.AREA_7,
         titleRes = R.string.design_system_icon_area,
         image = AreaIcon.AREA_7,
-        color = null
+        color = Color.Unspecified
     ),
     SPEND_SUN(
         textCode = IconCode.SPEND_SUN,
         titleRes = R.string.design_system_icon_light,
         image = MagicIcon.SpendSun,
-        color = null
+        color = Color.Unspecified
     ),
     SPEND_MOON(
         textCode = IconCode.SPEND_MOON,
         titleRes = R.string.design_system_icon_light,
         image = MagicIcon.SpendMoon,
-        color = null
+        color = Color.Unspecified
     ),
     SPEND_FIRE(
         textCode = IconCode.SPEND_FIRE,
         titleRes = R.string.design_system_icon_light,
         image = MagicIcon.Fire,
-        color = null
+        color = Color.Unspecified
     ),
     SPEND_AIR(
         textCode = IconCode.SPEND_AIR,
         titleRes = R.string.design_system_icon_light,
         image = MagicIcon.SpendAir,
-        color = null
+        color = Color.Unspecified
     ),
     SPEND_FROST(
         textCode = IconCode.SPEND_FROST,
         titleRes = R.string.design_system_icon_light,
         image = MagicIcon.SpendFrost,
-        color = null
+        color = Color.Unspecified
     ),
     SPEND_EARTH(
         textCode = IconCode.SPEND_EARTH,
         titleRes = R.string.design_system_icon_light,
         image = MagicIcon.Earth,
-        color = null
+        color = Color.Unspecified
     ),
     AREA_8(
         textCode = IconCode.AREA_8,
         titleRes = R.string.design_system_icon_area,
         image = AreaIcon.AREA_8,
-        color = null
+        color = Color.Unspecified
     ),
     AREA_9(
         textCode = IconCode.AREA_9,
         titleRes = R.string.design_system_icon_area,
         image = AreaIcon.AREA_9,
-        color = null
+        color = Color.Unspecified
     ),
     AREA_10(
         textCode = IconCode.AREA_10,
         titleRes = R.string.design_system_icon_area,
         image = AreaIcon.AREA_10,
-        color = null
+        color = Color.Unspecified
     ),
     AREA_11(
         textCode = IconCode.AREA_11,
         titleRes = R.string.design_system_icon_area,
         image = AreaIcon.AREA_11,
-        color = null
+        color = Color.Unspecified
     ),
     AREA_12(
         textCode = IconCode.AREA_12,
         titleRes = R.string.design_system_icon_area,
         image = AreaIcon.AREA_12,
-        color = null
+        color = Color.Unspecified
     ),
     LOOT(
         textCode = IconCode.LOOT,
@@ -344,13 +344,13 @@ enum class GameIcon(
         textCode = IconCode.SPEND_ANY,
         titleRes = R.string.design_system_icon_light,
         image = MagicIcon.SpendAny,
-        color = null
+        color = Color.Unspecified
     ),
     AREA_13(
         textCode = IconCode.AREA_13,
         titleRes = R.string.design_system_icon_area,
         image = AreaIcon.AREA_13,
-        color = null
+        color = Color.Unspecified
     ),
     REGENERATE(
         textCode = IconCode.REGENERATE,

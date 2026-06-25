@@ -16,5 +16,6 @@ enum class AppIcon(override val resId: Int) : GloomIcon {
     Team(R.drawable.ic_team),
     Buy(R.drawable.ic_buy),
     Get(R.drawable.ic_get),
-    Up(R.drawable.ic_up)
+    Up(R.drawable.ic_up),
+    Trap(R.drawable.ic_trap)
 }

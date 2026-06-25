@@ -3,6 +3,7 @@ package com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.components
 import androidx.compose.animation.core.spring
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -30,7 +31,6 @@ import kotlinx.collections.immutable.persistentListOf
 fun RegularMonsterCard(
     item: MonsterItem,
     availableEffects: Set<MonsterStatType>,
-    modifier: Modifier = Modifier,
     delete: (monsterSlug: String) -> Unit,
     deleteUnit: (unitNumber: Int, monsterSlug: String) -> Unit,
     updateUnitLife: (unitNumber: Int, monsterSlug: String, life: Int) -> Unit,
@@ -41,8 +41,9 @@ fun RegularMonsterCard(
     var showSpawnDialog by remember { mutableStateOf(false) }
     var selectedUnit by remember { mutableStateOf<MonsterUnit?>(null) }
 
-    GloomCard(modifier) {
-        MonsterCardHeader(
+    Column {
+        MonsterCard(
+            card = item.currentCard,
             name = item.name,
             isFly = item.isFly,
             delete = { delete(item.slug) },
@@ -53,16 +54,10 @@ fun RegularMonsterCard(
                     { showSpawnDialog = true }
                 },
         )
-        LazyColumn(
+        /*LazyColumn(
             modifier = modifier,
             verticalArrangement = Arrangement.spacedBy(8.dp),
         ) {
-            item {
-                MonsterActionCard(
-                    monsterName = item.name,
-                    card = item.currentCard,
-                )
-            }
             item {
                 Text(
                     text = stringResource(R.string.active_enemies),
@@ -109,36 +104,7 @@ fun RegularMonsterCard(
                     )
                 }
             }
-        }
-    }
-
-    selectedUnit?.let {
-        MonsterLevelDialog(
-            unitLevel = it.level,
-            monsterName = item.name,
-            dismiss = { selectedUnit = null },
-            changeLevel = { level ->
-                changeUnitLevel(
-                    item.slug,
-                    it,
-                    level,
-                )
-                selectedUnit = null
-            },
-        )
-    }
-
-    if (showSpawnDialog) {
-        val existingNumbers = item.units.map { it.number }.toSet()
-        SpawnMonsterDialog(
-            monsterName = item.name,
-            availableIds = (1..14).toList().filter { it !in existingNumbers },
-            onDismiss = { showSpawnDialog = false },
-            onSpawn = { numbers, special ->
-                addMonsterUnit(numbers, item.slug, special)
-                showSpawnDialog = false
-            },
-        )
+        }*/
     }
 }
 
