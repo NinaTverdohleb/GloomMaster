@@ -4,6 +4,7 @@ import androidx.compose.animation.core.spring
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -61,52 +62,38 @@ fun RegularMonsterCard(
         LazyColumn(
             modifier = Modifier.fillMaxSize(),
             verticalArrangement = Arrangement.spacedBy(8.dp),
+            contentPadding = PaddingValues(vertical = 16.dp)
         ) {
-            item {
-                Text(
-                    text = stringResource(R.string.active_enemies),
-                    fontSize = 9.sp,
-                    letterSpacing = 1.sp,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    modifier = Modifier.padding(vertical = 2.dp),
-                )
-            }
-            if (item.units.isEmpty()) {
-                item {
-                    EmptyMonsterUnitCard()
-                }
-            } else {
-                items(item.units, key = { it.number }) { unit ->
-                    MonsterUnitCard(
-                        modifier =
-                            Modifier
-                                .animateItem(
-                                    fadeOutSpec = tween(400),
-                                    placementSpec = spring(),
-                                ),
-                        unit = unit,
-                        availableEffects = availableEffects,
-                        isBoss = item.isBoss,
-                        deleteUnit = { unitNumber -> deleteUnit(unitNumber, item.slug) },
-                        switchEffect = { unitNumber, effect ->
-                            switchUnitEffect(
-                                unitNumber,
-                                item.slug,
-                                effect,
-                            )
-                        },
-                        changeLife = { unitNumber, life ->
-                            updateUnitLife(
-                                unitNumber,
-                                item.slug,
-                                life,
-                            )
-                        },
-                        levelClick = {
+            items(item.units, key = { it.number }) { unit ->
+                MonsterUnitCard(
+                    modifier =
+                        Modifier
+                            .animateItem(
+                                fadeOutSpec = tween(400),
+                                placementSpec = spring(),
+                            ),
+                    unit = unit,
+                    availableEffects = availableEffects,
+                    isBoss = item.isBoss,
+                    deleteUnit = { unitNumber -> deleteUnit(unitNumber, item.slug) },
+                    switchEffect = { unitNumber, effect ->
+                        switchUnitEffect(
+                            unitNumber,
+                            item.slug,
+                            effect,
+                        )
+                    },
+                    changeLife = { unitNumber, life ->
+                        updateUnitLife(
+                            unitNumber,
+                            item.slug,
+                            life,
+                        )
+                    },
+                    levelClick = {
 
-                        },
-                    )
-                }
+                    },
+                )
             }
         }
     }

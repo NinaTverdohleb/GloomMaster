@@ -18,16 +18,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.icons.MagicIcon
-
-enum class ChargeLevel(val level: Int) {
-    Zero(0),
-    One(1),
-    Two(2);
-
-    companion object {
-        fun of(value: Int): ChargeLevel = entries.firstOrNull { it.level == value } ?: Zero
-    }
-}
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.scenario.ChargeLevel
 
 @Composable
 fun ChargeIcon(
@@ -104,23 +95,6 @@ fun ChargeIcon(
         )
     }
 }
-
-@Composable
-fun ChargeIcon(
-    icon: MagicIcon,
-    charge: Int,
-    modifier: Modifier = Modifier,
-    ringColor: Color = Color(0xFFC29240),
-    glowColor: Color = ringColor,
-    iconSize: Dp = 40.dp,
-) = ChargeIcon(
-    icon = icon,
-    charge = ChargeLevel.of(charge),
-    modifier = modifier,
-    ringColor = ringColor,
-    glowColor = glowColor,
-    iconSize = iconSize,
-)
 
 @Preview
 @Composable

@@ -15,8 +15,6 @@ sealed interface ScenarioActions {
         val monsterSlug: String,
     ) : ScenarioActions
 
-    data object CompleteScenario : ScenarioActions
-
     data class AddMonster(
         val monsterSlugs: List<String>,
     ) : ScenarioActions
@@ -53,4 +51,8 @@ sealed interface ScenarioActions {
     data object AddNewMonsters : ScenarioActions
 
     data object OpenAddMonster : ScenarioActions
+
+    data object OpenComplete : ScenarioActions
+
+    data object OpenStats : ScenarioActions
 }

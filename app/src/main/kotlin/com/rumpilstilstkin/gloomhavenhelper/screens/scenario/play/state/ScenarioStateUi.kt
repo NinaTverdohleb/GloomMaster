@@ -2,8 +2,8 @@ package com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.state
 
 import androidx.compose.runtime.Immutable
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.Magic
-import com.rumpilstilstkin.gloomhavenhelper.domain.entity.ScenarioShortInfo
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterStatType
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.scenario.ChargeLevel
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.scenario.MonsterItem
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.ImmutableMap
@@ -23,5 +23,5 @@ data class ScenarioStateUi(
     val availableEffects: Set<MonsterStatType> = MonsterStatType.mainEffectsPack,
     val monsters: ImmutableList<MonsterItem> = persistentListOf(),
     val monstersForAdd: ImmutableList<MonsterItem> = persistentListOf(),
-    val magicChargeList: ImmutableMap<Magic, Int> = persistentMapOf(),
+    val magicChargeList: ImmutableMap<Magic, ChargeLevel> = persistentMapOf(),
 )

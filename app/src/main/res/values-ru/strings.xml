@@ -92,17 +92,17 @@
     <string name="tier_normal">Обычные</string>
     <string name="tier_elite">Элитные</string>
     <string name="active_enemies">Активные враги</string>
-    <string name="no_enemies_added">Враги еще не добавлены</string>
+    <string name="empty_enemies_title">Враги еще не добавлены</string>
     <string name="add_enemies_hint">Нажмите «Добавить врага», чтобы они появились в списке</string>
     <string name="select_enemies">Выберите врагов</string>
     <string name="add_monsters">Добавить монстров</string>
     <string name="scenario_stats_title">Параметры прохождения сценария</string>
-    <string name="stat_monster_level">%1$d - Уровень монстров</string>
-    <string name="stat_exp_reward">%1$d - Опыт за прохождение</string>
-    <string name="stat_gold_reward">%1$d - Золотых за монету</string>
-    <string name="stat_trap_damage">%1$d - Урон от повреждающей ловушки</string>
+    <string name="stat_monster_level">Уровень монстров</string>
+    <string name="stat_exp_reward">Опыт за прохождение</string>
+    <string name="stat_gold_reward">Золотых за монету</string>
+    <string name="stat_trap_damage">Урон от повреждающей ловушки</string>
     <string name="gold_format">%1$d Золотых</string>
-    <string name="add_enemy">+ Добавить врага</string>
+    <string name="empty_enemy_description">+ Добавить врага</string>
     <string name="search_hint">Название или номер</string>
     <string name="selected_goods">Выбранные товары</string>
     <string name="available_goods">Доступные товары</string>
@@ -186,5 +186,7 @@
     <string name="sell_good_dialog_description">Продать %1$s за %2$d золота?</string>
     <string name="delete_perk_dialog_title">Удалить навык?</string>
     <string name="delete_perk_dialog_description">Вы уверены, что хотите удалить этот навык?</string>
+    <string name="delete_monster_dialog_title">Удалить врага?</string>
+    <string name="delete_monster_dialog_description">Вы уверены, что хотите удалить %1$s?</string>
     <string name="get">Получить</string>
 </resources>

@@ -22,11 +22,14 @@ import androidx.compose.ui.unit.dp
 import com.rumpilstilstkin.gloomhavenhelper.R
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.buttons.GloomButton
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.buttons.GloomFab
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.empty.EmptyView
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.toolbar.GloomToolbarAction
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.icons.AppIcon
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.icons.EmptyIcon
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.Magic
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterStatType
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.scenario.ChargeLevel
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.scenario.MonsterItem
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.scenario.MonsterUnit
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.components.PageIndicator
@@ -40,6 +43,7 @@ import kotlinx.collections.immutable.persistentMapOf
 internal fun ScenarioScreen(
     state: ScenarioStateUi,
     complete: () -> Unit,
+    showStats: () -> Unit,
     back: () -> Unit,
     addMonster: () -> Unit,
     deleteMonster: (monsterSlug: String) -> Unit,
@@ -96,6 +100,7 @@ internal fun ScenarioScreen(
             magics = state.magicChargeList,
             clickMagic = clickMagic,
             trapDamage = state.trapDamage,
+            showStats = showStats,
         )
         HorizontalDivider(
             modifier = Modifier.fillMaxWidth(),
@@ -105,7 +110,6 @@ internal fun ScenarioScreen(
         ScenarioScreenContent(
             modifier = Modifier.weight(1f),
             monsters = state.monsters,
-            addMonster = addMonster,
             delete = deleteMonster,
             deleteUnit = deleteUnit,
             updateUnitLife = updateUnitLife,
@@ -121,7 +125,6 @@ internal fun ScenarioScreen(
 fun ScenarioScreenContent(
     availableEffects: Set<MonsterStatType>,
     monsters: List<MonsterItem>,
-    addMonster: () -> Unit,
     delete: (monsterSlug: String) -> Unit,
     deleteUnit: (unitNumber: Int, monsterSlug: String) -> Unit,
     updateUnitLife: (unitNumber: Int, monsterSlug: String, life: Int) -> Unit,
@@ -135,26 +138,35 @@ fun ScenarioScreenContent(
         .padding(top = 16.dp),
     verticalArrangement = Arrangement.spacedBy(16.dp)
 ) {
-    val pageCount = monsters.size
-    val pagerState = rememberPagerState(pageCount = { pageCount })
-    PageIndicator(pagerState)
-    HorizontalPager(
-        state = pagerState,
-        contentPadding = PaddingValues(horizontal = 16.dp),
-        pageSpacing = 16.dp,
-    ) { page ->
-        Box(modifier = Modifier.fillMaxSize()) {
-            val currentCard = monsters[page]
-            RegularMonsterCard(
-                item = currentCard,
-                delete = delete,
-                deleteUnit = deleteUnit,
-                updateUnitLife = updateUnitLife,
-                switchUnitEffect = switchUnitEffect,
-                addMonsterUnits = addMonsterUnits,
-                changeUnitLevel = changeUnitLevel,
-                availableEffects = availableEffects,
-            )
+    if(monsters.isEmpty()){
+        EmptyView(
+            icon = EmptyIcon.Enemy,
+            title = stringResource(R.string.empty_enemies_title),
+            description = stringResource(R.string.empty_enemy_description)
+        )
+
+    } else {
+        val pageCount = monsters.size
+        val pagerState = rememberPagerState(pageCount = { pageCount })
+        PageIndicator(pagerState)
+        HorizontalPager(
+            state = pagerState,
+            contentPadding = PaddingValues(horizontal = 16.dp),
+            pageSpacing = 16.dp,
+        ) { page ->
+            Box(modifier = Modifier.fillMaxSize()) {
+                val currentCard = monsters[page]
+                RegularMonsterCard(
+                    item = currentCard,
+                    delete = delete,
+                    deleteUnit = deleteUnit,
+                    updateUnitLife = updateUnitLife,
+                    switchUnitEffect = switchUnitEffect,
+                    addMonsterUnits = addMonsterUnits,
+                    changeUnitLevel = changeUnitLevel,
+                    availableEffects = availableEffects,
+                )
+            }
         }
     }
 }
@@ -173,18 +185,19 @@ private fun ScenarioScreenPreview() {
                         ),
                     magicChargeList =
                         persistentMapOf(
-                            Magic.FIRE to 0,
-                            Magic.FROST to 2,
-                            Magic.AIR to 0,
-                            Magic.EARTH to 2,
-                            Magic.SUN to 1,
-                            Magic.MOON to 2,
+                            Magic.FIRE to ChargeLevel.Zero,
+                            Magic.FROST to ChargeLevel.Two,
+                            Magic.AIR to ChargeLevel.Zero,
+                            Magic.EARTH to ChargeLevel.Two,
+                            Magic.SUN to ChargeLevel.One,
+                            Magic.MOON to ChargeLevel.Two,
                         ),
                     availableEffects = MonsterStatType.mainEffectsPack,
                 ),
             addMonster = {},
             back = {},
             complete = {},
+            showStats = {},
             deleteMonster = { _ -> },
             deleteUnit = { _, _ -> },
             updateUnitLife = { _, _, _ -> },
@@ -210,6 +223,7 @@ private fun ScenarioScreenEmptyPreview() {
             addMonster = {},
             back = {},
             complete = {},
+            showStats = {},
             deleteMonster = { _ -> },
             deleteUnit = { _, _ -> },
             updateUnitLife = { _, _, _ -> },

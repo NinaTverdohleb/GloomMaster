@@ -39,6 +39,15 @@ fun RightItemText(
 )
 
 @Composable
+fun RightItemLabel(
+    text: String
+) = Text(
+    text = text,
+    style = MaterialTheme.typography.headlineMedium,
+    color = MaterialTheme.colorScheme.surfaceTint
+)
+
+@Composable
 fun RightItemIcon(
     icon: GloomIcon
 ) = Icon(
@@ -136,6 +145,10 @@ private fun GloomItemRightItemComponentsPreview() {
                 value = 5,
                 intRange = IntRange(0, 15),
                 onValueChange = {},
+            )
+
+            RightItemLabel(
+                text = "150"
             )
         }
     }
