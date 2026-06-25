@@ -26,7 +26,6 @@ import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.buttons.Gloo
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.text.GloomHeader
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.icons.AppIcon
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
-import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomAlertDialog
 
 @Composable
 fun NotesRow(
@@ -82,35 +81,5 @@ private fun NotesRowPreview() {
                 openNotes = {},
             )
         }
-    }
-}
-
-@Composable
-fun NotesDialog(
-    text: String,
-    showDialog: Boolean,
-    onDismiss: () -> Unit,
-    onNotesChanged: (String) -> Unit,
-) {
-    if (showDialog) {
-        var newNotes by rememberSaveable { mutableStateOf(text) }
-
-        GloomAlertDialog(
-            onDismissRequest = { onDismiss.invoke() },
-            title = stringResource(R.string.notes_title),
-            content = {
-                Box {
-                    OutlinedTextField(
-                        modifier = Modifier.defaultMinSize(minHeight = 240.dp),
-                        value = newNotes,
-                        onValueChange = { newNotes = it },
-                        label = { Text(stringResource(R.string.notes_title)) },
-                    )
-                }
-            },
-            onConfirmRequest = { onNotesChanged.invoke(newNotes) },
-            onNeutralRequest = null,
-            confirmText = stringResource(R.string.save),
-        )
     }
 }

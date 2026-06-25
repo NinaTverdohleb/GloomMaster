@@ -2,6 +2,7 @@ package com.rumpilstilstkin.gloomhavenhelper.screens.characters.goods.add
 
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.GoodType
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.GoodUi
+import com.rumpilstilstkin.gloomhavenhelper.screens.teem.goods.AddGoodsForTeamAction
 import com.rumpilstilstkin.gloomhavenhelper.ui.goods.AddGoodsViewState
 
 data class AddGoodsForCharacterScreenUiState(
@@ -39,5 +40,9 @@ sealed interface AddGoodsForCharacterScreenActions {
 
     data class SearchTextChange(
         val text: String,
+    ) : AddGoodsForCharacterScreenActions
+
+    data class OpenGood(
+        val good: GoodUi,
     ) : AddGoodsForCharacterScreenActions
 }

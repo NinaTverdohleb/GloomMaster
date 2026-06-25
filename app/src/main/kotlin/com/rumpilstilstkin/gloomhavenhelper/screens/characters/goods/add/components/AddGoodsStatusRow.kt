@@ -1,5 +1,7 @@
 package com.rumpilstilstkin.gloomhavenhelper.screens.characters.goods.add.components
 
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -7,6 +9,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Button
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -23,46 +26,26 @@ import com.rumpilstilstkin.gloomhavenhelper.screens.characters.goods.add.AddGood
 fun AddGoodsStatusRow(
     allGold: Int,
     goodsGold: Int,
-    onAction: (AddGoodsForCharacterScreenActions) -> Unit,
-) = GloomCard {
+    modifier: Modifier = Modifier
+) = Column(
+    modifier = modifier,
+    verticalArrangement = Arrangement.spacedBy(12.dp)
+) {
+    val costColor = if (allGold >= goodsGold) {
+        MaterialTheme.colorScheme.onSurface
+    } else {
+        MaterialTheme.colorScheme.error
+    }
     Text(
-        modifier = Modifier.align(Alignment.CenterHorizontally),
         text = stringResource(R.string.available_gold_format, allGold),
+        style = MaterialTheme.typography.titleMedium,
+        color = MaterialTheme.colorScheme.onSurface
     )
-    Row(
-        modifier =
-            Modifier
-                .fillMaxWidth()
-                .padding(top = 8.dp),
-        verticalAlignment = Alignment.CenterVertically,
-    ) {
-        Text(
-            text = stringResource(R.string.cost_gold_format, goodsGold),
-        )
-    }
-    Spacer(modifier = Modifier.height(16.dp))
-    Row(
-        modifier = Modifier.fillMaxWidth(),
-    ) {
-        Button(
-            enabled = goodsGold <= allGold,
-            modifier = Modifier.weight(1f),
-            onClick = {
-                onAction(AddGoodsForCharacterScreenActions.BuySelectedGoods)
-            },
-        ) {
-            Text(stringResource(R.string.buy))
-        }
-        Spacer(modifier = Modifier.width(16.dp))
-        Button(
-            modifier = Modifier.weight(1f),
-            onClick = {
-                onAction(AddGoodsForCharacterScreenActions.AddSelectedGoods)
-            },
-        ) {
-            Text(stringResource(R.string.add))
-        }
-    }
+    Text(
+        text = stringResource(R.string.cost_gold_format, goodsGold),
+        style = MaterialTheme.typography.titleMedium,
+        color = costColor
+    )
 }
 
 @Preview
@@ -70,9 +53,8 @@ fun AddGoodsStatusRow(
 private fun AddGoodsStatusRowSample() {
     GloomhavenMasterTheme {
         AddGoodsStatusRow(
-            allGold = 100,
+            allGold = 10,
             goodsGold = 20,
-            onAction = {},
         )
     }
 }

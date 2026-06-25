@@ -10,7 +10,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.items.GloomItemActionIcon
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.items.GloomSwipeableListItem
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.items.RightItemChecker
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.items.TextImageFilledItem
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.items.TextImageOutlineItem
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.icons.AppIcon
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.PerkUI
@@ -35,6 +37,23 @@ fun PerkActionItem(
     )
 }
 
+@Composable
+fun PerkCheckItem(
+    perk: PerkUI,
+    checked: Boolean,
+    check: (Boolean) -> Unit,
+) {
+    TextImageOutlineItem(
+        text = perk.text,
+        rightComponent = {
+            RightItemChecker(
+                checked = checked,
+                onCheckedChange= check,
+            )
+        }
+    )
+}
+
 @Preview
 @Composable
 private fun PerkItemPreview() {
@@ -47,6 +66,10 @@ private fun PerkItemPreview() {
                 perk = PerkUI.fixture(),
                 delete = {},
             )
+            PerkCheckItem(
+                perk = PerkUI.fixture(),
+                checked = true,
+            ) { }
         }
     }
 }

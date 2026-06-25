@@ -32,7 +32,7 @@ fun AddGoodsView(
     unselectGood: (GoodUi) -> Unit,
     selectGood: (GoodUi) -> Unit,
     clickGood: (GoodUi) -> Unit,
-    bottomContent: @Composable () -> Unit = {},
+    additionalContent: (@Composable () -> Unit)? = null,
 ) {
     Column(
         modifier =
@@ -45,9 +45,9 @@ fun AddGoodsView(
             filterType = state.selectedFilter,
             selectFilter = selectFilter,
             changeSearchText = changeSearchText,
+            additionalContent = additionalContent,
         )
         LazyColumn(
-            modifier = Modifier.weight(1f),
             verticalArrangement = Arrangement.spacedBy(16.dp),
             contentPadding = PaddingValues(vertical = 24.dp),
         ) {
@@ -100,7 +100,6 @@ fun AddGoodsView(
                 }
             }
         }
-        bottomContent()
     }
 }
 

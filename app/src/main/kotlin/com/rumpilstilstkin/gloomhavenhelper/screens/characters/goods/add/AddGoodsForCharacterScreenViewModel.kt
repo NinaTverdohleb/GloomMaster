@@ -9,6 +9,10 @@ import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.goods.GetGoodsForCurr
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.team.GetDiscountByReputationUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.team.GetTeamInfoUseCase
 import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEvent
+import com.rumpilstilstkin.gloomhavenhelper.screens.core.ScreenEffect
+import com.rumpilstilstkin.gloomhavenhelper.screens.core.ScreenEffect.*
+import com.rumpilstilstkin.gloomhavenhelper.screens.core.createOverlaySession
+import com.rumpilstilstkin.gloomhavenhelper.screens.goods.GoodDetailsDialogContract
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.GoodUi
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.toUi
 import com.rumpilstilstkin.gloomhavenhelper.ui.goods.AddGoodsViewState
@@ -37,8 +41,8 @@ class AddGoodsForCharacterScreenViewModel @AssistedInject constructor(
     private val getDiscountByReputationUseCase: GetDiscountByReputationUseCase,
     private val getTeamUseCase: GetTeamInfoUseCase,
 ) : ViewModel() {
-    private val _navigationEvents = MutableSharedFlow<GlHelperEvent>()
-    val navigationEvents = _navigationEvents.asSharedFlow()
+    private val _screenEvents = MutableSharedFlow<ScreenEffect>()
+    val screenEvents = _screenEvents.asSharedFlow()
 
     private val logicState = MutableStateFlow(AddGoodsForCharacterScreenLogicState())
 
@@ -64,7 +68,7 @@ class AddGoodsForCharacterScreenViewModel @AssistedInject constructor(
                         searchText = state.searchText,
                     ),
                 allGold = state.allGold,
-                goodsGold = selectedGoods.sumOf { it.cost } + state.discount,
+                goodsGold = selectedGoods.sumOf { it.cost + state.discount },
             )
         }.stateIn(
             scope = viewModelScope,
@@ -108,7 +112,7 @@ class AddGoodsForCharacterScreenViewModel @AssistedInject constructor(
                         goodIds = logicState.value.selectedGoods.map { it.goodId },
                         characterId = id,
                     )
-                    _navigationEvents.emit(GlHelperEvent.Back)
+                    _screenEvents.emit(Navigation(GlHelperEvent.Back))
                 }
 
                 is AddGoodsForCharacterScreenActions.BuySelectedGoods -> {
@@ -118,12 +122,12 @@ class AddGoodsForCharacterScreenViewModel @AssistedInject constructor(
                         cost = cost,
                         characterId = id,
                     ).onSuccess {
-                        _navigationEvents.emit(GlHelperEvent.Back)
+                        _screenEvents.emit(Navigation(GlHelperEvent.Back))
                     }
                 }
 
                 is AddGoodsForCharacterScreenActions.Close -> {
-                    _navigationEvents.emit(GlHelperEvent.Back)
+                    _screenEvents.emit(Navigation(GlHelperEvent.Back))
                 }
 
                 is AddGoodsForCharacterScreenActions.SelectFilter -> {
@@ -134,6 +138,16 @@ class AddGoodsForCharacterScreenViewModel @AssistedInject constructor(
 
                 is AddGoodsForCharacterScreenActions.SearchTextChange -> {
                     logicState.update { it.copy(searchText = action.text) }
+                }
+
+                is AddGoodsForCharacterScreenActions.OpenGood -> {
+                    val session =
+                        createOverlaySession(
+                            contract = GoodDetailsDialogContract,
+                            input = action.good,
+                            onResult = { },
+                        )
+                    _screenEvents.emit(ScreenEffect.OpenDialog(session))
                 }
             }
         }

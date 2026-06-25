@@ -1,7 +1,5 @@
 package com.rumpilstilstkin.gloomhavenhelper.screens.teem.achievement.delete
 
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -9,8 +7,6 @@ import com.rumpilstilstkin.gloomhavenhelper.R
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.dialogs.ConfirmationDeleteDialog
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.AchievementWithName
-import com.rumpilstilstkin.gloomhavenhelper.screens.models.ShortScenarioUI
-import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomAlertDialog
 
 @Composable
 fun DeleteAchievementDialog(

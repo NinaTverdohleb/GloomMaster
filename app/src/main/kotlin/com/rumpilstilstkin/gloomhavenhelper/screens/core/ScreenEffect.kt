@@ -12,6 +12,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.navigation.NavHostController
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.dialogs.GloomBasicDialog
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.dialogs.GloomBasicModalBottomSheet
 import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEvent
 import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEventHelper
 import kotlinx.coroutines.launch
@@ -115,7 +116,7 @@ fun LaunchedScreenEffect(
     }
 
     currentBottomSheetSession?.let { session ->
-        ModalBottomSheet(
+        GloomBasicModalBottomSheet(
             onDismissRequest = {
                 currentBottomSheetSession = null
             },

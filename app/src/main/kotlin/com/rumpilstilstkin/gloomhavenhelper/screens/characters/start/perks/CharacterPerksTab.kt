@@ -19,6 +19,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.rumpilstilstkin.gloomhavenhelper.R
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.buttons.GloomFab
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.text.GloomHeader
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.icons.AppIcon
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
 import com.rumpilstilstkin.gloomhavenhelper.screens.characters.start.perks.components.EmptyPerks
@@ -34,10 +35,12 @@ fun CharacterPerkTabScreen(
 ) = Scaffold(
     floatingActionButtonPosition = FabPosition.End,
     floatingActionButton = {
-        GloomFab(
-            icon = AppIcon.Plus,
-            onClick = addPerk,
-        )
+        if(uiState.avaliablePerks.isNotEmpty()) {
+            GloomFab(
+                icon = AppIcon.Plus,
+                onClick = addPerk,
+            )
+        }
     },
 ) { innerPadding ->
     Column(
@@ -47,10 +50,8 @@ fun CharacterPerkTabScreen(
                 .padding(innerPadding)
                 .padding(16.dp),
     ) {
-        Text(
+        GloomHeader(
             text = stringResource(R.string.available_to_add_format, uiState.avaliablePerksCount),
-            style = MaterialTheme.typography.titleMedium,
-            color = MaterialTheme.colorScheme.onSurface
         )
 
         if (uiState.characterPerks.isEmpty()) {

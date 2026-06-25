@@ -5,7 +5,6 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.rumpilstilstkin.gloomhavenhelper.screens.characters.dialogs.character.AddPerksDialog
 import com.rumpilstilstkin.gloomhavenhelper.screens.core.OverlayContract
 
 object AddPerksDialogContract : OverlayContract<AddPerksDialogInput, Unit> {
@@ -37,7 +36,6 @@ fun AddPerksDialogRoute(
 
     AddPerksDialog(
         avaliablePerks = input.availablePerks,
-        onDismiss = { close(null) },
         onPerkSelected = { perksIds ->
             viewModel.onAction(
                 AddPerksDialogAction.AddPerks(
