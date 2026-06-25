@@ -37,7 +37,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.rumpilstilstkin.gloomhavenhelper.R
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.GloomCard
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.text.image.TextWithImagesByCode
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.icons.EmptyIcon
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterAction
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterStatType
@@ -240,41 +242,6 @@ fun MonsterUnitCard(
 }
 
 @Composable
-fun EmptyMonsterUnitCard(modifier: Modifier = Modifier) {
-    UnitCard(
-        modifier = modifier,
-    ) {
-        Column(
-            modifier =
-                Modifier
-                    .fillMaxWidth()
-                    .padding(vertical = 16.dp),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.spacedBy(4.dp),
-        ) {
-            Icon(
-                painter = painterResource(id = R.drawable.ic_no_units),
-                contentDescription = null,
-                modifier = Modifier.size(32.dp),
-                tint = MaterialTheme.colorScheme.primary,
-            )
-            Text(
-                text = stringResource(R.string.no_enemies_added),
-                fontSize = 11.sp,
-                color = MaterialTheme.colorScheme.onSurface,
-                textAlign = TextAlign.Center,
-            )
-            Text(
-                text = stringResource(R.string.add_enemies_hint),
-                fontSize = 9.sp,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
-                textAlign = TextAlign.Center,
-            )
-        }
-    }
-}
-
-@Composable
 private fun UnitCard(
     modifier: Modifier = Modifier,
     content: @Composable ColumnScope.() -> Unit,
@@ -314,7 +281,8 @@ private fun UnitNumberBadge(
                     shape = RoundedCornerShape(10.dp),
                     color = color,
                     width = 1.dp,
-                ).background(
+                )
+                .background(
                     color = MaterialTheme.colorScheme.secondaryContainer,
                     shape = RoundedCornerShape(10.dp),
                 ),
@@ -333,38 +301,30 @@ private fun UnitNumberBadge(
 @Composable
 private fun MonsterUnitPreview() {
     GloomhavenMasterTheme {
-        MonsterUnitCard(
-            unit = MonsterUnit.fixture(1),
-            isBoss = false,
-            changeLife = { _, _ -> },
-            switchEffect = { _, _ -> },
-            deleteUnit = { _ -> },
-            levelClick = {},
-            availableEffects = MonsterStatType.mainEffectsPack,
-        )
-    }
-}
+        Column(
+            verticalArrangement = Arrangement.spacedBy(16.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
+        ) {
 
-@Preview
-@Composable
-private fun MonsterUnitBossPreview() {
-    GloomhavenMasterTheme {
-        MonsterUnitCard(
-            unit = MonsterUnit.fixture(1),
-            isBoss = true,
-            changeLife = { _, _ -> },
-            switchEffect = { _, _ -> },
-            deleteUnit = { _ -> },
-            levelClick = {},
-            availableEffects = MonsterStatType.mainEffectsPack + MonsterStatType.fcEffectsPack,
-        )
-    }
-}
+            MonsterUnitCard(
+                unit = MonsterUnit.fixture(1),
+                isBoss = false,
+                changeLife = { _, _ -> },
+                switchEffect = { _, _ -> },
+                deleteUnit = { _ -> },
+                levelClick = {},
+                availableEffects = MonsterStatType.mainEffectsPack,
+            )
 
-@Preview
-@Composable
-private fun EmptyMonsterUnitCardPreview() {
-    GloomhavenMasterTheme {
-        EmptyMonsterUnitCard()
+            MonsterUnitCard(
+                unit = MonsterUnit.fixture(1),
+                isBoss = true,
+                changeLife = { _, _ -> },
+                switchEffect = { _, _ -> },
+                deleteUnit = { _ -> },
+                levelClick = {},
+                availableEffects = MonsterStatType.mainEffectsPack + MonsterStatType.fcEffectsPack,
+            )
+        }
     }
 }

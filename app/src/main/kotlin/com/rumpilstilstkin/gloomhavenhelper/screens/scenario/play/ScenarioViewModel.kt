@@ -6,8 +6,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.scenario.MonsterItem
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.scenario.ScenarioBattleState
-import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario.ClearCurrentActiveScenarioUseCase
-import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario.CompleteScenarioUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario.play.AddMonsterToBattleUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario.play.AddMonsterUnitsUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario.play.GetScenarioInfoUseCase
@@ -21,15 +19,20 @@ import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario.play.UpdateU
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario.play.UpdateUnitLifeUseCase
 import com.rumpilstilstkin.gloomhavenhelper.navigation.GlHelperScreen
 import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEvent
-import com.rumpilstilstkin.gloomhavenhelper.screens.characters.start.general.text.EditTextDialogContract
 import com.rumpilstilstkin.gloomhavenhelper.screens.core.ScreenEffect
 import com.rumpilstilstkin.gloomhavenhelper.screens.core.createOverlaySession
+import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.complete.CompleteScenarioDialogContract
+import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.complete.CompleteScenarioDialogInput
+import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.delete.DeleteMonsterDialogContract
+import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.delete.DeleteMonsterDialogInput
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.monsters.MonsterListDialogContract
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.monsters.MonsterListDialogInput
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.monsters.MonsterListDialogResult
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.state.ScenarioActions
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.state.ScenarioStateMapper
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.state.ScenarioStateUi
+import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.stats.ScenarioStatsDialogContract
+import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.stats.ScenarioStatsDialogInput
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.unit.AddMonsterUnitDialogContract
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.unit.AddMonsterUnitDialogInput
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -37,7 +40,6 @@ import jakarta.inject.Inject
 import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.FlowPreview
-import kotlinx.coroutines.async
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -59,9 +61,7 @@ import kotlinx.coroutines.withContext
 @HiltViewModel
 class ScenarioViewModel @Inject constructor(
     private val getScenarioInfoUseCase: GetScenarioInfoUseCase,
-    private val completeScenarioUseCase: CompleteScenarioUseCase,
     private val saveScenarioStateUseCase: SaveScenarioStateUseCase,
-    private val clearCurrentActiveScenarioUseCase: ClearCurrentActiveScenarioUseCase,
     private val addMonsterToBattleUseCase: AddMonsterToBattleUseCase,
     private val addMonsterUnitsUseCase: AddMonsterUnitsUseCase,
     private val nextRoundUseCase: NextRoundUseCase,
@@ -125,12 +125,7 @@ class ScenarioViewModel @Inject constructor(
                 }
 
                 is ScenarioActions.RemoveMonster -> {
-                    updateState {
-                        removeMonsterUseCase(
-                            it,
-                            action.monsterSlug,
-                        )
-                    }
+                    openDeleteMonsterDialog(action.monsterSlug)
                 }
 
                 is ScenarioActions.AddUnits -> {
@@ -177,19 +172,6 @@ class ScenarioViewModel @Inject constructor(
                     }
                 }
 
-                is ScenarioActions.CompleteScenario -> {
-                    viewModelScope
-                        .async {
-                            val number = logicState.value?.scenarioNumber
-                            if (number != null) {
-                                completeScenarioUseCase(number)
-                            } else {
-                                clearCurrentActiveScenarioUseCase()
-                            }
-                        }.await()
-                    _screenEvents.emit(ScreenEffect.Navigation(GlHelperEvent.Back))
-                }
-
                 is ScenarioActions.UpdateMagic -> {
                     updateState {
                         toggleMagicChargeUseCase(
@@ -224,8 +206,52 @@ class ScenarioViewModel @Inject constructor(
                         monsters = uiState.value.monstersForAdd
                     )
                 }
+
+                ScenarioActions.OpenComplete -> {
+                    openCompleteDialog()
+                }
+
+                ScenarioActions.OpenStats -> {
+                    openStatsDialog()
+                }
             }
         }
+    }
+
+    private suspend fun openCompleteDialog() {
+        val state = uiState.value
+        val session =
+            createOverlaySession(
+                contract = CompleteScenarioDialogContract,
+                input = CompleteScenarioDialogInput(
+                    exp = state.exp,
+                    gold = state.gold,
+                ),
+                onResult = { result ->
+                    result?.let {
+                        viewModelScope.launch {
+                            _screenEvents.emit(ScreenEffect.Navigation(GlHelperEvent.Back))
+                        }
+                    }
+                },
+            )
+        _screenEvents.emit(ScreenEffect.OpenDialog(session))
+    }
+
+    private suspend fun openStatsDialog() {
+        val state = uiState.value
+        val session =
+            createOverlaySession(
+                contract = ScenarioStatsDialogContract,
+                input = ScenarioStatsDialogInput(
+                    level = state.level,
+                    exp = state.exp,
+                    gold = state.gold,
+                    trapDamage = state.trapDamage,
+                ),
+                onResult = { },
+            )
+        _screenEvents.emit(ScreenEffect.OpenDialog(session))
     }
 
     private suspend fun openAddMonsterDialog(
@@ -250,6 +276,29 @@ class ScenarioViewModel @Inject constructor(
         _screenEvents.emit(ScreenEffect.OpenBottomSheet(session))
     }
 
+    private suspend fun openDeleteMonsterDialog(monsterSlug: String) {
+        val monsterName =
+            uiState.value.monsters.firstOrNull { it.slug == monsterSlug }?.name.orEmpty()
+        val session =
+            createOverlaySession(
+                contract = DeleteMonsterDialogContract,
+                input = DeleteMonsterDialogInput(
+                    monsterSlug = monsterSlug,
+                    monsterName = monsterName,
+                ),
+                onResult = { result ->
+                    result?.let {
+                        viewModelScope.launch {
+                            updateState {
+                                removeMonsterUseCase(it, monsterSlug)
+                            }
+                        }
+                    }
+                },
+            )
+        _screenEvents.emit(ScreenEffect.OpenDialog(session))
+    }
+
     private suspend fun updateState(update: suspend (ScenarioBattleState) -> ScenarioBattleState) {
         val state = logicState.value ?: return
         withContext(Dispatchers.Default) {
@@ -258,36 +307,34 @@ class ScenarioViewModel @Inject constructor(
         }
     }
 
-    private fun openAddUnitsDialog(
+    private suspend fun openAddUnitsDialog(
         monsterSlug: String,
         monsterName: String,
         unitNumbers: List<Int>
     ) {
-        viewModelScope.launch {
-            val session =
-                createOverlaySession(
-                    contract = AddMonsterUnitDialogContract,
-                    input = AddMonsterUnitDialogInput(
-                        monsterSlug = monsterSlug,
-                        monsterName = monsterName,
-                        availableIds = unitNumbers.toImmutableList(),
-                    ),
-                    onResult = { output ->
-                        output?.let { result ->
-                            viewModelScope.launch {
-                                updateState {
-                                    addMonsterUnitsUseCase(
-                                        state = it,
-                                        numbers = result.numbers,
-                                        slug = result.monsterSlug,
-                                        isElite = result.isElite,
-                                    )
-                                }
+        val session =
+            createOverlaySession(
+                contract = AddMonsterUnitDialogContract,
+                input = AddMonsterUnitDialogInput(
+                    monsterSlug = monsterSlug,
+                    monsterName = monsterName,
+                    availableIds = unitNumbers.toImmutableList(),
+                ),
+                onResult = { output ->
+                    output?.let { result ->
+                        viewModelScope.launch {
+                            updateState {
+                                addMonsterUnitsUseCase(
+                                    state = it,
+                                    numbers = result.numbers,
+                                    slug = result.monsterSlug,
+                                    isElite = result.isElite,
+                                )
                             }
                         }
-                    },
-                )
-            _screenEvents.emit(ScreenEffect.OpenDialog(session))
-        }
+                    }
+                },
+            )
+        _screenEvents.emit(ScreenEffect.OpenDialog(session))
     }
 }
