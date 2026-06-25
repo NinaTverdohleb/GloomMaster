@@ -96,7 +96,7 @@ private fun AddGoodsScreenPreview() {
             addGoods = {},
             back = {},
             openGood = {},
-            buyGoods = {}
+            buyGoods = {},
         )
     }
 }

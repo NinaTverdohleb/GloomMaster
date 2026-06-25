@@ -26,25 +26,26 @@ import com.rumpilstilstkin.gloomhavenhelper.screens.characters.goods.add.AddGood
 fun AddGoodsStatusRow(
     allGold: Int,
     goodsGold: Int,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) = Column(
     modifier = modifier,
-    verticalArrangement = Arrangement.spacedBy(12.dp)
+    verticalArrangement = Arrangement.spacedBy(12.dp),
 ) {
-    val costColor = if (allGold >= goodsGold) {
-        MaterialTheme.colorScheme.onSurface
-    } else {
-        MaterialTheme.colorScheme.error
-    }
+    val costColor =
+        if (allGold >= goodsGold) {
+            MaterialTheme.colorScheme.onSurface
+        } else {
+            MaterialTheme.colorScheme.error
+        }
     Text(
         text = stringResource(R.string.available_gold_format, allGold),
         style = MaterialTheme.typography.titleMedium,
-        color = MaterialTheme.colorScheme.onSurface
+        color = MaterialTheme.colorScheme.onSurface,
     )
     Text(
         text = stringResource(R.string.cost_gold_format, goodsGold),
         style = MaterialTheme.typography.titleMedium,
-        color = costColor
+        color = costColor,
     )
 }
 

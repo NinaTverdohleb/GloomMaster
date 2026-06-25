@@ -2,7 +2,7 @@ package com.rumpilstilstkin.gloomhavenhelper.designsystem.icons
 
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.R
 
-enum class AppIcon(override val resId: Int): GloomIcon {
+enum class AppIcon(override val resId: Int) : GloomIcon {
     Check(R.drawable.ic_check),
     Plus(R.drawable.ic_plus),
     Minus(R.drawable.ic_minus),
@@ -15,5 +15,6 @@ enum class AppIcon(override val resId: Int): GloomIcon {
     Leave(R.drawable.ic_leave),
     Team(R.drawable.ic_team),
     Buy(R.drawable.ic_buy),
-    Get(R.drawable.ic_get)
+    Get(R.drawable.ic_get),
+    Up(R.drawable.ic_up)
 }

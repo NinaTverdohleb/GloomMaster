@@ -35,7 +35,7 @@ fun AddPerksDialog(
     var checkedPerks by remember { mutableStateOf(listOf<Int>()) }
     Column(
         modifier = Modifier.padding(16.dp),
-        verticalArrangement = Arrangement.spacedBy(16.dp)
+        verticalArrangement = Arrangement.spacedBy(16.dp),
     ) {
         LazyColumn(
             modifier = Modifier.weight(1f, fill = false),
@@ -52,7 +52,7 @@ fun AddPerksDialog(
                             } else {
                                 checkedPerks.filter { id -> id != perk.id }
                             }
-                    }
+                    },
                 )
             }
         }
@@ -61,7 +61,7 @@ fun AddPerksDialog(
             modifier = Modifier.fillMaxWidth(),
             icon = AppIcon.Plus,
             text = stringResource(R.string.add),
-            onClick = { onPerkSelected(checkedPerks) }
+            onClick = { onPerkSelected(checkedPerks) },
         )
     }
 }
@@ -71,7 +71,7 @@ fun AddPerksDialog(
 private fun AddPerksDialogPreview() {
     GloomhavenMasterTheme {
         Box(
-            modifier = Modifier.background(MaterialTheme.colorScheme.surfaceContainerHigh)
+            modifier = Modifier.background(MaterialTheme.colorScheme.surfaceContainerHigh),
         ) {
             AddPerksDialog(
                 avaliablePerks =

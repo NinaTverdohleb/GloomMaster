@@ -9,10 +9,10 @@ data class PerkUI(
     companion object {
         fun fixture(
             id: Int = 1,
-            text: String = "Replace one card #01 with one card #03"
+            text: String = "Replace one card #01 with one card #03",
         ) = PerkUI(
             id = id,
-            text = text
+            text = text,
         )
     }
 }

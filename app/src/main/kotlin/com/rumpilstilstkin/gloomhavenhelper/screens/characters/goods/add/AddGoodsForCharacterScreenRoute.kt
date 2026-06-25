@@ -23,14 +23,14 @@ fun AddGoodsForCharacterScreenRoute(
 
     AddGoodsScreen(
         uiState = uiState,
-        selectFilter = {viewModel.onAction(AddGoodsForCharacterScreenActions.SelectFilter(it))},
-        changeSearchText = {viewModel.onAction(AddGoodsForCharacterScreenActions.SearchTextChange(it))},
-        selectGood = {viewModel.onAction(AddGoodsForCharacterScreenActions.SelectGood(it))},
-        unselectGood = {viewModel.onAction(AddGoodsForCharacterScreenActions.UnselectGood(it))},
-        addGoods = {viewModel.onAction(AddGoodsForCharacterScreenActions.AddSelectedGoods)},
-        back = {viewModel.onAction(AddGoodsForCharacterScreenActions.Close)},
-        openGood = {viewModel.onAction(AddGoodsForCharacterScreenActions.OpenGood(it))},
-        buyGoods = {viewModel.onAction(AddGoodsForCharacterScreenActions.BuySelectedGoods)}
+        selectFilter = { viewModel.onAction(AddGoodsForCharacterScreenActions.SelectFilter(it)) },
+        changeSearchText = { viewModel.onAction(AddGoodsForCharacterScreenActions.SearchTextChange(it)) },
+        selectGood = { viewModel.onAction(AddGoodsForCharacterScreenActions.SelectGood(it)) },
+        unselectGood = { viewModel.onAction(AddGoodsForCharacterScreenActions.UnselectGood(it)) },
+        addGoods = { viewModel.onAction(AddGoodsForCharacterScreenActions.AddSelectedGoods) },
+        back = { viewModel.onAction(AddGoodsForCharacterScreenActions.Close) },
+        openGood = { viewModel.onAction(AddGoodsForCharacterScreenActions.OpenGood(it)) },
+        buyGoods = { viewModel.onAction(AddGoodsForCharacterScreenActions.BuySelectedGoods) },
     )
 
     LaunchedScreenEffect(
