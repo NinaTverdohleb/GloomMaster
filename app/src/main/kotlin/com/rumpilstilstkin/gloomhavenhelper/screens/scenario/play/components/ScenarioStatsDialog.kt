@@ -1,14 +1,8 @@
 package com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.components
 
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.height
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import com.rumpilstilstkin.gloomhavenhelper.R
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
 import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomAlertDialog
@@ -43,7 +37,7 @@ internal fun ScenarioStatsDialog(
 
         StatItem(
             value = stringResource(R.string.stat_trap_damage, trapDamage),
-            image = R.drawable.ic_trap,
+            image = R.drawable.ic_gold,
         )
     }
 }

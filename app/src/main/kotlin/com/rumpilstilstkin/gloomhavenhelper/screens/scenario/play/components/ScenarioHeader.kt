@@ -26,6 +26,7 @@ import androidx.compose.ui.unit.dp
 import com.rumpilstilstkin.gloomhavenhelper.R
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.items.GloomListOutlineItem
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.items.LeftItemNumber
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.icons.ActionIcon
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.icons.AppIcon
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.Magic
@@ -52,31 +53,30 @@ internal fun ScenarioHeader(
         description = location,
         onClick = { },
         leftComponent = {
-            val number =
-                scenarioNumber
-                    ?.let {
-                        stringResource(
+            scenarioNumber?.let {
+                    LeftItemNumber(
+                        number = stringResource(
                             R.string.scenario_number_format,
                             scenarioNumber.toString()
-                        )
-                    }
-                    ?: "?"
-            LeftItemNumber(
-                number = number,
-            )
+                        ),
+                    )
+                }
         },
         rightComponent = {
             Row(
-                verticalAlignment = Alignment.CenterVertically,
+                verticalAlignment = Alignment.Bottom,
+                horizontalArrangement = Arrangement.spacedBy(2.dp)
             ) {
                 Text(
                     text = trapDamage.toString(),
-                    style = MaterialTheme.typography.titleLarge,
+                    style = MaterialTheme.typography.titleLarge.copy(
+
+                    ),
                     color = MaterialTheme.colorScheme.onSurface
                 )
                 Icon(
-                    modifier = Modifier.size(40.dp),
-                    painter = AppIcon.Trap.painter(),
+                    modifier = Modifier.size(28.dp),
+                    painter = ActionIcon.Trap.painter(),
                     contentDescription = null,
                     tint = MaterialTheme.colorScheme.onSurface
                 )

@@ -2,14 +2,21 @@ package com.rumpilstilstkin.gloomhavenhelper.screens.core
 
 import android.widget.Toast
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.lifecycle.HasDefaultViewModelProviderFactory
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelStore
+import androidx.lifecycle.ViewModelStoreOwner
+import androidx.lifecycle.viewmodel.CreationExtras
+import androidx.lifecycle.viewmodel.compose.LocalViewModelStoreOwner
 import androidx.navigation.NavHostController
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.dialogs.GloomBasicDialog
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.dialogs.GloomBasicModalBottomSheet
@@ -122,9 +129,11 @@ fun LaunchedScreenEffect(
             },
             sheetState = sheetState,
         ) {
-            session.Render(
-                onDismiss = { currentBottomSheetSession = null },
-            )
+            OverlayViewModelStoreOwner {
+                session.Render(
+                    onDismiss = { currentBottomSheetSession = null },
+                )
+            }
         }
     }
 
@@ -132,9 +141,45 @@ fun LaunchedScreenEffect(
         GloomBasicDialog(
             onDismissRequest = { currentDialogSession = null },
         ) {
-            session.Render(
-                onDismiss = { currentDialogSession = null },
-            )
+            OverlayViewModelStoreOwner {
+                session.Render(
+                    onDismiss = { currentDialogSession = null },
+                )
+            }
         }
     }
+}
+
+
+@Composable
+private fun OverlayViewModelStoreOwner(content: @Composable () -> Unit) {
+    val parentOwner = checkNotNull(LocalViewModelStoreOwner.current)
+    val viewModelStoreOwner =
+        remember(parentOwner) {
+            OverlayStoreOwner(parentOwner)
+        }
+    DisposableEffect(viewModelStoreOwner) {
+        onDispose { viewModelStoreOwner.viewModelStore.clear() }
+    }
+    CompositionLocalProvider(
+        LocalViewModelStoreOwner provides viewModelStoreOwner,
+        content = content,
+    )
+}
+
+private class OverlayStoreOwner(
+    private val parent: ViewModelStoreOwner,
+) : ViewModelStoreOwner,
+    HasDefaultViewModelProviderFactory {
+    override val viewModelStore = ViewModelStore()
+
+    override val defaultViewModelProviderFactory: ViewModelProvider.Factory
+        get() =
+            (parent as? HasDefaultViewModelProviderFactory)?.defaultViewModelProviderFactory
+                ?: ViewModelProvider.NewInstanceFactory.instance
+
+    override val defaultViewModelCreationExtras: CreationExtras
+        get() =
+            (parent as? HasDefaultViewModelProviderFactory)?.defaultViewModelCreationExtras
+                ?: CreationExtras.Empty
 }
