@@ -33,7 +33,7 @@ fun PerkActionItem(
         },
         item = {
             TextImageFilledItem(perk.text)
-        }
+        },
     )
 }
 
@@ -48,9 +48,9 @@ fun PerkCheckItem(
         rightComponent = {
             RightItemChecker(
                 checked = checked,
-                onCheckedChange= check,
+                onCheckedChange = check,
             )
-        }
+        },
     )
 }
 

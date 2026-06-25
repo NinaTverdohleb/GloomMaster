@@ -36,7 +36,7 @@ fun GoodFilters(
     additionalContent: (@Composable () -> Unit)? = null,
 ) = Column(
     modifier = modifier,
-    verticalArrangement = Arrangement.spacedBy(24.dp)
+    verticalArrangement = Arrangement.spacedBy(24.dp),
 ) {
     Row(
         modifier = Modifier.fillMaxWidth(),

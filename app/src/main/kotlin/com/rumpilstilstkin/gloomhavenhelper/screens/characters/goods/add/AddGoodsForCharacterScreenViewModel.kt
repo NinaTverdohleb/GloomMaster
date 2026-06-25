@@ -10,7 +10,7 @@ import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.team.GetDiscountByRep
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.team.GetTeamInfoUseCase
 import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEvent
 import com.rumpilstilstkin.gloomhavenhelper.screens.core.ScreenEffect
-import com.rumpilstilstkin.gloomhavenhelper.screens.core.ScreenEffect.*
+import com.rumpilstilstkin.gloomhavenhelper.screens.core.ScreenEffect.Navigation
 import com.rumpilstilstkin.gloomhavenhelper.screens.core.createOverlaySession
 import com.rumpilstilstkin.gloomhavenhelper.screens.goods.GoodDetailsDialogContract
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.GoodUi

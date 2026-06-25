@@ -84,7 +84,7 @@ fun ExperienceRow(
             )
 
             GloomOutlineFilledButtonIcon(
-                icon = AppIcon.Check,
+                icon = AppIcon.Up,
                 onClick = onLevelUp,
                 enabled = isCanLevelUp,
             )

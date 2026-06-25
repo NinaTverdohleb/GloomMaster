@@ -35,7 +35,7 @@ fun CharacterPerkTabScreen(
 ) = Scaffold(
     floatingActionButtonPosition = FabPosition.End,
     floatingActionButton = {
-        if(uiState.avaliablePerks.isNotEmpty()) {
+        if (uiState.avaliablePerks.isNotEmpty()) {
             GloomFab(
                 icon = AppIcon.Plus,
                 onClick = addPerk,
@@ -73,7 +73,7 @@ fun CharacterPerkTabScreen(
                 ) { perk ->
                     PerkActionItem(
                         perk = perk,
-                        delete = deletePerk
+                        delete = deletePerk,
                     )
                 }
             }
