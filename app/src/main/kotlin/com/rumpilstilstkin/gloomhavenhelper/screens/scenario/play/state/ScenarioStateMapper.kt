@@ -13,6 +13,25 @@ import kotlinx.collections.immutable.toPersistentSet
 object ScenarioStateMapper {
     fun toUiState(state: ScenarioBattleState): ScenarioStateUi {
         val existingSlugs = state.activeMonsters.map { it.slug }.toSet()
+        val monsters =
+            state.activeMonsters
+                .map { monster ->
+                    val units =
+                        monster.units
+                            .associateBy { UnitCompact(it.number, it.isSpecial) }
+                            .toSortedMap()
+                            .toImmutableMap()
+                    MonsterItemUi(
+                        slug = monster.slug,
+                        name = monster.name,
+                        isFly = monster.isFly,
+                        currentCard = monster.currentCard,
+                        units = units,
+                        isBoss = monster.isBoss,
+                    )
+                }.sortedBy { it.currentCard?.initiative }
+                .toImmutableList()
+        val smallestInitiative = monsters.firstOrNull()?.currentCard?.initiative ?: 0
         return ScenarioStateUi(
             scenarioName = state.name,
             scenarioNumber = state.scenarioNumber,
@@ -37,7 +56,9 @@ object ScenarioStateMapper {
                             units = units,
                             isBoss = monster.isBoss,
                         )
-                    }.toImmutableList(),
+                    }.sortedBy { it.currentCard?.initiative }
+                    .toImmutableList(),
+            smallestInitiative = smallestInitiative,
             monstersForAdd =
                 state.monsters
                     .filterKeys { it !in existingSlugs }

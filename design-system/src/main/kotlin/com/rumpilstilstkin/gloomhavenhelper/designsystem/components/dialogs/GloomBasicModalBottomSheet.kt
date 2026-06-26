@@ -1,15 +1,20 @@
 package com.rumpilstilstkin.gloomhavenhelper.designsystem.components.dialogs
 
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.ColumnScope
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.statusBars
 import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.material3.BottomSheetDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalBottomSheet
+import androidx.compose.material3.ModalBottomSheetProperties
 import androidx.compose.material3.SheetState
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
@@ -23,9 +28,8 @@ import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterT
 fun GloomBasicModalBottomSheet(
     onDismissRequest: () -> Unit,
     sheetState: SheetState = rememberModalBottomSheetState(),
-    content: @Composable ColumnScope.() -> Unit,
+    content: @Composable BoxScope.() -> Unit,
 ) = ModalBottomSheet(
-    modifier = Modifier.padding(16.dp),
     containerColor = MaterialTheme.colorScheme.surfaceContainerHigh,
     contentColor = MaterialTheme.colorScheme.onSurface,
     scrimColor = MaterialTheme.colorScheme.scrim.copy(alpha = 0.32f),
@@ -41,7 +45,19 @@ fun GloomBasicModalBottomSheet(
     },
     onDismissRequest = onDismissRequest,
     sheetState = sheetState,
-    content = content
+    properties = ModalBottomSheetProperties(
+        shouldDismissOnBackPress = true,
+        isAppearanceLightStatusBars = false,
+        isAppearanceLightNavigationBars = false
+    ),
+    contentWindowInsets = { WindowInsets.statusBars },
+    content = {
+        Box(
+            modifier = Modifier.padding(16.dp)
+        ) {
+            content()
+        }
+    }
 )
 
 

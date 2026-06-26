@@ -98,7 +98,7 @@
     <string name="add_monsters">Add Monsters</string>
     <string name="scenario_stats_title">Scenario Parameters</string>
     <string name="stat_monster_level">Monster Level</string>
-    <string name="stat_exp_reward">Completion experience</string>
+    <string name="stat_exp_reward">Experience</string>
     <string name="stat_gold_reward">Gold per Token</string>
     <string name="stat_trap_damage">Trap Damage</string>
     <string name="gold_format">%1$d Gold</string>
