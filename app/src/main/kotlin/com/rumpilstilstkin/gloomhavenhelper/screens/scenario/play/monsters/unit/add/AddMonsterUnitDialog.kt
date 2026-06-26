@@ -45,7 +45,7 @@ fun AddMonsterUnitDialog(
         verticalArrangement = Arrangement.spacedBy(24.dp),
     ) {
         GloomHeader(
-            monsterName
+            monsterName,
         )
         TierSelector(
             selected = selectedTier,
@@ -65,7 +65,6 @@ fun AddMonsterUnitDialog(
         )
     }
 }
-
 
 enum class UnitTier(
     @param:StringRes val textRes: Int,
@@ -97,8 +96,7 @@ private fun TierSelector(
                         .clip(RoundedCornerShape(6.dp))
                         .background(
                             if (isSelected) MaterialTheme.colorScheme.primary else Color.Transparent,
-                        )
-                        .clickable { onSelect(tier) }
+                        ).clickable { onSelect(tier) }
                         .padding(vertical = 8.dp),
                 contentAlignment = Alignment.Center,
             ) {
@@ -118,7 +116,6 @@ private fun TierSelector(
         }
     }
 }
-
 
 @Composable
 private fun UnitIdGrid(
@@ -170,13 +167,11 @@ private fun UnitIdCell(
                     } else {
                         Color.Unspecified
                     },
-                )
-                .border(
+                ).border(
                     shape = RoundedCornerShape(8.dp),
                     color = MaterialTheme.colorScheme.onSurface,
                     width = 1.dp,
-                )
-                .clickable(onClick = onClick),
+                ).clickable(onClick = onClick),
         contentAlignment = Alignment.Center,
     ) {
         Text(
@@ -194,7 +189,7 @@ private fun AddMonsterUnitDialogPreview() {
         Box(
             Modifier
                 .background(MaterialTheme.colorScheme.surfaceContainerHigh)
-                .padding(16.dp)
+                .padding(16.dp),
         ) {
             AddMonsterUnitDialog(
                 monsterName = "Living Bones",

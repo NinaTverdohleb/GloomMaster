@@ -29,7 +29,6 @@ fun CharacterEditNameDialog(
         singleLine = true,
         modifier = Modifier.fillMaxWidth(),
     )
-
 }
 
 @Preview

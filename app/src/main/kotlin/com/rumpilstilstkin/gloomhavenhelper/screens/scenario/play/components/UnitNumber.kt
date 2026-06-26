@@ -25,16 +25,17 @@ fun UnitNumber(
     modifier: Modifier = Modifier,
     selected: Boolean = false,
 ) {
-    val tintColor = if (isSpecial) {
-        MaterialTheme.colorScheme.primaryContainer
-    } else {
-        MaterialTheme.colorScheme.secondary
-    }
+    val tintColor =
+        if (isSpecial) {
+            MaterialTheme.colorScheme.primaryContainer
+        } else {
+            MaterialTheme.colorScheme.secondary
+        }
     Box(
         modifier = modifier,
-        contentAlignment = Alignment.Center
+        contentAlignment = Alignment.Center,
     ) {
-        if(selected) {
+        if (selected) {
             val glowColor: Color = MaterialTheme.colorScheme.primary
             val numberSize = 52.dp
             Canvas(modifier = Modifier.size(numberSize)) {
@@ -48,15 +49,17 @@ fun UnitNumber(
                     val glowAlpha = 0.4f * glowStrength
 
                     drawCircle(
-                        brush = Brush.radialGradient(
-                            colorStops = arrayOf(
-                                0.0f to glowColor.copy(alpha = glowAlpha),
-                                0.5f to glowColor.copy(alpha = glowAlpha * 0.3f),
-                                1.0f to glowColor.copy(alpha = 0f)
+                        brush =
+                            Brush.radialGradient(
+                                colorStops =
+                                    arrayOf(
+                                        0.0f to glowColor.copy(alpha = glowAlpha),
+                                        0.5f to glowColor.copy(alpha = glowAlpha * 0.3f),
+                                        1.0f to glowColor.copy(alpha = 0f),
+                                    ),
+                                center = center,
+                                radius = glowRadius,
                             ),
-                            center = center,
-                            radius = glowRadius,
-                        ),
                         radius = glowRadius,
                         center = center,
                     )
@@ -68,7 +71,7 @@ fun UnitNumber(
             modifier = modifier.size(52.dp),
             painter = unitNumber.toNumberIcon().painter(),
             contentDescription = unitNumber.toString(),
-            tint = tintColor
+            tint = tintColor,
         )
     }
 }
@@ -79,28 +82,28 @@ private fun UnitNumberPreview() {
     GloomhavenMasterTheme {
         Column(
             verticalArrangement = Arrangement.spacedBy(16.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
+            horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             UnitNumber(
                 unitNumber = 4,
-                isSpecial = true
+                isSpecial = true,
             )
 
             UnitNumber(
                 unitNumber = 12,
-                isSpecial = false
+                isSpecial = false,
             )
 
             UnitNumber(
                 unitNumber = 4,
                 selected = true,
-                isSpecial = true
+                isSpecial = true,
             )
 
             UnitNumber(
                 unitNumber = 12,
                 selected = true,
-                isSpecial = false
+                isSpecial = false,
             )
         }
     }

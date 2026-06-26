@@ -33,7 +33,7 @@ internal fun AddScenarioMonstersDialog(
     addMonsters: () -> Unit,
 ) {
     Column(
-        verticalArrangement = Arrangement.spacedBy(20.dp)
+        verticalArrangement = Arrangement.spacedBy(20.dp),
     ) {
         GloomOutlinedTextSearchField(
             modifier = Modifier.fillMaxWidth(),
@@ -57,7 +57,7 @@ internal fun AddScenarioMonstersDialog(
                         ) {
                             toggleMonster(monster.slug)
                         }
-                    }
+                    },
                 )
             }
         }

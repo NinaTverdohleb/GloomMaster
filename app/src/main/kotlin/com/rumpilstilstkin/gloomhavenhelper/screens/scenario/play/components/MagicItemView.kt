@@ -52,16 +52,18 @@ fun ChargeIcon(
                 val peakStop = (edgeStop + (1f - edgeStop) * 0.25f).coerceIn(0f, 1f)
                 val glowAlpha = 0.3f * glowStrength
                 drawCircle(
-                    brush = Brush.radialGradient(
-                        colorStops = arrayOf(
-                            0f to glowColor.copy(alpha = 0f),
-                            edgeStop to glowColor.copy(alpha = 0f),
-                            peakStop to glowColor.copy(alpha = glowAlpha),
-                            1f to glowColor.copy(alpha = 0f),
+                    brush =
+                        Brush.radialGradient(
+                            colorStops =
+                                arrayOf(
+                                    0f to glowColor.copy(alpha = 0f),
+                                    edgeStop to glowColor.copy(alpha = 0f),
+                                    peakStop to glowColor.copy(alpha = glowAlpha),
+                                    1f to glowColor.copy(alpha = 0f),
+                                ),
+                            center = center,
+                            radius = glowRadius,
                         ),
-                        center = center,
-                        radius = glowRadius,
-                    ),
                     radius = glowRadius,
                     center = center,
                 )

@@ -74,11 +74,11 @@ internal fun ScenarioScreen(
                     .fillMaxWidth()
                     .padding(start = 32.dp),
             verticalArrangement = Arrangement.spacedBy(12.dp),
-            horizontalAlignment = Alignment.End
+            horizontalAlignment = Alignment.End,
         ) {
             GloomFab(
                 icon = AppIcon.Plus,
-                onClick = addMonster
+                onClick = addMonster,
             )
             GloomButton(
                 text = stringResource(R.string.round_label),
@@ -86,7 +86,7 @@ internal fun ScenarioScreen(
                 onClick = nextRound,
             )
         }
-    }
+    },
 ) { paddingValues ->
     Column(
         modifier =
@@ -107,7 +107,7 @@ internal fun ScenarioScreen(
         HorizontalDivider(
             modifier = Modifier.fillMaxWidth(),
             thickness = 1.dp,
-            color = MaterialTheme.colorScheme.outline
+            color = MaterialTheme.colorScheme.outline,
         )
         ScenarioScreenContent(
             modifier = Modifier.weight(1f),
@@ -135,18 +135,18 @@ fun ScenarioScreenContent(
     onLevel: (unit: MonsterUnit, monsterSlug: String) -> Unit,
     modifier: Modifier = Modifier,
 ) = Column(
-    modifier = modifier
-        .fillMaxWidth()
-        .padding(top = 16.dp),
-    verticalArrangement = Arrangement.spacedBy(16.dp)
+    modifier =
+        modifier
+            .fillMaxWidth()
+            .padding(top = 16.dp),
+    verticalArrangement = Arrangement.spacedBy(16.dp),
 ) {
     if (monsters.isEmpty()) {
         EmptyView(
             icon = EmptyIcon.Enemy,
             title = stringResource(R.string.empty_enemies_title),
-            description = stringResource(R.string.empty_enemy_description)
+            description = stringResource(R.string.empty_enemy_description),
         )
-
     } else {
         val pageCount = monsters.size
         val pagerState = rememberPagerState(pageCount = { pageCount })

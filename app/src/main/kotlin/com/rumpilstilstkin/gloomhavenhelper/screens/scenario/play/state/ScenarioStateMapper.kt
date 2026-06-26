@@ -24,20 +24,20 @@ object ScenarioStateMapper {
             monsters =
                 state.activeMonsters
                     .map { monster ->
-                        val units = monster.units
-                            .associateBy { UnitCompact(it.number, it.isSpecial) }
-                            .toSortedMap()
-                            .toImmutableMap()
+                        val units =
+                            monster.units
+                                .associateBy { UnitCompact(it.number, it.isSpecial) }
+                                .toSortedMap()
+                                .toImmutableMap()
                         MonsterItemUi(
                             slug = monster.slug,
                             name = monster.name,
                             isFly = monster.isFly,
                             currentCard = monster.currentCard,
                             units = units,
-                            isBoss = monster.isBoss
+                            isBoss = monster.isBoss,
                         )
-                    }
-                    .toImmutableList(),
+                    }.toImmutableList(),
             monstersForAdd =
                 state.monsters
                     .filterKeys { it !in existingSlugs }

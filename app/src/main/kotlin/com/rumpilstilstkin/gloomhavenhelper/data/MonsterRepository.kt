@@ -40,15 +40,15 @@ class MonsterRepository @Inject constructor(
                     stats.copy(
                         stats =
                             stats.stats +
-                                    monsterDao
-                                        .getTextStats(
-                                            monster = monsterSlug,
-                                            level = level,
-                                            isElite = isElite,
-                                            targetLocale = locale,
-                                            defaultLocale = LocaleRepository.DEFAULT_LOCALE,
-                                        )?.stats
-                                        .orEmpty(),
+                                monsterDao
+                                    .getTextStats(
+                                        monster = monsterSlug,
+                                        level = level,
+                                        isElite = isElite,
+                                        targetLocale = locale,
+                                        defaultLocale = LocaleRepository.DEFAULT_LOCALE,
+                                    )?.stats
+                                    .orEmpty(),
                     )
                 }
         return MonsterStats(

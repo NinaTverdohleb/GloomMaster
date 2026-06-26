@@ -42,7 +42,7 @@ fun ActionMonsterEffect(
             verticalArrangement = Arrangement.Center,
         ) {
             TextWithImagesByCode(
-                style =style,
+                style = style,
                 text = item.text,
                 textAlign = TextAlign.Center,
             )
@@ -80,40 +80,35 @@ private fun ActionMonsterEffectPreview() {
     GloomhavenMasterTheme {
         Column(
             verticalArrangement = Arrangement.spacedBy(16.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
+            horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             ActionMonsterEffect(
-                item = MonsterCardAction(
-                    text = "Attack #41 +1",
-                    subAction =
-                        persistentListOf(
-                            MonsterCardAction(
-                                text = "Range #37 +1",
-                                subAction = persistentListOf(),
+                item =
+                    MonsterCardAction(
+                        text = "Attack #41 +1",
+                        subAction =
+                            persistentListOf(
+                                MonsterCardAction(
+                                    text = "Range #37 +1",
+                                    subAction = persistentListOf(),
+                                ),
                             ),
-                        ),
-                )
+                    ),
             )
 
             ActionMonsterEffect(
-                item = MonsterCardAction(
-                    text = "Summon normal Ooze with a hit point value equals to the summoning Ooze's current hit point value (limited by a normal Ooze's specified maximum hit point value)",
-                    subAction = persistentListOf(),
-                )
-            )
-
-            ActionMonsterEffect(
-                item = MonsterCardAction(
-                    text = "Attack #41 +1",
-                    endEffect = "#31",
-                    subAction =
-                        persistentListOf(
-                            MonsterCardAction(
-                                text = "Range #37 +1",
-                                subAction = persistentListOf(),
+                item =
+                    MonsterCardAction(
+                        text = "Attack #41 +1",
+                        endEffect = "#31",
+                        subAction =
+                            persistentListOf(
+                                MonsterCardAction(
+                                    text = "Range #37 +1",
+                                    subAction = persistentListOf(),
+                                ),
                             ),
-                        ),
-                )
+                    ),
             )
         }
     }

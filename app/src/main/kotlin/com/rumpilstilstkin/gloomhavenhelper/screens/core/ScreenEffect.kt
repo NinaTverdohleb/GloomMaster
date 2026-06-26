@@ -150,7 +150,6 @@ fun LaunchedScreenEffect(
     }
 }
 
-
 @Composable
 private fun OverlayViewModelStoreOwner(content: @Composable () -> Unit) {
     val parentOwner = checkNotNull(LocalViewModelStoreOwner.current)

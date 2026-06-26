@@ -89,35 +89,34 @@ data class MonsterUnit(
 
         fun fixture(
             number: Int = 1,
-            isSpecial: Boolean = false
-        ) =
-            MonsterUnit(
-                number = number,
-                isSpecial = isSpecial,
-                currentLife = 10,
-                maxLife = 10,
-                level = 1,
-                lifeMultiple = false,
-                immunity = persistentSetOf(MonsterStatType.POISON),
-                stats =
-                    persistentListOf(
-                        MonsterAction.Action(
-                            statType = MonsterStatType.MOVE,
-                            modifier = "3",
-                        ),
-                        MonsterAction.Action(
-                            statType = MonsterStatType.ATTACK,
-                            modifier = "4",
-                        ),
-                        MonsterAction.Action(
-                            statType = MonsterStatType.SHIELD,
-                            modifier = "2",
-                        ),
-                        MonsterAction.Action(
-                            statType = MonsterStatType.POISON,
-                            modifier = "",
-                        ),
+            isSpecial: Boolean = false,
+        ) = MonsterUnit(
+            number = number,
+            isSpecial = isSpecial,
+            currentLife = 10,
+            maxLife = 10,
+            level = 1,
+            lifeMultiple = false,
+            immunity = persistentSetOf(MonsterStatType.POISON),
+            stats =
+                persistentListOf(
+                    MonsterAction.Action(
+                        statType = MonsterStatType.MOVE,
+                        modifier = "3",
                     ),
-            )
+                    MonsterAction.Action(
+                        statType = MonsterStatType.ATTACK,
+                        modifier = "4",
+                    ),
+                    MonsterAction.Action(
+                        statType = MonsterStatType.SHIELD,
+                        modifier = "2",
+                    ),
+                    MonsterAction.Action(
+                        statType = MonsterStatType.POISON,
+                        modifier = "",
+                    ),
+                ),
+        )
     }
 }

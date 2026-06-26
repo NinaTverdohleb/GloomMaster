@@ -64,7 +64,7 @@ fun MonsterListDialog(
             icon = AppIcon.Check,
             text = stringResource(R.string.select_enemies),
             onClick = selectMonsters,
-            enabled = selectedIds.isNotEmpty()
+            enabled = selectedIds.isNotEmpty(),
         )
     }
 }

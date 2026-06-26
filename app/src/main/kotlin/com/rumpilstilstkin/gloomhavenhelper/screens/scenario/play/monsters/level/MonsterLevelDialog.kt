@@ -40,14 +40,14 @@ fun MonsterLevelDialog(
             title = monsterName,
             leftComponent = {
                 LeftItemNumber(
-                    number = unitNumber.toString()
+                    number = unitNumber.toString(),
                 )
-            }
+            },
         )
         Row(
             modifier = Modifier.fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceBetween
+            horizontalArrangement = Arrangement.SpaceBetween,
         ) {
             Text(
                 text = "Level",
@@ -57,14 +57,14 @@ fun MonsterLevelDialog(
             GloomCounterFull(
                 value = level,
                 intRange = IntRange(0, 7),
-                onValueChange = {level = it},
+                onValueChange = { level = it },
             )
         }
         GloomOutlineButton(
             modifier = Modifier.fillMaxWidth(),
             icon = AppIcon.Check,
             text = stringResource(R.string.ok),
-            onClick = {changeLevel(level)},
+            onClick = { changeLevel(level) },
         )
     }
 }
