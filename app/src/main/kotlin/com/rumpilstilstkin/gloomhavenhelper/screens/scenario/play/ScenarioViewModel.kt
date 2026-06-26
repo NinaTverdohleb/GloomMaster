@@ -31,8 +31,10 @@ import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.monsters.delet
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.monsters.delete.DeleteMonsterDialogInput
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.monsters.level.MonsterLevelDialogContract
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.monsters.level.MonsterLevelDialogInput
-import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.monsters.unit.AddMonsterUnitDialogContract
-import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.monsters.unit.AddMonsterUnitDialogInput
+import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.monsters.unit.add.AddMonsterUnitDialogContract
+import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.monsters.unit.add.AddMonsterUnitDialogInput
+import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.monsters.unit.delete.DeleteUnitDialogContract
+import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.monsters.unit.delete.DeleteUnitDialogInput
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.state.ScenarioActions
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.state.ScenarioStateMapper
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.state.ScenarioStateUi
@@ -140,13 +142,10 @@ class ScenarioViewModel @Inject constructor(
                 }
 
                 is ScenarioActions.RemoveUnit -> {
-                    updateState {
-                        removeUnitUseCase(
-                            state = it,
-                            number = action.number,
-                            slug = action.monsterSlug,
-                        )
-                    }
+                    openDeleteUnitDialog(
+                        monsterSlug = action.monsterSlug,
+                        number = action.number,
+                    )
                 }
 
                 is ScenarioActions.UpdateUnitLife -> {
@@ -337,6 +336,36 @@ class ScenarioViewModel @Inject constructor(
                         viewModelScope.launch {
                             updateState {
                                 removeMonsterUseCase(it, monsterSlug)
+                            }
+                        }
+                    }
+                },
+            )
+        _screenEvents.emit(ScreenEffect.OpenDialog(session))
+    }
+
+    private suspend fun openDeleteUnitDialog(
+        monsterSlug: String,
+        number: Int,
+    ) {
+        val monsterName = logicState.value?.monsters[monsterSlug]?.name.orEmpty()
+        val session =
+            createOverlaySession(
+                contract = DeleteUnitDialogContract,
+                input = DeleteUnitDialogInput(
+                    monsterSlug = monsterSlug,
+                    monsterName = monsterName,
+                    unitNumber = number,
+                ),
+                onResult = { result ->
+                    result?.let {
+                        viewModelScope.launch {
+                            updateState {
+                                removeUnitUseCase(
+                                    state = it,
+                                    number = number,
+                                    slug = monsterSlug,
+                                )
                             }
                         }
                     }

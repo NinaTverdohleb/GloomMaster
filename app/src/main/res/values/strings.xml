@@ -158,6 +158,8 @@
     <string name="delete_perk_dialog_description">Are you sure you want to delete this perk?</string>
     <string name="delete_monster_dialog_title">Delete enemy?</string>
     <string name="delete_monster_dialog_description">Are you sure you want to delete %1$s?</string>
+    <string name="delete_unit_dialog_title">Delete enemy?</string>
+    <string name="delete_unit_dialog_description">Are you sure you want to delete %1$s #%2$d?</string>
     <string name="empty_team_achievements">No party achievements</string>
     <string name="empty_character_goods">No items</string>
     <string name="empty_character_goods_description">Add items for character</string>

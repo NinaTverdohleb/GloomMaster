@@ -1,4 +1,4 @@
-package com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.monsters.unit
+package com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.monsters.unit.add
 
 import androidx.annotation.StringRes
 import androidx.compose.foundation.background
