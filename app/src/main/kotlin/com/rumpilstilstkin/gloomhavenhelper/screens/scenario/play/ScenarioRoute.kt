@@ -75,13 +75,11 @@ fun ScenarioRoute(
     val clickMagic = { magic: Magic ->
         viewModel.onAction(ScenarioActions.UpdateMagic(magic))
     }
-    val changeUnitLevel = { monsterSlug: String, unit: MonsterUnit, level: Int ->
+    val changeUnitLevel = { unit: MonsterUnit, monsterSlug: String ->
         viewModel.onAction(
             ScenarioActions.UpdateUnitLevel(
                 monsterSlug = monsterSlug,
-                unitNumber = unit.number,
-                level = level,
-                isElite = unit.isSpecial,
+                unit = unit,
             ),
         )
     }
@@ -99,7 +97,7 @@ fun ScenarioRoute(
         addMonsterUnits = addMonsterUnits,
         nextRound = nextRound,
         clickMagic = clickMagic,
-        changeUnitLevel = changeUnitLevel,
+        onLevel = changeUnitLevel,
     )
 
     LaunchedScreenEffect(

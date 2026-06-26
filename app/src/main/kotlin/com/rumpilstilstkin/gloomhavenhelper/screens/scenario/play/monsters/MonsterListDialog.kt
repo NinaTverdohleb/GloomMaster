@@ -32,7 +32,6 @@ fun MonsterListDialog(
     addNewMonsters: () -> Unit,
 ) {
     Column(
-        modifier = Modifier.padding(16.dp),
         verticalArrangement = Arrangement.spacedBy(16.dp),
     ) {
         LazyColumn(
@@ -74,16 +73,20 @@ fun MonsterListDialog(
 @Composable
 private fun MonsterListDialogPreview() {
     GloomhavenMasterTheme {
-        MonsterListDialog(
-            monsters =
-                persistentListOf(
-                    MonsterItem.fixture("1", "Skeleton"),
-                    MonsterItem.fixture("2", "Zombie"),
-                ),
-            selectedIds = persistentListOf("1"),
-            toggleMonster = {},
-            selectMonsters = {},
-            addNewMonsters = {},
-        )
+        Column(
+            modifier = Modifier.padding(16.dp),
+        ) {
+            MonsterListDialog(
+                monsters =
+                    persistentListOf(
+                        MonsterItem.fixture("1", "Skeleton"),
+                        MonsterItem.fixture("2", "Zombie"),
+                    ),
+                selectedIds = persistentListOf("1"),
+                toggleMonster = {},
+                selectMonsters = {},
+                addNewMonsters = {},
+            )
+        }
     }
 }

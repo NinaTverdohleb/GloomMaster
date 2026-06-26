@@ -8,6 +8,7 @@ import com.rumpilstilstkin.gloomhavenhelper.data.mappers.toDomain
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.AvailableCard
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.Monster
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterAction
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterName
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterStats
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -39,15 +40,15 @@ class MonsterRepository @Inject constructor(
                     stats.copy(
                         stats =
                             stats.stats +
-                                monsterDao
-                                    .getTextStats(
-                                        monster = monsterSlug,
-                                        level = level,
-                                        isElite = isElite,
-                                        targetLocale = locale,
-                                        defaultLocale = LocaleRepository.DEFAULT_LOCALE,
-                                    )?.stats
-                                    .orEmpty(),
+                                    monsterDao
+                                        .getTextStats(
+                                            monster = monsterSlug,
+                                            level = level,
+                                            isElite = isElite,
+                                            targetLocale = locale,
+                                            defaultLocale = LocaleRepository.DEFAULT_LOCALE,
+                                        )?.stats
+                                        .orEmpty(),
                     )
                 }
         return MonsterStats(
@@ -62,13 +63,13 @@ class MonsterRepository @Inject constructor(
     suspend fun getMonstersForPacks(
         packs: List<String>,
         locale: String,
-    ): Map<String, String> =
+    ): List<MonsterName> =
         monsterDao
             .getMonstersByPacks(
                 packs = packs,
                 targetLocale = locale,
                 defaultLocale = LocaleRepository.DEFAULT_LOCALE,
-            ).associate { it.monster.slug to it.name }
+            ).map { MonsterName(slug = it.monster.slug, name = it.name) }
 
     suspend fun getMonsterCards(slugs: List<String>): List<AvailableCard> =
         monsterDao.getCardsByMonsterSlugs(slugs).map {

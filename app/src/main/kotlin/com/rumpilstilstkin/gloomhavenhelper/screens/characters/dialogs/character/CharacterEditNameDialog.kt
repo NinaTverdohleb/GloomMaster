@@ -13,7 +13,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.rumpilstilstkin.gloomhavenhelper.R
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
-import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomAlertDialog
 
 @Composable
 fun CharacterEditNameDialog(
@@ -23,21 +22,14 @@ fun CharacterEditNameDialog(
 ) {
     var name by rememberSaveable { mutableStateOf(currentName) }
 
-    GloomAlertDialog(
-        onDismissRequest = onDismiss,
-        title = stringResource(R.string.edit_name_title),
-        confirmText = stringResource(R.string.save),
-        onConfirmRequest = { onSave(name) },
-        content = {
-            OutlinedTextField(
-                value = name,
-                onValueChange = { name = it },
-                label = { Text(stringResource(R.string.character_name_label)) },
-                singleLine = true,
-                modifier = Modifier.fillMaxWidth(),
-            )
-        },
+    OutlinedTextField(
+        value = name,
+        onValueChange = { name = it },
+        label = { Text(stringResource(R.string.character_name_label)) },
+        singleLine = true,
+        modifier = Modifier.fillMaxWidth(),
     )
+
 }
 
 @Preview
