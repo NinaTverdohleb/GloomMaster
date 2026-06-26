@@ -25,6 +25,7 @@ data class ScenarioStateUi(
     val trapDamage: Int = 0,
     val level: Int = 0,
     val round: Int = 0,
+    val smallestInitiative: Int = 0,
     val availableEffects: ImmutableSet<MonsterStatType> = MonsterStatType.mainEffectsPack.toPersistentSet(),
     val monstersForAdd: ImmutableList<MonsterItem> = persistentListOf(),
     val magicChargeList: ImmutableMap<Magic, ChargeLevel> = persistentMapOf(),

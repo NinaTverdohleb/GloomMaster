@@ -14,8 +14,14 @@ import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clipToBounds
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -34,6 +40,7 @@ import com.rumpilstilstkin.gloomhavenhelper.domain.entity.scenario.MonsterUnit
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.components.PageIndicator
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.components.RegularMonsterCard
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.components.ScenarioHeader
+import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.components.SpinningNumberOverlay
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.state.MonsterItemUi
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.state.ScenarioStateUi
 import kotlinx.collections.immutable.ImmutableSet
@@ -88,43 +95,62 @@ internal fun ScenarioScreen(
         }
     },
 ) { paddingValues ->
-    Column(
+    Box(
         modifier =
             Modifier
                 .fillMaxSize()
                 .padding(paddingValues)
-                .padding(bottom = 80.dp),
+                .padding(bottom = 80.dp)
+                .clipToBounds(),
     ) {
-        ScenarioHeader(
-            scenarioNumber = state.scenarioNumber,
-            scenarioName = state.scenarioName.ifBlank { stringResource(R.string.custom_scenario) },
-            location = state.scenarioLocation,
-            magics = state.magicChargeList,
-            clickMagic = clickMagic,
-            trapDamage = state.trapDamage,
-            showStats = showStats,
-        )
-        HorizontalDivider(
-            modifier = Modifier.fillMaxWidth(),
-            thickness = 1.dp,
-            color = MaterialTheme.colorScheme.outline,
-        )
-        ScenarioScreenContent(
-            modifier = Modifier.weight(1f),
-            monsters = state.monsters,
-            delete = deleteMonster,
-            deleteUnit = deleteUnit,
-            updateUnitLife = updateUnitLife,
-            switchUnitEffect = switchUnitEffect,
-            addMonsterUnits = addMonsterUnits,
-            onLevel = onLevel,
-            availableEffects = state.availableEffects,
+        var roundAnimationVisible by remember { mutableStateOf(false) }
+
+        LaunchedEffect(state.round) {
+            if (state.round != 0) {
+                roundAnimationVisible = true
+            }
+        }
+        Column(modifier = Modifier.fillMaxSize()) {
+            ScenarioHeader(
+                scenarioNumber = state.scenarioNumber,
+                scenarioName = state.scenarioName.ifBlank { stringResource(R.string.custom_scenario) },
+                location = state.scenarioLocation,
+                magics = state.magicChargeList,
+                clickMagic = clickMagic,
+                trapDamage = state.trapDamage,
+                showStats = showStats,
+            )
+            HorizontalDivider(
+                modifier = Modifier.fillMaxWidth(),
+                thickness = 1.dp,
+                color = MaterialTheme.colorScheme.outline,
+            )
+            ScenarioScreenContent(
+                modifier = Modifier.weight(1f),
+                monsters = state.monsters,
+                delete = deleteMonster,
+                deleteUnit = deleteUnit,
+                updateUnitLife = updateUnitLife,
+                switchUnitEffect = switchUnitEffect,
+                addMonsterUnits = addMonsterUnits,
+                onLevel = onLevel,
+                availableEffects = state.availableEffects,
+                round = state.round,
+            )
+        }
+
+        SpinningNumberOverlay(
+            visible = roundAnimationVisible,
+            targetNumber = state.smallestInitiative,
+            spinId = state.round.hashCode(),
+            onFinished = { roundAnimationVisible = false },
         )
     }
 }
 
 @Composable
 fun ScenarioScreenContent(
+    round: Int,
     availableEffects: ImmutableSet<MonsterStatType>,
     monsters: List<MonsterItemUi>,
     delete: (monsterSlug: String) -> Unit,
@@ -150,6 +176,13 @@ fun ScenarioScreenContent(
     } else {
         val pageCount = monsters.size
         val pagerState = rememberPagerState(pageCount = { pageCount })
+
+        LaunchedEffect(round) {
+            if (pagerState.currentPage != 0) {
+                pagerState.animateScrollToPage(0)
+            }
+        }
+
         PageIndicator(pagerState)
         HorizontalPager(
             state = pagerState,

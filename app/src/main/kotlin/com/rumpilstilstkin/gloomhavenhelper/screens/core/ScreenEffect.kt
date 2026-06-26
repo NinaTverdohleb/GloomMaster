@@ -85,7 +85,10 @@ fun LaunchedScreenEffect(
 ) {
     var currentBottomSheetSession by remember { mutableStateOf<OverlaySession?>(null) }
     var currentDialogSession by remember { mutableStateOf<OverlaySession?>(null) }
-    val sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)
+    val sheetState =
+        rememberModalBottomSheetState(
+            skipPartiallyExpanded = true,
+        )
 
     LaunchedEffect(effect) {
         effect?.let {
