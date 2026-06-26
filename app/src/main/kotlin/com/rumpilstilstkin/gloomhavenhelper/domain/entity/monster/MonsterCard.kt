@@ -1,6 +1,5 @@
 package com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster
 
-import kotlinx.collections.immutable.persistentListOf
 import kotlinx.serialization.Serializable
 
 @Serializable

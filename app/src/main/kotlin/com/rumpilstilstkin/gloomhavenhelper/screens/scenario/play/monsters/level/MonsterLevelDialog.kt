@@ -1,4 +1,4 @@
-package com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.components
+package com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.monsters.level
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column

@@ -1,23 +1,23 @@
 package com.rumpilstilstkin.gloomhavenhelper.domain.entity.scenario
 
-import androidx.compose.runtime.Immutable
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.Monster
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterAction
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterCard
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterStatType
 import kotlinx.collections.immutable.ImmutableList
+import kotlinx.collections.immutable.ImmutableSet
 import kotlinx.collections.immutable.persistentListOf
+import kotlinx.collections.immutable.persistentSetOf
 import kotlinx.collections.immutable.toImmutableList
-import kotlin.String
+import kotlinx.collections.immutable.toImmutableSet
 
-@Immutable
 data class MonsterItem(
     val slug: String,
     val name: String,
     val isFly: Boolean,
     val deck: String,
     val currentCard: MonsterCard? = null,
-    val units: ImmutableList<MonsterUnit> = persistentListOf(),
+    val units: List<MonsterUnit> = listOf(),
     val isBoss: Boolean = false,
 ) {
     companion object {
@@ -44,8 +44,8 @@ data class MonsterUnit(
     val maxLife: Int,
     val stats: ImmutableList<MonsterAction>,
     val isSpecial: Boolean,
-    val effects: ImmutableList<MonsterStatType> = persistentListOf(),
-    val immunity: ImmutableList<MonsterStatType> = persistentListOf(),
+    val effects: ImmutableSet<MonsterStatType> = persistentSetOf(),
+    val immunity: ImmutableSet<MonsterStatType> = persistentSetOf(),
     val level: Int,
     val isNew: Boolean = true,
     val lifeMultiple: Boolean,
@@ -57,7 +57,7 @@ data class MonsterUnit(
             isElite: Boolean,
             currentLife: Int? = null,
             gamersCount: Int,
-            effects: ImmutableList<MonsterStatType> = persistentListOf(),
+            effects: ImmutableSet<MonsterStatType> = persistentSetOf(),
             isNew: Boolean = true,
         ): MonsterUnit {
             val maxMonsterLife =
@@ -81,20 +81,24 @@ data class MonsterUnit(
                     monster
                         .immunity
                         .map { it }
-                        .toImmutableList(),
+                        .toImmutableSet(),
                 isNew = isNew,
                 lifeMultiple = monster.lifeMultiple,
             )
         }
 
-        fun fixture(number: Int = 1) =
+        fun fixture(
+            number: Int = 1,
+            isSpecial: Boolean = false
+        ) =
             MonsterUnit(
                 number = number,
-                isSpecial = true,
+                isSpecial = isSpecial,
                 currentLife = 10,
                 maxLife = 10,
                 level = 1,
                 lifeMultiple = false,
+                immunity = persistentSetOf(MonsterStatType.POISON),
                 stats =
                     persistentListOf(
                         MonsterAction.Action(

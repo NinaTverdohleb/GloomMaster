@@ -35,6 +35,7 @@ import com.rumpilstilstkin.gloomhavenhelper.domain.entity.scenario.MonsterUnit
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.components.PageIndicator
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.components.RegularMonsterCard
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.components.ScenarioHeader
+import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.state.MonsterItemUi
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.state.ScenarioStateUi
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.persistentMapOf
@@ -124,7 +125,7 @@ internal fun ScenarioScreen(
 @Composable
 fun ScenarioScreenContent(
     availableEffects: Set<MonsterStatType>,
-    monsters: List<MonsterItem>,
+    monsters: List<MonsterItemUi>,
     delete: (monsterSlug: String) -> Unit,
     deleteUnit: (unitNumber: Int, monsterSlug: String) -> Unit,
     updateUnitLife: (unitNumber: Int, monsterSlug: String, life: Int) -> Unit,
@@ -155,9 +156,9 @@ fun ScenarioScreenContent(
             pageSpacing = 16.dp,
         ) { page ->
             Box(modifier = Modifier.fillMaxSize()) {
-                val currentCard = monsters[page]
+                val monster = monsters[page]
                 RegularMonsterCard(
-                    item = currentCard,
+                    item = monster,
                     delete = delete,
                     deleteUnit = deleteUnit,
                     updateUnitLife = updateUnitLife,
@@ -181,7 +182,7 @@ private fun ScenarioScreenPreview() {
                     scenarioName = "Bad place",
                     monsters =
                         persistentListOf(
-                            MonsterItem.fixture(),
+                            MonsterItemUi.fixture(),
                         ),
                     magicChargeList =
                         persistentMapOf(

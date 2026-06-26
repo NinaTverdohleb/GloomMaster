@@ -39,7 +39,7 @@ data class ScenarioGameStateMonsterUnit(
     val currentLife: Int,
     val level: Int,
     val isElite: Boolean,
-    val effects: List<MonsterStatType>,
+    val effects: Set<MonsterStatType>,
     val isNew: Boolean = false,
     val maxLife: Int = 0,
 )

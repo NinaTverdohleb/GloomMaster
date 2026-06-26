@@ -4,6 +4,7 @@ import com.rumpilstilstkin.gloomhavenhelper.domain.entity.ScenarioGameStateMonst
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.Monster
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.scenario.MonsterUnit
 import kotlinx.collections.immutable.toImmutableList
+import kotlinx.collections.immutable.toImmutableSet
 
 class MonsterUnitBuilder(
     private val stateUnit: ScenarioGameStateMonsterUnit,
@@ -49,8 +50,8 @@ class MonsterUnitBuilder(
             stats = stats.toImmutableList(),
             isSpecial = stateUnit.isElite,
             level = unitMonster.level,
-            effects = stateUnit.effects.toImmutableList(),
-            immunity = unitMonster.immunity.toImmutableList(),
+            effects = stateUnit.effects.toImmutableSet(),
+            immunity = unitMonster.immunity.toImmutableSet(),
             isNew = stateUnit.isNew,
             lifeMultiple = unitMonster.lifeMultiple,
         )

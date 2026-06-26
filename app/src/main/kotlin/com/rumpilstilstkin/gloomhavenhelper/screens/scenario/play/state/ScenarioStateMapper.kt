@@ -5,7 +5,6 @@ import com.rumpilstilstkin.gloomhavenhelper.domain.entity.ScenarioGameState
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.ScenarioGameStateMonsterItem
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.ScenarioGameStateMonsterUnit
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.scenario.MonsterItem
-import com.rumpilstilstkin.gloomhavenhelper.domain.entity.scenario.MonsterUnit
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.scenario.ScenarioBattleState
 import kotlinx.collections.immutable.toImmutableList
 import kotlinx.collections.immutable.toImmutableMap
@@ -24,15 +23,19 @@ object ScenarioStateMapper {
             monsters =
                 state.activeMonsters
                     .map { monster ->
-                        monster.copy(
-                            units =
-                                monster.units
-                                    .sortedWith(
-                                        compareByDescending<MonsterUnit> { it.isSpecial }
-                                            .thenBy { it.number },
-                                    ).toImmutableList(),
+                        val units = monster.units
+                            .associateBy { UnitCompact(it.number, it.isSpecial) }
+                            .toSortedMap()
+                            .toImmutableMap()
+                        MonsterItemUi(
+                            slug = monster.slug,
+                            name = monster.name,
+                            isFly = monster.isFly,
+                            currentCard = monster.currentCard,
+                            units = units,
+                            isBoss = monster.isBoss
                         )
-                    }.sortedBy { it.currentCard?.initiative ?: 0 }
+                    }
                     .toImmutableList(),
             monstersForAdd =
                 state.monsters

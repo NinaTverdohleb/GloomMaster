@@ -81,7 +81,7 @@ internal fun ScenarioHeader(
     )
     Row(
         modifier = Modifier.fillMaxWidth(),
-        horizontalArrangement = Arrangement.SpaceBetween,
+        horizontalArrangement = Arrangement.spacedBy(4.dp),
     ) {
         magics.keys.forEach { magic ->
             val charge = magics[magic]

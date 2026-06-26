@@ -23,8 +23,8 @@ import com.rumpilstilstkin.gloomhavenhelper.screens.core.ScreenEffect
 import com.rumpilstilstkin.gloomhavenhelper.screens.core.createOverlaySession
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.complete.CompleteScenarioDialogContract
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.complete.CompleteScenarioDialogInput
-import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.delete.DeleteMonsterDialogContract
-import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.delete.DeleteMonsterDialogInput
+import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.monsters.delete.DeleteMonsterDialogContract
+import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.monsters.delete.DeleteMonsterDialogInput
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.monsters.MonsterListDialogContract
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.monsters.MonsterListDialogInput
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.monsters.MonsterListDialogResult
@@ -33,8 +33,8 @@ import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.state.Scenario
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.state.ScenarioStateUi
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.stats.ScenarioStatsDialogContract
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.stats.ScenarioStatsDialogInput
-import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.unit.AddMonsterUnitDialogContract
-import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.unit.AddMonsterUnitDialogInput
+import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.monsters.unit.AddMonsterUnitDialogContract
+import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.monsters.unit.AddMonsterUnitDialogInput
 import dagger.hilt.android.lifecycle.HiltViewModel
 import jakarta.inject.Inject
 import kotlinx.collections.immutable.toImmutableList
