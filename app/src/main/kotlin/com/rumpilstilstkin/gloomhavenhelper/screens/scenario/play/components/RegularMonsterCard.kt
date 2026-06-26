@@ -1,36 +1,25 @@
 package com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.components
 
-import androidx.compose.animation.core.spring
-import androidx.compose.animation.core.tween
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
-import com.rumpilstilstkin.gloomhavenhelper.R
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterStatType
-import com.rumpilstilstkin.gloomhavenhelper.domain.entity.scenario.MonsterItem
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.scenario.MonsterUnit
-import kotlinx.collections.immutable.persistentListOf
+import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.state.MonsterItemUi
+import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.state.UnitCompact
+import kotlinx.collections.immutable.persistentMapOf
+import kotlinx.collections.immutable.toPersistentSet
 
 @Composable
 fun RegularMonsterCard(
-    item: MonsterItem,
+    item: MonsterItemUi,
     availableEffects: Set<MonsterStatType>,
     delete: (monsterSlug: String) -> Unit,
     deleteUnit: (unitNumber: Int, monsterSlug: String) -> Unit,
@@ -39,8 +28,10 @@ fun RegularMonsterCard(
     addMonsterUnits: (unitNumbers: List<Int>, monsterSlug: String, monsterName: String) -> Unit,
     changeUnitLevel: (monsterSlug: String, unit: MonsterUnit, level: Int) -> Unit,
 ) {
-    val existingNumbers = item.units.map { it.number }.toSet()
-    Column {
+    val existingNumbers = item.units.keys.map { it.number }.toSet()
+    Column(
+        verticalArrangement = Arrangement.spacedBy(16.dp)
+    ) {
         MonsterCard(
             card = item.currentCard,
             name = item.name,
@@ -59,41 +50,26 @@ fun RegularMonsterCard(
                     }
                 },
         )
-        LazyColumn(
-            modifier = Modifier.fillMaxSize(),
-            verticalArrangement = Arrangement.spacedBy(8.dp),
-            contentPadding = PaddingValues(vertical = 16.dp)
-        ) {
-            items(item.units, key = { it.number }) { unit ->
-                MonsterUnitCard(
-                    modifier =
-                        Modifier
-                            .animateItem(
-                                fadeOutSpec = tween(400),
-                                placementSpec = spring(),
-                            ),
-                    unit = unit,
-                    availableEffects = availableEffects,
-                    isBoss = item.isBoss,
-                    deleteUnit = { unitNumber -> deleteUnit(unitNumber, item.slug) },
-                    switchEffect = { unitNumber, effect ->
-                        switchUnitEffect(
-                            unitNumber,
-                            item.slug,
-                            effect,
-                        )
-                    },
-                    changeLife = { unitNumber, life ->
-                        updateUnitLife(
-                            unitNumber,
-                            item.slug,
-                            life,
-                        )
-                    },
-                    levelClick = {
-
-                    },
-                )
+        if (item.units.isNotEmpty()) {
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .verticalScroll(rememberScrollState()),
+            ) {
+                UnitSelector(
+                    units = item.units.keys,
+                    cardContent = { unitNumber ->
+                        item.units[unitNumber]?.let {
+                            RegularMonsterUnit(
+                                unit = it,
+                                changeLife = { _, _ -> },
+                                switchEffect = { _, _ -> },
+                                deleteUnit = { _ -> },
+                                levelClick = {},
+                                effects = MonsterStatType.mainEffectsPack.toPersistentSet(),
+                            )
+                        }
+                    })
             }
         }
     }
@@ -105,17 +81,16 @@ private fun RegularMonsterCardPreview() {
     GloomhavenMasterTheme {
         RegularMonsterCard(
             item =
-                MonsterItem(
+                MonsterItemUi(
                     slug = "1",
                     isBoss = true,
                     name = "Living Bones",
                     currentCard = null,
                     isFly = true,
                     units =
-                        persistentListOf(
-                            MonsterUnit.fixture(1),
+                        persistentMapOf(
+                            UnitCompact(1, false) to MonsterUnit.fixture(1),
                         ),
-                    deck = "",
                 ),
             availableEffects = MonsterStatType.mainEffectsPack,
             delete = {},

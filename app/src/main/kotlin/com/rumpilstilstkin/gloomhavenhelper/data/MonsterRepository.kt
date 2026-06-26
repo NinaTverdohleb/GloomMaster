@@ -132,7 +132,7 @@ class MonsterRepository @Inject constructor(
                         }.orEmpty(),
                 deckName = monster.monster.deckName,
                 isBoss = monster.monster.isBoss,
-                immunity = monster.monster.immunity,
+                immunity = monster.monster.immunity.toSet(),
                 isFly = monster.monster.fly,
                 level = level,
                 lifeMultiple = monster.monster.lifeMultiple,

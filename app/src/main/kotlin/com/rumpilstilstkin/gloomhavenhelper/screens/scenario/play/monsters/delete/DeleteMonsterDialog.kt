@@ -1,4 +1,4 @@
-package com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.delete
+package com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.monsters.delete
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource

@@ -1,4 +1,4 @@
-package com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.unit
+package com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.monsters.unit
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
