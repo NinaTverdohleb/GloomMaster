@@ -27,6 +27,7 @@ internal fun Project.configureSpotlessForAndroid() {
                     "ij_kotlin_annotation_wrap" to "off",
                     "ktlint_experimental_suppress-annotation" to "enabled",
                     "ktlint_standard_backing-property-naming" to "disabled",
+                    "ktlint_standard_filename" to "disabled"
                 ),
             )
             endWithNewline()

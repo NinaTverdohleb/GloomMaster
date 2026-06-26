@@ -19,9 +19,7 @@ import androidx.compose.ui.unit.dp
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
 
 @Composable
-fun PageIndicator(
-    pageState: PagerState,
-) {
+fun PageIndicator(pageState: PagerState) {
     Row(
         modifier = Modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.Center,
@@ -35,11 +33,12 @@ fun PageIndicator(
                 }
 
             Box(
-                modifier = Modifier
-                    .padding(2.dp)
-                    .clip(CircleShape)
-                    .background(color)
-                    .size(8.dp),
+                modifier =
+                    Modifier
+                        .padding(2.dp)
+                        .clip(CircleShape)
+                        .background(color)
+                        .size(8.dp),
             )
         }
     }
@@ -50,7 +49,7 @@ fun PageIndicator(
 private fun PageIndicatorPreview() {
     GloomhavenMasterTheme {
         PageIndicator(
-            pageState = PagerState ( pageCount = { 4 } )
+            pageState = PagerState(pageCount = { 4 }),
         )
     }
 }

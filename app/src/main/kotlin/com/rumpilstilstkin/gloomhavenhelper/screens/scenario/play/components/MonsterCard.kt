@@ -45,18 +45,19 @@ fun MonsterCard(
     onAddUnit: (() -> Unit)? = null,
 ) = GloomCard {
     Column(
-        modifier = modifier
-            .fillMaxWidth()
-            .padding(12.dp),
-        verticalArrangement = Arrangement.spacedBy(12.dp)
+        modifier =
+            modifier
+                .fillMaxWidth()
+                .padding(12.dp),
+        verticalArrangement = Arrangement.spacedBy(12.dp),
     ) {
         Row(
             modifier = Modifier.fillMaxWidth(),
-            verticalAlignment = Alignment.CenterVertically
+            verticalAlignment = Alignment.CenterVertically,
         ) {
             LeftItemNumber(
                 number = card?.initiative?.toString() ?: "?",
-                contentColor = MaterialTheme.colorScheme.surfaceTint
+                contentColor = MaterialTheme.colorScheme.surfaceTint,
             )
             Spacer(Modifier.width(12.dp))
             if (isFly) {
@@ -104,7 +105,7 @@ fun MonsterCard(
             HorizontalDivider(
                 modifier = Modifier.fillMaxWidth(),
                 thickness = 1.dp,
-                color = MaterialTheme.colorScheme.outline
+                color = MaterialTheme.colorScheme.outline,
             )
             Column(
                 modifier = Modifier.fillMaxWidth(),
@@ -119,13 +120,13 @@ fun MonsterCard(
     }
 }
 
-@Preview(heightDp = 2000,)
+@Preview(heightDp = 2000)
 @Composable
 private fun MonsterCardPreview() {
     GloomhavenMasterTheme {
         Column(
             verticalArrangement = Arrangement.spacedBy(16.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
+            horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             MonsterCard(
                 card = null,

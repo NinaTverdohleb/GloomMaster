@@ -32,34 +32,34 @@ internal fun CompleteScenarioDialog(
 ) {
     Column(
         modifier = Modifier.fillMaxWidth(),
-        verticalArrangement = Arrangement.spacedBy(8.dp)
+        verticalArrangement = Arrangement.spacedBy(8.dp),
     ) {
         GloomListItem(
             title = stringResource(R.string.stat_exp_reward),
             leftComponent = {
                 LeftItemIcon(
-                    icon = GameStatIcons.Exp
+                    icon = GameStatIcons.Exp,
                 )
             },
             rightComponent = {
                 RightItemLabel(
-                    text =  exp.toString()
+                    text = exp.toString(),
                 )
-            }
+            },
         )
 
         GloomListItem(
             title = stringResource(R.string.stat_gold_reward),
             leftComponent = {
                 LeftItemIcon(
-                    icon = GameStatIcons.Gold
+                    icon = GameStatIcons.Gold,
                 )
             },
             rightComponent = {
                 RightItemLabel(
-                    text =  gold.toString()
+                    text = gold.toString(),
                 )
-            }
+            },
         )
 
         Spacer(Modifier.height(8.dp))
@@ -68,7 +68,7 @@ internal fun CompleteScenarioDialog(
             icon = AppIcon.Check,
             modifier = Modifier.fillMaxWidth(),
             text = stringResource(R.string.complete_scenario),
-            onClick = complete
+            onClick = complete,
         )
     }
 }
@@ -78,9 +78,10 @@ internal fun CompleteScenarioDialog(
 private fun CompleteScenarioDialogPreview() {
     GloomhavenMasterTheme {
         Box(
-            modifier = Modifier
-                .background(MaterialTheme.colorScheme.surfaceContainerHigh)
-                .padding(16.dp)
+            modifier =
+                Modifier
+                    .background(MaterialTheme.colorScheme.surfaceContainerHigh)
+                    .padding(16.dp),
         ) {
             CompleteScenarioDialog(
                 exp = 100,

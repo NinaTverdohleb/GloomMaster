@@ -49,21 +49,22 @@ fun RegularMonsterUnit(
 ) {
     val availableEffects = (effects - unit.immunity).toPersistentSet()
     Column(modifier = modifier.fillMaxWidth()) {
-
         TopStickers(
             isNew = unit.isNew,
             level = unit.level,
             onLevel = { levelClick(unit) },
             delete = { deleteUnit(unit) },
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 24.dp),
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 24.dp),
         )
         GloomCard {
             Column(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(16.dp),
+                modifier =
+                    Modifier
+                        .fillMaxWidth()
+                        .padding(16.dp),
                 verticalArrangement = Arrangement.spacedBy(16.dp),
             ) {
                 Life(
@@ -71,7 +72,7 @@ fun RegularMonsterUnit(
                     isSpecial = unit.isSpecial,
                     currentLife = unit.currentLife,
                     maxLife = unit.maxLife,
-                    changeLife = { changeLife(unit, it) }
+                    changeLife = { changeLife(unit, it) },
                 )
                 ActionsRow(actions = unit.stats)
 
@@ -85,9 +86,10 @@ fun RegularMonsterUnit(
         if (unit.immunity.isNotEmpty()) {
             BottomStickers(
                 immunity = unit.immunity,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 24.dp)
+                modifier =
+                    Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 24.dp),
             )
         }
     }
@@ -104,7 +106,7 @@ private fun Life(
 ) {
     Column(
         modifier = modifier.fillMaxWidth(),
-        verticalArrangement = Arrangement.spacedBy(16.dp)
+        verticalArrangement = Arrangement.spacedBy(16.dp),
     ) {
         Row(
             modifier = Modifier.fillMaxWidth(),
@@ -113,7 +115,7 @@ private fun Life(
         ) {
             UnitNumber(
                 unitNumber = unitNumber,
-                isSpecial = isSpecial
+                isSpecial = isSpecial,
             )
             Text(
                 text = "Unit",
@@ -140,13 +142,13 @@ private fun Life(
 private fun ActionsRow(actions: ImmutableList<MonsterAction>) {
     Row(
         verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(16.dp)
+        horizontalArrangement = Arrangement.spacedBy(16.dp),
     ) {
         actions.forEach { stat ->
             if (stat is MonsterAction.Action) {
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.spacedBy(2.dp)
+                    horizontalArrangement = Arrangement.spacedBy(2.dp),
                 ) {
                     val icon = stat.statType.toGameIcon()
                     Icon(
@@ -180,7 +182,7 @@ private fun EffectsRow(
                 .padding(vertical = 8.dp)
                 .fillMaxWidth(),
         horizontalArrangement = Arrangement.spacedBy(12.dp),
-        verticalArrangement = Arrangement.spacedBy(8.dp)
+        verticalArrangement = Arrangement.spacedBy(8.dp),
     ) {
         available.forEach { effect ->
             val icon = effect.toGameIcon()
@@ -219,18 +221,18 @@ private fun TopStickers(
         verticalAlignment = Alignment.Top,
     ) {
         Row(
-            horizontalArrangement = Arrangement.spacedBy(12.dp)
+            horizontalArrangement = Arrangement.spacedBy(12.dp),
         ) {
             if (isNew) {
                 GloomStickerText(
                     text = "New",
                     backgroundColor = MaterialTheme.colorScheme.primary,
-                    textColor = MaterialTheme.colorScheme.surfaceVariant
+                    textColor = MaterialTheme.colorScheme.surfaceVariant,
                 )
             }
             GloomStickerText(
                 text = "Level $level",
-                onClick = onLevel
+                onClick = onLevel,
             )
         }
 
@@ -238,7 +240,7 @@ private fun TopStickers(
             backgroundColor = MaterialTheme.colorScheme.error,
             textColor = MaterialTheme.colorScheme.onError,
             text = stringResource(R.string.delete),
-            onClick = delete
+            onClick = delete,
         )
     }
 }
@@ -258,12 +260,12 @@ private fun BottomStickers(
             body = {
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.spacedBy(8.dp)
+                    horizontalArrangement = Arrangement.spacedBy(8.dp),
                 ) {
                     Text(
                         text = "Immunity",
                         color = MaterialTheme.colorScheme.outline,
-                        style = MaterialTheme.typography.bodySmall
+                        style = MaterialTheme.typography.bodySmall,
                     )
 
                     Row(
@@ -281,7 +283,7 @@ private fun BottomStickers(
                         }
                     }
                 }
-            }
+            },
         )
     }
 }
@@ -294,7 +296,6 @@ private fun RegularMonsterUnitPreview() {
             verticalArrangement = Arrangement.spacedBy(16.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
-
             RegularMonsterUnit(
                 unit = MonsterUnit.fixture(1),
                 changeLife = { _, _ -> },

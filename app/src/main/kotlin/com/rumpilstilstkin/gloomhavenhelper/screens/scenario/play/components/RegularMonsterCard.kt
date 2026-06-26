@@ -32,9 +32,12 @@ fun RegularMonsterCard(
     addMonsterUnits: (unitNumbers: List<Int>, monsterSlug: String, monsterName: String) -> Unit,
     onLevel: (unit: MonsterUnit, monsterSlug: String) -> Unit,
 ) {
-    val existingNumbers = item.units.keys.map { it.number }.toSet()
+    val existingNumbers =
+        item.units.keys
+            .map { it.number }
+            .toSet()
     Column(
-        verticalArrangement = Arrangement.spacedBy(16.dp)
+        verticalArrangement = Arrangement.spacedBy(16.dp),
     ) {
         MonsterCard(
             card = item.currentCard,
@@ -56,9 +59,10 @@ fun RegularMonsterCard(
         )
         if (item.units.isNotEmpty()) {
             Column(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .verticalScroll(rememberScrollState()),
+                modifier =
+                    Modifier
+                        .fillMaxSize()
+                        .verticalScroll(rememberScrollState()),
             ) {
                 UnitSelector(
                     units = item.units.keys,
@@ -70,32 +74,33 @@ fun RegularMonsterCard(
                                     updateUnitLife(
                                         unitNumber.number,
                                         item.slug,
-                                        life
+                                        life,
                                     )
                                 },
                                 switchEffect = { _, effect ->
                                     switchUnitEffect(
                                         unitNumber.number,
                                         item.slug,
-                                        effect
+                                        effect,
                                     )
                                 },
                                 deleteUnit = {
                                     deleteUnit(
                                         unitNumber.number,
-                                        item.slug
+                                        item.slug,
                                     )
                                 },
                                 levelClick = { unit ->
                                     onLevel(
                                         unit,
-                                        item.slug
+                                        item.slug,
                                     )
                                 },
                                 effects = availableEffects,
                             )
                         }
-                    })
+                    },
+                )
                 Spacer(Modifier.height(48.dp))
             }
         }

@@ -3,10 +3,13 @@ package com.rumpilstilstkin.gloomhavenhelper.domain.entity.scenario
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.Magic
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.ScenarioGameStateMagic
 
-enum class ChargeLevel(val level: Int) {
+enum class ChargeLevel(
+    val level: Int,
+) {
     Zero(0),
     One(1),
-    Two(2);
+    Two(2),
+    ;
 
     fun down(): ChargeLevel =
         when (this) {
@@ -33,9 +36,12 @@ data class MagicChargeState private constructor(
 ) {
     fun decreaseAll(): MagicChargeState {
         if (charges.values.all { it == ChargeLevel.Zero }) return this
-        return copy(charges = charges.mapValues { (_, value) ->
-            value.down()
-        })
+        return copy(
+            charges =
+                charges.mapValues { (_, value) ->
+                    value.down()
+                },
+        )
     }
 
     fun toggle(magic: Magic): MagicChargeState {
@@ -47,15 +53,16 @@ data class MagicChargeState private constructor(
         charges.map { (magic, value) ->
             ScenarioGameStateMagic(
                 name = magic.name,
-                value = value.level
+                value = value.level,
             )
         }
 
     companion object {
         fun restore(charges: Map<Magic, Int>): MagicChargeState {
-            val withDefaults = Magic.entries.associateWith {
-                charges[it]?.let { value -> ChargeLevel.of(value) } ?: ChargeLevel.Zero
-            }
+            val withDefaults =
+                Magic.entries.associateWith {
+                    charges[it]?.let { value -> ChargeLevel.of(value) } ?: ChargeLevel.Zero
+                }
             return MagicChargeState(charges = withDefaults)
         }
 

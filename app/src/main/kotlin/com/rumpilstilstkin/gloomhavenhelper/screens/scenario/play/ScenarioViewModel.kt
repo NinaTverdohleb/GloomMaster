@@ -187,7 +187,7 @@ class ScenarioViewModel @Inject constructor(
                     openUnitLevelDialog(
                         unit = action.unit,
                         monsterSlug = action.monsterSlug,
-                        monsterName = logicState.value?.monsters[action.monsterSlug]?.name ?: ""
+                        monsterName = logicState.value?.monsters[action.monsterSlug]?.name ?: "",
                     )
                 }
 
@@ -197,7 +197,7 @@ class ScenarioViewModel @Inject constructor(
 
                 ScenarioActions.OpenAddMonster -> {
                     openAddMonsterDialog(
-                        monsters = uiState.value.monstersForAdd
+                        monsters = uiState.value.monstersForAdd,
                     )
                 }
 
@@ -215,16 +215,17 @@ class ScenarioViewModel @Inject constructor(
     private suspend fun openUnitLevelDialog(
         monsterName: String,
         monsterSlug: String,
-        unit: MonsterUnit
+        unit: MonsterUnit,
     ) {
         val session =
             createOverlaySession(
                 contract = MonsterLevelDialogContract,
-                input = MonsterLevelDialogInput(
-                    unitLevel = unit.level,
-                    unitNumber = unit.number,
-                    monsterName = monsterName
-                ),
+                input =
+                    MonsterLevelDialogInput(
+                        unitLevel = unit.level,
+                        unitNumber = unit.number,
+                        monsterName = monsterName,
+                    ),
                 onResult = { result ->
                     result?.let { level ->
                         viewModelScope.launch {
@@ -244,7 +245,7 @@ class ScenarioViewModel @Inject constructor(
         _screenEvents.emit(ScreenEffect.OpenDialog(session))
     }
 
-    private suspend fun openAddMonsterForScenarioDialog(){
+    private suspend fun openAddMonsterForScenarioDialog() {
         val session =
             createOverlaySession(
                 contract = AddScenarioMonstersDialogContract,
@@ -268,10 +269,11 @@ class ScenarioViewModel @Inject constructor(
         val session =
             createOverlaySession(
                 contract = CompleteScenarioDialogContract,
-                input = CompleteScenarioDialogInput(
-                    exp = state.exp,
-                    gold = state.gold,
-                ),
+                input =
+                    CompleteScenarioDialogInput(
+                        exp = state.exp,
+                        gold = state.gold,
+                    ),
                 onResult = { result ->
                     result?.let {
                         viewModelScope.launch {
@@ -288,33 +290,36 @@ class ScenarioViewModel @Inject constructor(
         val session =
             createOverlaySession(
                 contract = ScenarioStatsDialogContract,
-                input = ScenarioStatsDialogInput(
-                    level = state.level,
-                    exp = state.exp,
-                    gold = state.gold,
-                    trapDamage = state.trapDamage,
-                ),
+                input =
+                    ScenarioStatsDialogInput(
+                        level = state.level,
+                        exp = state.exp,
+                        gold = state.gold,
+                        trapDamage = state.trapDamage,
+                    ),
                 onResult = { },
             )
         _screenEvents.emit(ScreenEffect.OpenDialog(session))
     }
 
-    private suspend fun openAddMonsterDialog(
-        monsters: List<MonsterItem>
-    ) {
+    private suspend fun openAddMonsterDialog(monsters: List<MonsterItem>) {
         val session =
             createOverlaySession(
                 contract = MonsterListDialogContract,
                 input = MonsterListDialogInput(monsters = monsters),
                 onResult = { result ->
                     when (result) {
-                        is MonsterListDialogResult.Selected ->
+                        is MonsterListDialogResult.Selected -> {
                             onAction(ScenarioActions.AddMonster(result.slugs))
+                        }
 
-                        MonsterListDialogResult.AddNewMonsters ->
+                        MonsterListDialogResult.AddNewMonsters -> {
                             onAction(ScenarioActions.AddNewMonsters)
+                        }
 
-                        null -> Unit
+                        null -> {
+                            Unit
+                        }
                     }
                 },
             )
@@ -323,14 +328,18 @@ class ScenarioViewModel @Inject constructor(
 
     private suspend fun openDeleteMonsterDialog(monsterSlug: String) {
         val monsterName =
-            uiState.value.monsters.firstOrNull { it.slug == monsterSlug }?.name.orEmpty()
+            uiState.value.monsters
+                .firstOrNull { it.slug == monsterSlug }
+                ?.name
+                .orEmpty()
         val session =
             createOverlaySession(
                 contract = DeleteMonsterDialogContract,
-                input = DeleteMonsterDialogInput(
-                    monsterSlug = monsterSlug,
-                    monsterName = monsterName,
-                ),
+                input =
+                    DeleteMonsterDialogInput(
+                        monsterSlug = monsterSlug,
+                        monsterName = monsterName,
+                    ),
                 onResult = { result ->
                     result?.let {
                         viewModelScope.launch {
@@ -348,15 +357,20 @@ class ScenarioViewModel @Inject constructor(
         monsterSlug: String,
         number: Int,
     ) {
-        val monsterName = logicState.value?.monsters[monsterSlug]?.name.orEmpty()
+        val monsterName =
+            logicState.value
+                ?.monsters[monsterSlug]
+                ?.name
+                .orEmpty()
         val session =
             createOverlaySession(
                 contract = DeleteUnitDialogContract,
-                input = DeleteUnitDialogInput(
-                    monsterSlug = monsterSlug,
-                    monsterName = monsterName,
-                    unitNumber = number,
-                ),
+                input =
+                    DeleteUnitDialogInput(
+                        monsterSlug = monsterSlug,
+                        monsterName = monsterName,
+                        unitNumber = number,
+                    ),
                 onResult = { result ->
                     result?.let {
                         viewModelScope.launch {
@@ -385,16 +399,17 @@ class ScenarioViewModel @Inject constructor(
     private suspend fun openAddUnitsDialog(
         monsterSlug: String,
         monsterName: String,
-        unitNumbers: List<Int>
+        unitNumbers: List<Int>,
     ) {
         val session =
             createOverlaySession(
                 contract = AddMonsterUnitDialogContract,
-                input = AddMonsterUnitDialogInput(
-                    monsterSlug = monsterSlug,
-                    monsterName = monsterName,
-                    availableIds = unitNumbers.toImmutableList(),
-                ),
+                input =
+                    AddMonsterUnitDialogInput(
+                        monsterSlug = monsterSlug,
+                        monsterName = monsterName,
+                        availableIds = unitNumbers.toImmutableList(),
+                    ),
                 onResult = { output ->
                     output?.let { result ->
                         viewModelScope.launch {

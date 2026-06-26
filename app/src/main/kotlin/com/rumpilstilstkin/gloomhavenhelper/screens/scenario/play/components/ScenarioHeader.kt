@@ -39,10 +39,11 @@ internal fun ScenarioHeader(
     modifier: Modifier = Modifier,
     clickMagic: (magic: Magic) -> Unit,
 ) = Column(
-    modifier = modifier
-        .background(MaterialTheme.colorScheme.surfaceContainer)
-        .padding(16.dp),
-    verticalArrangement = Arrangement.spacedBy(24.dp)
+    modifier =
+        modifier
+            .background(MaterialTheme.colorScheme.surfaceContainer)
+            .padding(16.dp),
+    verticalArrangement = Arrangement.spacedBy(24.dp),
 ) {
     GloomListOutlineItem(
         title = scenarioName,
@@ -50,34 +51,34 @@ internal fun ScenarioHeader(
         onClick = showStats,
         leftComponent = {
             scenarioNumber?.let {
-                    LeftItemNumber(
-                        number = stringResource(
+                LeftItemNumber(
+                    number =
+                        stringResource(
                             R.string.scenario_number_format,
-                            scenarioNumber.toString()
+                            scenarioNumber.toString(),
                         ),
-                    )
-                }
+                )
+            }
         },
         rightComponent = {
             Row(
                 verticalAlignment = Alignment.Bottom,
-                horizontalArrangement = Arrangement.spacedBy(2.dp)
+                horizontalArrangement = Arrangement.spacedBy(2.dp),
             ) {
                 Text(
                     text = trapDamage.toString(),
-                    style = MaterialTheme.typography.titleLarge.copy(
-
-                    ),
-                    color = MaterialTheme.colorScheme.onSurface
+                    style =
+                        MaterialTheme.typography.titleLarge.copy(),
+                    color = MaterialTheme.colorScheme.onSurface,
                 )
                 Icon(
                     modifier = Modifier.size(28.dp),
                     painter = ActionIcon.Trap.painter(),
                     contentDescription = null,
-                    tint = MaterialTheme.colorScheme.onSurface
+                    tint = MaterialTheme.colorScheme.onSurface,
                 )
             }
-        }
+        },
     )
     Row(
         modifier = Modifier.fillMaxWidth(),
@@ -86,13 +87,14 @@ internal fun ScenarioHeader(
         magics.keys.forEach { magic ->
             val charge = magics[magic]
             ChargeIcon(
-                modifier = Modifier
-                    .clickable(
-                        interactionSource = remember { MutableInteractionSource() },
-                        indication = null
-                    ) { clickMagic(magic) },
+                modifier =
+                    Modifier
+                        .clickable(
+                            interactionSource = remember { MutableInteractionSource() },
+                            indication = null,
+                        ) { clickMagic(magic) },
                 icon = magic.toIcon(),
-                charge = charge ?: ChargeLevel.Zero
+                charge = charge ?: ChargeLevel.Zero,
             )
         }
     }

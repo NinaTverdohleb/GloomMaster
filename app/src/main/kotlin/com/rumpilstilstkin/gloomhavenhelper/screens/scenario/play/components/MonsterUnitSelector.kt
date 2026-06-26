@@ -64,20 +64,21 @@ fun UnitSelector(
         mutableStateOf(initiallyOpenNumber)
     }
 
-    val selected = remember(units, selectedNumber) {
-        units.firstOrNull { it.number == selectedNumber } ?: units.firstOrNull()
-    }
+    val selected =
+        remember(units, selectedNumber) {
+            units.firstOrNull { it.number == selectedNumber } ?: units.firstOrNull()
+        }
 
-    val ordered = remember(units, selected?.number) {
-        val unit = selected ?: return@remember units
-        listOf(unit) + units.filterNot { it.number == unit.number }
-    }
+    val ordered =
+        remember(units, selected?.number) {
+            val unit = selected ?: return@remember units
+            listOf(unit) + units.filterNot { it.number == unit.number }
+        }
 
     Column(
         modifier = modifier.fillMaxWidth(),
         verticalArrangement = Arrangement.spacedBy(16.dp),
     ) {
-
         if (selected != null) {
             Box(Modifier.fillMaxWidth()) {
                 cardContent(selected)
@@ -115,62 +116,66 @@ private fun UnitCircle(
     selected: Boolean = false,
 ) {
     Box(
-        modifier = modifier
-            .size(CIRCLE_SIZE)
-            .clip(CircleShape)
-            .clickable { onClick() },
+        modifier =
+            modifier
+                .size(CIRCLE_SIZE)
+                .clip(CircleShape)
+                .clickable { onClick() },
         contentAlignment = Alignment.Center,
     ) {
         UnitNumber(
             selected = selected,
             unitNumber = unit.number,
-            isSpecial = unit.isSpecial
+            isSpecial = unit.isSpecial,
         )
     }
 }
 
-private fun Modifier.animatePlacement(): Modifier = composed {
-    val scope = rememberCoroutineScope()
-    var targetOffset by remember { mutableStateOf(IntOffset.Zero) }
-    var animatable by remember {
-        mutableStateOf<Animatable<IntOffset, AnimationVector2D>?>(null)
-    }
-    this
-        .onPlaced { coordinates ->
-            targetOffset = coordinates.positionInParent().round()
+private fun Modifier.animatePlacement(): Modifier =
+    composed {
+        val scope = rememberCoroutineScope()
+        var targetOffset by remember { mutableStateOf(IntOffset.Zero) }
+        var animatable by remember {
+            mutableStateOf<Animatable<IntOffset, AnimationVector2D>?>(null)
         }
-        .offset {
-            val anim = animatable
-                ?: Animatable(targetOffset, IntOffset.VectorConverter).also { animatable = it }
-            if (anim.targetValue != targetOffset) {
-                scope.launch {
-                    anim.animateTo(targetOffset, spring(stiffness = Spring.StiffnessMediumLow))
+        this
+            .onPlaced { coordinates ->
+                targetOffset = coordinates.positionInParent().round()
+            }.offset {
+                val anim =
+                    animatable
+                        ?: Animatable(targetOffset, IntOffset.VectorConverter).also { animatable = it }
+                if (anim.targetValue != targetOffset) {
+                    scope.launch {
+                        anim.animateTo(targetOffset, spring(stiffness = Spring.StiffnessMediumLow))
+                    }
                 }
+                anim.value - targetOffset
             }
-            anim.value - targetOffset
-        }
-}
+    }
 
 @Preview
 @Composable
 private fun MonsterUnitSelectorPreview() {
-    val units = persistentSetOf(
-        UnitCompact(1, true),
-        UnitCompact(2, true),
-        UnitCompact(3, false),
-        UnitCompact(4, false),
-        UnitCompact(5, false),
-        UnitCompact(6, false),
-        UnitCompact(7, false)
-    )
+    val units =
+        persistentSetOf(
+            UnitCompact(1, true),
+            UnitCompact(2, true),
+            UnitCompact(3, false),
+            UnitCompact(4, false),
+            UnitCompact(5, false),
+            UnitCompact(6, false),
+            UnitCompact(7, false),
+        )
 
     GloomhavenMasterTheme {
         Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .background(MaterialTheme.colorScheme.surfaceContainer)
-                .verticalScroll(rememberScrollState())
-                .padding(16.dp),
+            modifier =
+                Modifier
+                    .fillMaxSize()
+                    .background(MaterialTheme.colorScheme.surfaceContainer)
+                    .verticalScroll(rememberScrollState())
+                    .padding(16.dp),
         ) {
             UnitSelector(
                 units = units,
@@ -183,8 +188,8 @@ private fun MonsterUnitSelectorPreview() {
                         levelClick = {},
                         effects = (MonsterStatType.mainEffectsPack + MonsterStatType.fcEffectsPack).toPersistentSet(),
                     )
-                })
-
+                },
+            )
         }
     }
 }

@@ -34,61 +34,61 @@ internal fun ScenarioStatsDialog(
 ) {
     Column(
         modifier = Modifier.fillMaxWidth(),
-        verticalArrangement = Arrangement.spacedBy(8.dp)
+        verticalArrangement = Arrangement.spacedBy(8.dp),
     ) {
         GloomListItem(
             title = stringResource(R.string.stat_monster_level),
             leftComponent = {
                 LeftItemIcon(
-                    icon = GameStatIcons.Level
+                    icon = GameStatIcons.Level,
                 )
             },
             rightComponent = {
                 RightItemLabel(
-                    text =  level.toString()
+                    text = level.toString(),
                 )
-            }
+            },
         )
         GloomListItem(
             title = stringResource(R.string.stat_exp_reward),
             leftComponent = {
                 LeftItemIcon(
-                    icon = GameStatIcons.Exp
+                    icon = GameStatIcons.Exp,
                 )
             },
             rightComponent = {
                 RightItemLabel(
-                    text =  exp.toString()
+                    text = exp.toString(),
                 )
-            }
+            },
         )
 
         GloomListItem(
             title = stringResource(R.string.stat_gold_reward),
             leftComponent = {
                 LeftItemIcon(
-                    icon = GameStatIcons.Gold
+                    icon = GameStatIcons.Gold,
                 )
             },
             rightComponent = {
                 RightItemLabel(
-                    text =  gold.toString()
+                    text = gold.toString(),
                 )
-            }
+            },
         )
 
         GloomListItem(
             title = stringResource(R.string.stat_trap_damage),
             leftComponent = {
                 LeftItemIcon(
-                    icon = GameStatIcons.Trap
+                    icon = GameStatIcons.Trap,
                 )
             },
             rightComponent = {
                 RightItemLabel(
-                    text = trapDamage.toString()
+                    text = trapDamage.toString(),
                 )
-            }
+            },
         )
 
         Spacer(Modifier.height(8.dp))
@@ -97,7 +97,7 @@ internal fun ScenarioStatsDialog(
             icon = AppIcon.Check,
             modifier = Modifier.fillMaxWidth(),
             text = stringResource(R.string.ok),
-            onClick = onDismiss
+            onClick = onDismiss,
         )
     }
 }
@@ -107,9 +107,10 @@ internal fun ScenarioStatsDialog(
 private fun ScenarioStatsDialogPreview() {
     GloomhavenMasterTheme {
         Box(
-            modifier = Modifier
-                .background(MaterialTheme.colorScheme.surfaceContainerHigh)
-                .padding(16.dp)
+            modifier =
+                Modifier
+                    .background(MaterialTheme.colorScheme.surfaceContainerHigh)
+                    .padding(16.dp),
         ) {
             ScenarioStatsDialog(
                 level = 1,

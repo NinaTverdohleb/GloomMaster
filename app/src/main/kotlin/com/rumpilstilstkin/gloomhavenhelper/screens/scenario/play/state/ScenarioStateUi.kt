@@ -35,15 +35,14 @@ data class ScenarioStateUi(
 data class UnitCompact(
     val number: Int,
     val isSpecial: Boolean = false,
-): Comparable<UnitCompact> {
-    override fun compareTo(other: UnitCompact): Int {
-        return compareValuesBy(
+) : Comparable<UnitCompact> {
+    override fun compareTo(other: UnitCompact): Int =
+        compareValuesBy(
             this,
             other,
             UnitCompact::isSpecial,
-            UnitCompact::number
+            UnitCompact::number,
         )
-    }
 }
 
 @Immutable
@@ -54,7 +53,7 @@ data class MonsterItemUi(
     val currentCard: MonsterCard? = null,
     val units: ImmutableMap<UnitCompact, MonsterUnit> = persistentMapOf(),
     val isBoss: Boolean = false,
-){
+) {
     companion object {
         fun fixture(
             slug: String = "1",
@@ -70,4 +69,3 @@ data class MonsterItemUi(
         )
     }
 }
-
