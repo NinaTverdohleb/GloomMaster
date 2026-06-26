@@ -3,6 +3,7 @@ package com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.components
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -173,13 +174,13 @@ private fun EffectsRow(
     active: ImmutableSet<MonsterStatType>,
     onToggle: (MonsterStatType) -> Unit,
 ) {
-    Row(
+    FlowRow(
         modifier =
             Modifier
                 .padding(vertical = 8.dp)
                 .fillMaxWidth(),
-        verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(12.dp),
+        verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         available.forEach { effect ->
             val icon = effect.toGameIcon()
@@ -191,7 +192,7 @@ private fun EffectsRow(
                 }
             IconButton(
                 onClick = { onToggle(effect) },
-                modifier = Modifier.size(28.dp),
+                modifier = Modifier.size(32.dp),
             ) {
                 Icon(
                     modifier = Modifier.fillMaxSize(),

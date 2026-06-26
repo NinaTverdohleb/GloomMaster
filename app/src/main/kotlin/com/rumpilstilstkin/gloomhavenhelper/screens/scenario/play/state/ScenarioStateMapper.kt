@@ -8,6 +8,7 @@ import com.rumpilstilstkin.gloomhavenhelper.domain.entity.scenario.MonsterItem
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.scenario.ScenarioBattleState
 import kotlinx.collections.immutable.toImmutableList
 import kotlinx.collections.immutable.toImmutableMap
+import kotlinx.collections.immutable.toPersistentSet
 
 object ScenarioStateMapper {
     fun toUiState(state: ScenarioBattleState): ScenarioStateUi {
@@ -50,7 +51,7 @@ object ScenarioStateMapper {
                         )
                     }.toImmutableList(),
             magicChargeList = state.magicState.charges.toImmutableMap(),
-            availableEffects = state.availableEffects,
+            availableEffects = state.availableEffects.toPersistentSet(),
         )
     }
 

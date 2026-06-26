@@ -10,8 +10,10 @@ import com.rumpilstilstkin.gloomhavenhelper.domain.entity.scenario.MonsterItem
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.scenario.MonsterUnit
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.ImmutableMap
+import kotlinx.collections.immutable.ImmutableSet
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.persistentMapOf
+import kotlinx.collections.immutable.toPersistentSet
 
 @Immutable
 data class ScenarioStateUi(
@@ -23,7 +25,7 @@ data class ScenarioStateUi(
     val trapDamage: Int = 0,
     val level: Int = 0,
     val round: Int = 0,
-    val availableEffects: Set<MonsterStatType> = MonsterStatType.mainEffectsPack,
+    val availableEffects: ImmutableSet<MonsterStatType> = MonsterStatType.mainEffectsPack.toPersistentSet(),
     val monstersForAdd: ImmutableList<MonsterItem> = persistentListOf(),
     val magicChargeList: ImmutableMap<Magic, ChargeLevel> = persistentMapOf(),
     val monsters: ImmutableList<MonsterItemUi> = persistentListOf(),

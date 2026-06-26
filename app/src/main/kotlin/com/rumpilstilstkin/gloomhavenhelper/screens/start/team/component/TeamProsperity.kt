@@ -7,29 +7,22 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.rumpilstilstkin.gloomhavenhelper.R
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.GloomCard
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.counter.GloomCountButton
-import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.counter.GloomCounterFull
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.counter.GloomGloomCounterProgress
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.counter.PickerButtonType
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.text.GloomHeader
-import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.text.GloomRoundLabel
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.Prosperity
-import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomSize
-import com.rumpilstilstkin.gloomhavenhelper.ui.components.NumberPickerProgress
-import com.rumpilstilstkin.gloomhavenhelper.ui.components.PickerButton
 
 @Composable
 internal fun TeamProsperity(

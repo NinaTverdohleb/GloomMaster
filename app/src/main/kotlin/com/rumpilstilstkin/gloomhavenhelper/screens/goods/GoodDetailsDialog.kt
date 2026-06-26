@@ -20,7 +20,6 @@ import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.buttons.Gloo
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.icons.AppIcon
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.GoodUi
-import com.rumpilstilstkin.gloomhavenhelper.ui.components.GloomAlertDialogCustomActions
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -52,37 +51,6 @@ fun GoodDetailsDialog(
             icon = AppIcon.Check,
         )
     }
-}
-
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun GoodDetailsDialogCustomActions(
-    imagePath: String,
-    modifier: Modifier = Modifier,
-    dismiss: () -> Unit,
-    actions: @Composable () -> Unit,
-) {
-    GloomAlertDialogCustomActions(
-        modifier = modifier,
-        content = {
-            Column(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalAlignment = Alignment.CenterHorizontally,
-            ) {
-                AsyncImage(
-                    modifier =
-                        Modifier.size(
-                            width = 240.dp,
-                            height = 350.dp,
-                        ),
-                    model = imagePath,
-                    contentDescription = null,
-                )
-            }
-        },
-        onDismissRequest = dismiss,
-        actions = actions,
-    )
 }
 
 @Preview

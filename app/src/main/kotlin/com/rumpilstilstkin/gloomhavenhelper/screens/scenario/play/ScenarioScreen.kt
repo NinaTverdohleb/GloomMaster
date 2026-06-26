@@ -30,15 +30,16 @@ import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterT
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.Magic
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterStatType
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.scenario.ChargeLevel
-import com.rumpilstilstkin.gloomhavenhelper.domain.entity.scenario.MonsterItem
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.scenario.MonsterUnit
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.components.PageIndicator
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.components.RegularMonsterCard
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.components.ScenarioHeader
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.state.MonsterItemUi
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.state.ScenarioStateUi
+import kotlinx.collections.immutable.ImmutableSet
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.persistentMapOf
+import kotlinx.collections.immutable.toPersistentSet
 
 @Composable
 internal fun ScenarioScreen(
@@ -54,7 +55,7 @@ internal fun ScenarioScreen(
     nextRound: () -> Unit,
     addMonsterUnits: (unitNumbers: List<Int>, monsterSlug: String, monsterName: String) -> Unit,
     clickMagic: (magic: Magic) -> Unit,
-    changeUnitLevel: (monsterSlug: String, unit: MonsterUnit, level: Int) -> Unit,
+    onLevel: (unit: MonsterUnit, monsterSlug: String) -> Unit,
 ) = Scaffold(
     topBar = {
         GloomToolbarAction(
@@ -116,7 +117,7 @@ internal fun ScenarioScreen(
             updateUnitLife = updateUnitLife,
             switchUnitEffect = switchUnitEffect,
             addMonsterUnits = addMonsterUnits,
-            changeUnitLevel = changeUnitLevel,
+            onLevel = onLevel,
             availableEffects = state.availableEffects,
         )
     }
@@ -124,14 +125,14 @@ internal fun ScenarioScreen(
 
 @Composable
 fun ScenarioScreenContent(
-    availableEffects: Set<MonsterStatType>,
+    availableEffects: ImmutableSet<MonsterStatType>,
     monsters: List<MonsterItemUi>,
     delete: (monsterSlug: String) -> Unit,
     deleteUnit: (unitNumber: Int, monsterSlug: String) -> Unit,
     updateUnitLife: (unitNumber: Int, monsterSlug: String, life: Int) -> Unit,
     switchUnitEffect: (unitNumber: Int, monsterSlug: String, effect: MonsterStatType) -> Unit,
     addMonsterUnits: (unitNumbers: List<Int>, monsterSlug: String, monsterName: String) -> Unit,
-    changeUnitLevel: (monsterSlug: String, unit: MonsterUnit, level: Int) -> Unit,
+    onLevel: (unit: MonsterUnit, monsterSlug: String) -> Unit,
     modifier: Modifier = Modifier,
 ) = Column(
     modifier = modifier
@@ -139,7 +140,7 @@ fun ScenarioScreenContent(
         .padding(top = 16.dp),
     verticalArrangement = Arrangement.spacedBy(16.dp)
 ) {
-    if(monsters.isEmpty()){
+    if (monsters.isEmpty()) {
         EmptyView(
             icon = EmptyIcon.Enemy,
             title = stringResource(R.string.empty_enemies_title),
@@ -164,7 +165,7 @@ fun ScenarioScreenContent(
                     updateUnitLife = updateUnitLife,
                     switchUnitEffect = switchUnitEffect,
                     addMonsterUnits = addMonsterUnits,
-                    changeUnitLevel = changeUnitLevel,
+                    onLevel = onLevel,
                     availableEffects = availableEffects,
                 )
             }
@@ -193,7 +194,7 @@ private fun ScenarioScreenPreview() {
                             Magic.SUN to ChargeLevel.One,
                             Magic.MOON to ChargeLevel.Two,
                         ),
-                    availableEffects = MonsterStatType.mainEffectsPack,
+                    availableEffects = MonsterStatType.mainEffectsPack.toPersistentSet(),
                 ),
             addMonster = {},
             back = {},
@@ -206,7 +207,7 @@ private fun ScenarioScreenPreview() {
             nextRound = {},
             addMonsterUnits = { _, _, _ -> },
             clickMagic = {},
-            changeUnitLevel = { _, _, _ -> },
+            onLevel = { _, _ -> },
         )
     }
 }
@@ -219,7 +220,7 @@ private fun ScenarioScreenEmptyPreview() {
             state =
                 ScenarioStateUi(
                     scenarioName = "Bad place",
-                    availableEffects = MonsterStatType.mainEffectsPack,
+                    availableEffects = MonsterStatType.mainEffectsPack.toPersistentSet(),
                 ),
             addMonster = {},
             back = {},
@@ -232,7 +233,7 @@ private fun ScenarioScreenEmptyPreview() {
             nextRound = {},
             addMonsterUnits = { _, _, _ -> },
             clickMagic = {},
-            changeUnitLevel = { _, _, _ -> },
+            onLevel = { _, _ -> },
         )
     }
 }

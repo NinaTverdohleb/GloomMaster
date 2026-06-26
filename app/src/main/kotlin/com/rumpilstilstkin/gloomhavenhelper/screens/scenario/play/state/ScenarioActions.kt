@@ -2,6 +2,7 @@ package com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.state
 
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.Magic
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterStatType
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.scenario.MonsterUnit
 
 sealed interface ScenarioActions {
     data class AddUnits(
@@ -43,9 +44,7 @@ sealed interface ScenarioActions {
 
     data class UpdateUnitLevel(
         val monsterSlug: String,
-        val unitNumber: Int,
-        val level: Int,
-        val isElite: Boolean,
+        val unit: MonsterUnit,
     ) : ScenarioActions
 
     data object AddNewMonsters : ScenarioActions

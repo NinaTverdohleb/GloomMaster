@@ -189,4 +189,5 @@
     <string name="delete_monster_dialog_title">Удалить врага?</string>
     <string name="delete_monster_dialog_description">Вы уверены, что хотите удалить %1$s?</string>
     <string name="get">Получить</string>
+    <string name="search_monster_hint">monster name</string>
 </resources>

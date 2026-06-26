@@ -40,8 +40,5 @@ sealed interface GlHelperScreen {
     data object GlobalAchievements : GlHelperScreen
 
     @Serializable
-    data object ScenarioConstructor : GlHelperScreen
-
-    @Serializable
     data object Settings : GlHelperScreen
 }
