@@ -193,4 +193,10 @@
     <string name="add_personal_quest">Add quest</string>
     <string name="add_new_enemies">Add new enemies</string>
     <string name="search_monster_hint">monster name</string>
+    <string name="unit_label">Unit</string>
+    <string name="unit_new">New</string>
+    <string name="unit_level_format">Level %1$d</string>
+    <string name="immunity_label">Immunity</string>
+    <string name="choose_unit">Choose unit</string>
+    <string name="good_title_format">#%1$d %2$s</string>
 </resources>

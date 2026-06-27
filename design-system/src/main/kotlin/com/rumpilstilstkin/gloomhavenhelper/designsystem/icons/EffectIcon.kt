@@ -3,20 +3,20 @@ package com.rumpilstilstkin.gloomhavenhelper.designsystem.icons
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.R
 
 enum class EffectIcon(override val resId: Int) : GloomIcon {
-    TARGET(R.drawable.ic_target),
-    POISON(R.drawable.ic_poison),
-    WOUND(R.drawable.ic_wound),
-    MUDDLE(R.drawable.ic_confused),
-    STUN(R.drawable.ic_stun),
-    IMMOBILIZE(R.drawable.ic_immobilize),
-    DISARM(R.drawable.ic_disarm),
-    CURSE(R.drawable.ic_curse),
-    STRENGTHEN(R.drawable.ic_strength),
-    INVISIBLE(R.drawable.ic_invisibility),
-    PUSH(R.drawable.ic_push),
-    BLESS(R.drawable.ic_bless),
-    PULL(R.drawable.ic_pull),
-    PIERCE(R.drawable.ic_pierce),
-    REGENERATE(R.drawable.ic_regenerate),
-    NEXT(R.drawable.ic_next)
+    Target(R.drawable.ic_target),
+    Poison(R.drawable.ic_poison),
+    Wound(R.drawable.ic_wound),
+    Muddle(R.drawable.ic_confused),
+    Stun(R.drawable.ic_stun),
+    Immobilize(R.drawable.ic_immobilize),
+    Disarm(R.drawable.ic_disarm),
+    Curse(R.drawable.ic_curse),
+    Strengthen(R.drawable.ic_strength),
+    Invisible(R.drawable.ic_invisibility),
+    Push(R.drawable.ic_push),
+    Bless(R.drawable.ic_bless),
+    Pull(R.drawable.ic_pull),
+    Pierce(R.drawable.ic_pierce),
+    Regenerate(R.drawable.ic_regenerate),
+    Next(R.drawable.ic_next)
 }

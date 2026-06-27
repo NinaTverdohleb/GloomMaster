@@ -193,4 +193,10 @@
     <string name="get">Получить</string>
     <string name="search_monster_hint">Название монстра</string>
     <string name="add_new_enemies">Добавить новых врагов</string>
+    <string name="unit_label">Юнит</string>
+    <string name="unit_new">Новый</string>
+    <string name="unit_level_format">Уровень %1$d</string>
+    <string name="immunity_label">Иммунитет</string>
+    <string name="choose_unit">Выберите юнита</string>
+    <string name="good_title_format">#%1$d %2$s</string>
 </resources>
