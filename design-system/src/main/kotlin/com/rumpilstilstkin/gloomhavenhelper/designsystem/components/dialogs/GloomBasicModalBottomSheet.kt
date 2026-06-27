@@ -7,8 +7,10 @@ import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBars
+import androidx.compose.foundation.layout.union
 import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.material3.BottomSheetDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -52,7 +54,7 @@ fun GloomBasicModalBottomSheet(
             isAppearanceLightStatusBars = false,
             isAppearanceLightNavigationBars = false,
         ),
-    contentWindowInsets = { WindowInsets.statusBars },
+    contentWindowInsets = { WindowInsets.statusBars.union(WindowInsets.navigationBars) },
     content = {
         Box(
             modifier = Modifier.padding(16.dp),

@@ -2,6 +2,7 @@ package com.rumpilstilstkin.gloomhavenhelper.screens.start.characters
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.rumpilstilstkin.gloomhavenhelper.R
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.CharacterInfo
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.characters.GetCharactersForCurrentTeamUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.classes.AddCharacterClassForTeamUseCase
@@ -151,7 +152,7 @@ class CharactersTabViewModel @Inject constructor(
                     onResult = { result ->
                         result?.let {
                             viewModelScope.launch {
-                                _screenEvents.emit(ScreenEffect.Message("Character deleted"))
+                                _screenEvents.emit(ScreenEffect.Message(R.string.character_deleted_toast))
                             }
                         }
                     },

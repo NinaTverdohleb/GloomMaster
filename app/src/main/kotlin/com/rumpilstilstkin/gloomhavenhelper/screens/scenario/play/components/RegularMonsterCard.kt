@@ -9,6 +9,10 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -63,44 +67,43 @@ fun RegularMonsterCard(
                     Modifier
                         .fillMaxSize()
                         .verticalScroll(rememberScrollState()),
+                verticalArrangement = Arrangement.spacedBy(16.dp),
             ) {
-                UnitSelector(
-                    units = item.units.keys,
-                    cardContent = { unitNumber ->
-                        item.units[unitNumber]?.let {
-                            RegularMonsterUnit(
-                                unit = it,
-                                changeLife = { _, life ->
-                                    updateUnitLife(
-                                        unitNumber.number,
-                                        item.slug,
-                                        life,
-                                    )
-                                },
-                                switchEffect = { _, effect ->
-                                    switchUnitEffect(
-                                        unitNumber.number,
-                                        item.slug,
-                                        effect,
-                                    )
-                                },
-                                deleteUnit = {
-                                    deleteUnit(
-                                        unitNumber.number,
-                                        item.slug,
-                                    )
-                                },
-                                levelClick = { unit ->
-                                    onLevel(
-                                        unit,
-                                        item.slug,
-                                    )
-                                },
-                                effects = availableEffects,
-                            )
-                        }
+                var selected: UnitCompact by remember {
+                    mutableStateOf(item.units.keys.first())
+                }
+
+                RegularMonsterUnit(
+                    unit = item.units[selected]!!,
+                    changeLife = { unit, life ->
+                        updateUnitLife(
+                            unit.number,
+                            item.slug,
+                            life,
+                        )
                     },
+                    switchEffect = { unit, effect ->
+                        switchUnitEffect(
+                            unit.number,
+                            item.slug,
+                            effect,
+                        )
+                    },
+                    deleteUnit = { unit ->
+                        deleteUnit(
+                            unit.number,
+                            item.slug,
+                        )
+                    },
+                    levelClick = { unit ->
+                        onLevel(
+                            unit,
+                            item.slug,
+                        )
+                    },
+                    effects = availableEffects,
                 )
+                UnitSelector(units = item.units.keys)
                 Spacer(Modifier.height(48.dp))
             }
         }

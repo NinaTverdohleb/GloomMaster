@@ -58,9 +58,8 @@ private val GRID_GAP = 12.dp
 fun UnitSelector(
     units: ImmutableSet<UnitCompact>,
     modifier: Modifier = Modifier,
-    columns: Int = 5,
+    columns: Int = 10,
     initiallyOpenNumber: Int? = units.firstOrNull()?.number,
-    cardContent: @Composable (unit: UnitCompact) -> Unit,
 ) {
     var selectedNumber by remember {
         mutableStateOf(initiallyOpenNumber)
@@ -81,29 +80,21 @@ fun UnitSelector(
         modifier = modifier.fillMaxWidth(),
         verticalArrangement = Arrangement.spacedBy(16.dp),
     ) {
-        if (selected != null) {
-            Box(Modifier.fillMaxWidth()) {
-                cardContent(selected)
-            }
-        }
-
-        if (units.size > 1) {
-            GloomHeader(text = stringResource(R.string.choose_unit))
-            FlowRow(
-                modifier = Modifier.fillMaxWidth(),
-                maxItemsInEachRow = columns,
-                horizontalArrangement = Arrangement.spacedBy(GRID_GAP),
-                verticalArrangement = Arrangement.spacedBy(GRID_GAP),
-            ) {
-                ordered.forEach { unit ->
-                    key(unit.number) {
-                        UnitCircle(
-                            unit = unit,
-                            selected = unit == selected,
-                            modifier = Modifier.animatePlacement(),
-                            onClick = { selectedNumber = unit.number },
-                        )
-                    }
+        GloomHeader(text = stringResource(R.string.choose_unit))
+        FlowRow(
+            modifier = Modifier.fillMaxWidth(),
+            maxItemsInEachRow = columns,
+            horizontalArrangement = Arrangement.spacedBy(GRID_GAP),
+            verticalArrangement = Arrangement.spacedBy(GRID_GAP),
+        ) {
+            ordered.forEach { unit ->
+                key(unit.number) {
+                    UnitCircle(
+                        unit = unit,
+                        selected = unit == selected,
+                        modifier = Modifier.animatePlacement(),
+                        onClick = { selectedNumber = unit.number },
+                    )
                 }
             }
         }
@@ -146,7 +137,9 @@ private fun Modifier.animatePlacement(): Modifier =
             }.offset {
                 val anim =
                     animatable
-                        ?: Animatable(targetOffset, IntOffset.VectorConverter).also { animatable = it }
+                        ?: Animatable(targetOffset, IntOffset.VectorConverter).also {
+                            animatable = it
+                        }
                 if (anim.targetValue != targetOffset) {
                     scope.launch {
                         anim.animateTo(targetOffset, spring(stiffness = Spring.StiffnessMediumLow))
@@ -181,16 +174,6 @@ private fun MonsterUnitSelectorPreview() {
         ) {
             UnitSelector(
                 units = units,
-                cardContent = { unit ->
-                    RegularMonsterUnit(
-                        unit = MonsterUnit.fixture(unit.number),
-                        changeLife = { _, _ -> },
-                        switchEffect = { _, _ -> },
-                        deleteUnit = { _ -> },
-                        levelClick = {},
-                        effects = (MonsterStatType.mainEffectsPack + MonsterStatType.fcEffectsPack).toPersistentSet(),
-                    )
-                },
             )
         }
     }

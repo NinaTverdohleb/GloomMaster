@@ -199,4 +199,9 @@
     <string name="immunity_label">Иммунитет</string>
     <string name="choose_unit">Выберите юнита</string>
     <string name="good_title_format">#%1$d %2$s</string>
+    <string name="scenario_added">Сценарий добавлен!</string>
+    <string name="error_toast">Что то пошло не так!</string>
+    <string name="team_created_toast">Команда создана!</string>
+    <string name="team_deleted_toast">Каманда удалена</string>
+    <string name="character_deleted_toast">Персонаж удален</string>
 </resources>

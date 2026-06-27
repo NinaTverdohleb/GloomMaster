@@ -2,6 +2,7 @@ package com.rumpilstilstkin.gloomhavenhelper.screens.scenario.add
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.rumpilstilstkin.gloomhavenhelper.R
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario.GetAvailableScenariosForTeamUseCase
 import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEvent.Back
 import com.rumpilstilstkin.gloomhavenhelper.screens.core.ScreenEffect
@@ -71,7 +72,7 @@ class AddScenarioForTeamViewModel @Inject constructor(
                             contract = AddScenarioDialogContract,
                             input = action.scenario,
                             onResult = {
-                                ScreenEffect.Message("Scenario added!")
+                                ScreenEffect.Message(R.string.scenario_added)
                             },
                         )
                     _screenEvents.emit(ScreenEffect.OpenBottomSheet(session))

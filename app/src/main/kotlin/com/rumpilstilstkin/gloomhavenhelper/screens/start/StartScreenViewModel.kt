@@ -2,6 +2,7 @@ package com.rumpilstilstkin.gloomhavenhelper.screens.start
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.rumpilstilstkin.gloomhavenhelper.R
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.team.GetCurrentTeamUseCase
 import com.rumpilstilstkin.gloomhavenhelper.navigation.GlHelperScreen
 import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEvent.Screen
@@ -73,9 +74,9 @@ class StartScreenViewModel @Inject constructor(
                             result?.let { success ->
                                 val message =
                                     if (success) {
-                                        "Team created"
+                                        R.string.team_created_toast
                                     } else {
-                                        "Oops, something went wrong!"
+                                        R.string.error_toast
                                     }
                                 _screenEvents.emit(ScreenEffect.Message(message))
                             }

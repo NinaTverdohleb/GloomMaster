@@ -1,6 +1,7 @@
 package com.rumpilstilstkin.gloomhavenhelper.screens.core
 
 import android.widget.Toast
+import androidx.annotation.StringRes
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
@@ -42,7 +43,7 @@ sealed interface ScreenEffect {
     ) : ScreenEffect
 
     data class Message(
-        val message: String,
+        @param:StringRes val resId: Int,
     ) : ScreenEffect
 }
 
@@ -111,7 +112,7 @@ fun LaunchedScreenEffect(
                 }
 
                 is ScreenEffect.Message -> {
-                    Toast.makeText(navController.context, it.message, Toast.LENGTH_LONG).show()
+                    Toast.makeText(navController.context, it.resId, Toast.LENGTH_SHORT).show()
                 }
 
                 ScreenEffect.CloseDialog -> {

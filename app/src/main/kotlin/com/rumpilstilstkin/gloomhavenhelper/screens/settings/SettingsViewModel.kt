@@ -5,6 +5,7 @@ import android.content.Intent
 import androidx.core.content.FileProvider
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.rumpilstilstkin.gloomhavenhelper.R
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.settings.LanguagesListUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.team.GetCurrentTeamWithTeamsUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.team.GetShareFileUseCase
@@ -158,7 +159,7 @@ class SettingsViewModel @Inject constructor(
                                 context.startActivity(chooser)
                             },
                             onFailure = { _ ->
-                                _screenEvents.emit(ScreenEffect.Message("Oops, something went wrong!"))
+                                _screenEvents.emit(ScreenEffect.Message(R.string.error_toast))
                             },
                         )
                 }
@@ -184,7 +185,7 @@ class SettingsViewModel @Inject constructor(
                     input = team,
                     onResult = {
                         viewModelScope.launch {
-                            _screenEvents.emit(ScreenEffect.Message("Team deleted."))
+                            _screenEvents.emit(ScreenEffect.Message(R.string.team_deleted_toast))
                         }
                     },
                 )
@@ -203,9 +204,9 @@ class SettingsViewModel @Inject constructor(
                             result?.let { success ->
                                 val message =
                                     if (success) {
-                                        "Team created"
+                                        R.string.team_created_toast
                                     } else {
-                                        "Oops, something went wrong!"
+                                        R.string.error_toast
                                     }
                                 _screenEvents.emit(ScreenEffect.Message(message))
                             }

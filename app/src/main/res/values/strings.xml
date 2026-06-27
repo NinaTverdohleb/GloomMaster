@@ -199,4 +199,9 @@
     <string name="immunity_label">Immunity</string>
     <string name="choose_unit">Choose unit</string>
     <string name="good_title_format">#%1$d %2$s</string>
+    <string name="scenario_added">Scenario added!</string>
+    <string name="error_toast">Oops, something went wrong!</string>
+    <string name="team_created_toast">Team created!</string>
+    <string name="team_deleted_toast">Team deleted</string>
+    <string name="character_deleted_toast">Character deleted</string>
 </resources>
