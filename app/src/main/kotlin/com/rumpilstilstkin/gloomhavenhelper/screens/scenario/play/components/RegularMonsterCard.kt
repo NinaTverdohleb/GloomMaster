@@ -69,7 +69,7 @@ fun RegularMonsterCard(
                         .verticalScroll(rememberScrollState()),
                 verticalArrangement = Arrangement.spacedBy(16.dp),
             ) {
-                var selected: UnitCompact by remember(item.units) {
+                var selected: UnitCompact by remember(item.units.keys) {
                     mutableStateOf(item.units.keys.first())
                 }
 
