@@ -20,7 +20,7 @@ import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterT
 @Composable
 fun GloomHeader(
     text: String,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) = Text(
     modifier = modifier,
     text = text,
@@ -31,7 +31,7 @@ fun GloomHeader(
 @Composable
 fun GloomHeaderVariant(
     text: String,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) = Text(
     modifier = modifier,
     text = text,
@@ -39,14 +39,13 @@ fun GloomHeaderVariant(
     color = MaterialTheme.colorScheme.primaryContainer,
 )
 
-
 @Preview
 @Composable
 private fun GloomHeaderPreview() {
     GloomhavenMasterTheme {
         Column(
             verticalArrangement = Arrangement.spacedBy(16.dp),
-            horizontalAlignment = Alignment.Start
+            horizontalAlignment = Alignment.Start,
         ) {
             GloomHeader("Header")
             GloomHeaderVariant("Header")

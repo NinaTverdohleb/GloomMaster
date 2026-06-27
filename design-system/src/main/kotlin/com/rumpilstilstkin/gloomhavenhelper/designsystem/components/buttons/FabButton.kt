@@ -22,12 +22,12 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material.icons.filled.Share
-import androidx.compose.material3.ripple
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.SmallFloatingActionButton
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.ripple
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -45,7 +45,7 @@ import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterT
 @Composable
 fun GloomFab(
     icon: GloomIcon,
-    onClick: () -> Unit
+    onClick: () -> Unit,
 ) {
     GloomFabBase(
         onClick = onClick,
@@ -53,7 +53,7 @@ fun GloomFab(
         Icon(
             modifier = Modifier.size(32.dp),
             painter = icon.painter(),
-            contentDescription = null
+            contentDescription = null,
         )
     }
 }
@@ -68,12 +68,12 @@ fun GloomFabWithContextMenu(
 
     val cornerRadius by animateDpAsState(
         targetValue = if (expanded) 12.dp else 16.dp,
-        label = "FabShapeCornerAnimation"
+        label = "FabShapeCornerAnimation",
     )
 
     val fabSize by animateDpAsState(
         targetValue = if (expanded) 40.dp else 56.dp,
-        label = "FabSize"
+        label = "FabSize",
     )
 
     Column(
@@ -83,11 +83,11 @@ fun GloomFabWithContextMenu(
         AnimatedVisibility(
             visible = expanded,
             enter = fadeIn(),
-            exit = fadeOut()
+            exit = fadeOut(),
         ) {
             Column(
                 horizontalAlignment = Alignment.End,
-                verticalArrangement = Arrangement.spacedBy(8.dp)
+                verticalArrangement = Arrangement.spacedBy(8.dp),
             ) {
                 actions()
             }
@@ -101,19 +101,19 @@ fun GloomFabWithContextMenu(
             AnimatedContent(
                 targetState = expanded,
                 transitionSpec = { fadeIn() togetherWith fadeOut() },
-                label = "IconTransition"
+                label = "IconTransition",
             ) { isExpanded ->
                 if (isExpanded) {
                     Icon(
                         modifier = Modifier.size(24.dp),
                         painter = AppIcon.Close.painter(),
-                        contentDescription = null
+                        contentDescription = null,
                     )
                 } else {
                     Icon(
                         modifier = Modifier.size(32.dp),
                         painter = icon.painter(),
-                        contentDescription = null
+                        contentDescription = null,
                     )
                 }
             }
@@ -136,20 +136,22 @@ private fun GloomFabBase(
         shape = shape,
         color = MaterialTheme.colorScheme.surfaceBright,
         contentColor = MaterialTheme.colorScheme.onSurface,
-        border = BorderStroke(
-            width = 1.dp,
-            color = MaterialTheme.colorScheme.outline
-        ),
-        shadowElevation = 6.dp
+        border =
+            BorderStroke(
+                width = 1.dp,
+                color = MaterialTheme.colorScheme.outline,
+            ),
+        shadowElevation = 6.dp,
     ) {
         Box(
             contentAlignment = Alignment.Center,
-            modifier = Modifier
-                .clickable(
-                    interactionSource = remember { MutableInteractionSource() },
-                    indication = ripple(),
-                    onClick = onClick
-                )
+            modifier =
+                Modifier
+                    .clickable(
+                        interactionSource = remember { MutableInteractionSource() },
+                        indication = ripple(),
+                        onClick = onClick,
+                    ),
         ) {
             content()
         }
@@ -162,27 +164,27 @@ private fun GloomFabPreviewMenu() {
     GloomhavenMasterTheme {
         Column(
             verticalArrangement = Arrangement.spacedBy(16.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
+            horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             GloomFab(
                 icon = AppIcon.Plus,
-                onClick = {}
+                onClick = {},
             )
 
             GloomFabWithContextMenu(
                 icon = AppIcon.Plus,
-            ){
+            ) {
                 FabContextMenuItem(
                     icon = AppIcon.Buy,
                     text = "Buy",
                     isError = false,
-                ){}
+                ) {}
 
                 FabContextMenuItem(
                     icon = AppIcon.Buy,
                     text = "Buy",
                     isError = true,
-                ){}
+                ) {}
             }
         }
     }

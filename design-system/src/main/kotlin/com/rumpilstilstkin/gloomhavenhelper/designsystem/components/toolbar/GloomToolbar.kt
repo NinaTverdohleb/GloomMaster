@@ -42,7 +42,7 @@ fun GloomToolbarAction(
     title = {
         Text(
             text = title,
-            style = MaterialTheme.typography.titleLarge
+            style = MaterialTheme.typography.titleLarge,
         )
     },
     navigationIcon = {
@@ -52,7 +52,7 @@ fun GloomToolbarAction(
                 IconButton(onClick = back) {
                     Icon(
                         painter = NavigationIcon.Close.painter(),
-                        contentDescription = stringResource(R.string.design_system_back)
+                        contentDescription = stringResource(R.string.design_system_back),
                     )
                 }
             }
@@ -67,11 +67,12 @@ fun GloomToolbarAction(
             )
         }
     },
-    colors = TopAppBarDefaults.topAppBarColors(
-        containerColor = backgroundColor,
-        titleContentColor = MaterialTheme.colorScheme.onSurface,
-        navigationIconContentColor = MaterialTheme.colorScheme.onSurface
-    ),
+    colors =
+        TopAppBarDefaults.topAppBarColors(
+            containerColor = backgroundColor,
+            titleContentColor = MaterialTheme.colorScheme.onSurface,
+            navigationIconContentColor = MaterialTheme.colorScheme.onSurface,
+        ),
 )
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -87,7 +88,7 @@ fun GloomToolbarNoBackAction(
     title = {
         Row(
             horizontalArrangement = Arrangement.Center,
-            verticalAlignment = Alignment.CenterVertically
+            verticalAlignment = Alignment.CenterVertically,
         ) {
             Spacer(Modifier.width(16.dp))
             Icon(
@@ -98,7 +99,7 @@ fun GloomToolbarNoBackAction(
             Spacer(Modifier.width(8.dp))
             Text(
                 text = title,
-                style = MaterialTheme.typography.titleLarge
+                style = MaterialTheme.typography.titleLarge,
             )
         }
     },
@@ -111,11 +112,12 @@ fun GloomToolbarNoBackAction(
             )
         }
     },
-    colors = TopAppBarDefaults.topAppBarColors(
-        containerColor = MaterialTheme.colorScheme.surface,
-        titleContentColor = MaterialTheme.colorScheme.onSurface,
-        navigationIconContentColor = MaterialTheme.colorScheme.onSurface
-    ),
+    colors =
+        TopAppBarDefaults.topAppBarColors(
+            containerColor = MaterialTheme.colorScheme.surface,
+            titleContentColor = MaterialTheme.colorScheme.onSurface,
+            navigationIconContentColor = MaterialTheme.colorScheme.onSurface,
+        ),
 )
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -130,7 +132,7 @@ fun GloomToolbar(
         title = {
             Text(
                 text = title,
-                style = MaterialTheme.typography.titleLarge
+                style = MaterialTheme.typography.titleLarge,
             )
         },
         navigationIcon = {
@@ -140,17 +142,18 @@ fun GloomToolbar(
                     IconButton(onClick = back) {
                         Icon(
                             painter = painterResource(R.drawable.ic_close),
-                            contentDescription = stringResource(R.string.design_system_back)
+                            contentDescription = stringResource(R.string.design_system_back),
                         )
                     }
                 }
             }
         },
-        colors = TopAppBarDefaults.topAppBarColors(
-            containerColor = MaterialTheme.colorScheme.surfaceContainer,
-            titleContentColor = MaterialTheme.colorScheme.onSurface,
-            navigationIconContentColor = MaterialTheme.colorScheme.onSurface
-        )
+        colors =
+            TopAppBarDefaults.topAppBarColors(
+                containerColor = MaterialTheme.colorScheme.surfaceContainer,
+                titleContentColor = MaterialTheme.colorScheme.onSurface,
+                navigationIconContentColor = MaterialTheme.colorScheme.onSurface,
+            ),
     )
 }
 
@@ -160,13 +163,12 @@ private fun GloomToolbarPreview() {
     GloomhavenMasterTheme {
         Column(
             verticalArrangement = Arrangement.spacedBy(16.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
+            horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             GloomToolbarNoBackAction(
                 title = "Status",
-                titleIcon = AppIcon.Team
+                titleIcon = AppIcon.Team,
             )
-
 
             GloomToolbarAction(
                 title = "Status",

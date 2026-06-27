@@ -34,10 +34,11 @@ fun GloomBasicModalBottomSheet(
     contentColor = MaterialTheme.colorScheme.onSurface,
     scrimColor = MaterialTheme.colorScheme.scrim.copy(alpha = 0.32f),
     tonalElevation = 0.dp,
-    shape = MaterialTheme.shapes.extraLarge.copy(
-        bottomStart = CornerSize(0.dp),
-        bottomEnd = CornerSize(0.dp),
-    ),
+    shape =
+        MaterialTheme.shapes.extraLarge.copy(
+            bottomStart = CornerSize(0.dp),
+            bottomEnd = CornerSize(0.dp),
+        ),
     dragHandle = {
         BottomSheetDefaults.DragHandle(
             color = MaterialTheme.colorScheme.onSurfaceVariant,
@@ -45,21 +46,21 @@ fun GloomBasicModalBottomSheet(
     },
     onDismissRequest = onDismissRequest,
     sheetState = sheetState,
-    properties = ModalBottomSheetProperties(
-        shouldDismissOnBackPress = true,
-        isAppearanceLightStatusBars = false,
-        isAppearanceLightNavigationBars = false
-    ),
+    properties =
+        ModalBottomSheetProperties(
+            shouldDismissOnBackPress = true,
+            isAppearanceLightStatusBars = false,
+            isAppearanceLightNavigationBars = false,
+        ),
     contentWindowInsets = { WindowInsets.statusBars },
     content = {
         Box(
-            modifier = Modifier.padding(16.dp)
+            modifier = Modifier.padding(16.dp),
         ) {
             content()
         }
-    }
+    },
 )
-
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Preview
@@ -67,12 +68,12 @@ fun GloomBasicModalBottomSheet(
 private fun GloomBasicModalBottomSheetPreview() {
     GloomhavenMasterTheme {
         GloomBasicModalBottomSheet(
-            onDismissRequest = {}
+            onDismissRequest = {},
         ) {
             Box(
                 Modifier
                     .fillMaxWidth()
-                    .height(200.dp)
+                    .height(200.dp),
             )
         }
     }

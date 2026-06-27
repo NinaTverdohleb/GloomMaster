@@ -24,10 +24,11 @@ fun GloomBasicDialog(
     modifier: Modifier = Modifier,
     content: @Composable () -> Unit,
 ) {
-    val dialogModifier = modifier
-        .clip(RoundedCornerShape(24.dp))
-        .background(MaterialTheme.colorScheme.surfaceContainerHigh)
-        .padding(24.dp)
+    val dialogModifier =
+        modifier
+            .clip(RoundedCornerShape(24.dp))
+            .background(MaterialTheme.colorScheme.surfaceContainerHigh)
+            .padding(24.dp)
     if (LocalInspectionMode.current) {
         Box(modifier = dialogModifier) {
             content()
@@ -46,15 +47,15 @@ fun GloomBasicDialog(
 private fun GloomBasicDialogPreview() {
     GloomhavenMasterTheme {
         GloomBasicDialog(
-            onDismissRequest = {}
+            onDismissRequest = {},
         ) {
             Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(60.dp)
-                    .background(MaterialTheme.colorScheme.surfaceContainerHighest),
+                modifier =
+                    Modifier
+                        .fillMaxWidth()
+                        .height(60.dp)
+                        .background(MaterialTheme.colorScheme.surfaceContainerHighest),
             )
         }
     }
-
 }

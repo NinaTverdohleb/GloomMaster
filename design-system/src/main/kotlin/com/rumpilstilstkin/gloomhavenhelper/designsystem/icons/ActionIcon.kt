@@ -2,7 +2,9 @@ package com.rumpilstilstkin.gloomhavenhelper.designsystem.icons
 
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.R
 
-enum class ActionIcon(override val resId: Int) : GloomIcon {
+enum class ActionIcon(
+    override val resId: Int,
+) : GloomIcon {
     Trap(R.drawable.ic_trap),
     Fly(R.drawable.ic_fly),
     Range(R.drawable.ic_range),
@@ -11,5 +13,5 @@ enum class ActionIcon(override val resId: Int) : GloomIcon {
     Retaliate(R.drawable.ic_retaliate),
     Shield(R.drawable.ic_shield),
     Move(R.drawable.ic_move),
-    Loot(R.drawable.ic_loot)
+    Loot(R.drawable.ic_loot),
 }

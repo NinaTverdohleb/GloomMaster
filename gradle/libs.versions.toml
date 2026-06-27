@@ -29,6 +29,8 @@ material = "1.14.0"
 androidTools = "32.1.0"
 firebaseCrashlyticsPlugin = "3.0.6"
 firebasePerfPlugin = "2.0.2"
+googleServices = "4.4.2"
+firebaseBom = "33.7.0"
 uiTestJunit4 = "1.9.0-rc01"
 truth = "1.4.4"
 androidxLintGradle = "1.0.0-alpha03"
@@ -100,6 +102,11 @@ android-tools-common = { group = "com.android.tools", name = "common", version.r
 compose-gradlePlugin = { module = "org.jetbrains.kotlin:compose-compiler-gradle-plugin", version.ref = "kotlin" }
 firebase-crashlytics-gradlePlugin = { group = "com.google.firebase", name = "firebase-crashlytics-gradle", version.ref = "firebaseCrashlyticsPlugin" }
 firebase-performance-gradlePlugin = { group = "com.google.firebase", name = "perf-plugin", version.ref = "firebasePerfPlugin" }
+google-services-gradlePlugin = { group = "com.google.gms", name = "google-services", version.ref = "googleServices" }
+firebase-bom = { group = "com.google.firebase", name = "firebase-bom", version.ref = "firebaseBom" }
+firebase-analytics = { group = "com.google.firebase", name = "firebase-analytics" }
+firebase-performance = { group = "com.google.firebase", name = "firebase-perf" }
+firebase-crashlytics = { group = "com.google.firebase", name = "firebase-crashlytics" }
 kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
 ksp-gradlePlugin = { group = "com.google.devtools.ksp", name = "com.google.devtools.ksp.gradle.plugin", version.ref = "ksp" }
 room-gradlePlugin = { group = "androidx.room", name = "room-gradle-plugin", version.ref = "room" }
@@ -139,6 +146,7 @@ room = { id = "androidx.room", version.ref = "room" }
 roborazzi = { id = "io.github.takahirom.roborazzi", version.ref = "roborazzi" }
 firebase-crashlytics = { id = "com.google.firebase.crashlytics", version.ref = "firebaseCrashlyticsPlugin" }
 firebase-perf = { id = "com.google.firebase.firebase-perf", version.ref = "firebasePerfPlugin" }
+google-services = { id = "com.google.gms.google-services", version.ref = "googleServices" }
 dependencyGuard = { id = "com.dropbox.dependency-guard", version.ref = "dependencyGuard" }
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 baselineprofile = { id = "androidx.baselineprofile", version.ref = "androidxMacroBenchmark"}

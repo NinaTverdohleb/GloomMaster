@@ -20,7 +20,7 @@ import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterT
 @Composable
 fun EmptyIconView(
     icon: EmptyIcon,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) = Box(
     modifier =
         modifier
@@ -28,8 +28,7 @@ fun EmptyIconView(
             .background(
                 color = MaterialTheme.colorScheme.secondary.copy(alpha = 0.1f),
                 shape = CircleShape,
-            )
-            .border(
+            ).border(
                 shape = CircleShape,
                 color = MaterialTheme.colorScheme.secondary,
                 width = 2.dp,
@@ -49,12 +48,11 @@ private fun EmptyIconPreview() {
     GloomhavenMasterTheme {
         Column(
             verticalArrangement = Arrangement.spacedBy(16.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
+            horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             EmptyIconView(
-                icon = EmptyIcon.Characters
+                icon = EmptyIcon.Characters,
             )
-
         }
     }
 }

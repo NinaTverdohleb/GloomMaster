@@ -21,14 +21,14 @@ fun EmptyView(
     icon: EmptyIcon,
     title: String,
     description: String,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) = Column(
     modifier = modifier.fillMaxSize(),
     horizontalAlignment = Alignment.CenterHorizontally,
     verticalArrangement = Arrangement.Center,
 ) {
     EmptyIconView(
-        icon = icon
+        icon = icon,
     )
     Spacer(Modifier.height(16.dp))
 
@@ -53,7 +53,7 @@ private fun EmptyViewPreview() {
         EmptyView(
             icon = EmptyIcon.Characters,
             title = "No characters",
-            description = "Oh no, where are characters?"
+            description = "Oh no, where are characters?",
         )
     }
 }

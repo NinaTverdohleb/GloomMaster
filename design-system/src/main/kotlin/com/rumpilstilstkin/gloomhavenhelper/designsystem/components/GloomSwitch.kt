@@ -14,14 +14,12 @@ import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterT
 fun GloomSwitch(
     selected: Boolean,
     onCheckedChange: ((Boolean) -> Unit)?,
-) =
-    Switch(
-        checked = selected,
-        onCheckedChange = onCheckedChange,
-        colors = SwitchDefaults.colors(
-
-        )
-    )
+) = Switch(
+    checked = selected,
+    onCheckedChange = onCheckedChange,
+    colors =
+        SwitchDefaults.colors(),
+)
 
 @Preview
 @Composable
@@ -29,19 +27,17 @@ private fun GloomSwitchPreview() {
     GloomhavenMasterTheme {
         Column(
             verticalArrangement = Arrangement.spacedBy(16.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
+            horizontalAlignment = Alignment.CenterHorizontally,
         ) {
-
             GloomSwitch(
                 selected = false,
-                onCheckedChange = null
+                onCheckedChange = null,
             )
 
             GloomSwitch(
                 selected = true,
-                onCheckedChange = null
+                onCheckedChange = null,
             )
-
         }
     }
 }

@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.chaosknight.android.application)
     alias(libs.plugins.chaosknight.android.application.compose)
     alias(libs.plugins.chaosknight.hilt)
+    alias(libs.plugins.chaosknight.android.application.firebase)
     alias(libs.plugins.baselineprofile)
     alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.room)

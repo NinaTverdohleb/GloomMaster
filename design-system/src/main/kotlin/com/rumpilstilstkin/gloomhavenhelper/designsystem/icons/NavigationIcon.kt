@@ -2,7 +2,9 @@ package com.rumpilstilstkin.gloomhavenhelper.designsystem.icons
 
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.R
 
-enum class NavigationIcon(override val resId: Int): GloomIcon {
+enum class NavigationIcon(
+    override val resId: Int,
+) : GloomIcon {
     Team(R.drawable.ic_team),
     Character(R.drawable.ic_characters),
     Shop(R.drawable.ic_shop),
@@ -10,5 +12,5 @@ enum class NavigationIcon(override val resId: Int): GloomIcon {
     CharacterGeneral(R.drawable.ic_ch_general),
     CharacterGoods(R.drawable.ic_ch_goods),
     CharacterPerks(R.drawable.ic_ch_percks),
-    Close(R.drawable.ic_close);
+    Close(R.drawable.ic_close),
 }

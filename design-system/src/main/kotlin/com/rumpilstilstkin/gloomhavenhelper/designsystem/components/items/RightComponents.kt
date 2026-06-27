@@ -30,32 +30,29 @@ import com.rumpilstilstkin.gloomhavenhelper.designsystem.icons.GloomIcon
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
 
 @Composable
-fun RightItemText(
-    text: String
-) = Text(
-    text = text,
-    style = MaterialTheme.typography.bodyMedium,
-    color = MaterialTheme.colorScheme.onSurfaceVariant
-)
+fun RightItemText(text: String) =
+    Text(
+        text = text,
+        style = MaterialTheme.typography.bodyMedium,
+        color = MaterialTheme.colorScheme.onSurfaceVariant,
+    )
 
 @Composable
-fun RightItemLabel(
-    text: String
-) = Text(
-    text = text,
-    style = MaterialTheme.typography.headlineMedium,
-    color = MaterialTheme.colorScheme.surfaceTint
-)
+fun RightItemLabel(text: String) =
+    Text(
+        text = text,
+        style = MaterialTheme.typography.headlineMedium,
+        color = MaterialTheme.colorScheme.surfaceTint,
+    )
 
 @Composable
-fun RightItemIcon(
-    icon: GloomIcon
-) = Icon(
-    painter = icon.painter(),
-    contentDescription = null,
-    modifier = Modifier.size(32.dp),
-    tint = MaterialTheme.colorScheme.onSurface,
-)
+fun RightItemIcon(icon: GloomIcon) =
+    Icon(
+        painter = icon.painter(),
+        contentDescription = null,
+        modifier = Modifier.size(32.dp),
+        tint = MaterialTheme.colorScheme.onSurface,
+    )
 
 @Composable
 fun RightItemChecker(
@@ -63,39 +60,39 @@ fun RightItemChecker(
     onCheckedChange: ((Boolean) -> Unit)?,
 ) = Checkbox(
     checked = checked,
-    colors = CheckboxDefaults.colors(
-        uncheckedColor = MaterialTheme.colorScheme.primary,
-    ),
+    colors =
+        CheckboxDefaults.colors(
+            uncheckedColor = MaterialTheme.colorScheme.primary,
+        ),
     onCheckedChange = onCheckedChange,
 )
 
 @Composable
-fun RightItemNumber(
-    number: String
-) = Box(
-    modifier =
-        Modifier
-            .size(40.dp)
-            .background(
-                color = MaterialTheme.colorScheme.secondary,
-                shape = CircleShape,
-            ),
-    contentAlignment = Alignment.Center,
-) {
-    Text(
-        modifier = Modifier,
-        style = MaterialTheme.typography.headlineSmall,
-        text = number,
-        textAlign = TextAlign.Center,
-        color = MaterialTheme.colorScheme.onSecondary,
-    )
-}
+fun RightItemNumber(number: String) =
+    Box(
+        modifier =
+            Modifier
+                .size(40.dp)
+                .background(
+                    color = MaterialTheme.colorScheme.secondary,
+                    shape = CircleShape,
+                ),
+        contentAlignment = Alignment.Center,
+    ) {
+        Text(
+            modifier = Modifier,
+            style = MaterialTheme.typography.headlineSmall,
+            text = number,
+            textAlign = TextAlign.Center,
+            color = MaterialTheme.colorScheme.onSecondary,
+        )
+    }
 
 @Composable
 fun CounterRightItem(
     value: Int,
     intRange: IntRange,
-    onValueChange: (Int) -> Unit
+    onValueChange: (Int) -> Unit,
 ) {
     Surface(
         shape = MaterialTheme.shapes.medium,
@@ -106,7 +103,7 @@ fun CounterRightItem(
             modifier = Modifier.padding(8.dp),
             value = value,
             intRange = intRange,
-            onValueChange = onValueChange
+            onValueChange = onValueChange,
         )
     }
 }
@@ -117,28 +114,28 @@ private fun GloomItemRightItemComponentsPreview() {
     GloomhavenMasterTheme {
         Column(
             verticalArrangement = Arrangement.spacedBy(16.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
+            horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             RightItemText(
-                text = "Some text"
+                text = "Some text",
             )
 
             RightItemIcon(
-                icon = AppIcon.Check
+                icon = AppIcon.Check,
             )
 
             RightItemChecker(
                 checked = true,
-                onCheckedChange = null
+                onCheckedChange = null,
             )
 
             RightItemChecker(
                 checked = false,
-                onCheckedChange = null
+                onCheckedChange = null,
             )
 
             RightItemNumber(
-                number = "5"
+                number = "5",
             )
 
             CounterRightItem(
@@ -148,7 +145,7 @@ private fun GloomItemRightItemComponentsPreview() {
             )
 
             RightItemLabel(
-                text = "150"
+                text = "150",
             )
         }
     }

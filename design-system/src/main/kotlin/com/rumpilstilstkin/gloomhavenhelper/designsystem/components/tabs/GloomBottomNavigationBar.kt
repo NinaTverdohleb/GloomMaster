@@ -32,15 +32,16 @@ fun GloomTopNavigationBar(
     val selectedIndex = items.indexOf(selectedItem)
     PrimaryTabRow(
         selectedTabIndex = selectedIndex,
-        modifier = Modifier
-            .fillMaxWidth(),
+        modifier =
+            Modifier
+                .fillMaxWidth(),
         containerColor = MaterialTheme.colorScheme.surfaceContainer,
         contentColor = MaterialTheme.colorScheme.onSurfaceVariant,
         indicator = {
             TabRowDefaults.PrimaryIndicator(
                 modifier = Modifier.tabIndicatorOffset(selectedIndex, matchContentSize = false),
                 width = Dp.Unspecified,
-                height = 1.dp
+                height = 1.dp,
             )
         },
     ) {
@@ -67,7 +68,6 @@ fun GloomTopNavigationBar(
         }
     }
 }
-
 
 @Composable
 fun GloomBottomNavigationBar(
@@ -118,7 +118,7 @@ fun CampaignEmptyStatePreview() {
     GloomhavenMasterTheme {
         Column(
             verticalArrangement = Arrangement.spacedBy(16.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
+            horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             GloomBottomNavigationBar(
                 items = SampleScreenTab.entries,
@@ -140,7 +140,8 @@ private enum class SampleScreenTab(
     override val icon: NavigationIcon,
 ) : NavItem {
     INFO("Tab 1", NavigationIcon.Team),
-    PROSPERITY("Tab 1", NavigationIcon.Team);
+    PROSPERITY("Tab 1", NavigationIcon.Team),
+    ;
 
     @Composable
     override fun getTitle(): String = title

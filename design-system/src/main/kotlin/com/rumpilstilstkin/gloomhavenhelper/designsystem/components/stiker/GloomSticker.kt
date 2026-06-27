@@ -21,7 +21,7 @@ import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterT
 
 enum class GloomStickerType {
     Top,
-    Bottom
+    Bottom,
 }
 
 @Composable
@@ -41,9 +41,9 @@ fun GloomStickerText(
         Text(
             text = text,
             color = textColor,
-            style = MaterialTheme.typography.bodySmall
+            style = MaterialTheme.typography.bodySmall,
         )
-    }
+    },
 )
 
 @Composable
@@ -54,16 +54,18 @@ fun GloomStickerContent(
     backgroundColor: Color = MaterialTheme.colorScheme.surfaceBright,
     onClick: (() -> Unit)? = null,
 ) {
-    val shape = when (type) {
-        GloomStickerType.Top -> RoundedCornerShape(topStart = 12.dp, topEnd = 12.dp)
-        GloomStickerType.Bottom -> RoundedCornerShape(bottomStart = 12.dp, bottomEnd = 12.dp)
-    }
+    val shape =
+        when (type) {
+            GloomStickerType.Top -> RoundedCornerShape(topStart = 12.dp, topEnd = 12.dp)
+            GloomStickerType.Bottom -> RoundedCornerShape(bottomStart = 12.dp, bottomEnd = 12.dp)
+        }
     Box(
-        modifier = modifier
-            .clip(shape)
-            .background(backgroundColor)
-            .then(if (onClick != null) Modifier.clickable { onClick() } else Modifier)
-            .padding(start = 16.dp, end = 16.dp, top = 4.dp, bottom = 8.dp),
+        modifier =
+            modifier
+                .clip(shape)
+                .background(backgroundColor)
+                .then(if (onClick != null) Modifier.clickable { onClick() } else Modifier)
+                .padding(start = 16.dp, end = 16.dp, top = 4.dp, bottom = 8.dp),
         contentAlignment = Alignment.Center,
     ) {
         body()
@@ -76,15 +78,15 @@ private fun GloomStickerTextPreview() {
     GloomhavenMasterTheme {
         Column(
             verticalArrangement = Arrangement.spacedBy(16.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
+            horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             GloomStickerText(
-                text = "Action"
+                text = "Action",
             )
 
             GloomStickerText(
                 type = GloomStickerType.Bottom,
-                text = "Action"
+                text = "Action",
             )
         }
     }

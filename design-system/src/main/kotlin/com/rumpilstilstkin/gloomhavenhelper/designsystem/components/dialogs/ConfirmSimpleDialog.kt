@@ -47,14 +47,15 @@ fun ConfirmationDeleteDialog(
 
         Row(
             modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.spacedBy(24.dp)
+            horizontalArrangement = Arrangement.spacedBy(24.dp),
         ) {
             // Кнопка Delete
             GloomOutlineButton(
                 text = stringResource(R.string.design_system_delete),
                 onClick = onDeleteConfirm,
-                modifier = Modifier
-                    .weight(1f),
+                modifier =
+                    Modifier
+                        .weight(1f),
                 isError = true,
                 icon = AppIcon.Delete,
             )
@@ -78,7 +79,7 @@ private fun ConfirmationDeleteDialogPreview() {
             title = "Delete something",
             description = "Are you sure?",
             onDeleteConfirm = {},
-            onClose = {}
+            onClose = {},
         )
     }
 }

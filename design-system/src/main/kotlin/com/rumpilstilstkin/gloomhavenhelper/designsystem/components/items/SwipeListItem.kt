@@ -34,7 +34,7 @@ import kotlin.math.roundToInt
 
 enum class DragAnchors {
     Close,
-    Open
+    Open,
 }
 
 object ActionWidth {
@@ -47,61 +47,64 @@ object ActionWidth {
 fun GloomSwipeableListItem(
     menuWidthDp: Dp = ActionWidth.OneIconAction,
     menuContent: @Composable () -> Unit,
-    item: @Composable () -> Unit
+    item: @Composable () -> Unit,
 ) {
     val density = LocalDensity.current
     val menuWidthPx = with(density) { menuWidthDp.toPx() }
 
-    val state = remember(menuWidthPx) {
-        AnchoredDraggableState(
-            initialValue = DragAnchors.Close,
-            anchors = DraggableAnchors {
-                DragAnchors.Close at 0f
-                DragAnchors.Open at -menuWidthPx
-            }
-        )
-    }
+    val state =
+        remember(menuWidthPx) {
+            AnchoredDraggableState(
+                initialValue = DragAnchors.Close,
+                anchors =
+                    DraggableAnchors {
+                        DragAnchors.Close at 0f
+                        DragAnchors.Open at -menuWidthPx
+                    },
+            )
+        }
 
     LaunchedEffect(menuWidthPx) {
         state.updateAnchors(
             DraggableAnchors {
                 DragAnchors.Close at 0f
                 DragAnchors.Open at -menuWidthPx
-            }
+            },
         )
     }
 
     Box(
-        modifier = Modifier
-            .fillMaxWidth()
-            .wrapContentHeight()
-            .height(IntrinsicSize.Max)
+        modifier =
+            Modifier
+                .fillMaxWidth()
+                .wrapContentHeight()
+                .height(IntrinsicSize.Max),
     ) {
         Row(
-            modifier = Modifier
-                .fillMaxHeight()
-                .width(menuWidthDp)
-                .padding(start = 12.dp)
-                .align(Alignment.CenterEnd),
-            horizontalArrangement = Arrangement.spacedBy(8.dp)
+            modifier =
+                Modifier
+                    .fillMaxHeight()
+                    .width(menuWidthDp)
+                    .padding(start = 12.dp)
+                    .align(Alignment.CenterEnd),
+            horizontalArrangement = Arrangement.spacedBy(8.dp),
         ) {
             menuContent()
         }
 
         Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .offset {
-                    val xOffset = state.offset.takeIf { !it.isNaN() } ?: 0f
-                    IntOffset(x = xOffset.roundToInt(), y = 0)
-                }
-                .anchoredDraggable(state, Orientation.Horizontal)
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .offset {
+                        val xOffset = state.offset.takeIf { !it.isNaN() } ?: 0f
+                        IntOffset(x = xOffset.roundToInt(), y = 0)
+                    }.anchoredDraggable(state, Orientation.Horizontal),
         ) {
             item()
         }
     }
 }
-
 
 @Preview
 @Composable
@@ -109,7 +112,7 @@ private fun GloomSwipeListListItemPreviewGloom() {
     GloomhavenMasterTheme {
         Column(
             verticalArrangement = Arrangement.spacedBy(16.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
+            horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             GloomSwipeableListItem(
                 menuWidthDp = ActionWidth.TwoIconAction,
@@ -118,13 +121,13 @@ private fun GloomSwipeListListItemPreviewGloom() {
                         modifier = Modifier.fillMaxHeight(),
                         icon = AppIcon.Delete,
                         isError = true,
-                        onClick = {}
+                        onClick = {},
                     )
                     GloomItemActionIcon(
                         modifier = Modifier.fillMaxHeight(),
                         icon = AppIcon.Buy,
                         isError = false,
-                        onClick = {}
+                        onClick = {},
                     )
                 },
                 item = {
@@ -134,9 +137,9 @@ private fun GloomSwipeListListItemPreviewGloom() {
                         description = "desctiption",
                         leftComponent = {
                             LeftItemImage(GoodIcon.SmallThing)
-                        }
+                        },
                     )
-                }
+                },
             )
         }
     }

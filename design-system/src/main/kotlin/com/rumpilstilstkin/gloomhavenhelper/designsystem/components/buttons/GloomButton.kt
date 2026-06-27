@@ -22,58 +22,60 @@ fun GloomButton(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     isError: Boolean = false,
-    enabled: Boolean = true
+    enabled: Boolean = true,
 ) {
-    val contentColor = if (isError) {
-        MaterialTheme.colorScheme.onError
-    } else {
-        MaterialTheme.colorScheme.onSurface
-    }
+    val contentColor =
+        if (isError) {
+            MaterialTheme.colorScheme.onError
+        } else {
+            MaterialTheme.colorScheme.onSurface
+        }
 
-    val containerColor = if (isError) {
-        MaterialTheme.colorScheme.error
-    } else {
-        MaterialTheme.colorScheme.surfaceBright
-    }
+    val containerColor =
+        if (isError) {
+            MaterialTheme.colorScheme.error
+        } else {
+            MaterialTheme.colorScheme.surfaceBright
+        }
     Button(
         onClick = onClick,
         modifier = modifier,
         enabled = enabled,
         shape = RoundedCornerShape(16.dp),
         border = BorderStroke(width = 1.dp, color = MaterialTheme.colorScheme.outline),
-        colors = ButtonDefaults.buttonColors(
-            containerColor = containerColor,
-            contentColor = contentColor,
-            disabledContainerColor = containerColor.copy(alpha = 0.5f),
-            disabledContentColor = contentColor.copy(alpha = 0.38f)
-        ),
+        colors =
+            ButtonDefaults.buttonColors(
+                containerColor = containerColor,
+                contentColor = contentColor,
+                disabledContainerColor = containerColor.copy(alpha = 0.5f),
+                disabledContentColor = contentColor.copy(alpha = 0.38f),
+            ),
         contentPadding = PaddingValues(horizontal = 8.dp, vertical = 10.dp),
     ) {
         Text(
             text = text,
-            style = MaterialTheme.typography.titleLarge
+            style = MaterialTheme.typography.titleLarge,
         )
     }
 }
 
 @Preview
 @Composable
-private fun
-        GloomButtonPreview() {
+private fun GloomButtonPreview() {
     GloomhavenMasterTheme {
         Column(
             verticalArrangement = Arrangement.spacedBy(16.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
+            horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             GloomButton(
                 text = "Action",
                 isError = false,
-                onClick = {}
+                onClick = {},
             )
             GloomButton(
                 text = "Action",
                 isError = true,
-                onClick = {}
+                onClick = {},
             )
         }
     }

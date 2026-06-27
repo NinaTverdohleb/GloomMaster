@@ -21,7 +21,7 @@ fun GloomOutlinedTextSearchField(
     value: String,
     onValueChange: (String) -> Unit,
     placeholder: String,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) = OutlinedTextField(
     value = value,
     onValueChange = onValueChange,
@@ -41,13 +41,14 @@ fun GloomOutlinedTextSearchField(
         )
     },
     shape = RoundedCornerShape(12.dp),
-    colors = OutlinedTextFieldDefaults.colors(
-        focusedBorderColor = MaterialTheme.colorScheme.outline,
-        unfocusedBorderColor = MaterialTheme.colorScheme.outline,
-        focusedPlaceholderColor = MaterialTheme.colorScheme.outlineVariant,
-        unfocusedPlaceholderColor = MaterialTheme.colorScheme.outlineVariant,
-    ),
-    singleLine = true
+    colors =
+        OutlinedTextFieldDefaults.colors(
+            focusedBorderColor = MaterialTheme.colorScheme.outline,
+            unfocusedBorderColor = MaterialTheme.colorScheme.outline,
+            focusedPlaceholderColor = MaterialTheme.colorScheme.outlineVariant,
+            unfocusedPlaceholderColor = MaterialTheme.colorScheme.outlineVariant,
+        ),
+    singleLine = true,
 )
 
 @Preview
@@ -58,7 +59,7 @@ private fun GloomOutlinedTextSearchFieldPreview() {
             GloomOutlinedTextSearchField(
                 value = "",
                 placeholder = "label",
-                onValueChange = {}
+                onValueChange = {},
             )
         }
     }

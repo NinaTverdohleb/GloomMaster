@@ -16,7 +16,10 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.R
 
-enum class MagicIcon(@param:DrawableRes override val resId: Int, val tintColor: Color) : GloomIcon {
+enum class MagicIcon(
+    @param:DrawableRes override val resId: Int,
+    val tintColor: Color,
+) : GloomIcon {
     Sun(R.drawable.ic_magic_sun, Color(0xFFC29240)),
     Moon(R.drawable.ic_magic_moon, Color(0xFF39596D)),
     Fire(R.drawable.ic_magic_fire, Color(0xFF903E3E)),
@@ -29,15 +32,16 @@ enum class MagicIcon(@param:DrawableRes override val resId: Int, val tintColor: 
     SpendAir(R.drawable.ic_magic_air, Color.Unspecified),
     SpendFrost(R.drawable.ic_magic_frost, Color.Unspecified),
     SpendEarth(R.drawable.ic_magic_earth, Color.Unspecified),
-    SpendAny(R.drawable.ic_magic_any_spend, Color.Unspecified);
+    SpendAny(R.drawable.ic_magic_any_spend, Color.Unspecified),
+    ;
 
     @Composable
     override fun painter(): Painter =
-        when(this){
+        when (this) {
             SpendSun -> crossedOutIconPainter(Sun)
-            SpendMoon ->crossedOutIconPainter(Moon)
-            SpendAir ->crossedOutIconPainter(Air)
-            SpendFrost ->crossedOutIconPainter(Frost)
+            SpendMoon -> crossedOutIconPainter(Moon)
+            SpendAir -> crossedOutIconPainter(Air)
+            SpendFrost -> crossedOutIconPainter(Frost)
             SpendEarth -> crossedOutIconPainter(Earth)
             SpendFire -> crossedOutIconPainter(Fire)
             else -> super.painter()
@@ -48,7 +52,7 @@ enum class MagicIcon(@param:DrawableRes override val resId: Int, val tintColor: 
 private fun crossedOutIconPainter(
     icon: MagicIcon,
     crossColor: Color = Color(0xFF811111),
-    strokeWidthDp: Dp = 2.dp
+    strokeWidthDp: Dp = 2.dp,
 ): Painter {
     val basePainter = painterResource(id = icon.resId)
     val density = LocalDensity.current
@@ -62,7 +66,7 @@ private fun crossedOutIconPainter(
                 with(basePainter) {
                     draw(
                         size = size,
-                        colorFilter = ColorFilter.tint(icon.tintColor)
+                        colorFilter = ColorFilter.tint(icon.tintColor),
                     )
                 }
                 drawLine(
@@ -70,14 +74,14 @@ private fun crossedOutIconPainter(
                     start = Offset(0f, 0f),
                     end = Offset(size.width, size.height),
                     strokeWidth = strokeWidthPx,
-                    cap = StrokeCap.Round
+                    cap = StrokeCap.Round,
                 )
                 drawLine(
                     color = crossColor,
                     start = Offset(size.width, 0f),
                     end = Offset(0f, size.height),
                     strokeWidth = strokeWidthPx,
-                    cap = StrokeCap.Round
+                    cap = StrokeCap.Round,
                 )
             }
         }
