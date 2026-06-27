@@ -27,7 +27,7 @@ fun GoodItem(
     item = {
         GloomListFilledItem(
             modifier = modifier,
-            title = "#${good.number} ${good.name}",
+            title = stringResource(R.string.good_title_format, good.number, good.name),
             description = stringResource(R.string.gold_format, good.cost),
             active = active,
             onClick = { clickItem(good) },

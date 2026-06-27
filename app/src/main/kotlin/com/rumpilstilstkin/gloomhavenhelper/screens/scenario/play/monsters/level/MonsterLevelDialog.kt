@@ -50,7 +50,7 @@ fun MonsterLevelDialog(
             horizontalArrangement = Arrangement.SpaceBetween,
         ) {
             Text(
-                text = "Level",
+                text = stringResource(R.string.level_label),
                 style = MaterialTheme.typography.titleMedium,
                 color = MaterialTheme.colorScheme.onSurface,
             )

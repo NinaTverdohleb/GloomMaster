@@ -11,10 +11,12 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.rumpilstilstkin.gloomhavenhelper.R
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.text.image.TextWithImagesByCode
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.icons.game.GameIcon
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.icons.game.GameIcon.Companion.toGameIcon
@@ -68,7 +70,7 @@ fun ActionMonsterEffect(
 private fun ActionEffectImage(icon: GameIcon) {
     Icon(
         painter = icon.image.painter(),
-        contentDescription = "Icon",
+        contentDescription = stringResource(icon.titleRes),
         tint = icon.color,
         modifier = Modifier.padding(2.dp),
     )

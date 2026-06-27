@@ -118,7 +118,7 @@ private fun Life(
                 isSpecial = isSpecial,
             )
             Text(
-                text = "Unit",
+                text = stringResource(R.string.unit_label),
                 style = MaterialTheme.typography.titleLarge,
                 color = MaterialTheme.colorScheme.onSurface,
                 modifier = Modifier.weight(1f),
@@ -225,13 +225,13 @@ private fun TopStickers(
         ) {
             if (isNew) {
                 GloomStickerText(
-                    text = "New",
+                    text = stringResource(R.string.unit_new),
                     backgroundColor = MaterialTheme.colorScheme.primary,
                     textColor = MaterialTheme.colorScheme.surfaceVariant,
                 )
             }
             GloomStickerText(
-                text = "Level $level",
+                text = stringResource(R.string.unit_level_format, level),
                 onClick = onLevel,
             )
         }
@@ -263,7 +263,7 @@ private fun BottomStickers(
                     horizontalArrangement = Arrangement.spacedBy(8.dp),
                 ) {
                     Text(
-                        text = "Immunity",
+                        text = stringResource(R.string.immunity_label),
                         color = MaterialTheme.colorScheme.outline,
                         style = MaterialTheme.typography.bodySmall,
                     )

@@ -9,6 +9,7 @@ import com.rumpilstilstkin.gloomhavenhelper.designsystem.icons.EffectIcon
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.icons.GloomIcon
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.icons.MagicIcon
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.icons.ModifierIcon
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.onSurfaceVariant
 
 enum class GameIcon(
     val textCode: IconCode,
@@ -79,151 +80,151 @@ enum class GameIcon(
     AREA_4(
         textCode = IconCode.AREA_4,
         titleRes = R.string.design_system_icon_area,
-        image = AreaIcon.AREA_4,
+        image = AreaIcon.Area4,
         color = Color.Unspecified
     ),
     AREA_5(
         textCode = IconCode.AREA_5,
         titleRes = R.string.design_system_icon_area,
-        image = AreaIcon.AREA_5,
+        image = AreaIcon.Area5,
         color = Color.Unspecified
     ),
     AREA_6(
         textCode = IconCode.AREA_6,
         titleRes = R.string.design_system_icon_area,
-        image = AreaIcon.AREA_6,
+        image = AreaIcon.Area6,
         color = Color.Unspecified
     ),
     PLUS_1(
         textCode = IconCode.PLUS1,
         titleRes = R.string.design_system_icon_plus_1,
-        image = ModifierIcon.PLUS_1,
+        image = ModifierIcon.Plus1,
         color = Color.Unspecified
     ),
     PLUS_2(
         textCode = IconCode.PLUS2,
         titleRes = R.string.design_system_icon_plus_2,
-        image = ModifierIcon.PLUS_2,
+        image = ModifierIcon.Plus2,
         color = Color.Unspecified
     ),
     PLUS_3(
         textCode = IconCode.PLUS3,
         titleRes = R.string.design_system_icon_plus_3,
-        image = ModifierIcon.PLUS_3,
+        image = ModifierIcon.Plus3,
         color = Color.Unspecified
     ),
     PLUS_4(
         textCode = IconCode.PLUS4,
         titleRes = R.string.design_system_icon_plus_4,
-        image = ModifierIcon.PLUS_4,
+        image = ModifierIcon.Plus4,
         color = Color.Unspecified
     ),
     PLUS_0(
         textCode = IconCode.ZERO,
         titleRes = R.string.design_system_icon_plus_0,
-        image = ModifierIcon.PLUS_0,
+        image = ModifierIcon.Plus0,
         color = Color.Unspecified
     ),
     MINUS_1(
         textCode = IconCode.MINUS1,
         titleRes = R.string.design_system_icon_minus_1,
-        image = ModifierIcon.MINUS_1,
+        image = ModifierIcon.Minus1,
         color = Color.Unspecified
     ),
     MINUS_2(
         textCode = IconCode.MINUS2,
         titleRes = R.string.design_system_icon_minus_2,
-        image = ModifierIcon.MINUS_2,
+        image = ModifierIcon.Minus2,
         color = Color.Unspecified
     ),
     NEXT(
         textCode = IconCode.NEXT,
         titleRes = R.string.design_system_icon_next,
-        image = EffectIcon.NEXT,
+        image = EffectIcon.Next,
         color = Color(0xFF407538)
     ),
     PUSH(
         textCode = IconCode.PUSH,
         titleRes = R.string.design_system_icon_push,
-        image = EffectIcon.PUSH,
+        image = EffectIcon.Push,
         color = Color(0xFF585151)
     ),
     PIERCE(
         textCode = IconCode.PIERCE,
         titleRes = R.string.design_system_icon_pierce,
-        image = EffectIcon.PIERCE,
+        image = EffectIcon.Pierce,
         color = Color(0xFFC29240)
     ),
     STUN(
         textCode = IconCode.STUN,
         titleRes = R.string.design_system_icon_stun,
-        image = EffectIcon.STUN,
+        image = EffectIcon.Stun,
         color = Color(0xFF2F4C81)
     ),
     DISARM(
         textCode = IconCode.DISARM,
         titleRes = R.string.design_system_icon_disarm,
-        image = EffectIcon.DISARM,
+        image = EffectIcon.Disarm,
         color = Color(0xFF527A72)
     ),
     CONFUSE(
         textCode = IconCode.CONFUSE,
         titleRes = R.string.design_system_icon_confuse,
-        image = EffectIcon.MUDDLE,
+        image = EffectIcon.Muddle,
         color = Color(0xFF70574A)
     ),
     TARGET(
         textCode = IconCode.TARGET,
         titleRes = R.string.design_system_icon_target,
-        image = EffectIcon.TARGET,
+        image = EffectIcon.Target,
         color = Color(0xFFA43737)
     ),
     WOUND(
         textCode = IconCode.WOUND,
         titleRes = R.string.design_system_icon_wound,
-        image = EffectIcon.WOUND,
+        image = EffectIcon.Wound,
         color = Color(0xFFDC7331)
     ),
     PULL(
         textCode = IconCode.PULL,
         titleRes = R.string.design_system_icon_pull,
-        image = EffectIcon.PULL,
+        image = EffectIcon.Pull,
         color = Color(0xFF585151)
     ),
     IMMOBILIZE(
         textCode = IconCode.PARALYZE,
         titleRes = R.string.design_system_icon_immobilize,
-        image = EffectIcon.IMMOBILIZE,
+        image = EffectIcon.Immobilize,
         color = Color(0xFF903E3E),
     ),
     POISON(
         textCode = IconCode.POISON,
         titleRes = R.string.design_system_icon_poison,
-        image = EffectIcon.POISON,
+        image = EffectIcon.Poison,
         color = Color(0xFF6A7B57)
     ),
     CURSE(
         textCode = IconCode.CURSE,
         titleRes = R.string.design_system_icon_curse,
-        image = EffectIcon.CURSE,
+        image = EffectIcon.Curse,
         color = Color(0xFF7D3194)
     ),
     INVISIBILITY(
         textCode = IconCode.INVISIBILITY,
         titleRes = R.string.design_system_icon_invisibility,
-        image = EffectIcon.INVISIBLE,
+        image = EffectIcon.Invisible,
         color = Color(0xFF111113),
     ),
     BLESS(
         textCode = IconCode.BLESS,
         titleRes = R.string.design_system_icon_bless,
-        image = EffectIcon.BLESS,
+        image = EffectIcon.Bless,
         color = Color(0xFFC49D27)
     ),
     STRENGTH(
         textCode = IconCode.STRENGTH,
         titleRes = R.string.design_system_icon_strength,
-        image = EffectIcon.STRENGTHEN,
+        image = EffectIcon.Strengthen,
         color = Color(0xFF3B9FC6)
     ),
     RETALIATE(
@@ -242,30 +243,30 @@ enum class GameIcon(
         textCode = IconCode.MOVE,
         titleRes = R.string.design_system_icon_move,
         image = ActionIcon.Move,
-        color = Color.White
+        color = onSurfaceVariant
     ),
     SHIELD(
         textCode = IconCode.SHIELD,
         titleRes = R.string.design_system_icon_shield,
         image = ActionIcon.Shield,
-        color = Color.White
+        color = onSurfaceVariant
     ),
     HEAL(
         textCode = IconCode.HEAL,
         titleRes = R.string.design_system_icon_heal,
         image = ActionIcon.Heal,
-        color = Color.White
+        color = onSurfaceVariant
     ),
     ATTACK(
         textCode = IconCode.ATTACK,
         titleRes = R.string.design_system_icon_attack,
         image = ActionIcon.Attack,
-        color = Color.White
+        color = onSurfaceVariant
     ),
     AREA_7(
         textCode = IconCode.AREA_7,
         titleRes = R.string.design_system_icon_area,
-        image = AreaIcon.AREA_7,
+        image = AreaIcon.Area7,
         color = Color.Unspecified
     ),
     SPEND_SUN(
@@ -307,38 +308,38 @@ enum class GameIcon(
     AREA_8(
         textCode = IconCode.AREA_8,
         titleRes = R.string.design_system_icon_area,
-        image = AreaIcon.AREA_8,
+        image = AreaIcon.Area8,
         color = Color.Unspecified
     ),
     AREA_9(
         textCode = IconCode.AREA_9,
         titleRes = R.string.design_system_icon_area,
-        image = AreaIcon.AREA_9,
+        image = AreaIcon.Area9,
         color = Color.Unspecified
     ),
     AREA_10(
         textCode = IconCode.AREA_10,
         titleRes = R.string.design_system_icon_area,
-        image = AreaIcon.AREA_10,
+        image = AreaIcon.Area10,
         color = Color.Unspecified
     ),
     AREA_11(
         textCode = IconCode.AREA_11,
         titleRes = R.string.design_system_icon_area,
-        image = AreaIcon.AREA_11,
+        image = AreaIcon.Area11,
         color = Color.Unspecified
     ),
     AREA_12(
         textCode = IconCode.AREA_12,
         titleRes = R.string.design_system_icon_area,
-        image = AreaIcon.AREA_12,
+        image = AreaIcon.Area12,
         color = Color.Unspecified
     ),
     LOOT(
         textCode = IconCode.LOOT,
         titleRes = R.string.design_system_icon_loot,
         image = ActionIcon.Loot,
-        color = Color.White
+        color = onSurfaceVariant
     ),
     SPEND_ANY(
         textCode = IconCode.SPEND_ANY,
@@ -349,13 +350,13 @@ enum class GameIcon(
     AREA_13(
         textCode = IconCode.AREA_13,
         titleRes = R.string.design_system_icon_area,
-        image = AreaIcon.AREA_13,
+        image = AreaIcon.Area13,
         color = Color.Unspecified
     ),
     REGENERATE(
         textCode = IconCode.REGENERATE,
         titleRes = R.string.design_system_icon_regenerate,
-        image = EffectIcon.REGENERATE,
+        image = EffectIcon.Regenerate,
         color = Color(0xFFC23BC6),
     ),
     ;

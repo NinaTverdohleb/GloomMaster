@@ -34,10 +34,12 @@ import androidx.compose.ui.composed
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.onPlaced
 import androidx.compose.ui.layout.positionInParent
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.round
+import com.rumpilstilstkin.gloomhavenhelper.R
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.text.GloomHeader
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterStatType
@@ -86,7 +88,7 @@ fun UnitSelector(
         }
 
         if (units.size > 1) {
-            GloomHeader(text = "Choose unit")
+            GloomHeader(text = stringResource(R.string.choose_unit))
             FlowRow(
                 modifier = Modifier.fillMaxWidth(),
                 maxItemsInEachRow = columns,
