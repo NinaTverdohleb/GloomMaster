@@ -16,7 +16,7 @@ class MagicChargeStateTest {
 
         // Then
         Magic.entries.forEach { magic ->
-            expectThat(state.charges.getValue(magic)).isEqualTo(0)
+            expectThat(state.charges.getValue(magic)).isEqualTo(ChargeLevel.Zero)
         }
     }
 
@@ -29,9 +29,9 @@ class MagicChargeStateTest {
         val state = MagicChargeState.restore(partial)
 
         // Then
-        expectThat(state.charges.getValue(Magic.FIRE)).isEqualTo(2)
+        expectThat(state.charges.getValue(Magic.FIRE)).isEqualTo(ChargeLevel.Two)
         Magic.entries.filter { it != Magic.FIRE }.forEach { magic ->
-            expectThat(state.charges.getValue(magic)).isEqualTo(0)
+            expectThat(state.charges.getValue(magic)).isEqualTo(ChargeLevel.Zero)
         }
     }
 
@@ -42,7 +42,7 @@ class MagicChargeStateTest {
 
         // Then
         Magic.entries.forEach { magic ->
-            expectThat(state.charges.getValue(magic)).isEqualTo(0)
+            expectThat(state.charges.getValue(magic)).isEqualTo(ChargeLevel.Zero)
         }
     }
 
@@ -55,7 +55,7 @@ class MagicChargeStateTest {
         val next = state.toggle(Magic.FIRE)
 
         // Then
-        expectThat(next.charges.getValue(Magic.FIRE)).isEqualTo(2)
+        expectThat(next.charges.getValue(Magic.FIRE)).isEqualTo(ChargeLevel.Two)
     }
 
     @Test
@@ -67,7 +67,7 @@ class MagicChargeStateTest {
         val next = state.toggle(Magic.FIRE)
 
         // Then
-        expectThat(next.charges.getValue(Magic.FIRE)).isEqualTo(1)
+        expectThat(next.charges.getValue(Magic.FIRE)).isEqualTo(ChargeLevel.One)
     }
 
     @Test
@@ -79,7 +79,7 @@ class MagicChargeStateTest {
         val next = state.toggle(Magic.FIRE)
 
         // Then
-        expectThat(next.charges.getValue(Magic.FIRE)).isEqualTo(0)
+        expectThat(next.charges.getValue(Magic.FIRE)).isEqualTo(ChargeLevel.Zero)
     }
 
     @Test
@@ -91,8 +91,8 @@ class MagicChargeStateTest {
         val next = state.toggle(Magic.AIR)
 
         // Then
-        expectThat(next.charges.getValue(Magic.AIR)).isEqualTo(2)
-        expectThat(next.charges.getValue(Magic.FIRE)).isEqualTo(1)
+        expectThat(next.charges.getValue(Magic.AIR)).isEqualTo(ChargeLevel.Two)
+        expectThat(next.charges.getValue(Magic.FIRE)).isEqualTo(ChargeLevel.One)
     }
 
     @Test
@@ -116,9 +116,9 @@ class MagicChargeStateTest {
         val next = state.decreaseAll()
 
         // Then
-        expectThat(next.charges.getValue(Magic.FIRE)).isEqualTo(1)
-        expectThat(next.charges.getValue(Magic.AIR)).isEqualTo(0)
-        expectThat(next.charges.getValue(Magic.FROST)).isEqualTo(0)
+        expectThat(next.charges.getValue(Magic.FIRE)).isEqualTo(ChargeLevel.One)
+        expectThat(next.charges.getValue(Magic.AIR)).isEqualTo(ChargeLevel.Zero)
+        expectThat(next.charges.getValue(Magic.FROST)).isEqualTo(ChargeLevel.Zero)
     }
 
     @Test

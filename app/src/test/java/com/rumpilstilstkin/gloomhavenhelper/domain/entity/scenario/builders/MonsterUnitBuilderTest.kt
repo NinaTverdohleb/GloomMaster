@@ -208,8 +208,8 @@ class MonsterUnitBuilderTest {
     @Test
     fun `given stateUnit when build then passthrough fields are carried over`() = runTest(UnconfinedTestDispatcher()) {
         // Given
-        val effects = listOf(MonsterStatType.POISON, MonsterStatType.WOUND)
-        val immunity = listOf(MonsterStatType.STUN)
+        val effects = setOf(MonsterStatType.POISON, MonsterStatType.WOUND)
+        val immunity = setOf(MonsterStatType.STUN)
         val base = monster(slug = "brute", level = 2, immunity = immunity)
         val stateUnit = stateUnit(
             number = 7,
@@ -244,7 +244,7 @@ class MonsterUnitBuilderTest {
         eliteStats: List<MonsterAction> = emptyList(),
         level: Int = 1,
         lifeMultiple: Boolean = false,
-        immunity: List<MonsterStatType> = emptyList(),
+        immunity: Set<MonsterStatType> = emptySet(),
         deckName: String = "deck",
         cards: List<MonsterCard> = emptyList(),
         isBoss: Boolean = false,
@@ -271,7 +271,7 @@ class MonsterUnitBuilderTest {
         maxLife: Int,
         level: Int,
         isElite: Boolean,
-        effects: List<MonsterStatType> = emptyList(),
+        effects: Set<MonsterStatType> = emptySet(),
         isNew: Boolean = true,
     ) = ScenarioGameStateMonsterUnit(
         number = number,

@@ -1,7 +1,7 @@
 package com.rumpilstilstkin.gloomhavenhelper.domain.entity.scenario
 
-import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterStatType
 import kotlinx.collections.immutable.persistentListOf
+import kotlinx.collections.immutable.persistentSetOf
 import org.junit.Test
 import strikt.api.expectThat
 import strikt.assertions.containsExactly
@@ -113,8 +113,8 @@ class ScenarioBattleStateTest {
         maxLife = 10,
         stats = persistentListOf(),
         isSpecial = false,
-        effects = persistentListOf(),
-        immunity = persistentListOf<MonsterStatType>(),
+        effects = persistentSetOf(),
+        immunity = persistentSetOf(),
         level = 1,
         isNew = false,
         lifeMultiple = false

@@ -1,6 +1,7 @@
 package com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario.play
 
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.Magic
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.scenario.ChargeLevel
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.scenario.MagicChargeState
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.scenario.MonsterDeckState
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.scenario.ScenarioBattleState
@@ -20,7 +21,7 @@ class ToggleMagicChargeUseCaseTest {
         val result = sut(state, Magic.FIRE)
 
         // Then
-        expectThat(result.magicState.charges[Magic.FIRE]).isEqualTo(2)
+        expectThat(result.magicState.charges[Magic.FIRE]).isEqualTo(ChargeLevel.Two)
     }
 
     @Test
@@ -32,7 +33,7 @@ class ToggleMagicChargeUseCaseTest {
         val result = sut(state, Magic.FIRE)
 
         // Then
-        expectThat(result.magicState.charges[Magic.FIRE]).isEqualTo(1)
+        expectThat(result.magicState.charges[Magic.FIRE]).isEqualTo(ChargeLevel.One)
     }
 
     @Test
@@ -48,7 +49,7 @@ class ToggleMagicChargeUseCaseTest {
         val result = sut(state, Magic.FIRE)
 
         // Then
-        expectThat(result.magicState.charges[Magic.FIRE]).isEqualTo(0)
+        expectThat(result.magicState.charges[Magic.FIRE]).isEqualTo(ChargeLevel.Zero)
     }
 
     private fun baseState() =

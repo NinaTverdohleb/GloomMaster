@@ -41,7 +41,7 @@ class GetQuestsFlowUseCaseTest {
 
     private fun quest(id: String) =
         CharacterPersonalQuest(
-            questNumber = id,
+            questId = id,
             title = "title-$id",
             descriptions = "desc-$id",
             reward = QuestReward(classType = CharacterClassType.Brute, alternativeReward = ""),

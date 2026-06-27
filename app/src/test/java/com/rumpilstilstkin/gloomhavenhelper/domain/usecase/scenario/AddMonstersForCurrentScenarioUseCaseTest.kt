@@ -53,7 +53,7 @@ class AddMonstersForCurrentScenarioUseCaseTest {
                         MonsterCard(deckName = "banditDeck", cardId = 11, actions = emptyList(), initiative = 2),
                     ),
                 isBoss = false,
-                immunity = emptyList(),
+                immunity = emptySet(),
                 isFly = false,
                 level = 0,
                 lifeMultiple = false,

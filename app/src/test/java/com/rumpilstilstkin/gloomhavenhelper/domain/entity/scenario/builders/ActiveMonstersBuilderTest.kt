@@ -39,7 +39,7 @@ class ActiveMonstersBuilderTest {
             currentLife = 10,
             level = 1,
             isElite = false,
-            effects = emptyList(),
+            effects = emptySet(),
             isNew = true,
             maxLife = 10,
         )
@@ -167,7 +167,7 @@ class ActiveMonstersBuilderTest {
         deckName = deckName,
         cards = cards,
         isBoss = isBoss,
-        immunity = emptyList(),
+        immunity = emptySet(),
         isFly = isFly,
         level = 1,
         lifeMultiple = false,

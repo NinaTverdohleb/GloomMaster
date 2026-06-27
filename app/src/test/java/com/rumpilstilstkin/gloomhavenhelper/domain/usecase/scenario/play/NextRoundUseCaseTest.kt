@@ -3,6 +3,7 @@ package com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario.play
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.Magic
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.Monster
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterCard
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.scenario.ChargeLevel
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.scenario.MagicChargeState
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.scenario.MonsterDeckState
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.scenario.MonsterItem
@@ -101,7 +102,7 @@ class NextRoundUseCaseTest {
         val result = sut(state)
 
         // Then
-        expectThat(result.magicState.charges[Magic.FIRE]).isEqualTo(1)
+        expectThat(result.magicState.charges[Magic.FIRE]).isEqualTo(ChargeLevel.One)
     }
 
     private fun baseState(monsters: Map<String, Monster> = emptyMap()) =
@@ -132,7 +133,7 @@ class NextRoundUseCaseTest {
         deckName = deckName,
         cards = emptyList(),
         isBoss = false,
-        immunity = emptyList(),
+        immunity = emptySet(),
         isFly = false,
         level = 1,
         lifeMultiple = false,

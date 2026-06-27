@@ -11,6 +11,7 @@ import com.rumpilstilstkin.gloomhavenhelper.bd.entity.MonsterWithNameBd
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.ScenarioBd
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterAction
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterCardAction
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterName
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterStatType
 import io.mockk.coEvery
 import io.mockk.coVerify
@@ -135,11 +136,20 @@ class MonsterRepositoryTest {
         )
 
         // When
-        val map = sut.getMonstersForPacks(packs = listOf("MAIN"), locale = "ru")
+        val result = sut.getMonstersForPacks(packs = listOf("MAIN"), locale = "ru")
 
+        val expected = listOf(
+            MonsterName(
+                slug = "bandit-guard",
+                name = "Bandit Guard"
+            ),
+            MonsterName(
+                slug = "city-archer",
+                name = "City Archer"
+            )
+        )
         // Then
-        expectThat(map["bandit-guard"]).isEqualTo("Bandit Guard")
-        expectThat(map["city-archer"]).isEqualTo("City Archer")
+        expectThat(result).isEqualTo(expected)
     }
 
     @Test

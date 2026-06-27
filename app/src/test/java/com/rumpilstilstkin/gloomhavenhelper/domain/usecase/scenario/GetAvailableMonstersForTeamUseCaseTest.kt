@@ -7,6 +7,7 @@ import com.rumpilstilstkin.gloomhavenhelper.data.TeamRepository
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.PackType
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.ScenarioGameState
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.ShortTeamInfo
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterName
 import io.mockk.coEvery
 import io.mockk.every
 import io.mockk.mockk
@@ -27,56 +28,58 @@ class GetAvailableMonstersForTeamUseCaseTest {
     private val localeRepository: LocaleRepository = mockk()
 
     @Test
-    fun `given team and active scenario when invoked then excludes scenario monsters`() = runTest(UnconfinedTestDispatcher()) {
-        // Given
-        val team = ShortTeamInfo.fixture(teamId = 7, packs = listOf(PackType.MAIN))
-        val state =
-            ScenarioGameState(
-                level = 1,
-                scenarioNumber = 1,
-                monsterSlugs = listOf("excluded"),
-                round = 0,
-                availableCards = emptyList(),
-                activeMonsters = emptyList(),
-                magicCharges = emptyList(),
-            )
-        every { teamRepository.currentTeam } returns flowOf(team)
-        coEvery { localeRepository.getCurrentLocale() } returns "en"
-        coEvery { scenarioGameStateRepository.get() } returns state
-        coEvery {
-            monsterRepository.getMonstersForPacks(packs = listOf("MAIN"), locale = "en")
-        } returns mapOf("excluded" to "Excluded", "bandit" to "Bandit")
-        val sut =
-            GetAvailableMonstersForTeamUseCase(
-                teamRepository,
-                monsterRepository,
-                scenarioGameStateRepository,
-                localeRepository,
-            )
+    fun `given team and active scenario when invoked then excludes scenario monsters`() =
+        runTest(UnconfinedTestDispatcher()) {
+            // Given
+            val team = ShortTeamInfo.fixture(teamId = 7, packs = listOf(PackType.MAIN))
+            val state =
+                ScenarioGameState(
+                    level = 1,
+                    scenarioNumber = 1,
+                    monsterSlugs = listOf("excluded"),
+                    round = 0,
+                    availableCards = emptyList(),
+                    activeMonsters = emptyList(),
+                    magicCharges = emptyList(),
+                )
+            every { teamRepository.currentTeam } returns flowOf(team)
+            coEvery { localeRepository.getCurrentLocale() } returns "en"
+            coEvery { scenarioGameStateRepository.get() } returns state
+            coEvery {
+                monsterRepository.getMonstersForPacks(packs = listOf("MAIN"), locale = "en")
+            } returns listOf(MonsterName("excluded", "Excluded"), MonsterName("bandit", "Bandit"))
+            val sut =
+                GetAvailableMonstersForTeamUseCase(
+                    teamRepository,
+                    monsterRepository,
+                    scenarioGameStateRepository,
+                    localeRepository,
+                )
 
-        // When
-        val result = sut()
+            // When
+            val result = sut()
 
-        // Then
-        expectThat(result).isEqualTo(mapOf("bandit" to "Bandit"))
-    }
+            // Then
+            expectThat(result).isEqualTo(listOf(MonsterName("bandit","Bandit")))
+        }
 
     @Test
-    fun `given null current team when invoked then returns empty map`() = runTest(UnconfinedTestDispatcher()) {
-        // Given
-        every { teamRepository.currentTeam } returns flowOf(null)
-        val sut =
-            GetAvailableMonstersForTeamUseCase(
-                teamRepository,
-                monsterRepository,
-                scenarioGameStateRepository,
-                localeRepository,
-            )
+    fun `given null current team when invoked then returns empty map`() =
+        runTest(UnconfinedTestDispatcher()) {
+            // Given
+            every { teamRepository.currentTeam } returns flowOf(null)
+            val sut =
+                GetAvailableMonstersForTeamUseCase(
+                    teamRepository,
+                    monsterRepository,
+                    scenarioGameStateRepository,
+                    localeRepository,
+                )
 
-        // When
-        val result = sut()
+            // When
+            val result = sut()
 
-        // Then
-        expectThat(result).isEmpty()
-    }
+            // Then
+            expectThat(result).isEmpty()
+        }
 }
