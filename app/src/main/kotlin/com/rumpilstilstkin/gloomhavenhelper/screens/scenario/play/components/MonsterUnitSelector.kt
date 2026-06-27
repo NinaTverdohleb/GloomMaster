@@ -42,12 +42,9 @@ import androidx.compose.ui.unit.round
 import com.rumpilstilstkin.gloomhavenhelper.R
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.text.GloomHeader
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
-import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterStatType
-import com.rumpilstilstkin.gloomhavenhelper.domain.entity.scenario.MonsterUnit
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.state.UnitCompact
 import kotlinx.collections.immutable.ImmutableSet
 import kotlinx.collections.immutable.persistentSetOf
-import kotlinx.collections.immutable.toPersistentSet
 import kotlinx.coroutines.launch
 
 private val CIRCLE_SIZE = 56.dp
@@ -60,6 +57,7 @@ fun UnitSelector(
     modifier: Modifier = Modifier,
     columns: Int = 10,
     initiallyOpenNumber: Int? = units.firstOrNull()?.number,
+    onSelect: (UnitCompact) -> Unit
 ) {
     var selectedNumber by remember {
         mutableStateOf(initiallyOpenNumber)
@@ -93,7 +91,10 @@ fun UnitSelector(
                         unit = unit,
                         selected = unit == selected,
                         modifier = Modifier.animatePlacement(),
-                        onClick = { selectedNumber = unit.number },
+                        onClick = {
+                            onSelect(unit)
+                            selectedNumber = unit.number
+                        },
                     )
                 }
             }
@@ -134,7 +135,8 @@ private fun Modifier.animatePlacement(): Modifier =
         this
             .onPlaced { coordinates ->
                 targetOffset = coordinates.positionInParent().round()
-            }.offset {
+            }
+            .offset {
                 val anim =
                     animatable
                         ?: Animatable(targetOffset, IntOffset.VectorConverter).also {
@@ -174,6 +176,7 @@ private fun MonsterUnitSelectorPreview() {
         ) {
             UnitSelector(
                 units = units,
+                onSelect = {}
             )
         }
     }
