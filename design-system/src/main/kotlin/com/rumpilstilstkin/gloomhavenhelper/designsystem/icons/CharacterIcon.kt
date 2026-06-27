@@ -2,7 +2,9 @@ package com.rumpilstilstkin.gloomhavenhelper.designsystem.icons
 
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.R
 
-enum class CharacterIcon(override val resId: Int) : GloomIcon {
+enum class CharacterIcon(
+    override val resId: Int,
+) : GloomIcon {
     Brute(R.drawable.ic_br),
     Tinkerer(R.drawable.ic_ti),
     Spellweaver(R.drawable.ic_sw),

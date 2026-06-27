@@ -25,19 +25,21 @@ fun GloomItemActionIcon(
     icon: GloomIcon,
     isError: Boolean,
     modifier: Modifier = Modifier,
-    enabled: Boolean = true
+    enabled: Boolean = true,
 ) {
-    val contentColor = if (isError) {
-        MaterialTheme.colorScheme.error
-    } else {
-        MaterialTheme.colorScheme.onSurface
-    }
+    val contentColor =
+        if (isError) {
+            MaterialTheme.colorScheme.error
+        } else {
+            MaterialTheme.colorScheme.onSurface
+        }
 
-    val borderColor = if (isError) {
-        MaterialTheme.colorScheme.error
-    } else {
-        MaterialTheme.colorScheme.outline
-    }
+    val borderColor =
+        if (isError) {
+            MaterialTheme.colorScheme.error
+        } else {
+            MaterialTheme.colorScheme.outline
+        }
 
     OutlinedButton(
         onClick = onClick,
@@ -45,18 +47,19 @@ fun GloomItemActionIcon(
         enabled = enabled,
         shape = RoundedCornerShape(16.dp),
         border = BorderStroke(width = 1.dp, color = borderColor),
-        colors = ButtonDefaults.outlinedButtonColors(
-            containerColor = MaterialTheme.colorScheme.surfaceContainer,
-            contentColor = contentColor,
-            disabledContainerColor = MaterialTheme.colorScheme.surfaceContainer.copy(alpha = 0.5f),
-            disabledContentColor = contentColor.copy(alpha = 0.38f)
-        ),
+        colors =
+            ButtonDefaults.outlinedButtonColors(
+                containerColor = MaterialTheme.colorScheme.surfaceContainer,
+                contentColor = contentColor,
+                disabledContainerColor = MaterialTheme.colorScheme.surfaceContainer.copy(alpha = 0.5f),
+                disabledContentColor = contentColor.copy(alpha = 0.38f),
+            ),
         contentPadding = PaddingValues(horizontal = 8.dp, vertical = 10.dp),
     ) {
         Icon(
             painter = icon.painter(),
             contentDescription = null,
-            modifier = Modifier.size(28.dp)
+            modifier = Modifier.size(28.dp),
         )
     }
 }
@@ -67,12 +70,12 @@ private fun GloomItemActionPreview() {
     GloomhavenMasterTheme {
         Row(
             horizontalArrangement = Arrangement.spacedBy(16.dp),
-            verticalAlignment = Alignment.CenterVertically
+            verticalAlignment = Alignment.CenterVertically,
         ) {
             GloomItemActionIcon(
                 icon = AppIcon.Delete,
                 isError = false,
-                onClick = {}
+                onClick = {},
             )
         }
     }

@@ -17,27 +17,25 @@ import androidx.compose.ui.unit.dp
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
 
 @Composable
-fun GloomRoundLabel(
-    label: String
-) = Box(
-    modifier =
-        Modifier
-            .size(40.dp)
-            .background(
-                color = MaterialTheme.colorScheme.secondary,
-                shape = CircleShape,
-            ),
-    contentAlignment = Alignment.Center,
-) {
-    Text(
-        modifier = Modifier,
-        style = MaterialTheme.typography.headlineSmall,
-        text = label,
-        textAlign = TextAlign.Center,
-        color = MaterialTheme.colorScheme.onSecondary,
-    )
-}
-
+fun GloomRoundLabel(label: String) =
+    Box(
+        modifier =
+            Modifier
+                .size(40.dp)
+                .background(
+                    color = MaterialTheme.colorScheme.secondary,
+                    shape = CircleShape,
+                ),
+        contentAlignment = Alignment.Center,
+    ) {
+        Text(
+            modifier = Modifier,
+            style = MaterialTheme.typography.headlineSmall,
+            text = label,
+            textAlign = TextAlign.Center,
+            color = MaterialTheme.colorScheme.onSecondary,
+        )
+    }
 
 @Preview
 @Composable
@@ -45,11 +43,10 @@ private fun GloomItemRightItemComponentsPreview() {
     GloomhavenMasterTheme {
         Column(
             verticalArrangement = Arrangement.spacedBy(16.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
+            horizontalAlignment = Alignment.CenterHorizontally,
         ) {
-
             GloomRoundLabel(
-                label = "5"
+                label = "5",
             )
         }
     }

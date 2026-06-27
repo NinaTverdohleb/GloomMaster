@@ -25,66 +25,62 @@ import com.rumpilstilstkin.gloomhavenhelper.designsystem.icons.GloomIcon
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
 
 @Composable
-fun LeftItemIcon(
-    icon: GloomIcon
-) = Icon(
-    painter = icon.painter(),
-    contentDescription = null,
-    modifier = Modifier.size(32.dp),
-    tint = MaterialTheme.colorScheme.onSurface,
-)
-
-@Composable
-fun LeftItemImage(
-    icon: GloomIcon
-) = Box(
-    modifier = Modifier
-        .background(
-            color = MaterialTheme.colorScheme.surfaceContainerLow,
-            shape = RoundedCornerShape(8.dp)
-        )
-        .border(
-            width = 1.dp,
-            shape = RoundedCornerShape(8.dp),
-            color = MaterialTheme.colorScheme.onSurfaceVariant,
-        )
-        .widthIn(min = 48.dp)
-        .heightIn(min = 48.dp),
-    contentAlignment = Alignment.Center
-){
+fun LeftItemIcon(icon: GloomIcon) =
     Icon(
         painter = icon.painter(),
         contentDescription = null,
         modifier = Modifier.size(32.dp),
-        tint = MaterialTheme.colorScheme.onSurfaceVariant,
+        tint = MaterialTheme.colorScheme.onSurface,
     )
-}
+
+@Composable
+fun LeftItemImage(icon: GloomIcon) =
+    Box(
+        modifier =
+            Modifier
+                .background(
+                    color = MaterialTheme.colorScheme.surfaceContainerLow,
+                    shape = RoundedCornerShape(8.dp),
+                ).border(
+                    width = 1.dp,
+                    shape = RoundedCornerShape(8.dp),
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                ).widthIn(min = 48.dp)
+                .heightIn(min = 48.dp),
+        contentAlignment = Alignment.Center,
+    ) {
+        Icon(
+            painter = icon.painter(),
+            contentDescription = null,
+            modifier = Modifier.size(32.dp),
+            tint = MaterialTheme.colorScheme.onSurfaceVariant,
+        )
+    }
 
 @Composable
 fun LeftItemNumber(
     borderColor: Color = MaterialTheme.colorScheme.onSurfaceVariant,
     contentColor: Color = MaterialTheme.colorScheme.onSurfaceVariant,
-    number: String
+    number: String,
 ) = Box(
-    modifier = Modifier
-        .background(
-            color = MaterialTheme.colorScheme.surfaceContainerLow,
-            shape = RoundedCornerShape(8.dp)
-        )
-        .border(
-            width = 1.dp,
-            shape = RoundedCornerShape(8.dp),
-            color = borderColor,
-        )
-        .widthIn(min = 48.dp)
-        .heightIn(min = 48.dp)
-        .padding(horizontal = 6.dp),
-    contentAlignment = Alignment.Center
-){
+    modifier =
+        Modifier
+            .background(
+                color = MaterialTheme.colorScheme.surfaceContainerLow,
+                shape = RoundedCornerShape(8.dp),
+            ).border(
+                width = 1.dp,
+                shape = RoundedCornerShape(8.dp),
+                color = borderColor,
+            ).widthIn(min = 48.dp)
+            .heightIn(min = 48.dp)
+            .padding(horizontal = 6.dp),
+    contentAlignment = Alignment.Center,
+) {
     Text(
         text = number,
         style = MaterialTheme.typography.headlineSmall,
-        color = contentColor
+        color = contentColor,
     )
 }
 
@@ -94,17 +90,17 @@ private fun GloomItemLeftItemComponentsPreview() {
     GloomhavenMasterTheme {
         Row(
             horizontalArrangement = Arrangement.spacedBy(16.dp),
-            verticalAlignment = Alignment.CenterVertically
+            verticalAlignment = Alignment.CenterVertically,
         ) {
             LeftItemIcon(
-                icon = AppIcon.Plus
+                icon = AppIcon.Plus,
             )
             LeftItemImage(
-                icon = AppIcon.Team
+                icon = AppIcon.Team,
             )
 
             LeftItemNumber(
-                number = "#150"
+                number = "#150",
             )
         }
     }

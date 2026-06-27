@@ -32,9 +32,9 @@ fun GloomCard(
     border =
         BorderStroke(
             1.dp,
-            if(active) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.outline,
+            if (active) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.outline,
         ),
-    content = content
+    content = content,
 )
 
 @Preview
@@ -43,7 +43,7 @@ private fun GloomCardPreview() {
     GloomhavenMasterTheme {
         GloomCard(
             modifier = Modifier.fillMaxWidth(),
-            active = false
+            active = false,
         ) {
             Box(
                 modifier = Modifier.height(40.dp),

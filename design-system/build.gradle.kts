@@ -14,4 +14,3 @@ dependencies {
     api(libs.android.material)
     implementation(libs.androidx.core.ktx)
 }
-

@@ -23,7 +23,6 @@ import com.rumpilstilstkin.gloomhavenhelper.designsystem.icons.AppIcon
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.icons.GloomIcon
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
 
-
 @Composable
 fun GloomOutlineButton(
     text: String,
@@ -31,7 +30,7 @@ fun GloomOutlineButton(
     modifier: Modifier = Modifier,
     icon: GloomIcon? = null,
     isError: Boolean = false,
-    enabled: Boolean = true
+    enabled: Boolean = true,
 ) {
     GloomOutlineButtonBasic(
         text = text,
@@ -50,7 +49,7 @@ fun GloomOutlineButtonIcon(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     isError: Boolean = false,
-    enabled: Boolean = true
+    enabled: Boolean = true,
 ) {
     GloomOutlineButtonBasic(
         onClick = onClick,
@@ -69,7 +68,7 @@ fun GloomOutlineFilledButton(
     modifier: Modifier = Modifier,
     icon: GloomIcon? = null,
     isError: Boolean = false,
-    enabled: Boolean = true
+    enabled: Boolean = true,
 ) {
     GloomOutlineButtonBasic(
         text = text,
@@ -88,7 +87,7 @@ fun GloomOutlineFilledButtonIcon(
     modifier: Modifier = Modifier,
     icon: GloomIcon,
     isError: Boolean = false,
-    enabled: Boolean = true
+    enabled: Boolean = true,
 ) {
     GloomOutlineButtonBasic(
         onClick = onClick,
@@ -108,19 +107,21 @@ private fun GloomOutlineButtonBasic(
     icon: GloomIcon? = null,
     isFilled: Boolean = false,
     isError: Boolean = false,
-    enabled: Boolean = true
+    enabled: Boolean = true,
 ) {
-    val contentColor = if (isError) {
-        MaterialTheme.colorScheme.error
-    } else {
-        MaterialTheme.colorScheme.onSurface
-    }
+    val contentColor =
+        if (isError) {
+            MaterialTheme.colorScheme.error
+        } else {
+            MaterialTheme.colorScheme.onSurface
+        }
 
-    val containerColor = if (isFilled) {
-        MaterialTheme.colorScheme.surfaceContainer
-    } else {
-        Color.Transparent
-    }
+    val containerColor =
+        if (isFilled) {
+            MaterialTheme.colorScheme.surfaceContainer
+        } else {
+            Color.Transparent
+        }
 
     OutlinedButton(
         onClick = onClick,
@@ -128,19 +129,20 @@ private fun GloomOutlineButtonBasic(
         enabled = enabled,
         shape = RoundedCornerShape(16.dp),
         border = BorderStroke(width = 1.dp, color = contentColor),
-        colors = ButtonDefaults.outlinedButtonColors(
-            containerColor = containerColor,
-            contentColor = contentColor,
-            disabledContainerColor = containerColor.copy(alpha = 0.5f),
-            disabledContentColor = contentColor.copy(alpha = 0.38f)
-        ),
+        colors =
+            ButtonDefaults.outlinedButtonColors(
+                containerColor = containerColor,
+                contentColor = contentColor,
+                disabledContainerColor = containerColor.copy(alpha = 0.5f),
+                disabledContentColor = contentColor.copy(alpha = 0.38f),
+            ),
         contentPadding = PaddingValues(horizontal = 8.dp, vertical = 10.dp),
     ) {
         icon?.let {
             Icon(
                 painter = icon.painter(),
                 contentDescription = null,
-                modifier = Modifier.size(28.dp)
+                modifier = Modifier.size(28.dp),
             )
         }
         if (text != null && icon != null) {
@@ -149,7 +151,7 @@ private fun GloomOutlineButtonBasic(
         text?.let {
             Text(
                 text = text,
-                style = MaterialTheme.typography.titleLarge
+                style = MaterialTheme.typography.titleLarge,
             )
         }
     }
@@ -161,46 +163,46 @@ private fun GloomOutlineButtonPreview() {
     GloomhavenMasterTheme {
         Column(
             verticalArrangement = Arrangement.spacedBy(16.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
+            horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             GloomOutlineButton(
                 text = "Action",
                 icon = AppIcon.Delete,
                 isError = true,
-                onClick = {}
+                onClick = {},
             )
 
             GloomOutlineButton(
                 text = "Action",
                 icon = AppIcon.Check,
                 isError = false,
-                onClick = {}
+                onClick = {},
             )
 
             GloomOutlineButtonIcon(
                 icon = AppIcon.Check,
                 isError = false,
-                onClick = {}
+                onClick = {},
             )
 
             GloomOutlineFilledButton(
                 text = "Action",
                 icon = AppIcon.Delete,
                 isError = true,
-                onClick = {}
+                onClick = {},
             )
 
             GloomOutlineFilledButton(
                 text = "Action",
                 icon = AppIcon.Check,
                 isError = false,
-                onClick = {}
+                onClick = {},
             )
 
             GloomOutlineFilledButtonIcon(
                 icon = AppIcon.Check,
                 isError = false,
-                onClick = {}
+                onClick = {},
             )
         }
     }

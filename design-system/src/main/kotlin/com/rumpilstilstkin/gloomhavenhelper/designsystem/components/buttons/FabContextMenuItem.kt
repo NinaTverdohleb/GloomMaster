@@ -30,38 +30,41 @@ fun FabContextMenuItem(
     isError: Boolean = false,
     onClick: () -> Unit,
 ) {
-    val contentColor = if (isError) {
-        MaterialTheme.colorScheme.onError
-    } else {
-        MaterialTheme.colorScheme.onSurface
-    }
+    val contentColor =
+        if (isError) {
+            MaterialTheme.colorScheme.onError
+        } else {
+            MaterialTheme.colorScheme.onSurface
+        }
 
-    val containerColor = if (isError) {
-        MaterialTheme.colorScheme.error
-    } else {
-        MaterialTheme.colorScheme.surfaceBright
-    }
+    val containerColor =
+        if (isError) {
+            MaterialTheme.colorScheme.error
+        } else {
+            MaterialTheme.colorScheme.surfaceBright
+        }
     Button(
         onClick = onClick,
         shape = RoundedCornerShape(10.dp),
         border = BorderStroke(width = 1.dp, color = MaterialTheme.colorScheme.outline),
-        colors = ButtonDefaults.buttonColors(
-            containerColor = containerColor,
-            contentColor = contentColor,
-            disabledContainerColor = containerColor.copy(alpha = 0.5f),
-            disabledContentColor = contentColor.copy(alpha = 0.38f)
-        ),
+        colors =
+            ButtonDefaults.buttonColors(
+                containerColor = containerColor,
+                contentColor = contentColor,
+                disabledContainerColor = containerColor.copy(alpha = 0.5f),
+                disabledContentColor = contentColor.copy(alpha = 0.38f),
+            ),
         contentPadding = PaddingValues(horizontal = 12.dp, vertical = 8.dp),
     ) {
         Icon(
             painter = icon.painter(),
             contentDescription = null,
-            modifier = Modifier.size(28.dp)
+            modifier = Modifier.size(28.dp),
         )
         Spacer(modifier = Modifier.width(8.dp))
         Text(
             text = text,
-            style = MaterialTheme.typography.titleLarge
+            style = MaterialTheme.typography.titleLarge,
         )
     }
 }
@@ -72,19 +75,19 @@ private fun FabContextMenuItemPreview() {
     GloomhavenMasterTheme {
         Column(
             verticalArrangement = Arrangement.spacedBy(16.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
+            horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             FabContextMenuItem(
                 icon = AppIcon.Buy,
                 text = "Buy",
                 isError = false,
-            ){}
+            ) {}
 
             FabContextMenuItem(
                 icon = AppIcon.Buy,
                 text = "Buy",
                 isError = true,
-            ){}
+            ) {}
         }
     }
 }

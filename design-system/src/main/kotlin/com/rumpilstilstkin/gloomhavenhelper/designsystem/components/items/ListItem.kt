@@ -39,16 +39,17 @@ fun TextImageFilledItem(
     modifier = modifier,
 ) {
     Box(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(vertical = 8.dp, horizontal = 12.dp)
+        modifier =
+            Modifier
+                .fillMaxWidth()
+                .padding(vertical = 8.dp, horizontal = 12.dp),
     ) {
         TextImageItem(
             modifier = Modifier.fillMaxWidth(),
             text = text,
             leftComponent = leftComponent,
             rightComponent = rightComponent,
-            onClick = onClick
+            onClick = onClick,
         )
     }
 }
@@ -61,21 +62,21 @@ fun TextImageOutlineItem(
     rightComponent: (@Composable RowScope.() -> Unit)? = null,
     leftComponent: (@Composable RowScope.() -> Unit)? = null,
 ) = Box(
-    modifier = modifier
-        .border(
-            shape = RoundedCornerShape(16.dp),
-            color = MaterialTheme.colorScheme.outline,
-            width = 1.dp,
-        )
-        .fillMaxWidth()
-        .padding(vertical = 8.dp, horizontal = 12.dp)
+    modifier =
+        modifier
+            .border(
+                shape = RoundedCornerShape(16.dp),
+                color = MaterialTheme.colorScheme.outline,
+                width = 1.dp,
+            ).fillMaxWidth()
+            .padding(vertical = 8.dp, horizontal = 12.dp),
 ) {
     TextImageItem(
         modifier = Modifier.fillMaxWidth(),
         text = text,
         leftComponent = leftComponent,
         rightComponent = rightComponent,
-        onClick = onClick
+        onClick = onClick,
     )
 }
 
@@ -92,12 +93,12 @@ fun TextImageItem(
         TextWithImagesByCode(
             modifier = Modifier.fillMaxWidth(),
             style = MaterialTheme.typography.titleMedium,
-            text = text
+            text = text,
         )
     },
     leftComponent = leftComponent,
     rightComponent = rightComponent,
-    onClick = onClick
+    onClick = onClick,
 )
 
 @Composable
@@ -112,12 +113,13 @@ fun GloomListFilledItem(
 ) {
     GloomCard(
         modifier = modifier,
-        active = active
+        active = active,
     ) {
         Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(vertical = 8.dp, horizontal = 12.dp)
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .padding(vertical = 8.dp, horizontal = 12.dp),
         ) {
             GloomListItem(
                 modifier = Modifier.fillMaxWidth(),
@@ -141,14 +143,14 @@ fun GloomListOutlineItem(
     leftComponent: (@Composable RowScope.() -> Unit)? = null,
 ) {
     Box(
-        modifier = modifier
-            .border(
-                shape = RoundedCornerShape(16.dp),
-                color = MaterialTheme.colorScheme.outline,
-                width = 1.dp,
-            )
-            .fillMaxWidth()
-            .padding(vertical = 8.dp, horizontal = 12.dp)
+        modifier =
+            modifier
+                .border(
+                    shape = RoundedCornerShape(16.dp),
+                    color = MaterialTheme.colorScheme.outline,
+                    width = 1.dp,
+                ).fillMaxWidth()
+                .padding(vertical = 8.dp, horizontal = 12.dp),
     ) {
         GloomListItem(
             modifier = Modifier.fillMaxWidth(),
@@ -173,26 +175,26 @@ fun GloomListItem(
     modifier = modifier,
     middleComponent = {
         Column(
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier.fillMaxWidth(),
         ) {
             Text(
                 text = title,
                 style = MaterialTheme.typography.titleMedium,
-                color = MaterialTheme.colorScheme.onSurface
+                color = MaterialTheme.colorScheme.onSurface,
             )
             description?.let {
                 Spacer(Modifier.height(4.dp))
                 Text(
                     text = description,
                     style = MaterialTheme.typography.labelMedium,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
             }
         }
     },
     leftComponent = leftComponent,
     rightComponent = rightComponent,
-    onClick = onClick
+    onClick = onClick,
 )
 
 @Composable
@@ -203,17 +205,18 @@ fun GloomBaseListItem(
     rightComponent: (@Composable RowScope.() -> Unit)? = null,
     leftComponent: (@Composable RowScope.() -> Unit)? = null,
 ) = Row(
-    modifier = modifier
-        .fillMaxWidth()
-        .heightIn(min = 64.dp)
-        .then(
-            if (onClick != null)
-                Modifier.clickable(onClick = onClick)
-            else
-                Modifier
-        )
-        .padding(horizontal = 4.dp),
-    verticalAlignment = Alignment.CenterVertically
+    modifier =
+        modifier
+            .fillMaxWidth()
+            .heightIn(min = 64.dp)
+            .then(
+                if (onClick != null) {
+                    Modifier.clickable(onClick = onClick)
+                } else {
+                    Modifier
+                },
+            ).padding(horizontal = 4.dp),
+    verticalAlignment = Alignment.CenterVertically,
 ) {
     leftComponent?.let {
         leftComponent()
@@ -234,14 +237,14 @@ private fun GloomListItemPreview() {
     GloomhavenMasterTheme {
         Column(
             verticalArrangement = Arrangement.spacedBy(16.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
+            horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             GloomListItem(
                 modifier = Modifier.fillMaxWidth(),
                 title = "Some title",
                 rightComponent = {
                     RightItemText("Some text")
-                }
+                },
             )
 
             GloomListItem(
@@ -249,7 +252,7 @@ private fun GloomListItemPreview() {
                 title = "Some title",
                 leftComponent = {
                     LeftItemIcon(AppIcon.Plus)
-                }
+                },
             )
 
             GloomListItem(
@@ -257,7 +260,7 @@ private fun GloomListItemPreview() {
                 title = "Some title",
                 leftComponent = {
                     LeftItemImage(AppIcon.Team)
-                }
+                },
             )
 
             GloomListFilledItem(
@@ -265,7 +268,7 @@ private fun GloomListItemPreview() {
                 title = "Some title",
                 rightComponent = {
                     RightItemChecker(true, {})
-                }
+                },
             )
 
             GloomListFilledItem(
@@ -274,7 +277,7 @@ private fun GloomListItemPreview() {
                 description = "desctiption",
                 leftComponent = {
                     LeftItemImage(GoodIcon.SmallThing)
-                }
+                },
             )
 
             GloomListFilledItem(
@@ -286,7 +289,7 @@ private fun GloomListItemPreview() {
                         intRange = IntRange(0, 15),
                         onValueChange = {},
                     )
-                }
+                },
             )
 
             GloomListOutlineItem(
@@ -299,12 +302,11 @@ private fun GloomListItemPreview() {
                 title = "Achivmentdsfsadfasdfasdfasdfasdfsdasdfasdfasdfsadfsa",
                 rightComponent = {
                     RightItemChecker(true, {})
-                }
-
+                },
             )
 
             TextImageFilledItem(
-                text = "Replace one card #01 with one card #03"
+                text = "Replace one card #01 with one card #03",
             )
         }
     }

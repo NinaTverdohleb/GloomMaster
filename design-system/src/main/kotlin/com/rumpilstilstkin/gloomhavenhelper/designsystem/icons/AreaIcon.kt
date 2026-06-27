@@ -2,7 +2,9 @@ package com.rumpilstilstkin.gloomhavenhelper.designsystem.icons
 
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.R
 
-enum class AreaIcon(override val resId: Int) : GloomIcon {
+enum class AreaIcon(
+    override val resId: Int,
+) : GloomIcon {
     Area0(R.drawable.ic_area_0),
     Area1(R.drawable.ic_area_1),
     Area2(R.drawable.ic_area_2),

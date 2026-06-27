@@ -19,7 +19,7 @@ fun GloomOutlinedTextField(
     onValueChange: (String) -> Unit,
     label: String,
     modifier: Modifier = Modifier,
-    singleLine : Boolean = true
+    singleLine: Boolean = true,
 ) = OutlinedTextField(
     value = value,
     onValueChange = onValueChange,
@@ -32,13 +32,14 @@ fun GloomOutlinedTextField(
         )
     },
     shape = RoundedCornerShape(12.dp),
-    colors = OutlinedTextFieldDefaults.colors(
-        focusedBorderColor = MaterialTheme.colorScheme.outline,
-        unfocusedBorderColor = MaterialTheme.colorScheme.outline,
-        focusedLabelColor = MaterialTheme.colorScheme.onSurface,
-        unfocusedLabelColor = MaterialTheme.colorScheme.onSurface,
-    ),
-    singleLine = singleLine
+    colors =
+        OutlinedTextFieldDefaults.colors(
+            focusedBorderColor = MaterialTheme.colorScheme.outline,
+            unfocusedBorderColor = MaterialTheme.colorScheme.outline,
+            focusedLabelColor = MaterialTheme.colorScheme.onSurface,
+            unfocusedLabelColor = MaterialTheme.colorScheme.onSurface,
+        ),
+    singleLine = singleLine,
 )
 
 @Preview
@@ -49,7 +50,7 @@ private fun GloomOutlinedTextFieldPreview() {
             GloomOutlinedTextField(
                 value = "",
                 label = "label",
-                onValueChange = {}
+                onValueChange = {},
             )
         }
     }

@@ -2,7 +2,9 @@ package com.rumpilstilstkin.gloomhavenhelper.designsystem.icons
 
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.R
 
-enum class EffectIcon(override val resId: Int) : GloomIcon {
+enum class EffectIcon(
+    override val resId: Int,
+) : GloomIcon {
     Target(R.drawable.ic_target),
     Poison(R.drawable.ic_poison),
     Wound(R.drawable.ic_wound),
@@ -18,5 +20,5 @@ enum class EffectIcon(override val resId: Int) : GloomIcon {
     Pull(R.drawable.ic_pull),
     Pierce(R.drawable.ic_pierce),
     Regenerate(R.drawable.ic_regenerate),
-    Next(R.drawable.ic_next)
+    Next(R.drawable.ic_next),
 }

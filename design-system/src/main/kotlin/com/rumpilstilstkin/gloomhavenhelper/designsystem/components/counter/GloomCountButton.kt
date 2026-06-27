@@ -48,9 +48,10 @@ fun GloomCountButtonSmall(
         onClick = { onValueChange(type.action(value)) },
     ) {
         Box(
-            modifier = Modifier
-                .size(24.dp)
-                .padding(4.dp)
+            modifier =
+                Modifier
+                    .size(24.dp)
+                    .padding(4.dp),
         ) {
             Icon(
                 painter = type.image.painter(),
@@ -78,50 +79,49 @@ fun GloomCountButton(
     val updatedValue by rememberUpdatedState(value)
 
     Box(
-        modifier = modifier
-            .background(
-                color = MaterialTheme.colorScheme.surfaceBright,
-                shape = RoundedCornerShape(10.dp),
-            )
-            .border(
-                shape = RoundedCornerShape(10.dp),
-                color = MaterialTheme.colorScheme.outline,
-                width = 1.dp,
-            )
-            .size(36.dp)
-            .pointerInput(Unit) {
-                awaitEachGesture {
-                    val down = awaitFirstDown()
-                    down.consume()
+        modifier =
+            modifier
+                .background(
+                    color = MaterialTheme.colorScheme.surfaceBright,
+                    shape = RoundedCornerShape(10.dp),
+                ).border(
+                    shape = RoundedCornerShape(10.dp),
+                    color = MaterialTheme.colorScheme.outline,
+                    width = 1.dp,
+                ).size(36.dp)
+                .pointerInput(Unit) {
+                    awaitEachGesture {
+                        val down = awaitFirstDown()
+                        down.consume()
 
-                    if (!repeat) {
-                        val up = waitForUpOrCancellation()
-                        if (up != null) {
-                            up.consume()
-                            updatedOnValueChange(type.action(updatedValue))
-                        }
-                    } else {
-
-                        var isReleased = false
-                        val job = scope.launch {
-                            updatedOnValueChange(type.action(updatedValue))
-
-                            delay(initialDelayMillis)
-                            while (isActive && !isReleased) {
+                        if (!repeat) {
+                            val up = waitForUpOrCancellation()
+                            if (up != null) {
+                                up.consume()
                                 updatedOnValueChange(type.action(updatedValue))
-                                delay(repeatIntervalMillis)
                             }
+                        } else {
+                            var isReleased = false
+                            val job =
+                                scope.launch {
+                                    updatedOnValueChange(type.action(updatedValue))
+
+                                    delay(initialDelayMillis)
+                                    while (isActive && !isReleased) {
+                                        updatedOnValueChange(type.action(updatedValue))
+                                        delay(repeatIntervalMillis)
+                                    }
+                                }
+
+                            val up = waitForUpOrCancellation()
+                            up?.consume()
+
+                            isReleased = true
+                            job.cancel()
                         }
-
-                        val up = waitForUpOrCancellation()
-                        up?.consume()
-
-                        isReleased = true
-                        job.cancel()
                     }
-                }
-            },
-        contentAlignment = Alignment.Center
+                },
+        contentAlignment = Alignment.Center,
     ) {
         Icon(
             modifier = Modifier.size(24.dp),
@@ -140,34 +140,32 @@ enum class PickerButtonType(
     MINUS(AppIcon.Minus, { it - 1 }),
 }
 
-
 @Preview
 @Composable
 private fun GloomCountButtonPreview() {
     GloomhavenMasterTheme {
         Column(
             verticalArrangement = Arrangement.spacedBy(16.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
+            horizontalAlignment = Alignment.CenterHorizontally,
         ) {
-
             GloomCountButton(
                 value = 0,
-                type = PickerButtonType.PLUS
+                type = PickerButtonType.PLUS,
             )
 
             GloomCountButton(
                 value = 0,
-                type = PickerButtonType.MINUS
+                type = PickerButtonType.MINUS,
             )
 
             GloomCountButtonSmall(
                 value = 0,
-                type = PickerButtonType.PLUS
+                type = PickerButtonType.PLUS,
             )
 
             GloomCountButtonSmall(
                 value = 0,
-                type = PickerButtonType.MINUS
+                type = PickerButtonType.MINUS,
             )
         }
     }

@@ -19,28 +19,29 @@ import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.StrokeCap
+import androidx.compose.ui.platform.LocalLocale
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
 import java.util.Locale
-import androidx.compose.ui.platform.LocalLocale
 
 @Composable
 fun GloomGloomCounterProgress(
     value: Int,
     intRange: IntRange,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     val progress = (value.toFloat() / (intRange.last - intRange.first)).coerceIn(0f, 1f)
 
     LinearProgressIndicator(
         progress = { progress },
-        modifier = modifier
-            .fillMaxWidth()
-            .height(12.dp)
-            .clip(RoundedCornerShape(50))
-            .background(MaterialTheme.colorScheme.surfaceContainerHighest),
+        modifier =
+            modifier
+                .fillMaxWidth()
+                .height(12.dp)
+                .clip(RoundedCornerShape(50))
+                .background(MaterialTheme.colorScheme.surfaceContainerHighest),
         color = MaterialTheme.colorScheme.secondary,
         trackColor = MaterialTheme.colorScheme.surfaceContainerHighest,
         strokeCap = StrokeCap.Round,
@@ -58,7 +59,6 @@ fun GloomCounterFull(
     repeat: Boolean = false,
     onValueChange: (Int) -> Unit,
 ) {
-
     Row(
         modifier = modifier,
         horizontalArrangement = Arrangement.SpaceBetween,
@@ -139,7 +139,6 @@ fun GloomCounterSmall(
             },
         )
     }
-
 }
 
 private fun checkRange(
@@ -152,14 +151,13 @@ private fun checkRange(
         else -> value
     }
 
-
 @Preview
 @Composable
 private fun GloomCounterPreview() {
     GloomhavenMasterTheme {
         Column(
             verticalArrangement = Arrangement.spacedBy(16.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
+            horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             GloomCounterSmall(
                 value = 5,
@@ -177,7 +175,6 @@ private fun GloomCounterPreview() {
                 value = 5,
                 intRange = IntRange(0, 15),
             )
-
         }
     }
 }
