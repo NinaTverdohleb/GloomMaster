@@ -6,7 +6,9 @@ import com.rumpilstilstkin.gloomhavenhelper.domain.entity.scenario.MonsterDeckSt
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.scenario.MonsterItem
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.scenario.MonsterUnit
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.scenario.ScenarioBattleState
+import kotlinx.collections.immutable.ImmutableSet
 import kotlinx.collections.immutable.persistentListOf
+import kotlinx.collections.immutable.persistentSetOf
 import org.junit.Test
 import strikt.api.expectThat
 import strikt.assertions.contains
@@ -19,7 +21,7 @@ class ToggleUnitEffectUseCaseTest {
     @Test
     fun `given effect not present when invoked then it is added`() {
         // Given
-        val state = stateWithUnit(effects = persistentListOf())
+        val state = stateWithUnit(effects = persistentSetOf())
 
         // When
         val result = sut(state, "a", 1, MonsterStatType.POISON)
@@ -31,7 +33,7 @@ class ToggleUnitEffectUseCaseTest {
     @Test
     fun `given effect already present when invoked then it is removed`() {
         // Given
-        val state = stateWithUnit(effects = persistentListOf(MonsterStatType.POISON))
+        val state = stateWithUnit(effects = persistentSetOf(MonsterStatType.POISON))
 
         // When
         val result = sut(state, "a", 1, MonsterStatType.POISON)
@@ -43,7 +45,7 @@ class ToggleUnitEffectUseCaseTest {
     @Test
     fun `given unit not found when invoked then state unchanged`() {
         // Given
-        val state = stateWithUnit(effects = persistentListOf())
+        val state = stateWithUnit(effects = persistentSetOf())
 
         // When
         val result = sut(state, "missing", 1, MonsterStatType.POISON)
@@ -52,7 +54,7 @@ class ToggleUnitEffectUseCaseTest {
         expectThat(result.activeMonsters[0].units[0].effects).isEmpty()
     }
 
-    private fun stateWithUnit(effects: kotlinx.collections.immutable.ImmutableList<MonsterStatType>) =
+    private fun stateWithUnit(effects: ImmutableSet<MonsterStatType>) =
         ScenarioBattleState(
             generalLevel = 1,
             name = "",

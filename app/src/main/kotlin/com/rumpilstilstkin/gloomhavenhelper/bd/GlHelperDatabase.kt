@@ -57,7 +57,6 @@ import com.rumpilstilstkin.gloomhavenhelper.bd.typeconverters.CardActionsTypeCon
 import com.rumpilstilstkin.gloomhavenhelper.bd.typeconverters.ListCharacterTaskItemTypeConverter
 import com.rumpilstilstkin.gloomhavenhelper.bd.typeconverters.MonsterCardActionTypeConverter
 import com.rumpilstilstkin.gloomhavenhelper.bd.typeconverters.MonsterStatTypeListConverter
-import com.rumpilstilstkin.gloomhavenhelper.bd.typeconverters.MonsterStatTypeSetConverter
 import com.rumpilstilstkin.gloomhavenhelper.bd.typeconverters.ScenarioConverters
 import com.rumpilstilstkin.gloomhavenhelper.bd.typeconverters.StringListTypeConverter
 
@@ -65,7 +64,6 @@ import com.rumpilstilstkin.gloomhavenhelper.bd.typeconverters.StringListTypeConv
     ListCharacterTaskItemTypeConverter::class,
     CardActionsTypeConverter::class,
     MonsterStatTypeListConverter::class,
-    MonsterStatTypeSetConverter::class,
     StringListTypeConverter::class,
     AchievementConverter::class,
     ScenarioConverters::class,

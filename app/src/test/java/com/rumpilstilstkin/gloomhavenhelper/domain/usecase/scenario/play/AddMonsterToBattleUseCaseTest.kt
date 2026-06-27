@@ -151,7 +151,7 @@ class AddMonsterToBattleUseCaseTest {
         deckName = deckName,
         cards = emptyList(),
         isBoss = isBoss,
-        immunity = emptyList(),
+        immunity = emptySet(),
         isFly = false,
         level = 1,
         lifeMultiple = lifeMultiple,

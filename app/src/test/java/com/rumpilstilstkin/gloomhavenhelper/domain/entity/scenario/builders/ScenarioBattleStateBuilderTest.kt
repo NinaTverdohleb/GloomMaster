@@ -17,6 +17,7 @@ import com.rumpilstilstkin.gloomhavenhelper.domain.entity.TeamInfo
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.Monster
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterCard
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterStatType
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.scenario.ChargeLevel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.runTest
@@ -51,7 +52,7 @@ class ScenarioBattleStateBuilderTest {
         expectThat(state.round).isEqualTo(0)
         expectThat(state.availableEffects).isEmpty()
         Magic.entries.forEach { magic ->
-            expectThat(state.magicState.charges.getValue(magic)).isEqualTo(0)
+            expectThat(state.magicState.charges.getValue(magic)).isEqualTo(ChargeLevel.Zero)
         }
     }
 
@@ -149,8 +150,8 @@ class ScenarioBattleStateBuilderTest {
         // Then
         expectThat(state.round).isEqualTo(4)
         expectThat(state.scenarioNumber).isEqualTo(12)
-        expectThat(state.magicState.charges.getValue(Magic.FIRE)).isEqualTo(2)
-        expectThat(state.magicState.charges.getValue(Magic.AIR)).isEqualTo(0)
+        expectThat(state.magicState.charges.getValue(Magic.FIRE)).isEqualTo(ChargeLevel.Two)
+        expectThat(state.magicState.charges.getValue(Magic.AIR)).isEqualTo(ChargeLevel.Zero)
     }
 
     @Test
@@ -188,7 +189,7 @@ class ScenarioBattleStateBuilderTest {
             currentLife = 8,
             level = 1,
             isElite = false,
-            effects = emptyList(),
+            effects = emptySet(),
             isNew = false,
             maxLife = 8,
         )
@@ -275,7 +276,7 @@ class ScenarioBattleStateBuilderTest {
         deckName = deckName,
         cards = cards,
         isBoss = false,
-        immunity = emptyList(),
+        immunity = emptySet(),
         isFly = false,
         level = 1,
         lifeMultiple = false,

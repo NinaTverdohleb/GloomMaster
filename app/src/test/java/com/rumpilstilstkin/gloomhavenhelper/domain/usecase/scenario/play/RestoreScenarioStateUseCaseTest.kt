@@ -172,7 +172,7 @@ class RestoreScenarioStateUseCaseTest {
             deckName = "${slug}Deck",
             cards = emptyList(),
             isBoss = false,
-            immunity = emptyList(),
+            immunity = emptySet(),
             isFly = false,
             level = 1,
             lifeMultiple = false,

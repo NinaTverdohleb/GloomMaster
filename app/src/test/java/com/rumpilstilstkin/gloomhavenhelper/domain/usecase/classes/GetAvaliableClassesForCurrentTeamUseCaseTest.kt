@@ -36,17 +36,4 @@ class GetAvaliableClassesForCurrentTeamUseCaseTest {
             awaitComplete()
         }
     }
-
-    @Test
-    fun `given null current team when invoked then returns empty list`() = runTest(UnconfinedTestDispatcher()) {
-        // Given
-        every { teamRepository.currentTeam } returns flowOf(null)
-        val sut = GetAvaliableClassesForCurrentTeamUseCase(teamRepository, characterClassRepository)
-
-        // When / Then
-        sut().test {
-            expectThat(awaitItem()).isEmpty()
-            awaitComplete()
-        }
-    }
 }

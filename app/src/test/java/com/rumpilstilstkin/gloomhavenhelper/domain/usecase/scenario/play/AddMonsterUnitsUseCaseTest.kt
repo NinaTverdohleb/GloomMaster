@@ -130,7 +130,7 @@ class AddMonsterUnitsUseCaseTest {
         deckName = "boss",
         cards = emptyList(),
         isBoss = false,
-        immunity = emptyList(),
+        immunity = emptySet(),
         isFly = false,
         level = 1,
         lifeMultiple = lifeMultiple,

@@ -28,14 +28,6 @@ class MonsterStatTypeListConverter {
     fun toList(value: String): List<MonsterStatType> = json.decodeFromString(value)
 }
 
-class MonsterStatTypeSetConverter {
-    @TypeConverter
-    fun fromSet(list: Set<MonsterStatType>): String = json.encodeToString(list)
-
-    @TypeConverter
-    fun toSet(value: String): Set<MonsterStatType> = json.decodeFromString(value)
-}
-
 class MonsterCardActionTypeConverter {
     @TypeConverter
     fun fromList(list: List<MonsterCardAction>): String = json.encodeToString(list)
