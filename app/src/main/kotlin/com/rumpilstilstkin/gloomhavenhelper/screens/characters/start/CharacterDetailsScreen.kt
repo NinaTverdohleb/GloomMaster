@@ -30,18 +30,8 @@ internal fun CharacterDetailsScreen(
     state: CharacterDetailsStateUi,
     back: () -> Unit,
     showNameDialog: (CharacterUI) -> Unit,
-    hideNameDialog: () -> Unit,
-    saveName: (String) -> Unit,
     selectTab: @Composable (CharacterDetailsTab) -> Unit,
 ) {
-    /*if (state.showNameDialog) {
-        CharacterEditNameDialog(
-            currentName = state.name,
-            onDismiss = hideNameDialog,
-            onSave = saveName,
-        )
-    }*/
-
     Scaffold(
         topBar = {
             GloomToolbar(
@@ -116,8 +106,6 @@ private fun CharacterDetailsScreenPreview() {
                 ),
             back = {},
             showNameDialog = {},
-            hideNameDialog = {},
-            saveName = {},
             selectTab = {
                 CharacterGeneralTab(
                     state =

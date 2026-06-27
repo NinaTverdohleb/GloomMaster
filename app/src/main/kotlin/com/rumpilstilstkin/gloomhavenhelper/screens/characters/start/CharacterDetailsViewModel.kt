@@ -2,63 +2,47 @@ package com.rumpilstilstkin.gloomhavenhelper.screens.characters.start
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.characters.DeleteCharacterUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.characters.GetCharacterGeneralInfoFlowUseCase
-import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.characters.RetireCharacterUseCase
-import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.characters.SetTeamUseCase
-import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.characters.UpdateCharacterLevelUseCase
-import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.characters.UpdateCharacterNameUseCase
 import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEvent
-import com.rumpilstilstkin.gloomhavenhelper.screens.models.CharacterClassTypeUI.Companion.toCharacterClassTypeUI
+import com.rumpilstilstkin.gloomhavenhelper.screens.characters.dialogs.character.CharacterEditNameDialogContract
+import com.rumpilstilstkin.gloomhavenhelper.screens.core.ScreenEffect
+import com.rumpilstilstkin.gloomhavenhelper.screens.core.createOverlaySession
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.toUi
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asSharedFlow
-import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.filterNotNull
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
-import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 @HiltViewModel(assistedFactory = CharacterDetailsViewModel.Factory::class)
 class CharacterDetailsViewModel @AssistedInject constructor(
     @Assisted val id: Int,
     getCharacterUseCase: GetCharacterGeneralInfoFlowUseCase,
-    private val setTeamUseCase: SetTeamUseCase,
-    private val deleteCharacterUseCase: DeleteCharacterUseCase,
-    private val updateCharacterNameUseCase: UpdateCharacterNameUseCase,
-    private val updateCharacterLevelUseCase: UpdateCharacterLevelUseCase,
-    private val retireCharacterUseCase: RetireCharacterUseCase,
 ) : ViewModel() {
-    private val _navigationEvents = MutableSharedFlow<GlHelperEvent>()
-    val navigationEvents = _navigationEvents.asSharedFlow()
-
-    private val logicState = MutableStateFlow(CharacterDetailsStateLogic())
+    private val _screenEvents = MutableSharedFlow<ScreenEffect>()
+    val screenEvents = _screenEvents.asSharedFlow()
 
     val uiState: StateFlow<CharacterDetailsStateUi> =
-        combine(
-            getCharacterUseCase(id).filterNotNull(),
-            logicState,
-        ) { character, logic ->
-            CharacterDetailsStateUi(
-                character = character.toUi(),
-                teamName = character.team?.name ?: "",
-                showDeleteDialog = logic.showDeleteDialog,
-                showNameDialog = logic.showNameDialog,
-                showChangeLevelDialog = logic.showChangeLevelDialog,
-                isActive = character.isAlive,
+        getCharacterUseCase(id)
+            .filterNotNull()
+            .map { character ->
+                CharacterDetailsStateUi(
+                    character = character.toUi(),
+                    teamName = character.team?.name ?: "",
+                    isActive = character.isAlive,
+                )
+            }.stateIn(
+                scope = viewModelScope,
+                initialValue = CharacterDetailsStateUi(),
+                started = SharingStarted.WhileSubscribed(5000),
             )
-        }.stateIn(
-            scope = viewModelScope,
-            initialValue = CharacterDetailsStateUi(),
-            started = SharingStarted.WhileSubscribed(5000),
-        )
 
     @AssistedFactory
     interface Factory {
@@ -69,58 +53,25 @@ class CharacterDetailsViewModel @AssistedInject constructor(
         viewModelScope.launch {
             when (action) {
                 is CharacterDetailsAction.Back -> {
-                    _navigationEvents.emit(GlHelperEvent.Back)
+                    _screenEvents.emit(ScreenEffect.Navigation((GlHelperEvent.Back)))
                 }
 
-                is CharacterDetailsAction.ShowDeleteDialog -> {
-                    logicState.update { it.copy(showDeleteDialog = true) }
-                }
-
-                is CharacterDetailsAction.HideDeleteDialog -> {
-                    logicState.update { it.copy(showDeleteDialog = false) }
-                }
-
-                is CharacterDetailsAction.ConfirmDelete -> {
-                    deleteCharacterUseCase(id)
-                    logicState.update { it.copy(showDeleteDialog = false) }
-                    _navigationEvents.emit(GlHelperEvent.Back)
-                }
-
-                is CharacterDetailsAction.ShowNameDialog -> {
-                    logicState.update { it.copy(showNameDialog = true) }
-                }
-
-                is CharacterDetailsAction.HideNameDialog -> {
-                    logicState.update { it.copy(showNameDialog = false) }
-                }
-
-                is CharacterDetailsAction.SaveName -> {
-                    updateCharacterNameUseCase(id, action.name)
-                    logicState.update { it.copy(showNameDialog = false) }
-                }
-
-                is CharacterDetailsAction.ChangeTeam -> {
-                    setTeamUseCase(id, action.teamId)
-                }
-
-                is CharacterDetailsAction.ChangeLevel -> {
-                    updateCharacterLevelUseCase(id, action.level)
-                    logicState.update { it.copy(showChangeLevelDialog = false) }
-                }
-
-                CharacterDetailsAction.HideChangeLevelDialog -> {
-                    logicState.update { it.copy(showChangeLevelDialog = false) }
-                }
-
-                CharacterDetailsAction.ShowChangeLevelDialog -> {
-                    logicState.update { it.copy(showChangeLevelDialog = true) }
-                }
-
-                CharacterDetailsAction.Retire -> {
-                    logicState.update { it.copy(showDeleteDialog = false) }
-                    retireCharacterUseCase(id)
+                is CharacterDetailsAction.OpenNameDialog -> {
+                    openCharacterNameDialog()
                 }
             }
+        }
+    }
+
+    private fun openCharacterNameDialog() {
+        viewModelScope.launch {
+            val session =
+                createOverlaySession(
+                    contract = CharacterEditNameDialogContract,
+                    input = id,
+                    onResult = {},
+                )
+            _screenEvents.emit(ScreenEffect.OpenDialog(session))
         }
     }
 }

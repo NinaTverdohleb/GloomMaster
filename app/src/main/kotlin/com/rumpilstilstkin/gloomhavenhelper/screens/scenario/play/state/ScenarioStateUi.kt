@@ -3,7 +3,6 @@ package com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.state
 import androidx.compose.runtime.Immutable
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.Magic
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterCard
-import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterCardAction
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterStatType
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.scenario.ChargeLevel
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.scenario.MonsterItem
@@ -14,6 +13,7 @@ import kotlinx.collections.immutable.ImmutableSet
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.persistentMapOf
 import kotlinx.collections.immutable.toPersistentSet
+import kotlin.comparisons.compareBy
 
 @Immutable
 data class ScenarioStateUi(
@@ -38,12 +38,9 @@ data class UnitCompact(
     val isSpecial: Boolean = false,
 ) : Comparable<UnitCompact> {
     override fun compareTo(other: UnitCompact): Int =
-        compareValuesBy(
-            this,
-            other,
-            UnitCompact::isSpecial,
-            UnitCompact::number,
-        )
+        compareByDescending<UnitCompact> { it.isSpecial }
+            .thenBy { it.number }
+            .compare(this, other)
 }
 
 @Immutable

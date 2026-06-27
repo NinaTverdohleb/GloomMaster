@@ -52,19 +52,21 @@ fun MonsterListDialog(
             }
         }
 
+        if (monsters.isNotEmpty()) {
+            GloomOutlineButton(
+                modifier = Modifier.fillMaxWidth(),
+                icon = AppIcon.Check,
+                text = stringResource(R.string.select_enemies),
+                onClick = selectMonsters,
+                enabled = selectedIds.isNotEmpty(),
+            )
+        }
+
         GloomOutlineButton(
             modifier = Modifier.fillMaxWidth(),
             icon = AppIcon.Plus,
             text = stringResource(R.string.add_new_enemies),
             onClick = addNewMonsters,
-        )
-
-        GloomOutlineButton(
-            modifier = Modifier.fillMaxWidth(),
-            icon = AppIcon.Check,
-            text = stringResource(R.string.select_enemies),
-            onClick = selectMonsters,
-            enabled = selectedIds.isNotEmpty(),
         )
     }
 }
