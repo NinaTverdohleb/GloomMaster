@@ -9,6 +9,7 @@ import com.rumpilstilstkin.gloomhavenhelper.designsystem.icons.EffectIcon
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.icons.GloomIcon
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.icons.MagicIcon
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.icons.ModifierIcon
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.onError
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.onSurfaceVariant
 
 enum class GameIcon(
@@ -99,43 +100,43 @@ enum class GameIcon(
         textCode = IconCode.PLUS1,
         titleRes = R.string.design_system_icon_plus_1,
         image = ModifierIcon.Plus1,
-        color = Color.Unspecified
+        color = Color(0xFF7EC16F)
     ),
     PLUS_2(
         textCode = IconCode.PLUS2,
         titleRes = R.string.design_system_icon_plus_2,
         image = ModifierIcon.Plus2,
-        color = Color.Unspecified
+        color = Color(0xFF7EC16F)
     ),
     PLUS_3(
         textCode = IconCode.PLUS3,
         titleRes = R.string.design_system_icon_plus_3,
         image = ModifierIcon.Plus3,
-        color = Color.Unspecified
+        color = Color(0xFF7EC16F)
     ),
     PLUS_4(
         textCode = IconCode.PLUS4,
         titleRes = R.string.design_system_icon_plus_4,
         image = ModifierIcon.Plus4,
-        color = Color.Unspecified
+        color = Color(0xFF7EC16F)
     ),
     PLUS_0(
         textCode = IconCode.ZERO,
         titleRes = R.string.design_system_icon_plus_0,
         image = ModifierIcon.Plus0,
-        color = Color.Unspecified
+        color = Color(0xFFA78B64)
     ),
     MINUS_1(
         textCode = IconCode.MINUS1,
         titleRes = R.string.design_system_icon_minus_1,
         image = ModifierIcon.Minus1,
-        color = Color.Unspecified
+        color = Color(0xFF9E5252)
     ),
     MINUS_2(
         textCode = IconCode.MINUS2,
         titleRes = R.string.design_system_icon_minus_2,
         image = ModifierIcon.Minus2,
-        color = Color.Unspecified
+        color = Color(0xFF9E5252)
     ),
     NEXT(
         textCode = IconCode.NEXT,
