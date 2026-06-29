@@ -40,6 +40,11 @@ roborazzi = "1.59.0"
 dependencyGuard = "0.5.0"
 androidxMacroBenchmark = "1.5.0-alpha05"
 desugarJdkLibs = "2.1.5"
+uiautomator = "2.2.0"
+benchmarkMacroJunit4 = "1.5.0-alpha05"
+profileinstaller = "1.4.1"
+perfetto = "1.0.0"
+tracing = "1.11.3"
 
 [libraries]
 # AndroidX Core & Lifecycle - Основные библиотеки Android и жизненного цикла
@@ -119,6 +124,12 @@ androidx-lint-gradle = { group = "androidx.lint", name = "lint-gradle", version.
 
 kotlin-metadata = { module = "org.jetbrains.kotlin:kotlin-metadata-jvm", version.ref = "kotlin" }
 kotlin-test = { group = "org.jetbrains.kotlin", name = "kotlin-test", version.ref = "kotlin" }
+androidx-uiautomator = { group = "androidx.test.uiautomator", name = "uiautomator", version.ref = "uiautomator" }
+androidx-benchmark-macro-junit4 = { group = "androidx.benchmark", name = "benchmark-macro-junit4", version.ref = "benchmarkMacroJunit4" }
+androidx-profileinstaller = { group = "androidx.profileinstaller", name = "profileinstaller", version.ref = "profileinstaller" }
+androidx-compose-runtime-tracing = { group = "androidx.compose.runtime", name = "runtime-tracing", version.ref = "tracing"}
+androidx-tracing = {group = "androidx.tracing", name = "tracing-perfetto", version.ref = "perfetto"}
+androidx-tracing-binary = {group = "androidx.tracing", name = "tracing-perfetto-binary", version.ref = "perfetto"}
 
 [plugins]
 chaosknight-android-application = { id = "chaosknight.android.application" }
@@ -151,7 +162,7 @@ firebase-perf = { id = "com.google.firebase.firebase-perf", version.ref = "fireb
 google-services = { id = "com.google.gms.google-services", version.ref = "googleServices" }
 dependencyGuard = { id = "com.dropbox.dependency-guard", version.ref = "dependencyGuard" }
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
-baselineprofile = { id = "androidx.baselineprofile", version.ref = "androidxMacroBenchmark"}
+baselineprofile = { id = "androidx.baselineprofile", version.ref = "androidxMacroBenchmark" }
 android-test = { id = "com.android.test", version.ref = "agp" }
 
 

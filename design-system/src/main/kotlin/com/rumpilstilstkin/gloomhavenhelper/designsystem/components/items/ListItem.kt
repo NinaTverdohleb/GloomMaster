@@ -267,7 +267,7 @@ private fun GloomListItemPreview() {
                 modifier = Modifier.fillMaxWidth(),
                 title = "Some title",
                 rightComponent = {
-                    RightItemChecker(true, {})
+                    RightItemChecker(checked = true, onCheckedChange = {})
                 },
             )
 
@@ -301,7 +301,7 @@ private fun GloomListItemPreview() {
                 modifier = Modifier.fillMaxWidth(),
                 title = "Achivmentdsfsadfasdfasdfasdfasdfsdasdfasdfasdfsadfsa",
                 rightComponent = {
-                    RightItemChecker(true, {})
+                    RightItemChecker(checked = true, onCheckedChange ={})
                 },
             )
 

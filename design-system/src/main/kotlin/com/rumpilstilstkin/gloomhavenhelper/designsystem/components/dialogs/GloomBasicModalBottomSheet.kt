@@ -21,6 +21,8 @@ import androidx.compose.material3.SheetState
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.testTagsAsResourceId
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
@@ -57,7 +59,9 @@ fun GloomBasicModalBottomSheet(
     contentWindowInsets = { WindowInsets.statusBars.union(WindowInsets.navigationBars) },
     content = {
         Box(
-            modifier = Modifier.padding(16.dp),
+            modifier = Modifier
+                .semantics { testTagsAsResourceId = true }
+                .padding(16.dp),
         ) {
             content()
         }

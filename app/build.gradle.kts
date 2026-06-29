@@ -16,7 +16,7 @@ android {
     defaultConfig {
         applicationId = "com.rumpilstilstkin.gloommaster"
         minSdk = 31
-        versionCode = 2
+        versionCode = 3
         versionName = "0.0.2"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -28,6 +28,7 @@ android {
         release {
             isMinifyEnabled = true
             isShrinkResources = true
+            signingConfig = signingConfigs.getByName("debug")
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -35,7 +36,13 @@ android {
         }
         debug {
             applicationIdSuffix = ".debug"
-            manifestPlaceholders["appLabelSuffix"] = " (Debug)"
+            manifestPlaceholders["appLabelSuffix"] = "(Debug)"
+        }
+        create("benchmark") {
+            initWith(buildTypes.getByName("release"))
+            signingConfig = signingConfigs.getByName("debug")
+            matchingFallbacks += listOf("release")
+            isDebuggable = false
         }
     }
 
@@ -50,8 +57,20 @@ room {
     schemaDirectory("$projectDir/schemas")
 }
 
+baselineProfile {
+    automaticGenerationDuringBuild = false
+    dexLayoutOptimization = true
+}
+
+dependencyGuard {
+    configuration("benchmarkReleaseCompileClasspath") {
+        tree = true
+    }
+}
+
 dependencies {
     implementation(project(":design-system"))
+    baselineProfile(project(":benchmark"))
 
     ksp(libs.room.compiler)
     implementation(libs.room.runtime)
@@ -69,6 +88,7 @@ dependencies {
     implementation(libs.androidx.navigation.compose)
     implementation(libs.androidx.hilt.navigation.compose)
     implementation(libs.coil.compose)
+    implementation(libs.androidx.profileinstaller)
 
     testImplementation(libs.junit)
     testImplementation(libs.kotlinx.coroutines.test)
@@ -85,15 +105,4 @@ dependencies {
 
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
-}
-
-baselineProfile {
-    automaticGenerationDuringBuild = false
-    dexLayoutOptimization = true
-}
-
-dependencyGuard {
-    configuration("benchmarkReleaseCompileClasspath") {
-        tree = true
-    }
 }

@@ -9,6 +9,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -91,13 +92,20 @@ fun MenuScenarioDialog(
                 GloomOutlineButton(
                     text = stringResource(R.string.play_scenario),
                     onClick = playScenario,
-                    modifier = Modifier.fillMaxWidth(),
+                    modifier =
+                        Modifier
+                            .fillMaxWidth()
+                            .testTag(MenuScenarioDialogTestTags.PLAY_SCENARIO_BUTTON),
                     isError = false,
                     icon = AppIcon.Play,
                 )
             }
         }
     }
+}
+
+object MenuScenarioDialogTestTags {
+    const val PLAY_SCENARIO_BUTTON = "MenuScenarioDialogPlayScenarioButton"
 }
 
 @Preview

@@ -18,6 +18,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -194,7 +195,10 @@ private fun EffectsRow(
                 }
             IconButton(
                 onClick = { onToggle(effect) },
-                modifier = Modifier.size(32.dp),
+                modifier =
+                    Modifier
+                        .size(32.dp)
+                        .testTag(RegularMonsterUnitTestTags.activeEffect(effect)),
             ) {
                 Icon(
                     modifier = Modifier.fillMaxSize(),
@@ -286,6 +290,12 @@ private fun BottomStickers(
             },
         )
     }
+}
+
+object RegularMonsterUnitTestTags {
+    const val EFFECT_PREFIX = "RegularMonsterUnitEffect_"
+
+    fun activeEffect(effect: MonsterStatType) = "$EFFECT_PREFIX${effect.name}"
 }
 
 @Preview

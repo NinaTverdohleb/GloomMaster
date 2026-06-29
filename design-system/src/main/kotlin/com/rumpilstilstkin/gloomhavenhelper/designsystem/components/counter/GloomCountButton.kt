@@ -23,6 +23,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.icons.AppIcon
@@ -81,6 +82,7 @@ fun GloomCountButton(
     Box(
         modifier =
             modifier
+                .testTag(type.testTag)
                 .background(
                     color = MaterialTheme.colorScheme.surfaceBright,
                     shape = RoundedCornerShape(10.dp),
@@ -134,11 +136,24 @@ fun GloomCountButton(
 
 enum class PickerButtonType(
     val image: GloomIcon,
-    val action: (Int) -> Int,
+    val testTag: String,
+    val action: (Int) -> Int
 ) {
-    PLUS(AppIcon.Plus, { it + 1 }),
-    MINUS(AppIcon.Minus, { it - 1 }),
+    PLUS(
+        image = AppIcon.Plus,
+        testTag = GloomCountButtonTestTags.TEST_TAG_PLUS,
+        action = { it + 1 }),
+    MINUS(
+        image = AppIcon.Minus,
+        testTag = GloomCountButtonTestTags.TEST_TAG_MINUS,
+        action = { it - 1 }),
 }
+
+object GloomCountButtonTestTags{
+    const val TEST_TAG_PLUS = "PickerButtonPlus"
+    const val TEST_TAG_MINUS = "PickerButtonMinus"
+}
+
 
 @Preview
 @Composable

@@ -21,6 +21,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -58,12 +59,25 @@ fun AddMonsterUnitDialog(
             onSelect = toggleId,
         )
         GloomOutlineButton(
-            modifier = Modifier.fillMaxWidth(),
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .testTag(AddMonsterUnitDialogTestTags.OK_BUTTON),
             icon = AppIcon.Check,
             text = stringResource(R.string.ok),
             onClick = spawn,
         )
     }
+}
+
+object AddMonsterUnitDialogTestTags {
+    const val TIER_PREFIX = "AddMonsterUnitDialogTier_"
+    const val UNIT_PREFIX = "AddMonsterUnitDialogUnit_"
+    const val OK_BUTTON = "AddMonsterUnitDialogOkButton"
+
+    fun tier(tier: UnitTier) = "$TIER_PREFIX${tier.name}"
+
+    fun unit(id: Int) = "$UNIT_PREFIX$id"
 }
 
 enum class UnitTier(
@@ -97,6 +111,7 @@ private fun TierSelector(
                         .background(
                             if (isSelected) MaterialTheme.colorScheme.primary else Color.Transparent,
                         ).clickable { onSelect(tier) }
+                        .testTag(AddMonsterUnitDialogTestTags.tier(tier))
                         .padding(vertical = 8.dp),
                 contentAlignment = Alignment.Center,
             ) {
@@ -171,7 +186,8 @@ private fun UnitIdCell(
                     shape = RoundedCornerShape(8.dp),
                     color = MaterialTheme.colorScheme.onSurface,
                     width = 1.dp,
-                ).clickable(onClick = onClick),
+                ).clickable(onClick = onClick)
+                .testTag(AddMonsterUnitDialogTestTags.unit(id)),
         contentAlignment = Alignment.Center,
     ) {
         Text(

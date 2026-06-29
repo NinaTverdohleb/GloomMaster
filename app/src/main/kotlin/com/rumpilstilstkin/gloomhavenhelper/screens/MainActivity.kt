@@ -15,7 +15,10 @@ import androidx.compose.material3.windowsizeclass.calculateWindowSizeClass
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.testTagsAsResourceId
 import androidx.core.animation.doOnEnd
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.Lifecycle
@@ -36,7 +39,10 @@ class MainActivity : AppCompatActivity() {
         super.onStart()
     }
 
-    @OptIn(ExperimentalMaterial3WindowSizeClassApi::class)
+    @OptIn(
+        ExperimentalMaterial3WindowSizeClassApi::class,
+        ExperimentalComposeUiApi::class,
+    )
     override fun onCreate(savedInstanceState: Bundle?) {
         val splashScreen = installSplashScreen()
         super.onCreate(savedInstanceState)
@@ -67,7 +73,10 @@ class MainActivity : AppCompatActivity() {
             GloomhavenMasterTheme {
                 val windowSizeClass = calculateWindowSizeClass(this)
                 Surface(
-                    modifier = Modifier.fillMaxSize(),
+                    modifier =
+                        Modifier
+                            .fillMaxSize()
+                            .semantics { testTagsAsResourceId = true },
                 ) {
                     GlHelperNavHost(
                         modifier = Modifier.safeDrawingPadding().fillMaxSize(),

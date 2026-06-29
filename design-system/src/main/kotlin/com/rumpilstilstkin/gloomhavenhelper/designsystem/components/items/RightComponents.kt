@@ -2,13 +2,11 @@ package com.rumpilstilstkin.gloomhavenhelper.designsystem.components.items
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.CheckboxDefaults
@@ -19,11 +17,10 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.GloomCard
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.counter.GloomCounterSmall
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.icons.AppIcon
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.icons.GloomIcon
@@ -57,8 +54,10 @@ fun RightItemIcon(icon: GloomIcon) =
 @Composable
 fun RightItemChecker(
     checked: Boolean,
+    modifier: Modifier = Modifier,
     onCheckedChange: ((Boolean) -> Unit)?,
 ) = Checkbox(
+    modifier = modifier.testTag(RightComponentsTestTags.CHECKER),
     checked = checked,
     colors =
         CheckboxDefaults.colors(
@@ -106,6 +105,10 @@ fun CounterRightItem(
             onValueChange = onValueChange,
         )
     }
+}
+
+object RightComponentsTestTags{
+    const val CHECKER = "RightComponentsTestTagsChecker"
 }
 
 @Preview

@@ -22,6 +22,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clipToBounds
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -86,10 +87,14 @@ internal fun ScenarioScreen(
             GloomFab(
                 icon = AppIcon.Plus,
                 onClick = addMonster,
+                modifier = Modifier.testTag(ScenarioScreenTestTags.ADD_MONSTER_FAB),
             )
             GloomButton(
                 text = stringResource(R.string.round_label),
-                modifier = Modifier.fillMaxWidth(),
+                modifier =
+                    Modifier
+                        .fillMaxWidth()
+                        .testTag(ScenarioScreenTestTags.ROUND_BUTTON),
                 onClick = nextRound,
             )
         }
@@ -192,6 +197,7 @@ fun ScenarioScreenContent(
             Box(modifier = Modifier.fillMaxSize()) {
                 val monster = monsters[page]
                 RegularMonsterCard(
+                    modifier = Modifier.testTag(ScenarioScreenTestTags.card(page)),
                     item = monster,
                     delete = delete,
                     deleteUnit = deleteUnit,
@@ -204,6 +210,13 @@ fun ScenarioScreenContent(
             }
         }
     }
+}
+
+object ScenarioScreenTestTags {
+    const val ADD_MONSTER_FAB = "ScenarioScreenAddMonsterFab"
+    const val ROUND_BUTTON = "ScenarioScreenRoundButton"
+    private const val MONSTER_CARD_PREFIX = "ScenarioScreenMonsterCard"
+    fun card(index: Int) = "$MONSTER_CARD_PREFIX$index"
 }
 
 @Preview(showBackground = true)

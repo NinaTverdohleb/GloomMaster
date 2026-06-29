@@ -28,6 +28,7 @@ import kotlinx.collections.immutable.toPersistentSet
 @Composable
 fun RegularMonsterCard(
     item: MonsterItemUi,
+    modifier: Modifier = Modifier,
     availableEffects: ImmutableSet<MonsterStatType>,
     delete: (monsterSlug: String) -> Unit,
     deleteUnit: (unitNumber: Int, monsterSlug: String) -> Unit,
@@ -41,6 +42,7 @@ fun RegularMonsterCard(
             .map { it.number }
             .toSet()
     Column(
+        modifier = modifier,
         verticalArrangement = Arrangement.spacedBy(16.dp),
     ) {
         MonsterCard(

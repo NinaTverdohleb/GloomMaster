@@ -22,6 +22,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -78,7 +79,9 @@ fun MonsterCard(
             if (onAddUnit != null) {
                 IconButton(
                     onClick = onAddUnit,
-                    modifier = Modifier.size(28.dp),
+                    modifier = Modifier
+                        .size(28.dp)
+                        .testTag(MonsterCardTestTags.ADD_UNITS_BUTTON),
                 ) {
                     Icon(
                         painter = AppIcon.Plus.painter(),
@@ -91,7 +94,9 @@ fun MonsterCard(
             }
             IconButton(
                 onClick = delete,
-                modifier = Modifier.size(28.dp),
+                modifier = Modifier
+                    .size(28.dp)
+                    .testTag(MonsterCardTestTags.DELETE_BUTTON),
             ) {
                 Icon(
                     imageVector = Icons.Default.Delete,
@@ -118,6 +123,11 @@ fun MonsterCard(
             }
         }
     }
+}
+
+object MonsterCardTestTags{
+    const val ADD_UNITS_BUTTON = "MonsterCardTestTagsAddUnitsButton"
+    const val DELETE_BUTTON = "MonsterCardTestTagsDeleteButton"
 }
 
 @Preview(heightDp = 2000)

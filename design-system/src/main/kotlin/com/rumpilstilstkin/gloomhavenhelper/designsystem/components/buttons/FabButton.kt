@@ -46,8 +46,10 @@ import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterT
 fun GloomFab(
     icon: GloomIcon,
     onClick: () -> Unit,
+    modifier: Modifier = Modifier,
 ) {
     GloomFabBase(
+        modifier = modifier,
         onClick = onClick,
     ) {
         Icon(

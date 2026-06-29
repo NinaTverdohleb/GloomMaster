@@ -5,10 +5,11 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -38,8 +39,14 @@ fun MonsterListDialog(
             modifier = Modifier.weight(1f, fill = false),
             verticalArrangement = Arrangement.spacedBy(8.dp),
         ) {
-            items(items = monsters, key = { it.slug }) { monster ->
+            itemsIndexed(
+                items = monsters,
+                key = { _, monster -> monster.slug },
+            )
+            { index, monster ->
                 GloomListFilledItem(
+                    modifier = Modifier
+                        .testTag(AddScenarioMonstersDialogTestTags.monster(index)),
                     title = monster.name,
                     rightComponent = {
                         RightItemChecker(
@@ -54,7 +61,9 @@ fun MonsterListDialog(
 
         if (monsters.isNotEmpty()) {
             GloomOutlineButton(
-                modifier = Modifier.fillMaxWidth(),
+                modifier = Modifier
+                    .testTag(AddScenarioMonstersDialogTestTags.ADD_BUTTON)
+                    .fillMaxWidth(),
                 icon = AppIcon.Check,
                 text = stringResource(R.string.select_enemies),
                 onClick = selectMonsters,
@@ -69,6 +78,13 @@ fun MonsterListDialog(
             onClick = addNewMonsters,
         )
     }
+}
+
+object AddScenarioMonstersDialogTestTags {
+    const val MONSTER_PREFIX = "AddScenarioMonstersDialogMonsterItem"
+    const val ADD_BUTTON = "AddScenarioMonstersDialogAddButton"
+
+    fun monster(index: Int) = "$MONSTER_PREFIX$index"
 }
 
 @Preview
