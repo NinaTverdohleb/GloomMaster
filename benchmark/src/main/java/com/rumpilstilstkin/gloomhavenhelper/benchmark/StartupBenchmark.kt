@@ -23,7 +23,7 @@ import org.junit.runner.RunWith
  * for investigating your app's performance.
  */
 @RunWith(AndroidJUnit4::class)
-class ExampleStartupBenchmark {
+class StartupBenchmark {
     @get:Rule
     val benchmarkRule = MacrobenchmarkRule()
 
@@ -34,10 +34,11 @@ class ExampleStartupBenchmark {
         compilationMode = CompilationMode.Partial(
             baselineProfileMode = BaselineProfileMode.Require
         ),
-        iterations = 5,
+        iterations = 15,
         startupMode = StartupMode.COLD
     ) {
         pressHome()
         startActivityAndWait()
+        waitForTag(AppTags.TeamTabScreen.ROOT_COLUMN)
     }
 }

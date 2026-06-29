@@ -43,7 +43,7 @@ fun ScenarioBlock(
     ) {
         scenarios.forEachIndexed { index, scenario ->
             ScenarioInfoCardItem(
-                modifier = Modifier.testTag(ScenarioBlockTestTags.scenarioCard(scenario.scenarioNumber)),
+                modifier = Modifier.testTag(ScenarioBlockTestTags.scenarioCard(index)),
                 scenarioNumber = scenario.scenarioNumber,
                 scenarioName = scenario.scenarioName,
                 location = scenario.location,
@@ -53,9 +53,9 @@ fun ScenarioBlock(
 }
 
 object ScenarioBlockTestTags {
-    const val SCENARIO_CARD_PREFIX = "ScenarioBlockScenarioCard_"
+    const val SCENARIO_CARD_PREFIX = "ScenarioBlockScenarioCard"
 
-    fun scenarioCard(scenarioNumber: Int) = "$SCENARIO_CARD_PREFIX$scenarioNumber"
+    fun scenarioCard(index: Int) = "$SCENARIO_CARD_PREFIX$index"
 }
 
 @Preview

@@ -5,8 +5,10 @@ import androidx.benchmark.macro.CompilationMode
 import androidx.benchmark.macro.FrameTimingMetric
 import androidx.benchmark.macro.junit4.MacrobenchmarkRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import androidx.test.uiautomator.Direction
 import com.rumpilstilstkin.gloomhavenhelper.benchmark.steps.addMonster
 import com.rumpilstilstkin.gloomhavenhelper.benchmark.steps.addMonsterUnits
+import com.rumpilstilstkin.gloomhavenhelper.benchmark.steps.back
 import com.rumpilstilstkin.gloomhavenhelper.benchmark.steps.changeMagicCharge
 import com.rumpilstilstkin.gloomhavenhelper.benchmark.steps.changeUnitLife
 import com.rumpilstilstkin.gloomhavenhelper.benchmark.steps.createTeam
@@ -42,33 +44,43 @@ class ScenarioPlayBenchmark {
     val benchmarkRule = MacrobenchmarkRule()
 
     @Test
-    fun scenarioPlayFlow() = benchmarkRule.measureRepeated(
-        packageName = TestConsts.TARGET_PACKAGE,
-        metrics = listOf(FrameTimingMetric()),
-        compilationMode = CompilationMode.Partial(
-            baselineProfileMode = BaselineProfileMode.Require,
-        ),
-        iterations = 15,
-        setupBlock = {
-            pressHome()
-            startActivityAndWait()
-        },
-    ) {
-        createTeam()
-        openAndPlayScenario()
+    fun scenarioPlayFlow() {
+        var isFirstIteration = true
+        benchmarkRule.measureRepeated(
+            packageName = TestConsts.TARGET_PACKAGE,
+            metrics = listOf(FrameTimingMetric()),
+            compilationMode = CompilationMode.Partial(
+                baselineProfileMode = BaselineProfileMode.Require,
+            ),
+            iterations = 15,
+            setupBlock = {
+                pressHome()
+                startActivityAndWait()
+                if (isFirstIteration) {
+                    createTeam()
+                    isFirstIteration = false
+                } else {
+                    waitForTag(AppTags.TeamTabScreen.ROOT_COLUMN).scroll(Direction.DOWN, 0.8f)
+                }
+            },
+        ) {
+            openAndPlayScenario()
 
-        addMonster()
-        addMonsterUnits()
+            addMonster()
+            addMonsterUnits()
 
-        nextRound()
+            nextRound()
 
-        toggleUnitEffect()
-        changeUnitLife()
+            toggleUnitEffect()
+            changeUnitLife()
 
-        nextRound()
+            nextRound()
 
-        changeMagicCharge()
+            changeMagicCharge()
 
-        nextRound()
+            nextRound()
+
+            back()
+        }
     }
 }

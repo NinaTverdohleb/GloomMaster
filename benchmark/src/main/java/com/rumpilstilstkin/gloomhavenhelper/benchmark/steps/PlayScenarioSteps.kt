@@ -9,7 +9,6 @@ fun MacrobenchmarkScope.addMonster() {
     clickTag(AppTags.ScenarioScreen.ADD_MONSTER_FAB)
 
     clickTag(AppTags.AddScenarioMonstersDialog.monster(0), RightComponentsTestTags.CHECKER)
-    clickTag(AppTags.AddScenarioMonstersDialog.monster(1), RightComponentsTestTags.CHECKER)
 
     clickTag(AppTags.AddScenarioMonstersDialog.ADD_BUTTON)
 }

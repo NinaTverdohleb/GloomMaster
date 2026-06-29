@@ -18,6 +18,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -49,7 +50,10 @@ fun GloomToolbarAction(
         Row {
             Spacer(Modifier.width(16.dp))
             if (back != null) {
-                IconButton(onClick = back) {
+                IconButton(
+                    modifier = Modifier.testTag(GloomToolbarTestTag.BACK),
+                    onClick = back
+                ) {
                     Icon(
                         painter = NavigationIcon.Close.painter(),
                         contentDescription = stringResource(R.string.design_system_back),
@@ -139,7 +143,10 @@ fun GloomToolbar(
             Row {
                 Spacer(Modifier.width(16.dp))
                 if (back != null) {
-                    IconButton(onClick = back) {
+                    IconButton(
+                        modifier = Modifier.testTag(GloomToolbarTestTag.BACK),
+                        onClick = back
+                    ) {
                         Icon(
                             painter = painterResource(R.drawable.ic_close),
                             contentDescription = stringResource(R.string.design_system_back),
@@ -155,6 +162,10 @@ fun GloomToolbar(
                 navigationIconContentColor = MaterialTheme.colorScheme.onSurface,
             ),
     )
+}
+
+object GloomToolbarTestTag {
+    const val BACK = "GloomToolbarBackButton"
 }
 
 @Preview

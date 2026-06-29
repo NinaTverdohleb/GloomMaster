@@ -4,7 +4,6 @@ import androidx.benchmark.macro.MacrobenchmarkScope
 import com.rumpilstilstkin.gloomhavenhelper.benchmark.AppTags
 import com.rumpilstilstkin.gloomhavenhelper.benchmark.clickTag
 
-fun MacrobenchmarkScope.openAndPlayScenario() {
-    clickTag(AppTags.ScenarioBlock.scenarioCard(0))
-    clickTag(AppTags.MenuScenarioDialog.PLAY_SCENARIO_BUTTON)
+fun MacrobenchmarkScope.back() {
+    clickTag(AppTags.BACK)
 }

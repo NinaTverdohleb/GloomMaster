@@ -10,7 +10,7 @@ import org.junit.runner.RunWith
  * Generates a baseline profile for the app's startup path.
  *
  * Run with: `./gradlew :app:generateBaselineProfile`
- * The resulting profile is bundled into the app and consumed by [ExampleStartupBenchmark]
+ * The resulting profile is bundled into the app and consumed by [StartupBenchmark]
  * via `CompilationMode.Partial(BaselineProfileMode.Require)`.
  */
 @RunWith(AndroidJUnit4::class)

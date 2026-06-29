@@ -14,6 +14,12 @@ import com.rumpilstilstkin.gloomhavenhelper.benchmark.AppTags.ScenarioBlock.SCEN
  * because dialogs render in their own window) and located with `By.res(tag)`.
  */
 object AppTags {
+    const val BACK = "GloomToolbarBackButton"
+
+    object TeamTabScreen{
+        const val ROOT_COLUMN = "TeamTabScreenTestTagsRoot"
+    }
+
     /** EmptyTeamScreen — first screen when no team exists. */
     object EmptyTeam {
         const val START_BUTTON = "EmptyTeamScreenStartButton"
@@ -27,9 +33,9 @@ object AppTags {
 
     /** ScenarioBlock — available scenarios list on the team tab. */
     object ScenarioBlock {
-        private const val SCENARIO_CARD_PREFIX = "ScenarioBlockScenarioCard_"
+        private const val SCENARIO_CARD_PREFIX = "ScenarioBlockScenarioCard"
 
-        fun scenarioCard(scenarioNumber: Int) = "$SCENARIO_CARD_PREFIX$scenarioNumber"
+        fun scenarioCard(index: Int) = "$SCENARIO_CARD_PREFIX$index"
     }
 
     /** MenuScenarioDialog — opened by tapping a scenario card. */

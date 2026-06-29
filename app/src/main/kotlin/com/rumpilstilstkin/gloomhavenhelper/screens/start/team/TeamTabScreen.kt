@@ -8,6 +8,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
@@ -37,7 +38,8 @@ internal fun TeamTabScreen(
             modifier =
                 Modifier
                     .fillMaxSize()
-                    .verticalScroll(rememberScrollState()),
+                    .verticalScroll(rememberScrollState())
+                    .testTag(TeamTabScreenTestTags.ROOT_COLUMN),
             verticalArrangement = Arrangement.spacedBy(32.dp),
         ) {
             TeamHeader(
@@ -73,6 +75,10 @@ internal fun TeamTabScreen(
             )
         }
     }
+}
+
+object TeamTabScreenTestTags{
+    const val ROOT_COLUMN = "TeamTabScreenTestTagsRoot"
 }
 
 @Preview(showBackground = true, backgroundColor = 0xFF1A1C24, heightDp = 1150)
