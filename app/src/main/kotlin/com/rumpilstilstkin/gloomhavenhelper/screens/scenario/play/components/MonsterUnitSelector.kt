@@ -57,7 +57,7 @@ fun UnitSelector(
     modifier: Modifier = Modifier,
     columns: Int = 10,
     initiallyOpenNumber: Int? = units.firstOrNull()?.number,
-    onSelect: (UnitCompact) -> Unit
+    onSelect: (UnitCompact) -> Unit,
 ) {
     var selectedNumber by remember {
         mutableStateOf(initiallyOpenNumber)
@@ -135,8 +135,7 @@ private fun Modifier.animatePlacement(): Modifier =
         this
             .onPlaced { coordinates ->
                 targetOffset = coordinates.positionInParent().round()
-            }
-            .offset {
+            }.offset {
                 val anim =
                     animatable
                         ?: Animatable(targetOffset, IntOffset.VectorConverter).also {
@@ -176,7 +175,7 @@ private fun MonsterUnitSelectorPreview() {
         ) {
             UnitSelector(
                 units = units,
-                onSelect = {}
+                onSelect = {},
             )
         }
     }

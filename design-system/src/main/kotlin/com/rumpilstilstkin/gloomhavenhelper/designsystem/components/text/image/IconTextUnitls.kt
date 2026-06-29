@@ -1,6 +1,5 @@
 package com.rumpilstilstkin.gloomhavenhelper.designsystem.components.text.image
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.text.InlineTextContent
 import androidx.compose.foundation.text.appendInlineContent
@@ -52,20 +51,12 @@ fun rememberIconsInlineContent(fontSize: TextUnit): Map<String, InlineTextConten
                 ) {
                     val modifier = Modifier.fillMaxSize()
 
-                    if (icon.color != null) {
-                        Icon(
-                            painter = icon.image.painter(),
-                            contentDescription = stringResource(id = icon.titleRes),
-                            tint = icon.color,
-                            modifier = modifier,
-                        )
-                    } else {
-                        Image(
-                            painter = icon.image.painter(),
-                            contentDescription = stringResource(id = icon.titleRes),
-                            modifier = modifier,
-                        )
-                    }
+                    Icon(
+                        painter = icon.image.painter(),
+                        contentDescription = stringResource(id = icon.titleRes),
+                        tint = icon.color,
+                        modifier = modifier,
+                    )
                 }
         }
     }
