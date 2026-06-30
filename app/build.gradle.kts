@@ -6,6 +6,7 @@ plugins {
     alias(libs.plugins.baselineprofile)
     alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.room)
+    alias(libs.plugins.kover)
 }
 
 android {
@@ -42,6 +43,7 @@ android {
             initWith(buildTypes.getByName("release"))
             signingConfig = signingConfigs.getByName("debug")
             matchingFallbacks += listOf("release")
+            applicationIdSuffix = ".benchmark"
             isDebuggable = false
         }
     }
@@ -70,6 +72,7 @@ dependencyGuard {
 
 dependencies {
     implementation(project(":design-system"))
+    implementation(project(":test-tags"))
     baselineProfile(project(":benchmark"))
 
     ksp(libs.room.compiler)

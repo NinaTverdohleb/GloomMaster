@@ -17,16 +17,16 @@ import androidx.compose.material3.FabPosition
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.rumpilstilstkin.gloomhavenhelper.R
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.buttons.GloomFab
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.text.GloomHeader
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.icons.AppIcon
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.ShortScenarioUI
+import com.rumpilstilstkin.gloomhavenhelper.testtags.screens.start.scenarios.ScenariosTabTestTags
 import com.rumpilstilstkin.gloomhavenhelper.ui.scenario.ScenarioInfoCardItem
 
 @Composable
@@ -41,6 +41,7 @@ internal fun ScenariosTabScreen(
         GloomFab(
             icon = AppIcon.Plus,
             onClick = addScenario,
+            modifier = Modifier.testTag(ScenariosTabTestTags.ADD_FAB),
         )
     },
 ) { innerPadding ->
@@ -61,6 +62,7 @@ internal fun ScenariosTabScreen(
                         modifier =
                             Modifier
                                 .fillMaxWidth()
+                                .testTag(ScenariosTabTestTags.section(key.name))
                                 .clickable {
                                     toggleSection(key)
                                 }.padding(vertical = 16.dp),
@@ -78,11 +80,13 @@ internal fun ScenariosTabScreen(
                     ) { scenario ->
                         ScenarioInfoCardItem(
                             modifier =
-                                Modifier.animateItem(
-                                    fadeInSpec = tween(300),
-                                    fadeOutSpec = tween(300),
-                                    placementSpec = spring(stiffness = Spring.StiffnessLow),
-                                ),
+                                Modifier
+                                    .testTag(ScenariosTabTestTags.scenarioCard(scenario.scenarioNumber))
+                                    .animateItem(
+                                        fadeInSpec = tween(300),
+                                        fadeOutSpec = tween(300),
+                                        placementSpec = spring(stiffness = Spring.StiffnessLow),
+                                    ),
                             scenarioNumber = scenario.scenarioNumber,
                             scenarioName = scenario.scenarioName,
                             location = scenario.location,

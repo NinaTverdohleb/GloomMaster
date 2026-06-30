@@ -20,6 +20,7 @@ import com.rumpilstilstkin.gloomhavenhelper.screens.start.team.component.TeamAch
 import com.rumpilstilstkin.gloomhavenhelper.screens.start.team.component.TeamHeader
 import com.rumpilstilstkin.gloomhavenhelper.screens.start.team.component.TeamProsperity
 import com.rumpilstilstkin.gloomhavenhelper.screens.start.team.component.TeamReputation
+import com.rumpilstilstkin.gloomhavenhelper.testtags.screens.start.team.TeamTabScreenTestTags
 
 @Composable
 internal fun TeamTabScreen(
@@ -75,10 +76,6 @@ internal fun TeamTabScreen(
             )
         }
     }
-}
-
-object TeamTabScreenTestTags{
-    const val ROOT_COLUMN = "TeamTabScreenTestTagsRoot"
 }
 
 @Preview(showBackground = true, backgroundColor = 0xFF1A1C24, heightDp = 1150)

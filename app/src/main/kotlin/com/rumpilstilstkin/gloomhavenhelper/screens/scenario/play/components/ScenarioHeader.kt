@@ -28,6 +28,7 @@ import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterT
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.Magic
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.scenario.ChargeLevel
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.state.toIcon
+import com.rumpilstilstkin.gloomhavenhelper.testtags.screens.scenario.play.components.ScenarioHeaderTestTags
 
 @Composable
 internal fun ScenarioHeader(
@@ -94,18 +95,12 @@ internal fun ScenarioHeader(
                             interactionSource = remember { MutableInteractionSource() },
                             indication = null,
                         ) { clickMagic(magic) }
-                        .testTag(ScenarioHeaderTestTags.magic(magic)),
+                        .testTag(ScenarioHeaderTestTags.magic(magic.name)),
                 icon = magic.toIcon(),
                 charge = charge ?: ChargeLevel.Zero,
             )
         }
     }
-}
-
-object ScenarioHeaderTestTags {
-    const val MAGIC_PREFIX = "ScenarioHeaderMagic_"
-
-    fun magic(magic: Magic) = "$MAGIC_PREFIX${magic.name}"
 }
 
 @Preview

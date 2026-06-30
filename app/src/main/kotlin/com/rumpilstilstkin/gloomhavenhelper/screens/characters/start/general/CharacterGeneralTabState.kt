@@ -3,7 +3,6 @@ package com.rumpilstilstkin.gloomhavenhelper.screens.characters.start.general
 import androidx.compose.runtime.Immutable
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.quest.CharacterTaskItem
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.PersonalQuestUI
-import kotlinx.collections.immutable.ImmutableList
 
 @Immutable
 data class CharacterGeneralTabState(

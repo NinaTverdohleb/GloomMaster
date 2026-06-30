@@ -4,7 +4,6 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.gestures.awaitEachGesture
 import androidx.compose.foundation.gestures.awaitFirstDown
-import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.gestures.waitForUpOrCancellation
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -29,10 +28,10 @@ import androidx.compose.ui.unit.dp
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.icons.AppIcon
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.icons.GloomIcon
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
+import com.rumpilstilstkin.gloomhavenhelper.testtags.components.CounterTestTags
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
-import kotlin.time.Duration.Companion.milliseconds
 
 @Composable
 fun GloomCountButtonSmall(
@@ -44,6 +43,7 @@ fun GloomCountButtonSmall(
     IconButton(
         modifier =
             modifier
+                .testTag(type.testTag)
                 .background(color = Color.Transparent)
                 .size(24.dp),
         onClick = { onValueChange(type.action(value)) },
@@ -137,23 +137,19 @@ fun GloomCountButton(
 enum class PickerButtonType(
     val image: GloomIcon,
     val testTag: String,
-    val action: (Int) -> Int
+    val action: (Int) -> Int,
 ) {
     PLUS(
         image = AppIcon.Plus,
-        testTag = GloomCountButtonTestTags.TEST_TAG_PLUS,
-        action = { it + 1 }),
+        testTag = CounterTestTags.TEST_TAG_PLUS,
+        action = { it + 1 },
+    ),
     MINUS(
         image = AppIcon.Minus,
-        testTag = GloomCountButtonTestTags.TEST_TAG_MINUS,
-        action = { it - 1 }),
+        testTag = CounterTestTags.TEST_TAG_MINUS,
+        action = { it - 1 },
+    ),
 }
-
-object GloomCountButtonTestTags{
-    const val TEST_TAG_PLUS = "PickerButtonPlus"
-    const val TEST_TAG_MINUS = "PickerButtonMinus"
-}
-
 
 @Preview
 @Composable

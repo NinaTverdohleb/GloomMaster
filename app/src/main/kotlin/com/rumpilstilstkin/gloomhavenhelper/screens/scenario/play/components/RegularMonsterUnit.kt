@@ -34,6 +34,7 @@ import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterT
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterAction
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterStatType
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.scenario.MonsterUnit
+import com.rumpilstilstkin.gloomhavenhelper.testtags.screens.scenario.play.components.RegularMonsterUnitTestTags
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.ImmutableSet
 import kotlinx.collections.immutable.toPersistentSet
@@ -198,7 +199,7 @@ private fun EffectsRow(
                 modifier =
                     Modifier
                         .size(32.dp)
-                        .testTag(RegularMonsterUnitTestTags.activeEffect(effect)),
+                        .testTag(RegularMonsterUnitTestTags.effect(effect.name)),
             ) {
                 Icon(
                     modifier = Modifier.fillMaxSize(),
@@ -290,12 +291,6 @@ private fun BottomStickers(
             },
         )
     }
-}
-
-object RegularMonsterUnitTestTags {
-    const val EFFECT_PREFIX = "RegularMonsterUnitEffect_"
-
-    fun activeEffect(effect: MonsterStatType) = "$EFFECT_PREFIX${effect.name}"
 }
 
 @Preview

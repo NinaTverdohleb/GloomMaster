@@ -9,6 +9,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -18,6 +19,7 @@ import com.rumpilstilstkin.gloomhavenhelper.designsystem.icons.AppIcon
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.ShortScenarioUI
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.toHumanReadable
+import com.rumpilstilstkin.gloomhavenhelper.testtags.screens.scenario.dialog.add.AddScenarioDialogTestTags
 import com.rumpilstilstkin.gloomhavenhelper.ui.scenario.ScenarioInfoItem
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -59,7 +61,10 @@ fun AddScenarioDialog(
         GloomOutlineButton(
             text = stringResource(R.string.add_scenario),
             onClick = addScenario,
-            modifier = Modifier.fillMaxWidth(),
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .testTag(AddScenarioDialogTestTags.ADD_SCENARIO_BUTTON),
             isError = false,
             icon = AppIcon.Check,
         )

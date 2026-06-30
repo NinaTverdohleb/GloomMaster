@@ -1,11 +1,13 @@
 package com.rumpilstilstkin.gloomhavenhelper.ui.perks
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.items.GloomItemActionIcon
@@ -16,25 +18,32 @@ import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.items.TextIm
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.icons.AppIcon
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.PerkUI
+import com.rumpilstilstkin.gloomhavenhelper.testtags.screens.characters.start.perks.CharacterPerksTabTestTags
 
 @Composable
 fun PerkActionItem(
     perk: PerkUI,
     delete: (PerkUI) -> Unit,
+    modifier: Modifier = Modifier,
 ) {
-    GloomSwipeableListItem(
-        menuContent = {
-            GloomItemActionIcon(
-                modifier = Modifier.fillMaxHeight(),
-                icon = AppIcon.Delete,
-                isError = true,
-                onClick = { delete(perk) },
-            )
-        },
-        item = {
-            TextImageFilledItem(perk.text)
-        },
-    )
+    Box(modifier = modifier.testTag(CharacterPerksTabTestTags.PERK_ITEM)) {
+        GloomSwipeableListItem(
+            menuContent = {
+                GloomItemActionIcon(
+                    modifier =
+                        Modifier
+                            .fillMaxHeight()
+                            .testTag(CharacterPerksTabTestTags.DELETE_ACTION),
+                    icon = AppIcon.Delete,
+                    isError = true,
+                    onClick = { delete(perk) },
+                )
+            },
+            item = {
+                TextImageFilledItem(perk.text)
+            },
+        )
+    }
 }
 
 @Composable

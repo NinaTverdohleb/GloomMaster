@@ -2,7 +2,6 @@ package com.rumpilstilstkin.gloomhavenhelper.screens.teem.goods
 
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.GoodType
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.GoodUi
-import com.rumpilstilstkin.gloomhavenhelper.screens.start.shop.ShopTabAction
 import com.rumpilstilstkin.gloomhavenhelper.ui.goods.AddGoodsViewState
 
 data class AddGoodsForTeamUiState(

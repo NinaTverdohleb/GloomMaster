@@ -11,6 +11,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
@@ -21,6 +22,7 @@ import com.rumpilstilstkin.gloomhavenhelper.screens.characters.start.general.com
 import com.rumpilstilstkin.gloomhavenhelper.screens.characters.start.general.components.NotesRow
 import com.rumpilstilstkin.gloomhavenhelper.screens.characters.start.general.components.PersonalQuestView
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.PersonalQuestUI
+import com.rumpilstilstkin.gloomhavenhelper.testtags.screens.characters.start.CharacterGeneralTabTestTags
 
 @Composable
 fun CharacterGeneralTab(
@@ -39,6 +41,7 @@ fun CharacterGeneralTab(
     Column(
         modifier =
             modifier
+                .testTag(CharacterGeneralTabTestTags.SCROLL_COLUMN)
                 .fillMaxSize()
                 .verticalScroll(rememberScrollState())
                 .padding(16.dp),

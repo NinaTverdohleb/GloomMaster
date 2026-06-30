@@ -6,7 +6,6 @@ import androidx.room.Query
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.PersonalQuestBd
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.PersonalQuestTaskTranslationsBd
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.PersonalQuestTranslationsBd
-import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface PersonalQuestDao {

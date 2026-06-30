@@ -17,11 +17,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.icons.NavigationIcon
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
+import com.rumpilstilstkin.gloomhavenhelper.testtags.components.NavigationBarTestTags
 
 @Composable
 fun GloomTopNavigationBar(
@@ -45,9 +47,10 @@ fun GloomTopNavigationBar(
             )
         },
     ) {
-        items.forEach { item ->
+        items.forEachIndexed { index, item ->
             val title = item.getTitle()
             LeadingIconTab(
+                modifier = Modifier.testTag(NavigationBarTestTags.tabTop(index)),
                 selected = selectedItem == item,
                 onClick = { selectTab(item) },
                 text = {
@@ -79,9 +82,10 @@ fun GloomBottomNavigationBar(
         containerColor = MaterialTheme.colorScheme.surfaceContainerHigh,
         contentColor = MaterialTheme.colorScheme.primary,
     ) {
-        items.forEach { item ->
+        items.forEachIndexed { index, item ->
             val title = item.getTitle()
             NavigationBarItem(
+                modifier = Modifier.testTag(NavigationBarTestTags.tabBottom(index)),
                 selected = selectedItem == item,
                 onClick = { selectTab(item) },
                 icon = {

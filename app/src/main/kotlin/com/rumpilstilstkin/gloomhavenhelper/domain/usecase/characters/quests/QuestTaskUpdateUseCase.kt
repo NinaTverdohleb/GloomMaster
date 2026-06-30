@@ -1,6 +1,5 @@
 package com.rumpilstilstkin.gloomhavenhelper.domain.usecase.characters.quests
 
-import android.util.Log
 import com.rumpilstilstkin.gloomhavenhelper.data.QuestsRepository
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.quest.CharacterTaskItem
 import javax.inject.Inject

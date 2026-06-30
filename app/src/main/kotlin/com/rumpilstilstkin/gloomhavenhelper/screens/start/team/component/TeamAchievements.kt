@@ -10,6 +10,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -21,6 +22,7 @@ import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.text.GloomHe
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.icons.AppIcon
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.AchievementWithName
+import com.rumpilstilstkin.gloomhavenhelper.testtags.screens.start.team.component.AchievementTestTags
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.persistentListOf
 
@@ -30,7 +32,7 @@ internal fun GlobalAchievement(
     modifier: Modifier = Modifier,
     clickGlobalAchievement: () -> Unit,
 ) = AchievementView(
-    modifier = modifier,
+    modifier = modifier.testTag(AchievementTestTags.GLOBAL_BLOCK),
     title = stringResource(R.string.global_achievements),
     achievements = globalAchievements,
     clickAchievement = clickGlobalAchievement,
@@ -42,7 +44,7 @@ internal fun TeamAchievement(
     modifier: Modifier = Modifier,
     clickTeamAchievement: () -> Unit,
 ) = AchievementView(
-    modifier = modifier,
+    modifier = modifier.testTag(AchievementTestTags.TEAM_BLOCK),
     title = stringResource(R.string.team_achievements),
     achievements = teamAchievements,
     clickAchievement = clickTeamAchievement,
@@ -55,7 +57,6 @@ private fun AchievementView(
     modifier: Modifier = Modifier,
     clickAchievement: () -> Unit,
 ) = Column(
-    modifier = modifier,
     verticalArrangement = Arrangement.spacedBy(12.dp),
 ) {
     GloomHeaderVariant(text = title)

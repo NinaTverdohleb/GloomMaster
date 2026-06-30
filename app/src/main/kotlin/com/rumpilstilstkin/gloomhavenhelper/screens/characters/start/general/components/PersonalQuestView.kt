@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -25,6 +26,7 @@ import com.rumpilstilstkin.gloomhavenhelper.domain.entity.quest.CharacterTaskIte
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.quest.QuestReward
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.PersonalQuestUI
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.QuestTaskPhaseUI
+import com.rumpilstilstkin.gloomhavenhelper.testtags.screens.characters.start.CharacterGeneralTabTestTags
 import com.rumpilstilstkin.gloomhavenhelper.ui.quest.QuestItem
 import kotlinx.collections.immutable.persistentListOf
 
@@ -44,7 +46,10 @@ fun PersonalQuestView(
         GloomHeader(stringResource(R.string.personal_quest_title))
         if (quest == null) {
             GloomOutlineButton(
-                modifier = Modifier.fillMaxWidth(),
+                modifier =
+                    Modifier
+                        .fillMaxWidth()
+                        .testTag(CharacterGeneralTabTestTags.CHOOSE_QUEST),
                 text = stringResource(R.string.add_personal_quest),
                 onClick = choosePersonalQuest,
                 icon = AppIcon.Plus,

@@ -1,5 +1,4 @@
 package com.rumpilstilstkin.gloomhavenhelper.screens.teem.create
-
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -20,6 +19,7 @@ import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.buttons.Gloo
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.text.GloomOutlinedTextField
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.icons.AppIcon
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
+import com.rumpilstilstkin.gloomhavenhelper.testtags.screens.teem.create.AddTeamDialogTestTags
 
 @Composable
 internal fun AddTeamDialog(
@@ -41,7 +41,7 @@ internal fun AddTeamDialog(
             modifier =
                 Modifier
                     .fillMaxWidth()
-                    .testTag(AddTeamDialogTestTags.TEAM_NAME_FIELD),
+                    .testTag(AddTeamDialogTestTags.NAME_FIELD),
             value = teamName,
             onValueChange = { teamName = it },
             label = stringResource(R.string.team_name_label),
@@ -61,17 +61,12 @@ internal fun AddTeamDialog(
             modifier =
                 Modifier
                     .fillMaxWidth()
-                    .testTag(AddTeamDialogTestTags.ADD_TEAM_BUTTON),
+                    .testTag(AddTeamDialogTestTags.ADD_BUTTON),
             isError = false,
             enabled = teamName.isNotBlank(),
             icon = AppIcon.Plus,
         )
     }
-}
-
-object AddTeamDialogTestTags{
-    const val TEAM_NAME_FIELD = "AddTeamDialogTeamNameField"
-    const val ADD_TEAM_BUTTON = "AddTeamDialogAddTeamButton"
 }
 
 @Preview

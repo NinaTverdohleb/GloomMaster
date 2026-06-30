@@ -1,6 +1,5 @@
 package com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.monsters
 
-import androidx.compose.runtime.Immutable
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.scenario.MonsterItem
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.persistentListOf

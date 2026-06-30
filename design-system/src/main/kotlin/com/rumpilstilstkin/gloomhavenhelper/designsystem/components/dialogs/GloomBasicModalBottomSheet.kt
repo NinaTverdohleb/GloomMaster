@@ -59,9 +59,10 @@ fun GloomBasicModalBottomSheet(
     contentWindowInsets = { WindowInsets.statusBars.union(WindowInsets.navigationBars) },
     content = {
         Box(
-            modifier = Modifier
-                .semantics { testTagsAsResourceId = true }
-                .padding(16.dp),
+            modifier =
+                Modifier
+                    .semantics { testTagsAsResourceId = true }
+                    .padding(16.dp),
         ) {
             content()
         }

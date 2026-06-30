@@ -2,21 +2,15 @@ package com.rumpilstilstkin.gloomhavenhelper.screens.characters.start.general.co
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -26,6 +20,7 @@ import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.buttons.Gloo
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.text.GloomHeader
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.icons.AppIcon
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
+import com.rumpilstilstkin.gloomhavenhelper.testtags.screens.characters.start.CharacterGeneralTabTestTags
 
 @Composable
 fun NotesRow(
@@ -44,6 +39,7 @@ fun NotesRow(
                 modifier =
                     modifier
                         .fillMaxWidth()
+                        .testTag(CharacterGeneralTabTestTags.OPEN_NOTES)
                         .clickable { openNotes() },
             ) {
                 Text(
@@ -55,6 +51,7 @@ fun NotesRow(
             }
         } else {
             GloomOutlineButton(
+                modifier = Modifier.testTag(CharacterGeneralTabTestTags.OPEN_NOTES),
                 icon = AppIcon.Plus,
                 text = stringResource(R.string.edit_text_button),
                 onClick = openNotes,

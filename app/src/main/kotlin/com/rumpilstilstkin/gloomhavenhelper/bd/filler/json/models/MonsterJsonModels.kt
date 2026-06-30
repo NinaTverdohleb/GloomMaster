@@ -1,7 +1,6 @@
 package com.rumpilstilstkin.gloomhavenhelper.bd.filler.json.models
 
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.MonsterBd
-import com.rumpilstilstkin.gloomhavenhelper.bd.entity.MonsterTextStatsBd
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.MonsterTranslationsBd
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterAction
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterStatType

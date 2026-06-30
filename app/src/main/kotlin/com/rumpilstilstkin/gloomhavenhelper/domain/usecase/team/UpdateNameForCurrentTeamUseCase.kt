@@ -1,6 +1,5 @@
 package com.rumpilstilstkin.gloomhavenhelper.domain.usecase.team
 
-import android.util.Log
 import com.rumpilstilstkin.gloomhavenhelper.data.TeamRepository
 import kotlinx.coroutines.flow.first
 import javax.inject.Inject

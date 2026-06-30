@@ -5,7 +5,6 @@ import androidx.room.Insert
 import androidx.room.Query
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.AchievementBd
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.AchievementTranslateBd
-import com.rumpilstilstkin.gloomhavenhelper.bd.entity.AchievementWithTranslation
 
 @Dao
 interface AchievementDao {

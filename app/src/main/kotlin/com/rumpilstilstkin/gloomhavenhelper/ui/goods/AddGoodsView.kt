@@ -10,8 +10,10 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -22,6 +24,7 @@ import com.rumpilstilstkin.gloomhavenhelper.designsystem.icons.AppIcon
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.GoodType
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.GoodUi
+import com.rumpilstilstkin.gloomhavenhelper.testtags.ui.goods.AddGoodsViewTestTags
 
 @Composable
 fun AddGoodsView(
@@ -82,17 +85,23 @@ fun AddGoodsView(
                 Spacer(modifier = Modifier.height(4.dp))
             }
 
-            items(
+            itemsIndexed(
                 items = state.availableGoods,
-                key = { item -> item.goodId },
-            ) { good ->
+                key = { _, item -> item.goodId },
+            ) { index, good ->
                 GoodItem(
-                    modifier = Modifier.animateItem(),
+                    modifier =
+                        Modifier
+                            .animateItem()
+                            .testTag(AddGoodsViewTestTags.availableGood(index)),
                     good = good,
                     clickItem = { clickGood(good) },
                 ) {
                     GloomItemActionIcon(
-                        modifier = Modifier.fillMaxHeight(),
+                        modifier =
+                            Modifier
+                                .fillMaxHeight()
+                                .testTag(AddGoodsViewTestTags.ADD_GOOD_ACTION),
                         icon = AppIcon.Plus,
                         isError = false,
                         onClick = { selectGood(good) },

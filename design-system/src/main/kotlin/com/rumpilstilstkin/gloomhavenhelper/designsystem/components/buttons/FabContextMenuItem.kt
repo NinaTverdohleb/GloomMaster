@@ -28,6 +28,7 @@ fun FabContextMenuItem(
     icon: GloomIcon,
     text: String,
     isError: Boolean = false,
+    modifier: Modifier = Modifier,
     onClick: () -> Unit,
 ) {
     val contentColor =
@@ -44,6 +45,7 @@ fun FabContextMenuItem(
             MaterialTheme.colorScheme.surfaceBright
         }
     Button(
+        modifier = modifier,
         onClick = onClick,
         shape = RoundedCornerShape(10.dp),
         border = BorderStroke(width = 1.dp, color = MaterialTheme.colorScheme.outline),

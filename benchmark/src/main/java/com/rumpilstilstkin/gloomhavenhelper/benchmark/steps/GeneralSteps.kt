@@ -1,9 +1,22 @@
 package com.rumpilstilstkin.gloomhavenhelper.benchmark.steps
 
+import com.rumpilstilstkin.gloomhavenhelper.testtags.components.ToolbarTestTags
+
 import androidx.benchmark.macro.MacrobenchmarkScope
-import com.rumpilstilstkin.gloomhavenhelper.benchmark.AppTags
 import com.rumpilstilstkin.gloomhavenhelper.benchmark.clickTag
+import com.rumpilstilstkin.gloomhavenhelper.testtags.components.NavigationBarTestTags
 
 fun MacrobenchmarkScope.back() {
-    clickTag(AppTags.BACK)
+    clickTag(ToolbarTestTags.BACK)
+    device.waitForIdle()
+}
+
+fun MacrobenchmarkScope.openTabBottom(tab: Int) {
+    clickTag(NavigationBarTestTags.tabBottom(tab))
+    device.waitForIdle()
+}
+
+fun MacrobenchmarkScope.openTabTop(tab: Int) {
+    clickTag(NavigationBarTestTags.tabTop(tab))
+    device.waitForIdle()
 }

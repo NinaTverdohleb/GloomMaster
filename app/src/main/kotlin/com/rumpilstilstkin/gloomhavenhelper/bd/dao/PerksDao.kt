@@ -3,7 +3,6 @@ package com.rumpilstilstkin.gloomhavenhelper.bd.dao
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
-import androidx.room.Transaction
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.PerkBd
 import com.rumpilstilstkin.gloomhavenhelper.bd.entity.PerkTranslationBd
 

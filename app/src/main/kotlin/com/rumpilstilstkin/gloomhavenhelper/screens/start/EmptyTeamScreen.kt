@@ -19,6 +19,7 @@ import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.buttons.Gloo
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.empty.EmptyIconView
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.icons.EmptyIcon
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
+import com.rumpilstilstkin.gloomhavenhelper.testtags.screens.start.EmptyTeamScreenTestTags
 
 @Composable
 internal fun EmptyTeamScreen(
@@ -38,14 +39,10 @@ internal fun EmptyTeamScreen(
         modifier =
             Modifier
                 .fillMaxWidth()
-                .testTag(EmptyTeamScreenTestTag.START_BUTTON),
+                .testTag(EmptyTeamScreenTestTags.START_BUTTON),
         text = stringResource(R.string.start_adventure),
         onClick = addTeam,
     )
-}
-
-object EmptyTeamScreenTestTag{
-    const val START_BUTTON = "EmptyTeamScreenStartButton"
 }
 
 @Preview

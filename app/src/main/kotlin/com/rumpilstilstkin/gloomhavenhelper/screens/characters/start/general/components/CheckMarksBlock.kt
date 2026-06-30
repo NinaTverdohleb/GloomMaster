@@ -14,6 +14,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -21,6 +22,7 @@ import com.rumpilstilstkin.gloomhavenhelper.R
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.GloomCard
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.text.GloomHeader
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
+import com.rumpilstilstkin.gloomhavenhelper.testtags.screens.characters.start.CharacterGeneralTabTestTags
 
 @Composable
 fun CheckMarksBlock(
@@ -69,7 +71,10 @@ fun CheckMarks(
                         val isChecked = index < checkedCount
                         CompositionLocalProvider(LocalMinimumInteractiveComponentSize provides 0.dp) {
                             Checkbox(
-                                modifier = Modifier.padding(2.dp),
+                                modifier =
+                                    Modifier
+                                        .padding(2.dp)
+                                        .testTag(CharacterGeneralTabTestTags.CHECK_MARK),
                                 checked = isChecked,
                                 onCheckedChange = { onClick(!isChecked) },
                                 colors =

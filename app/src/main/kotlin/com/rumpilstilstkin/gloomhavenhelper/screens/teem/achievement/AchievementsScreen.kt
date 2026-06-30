@@ -12,6 +12,7 @@ import androidx.compose.material3.FabPosition
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.buttons.GloomFab
@@ -23,6 +24,7 @@ import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterT
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.AchievementWithName
 import com.rumpilstilstkin.gloomhavenhelper.screens.teem.achievement.components.AchievementItem
 import com.rumpilstilstkin.gloomhavenhelper.screens.teem.achievement.components.EmptyAchievements
+import com.rumpilstilstkin.gloomhavenhelper.testtags.screens.teem.achievement.AchievementsScreenTestTags
 import kotlinx.collections.immutable.persistentListOf
 
 @Composable
@@ -46,6 +48,7 @@ internal fun AchievementsScreen(
             GloomFab(
                 icon = AppIcon.Plus,
                 onClick = addAchievement,
+                modifier = Modifier.testTag(AchievementsScreenTestTags.ADD_FAB),
             )
         }
     },

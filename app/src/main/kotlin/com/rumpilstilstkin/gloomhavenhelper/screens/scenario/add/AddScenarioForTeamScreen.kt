@@ -6,10 +6,11 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -18,6 +19,7 @@ import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.text.GloomOu
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.toolbar.GloomToolbar
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.ShortScenarioUI
+import com.rumpilstilstkin.gloomhavenhelper.testtags.screens.scenario.add.AddScenarioForTeamScreenTestTags
 import com.rumpilstilstkin.gloomhavenhelper.ui.scenario.ScenarioInfoCardItem
 import kotlinx.collections.immutable.persistentListOf
 
@@ -56,11 +58,12 @@ internal fun AddScenarioForTeamScreen(
             modifier = Modifier.weight(1f),
             verticalArrangement = Arrangement.spacedBy(16.dp),
         ) {
-            items(
+            itemsIndexed(
                 items = uiState.scenarios,
-                key = { it.scenarioNumber },
-            ) { scenario ->
+                key = { _, scenario -> scenario.scenarioNumber },
+            ) { index, scenario ->
                 ScenarioInfoCardItem(
+                    modifier = Modifier.testTag(AddScenarioForTeamScreenTestTags.scenario(index)),
                     scenarioNumber = scenario.scenarioNumber,
                     scenarioName = scenario.scenarioName,
                     location = scenario.location,

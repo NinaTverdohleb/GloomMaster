@@ -1,8 +1,6 @@
 package com.rumpilstilstkin.gloomhavenhelper.bd.filler.json
 
 import android.content.Context
-import android.util.Log
-import com.rumpilstilstkin.gloomhavenhelper.bd.filler.json.models.MonsterStatsJson
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.serialization.json.Json
 import java.io.IOException

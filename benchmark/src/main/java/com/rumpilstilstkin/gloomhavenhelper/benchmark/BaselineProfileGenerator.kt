@@ -2,6 +2,9 @@ package com.rumpilstilstkin.gloomhavenhelper.benchmark
 
 import androidx.benchmark.macro.junit4.BaselineProfileRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import androidx.test.platform.app.InstrumentationRegistry
+import androidx.test.uiautomator.UiDevice
+import com.rumpilstilstkin.gloomhavenhelper.benchmark.TestConsts.TARGET_PACKAGE
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -20,7 +23,7 @@ class BaselineProfileGenerator {
 
     @Test
     fun generate() = baselineProfileRule.collect(
-        packageName = "com.rumpilstilstkin.gloommaster"
+        packageName = TARGET_PACKAGE
     ) {
         pressHome()
         startActivityAndWait()

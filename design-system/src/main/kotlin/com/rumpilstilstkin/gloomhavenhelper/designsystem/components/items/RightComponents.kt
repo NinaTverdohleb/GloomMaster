@@ -25,6 +25,7 @@ import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.counter.Gloo
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.icons.AppIcon
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.icons.GloomIcon
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
+import com.rumpilstilstkin.gloomhavenhelper.testtags.components.RightComponentsTestTags
 
 @Composable
 fun RightItemText(text: String) =
@@ -105,10 +106,6 @@ fun CounterRightItem(
             onValueChange = onValueChange,
         )
     }
-}
-
-object RightComponentsTestTags{
-    const val CHECKER = "RightComponentsTestTagsChecker"
 }
 
 @Preview

@@ -1,8 +1,15 @@
 package com.rumpilstilstkin.gloomhavenhelper.benchmark
 
+import com.rumpilstilstkin.gloomhavenhelper.testtags.screens.scenario.play.PlayScenarioScreenTestTags
+
 import androidx.benchmark.macro.BaselineProfileMode
 import androidx.benchmark.macro.CompilationMode
+import androidx.benchmark.macro.ExperimentalMetricApi
 import androidx.benchmark.macro.FrameTimingMetric
+import androidx.benchmark.macro.MemoryUsageMetric
+import androidx.benchmark.macro.PowerCategory
+import androidx.benchmark.macro.PowerCategoryDisplayLevel
+import androidx.benchmark.macro.PowerMetric
 import androidx.benchmark.macro.junit4.MacrobenchmarkRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.uiautomator.Direction
@@ -11,7 +18,7 @@ import com.rumpilstilstkin.gloomhavenhelper.benchmark.steps.addMonsterUnits
 import com.rumpilstilstkin.gloomhavenhelper.benchmark.steps.back
 import com.rumpilstilstkin.gloomhavenhelper.benchmark.steps.changeMagicCharge
 import com.rumpilstilstkin.gloomhavenhelper.benchmark.steps.changeUnitLife
-import com.rumpilstilstkin.gloomhavenhelper.benchmark.steps.createTeam
+import com.rumpilstilstkin.gloomhavenhelper.benchmark.steps.createTeamIfNeed
 import com.rumpilstilstkin.gloomhavenhelper.benchmark.steps.nextRound
 import com.rumpilstilstkin.gloomhavenhelper.benchmark.steps.openAndPlayScenario
 import com.rumpilstilstkin.gloomhavenhelper.benchmark.steps.toggleUnitEffect
@@ -19,66 +26,69 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 
-/**
- * End-to-end interactive benchmark for the scenario play flow.
- *
- * Flow (see plans/play_test.md):
- * open app → create team → open active scenario → Play Scenario →
- * add monster + unit → round → toggle effect → change life → round →
- * change magic charge → round.
- *
- * Each step is an extension on [androidx.benchmark.macro.MacrobenchmarkScope] in
- * `TeamSteps.kt` / `ScenarioSteps.kt`, locating elements via `By.res(<testTag>)`.
- * Tags are exposed to UiAutomator by `testTagsAsResourceId = true` (root Surface in
- * MainActivity + inside GloomBasicDialog) and mirrored in [AppTags].
- *
- * `iterations = 1` is temporary while the flow stabilizes.
- *
- * Run with:
- *   ./gradlew :benchmark:connectedBenchmarkBenchmarkAndroidTest \
- *     -Pandroid.testInstrumentationRunnerArguments.class=com.rumpilstilstkin.gloomhavenhelper.benchmark.ScenarioPlayBenchmark
- */
 @RunWith(AndroidJUnit4::class)
 class ScenarioPlayBenchmark {
     @get:Rule
     val benchmarkRule = MacrobenchmarkRule()
 
+    @OptIn(ExperimentalMetricApi::class)
     @Test
     fun scenarioPlayFlow() {
-        var isFirstIteration = true
         benchmarkRule.measureRepeated(
             packageName = TestConsts.TARGET_PACKAGE,
-            metrics = listOf(FrameTimingMetric()),
+            metrics = listOf(
+                FrameTimingMetric(),
+                MemoryUsageMetric(MemoryUsageMetric.Mode.Max),
+                PowerMetric(
+                    PowerMetric.Type.Energy(
+                        mapOf(
+                            PowerCategory.CPU to PowerCategoryDisplayLevel.TOTAL,
+                            PowerCategory.GPU to PowerCategoryDisplayLevel.TOTAL,
+                            PowerCategory.DISPLAY to PowerCategoryDisplayLevel.TOTAL,
+                            PowerCategory.MEMORY to PowerCategoryDisplayLevel.TOTAL,
+                        ),
+                    ),
+                ),
+            ),
             compilationMode = CompilationMode.Partial(
                 baselineProfileMode = BaselineProfileMode.Require,
             ),
-            iterations = 15,
+            iterations = 10,
             setupBlock = {
                 pressHome()
                 startActivityAndWait()
-                if (isFirstIteration) {
-                    createTeam()
-                    isFirstIteration = false
-                } else {
-                    waitForTag(AppTags.TeamTabScreen.ROOT_COLUMN).scroll(Direction.DOWN, 0.8f)
-                }
             },
         ) {
+            createTeamIfNeed()
+
             openAndPlayScenario()
 
             addMonster()
-            addMonsterUnits()
+            addMonsterUnits(0)
+            addMonster()
+            waitForTag(PlayScenarioScreenTestTags.MONSTER_PAGER).scroll(Direction.RIGHT, 0.8f)
+            addMonsterUnits(1)
 
+            repeat(10) {
+                toggleUnitEffect(1)
+                changeUnitLife(1)
+            }
             nextRound()
 
-            toggleUnitEffect()
-            changeUnitLife()
+            repeat(10) {
+                changeUnitLife(0)
+                nextRound()
+            }
 
+            repeat(10) {
+                waitForTag(PlayScenarioScreenTestTags.MONSTER_PAGER).scroll(Direction.RIGHT, 0.8f)
+                waitForTag(PlayScenarioScreenTestTags.MONSTER_PAGER).scroll(Direction.LEFT, 0.8f)
+            }
             nextRound()
-
-            changeMagicCharge()
-
-            nextRound()
+            repeat(10) {
+                changeMagicCharge()
+                nextRound()
+            }
 
             back()
         }

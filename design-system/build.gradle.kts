@@ -9,6 +9,7 @@ android {
 }
 
 dependencies {
+    implementation(project(":test-tags"))
     api(libs.androidx.material3)
     api(libs.androidx.material.icons.extended)
     api(libs.android.material)

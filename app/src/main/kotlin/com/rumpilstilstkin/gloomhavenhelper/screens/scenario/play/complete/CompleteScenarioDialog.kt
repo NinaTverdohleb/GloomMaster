@@ -17,7 +17,6 @@ import androidx.compose.ui.unit.dp
 import com.rumpilstilstkin.gloomhavenhelper.R
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.buttons.GloomOutlineButton
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.items.GloomListItem
-import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.items.GloomListOutlineItem
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.items.LeftItemIcon
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.items.RightItemLabel
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.icons.AppIcon

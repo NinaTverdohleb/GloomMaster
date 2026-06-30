@@ -11,7 +11,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material3.FabPosition
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -19,6 +19,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -31,6 +32,7 @@ import com.rumpilstilstkin.gloomhavenhelper.screens.models.CharacterClassTypeUI
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.CharacterUI
 import com.rumpilstilstkin.gloomhavenhelper.screens.start.characters.components.CharacterAvailableClasses
 import com.rumpilstilstkin.gloomhavenhelper.screens.start.characters.components.EmptyCharacters
+import com.rumpilstilstkin.gloomhavenhelper.testtags.screens.start.characters.CharactersTabTestTags
 import com.rumpilstilstkin.gloomhavenhelper.ui.characters.CharacterItemFilled
 import kotlinx.collections.immutable.persistentListOf
 
@@ -48,6 +50,7 @@ internal fun CharactersTabScreen(
             GloomFab(
                 icon = AppIcon.Plus,
                 onClick = addCharacter,
+                modifier = Modifier.testTag(CharactersTabTestTags.ADD_FAB),
             )
         }
     },
@@ -72,6 +75,7 @@ internal fun CharactersTabScreen(
             GloomSwitch(
                 selected = state.filterAlive,
                 onCheckedChange = switchAlive,
+                modifier = Modifier.testTag(CharactersTabTestTags.ALIVE_SWITCH),
             )
 
             Spacer(
@@ -94,11 +98,12 @@ internal fun CharactersTabScreen(
                 verticalArrangement = Arrangement.spacedBy(16.dp),
                 contentPadding = PaddingValues(vertical = 16.dp),
             ) {
-                items(
+                itemsIndexed(
                     items = state.characters,
-                    key = { character -> character.id },
-                ) { character ->
+                    key = { _, character -> character.id },
+                ) { index, character ->
                     CharacterItemFilled(
+                        modifier = Modifier.testTag(CharactersTabTestTags.character(index)),
                         character = character,
                         onClick = { openCharacterMenu(character) },
                     )

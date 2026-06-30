@@ -12,6 +12,7 @@ import androidx.compose.material3.FabPosition
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.buttons.GloomFab
@@ -20,6 +21,7 @@ import com.rumpilstilstkin.gloomhavenhelper.designsystem.icons.AppIcon
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.GoodType
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.GoodUi
+import com.rumpilstilstkin.gloomhavenhelper.testtags.screens.start.shop.ShopTabTestTags
 import com.rumpilstilstkin.gloomhavenhelper.ui.goods.GoodFilters
 import com.rumpilstilstkin.gloomhavenhelper.ui.goods.GoodItem
 import kotlinx.collections.immutable.persistentListOf
@@ -39,6 +41,7 @@ internal fun ShopTabScreen(
             GloomFab(
                 icon = AppIcon.Plus,
                 onClick = addItems,
+                modifier = Modifier.testTag(ShopTabTestTags.ADD_FAB),
             )
         }
     },

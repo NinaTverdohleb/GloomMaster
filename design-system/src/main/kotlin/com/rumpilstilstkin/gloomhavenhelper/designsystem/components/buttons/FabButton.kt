@@ -64,6 +64,7 @@ fun GloomFab(
 @Composable
 fun GloomFabWithContextMenu(
     icon: GloomIcon,
+    modifier: Modifier = Modifier,
     actions: @Composable ColumnScope.() -> Unit,
 ) {
     var expanded by remember { mutableStateOf(false) }
@@ -79,6 +80,7 @@ fun GloomFabWithContextMenu(
     )
 
     Column(
+        modifier = modifier,
         horizontalAlignment = Alignment.End,
         verticalArrangement = Arrangement.spacedBy(16.dp),
     ) {

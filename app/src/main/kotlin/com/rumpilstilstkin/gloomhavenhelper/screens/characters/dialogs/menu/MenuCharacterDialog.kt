@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -18,6 +19,7 @@ import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.text.GloomHe
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.icons.AppIcon
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.CharacterUI
+import com.rumpilstilstkin.gloomhavenhelper.testtags.screens.characters.dialogs.menu.MenuCharacterDialogTestTags
 import com.rumpilstilstkin.gloomhavenhelper.ui.characters.CharacterItem
 
 @Composable
@@ -63,14 +65,20 @@ fun MenuCharacterDialog(
                 GloomOutlineButton(
                     text = stringResource(R.string.character_details),
                     onClick = openCharacterDetails,
-                    modifier = Modifier.fillMaxWidth(),
+                    modifier =
+                        Modifier
+                            .fillMaxWidth()
+                            .testTag(MenuCharacterDialogTestTags.DETAILS_BUTTON),
                     isError = false,
                     icon = AppIcon.Settings,
                 )
                 GloomOutlineButton(
                     text = stringResource(R.string.leave_character),
                     onClick = leaveCharacter,
-                    modifier = Modifier.fillMaxWidth(),
+                    modifier =
+                        Modifier
+                            .fillMaxWidth()
+                            .testTag(MenuCharacterDialogTestTags.LEAVE_BUTTON),
                     isError = false,
                     icon = AppIcon.Leave,
                 )

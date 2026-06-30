@@ -11,6 +11,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -22,6 +23,7 @@ import com.rumpilstilstkin.gloomhavenhelper.designsystem.icons.NavigationIcon
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
 import com.rumpilstilstkin.gloomhavenhelper.screens.start.scenarios.ScenariosTabScreen
 import com.rumpilstilstkin.gloomhavenhelper.screens.start.scenarios.ScenariosTabStateUi
+import com.rumpilstilstkin.gloomhavenhelper.testtags.screens.start.StartScreenTestTags
 
 @Composable
 internal fun StartScreen(
@@ -54,6 +56,7 @@ internal fun StartScreen(
         Column(
             modifier =
                 Modifier
+                    .testTag(StartScreenTestTags.ROOT)
                     .fillMaxSize()
                     .padding(paddingValues)
                     .padding(16.dp),

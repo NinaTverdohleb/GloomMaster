@@ -30,6 +30,7 @@ import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.buttons.Gloo
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.text.GloomHeader
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.icons.AppIcon
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
+import com.rumpilstilstkin.gloomhavenhelper.testtags.screens.scenario.play.monsters.unit.add.AddMonsterUnitDialogTestTags
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -62,22 +63,12 @@ fun AddMonsterUnitDialog(
             modifier =
                 Modifier
                     .fillMaxWidth()
-                    .testTag(AddMonsterUnitDialogTestTags.OK_BUTTON),
+                    .testTag(AddMonsterUnitDialogTestTags.CONFIRM_BUTTON),
             icon = AppIcon.Check,
             text = stringResource(R.string.ok),
             onClick = spawn,
         )
     }
-}
-
-object AddMonsterUnitDialogTestTags {
-    const val TIER_PREFIX = "AddMonsterUnitDialogTier_"
-    const val UNIT_PREFIX = "AddMonsterUnitDialogUnit_"
-    const val OK_BUTTON = "AddMonsterUnitDialogOkButton"
-
-    fun tier(tier: UnitTier) = "$TIER_PREFIX${tier.name}"
-
-    fun unit(id: Int) = "$UNIT_PREFIX$id"
 }
 
 enum class UnitTier(
@@ -111,7 +102,7 @@ private fun TierSelector(
                         .background(
                             if (isSelected) MaterialTheme.colorScheme.primary else Color.Transparent,
                         ).clickable { onSelect(tier) }
-                        .testTag(AddMonsterUnitDialogTestTags.tier(tier))
+                        .testTag(AddMonsterUnitDialogTestTags.tier(tier.name))
                         .padding(vertical = 8.dp),
                 contentAlignment = Alignment.Center,
             ) {

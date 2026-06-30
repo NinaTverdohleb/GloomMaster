@@ -13,6 +13,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -24,6 +25,7 @@ import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.counter.Pick
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.text.GloomHeader
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.Prosperity
+import com.rumpilstilstkin.gloomhavenhelper.testtags.screens.start.team.component.TeamProsperityTestTags
 
 @Composable
 internal fun TeamProsperity(
@@ -56,7 +58,8 @@ internal fun TeamProsperity(
                 LevelWithCounterView(
                     modifier =
                         Modifier
-                            .fillMaxWidth(),
+                            .fillMaxWidth()
+                            .testTag(TeamProsperityTestTags.COUNTER),
                     label = stringResource(R.string.level_label),
                     level = prosperity.prosperityLevel.toString(),
                     showSign = false,
@@ -81,7 +84,7 @@ internal fun TeamProsperity(
             ) {
                 Column(
                     verticalArrangement = Arrangement.spacedBy(4.dp),
-                    modifier = Modifier.weight(1f)
+                    modifier = Modifier.weight(1f),
                 ) {
                     Text(
                         style = MaterialTheme.typography.titleMedium,
@@ -110,6 +113,7 @@ internal fun TeamProsperity(
                     )
 
                     GloomCountButton(
+                        modifier = Modifier.testTag(TeamProsperityTestTags.DONATE),
                         value = churchValue,
                         type = PickerButtonType.PLUS,
                         onValueChange = { donate() },

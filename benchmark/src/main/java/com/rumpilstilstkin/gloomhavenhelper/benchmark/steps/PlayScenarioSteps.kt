@@ -1,47 +1,59 @@
 package com.rumpilstilstkin.gloomhavenhelper.benchmark.steps
 
+import com.rumpilstilstkin.gloomhavenhelper.testtags.components.CounterTestTags
+import com.rumpilstilstkin.gloomhavenhelper.testtags.components.RightComponentsTestTags
+import com.rumpilstilstkin.gloomhavenhelper.testtags.screens.scenario.play.PlayScenarioScreenTestTags
+import com.rumpilstilstkin.gloomhavenhelper.testtags.screens.scenario.play.components.MonsterCardTestTags
+import com.rumpilstilstkin.gloomhavenhelper.testtags.screens.scenario.play.components.RegularMonsterUnitTestTags
+import com.rumpilstilstkin.gloomhavenhelper.testtags.screens.scenario.play.components.ScenarioHeaderTestTags
+import com.rumpilstilstkin.gloomhavenhelper.testtags.screens.scenario.play.monsters.AddScenarioMonstersDialogTestTags
+import com.rumpilstilstkin.gloomhavenhelper.testtags.screens.scenario.play.monsters.unit.add.AddMonsterUnitDialogTestTags
+
 import androidx.benchmark.macro.MacrobenchmarkScope
-import com.rumpilstilstkin.gloomhavenhelper.benchmark.AppTags
-import com.rumpilstilstkin.gloomhavenhelper.benchmark.AppTags.RightComponentsTestTags
 import com.rumpilstilstkin.gloomhavenhelper.benchmark.clickTag
+import com.rumpilstilstkin.gloomhavenhelper.benchmark.existTag
 
 fun MacrobenchmarkScope.addMonster() {
-    clickTag(AppTags.ScenarioScreen.ADD_MONSTER_FAB)
+    clickTag(PlayScenarioScreenTestTags.ADD_MONSTER_FAB)
 
-    clickTag(AppTags.AddScenarioMonstersDialog.monster(0), RightComponentsTestTags.CHECKER)
+    clickTag(AddScenarioMonstersDialogTestTags.monster(0), RightComponentsTestTags.CHECKER)
 
-    clickTag(AppTags.AddScenarioMonstersDialog.ADD_BUTTON)
+    clickTag(AddScenarioMonstersDialogTestTags.ADD_BUTTON)
 }
 
-fun MacrobenchmarkScope.addMonsterUnits() {
-    clickTag(AppTags.ScenarioScreen.card(0), AppTags.MonsterCard.ADD_UNITS_BUTTON)
-    clickTag(AppTags.AddMonsterUnitDialog.unit(1))
-    clickTag(AppTags.AddMonsterUnitDialog.unit(2))
-    clickTag(AppTags.AddMonsterUnitDialog.unit(3))
-    clickTag(AppTags.AddMonsterUnitDialog.OK_BUTTON)
+fun MacrobenchmarkScope.addMonsterUnits(index: Int) {
+    clickTag(PlayScenarioScreenTestTags.card(index), MonsterCardTestTags.ADD_UNITS_BUTTON)
+    clickTag(AddMonsterUnitDialogTestTags.unit(1))
+    clickTag(AddMonsterUnitDialogTestTags.unit(2))
+    clickTag(AddMonsterUnitDialogTestTags.unit(3))
+    clickTag(AddMonsterUnitDialogTestTags.CONFIRM_BUTTON)
 }
 
 fun MacrobenchmarkScope.nextRound() {
-    clickTag(AppTags.ScenarioScreen.ROUND_BUTTON)
+    clickTag(PlayScenarioScreenTestTags.ROUND_BUTTON)
 }
 
-fun MacrobenchmarkScope.toggleUnitEffect() {
+fun MacrobenchmarkScope.toggleUnitEffect(index: Int) {
     clickTag(
-        AppTags.ScenarioScreen.card(0),
-        AppTags.MonsterUnit.effect(PlayScenarioConsts.EFFECT)
+        PlayScenarioScreenTestTags.card(index),
+        RegularMonsterUnitTestTags.effect(PlayScenarioConsts.EFFECT)
     )
 }
 
-fun MacrobenchmarkScope.changeUnitLife() {
-    clickTag(AppTags.ScenarioScreen.card(0), AppTags.GloomCounter.TEST_TAG_MINUS)
-    clickTag(AppTags.ScenarioScreen.card(0), AppTags.GloomCounter.TEST_TAG_PLUS)
+fun MacrobenchmarkScope.changeUnitLife(index: Int) {
+    repeat(10) {
+        clickTag(PlayScenarioScreenTestTags.card(index), CounterTestTags.TEST_TAG_MINUS)
+    }
+    repeat(10) {
+        clickTag(PlayScenarioScreenTestTags.card(index), CounterTestTags.TEST_TAG_PLUS)
+    }
 }
 
 fun MacrobenchmarkScope.changeMagicCharge() {
-    clickTag(AppTags.ScenarioHeader.magic(PlayScenarioConsts.MAGIC))
+    clickTag(ScenarioHeaderTestTags.magic(PlayScenarioConsts.MAGIC))
 }
 
-private object PlayScenarioConsts{
+private object PlayScenarioConsts {
     const val EFFECT = "POISON"
     const val MAGIC = "FIRE"
 }

@@ -6,7 +6,6 @@ import com.rumpilstilstkin.gloomhavenhelper.domain.entity.CharacterForSave
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.CharacterInfo
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.CharacterShortInfo
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.Team
-import kotlin.String
 
 fun CharacterForSave.toBd() =
     CharacterBd(

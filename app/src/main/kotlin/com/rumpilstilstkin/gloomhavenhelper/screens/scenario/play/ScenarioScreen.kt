@@ -44,6 +44,7 @@ import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.components.Sce
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.components.SpinningNumberOverlay
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.state.MonsterItemUi
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.state.ScenarioStateUi
+import com.rumpilstilstkin.gloomhavenhelper.testtags.screens.scenario.play.PlayScenarioScreenTestTags
 import kotlinx.collections.immutable.ImmutableSet
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.persistentMapOf
@@ -87,14 +88,14 @@ internal fun ScenarioScreen(
             GloomFab(
                 icon = AppIcon.Plus,
                 onClick = addMonster,
-                modifier = Modifier.testTag(ScenarioScreenTestTags.ADD_MONSTER_FAB),
+                modifier = Modifier.testTag(PlayScenarioScreenTestTags.ADD_MONSTER_FAB),
             )
             GloomButton(
                 text = stringResource(R.string.round_label),
                 modifier =
                     Modifier
                         .fillMaxWidth()
-                        .testTag(ScenarioScreenTestTags.ROUND_BUTTON),
+                        .testTag(PlayScenarioScreenTestTags.ROUND_BUTTON),
                 onClick = nextRound,
             )
         }
@@ -190,6 +191,7 @@ fun ScenarioScreenContent(
 
         PageIndicator(pagerState)
         HorizontalPager(
+            modifier = Modifier.testTag(PlayScenarioScreenTestTags.MONSTER_PAGER),
             state = pagerState,
             contentPadding = PaddingValues(horizontal = 16.dp),
             pageSpacing = 16.dp,
@@ -197,7 +199,7 @@ fun ScenarioScreenContent(
             Box(modifier = Modifier.fillMaxSize()) {
                 val monster = monsters[page]
                 RegularMonsterCard(
-                    modifier = Modifier.testTag(ScenarioScreenTestTags.card(page)),
+                    modifier = Modifier.testTag(PlayScenarioScreenTestTags.card(page)),
                     item = monster,
                     delete = delete,
                     deleteUnit = deleteUnit,
@@ -210,13 +212,6 @@ fun ScenarioScreenContent(
             }
         }
     }
-}
-
-object ScenarioScreenTestTags {
-    const val ADD_MONSTER_FAB = "ScenarioScreenAddMonsterFab"
-    const val ROUND_BUTTON = "ScenarioScreenRoundButton"
-    private const val MONSTER_CARD_PREFIX = "ScenarioScreenMonsterCard"
-    fun card(index: Int) = "$MONSTER_CARD_PREFIX$index"
 }
 
 @Preview(showBackground = true)

@@ -28,6 +28,7 @@ import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterT
 import com.rumpilstilstkin.gloomhavenhelper.navigation.GlHelperNavHost
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 
@@ -54,6 +55,11 @@ class MainActivity : AppCompatActivity() {
                     .onEach { uiState = it }
                     .collect()
             }
+        }
+
+        lifecycleScope.launch {
+            viewModel.uiState.first { it is MainActivityUiState.Success }
+            reportFullyDrawn()
         }
         splashScreen.setOnExitAnimationListener { splashScreenView ->
             val fadeOut = ObjectAnimator.ofFloat(splashScreenView.view, View.ALPHA, 1f, 0f)

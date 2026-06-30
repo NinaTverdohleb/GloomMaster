@@ -2,11 +2,9 @@ package com.rumpilstilstkin.gloomhavenhelper.domain.usecase.achievement
 
 import com.rumpilstilstkin.gloomhavenhelper.data.AchievementRepository
 import com.rumpilstilstkin.gloomhavenhelper.data.TeamRepository
-import com.rumpilstilstkin.gloomhavenhelper.domain.entity.Achievement
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.AchievementWithName
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.combine
-import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 class GetAvailableGlobalAchievementsUseCase @Inject constructor(

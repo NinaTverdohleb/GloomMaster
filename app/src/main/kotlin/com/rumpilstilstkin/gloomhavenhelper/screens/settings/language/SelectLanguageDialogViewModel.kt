@@ -4,7 +4,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.settings.LanguagesListUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.settings.SetLanguageUseCase
-import com.rumpilstilstkin.gloomhavenhelper.screens.teem.list.TeamListDialogComplete
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.toImmutableList

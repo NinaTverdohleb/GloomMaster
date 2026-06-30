@@ -16,7 +16,6 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.rumpilstilstkin.gloomhavenhelper.R
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.text.image.TextWithImagesByCode
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.icons.game.GameIcon
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.icons.game.GameIcon.Companion.toGameIcon

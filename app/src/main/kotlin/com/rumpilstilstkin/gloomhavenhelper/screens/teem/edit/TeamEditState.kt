@@ -5,7 +5,6 @@ import androidx.compose.runtime.Immutable
 import com.rumpilstilstkin.gloomhavenhelper.R
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.DifficultyLevel
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.PackType
-import com.rumpilstilstkin.gloomhavenhelper.screens.models.ShortTeamInfoUi
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.persistentListOf
 

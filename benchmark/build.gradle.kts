@@ -29,7 +29,14 @@ android {
     targetProjectPath = ":app"
 }
 
+tasks.configureEach {
+    if (name == "connectedBenchmarkBenchmarkAndroidTest") {
+        dependsOn(":app:installBenchmark")
+    }
+}
+
 dependencies {
+    implementation(project(":test-tags"))
     implementation(libs.androidx.benchmark.macro.junit4)
     implementation(libs.androidx.espresso.core)
     implementation(libs.androidx.junit)

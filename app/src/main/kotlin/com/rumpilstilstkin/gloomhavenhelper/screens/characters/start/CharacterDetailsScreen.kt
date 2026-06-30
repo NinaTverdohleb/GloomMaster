@@ -12,6 +12,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.rumpilstilstkin.gloomhavenhelper.R
@@ -23,6 +24,7 @@ import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterT
 import com.rumpilstilstkin.gloomhavenhelper.screens.characters.start.general.CharacterGeneralTab
 import com.rumpilstilstkin.gloomhavenhelper.screens.characters.start.general.CharacterGeneralTabState
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.CharacterUI
+import com.rumpilstilstkin.gloomhavenhelper.testtags.screens.characters.start.CharacterDetailsTestTags
 import com.rumpilstilstkin.gloomhavenhelper.ui.characters.CharacterHeaderItem
 
 @Composable
@@ -48,6 +50,7 @@ internal fun CharacterDetailsScreen(
                     .padding(paddingValues),
         ) {
             CharacterHeaderItem(
+                modifier = Modifier.testTag(CharacterDetailsTestTags.HEADER),
                 character = state.character,
                 onClick = showNameDialog,
             )

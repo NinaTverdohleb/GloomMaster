@@ -9,13 +9,14 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
-import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.foundation.lazy.grid.itemsIndexed
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -28,6 +29,7 @@ import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.text.GloomOu
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.icons.AppIcon
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.CharacterClassTypeUI
+import com.rumpilstilstkin.gloomhavenhelper.testtags.screens.characters.dialogs.add.AddCharacterDialogTestTags
 
 @Composable
 fun AddCharacterDialog(
@@ -47,13 +49,14 @@ fun AddCharacterDialog(
                 horizontalArrangement = Arrangement.spacedBy(8.dp),
                 verticalArrangement = Arrangement.spacedBy(8.dp),
             ) {
-                items(items = state.avaliableClasses) { classType ->
+                itemsIndexed(items = state.avaliableClasses) { index, classType ->
                     val isSelected = classType == state.selectedClass
                     Icon(
                         painter = classType.image.painter(),
                         contentDescription = stringResource(classType.titleRes),
                         modifier =
                             Modifier
+                                .testTag(AddCharacterDialogTestTags.type(index))
                                 .size(32.dp)
                                 .clickable {
                                     changeType(classType)
@@ -75,7 +78,10 @@ fun AddCharacterDialog(
         )
 
         GloomOutlinedTextField(
-            modifier = Modifier.fillMaxWidth(),
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .testTag(AddCharacterDialogTestTags.NAME_FIELD),
             value = state.name,
             onValueChange = { updateName(it) },
             label = stringResource(R.string.name_label),
@@ -98,7 +104,10 @@ fun AddCharacterDialog(
         GloomOutlineButton(
             text = stringResource(R.string.add_character),
             onClick = createCharacter,
-            modifier = Modifier.fillMaxWidth(),
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .testTag(AddCharacterDialogTestTags.ADD_BUTTON),
             isError = false,
             icon = AppIcon.Check,
         )

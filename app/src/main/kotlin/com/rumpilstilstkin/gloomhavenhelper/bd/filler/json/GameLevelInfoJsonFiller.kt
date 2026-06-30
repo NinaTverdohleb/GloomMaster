@@ -1,7 +1,6 @@
 package com.rumpilstilstkin.gloomhavenhelper.bd.filler.json
 
 import com.rumpilstilstkin.gloomhavenhelper.bd.dao.GameLevelInfoDao
-import com.rumpilstilstkin.gloomhavenhelper.bd.filler.json.models.AchievementJson
 import com.rumpilstilstkin.gloomhavenhelper.bd.filler.json.models.GameLevelJson
 import javax.inject.Inject
 

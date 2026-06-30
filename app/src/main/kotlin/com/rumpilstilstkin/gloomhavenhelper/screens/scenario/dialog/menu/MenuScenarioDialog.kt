@@ -19,6 +19,7 @@ import com.rumpilstilstkin.gloomhavenhelper.designsystem.icons.AppIcon
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.ShortScenarioUI
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.toHumanReadable
+import com.rumpilstilstkin.gloomhavenhelper.testtags.screens.scenario.dialog.menu.MenuScenarioDialogTestTags
 import com.rumpilstilstkin.gloomhavenhelper.ui.scenario.ScenarioInfoItem
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -102,10 +103,6 @@ fun MenuScenarioDialog(
             }
         }
     }
-}
-
-object MenuScenarioDialogTestTags {
-    const val PLAY_SCENARIO_BUTTON = "MenuScenarioDialogPlayScenarioButton"
 }
 
 @Preview

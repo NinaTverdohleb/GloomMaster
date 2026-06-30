@@ -10,12 +10,10 @@ import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEvent.Scre
 import com.rumpilstilstkin.gloomhavenhelper.screens.core.ScreenEffect
 import com.rumpilstilstkin.gloomhavenhelper.screens.core.createOverlaySession
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.ShortScenarioUI
-import com.rumpilstilstkin.gloomhavenhelper.screens.models.ShortTeamInfoUi
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.toUi
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.dialog.delete.DeleteScenarioDialogContract
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.dialog.menu.MenuScenarioDialogContract
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.dialog.menu.MenuScenarioResult
-import com.rumpilstilstkin.gloomhavenhelper.screens.teem.delete.DeleteTeamDialogContract
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.collections.immutable.toImmutableList
 import kotlinx.collections.immutable.toImmutableMap

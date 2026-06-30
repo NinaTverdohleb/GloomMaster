@@ -1,6 +1,5 @@
 package com.rumpilstilstkin.gloomhavenhelper.designsystem.components.toolbar
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -17,7 +16,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -28,6 +26,7 @@ import com.rumpilstilstkin.gloomhavenhelper.designsystem.icons.AppIcon
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.icons.GloomIcon
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.icons.NavigationIcon
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
+import com.rumpilstilstkin.gloomhavenhelper.testtags.components.ToolbarTestTags
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -51,8 +50,8 @@ fun GloomToolbarAction(
             Spacer(Modifier.width(16.dp))
             if (back != null) {
                 IconButton(
-                    modifier = Modifier.testTag(GloomToolbarTestTag.BACK),
-                    onClick = back
+                    modifier = Modifier.testTag(ToolbarTestTags.BACK),
+                    onClick = back,
                 ) {
                     Icon(
                         painter = NavigationIcon.Close.painter(),
@@ -144,8 +143,8 @@ fun GloomToolbar(
                 Spacer(Modifier.width(16.dp))
                 if (back != null) {
                     IconButton(
-                        modifier = Modifier.testTag(GloomToolbarTestTag.BACK),
-                        onClick = back
+                        modifier = Modifier.testTag(ToolbarTestTags.BACK),
+                        onClick = back,
                     ) {
                         Icon(
                             painter = painterResource(R.drawable.ic_close),
@@ -162,10 +161,6 @@ fun GloomToolbar(
                 navigationIconContentColor = MaterialTheme.colorScheme.onSurface,
             ),
     )
-}
-
-object GloomToolbarTestTag {
-    const val BACK = "GloomToolbarBackButton"
 }
 
 @Preview

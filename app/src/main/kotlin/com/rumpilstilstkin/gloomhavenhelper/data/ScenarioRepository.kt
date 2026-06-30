@@ -6,7 +6,6 @@ import com.rumpilstilstkin.gloomhavenhelper.bd.entity.TeamScenarioBd
 import com.rumpilstilstkin.gloomhavenhelper.data.mappers.toDomain
 import com.rumpilstilstkin.gloomhavenhelper.data.mappers.toInfoDomain
 import com.rumpilstilstkin.gloomhavenhelper.data.mappers.toShortDomain
-import com.rumpilstilstkin.gloomhavenhelper.domain.entity.LogicalCondition
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.ScenarioInfo
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.ScenarioInfoWithName
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.ScenarioShortInfo

@@ -20,6 +20,7 @@ import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.items.RightI
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.icons.AppIcon
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.scenario.MonsterItem
+import com.rumpilstilstkin.gloomhavenhelper.testtags.screens.scenario.play.monsters.AddScenarioMonstersDialogTestTags
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.persistentListOf
 
@@ -45,8 +46,9 @@ fun MonsterListDialog(
             )
             { index, monster ->
                 GloomListFilledItem(
-                    modifier = Modifier
-                        .testTag(AddScenarioMonstersDialogTestTags.monster(index)),
+                    modifier =
+                        Modifier
+                            .testTag(AddScenarioMonstersDialogTestTags.monster(index)),
                     title = monster.name,
                     rightComponent = {
                         RightItemChecker(
@@ -61,9 +63,10 @@ fun MonsterListDialog(
 
         if (monsters.isNotEmpty()) {
             GloomOutlineButton(
-                modifier = Modifier
-                    .testTag(AddScenarioMonstersDialogTestTags.ADD_BUTTON)
-                    .fillMaxWidth(),
+                modifier =
+                    Modifier
+                        .testTag(AddScenarioMonstersDialogTestTags.ADD_BUTTON)
+                        .fillMaxWidth(),
                 icon = AppIcon.Check,
                 text = stringResource(R.string.select_enemies),
                 onClick = selectMonsters,
@@ -78,13 +81,6 @@ fun MonsterListDialog(
             onClick = addNewMonsters,
         )
     }
-}
-
-object AddScenarioMonstersDialogTestTags {
-    const val MONSTER_PREFIX = "AddScenarioMonstersDialogMonsterItem"
-    const val ADD_BUTTON = "AddScenarioMonstersDialogAddButton"
-
-    fun monster(index: Int) = "$MONSTER_PREFIX$index"
 }
 
 @Preview

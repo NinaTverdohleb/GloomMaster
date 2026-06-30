@@ -12,6 +12,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -22,6 +23,7 @@ import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.counter.Gloo
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.counter.GloomGloomCounterProgress
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.icons.AppIcon
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
+import com.rumpilstilstkin.gloomhavenhelper.testtags.screens.characters.start.CharacterGeneralTabTestTags
 
 @Composable
 fun ExperienceRow(
@@ -58,6 +60,7 @@ fun ExperienceRow(
             }
 
             GloomCounterFull(
+                modifier = Modifier.testTag(CharacterGeneralTabTestTags.EXPERIENCE_COUNTER),
                 value = experience,
                 intRange = levelRange,
                 repeat = true,
@@ -84,6 +87,7 @@ fun ExperienceRow(
             )
 
             GloomOutlineFilledButtonIcon(
+                modifier = Modifier.testTag(CharacterGeneralTabTestTags.LEVEL_UP),
                 icon = AppIcon.Up,
                 onClick = onLevelUp,
                 enabled = isCanLevelUp,

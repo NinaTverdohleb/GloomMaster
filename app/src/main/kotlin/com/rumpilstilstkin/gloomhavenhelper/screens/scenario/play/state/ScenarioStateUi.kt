@@ -13,7 +13,6 @@ import kotlinx.collections.immutable.ImmutableSet
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.persistentMapOf
 import kotlinx.collections.immutable.toPersistentSet
-import kotlin.comparisons.compareBy
 
 @Immutable
 data class ScenarioStateUi(

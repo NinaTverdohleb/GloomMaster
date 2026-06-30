@@ -1,7 +1,6 @@
 package com.rumpilstilstkin.gloomhavenhelper.domain.usecase.goods
 
 import com.rumpilstilstkin.gloomhavenhelper.data.CharacterRepository
-import com.rumpilstilstkin.gloomhavenhelper.data.GoodsRepository
 import javax.inject.Inject
 
 class SellGoodCharacterUseCase @Inject constructor(

@@ -6,6 +6,7 @@ import androidx.compose.material3.FabPosition
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.rumpilstilstkin.gloomhavenhelper.R
@@ -17,6 +18,7 @@ import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterT
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.GoodType
 import com.rumpilstilstkin.gloomhavenhelper.screens.characters.goods.add.components.AddGoodsStatusRow
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.GoodUi
+import com.rumpilstilstkin.gloomhavenhelper.testtags.screens.goods.character.AddGoodsForCharacterScreenTestTags
 import com.rumpilstilstkin.gloomhavenhelper.ui.goods.AddGoodsView
 import com.rumpilstilstkin.gloomhavenhelper.ui.goods.AddGoodsViewState
 
@@ -43,12 +45,14 @@ internal fun AddGoodsScreen(
         if (uiState.goodsState.selectedGoods.isNotEmpty()) {
             GloomFabWithContextMenu(
                 icon = AppIcon.Check,
+                modifier = Modifier.testTag(AddGoodsForCharacterScreenTestTags.CONFIRM_FAB),
             ) {
                 if (uiState.allGold >= uiState.goodsGold) {
                     FabContextMenuItem(
                         icon = AppIcon.Buy,
                         text = stringResource(R.string.buy),
                         isError = false,
+                        modifier = Modifier.testTag(AddGoodsForCharacterScreenTestTags.BUY_ACTION),
                     ) { buyGoods() }
                 }
 
@@ -56,6 +60,7 @@ internal fun AddGoodsScreen(
                     icon = AppIcon.Get,
                     text = stringResource(R.string.get),
                     isError = false,
+                    modifier = Modifier.testTag(AddGoodsForCharacterScreenTestTags.GET_ACTION),
                 ) { addGoods() }
             }
         }

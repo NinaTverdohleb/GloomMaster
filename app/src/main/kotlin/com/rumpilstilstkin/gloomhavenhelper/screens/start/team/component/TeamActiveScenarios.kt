@@ -14,6 +14,7 @@ import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.buttons.Gloo
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.text.GloomHeader
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.ShortScenarioUI
+import com.rumpilstilstkin.gloomhavenhelper.testtags.screens.start.team.component.ScenarioBlockTestTags
 import com.rumpilstilstkin.gloomhavenhelper.ui.scenario.ScenarioInfoCardItem
 
 @Composable
@@ -50,12 +51,6 @@ fun ScenarioBlock(
             ) { selectScenario(scenario) }
         }
     }
-}
-
-object ScenarioBlockTestTags {
-    const val SCENARIO_CARD_PREFIX = "ScenarioBlockScenarioCard"
-
-    fun scenarioCard(index: Int) = "$SCENARIO_CARD_PREFIX$index"
 }
 
 @Preview

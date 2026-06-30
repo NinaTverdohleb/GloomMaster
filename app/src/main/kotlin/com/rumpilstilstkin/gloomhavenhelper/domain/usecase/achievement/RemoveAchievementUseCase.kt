@@ -1,7 +1,6 @@
 package com.rumpilstilstkin.gloomhavenhelper.domain.usecase.achievement
 
 import com.rumpilstilstkin.gloomhavenhelper.data.TeamRepository
-import com.rumpilstilstkin.gloomhavenhelper.domain.entity.Achievement
 import kotlinx.coroutines.flow.first
 import javax.inject.Inject
 

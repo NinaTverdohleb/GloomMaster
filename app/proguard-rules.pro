@@ -1,4 +1,7 @@
 # Android-specific rules
+
+-keep class androidx.startup.** { *; }
+
 -dontwarn androidx.lifecycle.**
 
 # Generic Obfuscation
