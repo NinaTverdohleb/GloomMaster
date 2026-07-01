@@ -3,6 +3,7 @@ package com.rumpilstilstkin.gloomhavenhelper.screens
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.rumpilstilstkin.gloomhavenhelper.bd.filler.DatabaseFiller
+import com.rumpilstilstkin.gloomhavenhelper.data.OnboardingRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -14,12 +15,16 @@ import javax.inject.Inject
 @HiltViewModel
 class MainActivityViewModel @Inject constructor(
     databaseFiller: DatabaseFiller,
+    private val onboardingRepository: OnboardingRepository,
 ) : ViewModel() {
     val uiState: StateFlow<MainActivityUiState> =
         flowOf(1)
             .map {
                 databaseFiller.fillDatabase()
-                MainActivityUiState.Success
+                val startOnboarding = onboardingRepository.shouldShowOnboarding()
+                MainActivityUiState.Success(
+                    startOnboarding = startOnboarding,
+                )
             }.stateIn(
                 scope = viewModelScope,
                 initialValue = MainActivityUiState.Loading,
@@ -30,5 +35,7 @@ class MainActivityViewModel @Inject constructor(
 sealed interface MainActivityUiState {
     data object Loading : MainActivityUiState
 
-    data object Success : MainActivityUiState
+    data class Success(
+        val startOnboarding: Boolean,
+    ) : MainActivityUiState
 }

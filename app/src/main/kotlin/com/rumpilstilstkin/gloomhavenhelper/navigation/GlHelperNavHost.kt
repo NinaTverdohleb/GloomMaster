@@ -14,6 +14,7 @@ import androidx.navigation.toRoute
 import com.rumpilstilstkin.gloomhavenhelper.screens.characters.goods.add.AddGoodsForCharacterScreenRoute
 import com.rumpilstilstkin.gloomhavenhelper.screens.characters.quests.select.SearchQuestRoute
 import com.rumpilstilstkin.gloomhavenhelper.screens.characters.start.CharacterDetailsRoute
+import com.rumpilstilstkin.gloomhavenhelper.screens.onboarding.OnboardingRoute
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.add.AddScenarioForTeamRoute
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.ScenarioRoute
 import com.rumpilstilstkin.gloomhavenhelper.screens.settings.SettingsRoute
@@ -28,16 +29,22 @@ fun GlHelperNavHost(
     navController: NavHostController = rememberNavController(),
     modifier: Modifier,
     widthSizeClass: WindowWidthSizeClass,
+    startOnboarding: Boolean = false,
 ) {
     NavHost(
         navController = navController,
-        startDestination = GlHelperScreen.Start,
+        startDestination = if (startOnboarding) GlHelperScreen.Onboarding else GlHelperScreen.Start,
         enterTransition = { fadeIn(animationSpec = tween(300)) },
         exitTransition = { fadeOut(animationSpec = tween(300)) },
         popEnterTransition = { fadeIn(animationSpec = tween(300)) },
         popExitTransition = { fadeOut(animationSpec = tween(300)) },
         modifier = modifier,
     ) {
+        composable<GlHelperScreen.Onboarding> {
+            OnboardingRoute(
+                navController = navController,
+            )
+        }
         composable<GlHelperScreen.Start> {
             StartScreenRoute(
                 navController = navController,

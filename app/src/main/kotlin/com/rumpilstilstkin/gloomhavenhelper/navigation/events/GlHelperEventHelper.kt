@@ -12,6 +12,12 @@ object GlHelperEventHelper {
                 navController.navigate(event.screen)
             }
 
+            is GlHelperEvent.Replace -> {
+                navController.navigate(event.screen) {
+                    popUpTo(event.popUpTo) { inclusive = true }
+                }
+            }
+
             is GlHelperEvent.Back -> {
                 navController.popBackStack()
             }

@@ -163,4 +163,18 @@
     <string name="team_created_toast">Команда создана!</string>
     <string name="team_deleted_toast">Каманда удалена</string>
     <string name="character_deleted_toast">Персонаж удален</string>
+
+    <string name="onboarding_next">Дальше</string>
+    <string name="onboarding_skip">Пропустить</string>
+    <string name="onboarding_start">Начинаем!</string>
+    <string name="onboarding_title_1">Добро пожаловать</string>
+    <string name="onboarding_body_1">Полное сопровождение игры - бой по сценарию, магазин, персонажи, сценарии и многое другое.</string>
+    <string name="onboarding_title_2">Создайте свою команду</string>
+    <string name="onboarding_body_2">Создайте свою команду и добавьте туда персонажей, управляйте параметрами мира и команды, уровень прохождения определяется автоматически.</string>
+    <string name="onboarding_title_3">Играйте конкретный сцунарий</string>
+    <string name="onboarding_body_3">Запускайте сценарий, добавляйте монстров и управляйте их параметрами</string>
+    <string name="onboarding_title_4">Управляйте персонажем</string>
+    <string name="onboarding_body_4">Управляйте предметами, перками и другими характеристиками персонажа</string>
+    <string name="onboarding_title_5">Хорошей игры</string>
+    <string name="onboarding_body_5">Пора начинать приключение!</string>
 </resources>

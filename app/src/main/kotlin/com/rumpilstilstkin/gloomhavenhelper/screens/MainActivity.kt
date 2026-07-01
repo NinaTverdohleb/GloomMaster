@@ -84,10 +84,13 @@ class MainActivity : AppCompatActivity() {
                             .fillMaxSize()
                             .semantics { testTagsAsResourceId = true },
                 ) {
-                    GlHelperNavHost(
-                        modifier = Modifier.safeDrawingPadding().fillMaxSize(),
-                        widthSizeClass = windowSizeClass.widthSizeClass,
-                    )
+                    (uiState as? MainActivityUiState.Success)?.let { state ->
+                        GlHelperNavHost(
+                            modifier = Modifier.safeDrawingPadding().fillMaxSize(),
+                            widthSizeClass = windowSizeClass.widthSizeClass,
+                            startOnboarding = state.startOnboarding,
+                        )
+                    }
                 }
             }
         }

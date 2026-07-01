@@ -2,6 +2,7 @@ package com.rumpilstilstkin.gloomhavenhelper.di
 
 import android.content.Context
 import android.content.SharedPreferences
+import com.rumpilstilstkin.gloomhavenhelper.BuildConfig
 import com.rumpilstilstkin.gloomhavenhelper.bd.GlHelperDatabase
 import com.rumpilstilstkin.gloomhavenhelper.bd.createGlHelperDatabase
 import com.rumpilstilstkin.gloomhavenhelper.bd.dao.CharacterDao
@@ -26,6 +27,12 @@ object GlHelperModule {
             "GlHelperPreferences",
             Context.MODE_PRIVATE,
         )
+
+    // Build-type onboarding gate (off for benchmark builds). Provided here so the
+    // repository stays free of the generated BuildConfig and is unit-testable.
+    @OnboardingEnabled
+    @Provides
+    fun providesOnboardingEnabled(): Boolean = BuildConfig.ONBOARDING_ENABLED
 
     @Singleton
     @Provides

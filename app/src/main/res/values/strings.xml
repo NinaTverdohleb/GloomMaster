@@ -163,4 +163,18 @@
     <string name="team_created_toast">Team created!</string>
     <string name="team_deleted_toast">Team deleted</string>
     <string name="character_deleted_toast">Character deleted</string>
+    <!-- Onboarding (placeholder copy — to be replaced) -->
+    <string name="onboarding_next">Next</string>
+    <string name="onboarding_skip">Skip</string>
+    <string name="onboarding_start">Get Started</string>
+    <string name="onboarding_title_1">Welcome</string>
+    <string name="onboarding_body_1">Track your Gloomhaven campaign - teams, characters, scenarios and more.</string>
+    <string name="onboarding_title_2">Build Your Party</string>
+    <string name="onboarding_body_2">Create teams and add characters, then track their level, gold and experience.</string>
+    <string name="onboarding_title_3">Play Scenarios</string>
+    <string name="onboarding_body_3">Run active scenarios with monsters, rounds, decks and magic charges.</string>
+    <string name="onboarding_title_4">Personal Quests</string>
+    <string name="onboarding_body_4">Follow each character\'s personal quest toward retirement.</string>
+    <string name="onboarding_title_5">Ready to Go</string>
+    <string name="onboarding_body_5">That\'s it — start your adventure!</string>
 </resources>

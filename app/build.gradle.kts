@@ -16,14 +16,21 @@ android {
 
     defaultConfig {
         applicationId = "com.rumpilstilstkin.gloommaster"
-        minSdk = 31
-        versionCode = 3
-        versionName = "0.0.2"
+        minSdk = 29
+        versionCode = 4
+        versionName = "0.0.3"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
             useSupportLibrary = true
         }
+
+        // First-run onboarding is on by default; the benchmark build type turns it
+        // off so Macrobenchmark flows land straight on the main screen.
+        buildConfigField("boolean", "ONBOARDING_ENABLED", "true")
+    }
+    buildFeatures {
+        buildConfig = true
     }
     buildTypes {
         release {
@@ -34,10 +41,12 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            buildConfigField("boolean", "ONBOARDING_ENABLED", "true")
         }
         debug {
             applicationIdSuffix = ".debug"
             manifestPlaceholders["appLabelSuffix"] = "(Debug)"
+            buildConfigField("boolean", "ONBOARDING_ENABLED", "true")
         }
         create("benchmark") {
             initWith(buildTypes.getByName("release"))
@@ -45,6 +54,9 @@ android {
             matchingFallbacks += listOf("release")
             applicationIdSuffix = ".benchmark"
             isDebuggable = false
+            // initWith(release) copies ONBOARDING_ENABLED=true; override to skip
+            // onboarding in benchmark runs.
+            buildConfigField("boolean", "ONBOARDING_ENABLED", "false")
         }
     }
 

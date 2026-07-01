@@ -4,6 +4,9 @@ import kotlinx.serialization.Serializable
 
 sealed interface GlHelperScreen {
     @Serializable
+    data object Onboarding : GlHelperScreen
+
+    @Serializable
     data object Start : GlHelperScreen
 
     @Serializable
