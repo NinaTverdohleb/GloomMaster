@@ -41,7 +41,10 @@ fun AddPerksDialog(
             modifier = Modifier.weight(1f, fill = false),
             verticalArrangement = Arrangement.spacedBy(12.dp),
         ) {
-            items(avaliablePerks) { perk ->
+            items(
+                items = avaliablePerks,
+                key = { it.id }
+            ) { perk ->
                 PerkCheckItem(
                     perk = perk,
                     checked = checkedPerks.contains(perk.id),
