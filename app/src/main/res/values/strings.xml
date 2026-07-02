@@ -119,7 +119,7 @@
     <string name="delete_monster_dialog_description">Are you sure you want to delete %1$s?</string>
     <string name="delete_unit_dialog_title">Delete enemy?</string>
     <string name="delete_unit_dialog_description">Are you sure you want to delete %1$s #%2$d?</string>
-    <string name="empty_team_achievements">No party achievements</string>
+    <string name="empty_team_achievements">No active achievements</string>
     <string name="empty_character_goods">No items</string>
     <string name="empty_character_goods_description">Add items for character</string>
     <string name="no_conditions">No requirements</string>
@@ -163,18 +163,17 @@
     <string name="team_created_toast">Team created!</string>
     <string name="team_deleted_toast">Team deleted</string>
     <string name="character_deleted_toast">Character deleted</string>
-    <!-- Onboarding (placeholder copy — to be replaced) -->
     <string name="onboarding_next">Next</string>
     <string name="onboarding_skip">Skip</string>
     <string name="onboarding_start">Get Started</string>
     <string name="onboarding_title_1">Welcome</string>
-    <string name="onboarding_body_1">Track your Gloomhaven campaign - teams, characters, scenarios and more.</string>
-    <string name="onboarding_title_2">Build Your Party</string>
-    <string name="onboarding_body_2">Create teams and add characters, then track their level, gold and experience.</string>
-    <string name="onboarding_title_3">Play Scenarios</string>
-    <string name="onboarding_body_3">Run active scenarios with monsters, rounds, decks and magic charges.</string>
-    <string name="onboarding_title_4">Personal Quests</string>
-    <string name="onboarding_body_4">Follow each character\'s personal quest toward retirement.</string>
-    <string name="onboarding_title_5">Ready to Go</string>
-    <string name="onboarding_body_5">That\'s it — start your adventure!</string>
+    <string name="onboarding_body_1">Dive into the adventure — we\'ll take care of the numbers.</string>
+    <string name="onboarding_title_2">Manage Team</string>
+    <string name="onboarding_body_2">Manage your team: reputation, prosperity, the shop, scenarios and much more.</string>
+    <string name="onboarding_title_3">Playing Scenarios</string>
+    <string name="onboarding_body_3">Keep track of rounds, magic charges, and the health and effects on your enemies.</string>
+    <string name="onboarding_title_4">Manage Characters</string>
+    <string name="onboarding_body_4">Easily keep track of not only your team\'s stats, but each character\'s as well!</string>
+    <string name="onboarding_title_5">Have a Great Game</string>
+    <string name="onboarding_body_5">Time to start your adventure!</string>
 </resources>

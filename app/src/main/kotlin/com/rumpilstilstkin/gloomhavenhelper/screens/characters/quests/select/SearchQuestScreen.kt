@@ -55,7 +55,7 @@ internal fun SearchQuestScreen(
         ) {
             items(
                 items = state.quests,
-                key = { it.id }
+                key = { it.id },
             ) { quest ->
                 QuestItemFilled(
                     modifier = Modifier.animateItem(),

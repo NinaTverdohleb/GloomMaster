@@ -43,7 +43,7 @@ fun AddPerksDialog(
         ) {
             items(
                 items = avaliablePerks,
-                key = { it.id }
+                key = { it.id },
             ) { perk ->
                 PerkCheckItem(
                     perk = perk,

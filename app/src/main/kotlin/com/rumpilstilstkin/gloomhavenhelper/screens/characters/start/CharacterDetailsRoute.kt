@@ -26,13 +26,7 @@ fun CharacterDetailsRoute(
         state = uiState,
         back = { viewModel.onAction(CharacterDetailsAction.Back) },
         showNameDialog = { viewModel.onAction(CharacterDetailsAction.OpenNameDialog) },
-        selectTab = { tab ->
-            when (tab) {
-                CharacterDetailsTab.GENERAL -> CharacterGeneralTabRoute(characterId, navController)
-                CharacterDetailsTab.STUFF -> CharacterItemsTabRoute(characterId, navController)
-                CharacterDetailsTab.SKILLS -> CharacterPerksTabRoute(characterId, navController)
-            }
-        },
+        navController = navController,
     )
 
     LaunchedScreenEffect(

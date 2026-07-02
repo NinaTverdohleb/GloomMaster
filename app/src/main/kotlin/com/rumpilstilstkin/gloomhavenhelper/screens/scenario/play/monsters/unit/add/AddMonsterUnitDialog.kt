@@ -31,14 +31,18 @@ import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.text.GloomHe
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.icons.AppIcon
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
 import com.rumpilstilstkin.gloomhavenhelper.testtags.screens.scenario.play.monsters.unit.add.AddMonsterUnitDialogTestTags
+import kotlinx.collections.immutable.ImmutableList
+import kotlinx.collections.immutable.persistentListOf
+import kotlinx.collections.immutable.toPersistentList
+import kotlinx.collections.immutable.toPersistentSet
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AddMonsterUnitDialog(
     monsterName: String,
-    availableIds: List<Int>,
+    availableIds: ImmutableList<Int>,
     selectedTier: UnitTier,
-    selectedIds: List<Int>,
+    selectedIds: ImmutableList<Int>,
     selectTier: (UnitTier) -> Unit,
     toggleId: (Int) -> Unit,
     spawn: () -> Unit,
@@ -200,9 +204,9 @@ private fun AddMonsterUnitDialogPreview() {
         ) {
             AddMonsterUnitDialog(
                 monsterName = "Living Bones",
-                availableIds = (1..15).toList(),
+                availableIds = (1..15).toPersistentList(),
                 selectedTier = UnitTier.Normal,
-                selectedIds = listOf(1, 5),
+                selectedIds = persistentListOf(1, 5),
                 selectTier = {},
                 toggleId = {},
                 spawn = {},

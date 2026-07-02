@@ -16,8 +16,7 @@ class OnboardingRepository @Inject constructor(
     private val onboardingDatasource: OnboardingDatasource,
     @param:OnboardingEnabled private val onboardingEnabled: Boolean,
 ) {
-    fun shouldShowOnboarding(): Boolean =
-        onboardingEnabled && !onboardingDatasource.isOnboardingShown
+    fun shouldShowOnboarding(): Boolean = onboardingEnabled && !onboardingDatasource.isOnboardingShown
 
     fun markOnboardingShown() {
         onboardingDatasource.isOnboardingShown = true

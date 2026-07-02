@@ -21,10 +21,10 @@
     <string name="level_label">Уровень</string>
     <string name="next_prosperity_at">Следующее повышение процветания при %1$d</string>
     <string name="shop_discount">Скидка</string>
-    <string name="show_only_active">Показывать только активных</string>
+    <string name="show_only_active">Только активные</string>
     <string name="add_character">Создать</string>
-    <string name="empty_active_characters">Нет активных персонажей</string>
-    <string name="add_character_to_company">Добавьте персонажа в кампанию</string>
+    <string name="empty_active_characters">Нет персонажей</string>
+    <string name="add_character_to_company">Добавьте персонажа</string>
     <string name="round_label">Раунд</string>
     <string name="round_status">Раунд: %1$d</string>
     <string name="save">Сохранить</string>
@@ -106,7 +106,7 @@
     <string name="import_button">Импортировать</string>
     <string name="sell_button">Продать</string>
     <string name="available_to_add_format">Доступно для добавления: %1$d</string>
-    <string name="empty_team_achievements">Нет командных достижений</string>
+    <string name="empty_team_achievements">Нет добавленных достижений</string>
     <string name="no_conditions">Условий нет</string>
     <string name="achievement_obtained_format">Получено достижение: %1$s</string>
     <string name="achievement_not_obtained_format">Не получено достижение: %1$s</string>
@@ -131,9 +131,9 @@
     <string name="character_details">Детали персонажа</string>
     <string name="leave_character">Уйти на покой</string>
     <string name="make_alive">Восстановить</string>
-    <string name="delete_character">Delete character</string>
-    <string name="empty_team_achievements_description">Add Achivments for team</string>
-    <string name="delete_achivment_dialog_description">Do you want to delete %1$s achievement</string>
+    <string name="delete_character">Удалить персонажа</string>
+    <string name="empty_team_achievements_description">Добавьте Достижения</string>
+    <string name="delete_achivment_dialog_description">Вы действительно хотите удалить достижение %1$s</string>
     <string name="add_personal_quest">Add quest</string>
     <string name="empty_character_goods">Нет предметов</string>
     <string name="empty_character_goods_description">Добавьте предметы для персонажа</string>
@@ -159,22 +159,22 @@
     <string name="choose_unit">Выберите юнита</string>
     <string name="good_title_format">#%1$d %2$s</string>
     <string name="scenario_added">Сценарий добавлен!</string>
-    <string name="error_toast">Что то пошло не так!</string>
+    <string name="error_toast">Что-то пошло не так!</string>
     <string name="team_created_toast">Команда создана!</string>
-    <string name="team_deleted_toast">Каманда удалена</string>
+    <string name="team_deleted_toast">Команда удалена</string>
     <string name="character_deleted_toast">Персонаж удален</string>
 
     <string name="onboarding_next">Дальше</string>
     <string name="onboarding_skip">Пропустить</string>
     <string name="onboarding_start">Начинаем!</string>
     <string name="onboarding_title_1">Добро пожаловать</string>
-    <string name="onboarding_body_1">Полное сопровождение игры - бой по сценарию, магазин, персонажи, сценарии и многое другое.</string>
-    <string name="onboarding_title_2">Создайте свою команду</string>
-    <string name="onboarding_body_2">Создайте свою команду и добавьте туда персонажей, управляйте параметрами мира и команды, уровень прохождения определяется автоматически.</string>
-    <string name="onboarding_title_3">Играйте конкретный сцунарий</string>
-    <string name="onboarding_body_3">Запускайте сценарий, добавляйте монстров и управляйте их параметрами</string>
-    <string name="onboarding_title_4">Управляйте персонажем</string>
-    <string name="onboarding_body_4">Управляйте предметами, перками и другими характеристиками персонажа</string>
+    <string name="onboarding_body_1">Окунитесь в приключение, а цифры мы возьмем на себя.</string>
+    <string name="onboarding_title_2">Управляйте миром и командой</string>
+    <string name="onboarding_body_2">Управляйте командой: репутация, процветание, магазин, сценарии и многое другое.</string>
+    <string name="onboarding_title_3">Теперь проходить сценарий станет проще</string>
+    <string name="onboarding_body_3">Следите за раундами, зарядами магии, а так же жизнями и эффектами на врагах</string>
+    <string name="onboarding_title_4">Управляйте персонажами</string>
+    <string name="onboarding_body_4">Легко запоминать не только параметры команды, а так же каждого персонажа!</string>
     <string name="onboarding_title_5">Хорошей игры</string>
     <string name="onboarding_body_5">Пора начинать приключение!</string>
 </resources>

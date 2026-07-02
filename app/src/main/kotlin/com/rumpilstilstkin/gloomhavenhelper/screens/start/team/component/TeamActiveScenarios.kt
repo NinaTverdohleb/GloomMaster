@@ -16,10 +16,12 @@ import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterT
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.ShortScenarioUI
 import com.rumpilstilstkin.gloomhavenhelper.testtags.screens.start.team.component.ScenarioBlockTestTags
 import com.rumpilstilstkin.gloomhavenhelper.ui.scenario.ScenarioInfoCardItem
+import kotlinx.collections.immutable.ImmutableList
+import kotlinx.collections.immutable.persistentListOf
 
 @Composable
 fun ScenarioBlock(
-    scenarios: List<ShortScenarioUI>,
+    scenarios: ImmutableList<ShortScenarioUI>,
     canRestore: Boolean,
     modifier: Modifier = Modifier,
     selectScenario: (ShortScenarioUI) -> Unit,
@@ -59,7 +61,7 @@ private fun ScenarioBlockPreview() {
     GloomhavenMasterTheme {
         ScenarioBlock(
             scenarios =
-                listOf(
+                persistentListOf(
                     ShortScenarioUI.fixture(1),
                 ),
             canRestore = true,

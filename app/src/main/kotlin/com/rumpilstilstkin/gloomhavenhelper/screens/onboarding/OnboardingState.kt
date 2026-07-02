@@ -2,9 +2,9 @@ package com.rumpilstilstkin.gloomhavenhelper.screens.onboarding
 
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
+import com.rumpilstilstkin.gloomhavenhelper.R
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.persistentListOf
-import com.rumpilstilstkin.gloomhavenhelper.R
 
 /** User actions on the onboarding screen. */
 sealed interface OnboardingAction {
@@ -24,9 +24,29 @@ data class OnboardingPage(
  */
 val defaultOnboardingPages: ImmutableList<OnboardingPage> =
     persistentListOf(
-        OnboardingPage(R.drawable.ic_launcher_foreground, R.string.onboarding_title_1, R.string.onboarding_body_1),
-        OnboardingPage(R.drawable.ic_launcher_foreground, R.string.onboarding_title_2, R.string.onboarding_body_2),
-        OnboardingPage(R.drawable.ic_launcher_foreground, R.string.onboarding_title_3, R.string.onboarding_body_3),
-        OnboardingPage(R.drawable.ic_launcher_foreground, R.string.onboarding_title_4, R.string.onboarding_body_4),
-        OnboardingPage(R.drawable.ic_launcher_foreground, R.string.onboarding_title_5, R.string.onboarding_body_5),
+        OnboardingPage(
+            R.drawable.ic_onboarding_1,
+            R.string.onboarding_title_1,
+            R.string.onboarding_body_1,
+        ),
+        OnboardingPage(
+            R.drawable.ic_onboarding_2,
+            R.string.onboarding_title_2,
+            R.string.onboarding_body_2,
+        ),
+        OnboardingPage(
+            R.drawable.ic_onboarding_3,
+            R.string.onboarding_title_3,
+            R.string.onboarding_body_3,
+        ),
+        OnboardingPage(
+            R.drawable.ic_onboarding_4,
+            R.string.onboarding_title_4,
+            R.string.onboarding_body_4,
+        ),
+        OnboardingPage(
+            R.drawable.ic_onboarding_1,
+            R.string.onboarding_title_5,
+            R.string.onboarding_body_5,
+        ),
     )

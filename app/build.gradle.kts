@@ -17,8 +17,8 @@ android {
     defaultConfig {
         applicationId = "com.rumpilstilstkin.gloommaster"
         minSdk = 29
-        versionCode = 4
-        versionName = "0.0.3"
+        versionCode = 5
+        versionName = "0.0.4"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -54,8 +54,6 @@ android {
             matchingFallbacks += listOf("release")
             applicationIdSuffix = ".benchmark"
             isDebuggable = false
-            // initWith(release) copies ONBOARDING_ENABLED=true; override to skip
-            // onboarding in benchmark runs.
             buildConfigField("boolean", "ONBOARDING_ENABLED", "false")
         }
     }
@@ -80,6 +78,11 @@ dependencyGuard {
     configuration("benchmarkReleaseCompileClasspath") {
         tree = true
     }
+}
+
+composeCompiler {
+    reportsDestination = layout.buildDirectory.dir("compose_compiler")
+    metricsDestination = layout.buildDirectory.dir("compose_compiler")
 }
 
 dependencies {

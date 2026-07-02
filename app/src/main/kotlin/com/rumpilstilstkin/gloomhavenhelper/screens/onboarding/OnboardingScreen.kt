@@ -58,34 +58,37 @@ fun OnboardingScreen(
     Scaffold(
         topBar = {
             Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(16.dp),
-                horizontalArrangement = Arrangement.End
+                modifier =
+                    Modifier
+                        .fillMaxWidth()
+                        .padding(16.dp),
+                horizontalArrangement = Arrangement.End,
             ) {
                 TextButton(
-                    onClick = onFinish
+                    onClick = onFinish,
                 ) {
                     Text(
                         style = MaterialTheme.typography.labelMedium,
-                        text = stringResource(R.string.onboarding_skip)
+                        text = stringResource(R.string.onboarding_skip),
                     )
                 }
             }
-        }
+        },
     ) { contentPaddings ->
         Column(
-            modifier = modifier
-                .padding(contentPaddings)
-                .fillMaxSize()
-                .padding(24.dp),
+            modifier =
+                modifier
+                    .padding(contentPaddings)
+                    .fillMaxSize()
+                    .padding(24.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             HorizontalPager(
                 state = pagerState,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .weight(1f),
+                modifier =
+                    Modifier
+                        .fillMaxWidth()
+                        .weight(1f),
             ) { page ->
                 OnboardingPageContent(page = pages[page])
             }
@@ -131,7 +134,7 @@ private fun OnboardingPageContent(
         Image(
             painter = painterResource(page.imageRes),
             contentDescription = null,
-            modifier = Modifier.size(200.dp),
+            modifier = Modifier.fillMaxWidth().height(400.dp),
         )
         Spacer(modifier = Modifier.height(32.dp))
         Text(

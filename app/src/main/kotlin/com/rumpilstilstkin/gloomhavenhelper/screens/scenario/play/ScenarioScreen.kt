@@ -45,6 +45,7 @@ import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.components.Spi
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.state.MonsterItemUi
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.state.ScenarioStateUi
 import com.rumpilstilstkin.gloomhavenhelper.testtags.screens.scenario.play.PlayScenarioScreenTestTags
+import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.ImmutableSet
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.persistentMapOf
@@ -158,7 +159,7 @@ internal fun ScenarioScreen(
 fun ScenarioScreenContent(
     round: Int,
     availableEffects: ImmutableSet<MonsterStatType>,
-    monsters: List<MonsterItemUi>,
+    monsters: ImmutableList<MonsterItemUi>,
     delete: (monsterSlug: String) -> Unit,
     deleteUnit: (unitNumber: Int, monsterSlug: String) -> Unit,
     updateUnitLife: (unitNumber: Int, monsterSlug: String, life: Int) -> Unit,

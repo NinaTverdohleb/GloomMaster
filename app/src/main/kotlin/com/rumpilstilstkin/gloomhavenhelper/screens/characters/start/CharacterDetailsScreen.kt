@@ -4,35 +4,38 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.pager.HorizontalPager
+import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.setValue
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.rumpilstilstkin.gloomhavenhelper.R
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.tabs.GloomTopNavigationBar
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.tabs.NavItem
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.toolbar.GloomToolbar
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.icons.NavigationIcon
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
-import com.rumpilstilstkin.gloomhavenhelper.screens.characters.start.general.CharacterGeneralTab
-import com.rumpilstilstkin.gloomhavenhelper.screens.characters.start.general.CharacterGeneralTabState
+import com.rumpilstilstkin.gloomhavenhelper.screens.characters.start.general.CharacterGeneralTabRoute
+import com.rumpilstilstkin.gloomhavenhelper.screens.characters.start.goods.CharacterItemsTabRoute
+import com.rumpilstilstkin.gloomhavenhelper.screens.characters.start.perks.CharacterPerksTabRoute
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.CharacterUI
 import com.rumpilstilstkin.gloomhavenhelper.testtags.screens.characters.start.CharacterDetailsTestTags
 import com.rumpilstilstkin.gloomhavenhelper.ui.characters.CharacterHeaderItem
+import kotlinx.coroutines.launch
 
 @Composable
 internal fun CharacterDetailsScreen(
     state: CharacterDetailsStateUi,
     back: () -> Unit,
     showNameDialog: (CharacterUI) -> Unit,
-    selectTab: @Composable (CharacterDetailsTab) -> Unit,
+    navController: NavHostController,
 ) {
     Scaffold(
         topBar = {
@@ -56,7 +59,8 @@ internal fun CharacterDetailsScreen(
             )
 
             CharactersTabs(
-                selectTab = selectTab,
+                characterId = state.character.id,
+                navController = navController,
             )
         }
     }
@@ -77,10 +81,14 @@ internal enum class CharacterDetailsTab(
 
 @Composable
 internal fun CharactersTabs(
+    characterId: Int,
+    navController: NavHostController,
     modifier: Modifier = Modifier,
-    selectTab: @Composable (CharacterDetailsTab) -> Unit,
 ) {
-    var selectedTab by rememberSaveable { mutableStateOf(CharacterDetailsTab.GENERAL) }
+    val tabs = CharacterDetailsTab.entries
+    val pagerState = rememberPagerState(pageCount = { tabs.size })
+    val selectedTab = tabs[pagerState.currentPage]
+    val coroutineScope = rememberCoroutineScope()
 
     Column(
         modifier =
@@ -89,11 +97,25 @@ internal fun CharactersTabs(
                 .fillMaxSize(),
     ) {
         GloomTopNavigationBar(
-            items = CharacterDetailsTab.entries,
+            items = tabs,
             selectedItem = selectedTab,
-            selectTab = { tab -> selectedTab = tab as CharacterDetailsTab },
+            selectTab = { tab ->
+                coroutineScope.launch {
+                    pagerState.animateScrollToPage(tabs.indexOf(tab))
+                }
+            },
         )
-        selectTab(selectedTab)
+        HorizontalPager(
+            state = pagerState,
+            modifier = Modifier.fillMaxSize(),
+            beyondViewportPageCount = tabs.size,
+        ) { page ->
+            when (tabs[page]) {
+                CharacterDetailsTab.GENERAL -> CharacterGeneralTabRoute(characterId, navController)
+                CharacterDetailsTab.STUFF -> CharacterItemsTabRoute(characterId, navController)
+                CharacterDetailsTab.SKILLS -> CharacterPerksTabRoute(characterId, navController)
+            }
+        }
     }
 }
 
@@ -109,29 +131,7 @@ private fun CharacterDetailsScreenPreview() {
                 ),
             back = {},
             showNameDialog = {},
-            selectTab = {
-                CharacterGeneralTab(
-                    state =
-                        CharacterGeneralTabState(
-                            experience = 150,
-                            goldCount = 10,
-                            checkMarkCount = 15,
-                            hasTeam = false,
-                            teamName = null,
-                            nextLevel = 175,
-                            notes = "Some notes",
-                        ),
-                    openNotes = {},
-                    onLevelUp = {},
-                    onGoldChanged = {},
-                    onExperienceChanged = {},
-                    onCheckedChange = {},
-                    choosePersonalQuest = {},
-                    onTaskCheckedChange = {},
-                    showQuestDetails = {},
-                    onTaskCountChanged = { _, _ -> },
-                )
-            },
+            navController = rememberNavController(),
         )
     }
 }
