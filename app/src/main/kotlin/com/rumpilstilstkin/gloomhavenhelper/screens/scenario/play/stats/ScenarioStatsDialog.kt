@@ -18,6 +18,7 @@ import com.rumpilstilstkin.gloomhavenhelper.R
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.buttons.GloomOutlineButton
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.items.GloomListItem
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.items.LeftItemIcon
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.items.LeftItemNumber
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.items.RightItemLabel
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.icons.AppIcon
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.icons.GameStatIcons
@@ -25,6 +26,9 @@ import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterT
 
 @Composable
 internal fun ScenarioStatsDialog(
+    scenarioNumber: Int?,
+    scenarioName: String,
+    location: String?,
     level: Int,
     exp: Int,
     gold: Int,
@@ -35,6 +39,22 @@ internal fun ScenarioStatsDialog(
         modifier = Modifier.fillMaxWidth(),
         verticalArrangement = Arrangement.spacedBy(8.dp),
     ) {
+        GloomListItem(
+            title = scenarioName.ifBlank { stringResource(R.string.custom_scenario) },
+            description = location,
+            leftComponent = {
+                scenarioNumber?.let {
+                    LeftItemNumber(
+                        number =
+                            stringResource(
+                                R.string.scenario_number_format,
+                                scenarioNumber.toString(),
+                            ),
+                    )
+                }
+            },
+        )
+
         GloomListItem(
             title = stringResource(R.string.stat_monster_level),
             leftComponent = {
@@ -112,6 +132,9 @@ private fun ScenarioStatsDialogPreview() {
                     .padding(16.dp),
         ) {
             ScenarioStatsDialog(
+                scenarioNumber = 99,
+                scenarioName = "Name",
+                location = "Bad place",
                 level = 1,
                 exp = 100,
                 gold = 100,

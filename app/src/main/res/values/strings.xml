@@ -166,14 +166,14 @@
     <string name="onboarding_next">Next</string>
     <string name="onboarding_skip">Skip</string>
     <string name="onboarding_start">Get Started</string>
-    <string name="onboarding_title_1">Welcome</string>
-    <string name="onboarding_body_1">Dive into the adventure — we\'ll take care of the numbers.</string>
-    <string name="onboarding_title_2">Manage Team</string>
-    <string name="onboarding_body_2">Manage your team: reputation, prosperity, the shop, scenarios and much more.</string>
-    <string name="onboarding_title_3">Playing Scenarios</string>
+    <string name="onboarding_title_1">Welcome to Gloomhaven!</string>
+    <string name="onboarding_body_1">Dive into the adventure — let the app remember the numbers.</string>
+    <string name="onboarding_title_2">Manage Party</string>
+    <string name="onboarding_body_2">Reputation, prosperity, the shop, scenarios and much more.</string>
+    <string name="onboarding_title_3">Playing scenarios just got easier</string>
     <string name="onboarding_body_3">Keep track of rounds, magic charges, and the health and effects on your enemies.</string>
     <string name="onboarding_title_4">Manage Characters</string>
-    <string name="onboarding_body_4">Easily keep track of not only your team\'s stats, but each character\'s as well!</string>
+    <string name="onboarding_body_4">Experience, gold, personal items and character perks — all on one page!</string>
     <string name="onboarding_title_5">Have a Great Game</string>
     <string name="onboarding_body_5">Time to start your adventure!</string>
 </resources>

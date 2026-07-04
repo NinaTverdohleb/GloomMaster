@@ -17,16 +17,14 @@ android {
     defaultConfig {
         applicationId = "com.rumpilstilstkin.gloommaster"
         minSdk = 29
-        versionCode = 5
-        versionName = "0.0.4"
+        versionCode = 10
+        versionName = "2.0.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
             useSupportLibrary = true
         }
 
-        // First-run onboarding is on by default; the benchmark build type turns it
-        // off so Macrobenchmark flows land straight on the main screen.
         buildConfigField("boolean", "ONBOARDING_ENABLED", "true")
     }
     buildFeatures {

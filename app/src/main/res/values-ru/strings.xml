@@ -58,14 +58,14 @@
     <string name="tab_skills">Навыки</string>
     <string name="tier_normal">Обычные</string>
     <string name="tier_elite">Элитные</string>
-    <string name="empty_enemies_title">Враги еще не добавлены</string>
-    <string name="select_enemies">Выберите врагов</string>
+    <string name="empty_enemies_title">Нет активных врагов</string>
+    <string name="select_enemies">Выбрать</string>
     <string name="stat_monster_level">Уровень монстров</string>
     <string name="stat_exp_reward">Опыт за прохождение</string>
     <string name="stat_gold_reward">Золотых за монету</string>
     <string name="stat_trap_damage">Урон от повреждающей ловушки</string>
     <string name="gold_format">%1$d Золотых</string>
-    <string name="empty_enemy_description">+ Добавить врага</string>
+    <string name="empty_enemy_description">Добавьте монстров в игру</string>
     <string name="search_hint">Название или номер</string>
     <string name="selected_goods">Выбранные товары</string>
     <string name="available_goods">Доступные товары</string>
@@ -134,7 +134,7 @@
     <string name="delete_character">Удалить персонажа</string>
     <string name="empty_team_achievements_description">Добавьте Достижения</string>
     <string name="delete_achivment_dialog_description">Вы действительно хотите удалить достижение %1$s</string>
-    <string name="add_personal_quest">Add quest</string>
+    <string name="add_personal_quest">Добавить личное задание</string>
     <string name="empty_character_goods">Нет предметов</string>
     <string name="empty_character_goods_description">Добавьте предметы для персонажа</string>
     <string name="empty_character_perks">Нет навыков</string>
@@ -159,7 +159,7 @@
     <string name="choose_unit">Выберите юнита</string>
     <string name="good_title_format">#%1$d %2$s</string>
     <string name="scenario_added">Сценарий добавлен!</string>
-    <string name="error_toast">Что-то пошло не так!</string>
+    <string name="error_toast">Что-то пошло не так.</string>
     <string name="team_created_toast">Команда создана!</string>
     <string name="team_deleted_toast">Команда удалена</string>
     <string name="character_deleted_toast">Персонаж удален</string>
@@ -167,14 +167,14 @@
     <string name="onboarding_next">Дальше</string>
     <string name="onboarding_skip">Пропустить</string>
     <string name="onboarding_start">Начинаем!</string>
-    <string name="onboarding_title_1">Добро пожаловать</string>
-    <string name="onboarding_body_1">Окунитесь в приключение, а цифры мы возьмем на себя.</string>
-    <string name="onboarding_title_2">Управляйте миром и командой</string>
-    <string name="onboarding_body_2">Управляйте командой: репутация, процветание, магазин, сценарии и многое другое.</string>
+    <string name="onboarding_title_1">Добро пожаловать в Gloomhaven!</string>
+    <string name="onboarding_body_1">Окунитесь в приключение, а цифры пусть запомнит приложение.</string>
+    <string name="onboarding_title_2">Управляйте командой</string>
+    <string name="onboarding_body_2">Репутация, процветание, магазин, сценарии и многое другое.</string>
     <string name="onboarding_title_3">Теперь проходить сценарий станет проще</string>
-    <string name="onboarding_body_3">Следите за раундами, зарядами магии, а так же жизнями и эффектами на врагах</string>
+    <string name="onboarding_body_3">Следите за раундами, зарядами магии, а также жизнями и эффектами на врагах</string>
     <string name="onboarding_title_4">Управляйте персонажами</string>
-    <string name="onboarding_body_4">Легко запоминать не только параметры команды, а так же каждого персонажа!</string>
+    <string name="onboarding_body_4">Опыт, золото, а также личные вещи и перки персонажей — всё на одной странице!</string>
     <string name="onboarding_title_5">Хорошей игры</string>
     <string name="onboarding_body_5">Пора начинать приключение!</string>
 </resources>

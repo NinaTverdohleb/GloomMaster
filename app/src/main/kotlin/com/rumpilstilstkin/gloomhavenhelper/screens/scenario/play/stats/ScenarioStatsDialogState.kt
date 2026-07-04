@@ -5,4 +5,7 @@ data class ScenarioStatsDialogInput(
     val exp: Int,
     val gold: Int,
     val trapDamage: Int,
+    val scenarioName: String,
+    val scenarioNumber: Int? = null,
+    val location: String? = null,
 )

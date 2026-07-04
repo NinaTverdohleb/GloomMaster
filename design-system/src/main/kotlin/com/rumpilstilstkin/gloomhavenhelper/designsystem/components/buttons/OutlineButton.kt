@@ -142,7 +142,7 @@ private fun GloomOutlineButtonBasic(
             Icon(
                 painter = icon.painter(),
                 contentDescription = null,
-                modifier = Modifier.size(28.dp),
+                modifier = Modifier.size(24.dp),
             )
         }
         if (text != null && icon != null) {
@@ -151,7 +151,7 @@ private fun GloomOutlineButtonBasic(
         text?.let {
             Text(
                 text = text,
-                style = MaterialTheme.typography.titleLarge,
+                style = MaterialTheme.typography.labelLarge,
             )
         }
     }

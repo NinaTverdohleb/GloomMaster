@@ -13,6 +13,9 @@ object ScenarioStatsDialogContract : OverlayContract<ScenarioStatsDialogInput, U
             level = input.level,
             exp = input.exp,
             gold = input.gold,
+            scenarioNumber = input.scenarioNumber,
+            scenarioName = input.scenarioName,
+            location = input.location,
             trapDamage = input.trapDamage,
             onDismiss = { onDismissWithResult(Unit) },
         )

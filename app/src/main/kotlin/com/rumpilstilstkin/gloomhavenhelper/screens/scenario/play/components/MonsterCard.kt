@@ -71,7 +71,7 @@ fun MonsterCard(
             Text(
                 modifier = Modifier.weight(1f),
                 text = name,
-                style = MaterialTheme.typography.titleLarge,
+                style = MaterialTheme.typography.titleMedium,
                 color = MaterialTheme.colorScheme.onSurface,
             )
             Spacer(Modifier.width(8.dp))

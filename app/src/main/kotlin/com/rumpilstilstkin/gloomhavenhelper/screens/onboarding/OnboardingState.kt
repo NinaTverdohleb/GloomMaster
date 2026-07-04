@@ -45,7 +45,7 @@ val defaultOnboardingPages: ImmutableList<OnboardingPage> =
             R.string.onboarding_body_4,
         ),
         OnboardingPage(
-            R.drawable.ic_onboarding_1,
+            R.drawable.ic_onboarding_5,
             R.string.onboarding_title_5,
             R.string.onboarding_body_5,
         ),

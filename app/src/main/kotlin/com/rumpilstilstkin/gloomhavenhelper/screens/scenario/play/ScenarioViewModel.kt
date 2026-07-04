@@ -296,6 +296,9 @@ class ScenarioViewModel @Inject constructor(
                         exp = state.exp,
                         gold = state.gold,
                         trapDamage = state.trapDamage,
+                        scenarioNumber = state.scenarioNumber,
+                        location = state.scenarioLocation,
+                        scenarioName = state.scenarioName
                     ),
                 onResult = { },
             )

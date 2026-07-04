@@ -61,6 +61,7 @@ fun GloomTopNavigationBar(
                 },
                 icon = {
                     Icon(
+                        modifier = Modifier.size(24.dp),
                         painter = item.icon.painter(),
                         contentDescription = title,
                     )

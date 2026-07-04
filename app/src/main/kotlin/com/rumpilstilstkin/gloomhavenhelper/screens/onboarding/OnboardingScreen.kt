@@ -1,8 +1,6 @@
 package com.rumpilstilstkin.gloomhavenhelper.screens.onboarding
 
 import androidx.activity.compose.BackHandler
-import androidx.compose.animation.core.FastOutSlowInEasing
-import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -12,7 +10,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.material3.MaterialTheme
@@ -20,7 +17,6 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
@@ -34,9 +30,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.rumpilstilstkin.gloomhavenhelper.R
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.buttons.GloomButton
-import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.text.GloomHeader
-import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.toolbar.GloomToolbarAction
-import com.rumpilstilstkin.gloomhavenhelper.designsystem.icons.AppIcon
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.components.PageIndicator
 import kotlinx.collections.immutable.ImmutableList
@@ -90,7 +83,10 @@ fun OnboardingScreen(
                         .fillMaxWidth()
                         .weight(1f),
             ) { page ->
-                OnboardingPageContent(page = pages[page])
+                OnboardingPageContent(
+                    page = pages[page],
+                    modifier = Modifier.fillMaxSize()
+                )
             }
 
             Spacer(modifier = Modifier.height(24.dp))
@@ -127,26 +123,29 @@ private fun OnboardingPageContent(
     modifier: Modifier = Modifier,
 ) {
     Column(
-        modifier = modifier.fillMaxSize(),
+        modifier = modifier,
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center,
+        verticalArrangement = Arrangement.Bottom,
     ) {
         Image(
             painter = painterResource(page.imageRes),
             contentDescription = null,
-            modifier = Modifier.fillMaxWidth().height(400.dp),
+            modifier =
+                Modifier
+                    .fillMaxWidth(0.85f)
+                    .weight(1f)
+                    .padding(bottom = 32.dp),
         )
-        Spacer(modifier = Modifier.height(32.dp))
         Text(
             text = stringResource(page.titleRes),
-            style = MaterialTheme.typography.titleLarge,
+            style = MaterialTheme.typography.headlineSmall,
             color = MaterialTheme.colorScheme.primary,
             textAlign = TextAlign.Center,
         )
         Spacer(modifier = Modifier.height(16.dp))
         Text(
             text = stringResource(page.bodyRes),
-            style = MaterialTheme.typography.bodyMedium,
+            style = MaterialTheme.typography.bodyLarge,
             color = MaterialTheme.colorScheme.onSurface,
             textAlign = TextAlign.Center,
         )
@@ -156,6 +155,17 @@ private fun OnboardingPageContent(
 @Preview
 @Composable
 private fun OnboardingScreenPreview() {
+    GloomhavenMasterTheme {
+        OnboardingScreen(
+            pages = defaultOnboardingPages,
+            onFinish = {},
+        )
+    }
+}
+
+@Preview(device = "spec:width=1280dp,height=800dp,orientation=landscape")
+@Composable
+private fun OnboardingScreenTabletPreview() {
     GloomhavenMasterTheme {
         OnboardingScreen(
             pages = defaultOnboardingPages,

@@ -5,6 +5,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -21,6 +22,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.rumpilstilstkin.gloomhavenhelper.R
+import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.GloomCard
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.items.GloomListOutlineItem
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.items.LeftItemNumber
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.icons.ActionIcon
@@ -32,58 +34,21 @@ import com.rumpilstilstkin.gloomhavenhelper.testtags.screens.scenario.play.compo
 
 @Composable
 internal fun ScenarioHeader(
-    scenarioNumber: Int?,
-    scenarioName: String,
-    location: String?,
     trapDamage: Int,
     magics: Map<Magic, ChargeLevel>,
     showStats: () -> Unit,
     modifier: Modifier = Modifier,
     clickMagic: (magic: Magic) -> Unit,
-) = Column(
+) = Row(
     modifier =
         modifier
             .background(MaterialTheme.colorScheme.surfaceContainer)
             .padding(16.dp),
-    verticalArrangement = Arrangement.spacedBy(24.dp),
+    horizontalArrangement = Arrangement.spacedBy(16.dp),
 ) {
-    GloomListOutlineItem(
-        title = scenarioName,
-        description = location,
-        onClick = showStats,
-        leftComponent = {
-            scenarioNumber?.let {
-                LeftItemNumber(
-                    number =
-                        stringResource(
-                            R.string.scenario_number_format,
-                            scenarioNumber.toString(),
-                        ),
-                )
-            }
-        },
-        rightComponent = {
-            Row(
-                verticalAlignment = Alignment.Bottom,
-                horizontalArrangement = Arrangement.spacedBy(2.dp),
-            ) {
-                Text(
-                    text = trapDamage.toString(),
-                    style =
-                        MaterialTheme.typography.titleLarge.copy(),
-                    color = MaterialTheme.colorScheme.onSurface,
-                )
-                Icon(
-                    modifier = Modifier.size(28.dp),
-                    painter = ActionIcon.Trap.painter(),
-                    contentDescription = null,
-                    tint = MaterialTheme.colorScheme.onSurface,
-                )
-            }
-        },
-    )
-    Row(
-        modifier = Modifier.fillMaxWidth(),
+    FlowRow(
+        modifier = Modifier.fillMaxWidth().weight(1f),
+        verticalArrangement = Arrangement.spacedBy(8.dp),
         horizontalArrangement = Arrangement.spacedBy(4.dp),
     ) {
         magics.keys.forEach { magic ->
@@ -101,6 +66,27 @@ internal fun ScenarioHeader(
             )
         }
     }
+    GloomCard(
+        modifier = Modifier.clickable{showStats()}
+    ) {
+        Row(
+            modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp),
+            horizontalArrangement = Arrangement.spacedBy(2.dp),
+        ) {
+            Text(
+                text = trapDamage.toString(),
+                style =
+                    MaterialTheme.typography.titleLarge.copy(),
+                color = MaterialTheme.colorScheme.onSurface,
+            )
+            Icon(
+                modifier = Modifier.size(28.dp),
+                painter = ActionIcon.Trap.painter(),
+                contentDescription = null,
+                tint = MaterialTheme.colorScheme.onSurface,
+            )
+        }
+    }
 }
 
 @Preview
@@ -109,9 +95,6 @@ private fun ScenarioHeaderPreview() {
     GloomhavenMasterTheme {
         ScenarioHeader(
             modifier = Modifier.fillMaxWidth(),
-            scenarioNumber = 99,
-            scenarioName = "Name",
-            location = "Bad place",
             trapDamage = 3,
             magics =
                 mapOf(

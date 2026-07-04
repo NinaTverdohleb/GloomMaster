@@ -119,9 +119,6 @@ internal fun ScenarioScreen(
         }
         Column(modifier = Modifier.fillMaxSize()) {
             ScenarioHeader(
-                scenarioNumber = state.scenarioNumber,
-                scenarioName = state.scenarioName.ifBlank { stringResource(R.string.custom_scenario) },
-                location = state.scenarioLocation,
                 magics = state.magicChargeList,
                 clickMagic = clickMagic,
                 trapDamage = state.trapDamage,
@@ -176,6 +173,9 @@ fun ScenarioScreenContent(
 ) {
     if (monsters.isEmpty()) {
         EmptyView(
+            modifier = modifier
+                .fillMaxWidth()
+                .padding(horizontal = 16.dp),
             icon = EmptyIcon.Enemy,
             title = stringResource(R.string.empty_enemies_title),
             description = stringResource(R.string.empty_enemy_description),
