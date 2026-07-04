@@ -146,7 +146,7 @@ internal fun ScenarioScreen(
         SpinningNumberOverlay(
             visible = roundAnimationVisible,
             targetNumber = state.smallestInitiative,
-            spinId = state.round.hashCode(),
+            spinId = state.round,
             onFinished = { roundAnimationVisible = false },
         )
     }
