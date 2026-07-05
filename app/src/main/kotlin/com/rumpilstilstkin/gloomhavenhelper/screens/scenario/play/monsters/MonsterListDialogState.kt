@@ -1,15 +1,15 @@
 package com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.monsters
 
-import com.rumpilstilstkin.gloomhavenhelper.domain.entity.scenario.MonsterItem
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterName
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.persistentListOf
 
 data class MonsterListDialogInput(
-    val monsters: List<MonsterItem>,
+    val monsters: List<MonsterName>,
 )
 
 data class MonsterListDialogState(
-    val monsters: ImmutableList<MonsterItem> = persistentListOf(),
+    val monsters: ImmutableList<MonsterName> = persistentListOf(),
     val selectedIds: ImmutableList<String> = persistentListOf(),
 )
 
@@ -19,14 +19,10 @@ sealed interface MonsterListDialogAction {
     ) : MonsterListDialogAction
 
     data object SelectMonsters : MonsterListDialogAction
-
-    data object AddNewMonsters : MonsterListDialogAction
 }
 
 sealed interface MonsterListDialogResult {
     data class Selected(
         val slugs: List<String>,
     ) : MonsterListDialogResult
-
-    data object AddNewMonsters : MonsterListDialogResult
 }

@@ -6,40 +6,35 @@ import com.rumpilstilstkin.gloomhavenhelper.domain.entity.scenario.MonsterDeckSt
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.scenario.MonsterItem
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.scenario.MonsterUnit
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.scenario.ScenarioBattleState
-import kotlinx.collections.immutable.persistentListOf
 import org.junit.Test
 import strikt.api.expectThat
 import strikt.assertions.containsExactly
 import strikt.assertions.hasSize
 import strikt.assertions.isEqualTo
+import strikt.assertions.isNotNull
 
-// NOTE: AddMonsterUnitsUseCase does NOT check for unit-number conflicts with
-// existing units (or duplicates within `numbers`). PRD bullet about
-// "rejecting duplicate unit numbers" does not match implementation —
-// tests reflect actual behaviour (units are appended verbatim).
 class AddMonsterUnitsUseCaseTest {
     private val sut = AddMonsterUnitsUseCase()
 
     @Test
-    fun `given monster with no units when invoked then numbers are appended as new units`() {
+    fun `given monster with no units when invoked then numbers are added as new units`() {
         // Given
         val m = monster(slug = "a", life = 6)
         val state =
             baseState(monsters = mapOf("a" to m)).copy(
-                activeMonsters =
-                    listOf(
-                        MonsterItem.fixture(slug = "a").copy(units = persistentListOf()),
-                    ),
+                activeMonsters = mapOf("a" to MonsterItem.fixture(slug = "a")),
             )
 
         // When
         val result = sut(state, slug = "a", numbers = listOf(1, 2), isElite = false)
 
         // Then
-        expectThat(result.activeMonsters[0].units.map { it.number }).containsExactly(1, 2)
-        expectThat(result.activeMonsters[0].units[0].currentLife).isEqualTo(6)
-        expectThat(result.activeMonsters[0].units[0].maxLife).isEqualTo(6)
-        expectThat(result.activeMonsters[0].units[0].isSpecial).isEqualTo(false)
+        val units = result.activeMonsters.getValue("a").units
+        expectThat(units[1]).isNotNull()
+        expectThat(units[2]).isNotNull()
+        expectThat(units.getValue(1).currentLife).isEqualTo(6)
+        expectThat(units.getValue(1).maxLife).isEqualTo(6)
+        expectThat(units.getValue(1).isSpecial).isEqualTo(false)
     }
 
     @Test
@@ -48,16 +43,16 @@ class AddMonsterUnitsUseCaseTest {
         val m = monster(slug = "a", life = 6, eliteLife = 9)
         val state =
             baseState(monsters = mapOf("a" to m)).copy(
-                activeMonsters =
-                    listOf(MonsterItem.fixture(slug = "a").copy(units = persistentListOf())),
+                activeMonsters = mapOf("a" to MonsterItem.fixture(slug = "a")),
             )
 
         // When
         val result = sut(state, slug = "a", numbers = listOf(1), isElite = true)
 
         // Then
-        expectThat(result.activeMonsters[0].units[0].maxLife).isEqualTo(9)
-        expectThat(result.activeMonsters[0].units[0].isSpecial).isEqualTo(true)
+        val units = result.activeMonsters.getValue("a").units
+        expectThat(units.getValue(1).maxLife).isEqualTo(9)
+        expectThat(units.getValue(1).isSpecial).isEqualTo(true)
     }
 
     @Test
@@ -67,28 +62,28 @@ class AddMonsterUnitsUseCaseTest {
         val state =
             baseState(monsters = mapOf("a" to m)).copy(
                 gamersCount = 3,
-                activeMonsters =
-                    listOf(MonsterItem.fixture(slug = "a").copy(units = persistentListOf())),
+                activeMonsters = mapOf("a" to MonsterItem.fixture(slug = "a")),
             )
 
         // When
         val result = sut(state, slug = "a", numbers = listOf(1), isElite = false)
 
         // Then
-        expectThat(result.activeMonsters[0].units[0].maxLife).isEqualTo(12)
+        expectThat(result.activeMonsters.getValue("a").units.getValue(1).maxLife).isEqualTo(12)
     }
 
     @Test
-    fun `given monster with existing units when invoked then new units are appended after`() {
+    fun `given monster with existing units when invoked then new units are added to existing`() {
         // Given
         val m = monster(slug = "a", life = 5)
         val state =
             baseState(monsters = mapOf("a" to m)).copy(
                 activeMonsters =
-                    listOf(
-                        MonsterItem.fixture(slug = "a").copy(
-                            units = persistentListOf(MonsterUnit.fixture(7)),
-                        ),
+                    mapOf(
+                        "a" to
+                            MonsterItem.fixture(slug = "a").copy(
+                                units = mapOf(7 to MonsterUnit.fixture(number = 7)),
+                            ),
                     ),
             )
 
@@ -96,8 +91,10 @@ class AddMonsterUnitsUseCaseTest {
         val result = sut(state, slug = "a", numbers = listOf(8), isElite = false)
 
         // Then
-        expectThat(result.activeMonsters[0].units).hasSize(2)
-        expectThat(result.activeMonsters[0].units.map { it.number }).containsExactly(7, 8)
+        val units = result.activeMonsters.getValue("a").units
+        expectThat(units).hasSize(2)
+        expectThat(units.keys).containsExactly(7, 8)
+        expectThat(units.values.map { it.number }).containsExactly(7, 8)
     }
 
     private fun baseState(monsters: Map<String, Monster> = emptyMap()) =

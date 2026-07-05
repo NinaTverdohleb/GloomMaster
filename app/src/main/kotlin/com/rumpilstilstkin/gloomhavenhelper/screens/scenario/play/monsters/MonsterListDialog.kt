@@ -19,7 +19,7 @@ import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.items.GloomL
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.items.RightItemChecker
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.icons.AppIcon
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
-import com.rumpilstilstkin.gloomhavenhelper.domain.entity.scenario.MonsterItem
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterName
 import com.rumpilstilstkin.gloomhavenhelper.testtags.screens.scenario.play.monsters.AddScenarioMonstersDialogTestTags
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.persistentListOf
@@ -27,11 +27,10 @@ import kotlinx.collections.immutable.persistentListOf
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MonsterListDialog(
-    monsters: ImmutableList<MonsterItem>,
+    monsters: ImmutableList<MonsterName>,
     selectedIds: ImmutableList<String>,
     toggleMonster: (String) -> Unit,
     selectMonsters: () -> Unit,
-    addNewMonsters: () -> Unit,
 ) {
     Column(
         verticalArrangement = Arrangement.spacedBy(16.dp),
@@ -73,13 +72,6 @@ fun MonsterListDialog(
                 enabled = selectedIds.isNotEmpty(),
             )
         }
-
-        GloomOutlineButton(
-            modifier = Modifier.fillMaxWidth(),
-            icon = AppIcon.Plus,
-            text = stringResource(R.string.add_new_enemies),
-            onClick = addNewMonsters,
-        )
     }
 }
 
@@ -93,13 +85,12 @@ private fun MonsterListDialogPreview() {
             MonsterListDialog(
                 monsters =
                     persistentListOf(
-                        MonsterItem.fixture("1", "Skeleton"),
-                        MonsterItem.fixture("2", "Zombie"),
+                        MonsterName("1", "Skeleton"),
+                        MonsterName("2", "Zombie"),
                     ),
                 selectedIds = persistentListOf("1"),
                 toggleMonster = {},
                 selectMonsters = {},
-                addNewMonsters = {},
             )
         }
     }

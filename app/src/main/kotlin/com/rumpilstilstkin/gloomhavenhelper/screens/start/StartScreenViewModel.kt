@@ -39,7 +39,7 @@ class StartScreenViewModel @Inject constructor(
                 }
             }.stateIn(
                 scope = viewModelScope,
-                initialValue = StartScreenState.Empty,
+                initialValue = StartScreenState.Loading,
                 started = SharingStarted.WhileSubscribed(5000),
             )
 

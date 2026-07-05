@@ -20,6 +20,7 @@ import strikt.assertions.isTrue
 
 @OptIn(ExperimentalCoroutinesApi::class)
 class MonsterUnitBuilderTest {
+
     @Test
     fun `given same lastLevel and stateUnit level when build then uses baseMonster and does not call getMonster`() = runTest(UnconfinedTestDispatcher()) {
         // Given
@@ -32,7 +33,7 @@ class MonsterUnitBuilderTest {
             MonsterUnitBuilder(stateUnit, base)
                 .levels(levels = 3 to 5)
                 .gamersCount(2)
-                .build(getMonster)
+                .build(emptySet(), getMonster)
 
         // Then
         expectThat(result.maxLife).isEqualTo(10)
@@ -59,7 +60,7 @@ class MonsterUnitBuilderTest {
             MonsterUnitBuilder(stateUnit, base)
                 .levels(levels = 1 to 3)
                 .gamersCount(2)
-                .build(getMonster)
+                .build(emptySet(),getMonster)
 
         // Then — computed level = newLevel + (stateUnit.level - lastLevel) = 3 + (2 - 1) = 4
         coVerify { getMonster.invoke(4, "brute") }
@@ -82,7 +83,7 @@ class MonsterUnitBuilderTest {
             MonsterUnitBuilder(stateUnit, base)
                 .levels(levels = 5 to 0)
                 .gamersCount(1)
-                .build(getMonster)
+                .build(emptySet(),getMonster)
 
         // Then
         coVerify { getMonster.invoke(0, "brute") }
@@ -102,7 +103,7 @@ class MonsterUnitBuilderTest {
             MonsterUnitBuilder(stateUnit, base)
                 .levels(levels = 0 to 2)
                 .gamersCount(1)
-                .build(getMonster)
+                .build(emptySet(),getMonster)
 
         // Then
         expectThat(result.maxLife).isEqualTo(12)
@@ -127,7 +128,7 @@ class MonsterUnitBuilderTest {
             MonsterUnitBuilder(stateUnit, base)
                 .levels(levels = 1 to 1)
                 .gamersCount(4)
-                .build { _, _ -> null }
+                .build(emptySet()) { _, _ -> null }
 
         // Then
         expectThat(result.maxLife).isEqualTo(22)
@@ -146,7 +147,7 @@ class MonsterUnitBuilderTest {
             MonsterUnitBuilder(stateUnit, base)
                 .levels(levels = 1 to 1)
                 .gamersCount(4)
-                .build { _, _ -> null }
+                .build(emptySet()) { _, _ -> null }
 
         // Then
         expectThat(result.maxLife).isEqualTo(32)
@@ -164,7 +165,7 @@ class MonsterUnitBuilderTest {
             MonsterUnitBuilder(stateUnit, base)
                 .levels(levels = 1 to 1)
                 .gamersCount(4)
-                .build { _, _ -> null }
+                .build(emptySet(),) { _, _ -> null }
 
         // Then
         expectThat(result.maxLife).isEqualTo(10)
@@ -181,7 +182,7 @@ class MonsterUnitBuilderTest {
             MonsterUnitBuilder(stateUnit, base)
                 .levels(levels = 1 to 1)
                 .gamersCount(1)
-                .build { _, _ -> null }
+                .build(emptySet(),) { _, _ -> null }
 
         // Then
         expectThat(result.maxLife).isEqualTo(10)
@@ -199,7 +200,7 @@ class MonsterUnitBuilderTest {
             MonsterUnitBuilder(stateUnit, base)
                 .levels(levels = 1 to 1)
                 .gamersCount(1)
-                .build { _, _ -> null }
+                .build(emptySet(),) { _, _ -> null }
 
         // Then
         expectThat(result.currentLife).isEqualTo(10)
@@ -226,11 +227,12 @@ class MonsterUnitBuilderTest {
             MonsterUnitBuilder(stateUnit, base)
                 .levels(levels = 2 to 2)
                 .gamersCount(1)
-                .build { _, _ -> null }
+                .build(setOf(MonsterStatType.POISON, MonsterStatType.WOUND, MonsterStatType.STUN),) { _, _ -> null }
 
         // Then
         expectThat(result.number).isEqualTo(7)
-        expectThat(result.effects.toList()).containsExactly(MonsterStatType.POISON, MonsterStatType.WOUND)
+        expectThat(result.effects[MonsterStatType.POISON]).isTrue()
+        expectThat(result.effects[MonsterStatType.WOUND]).isTrue()
         expectThat(result.isNew).isFalse()
         expectThat(result.level).isEqualTo(2)
         expectThat(result.immunity.toList()).containsExactly(MonsterStatType.STUN)

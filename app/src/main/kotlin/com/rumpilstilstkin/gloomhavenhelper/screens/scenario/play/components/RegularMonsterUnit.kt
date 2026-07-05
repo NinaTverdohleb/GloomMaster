@@ -2,7 +2,6 @@ package com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -33,29 +32,27 @@ import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.stiker.Gloom
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterAction
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterStatType
-import com.rumpilstilstkin.gloomhavenhelper.domain.entity.scenario.MonsterUnit
+import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.state.MonsterUnitUi
 import com.rumpilstilstkin.gloomhavenhelper.testtags.screens.scenario.play.components.RegularMonsterUnitTestTags
 import kotlinx.collections.immutable.ImmutableList
+import kotlinx.collections.immutable.ImmutableMap
 import kotlinx.collections.immutable.ImmutableSet
-import kotlinx.collections.immutable.toPersistentSet
 
 @Composable
 fun RegularMonsterUnit(
-    unit: MonsterUnit,
-    effects: ImmutableSet<MonsterStatType>,
+    unit: MonsterUnitUi,
     modifier: Modifier = Modifier,
-    changeLife: (unit: MonsterUnit, life: Int) -> Unit,
-    switchEffect: (unit: MonsterUnit, effect: MonsterStatType) -> Unit,
-    levelClick: (unit: MonsterUnit) -> Unit,
-    deleteUnit: (unit: MonsterUnit) -> Unit,
+    changeLife: (life: Int) -> Unit,
+    switchEffect: (effect: MonsterStatType) -> Unit,
+    levelClick: () -> Unit,
+    deleteUnit: () -> Unit,
 ) {
-    val availableEffects = (effects - unit.immunity).toPersistentSet()
     Column(modifier = modifier.fillMaxWidth()) {
         TopStickers(
             isNew = unit.isNew,
             level = unit.level,
-            onLevel = { levelClick(unit) },
-            delete = { deleteUnit(unit) },
+            onLevel = levelClick,
+            delete = deleteUnit,
             modifier =
                 Modifier
                     .fillMaxWidth()
@@ -74,14 +71,13 @@ fun RegularMonsterUnit(
                     isSpecial = unit.isSpecial,
                     currentLife = unit.currentLife,
                     maxLife = unit.maxLife,
-                    changeLife = { changeLife(unit, it) },
+                    changeLife = changeLife,
                 )
                 ActionsRow(actions = unit.stats)
 
                 EffectsRow(
-                    available = availableEffects,
-                    active = unit.effects,
-                    onToggle = { effect -> switchEffect(unit, effect) },
+                    effects = unit.effects,
+                    onToggle = switchEffect,
                 )
             }
         }
@@ -171,11 +167,9 @@ private fun ActionsRow(actions: ImmutableList<MonsterAction>) {
     }
 }
 
-@OptIn(ExperimentalLayoutApi::class)
 @Composable
 private fun EffectsRow(
-    available: ImmutableSet<MonsterStatType>,
-    active: ImmutableSet<MonsterStatType>,
+    effects: ImmutableMap<MonsterStatType, Boolean>,
     onToggle: (MonsterStatType) -> Unit,
 ) {
     FlowRow(
@@ -186,10 +180,10 @@ private fun EffectsRow(
         horizontalArrangement = Arrangement.spacedBy(12.dp),
         verticalArrangement = Arrangement.spacedBy(8.dp),
     ) {
-        available.forEach { effect ->
+        effects.forEach { (effect, value) ->
             val icon = effect.toGameIcon()
             val tint =
-                if (active.contains(effect)) {
+                if (value) {
                     icon.color
                 } else {
                     MaterialTheme.colorScheme.surfaceBright
@@ -302,12 +296,11 @@ private fun RegularMonsterUnitPreview() {
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             RegularMonsterUnit(
-                unit = MonsterUnit.fixture(1),
-                changeLife = { _, _ -> },
-                switchEffect = { _, _ -> },
-                deleteUnit = { _ -> },
+                unit = MonsterUnitUi.fixture(1),
+                changeLife = { },
+                switchEffect = { },
+                deleteUnit = {},
                 levelClick = {},
-                effects = (MonsterStatType.mainEffectsPack + MonsterStatType.fcEffectsPack).toPersistentSet(),
             )
         }
     }

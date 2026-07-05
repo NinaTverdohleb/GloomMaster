@@ -7,7 +7,7 @@ enum class PackType {
     FORGOTTEN_CIRCLES,
 }
 
-val selectablePacks =
+val selectablePacks: EnumSet<PackType> =
     EnumSet.of(
         PackType.FORGOTTEN_CIRCLES,
     )

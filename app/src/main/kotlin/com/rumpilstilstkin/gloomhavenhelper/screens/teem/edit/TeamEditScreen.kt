@@ -168,8 +168,9 @@ private fun DifficultyItem(
                 modifier = Modifier.size(32.dp),
             )
             Text(
+                maxLines = 1,
                 text = level.toLabel(),
-                style = MaterialTheme.typography.bodyLarge,
+                style = MaterialTheme.typography.bodyMedium,
                 textAlign = TextAlign.Center,
                 color = contentColor,
             )

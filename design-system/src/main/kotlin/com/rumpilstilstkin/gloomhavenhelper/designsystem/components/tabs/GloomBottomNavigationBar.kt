@@ -96,7 +96,12 @@ fun GloomBottomNavigationBar(
                         contentDescription = title,
                     )
                 },
-                label = { Text(title.replaceFirstChar { it.uppercase() }) },
+                label = {
+                    Text(
+                        style = MaterialTheme.typography.labelMedium,
+                        text = title.replaceFirstChar { it.uppercase() },
+                    )
+                },
                 colors =
                     NavigationBarItemDefaults.colors(
                         selectedIconColor = MaterialTheme.colorScheme.primary,

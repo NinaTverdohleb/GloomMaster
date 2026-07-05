@@ -58,7 +58,7 @@ class CharacterRepository @Inject constructor(
 
     fun getCharacterByTeamId(teamId: Int): Flow<List<CharacterInfo>> =
         characterDao.findByTeamIdFlow(teamId).map { list ->
-            list.map {
+            list.map { characterBd ->
                 val team =
                     teamDao.findById(teamId)?.let { teamBd ->
                         Team(
@@ -69,7 +69,7 @@ class CharacterRepository @Inject constructor(
                         )
                     }
 
-                it.toDomain(team)
+                characterBd.toDomain(team)
             }
         }
 
@@ -78,8 +78,8 @@ class CharacterRepository @Inject constructor(
     fun getCharacterByIdFlow(id: Int): Flow<CharacterInfo?> =
         characterDao.getCharacterByIdFlow(id).map { character ->
             val team =
-                character?.teamId?.let {
-                    teamDao.findById(it)?.let { teamBd ->
+                character?.teamId?.let { teamId ->
+                    teamDao.findById(teamId)?.let { teamBd ->
                         Team(
                             teamId = teamBd.teamId,
                             name = teamBd.name,

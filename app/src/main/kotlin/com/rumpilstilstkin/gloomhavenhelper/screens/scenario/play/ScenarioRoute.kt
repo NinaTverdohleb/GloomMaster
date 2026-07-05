@@ -10,7 +10,6 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.Magic
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterStatType
-import com.rumpilstilstkin.gloomhavenhelper.domain.entity.scenario.MonsterUnit
 import com.rumpilstilstkin.gloomhavenhelper.screens.core.LaunchedScreenEffect
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.state.ScenarioActions
 
@@ -30,7 +29,8 @@ fun ScenarioRoute(
             lifecycleOwner.lifecycle.removeObserver(viewModel)
         }
     }
-    val addMonster = { viewModel.onAction(ScenarioActions.OpenAddMonster) }
+    val addScenarioMonsters = { viewModel.onAction(ScenarioActions.OpenAddMonster) }
+    val addNewMonsters = { viewModel.onAction(ScenarioActions.AddNewMonsters) }
     val back: () -> Unit = { navController.popBackStack() }
     val complete = { viewModel.onAction(ScenarioActions.OpenComplete) }
     val showStats = { viewModel.onAction(ScenarioActions.OpenStats) }
@@ -62,12 +62,10 @@ fun ScenarioRoute(
             ),
         )
     }
-    val addMonsterUnits = { unitNumbers: List<Int>, monsterSlug: String, monsterName: String ->
+    val addMonsterUnits = { monsterSlug: String ->
         viewModel.onAction(
             ScenarioActions.AddUnits(
-                unitNumbers = unitNumbers,
                 monsterSlug = monsterSlug,
-                monsterName = monsterName,
             ),
         )
     }
@@ -75,18 +73,19 @@ fun ScenarioRoute(
     val clickMagic = { magic: Magic ->
         viewModel.onAction(ScenarioActions.UpdateMagic(magic))
     }
-    val changeUnitLevel = { unit: MonsterUnit, monsterSlug: String ->
+    val changeUnitLevel = { unitNumber: Int, monsterSlug: String ->
         viewModel.onAction(
             ScenarioActions.UpdateUnitLevel(
                 monsterSlug = monsterSlug,
-                unit = unit,
+                unitNumber = unitNumber,
             ),
         )
     }
 
     ScenarioScreen(
         state = uiState,
-        addMonster = addMonster,
+        addScenarioMonsters = addScenarioMonsters,
+        addNewMonsters = addNewMonsters,
         back = back,
         complete = complete,
         showStats = showStats,

@@ -4,7 +4,7 @@ import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.rumpilstilstkin.gloomhavenhelper.domain.entity.scenario.MonsterItem
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterName
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.scenario.MonsterUnit
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.scenario.ScenarioBattleState
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario.play.AddMonsterToBattleUseCase
@@ -51,7 +51,6 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asSharedFlow
-import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.launchIn
@@ -85,7 +84,7 @@ class ScenarioViewModel @Inject constructor(
     val uiState: StateFlow<ScenarioStateUi> =
         logicState
             .filterNotNull()
-            .debounce(200)
+            .distinctUntilChanged()
             .map {
                 ScenarioStateMapper.toUiState(it)
             }.stateIn(
@@ -134,10 +133,13 @@ class ScenarioViewModel @Inject constructor(
                 }
 
                 is ScenarioActions.AddUnits -> {
+                    val monster = logicState.value?.activeMonsters[action.monsterSlug] ?: return@launch
+                    val existingNumbers = monster.units.keys
+                    val avaliableNumber = (1..15).toList().filter { it !in existingNumbers }
                     openAddUnitsDialog(
-                        monsterSlug = action.monsterSlug,
-                        monsterName = action.monsterName,
-                        unitNumbers = action.unitNumbers,
+                        monsterSlug = monster.slug,
+                        monsterName = monster.name,
+                        unitNumbers = avaliableNumber,
                     )
                 }
 
@@ -184,8 +186,9 @@ class ScenarioViewModel @Inject constructor(
                 }
 
                 is ScenarioActions.UpdateUnitLevel -> {
+                    val monsterUnit = logicState.value?.getUnit(action.monsterSlug, action.unitNumber) ?: return@launch
                     openUnitLevelDialog(
-                        unit = action.unit,
+                        unit = monsterUnit,
                         monsterSlug = action.monsterSlug,
                         monsterName = logicState.value?.monsters[action.monsterSlug]?.name ?: "",
                     )
@@ -261,7 +264,7 @@ class ScenarioViewModel @Inject constructor(
                     }
                 },
             )
-        _screenEvents.emit(ScreenEffect.OpenBottomSheet(session))
+        _screenEvents.emit(ScreenEffect.OpenDialog(session))
     }
 
     private suspend fun openCompleteDialog() {
@@ -298,14 +301,14 @@ class ScenarioViewModel @Inject constructor(
                         trapDamage = state.trapDamage,
                         scenarioNumber = state.scenarioNumber,
                         location = state.scenarioLocation,
-                        scenarioName = state.scenarioName
+                        scenarioName = state.scenarioName,
                     ),
                 onResult = { },
             )
         _screenEvents.emit(ScreenEffect.OpenDialog(session))
     }
 
-    private suspend fun openAddMonsterDialog(monsters: List<MonsterItem>) {
+    private suspend fun openAddMonsterDialog(monsters: List<MonsterName>) {
         val session =
             createOverlaySession(
                 contract = MonsterListDialogContract,
@@ -316,18 +319,17 @@ class ScenarioViewModel @Inject constructor(
                             onAction(ScenarioActions.AddMonster(result.slugs))
                         }
 
-                        MonsterListDialogResult.AddNewMonsters -> {
-                            onAction(ScenarioActions.AddNewMonsters)
-                        }
-
-                        null -> {
-                            Unit
-                        }
+                        null -> { }
                     }
                 },
             )
         _screenEvents.emit(ScreenEffect.OpenBottomSheet(session))
     }
+
+    private fun ScenarioBattleState.getUnit(
+        slug: String,
+        number: Int,
+    ): MonsterUnit? = activeMonsters[slug]?.units[number]
 
     private suspend fun openDeleteMonsterDialog(monsterSlug: String) {
         val monsterName =

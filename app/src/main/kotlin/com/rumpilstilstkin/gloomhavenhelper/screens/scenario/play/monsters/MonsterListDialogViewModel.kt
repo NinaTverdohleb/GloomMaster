@@ -45,12 +45,6 @@ class MonsterListDialogViewModel @AssistedInject constructor(
                     _complete.send(MonsterListDialogResult.Selected(_state.value.selectedIds))
                 }
             }
-
-            MonsterListDialogAction.AddNewMonsters -> {
-                viewModelScope.launch {
-                    _complete.send(MonsterListDialogResult.AddNewMonsters)
-                }
-            }
         }
     }
 

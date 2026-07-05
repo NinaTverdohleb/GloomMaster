@@ -3,16 +3,12 @@ package com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.state
 import androidx.compose.runtime.Immutable
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.Magic
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterCard
-import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterStatType
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterName
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.scenario.ChargeLevel
-import com.rumpilstilstkin.gloomhavenhelper.domain.entity.scenario.MonsterItem
-import com.rumpilstilstkin.gloomhavenhelper.domain.entity.scenario.MonsterUnit
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.ImmutableMap
-import kotlinx.collections.immutable.ImmutableSet
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.persistentMapOf
-import kotlinx.collections.immutable.toPersistentSet
 
 @Immutable
 data class ScenarioStateUi(
@@ -25,8 +21,7 @@ data class ScenarioStateUi(
     val level: Int = 0,
     val round: Int = 0,
     val smallestInitiative: Int = 0,
-    val availableEffects: ImmutableSet<MonsterStatType> = MonsterStatType.mainEffectsPack.toPersistentSet(),
-    val monstersForAdd: ImmutableList<MonsterItem> = persistentListOf(),
+    val monstersForAdd: ImmutableList<MonsterName> = persistentListOf(),
     val magicChargeList: ImmutableMap<Magic, ChargeLevel> = persistentMapOf(),
     val monsters: ImmutableList<MonsterItemUi> = persistentListOf(),
 )
@@ -48,7 +43,7 @@ data class MonsterItemUi(
     val name: String,
     val isFly: Boolean,
     val currentCard: MonsterCard? = null,
-    val units: ImmutableMap<UnitCompact, MonsterUnit> = persistentMapOf(),
+    val units: ImmutableMap<UnitCompact, MonsterUnitUi> = persistentMapOf(),
     val isBoss: Boolean = false,
 ) {
     companion object {

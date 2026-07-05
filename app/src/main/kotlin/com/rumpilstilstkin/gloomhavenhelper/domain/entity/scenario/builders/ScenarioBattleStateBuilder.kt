@@ -120,7 +120,7 @@ class ScenarioBattleStateBuilder {
             gamersCount = gamersCount,
             monsterLevel = newLevel,
             deck = deck,
-            activeMonsters = activeMonsterBuilder.build(gamersCount, getMonster),
+            activeMonsters = activeMonsterBuilder.build(availableEffects, gamersCount, getMonster),
             round = round,
             magicState = magicState,
             availableEffects = availableEffects,

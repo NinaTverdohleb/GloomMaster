@@ -20,15 +20,14 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.icons.AppIcon
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.icons.GloomIcon
-import com.rumpilstilstkin.gloomhavenhelper.designsystem.icons.game.GameIcon
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
 
 @Composable
 fun FabContextMenuItem(
     icon: GloomIcon,
     text: String,
-    isError: Boolean = false,
     modifier: Modifier = Modifier,
+    isError: Boolean = false,
     onClick: () -> Unit,
 ) {
     val contentColor =

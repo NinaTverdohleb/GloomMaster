@@ -9,12 +9,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.items.CounterRightItem
-import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.items.RightItemChecker
-import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.items.RightItemIcon
-import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.items.RightItemNumber
-import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.items.RightItemText
-import com.rumpilstilstkin.gloomhavenhelper.designsystem.icons.AppIcon
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
 
 @Composable

@@ -6,8 +6,6 @@ import com.rumpilstilstkin.gloomhavenhelper.domain.entity.scenario.MonsterItem
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.scenario.MonsterUnit
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.scenario.ScenarioBattleState
 import jakarta.inject.Inject
-import kotlinx.collections.immutable.toImmutableList
-import kotlinx.collections.immutable.toImmutableSet
 
 class AddMonsterToBattleUseCase @Inject constructor() {
     operator fun invoke(
@@ -17,34 +15,34 @@ class AddMonsterToBattleUseCase @Inject constructor() {
         if (slugs.isEmpty()) return state
 
         val freshMonsters =
-            slugs.map { slug ->
-                val monster = state.monsters.getValue(slug)
-                val units =
-                    if (monster.isBoss) {
-                        listOf(createBossUnit(monster, state.gamersCount))
-                    } else {
-                        emptyList()
-                    }
-                MonsterItem(
-                    slug = monster.slug,
-                    isFly = monster.isFly,
-                    name = monster.name,
-                    currentCard = null,
-                    isBoss = monster.isBoss,
-                    units = units.toImmutableList(),
-                    deck = monster.deckName,
-                )
-            }
+            slugs
+                .map { slug ->
+                    val monster = state.monsters.getValue(slug)
+                    val units =
+                        if (monster.isBoss) {
+                            mapOf(1 to createBossUnit(monster, state.gamersCount))
+                        } else {
+                            emptyMap()
+                        }
+                    MonsterItem(
+                        slug = monster.slug,
+                        isFly = monster.isFly,
+                        name = monster.name,
+                        currentCard = null,
+                        isBoss = monster.isBoss,
+                        units = units,
+                        deck = monster.deckName,
+                    )
+                }.associateBy { it.slug }
         return if (state.round == 0) {
             state.copy(activeMonsters = state.activeMonsters + freshMonsters)
         } else {
             var newDeck = state.deck
             val withCards =
-                freshMonsters.map { active ->
-                    val monster = state.monsters.getValue(active.slug)
-                    val draw = newDeck.drawCard(monster.deckName, CardPicker.Random)
+                freshMonsters.mapValues { (_, monster) ->
+                    val draw = newDeck.drawCard(monster.deck, CardPicker.Random)
                     newDeck = draw.newState
-                    active.copy(currentCard = draw.card)
+                    monster.copy(currentCard = draw.card)
                 }
 
             state.copy(
@@ -63,10 +61,10 @@ class AddMonsterToBattleUseCase @Inject constructor() {
             number = 1,
             maxLife = maxLife,
             currentLife = maxLife,
-            stats = monster.stats.toImmutableList(),
+            stats = monster.stats,
             isSpecial = false,
             level = monster.level,
-            immunity = monster.immunity.toImmutableSet(),
+            immunity = monster.immunity,
             lifeMultiple = monster.lifeMultiple,
         )
     }

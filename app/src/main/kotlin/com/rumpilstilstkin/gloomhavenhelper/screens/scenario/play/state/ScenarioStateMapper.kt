@@ -4,22 +4,25 @@ import com.rumpilstilstkin.gloomhavenhelper.domain.entity.AvailableCard
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.ScenarioGameState
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.ScenarioGameStateMonsterItem
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.ScenarioGameStateMonsterUnit
-import com.rumpilstilstkin.gloomhavenhelper.domain.entity.scenario.MonsterItem
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterName
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.scenario.ScenarioBattleState
 import kotlinx.collections.immutable.toImmutableList
 import kotlinx.collections.immutable.toImmutableMap
-import kotlinx.collections.immutable.toPersistentSet
 
 object ScenarioStateMapper {
     fun toUiState(state: ScenarioBattleState): ScenarioStateUi {
-        val existingSlugs = state.activeMonsters.map { it.slug }.toSet()
+        val existingSlugs = state.activeMonsters.keys
         val monsters =
-            state.activeMonsters
+            state.activeMonsters.values
                 .map { monster ->
                     val units =
-                        monster.units
-                            .associateBy { UnitCompact(it.number, it.isSpecial) }
-                            .toSortedMap()
+                        monster
+                            .units
+                            .mapKeys { (number, monster) ->
+                                UnitCompact(number, monster.isSpecial)
+                            }.mapValues { (_, monster) ->
+                                monster.toUi()
+                            }.toSortedMap()
                             .toImmutableMap()
                     MonsterItemUi(
                         slug = monster.slug,
@@ -40,39 +43,18 @@ object ScenarioStateMapper {
             trapDamage = state.trapDamage,
             level = state.monsterLevel,
             round = state.round,
-            monsters =
-                state.activeMonsters
-                    .map { monster ->
-                        val units =
-                            monster.units
-                                .associateBy { UnitCompact(it.number, it.isSpecial) }
-                                .toSortedMap()
-                                .toImmutableMap()
-                        MonsterItemUi(
-                            slug = monster.slug,
-                            name = monster.name,
-                            isFly = monster.isFly,
-                            currentCard = monster.currentCard,
-                            units = units,
-                            isBoss = monster.isBoss,
-                        )
-                    }.sortedBy { it.currentCard?.initiative }
-                    .toImmutableList(),
+            monsters = monsters,
             smallestInitiative = smallestInitiative,
             monstersForAdd =
                 state.monsters
                     .filterKeys { it !in existingSlugs }
                     .map { (_, monster) ->
-                        MonsterItem(
+                        MonsterName(
                             slug = monster.slug,
                             name = monster.name,
-                            isFly = monster.isFly,
-                            currentCard = null,
-                            deck = monster.deckName,
                         )
                     }.toImmutableList(),
             magicChargeList = state.magicState.charges.toImmutableMap(),
-            availableEffects = state.availableEffects.toPersistentSet(),
         )
     }
 
@@ -82,7 +64,7 @@ object ScenarioStateMapper {
             round = state.round,
             availableCards = state.deck.toAvailableCards(),
             activeMonsters =
-                state.activeMonsters.map { monsterItem ->
+                state.activeMonsters.values.map { monsterItem ->
                     ScenarioGameStateMonsterItem(
                         slug = monsterItem.slug,
                         currentCard =
@@ -93,13 +75,13 @@ object ScenarioStateMapper {
                                 )
                             },
                         units =
-                            monsterItem.units.map { unit ->
+                            monsterItem.units.values.map { unit ->
                                 ScenarioGameStateMonsterUnit(
                                     number = unit.number,
                                     currentLife = unit.currentLife,
                                     level = unit.level,
                                     isElite = unit.isSpecial,
-                                    effects = unit.effects,
+                                    effects = unit.effects.filterValues { it }.keys,
                                     maxLife = unit.maxLife,
                                 )
                             },

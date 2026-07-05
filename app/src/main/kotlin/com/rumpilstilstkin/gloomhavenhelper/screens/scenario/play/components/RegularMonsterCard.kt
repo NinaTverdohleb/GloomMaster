@@ -1,5 +1,6 @@
 package com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.components
 
+import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -17,29 +18,23 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterStatType
-import com.rumpilstilstkin.gloomhavenhelper.domain.entity.scenario.MonsterUnit
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.state.MonsterItemUi
+import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.state.MonsterUnitUi
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.state.UnitCompact
-import kotlinx.collections.immutable.ImmutableSet
 import kotlinx.collections.immutable.persistentMapOf
-import kotlinx.collections.immutable.toPersistentSet
 
 @Composable
 fun RegularMonsterCard(
     item: MonsterItemUi,
     modifier: Modifier = Modifier,
-    availableEffects: ImmutableSet<MonsterStatType>,
+    scrollState: ScrollState = rememberScrollState(),
     delete: (monsterSlug: String) -> Unit,
     deleteUnit: (unitNumber: Int, monsterSlug: String) -> Unit,
     updateUnitLife: (unitNumber: Int, monsterSlug: String, life: Int) -> Unit,
     switchUnitEffect: (unitNumber: Int, monsterSlug: String, effect: MonsterStatType) -> Unit,
-    addMonsterUnits: (unitNumbers: List<Int>, monsterSlug: String, monsterName: String) -> Unit,
-    onLevel: (unit: MonsterUnit, monsterSlug: String) -> Unit,
+    addMonsterUnits: (monsterSlug: String) -> Unit,
+    onLevel: (unitNumber: Int, monsterSlug: String) -> Unit,
 ) {
-    val existingNumbers =
-        item.units.keys
-            .map { it.number }
-            .toSet()
     Column(
         modifier = modifier,
         verticalArrangement = Arrangement.spacedBy(16.dp),
@@ -49,60 +44,47 @@ fun RegularMonsterCard(
             name = item.name,
             isFly = item.isFly,
             delete = { delete(item.slug) },
-            onAddUnit =
-                if (item.isBoss) {
-                    null
-                } else {
-                    {
-                        addMonsterUnits(
-                            (1..15).toList().filter { it !in existingNumbers },
-                            item.slug,
-                            item.name,
-                        )
-                    }
-                },
+            onAddUnit = { addMonsterUnits(item.slug) },
         )
         if (item.units.isNotEmpty()) {
             Column(
                 modifier =
                     Modifier
                         .fillMaxSize()
-                        .verticalScroll(rememberScrollState()),
+                        .verticalScroll(scrollState),
                 verticalArrangement = Arrangement.spacedBy(16.dp),
             ) {
                 var selected: UnitCompact by remember(item.units.keys) {
                     mutableStateOf(item.units.keys.first())
                 }
-
                 RegularMonsterUnit(
-                    unit = item.units[selected]!!,
-                    changeLife = { unit, life ->
+                    unit = item.units.getValue(selected),
+                    changeLife = { life ->
                         updateUnitLife(
-                            unit.number,
+                            selected.number,
                             item.slug,
                             life,
                         )
                     },
-                    switchEffect = { unit, effect ->
+                    switchEffect = { effect ->
                         switchUnitEffect(
-                            unit.number,
+                            selected.number,
                             item.slug,
                             effect,
                         )
                     },
-                    deleteUnit = { unit ->
+                    deleteUnit = {
                         deleteUnit(
-                            unit.number,
+                            selected.number,
                             item.slug,
                         )
                     },
-                    levelClick = { unit ->
+                    levelClick = {
                         onLevel(
-                            unit,
+                            selected.number,
                             item.slug,
                         )
                     },
-                    effects = availableEffects,
                 )
                 UnitSelector(units = item.units.keys) { unit ->
                     selected = unit
@@ -127,15 +109,14 @@ private fun RegularMonsterCardPreview() {
                     isFly = true,
                     units =
                         persistentMapOf(
-                            UnitCompact(1, false) to MonsterUnit.fixture(1),
+                            UnitCompact(1, false) to MonsterUnitUi.fixture(1),
                         ),
                 ),
-            availableEffects = MonsterStatType.mainEffectsPack.toPersistentSet(),
             delete = {},
             deleteUnit = { _, _ -> },
             updateUnitLife = { _, _, _ -> },
             switchUnitEffect = { _, _, _ -> },
-            addMonsterUnits = { _, _, _ -> },
+            addMonsterUnits = { },
             onLevel = { _, _ -> },
         )
     }

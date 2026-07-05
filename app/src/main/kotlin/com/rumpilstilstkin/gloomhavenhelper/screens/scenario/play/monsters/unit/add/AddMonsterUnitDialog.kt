@@ -34,7 +34,6 @@ import com.rumpilstilstkin.gloomhavenhelper.testtags.screens.scenario.play.monst
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.toPersistentList
-import kotlinx.collections.immutable.toPersistentSet
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

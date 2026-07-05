@@ -1,16 +1,14 @@
 package com.rumpilstilstkin.gloomhavenhelper.domain.entity.scenario
 
-import kotlinx.collections.immutable.toImmutableList
-
-fun List<MonsterItem>.updateMonster(
+fun Map<String, MonsterItem>.updateMonster(
     monsterSlug: String,
-    transform: (MonsterItem) -> MonsterItem,
-): List<MonsterItem> =
-    map { monster ->
-        if (monster.slug == monsterSlug) transform(monster) else monster
-    }
+    transform: MonsterItem.() -> MonsterItem,
+): Map<String, MonsterItem> =
+    this[monsterSlug]?.transform()?.let {
+        this + (monsterSlug to it)
+    } ?: this
 
-fun MonsterItem.addUnits(newUnits: List<MonsterUnit>): MonsterItem =
+fun MonsterItem.addUnits(newUnits: Map<Int, MonsterUnit>): MonsterItem =
     copy(
-        units = (units + newUnits).toImmutableList(),
+        units = (units + newUnits),
     )

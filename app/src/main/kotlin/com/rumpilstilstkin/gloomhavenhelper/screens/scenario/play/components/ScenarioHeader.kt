@@ -4,7 +4,6 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -15,27 +14,24 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.rumpilstilstkin.gloomhavenhelper.R
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.GloomCard
-import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.items.GloomListOutlineItem
-import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.items.LeftItemNumber
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.icons.ActionIcon
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.Magic
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.scenario.ChargeLevel
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.play.state.toIcon
 import com.rumpilstilstkin.gloomhavenhelper.testtags.screens.scenario.play.components.ScenarioHeaderTestTags
+import kotlinx.collections.immutable.ImmutableMap
+import kotlinx.collections.immutable.persistentMapOf
 
 @Composable
 internal fun ScenarioHeader(
     trapDamage: Int,
-    magics: Map<Magic, ChargeLevel>,
+    magics: ImmutableMap<Magic, ChargeLevel>,
     showStats: () -> Unit,
     modifier: Modifier = Modifier,
     clickMagic: (magic: Magic) -> Unit,
@@ -46,8 +42,12 @@ internal fun ScenarioHeader(
             .padding(16.dp),
     horizontalArrangement = Arrangement.spacedBy(16.dp),
 ) {
+    val assets = rememberChargeIconAssets()
     FlowRow(
-        modifier = Modifier.fillMaxWidth().weight(1f),
+        modifier =
+            Modifier
+                .fillMaxWidth()
+                .weight(1f),
         verticalArrangement = Arrangement.spacedBy(8.dp),
         horizontalArrangement = Arrangement.spacedBy(4.dp),
     ) {
@@ -62,12 +62,13 @@ internal fun ScenarioHeader(
                         ) { clickMagic(magic) }
                         .testTag(ScenarioHeaderTestTags.magic(magic.name)),
                 icon = magic.toIcon(),
+                assets = assets,
                 charge = charge ?: ChargeLevel.Zero,
             )
         }
     }
     GloomCard(
-        modifier = Modifier.clickable{showStats()}
+        modifier = Modifier.clickable { showStats() },
     ) {
         Row(
             modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp),
@@ -97,7 +98,7 @@ private fun ScenarioHeaderPreview() {
             modifier = Modifier.fillMaxWidth(),
             trapDamage = 3,
             magics =
-                mapOf(
+                persistentMapOf(
                     Magic.FIRE to ChargeLevel.Zero,
                     Magic.FROST to ChargeLevel.Two,
                     Magic.AIR to ChargeLevel.Zero,

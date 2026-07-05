@@ -5,13 +5,12 @@ import com.rumpilstilstkin.gloomhavenhelper.domain.entity.scenario.MonsterItem
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.scenario.MonsterUnit
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.scenario.ScenarioBattleState
 import jakarta.inject.Inject
-import kotlinx.collections.immutable.toImmutableList
 
 class NextRoundUseCase @Inject constructor() {
     operator fun invoke(state: ScenarioBattleState): ScenarioBattleState {
         var newDeck = state.deck
         val newActive =
-            state.activeMonsters.map { active ->
+            state.activeMonsters.mapValues { (_, active) ->
                 val monster = state.monsters.getValue(active.slug)
                 val draw = newDeck.drawCard(monster.deckName)
                 newDeck = draw.newState
@@ -27,12 +26,9 @@ class NextRoundUseCase @Inject constructor() {
 }
 
 private fun MonsterItem.withCardAndClearedIsNew(card: MonsterCard?): MonsterItem {
-    val newUnits = units.withClearedIsNew().toImmutableList()
+    val newUnits = units.withClearedIsNew()
     if (newUnits === units && card == currentCard) return this
     return copy(currentCard = card, units = newUnits)
 }
 
-private fun List<MonsterUnit>.withClearedIsNew(): List<MonsterUnit> {
-    if (all { !it.isNew }) return this
-    return map { if (it.isNew) it.copy(isNew = false) else it }
-}
+private fun Map<Int, MonsterUnit>.withClearedIsNew(): Map<Int, MonsterUnit> = mapValues { (_, unit) -> unit.copy(isNew = false) }

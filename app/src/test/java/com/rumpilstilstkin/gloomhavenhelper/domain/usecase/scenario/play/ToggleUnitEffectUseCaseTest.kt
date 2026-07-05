@@ -6,55 +6,71 @@ import com.rumpilstilstkin.gloomhavenhelper.domain.entity.scenario.MonsterDeckSt
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.scenario.MonsterItem
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.scenario.MonsterUnit
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.scenario.ScenarioBattleState
-import kotlinx.collections.immutable.ImmutableSet
-import kotlinx.collections.immutable.persistentListOf
-import kotlinx.collections.immutable.persistentSetOf
 import org.junit.Test
 import strikt.api.expectThat
-import strikt.assertions.contains
-import strikt.assertions.doesNotContain
-import strikt.assertions.isEmpty
+import strikt.assertions.isFalse
+import strikt.assertions.isNull
+import strikt.assertions.isTrue
 
 class ToggleUnitEffectUseCaseTest {
     private val sut = ToggleUnitEffectUseCase()
+    private val monsterSlug = "oozy"
+    private val unitNumber = 1
 
     @Test
     fun `given effect not present when invoked then it is added`() {
         // Given
-        val state = stateWithUnit(effects = persistentSetOf())
+        val state = stateWithUnit()
 
         // When
-        val result = sut(state, "a", 1, MonsterStatType.POISON)
+        val result = sut(state, monsterSlug, unitNumber, MonsterStatType.POISON)
 
         // Then
-        expectThat(result.activeMonsters[0].units[0].effects).contains(MonsterStatType.POISON)
+        expectThat(
+            result
+                .activeMonsters[monsterSlug]
+                ?.units[unitNumber]
+                ?.effects[MonsterStatType.POISON]
+        ).isTrue()
     }
 
     @Test
     fun `given effect already present when invoked then it is removed`() {
         // Given
-        val state = stateWithUnit(effects = persistentSetOf(MonsterStatType.POISON))
+        val state = stateWithUnit(effects = setOf(MonsterStatType.POISON))
 
         // When
-        val result = sut(state, "a", 1, MonsterStatType.POISON)
+        val result = sut(state, monsterSlug, unitNumber, MonsterStatType.POISON)
 
         // Then
-        expectThat(result.activeMonsters[0].units[0].effects).doesNotContain(MonsterStatType.POISON)
+        expectThat(
+            result
+                .activeMonsters[monsterSlug]
+                ?.units[unitNumber]
+                ?.effects[MonsterStatType.POISON]
+        ).isFalse()
     }
 
     @Test
     fun `given unit not found when invoked then state unchanged`() {
         // Given
-        val state = stateWithUnit(effects = persistentSetOf())
+        val state = stateWithUnit()
 
         // When
-        val result = sut(state, "missing", 1, MonsterStatType.POISON)
+        val result = sut(state, "missing", unitNumber, MonsterStatType.POISON)
 
         // Then
-        expectThat(result.activeMonsters[0].units[0].effects).isEmpty()
+        expectThat(
+            result
+                .activeMonsters["missing"]
+                ?.units[unitNumber]
+                ?.effects[MonsterStatType.POISON]
+        ).isNull()
     }
 
-    private fun stateWithUnit(effects: ImmutableSet<MonsterStatType>) =
+    private fun stateWithUnit(
+        effects: Set<MonsterStatType> = emptySet()
+    ) =
         ScenarioBattleState(
             generalLevel = 1,
             name = "",
@@ -68,10 +84,17 @@ class ToggleUnitEffectUseCaseTest {
             magicState = MagicChargeState.initial(),
             availableEffects = emptySet(),
             activeMonsters =
-                listOf(
-                    MonsterItem.fixture(slug = "a").copy(
-                        units = persistentListOf(MonsterUnit.fixture(1).copy(effects = effects)),
-                    ),
+                mapOf(
+                    monsterSlug to
+                            MonsterItem.fixture(slug = monsterSlug).copy(
+                                units = mapOf(
+                                    unitNumber to MonsterUnit.fixture(
+                                        number = unitNumber,
+                                        effects = (MonsterStatType.mainEffectsPack + MonsterStatType.fcEffectsPack)
+                                            .associateWith { effects.contains(it) }
+                                    )
+                                ),
+                            ),
                 ),
         )
 }

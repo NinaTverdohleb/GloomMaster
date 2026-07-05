@@ -5,7 +5,6 @@ import com.rumpilstilstkin.gloomhavenhelper.domain.entity.scenario.ScenarioBattl
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.scenario.addUnits
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.scenario.updateMonster
 import jakarta.inject.Inject
-import kotlinx.collections.immutable.toImmutableList
 
 class AddMonsterUnitsUseCase @Inject constructor() {
     operator fun invoke(
@@ -15,20 +14,24 @@ class AddMonsterUnitsUseCase @Inject constructor() {
         isElite: Boolean,
     ): ScenarioBattleState {
         val monster = state.monsters.getValue(slug)
+        val effects = (state.availableEffects - monster.immunity).associateWith { false }
         val newUnits =
-            numbers.map { number ->
-                MonsterUnit.create(
-                    monster = monster,
-                    number = number,
-                    isElite = isElite,
-                    gamersCount = state.gamersCount,
-                )
-            }
+            numbers
+                .map { number ->
+                    MonsterUnit.create(
+                        monster = monster,
+                        number = number,
+                        isElite = isElite,
+                        gamersCount = state.gamersCount,
+                        effects = effects,
+                    )
+                }.associateBy { it.number }
         return state.copy(
             activeMonsters =
                 state.activeMonsters
-                    .updateMonster(slug) { it.addUnits(newUnits) }
-                    .toImmutableList(),
+                    .updateMonster(slug) {
+                        addUnits(newUnits)
+                    },
         )
     }
 }

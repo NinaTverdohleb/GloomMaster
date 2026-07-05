@@ -2,6 +2,8 @@ package com.rumpilstilstkin.gloomhavenhelper.screens.start.team
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.Achievement
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.AchievementWithName
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario.CreateActiveScenarioUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.team.DonateUseCase
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.team.GetCurrentTeamUseCase
@@ -25,6 +27,7 @@ import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asSharedFlow
+import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
@@ -44,6 +47,7 @@ class TeamTabViewModel @Inject constructor(
 
     val uiState: StateFlow<TeamTabUiState> =
         getCurrentTeamUseCase()
+            .distinctUntilChanged()
             .map { team ->
                 if (team == null) {
                     TeamTabUiState.Empty
@@ -54,13 +58,14 @@ class TeamTabViewModel @Inject constructor(
                                 teamId = team.id,
                                 teamName = team.name,
                                 teamLevel = team.level,
-                                teamScenario = team.activeScenario.map { it.toUi() }.toImmutableList(),
+                                teamScenario =
+                                    team.activeScenario
+                                        .map { it.toUi() }
+                                        .toImmutableList(),
                                 teamReputation = team.reputation,
                                 prosperity = team.prosperity,
-                                teamAchievements = team.teamAchievement.toImmutableList(),
-                                globalAchievements = team.globalAchievement.toImmutableList(),
-                                characters = team.aliveCharacters.map { it.toUi() }.toImmutableList(),
-                                canAddCharacter = team.aliveCharacters.size < 4,
+                                teamAchievements = team.teamAchievement.getAchievementsString(),
+                                globalAchievements = team.globalAchievement.getAchievementsString(),
                                 shopDiscount = team.shopDiscount,
                                 hasActiveScenario = team.hasActiveScenario,
                                 churchValue = team.churchValue,
@@ -153,4 +158,13 @@ class TeamTabViewModel @Inject constructor(
             _screenEvents.emit(ScreenEffect.OpenDialog(session))
         }
     }
+
+    private fun List<AchievementWithName>.getAchievementsString(): String =
+        joinToString(separator = ", ") { achievement ->
+            if (achievement.maxValue > 1) {
+                "${achievement.name} - ${achievement.value}"
+            } else {
+                achievement.name
+            }
+        }
 }

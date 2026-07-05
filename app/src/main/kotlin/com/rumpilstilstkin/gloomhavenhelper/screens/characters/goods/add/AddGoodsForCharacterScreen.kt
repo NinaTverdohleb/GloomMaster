@@ -5,6 +5,10 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.FabPosition
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
@@ -42,9 +46,12 @@ internal fun AddGoodsScreen(
     },
     floatingActionButtonPosition = FabPosition.End,
     floatingActionButton = {
+        var expanded by remember { mutableStateOf(false) }
         if (uiState.goodsState.selectedGoods.isNotEmpty()) {
             GloomFabWithContextMenu(
+                expanded = expanded,
                 icon = AppIcon.Check,
+                onClick = { expanded = !expanded },
                 modifier = Modifier.testTag(AddGoodsForCharacterScreenTestTags.CONFIRM_FAB),
             ) {
                 if (uiState.allGold >= uiState.goodsGold) {

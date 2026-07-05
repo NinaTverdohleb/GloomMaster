@@ -50,15 +50,15 @@ class NextRoundUseCaseTest {
         val state =
             baseState(monsters = mapOf("a" to monster("a", deckName = "deckA"))).copy(
                 deck = deck,
-                activeMonsters = listOf(MonsterItem.fixture(slug = "a").copy(deck = "deckA")),
+                activeMonsters = mapOf("a" to MonsterItem.fixture(slug = "a").copy(deck = "deckA")),
             )
 
         // When
         val result = sut(state)
 
         // Then
-        expectThat(result.activeMonsters[0].currentCard).isNotNull()
-        expectThat(result.activeMonsters[0].currentCard!!.cardId).isEqualTo(1)
+        expectThat(result.activeMonsters["a"]?.currentCard).isNotNull()
+        expectThat(result.activeMonsters["a"]?.currentCard!!.cardId).isEqualTo(1)
     }
 
     @Test
@@ -70,10 +70,10 @@ class NextRoundUseCaseTest {
             baseState(monsters = mapOf("a" to monster("a", deckName = "deckA"))).copy(
                 deck = deck,
                 activeMonsters =
-                    listOf(
+                    mapOf(  "a" to
                         MonsterItem.fixture(slug = "a").copy(
                             deck = "deckA",
-                            units = persistentListOf(MonsterUnit.fixture(1).copy(isNew = true)),
+                            units = mapOf(1 to MonsterUnit.fixture(1).copy(isNew = true)),
                         ),
                     ),
             )
@@ -82,7 +82,7 @@ class NextRoundUseCaseTest {
         val result = sut(state)
 
         // Then
-        expectThat(result.activeMonsters[0].units[0].isNew).isEqualTo(false)
+        expectThat(result.activeMonsters["a"]?.units[1]?.isNew).isEqualTo(false)
     }
 
     @Test
@@ -94,7 +94,7 @@ class NextRoundUseCaseTest {
             baseState(monsters = mapOf("a" to monster("a", deckName = "deckA")))
                 .copy(
                     deck = deck,
-                    activeMonsters = listOf(MonsterItem.fixture(slug = "a").copy(deck = "deckA")),
+                    activeMonsters = mapOf("a" to MonsterItem.fixture(slug = "a").copy(deck = "deckA")),
                     magicState = MagicChargeState.initial().toggle(Magic.FIRE),
                 )
 

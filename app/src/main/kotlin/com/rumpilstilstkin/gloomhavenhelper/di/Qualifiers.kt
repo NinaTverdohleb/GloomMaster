@@ -18,10 +18,6 @@ annotation class IoDispatcher
 @Qualifier
 annotation class MainDispatcher
 
-@Retention(AnnotationRetention.BINARY)
-@Qualifier
-annotation class MainImmediateDispatcher
-
 @Retention(AnnotationRetention.RUNTIME)
 @Qualifier
 annotation class OnboardingEnabled

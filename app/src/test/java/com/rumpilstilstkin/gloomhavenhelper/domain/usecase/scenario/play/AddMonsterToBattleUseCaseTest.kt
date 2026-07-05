@@ -14,9 +14,6 @@ import strikt.assertions.isNotNull
 import strikt.assertions.isNull
 import strikt.assertions.isSameInstanceAs
 
-// NOTE: AddMonsterToBattleUseCase does NOT check whether a slug already exists
-// in activeMonsters. PRD bullet about "no-op when monster already on battle"
-// does not match implementation — tests reflect actual behaviour.
 class AddMonsterToBattleUseCaseTest {
     private val sut = AddMonsterToBattleUseCase()
 
@@ -44,9 +41,9 @@ class AddMonsterToBattleUseCaseTest {
 
         // Then
         expectThat(result.activeMonsters).hasSize(1)
-        expectThat(result.activeMonsters[0].slug).isEqualTo("a")
-        expectThat(result.activeMonsters[0].units).hasSize(0)
-        expectThat(result.activeMonsters[0].currentCard).isNull()
+        expectThat(result.activeMonsters["a"]?.slug).isEqualTo("a")
+        expectThat(result.activeMonsters["a"]?.units?.size).isEqualTo(0)
+        expectThat(result.activeMonsters["a"]?.currentCard).isNull()
     }
 
     @Test
@@ -61,10 +58,10 @@ class AddMonsterToBattleUseCaseTest {
         val result = sut(state, listOf("boss"))
 
         // Then
-        expectThat(result.activeMonsters[0].units).hasSize(1)
-        val unit = result.activeMonsters[0].units[0]
-        expectThat(unit.maxLife).isEqualTo(10)
-        expectThat(unit.currentLife).isEqualTo(10)
+        expectThat(result.activeMonsters["boss"]?.units?.size).isEqualTo(1)
+        val unit = result.activeMonsters["boss"]?.units?.values?.first()
+        expectThat(unit?.maxLife).isEqualTo(10)
+        expectThat(unit?.currentLife).isEqualTo(10)
     }
 
     @Test
@@ -79,7 +76,7 @@ class AddMonsterToBattleUseCaseTest {
         val result = sut(state, listOf("boss"))
 
         // Then
-        expectThat(result.activeMonsters[0].units[0].maxLife).isEqualTo(30)
+        expectThat(result.activeMonsters["boss"]?.units?.values?.first()?.maxLife).isEqualTo(30)
     }
 
     @Test
@@ -97,8 +94,8 @@ class AddMonsterToBattleUseCaseTest {
 
         // Then
         expectThat(result.activeMonsters).hasSize(1)
-        expectThat(result.activeMonsters[0].currentCard).isNotNull()
-        expectThat(result.activeMonsters[0].currentCard!!.cardId).isEqualTo(1)
+        expectThat(result.activeMonsters["a"]?.currentCard).isNotNull()
+        expectThat(result.activeMonsters["a"]?.currentCard?.cardId).isEqualTo(1)
     }
 
     @Test
@@ -117,7 +114,8 @@ class AddMonsterToBattleUseCaseTest {
         val result = sut(state, listOf("a", "b"))
 
         // Then
-        expectThat(result.activeMonsters.map { it.slug }).containsExactly("a", "b")
+        expectThat(result.activeMonsters["a"]).isNotNull()
+        expectThat(result.activeMonsters["b"]).isNotNull()
     }
 
     private fun baseState(monsters: Map<String, Monster> = emptyMap()) =

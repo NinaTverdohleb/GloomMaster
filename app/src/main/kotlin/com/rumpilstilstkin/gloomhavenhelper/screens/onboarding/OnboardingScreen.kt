@@ -85,7 +85,7 @@ fun OnboardingScreen(
             ) { page ->
                 OnboardingPageContent(
                     page = pages[page],
-                    modifier = Modifier.fillMaxSize()
+                    modifier = Modifier.fillMaxSize(),
                 )
             }
 

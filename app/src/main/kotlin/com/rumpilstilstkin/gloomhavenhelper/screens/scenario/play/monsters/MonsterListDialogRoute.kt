@@ -41,6 +41,5 @@ fun MonsterListDialogRoute(
         selectedIds = state.selectedIds,
         toggleMonster = { viewModel.onAction(MonsterListDialogAction.ToggleMonster(it)) },
         selectMonsters = { viewModel.onAction(MonsterListDialogAction.SelectMonsters) },
-        addNewMonsters = { viewModel.onAction(MonsterListDialogAction.AddNewMonsters) },
     )
 }

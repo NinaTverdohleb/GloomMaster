@@ -28,6 +28,7 @@ import strikt.assertions.contains
 import strikt.assertions.hasSize
 import strikt.assertions.isEmpty
 import strikt.assertions.isEqualTo
+import strikt.assertions.isNotNull
 import strikt.assertions.isNull
 
 @OptIn(ExperimentalCoroutinesApi::class)
@@ -216,8 +217,8 @@ class ScenarioBattleStateBuilderTest {
 
         // Then
         expectThat(state.activeMonsters).hasSize(1)
-        expectThat(state.activeMonsters.first().slug).isEqualTo("brute")
-        expectThat(state.activeMonsters.first().units.toList().map { it.number }).contains(1)
+        expectThat(state.activeMonsters.keys).contains("brute")
+        expectThat(state.activeMonsters["brute"]?.units[1]).isNotNull()
     }
 
     @Test

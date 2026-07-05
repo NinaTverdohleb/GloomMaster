@@ -183,9 +183,11 @@ class SettingsViewModel @Inject constructor(
                 createOverlaySession(
                     contract = DeleteTeamDialogContract,
                     input = team,
-                    onResult = {
-                        viewModelScope.launch {
-                            _screenEvents.emit(ScreenEffect.Message(R.string.team_deleted_toast))
+                    onResult = { result ->
+                        result?.let {
+                            viewModelScope.launch {
+                                _screenEvents.emit(ScreenEffect.Message(R.string.team_deleted_toast))
+                            }
                         }
                     },
                 )

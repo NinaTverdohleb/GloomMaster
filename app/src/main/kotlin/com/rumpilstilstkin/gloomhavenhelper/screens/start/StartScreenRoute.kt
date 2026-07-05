@@ -1,5 +1,6 @@
 package com.rumpilstilstkin.gloomhavenhelper.screens.start
 
+import androidx.activity.compose.ReportDrawnWhen
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
@@ -18,6 +19,8 @@ fun StartScreenRoute(
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     val screenEffect by viewModel.screenEvents.collectAsStateWithLifecycle(initialValue = null)
+
+    ReportDrawnWhen { uiState !is StartScreenState.Loading }
 
     StartScreen(
         state = uiState,

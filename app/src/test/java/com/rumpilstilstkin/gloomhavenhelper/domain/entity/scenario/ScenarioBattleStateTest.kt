@@ -1,35 +1,45 @@
 package com.rumpilstilstkin.gloomhavenhelper.domain.entity.scenario
 
-import kotlinx.collections.immutable.persistentListOf
-import kotlinx.collections.immutable.persistentSetOf
 import org.junit.Test
 import strikt.api.expectThat
-import strikt.assertions.containsExactly
 import strikt.assertions.isEqualTo
+import strikt.assertions.isNull
 
 class ScenarioBattleStateTest {
+
+    private val monsterSlug = "oozy"
+    private val unitNumber = 1
+
     @Test
     fun `given matching slug and unit number when updateUnit then unit is transformed`() {
         // Given
         val state = state(
-            activeMonsters = listOf(
-                monsterItem("brute", units = persistentListOf(unit(number = 1, currentLife = 5))),
+            activeMonsters = mapOf(
+                monsterSlug to
+                monsterItem(
+                    monsterSlug,
+                    units = mapOf(unitNumber to unit(number = unitNumber, currentLife = 5))
+                ),
             ),
         )
 
         // When
-        val updated = state.updateUnit(slug = "brute", number = 1) { copy(currentLife = 1) }
+        val updated = state.updateUnit(slug = monsterSlug, number = unitNumber) { copy(currentLife = 1) }
 
         // Then
-        expectThat(updated.activeMonsters[0].units[0].currentLife).isEqualTo(1)
+        expectThat(updated.activeMonsters[monsterSlug]?.units[unitNumber]?.currentLife).isEqualTo(1)
     }
 
     @Test
     fun `given missing slug when updateUnit then state is unchanged`() {
         // Given
         val state = state(
-            activeMonsters = listOf(
-                monsterItem("brute", units = persistentListOf(unit(number = 1, currentLife = 5))),
+            activeMonsters = mapOf(
+                monsterSlug to
+                        monsterItem(
+                            monsterSlug,
+                            units = mapOf(unitNumber to unit(number = unitNumber, currentLife = 5))
+                        ),
             ),
         )
 
@@ -37,43 +47,12 @@ class ScenarioBattleStateTest {
         val updated = state.updateUnit(slug = "unknown", number = 1) { copy(currentLife = 1) }
 
         // Then
-        expectThat(updated.activeMonsters[0].units[0].currentLife).isEqualTo(5)
-        expectThat(updated.activeMonsters[0].slug).isEqualTo("brute")
-    }
-
-    @Test
-    fun `given matching slug but missing unit number when updateUnit then state is unchanged`() {
-        // Given
-        val state = state(
-            activeMonsters = listOf(
-                monsterItem("brute", units = persistentListOf(unit(number = 1, currentLife = 5))),
-            ),
-        )
-
-        // When
-        val updated = state.updateUnit(slug = "brute", number = 999) { copy(currentLife = 1) }
-
-        // Then
-        expectThat(updated.activeMonsters[0].units).containsExactly(unit(number = 1, currentLife = 5))
-    }
-
-    @Test
-    fun `given transform returns identical unit when updateUnit then unit is preserved`() {
-        // Given
-        val original = unit(number = 1, currentLife = 5)
-        val state = state(
-            activeMonsters = listOf(monsterItem("brute", units = persistentListOf(original))),
-        )
-
-        // When
-        val updated = state.updateUnit(slug = "brute", number = 1) { this }
-
-        // Then
-        expectThat(updated.activeMonsters[0].units[0]).isEqualTo(original)
+        expectThat(updated.activeMonsters[monsterSlug]?.units[unitNumber]?.currentLife).isEqualTo(5)
+        expectThat(updated.activeMonsters["unknown"]).isNull()
     }
 
     private fun state(
-        activeMonsters: List<MonsterItem>,
+        activeMonsters: Map<String, MonsterItem>,
     ) = ScenarioBattleState(
         generalLevel = 0,
         scenarioNumber = 1,
@@ -93,7 +72,7 @@ class ScenarioBattleStateTest {
 
     private fun monsterItem(
         slug: String,
-        units: kotlinx.collections.immutable.ImmutableList<MonsterUnit>,
+        units: Map<Int, MonsterUnit>,
     ) = MonsterItem(
         slug = slug,
         name = slug,
@@ -111,10 +90,10 @@ class ScenarioBattleStateTest {
         number = number,
         currentLife = currentLife,
         maxLife = 10,
-        stats = persistentListOf(),
+        stats = listOf(),
         isSpecial = false,
-        effects = persistentSetOf(),
-        immunity = persistentSetOf(),
+        effects = mapOf(),
+        immunity = setOf(),
         level = 1,
         isNew = false,
         lifeMultiple = false

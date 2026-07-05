@@ -116,7 +116,7 @@ fun MonsterCard(
             Column(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.spacedBy(8.dp),
+                verticalArrangement = Arrangement.spacedBy(12.dp),
             ) {
                 card.actions.forEach {
                     ActionMonsterEffect(it)

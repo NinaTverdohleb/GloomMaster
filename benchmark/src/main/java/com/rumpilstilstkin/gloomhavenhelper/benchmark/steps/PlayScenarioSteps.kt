@@ -16,6 +16,8 @@ import com.rumpilstilstkin.gloomhavenhelper.benchmark.existTag
 fun MacrobenchmarkScope.addMonster() {
     clickTag(PlayScenarioScreenTestTags.ADD_MONSTER_FAB)
 
+    clickTag(PlayScenarioScreenTestTags.ADD_MONSTER_FAB_SCENARIO)
+
     clickTag(AddScenarioMonstersDialogTestTags.monster(0), RightComponentsTestTags.CHECKER)
 
     clickTag(AddScenarioMonstersDialogTestTags.ADD_BUTTON)

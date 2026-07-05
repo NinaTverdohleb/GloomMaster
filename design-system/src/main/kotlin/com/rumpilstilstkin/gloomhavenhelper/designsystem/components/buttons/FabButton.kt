@@ -14,25 +14,15 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.RowScope
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Edit
-import androidx.compose.material.icons.filled.Share
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.SmallFloatingActionButton
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
 import androidx.compose.material3.ripple
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
@@ -65,10 +55,10 @@ fun GloomFab(
 fun GloomFabWithContextMenu(
     icon: GloomIcon,
     modifier: Modifier = Modifier,
+    expanded: Boolean = false,
+    onClick: () -> Unit,
     actions: @Composable ColumnScope.() -> Unit,
 ) {
-    var expanded by remember { mutableStateOf(false) }
-
     val cornerRadius by animateDpAsState(
         targetValue = if (expanded) 12.dp else 16.dp,
         label = "FabShapeCornerAnimation",
@@ -98,7 +88,7 @@ fun GloomFabWithContextMenu(
         }
 
         GloomFabBase(
-            onClick = { expanded = !expanded },
+            onClick = onClick,
             fabSize = fabSize,
             fabRadius = cornerRadius,
         ) {
@@ -177,6 +167,7 @@ private fun GloomFabPreviewMenu() {
 
             GloomFabWithContextMenu(
                 icon = AppIcon.Plus,
+                onClick = {},
             ) {
                 FabContextMenuItem(
                     icon = AppIcon.Buy,

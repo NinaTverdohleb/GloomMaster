@@ -3,7 +3,6 @@ package com.rumpilstilstkin.gloomhavenhelper.domain.usecase.scenario.play
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterStatType
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.scenario.ScenarioBattleState
 import jakarta.inject.Inject
-import kotlinx.collections.immutable.toImmutableSet
 
 class ToggleUnitEffectUseCase @Inject constructor() {
     operator fun invoke(
@@ -13,8 +12,7 @@ class ToggleUnitEffectUseCase @Inject constructor() {
         effect: MonsterStatType,
     ): ScenarioBattleState =
         state.updateUnit(slug, number) {
-            val newEffects =
-                if (effect in effects) effects - effect else effects + effect
-            copy(effects = newEffects.toImmutableSet())
+            val newEffects = effects + (effect to !effects.getValue(effect))
+            copy(effects = newEffects)
         }
 }

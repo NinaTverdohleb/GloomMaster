@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Icon
@@ -49,6 +50,9 @@ fun ActionMonsterEffect(
             )
 
             item.subAction.forEach { subItem ->
+                Spacer(
+                    Modifier.height(4.dp),
+                )
                 ActionMonsterEffect(
                     item = subItem,
                     style = style.copy(fontSize = style.fontSize.div(1.4)),

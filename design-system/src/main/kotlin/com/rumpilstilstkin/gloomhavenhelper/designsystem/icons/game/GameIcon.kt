@@ -9,7 +9,6 @@ import com.rumpilstilstkin.gloomhavenhelper.designsystem.icons.EffectIcon
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.icons.GloomIcon
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.icons.MagicIcon
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.icons.ModifierIcon
-import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.onError
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.onSurfaceVariant
 
 enum class GameIcon(
@@ -232,13 +231,13 @@ enum class GameIcon(
         textCode = IconCode.RETALIATE,
         titleRes = R.string.design_system_icon_retaliate,
         image = ActionIcon.Retaliate,
-        color = Color.White,
+        color = onSurfaceVariant,
     ),
     RANGED_ATTACK(
         textCode = IconCode.RANGED_ATTACK,
         titleRes = R.string.design_system_icon_ranged_attack,
         image = ActionIcon.Range,
-        color = Color.White,
+        color = onSurfaceVariant,
     ),
     MOVE(
         textCode = IconCode.MOVE,

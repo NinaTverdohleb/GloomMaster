@@ -15,11 +15,9 @@ data class TeamUI(
     val teamReputation: Int,
     val prosperity: Prosperity,
     val shopDiscount: Int,
-    val teamAchievements: ImmutableList<AchievementWithName>,
-    val globalAchievements: ImmutableList<AchievementWithName>,
+    val teamAchievements: String,
+    val globalAchievements: String,
     val teamScenario: ImmutableList<ShortScenarioUI>,
-    val characters: ImmutableList<CharacterUI>,
-    val canAddCharacter: Boolean = false,
     val hasActiveScenario: Boolean,
     val churchValue: Int,
     val churchValueForNextProsperity: Int,
@@ -32,25 +30,13 @@ data class TeamUI(
                 teamName = "Team 1",
                 teamReputation = 1,
                 prosperity = Prosperity.fixture(),
-                teamAchievements =
-                    persistentListOf(
-                        AchievementWithName.fixture("Achievement 1"),
-                        AchievementWithName.fixture("Achievement 2"),
-                    ),
-                globalAchievements =
-                    persistentListOf(
-                        AchievementWithName.fixture("Achievement 1"),
-                        AchievementWithName.fixture("Achievement 2"),
-                    ),
+                teamAchievements = "Achievement 1, Achievement 2",
+                globalAchievements = "Achievement 1, Achievement 2",
                 shopDiscount = 0,
                 teamScenario =
                     persistentListOf(
                         ShortScenarioUI.fixture(1),
                         ShortScenarioUI.fixture(2),
-                    ),
-                characters =
-                    persistentListOf(
-                        CharacterUI.fixture(),
                     ),
                 hasActiveScenario = true,
                 churchValue = 100,

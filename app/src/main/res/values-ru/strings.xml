@@ -89,9 +89,9 @@
     <string name="expansions_title">Дополнения</string>
     <string name="difficulty_level_label">Уровень сложности</string>
     <string name="difficulty_easy">Легко</string>
-    <string name="difficulty_normal">Нормально</string>
+    <string name="difficulty_normal">Обычно</string>
     <string name="difficulty_hard">Тяжело</string>
-    <string name="difficulty_very_hard">Героически!</string>
+    <string name="difficulty_very_hard">Герои!</string>
     <string name="pack_main">Gloomhaven</string>
     <string name="pack_forgotten_circles">Забытые круги</string>
     <string name="available_gold_format">Доступно : %1$d G</string>
@@ -177,4 +177,5 @@
     <string name="onboarding_body_4">Опыт, золото, а также личные вещи и перки персонажей — всё на одной странице!</string>
     <string name="onboarding_title_5">Хорошей игры</string>
     <string name="onboarding_body_5">Пора начинать приключение!</string>
+    <string name="add_scenario_enemies">Add scenario monsters</string>
 </resources>

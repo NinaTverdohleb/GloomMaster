@@ -23,7 +23,10 @@ class ActiveMonstersBuilderTest {
     @Test
     fun `given fresh builder when build then returns empty list`() = runTest(UnconfinedTestDispatcher()) {
         // Given / When
-        val result = ActiveMonstersBuilder().build(gamersCount = 1) { _, _ -> null }
+        val result = ActiveMonstersBuilder().build(
+            availableEffects = emptySet(),
+            gamersCount = 1
+        ) { _, _ -> null }
 
         // Then
         expectThat(result).hasSize(0)
@@ -56,18 +59,18 @@ class ActiveMonstersBuilderTest {
                 .activeMonsters(listOf(active))
                 .cards(mapOf(("boss" to 1) to card))
                 .levels(1 to 1)
-                .build(gamersCount = 1) { _, _ -> null }
+                .build(availableEffects = emptySet(),gamersCount = 1) { _, _ -> null }
 
         // Then
         expectThat(result).hasSize(1)
-        val item = result.first()
+        val item = result.values.first()
         expectThat(item.slug).isEqualTo("brute")
         expectThat(item.name).isEqualTo("brute")
         expectThat(item.isFly).isTrue()
         expectThat(item.isBoss).isTrue()
         expectThat(item.deck).isEqualTo("boss")
         expectThat(item.currentCard).isEqualTo(card)
-        expectThat(item.units.toList().map { it.number }).containsExactly(1)
+        expectThat(item.units.values.map { it.number }).containsExactly(1)
     }
 
     @Test
@@ -87,10 +90,10 @@ class ActiveMonstersBuilderTest {
                 .activeMonsters(listOf(active))
                 .cards(emptyMap())
                 .levels(1 to 1)
-                .build(gamersCount = 1) { _, _ -> null }
+                .build(availableEffects = emptySet(),gamersCount = 1) { _, _ -> null }
 
         // Then
-        expectThat(result.first().currentCard).isNull()
+        expectThat(result.values.first().currentCard).isNull()
     }
 
     @Test
@@ -106,10 +109,10 @@ class ActiveMonstersBuilderTest {
                 .activeMonsters(listOf(active))
                 .cards(emptyMap())
                 .levels(1 to 1)
-                .build(gamersCount = 1) { _, _ -> null }
+                .build(availableEffects = emptySet(), gamersCount = 1) { _, _ -> null }
 
         // Then
-        expectThat(result.first().currentCard).isNull()
+        expectThat(result.values.first().currentCard).isNull()
     }
 
     @Test
@@ -126,7 +129,7 @@ class ActiveMonstersBuilderTest {
         // When / Then
         assertThrows(NoSuchElementException::class.java) {
             runTest(UnconfinedTestDispatcher()) {
-                builder.build(gamersCount = 1) { _, _ -> null }
+                builder.build(availableEffects = emptySet(), gamersCount = 1) { _, _ -> null }
             }
         }
     }
@@ -144,11 +147,11 @@ class ActiveMonstersBuilderTest {
                 .activeMonsters(listOf(active))
                 .cards(emptyMap())
                 .levels(1 to 1)
-                .build(gamersCount = 1) { _, _ -> null }
+                .build(availableEffects = emptySet(), gamersCount = 1) { _, _ -> null }
 
         // Then
-        expectThat(result.first().isFly).isFalse()
-        expectThat(result.first().isBoss).isFalse()
+        expectThat(result.values.first().isFly).isFalse()
+        expectThat(result.values.first().isBoss).isFalse()
     }
 
     private fun monster(

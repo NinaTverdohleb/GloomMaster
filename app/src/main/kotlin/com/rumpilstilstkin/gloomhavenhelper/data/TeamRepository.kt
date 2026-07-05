@@ -1,6 +1,7 @@
 package com.rumpilstilstkin.gloomhavenhelper.data
 
 import android.content.res.Resources.NotFoundException
+import androidx.compose.runtime.collectAsState
 import com.rumpilstilstkin.gloomhavenhelper.bd.dao.CharacterDao
 import com.rumpilstilstkin.gloomhavenhelper.bd.dao.TeamDao
 import com.rumpilstilstkin.gloomhavenhelper.data.datasource.CurrentTeamDatasource
@@ -16,11 +17,14 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -37,7 +41,7 @@ class TeamRepository @Inject constructor(
         MutableStateFlow(Result.failure(NotFoundException()))
 
     @OptIn(ExperimentalCoroutinesApi::class)
-    val currentTeam: Flow<ShortTeamInfo?> =
+    val currentTeam: StateFlow<ShortTeamInfo?> =
         _currentTeam
             .flatMapLatest { result ->
                 result.fold(
@@ -51,7 +55,11 @@ class TeamRepository @Inject constructor(
                     },
                     onFailure = { flowOf(null) },
                 )
-            }
+            }.stateIn(
+                scope = externalScope,
+                started = SharingStarted.WhileSubscribed(5000),
+                initialValue = null
+            )
 
     init {
         externalScope.launch {

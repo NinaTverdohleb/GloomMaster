@@ -9,18 +9,20 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.rumpilstilstkin.gloomhavenhelper.R
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.theme.GloomhavenMasterTheme
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.ShortScenarioUI
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.TeamUI
-import com.rumpilstilstkin.gloomhavenhelper.screens.start.team.component.GlobalAchievement
+import com.rumpilstilstkin.gloomhavenhelper.screens.start.team.component.AchievementView
 import com.rumpilstilstkin.gloomhavenhelper.screens.start.team.component.ScenarioBlock
-import com.rumpilstilstkin.gloomhavenhelper.screens.start.team.component.TeamAchievement
 import com.rumpilstilstkin.gloomhavenhelper.screens.start.team.component.TeamHeader
 import com.rumpilstilstkin.gloomhavenhelper.screens.start.team.component.TeamProsperity
 import com.rumpilstilstkin.gloomhavenhelper.screens.start.team.component.TeamReputation
 import com.rumpilstilstkin.gloomhavenhelper.testtags.screens.start.team.TeamTabScreenTestTags
+import com.rumpilstilstkin.gloomhavenhelper.testtags.screens.start.team.component.AchievementTestTags
 
 @Composable
 internal fun TeamTabScreen(
@@ -66,13 +68,17 @@ internal fun TeamTabScreen(
                 canRestore = team.hasActiveScenario,
                 playCurrentScenario = playCurrentScenario,
             )
-            GlobalAchievement(
-                globalAchievements = team.globalAchievements,
-                clickGlobalAchievement = openGlobalAchievements,
+            AchievementView(
+                modifier = Modifier.testTag(AchievementTestTags.GLOBAL_BLOCK),
+                title = stringResource(R.string.global_achievements),
+                achievements = team.globalAchievements,
+                clickAchievement = openGlobalAchievements,
             )
-            TeamAchievement(
-                teamAchievements = team.teamAchievements,
-                clickTeamAchievement = openTeamAchievements,
+            AchievementView(
+                modifier = Modifier.testTag(AchievementTestTags.TEAM_BLOCK),
+                title = stringResource(R.string.team_achievements),
+                achievements = team.teamAchievements,
+                clickAchievement = openTeamAchievements,
             )
         }
     }

@@ -4,10 +4,6 @@ import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.Monster
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterAction
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterCard
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterStatType
-import kotlinx.collections.immutable.ImmutableList
-import kotlinx.collections.immutable.ImmutableSet
-import kotlinx.collections.immutable.persistentListOf
-import kotlinx.collections.immutable.persistentSetOf
 import kotlinx.collections.immutable.toImmutableList
 import kotlinx.collections.immutable.toImmutableSet
 
@@ -17,7 +13,7 @@ data class MonsterItem(
     val isFly: Boolean,
     val deck: String,
     val currentCard: MonsterCard? = null,
-    val units: List<MonsterUnit> = listOf(),
+    val units: Map<Int, MonsterUnit> = mapOf(),
     val isBoss: Boolean = false,
 ) {
     companion object {
@@ -42,10 +38,10 @@ data class MonsterUnit(
     val number: Int,
     val currentLife: Int,
     val maxLife: Int,
-    val stats: ImmutableList<MonsterAction>,
+    val stats: List<MonsterAction>,
     val isSpecial: Boolean,
-    val effects: ImmutableSet<MonsterStatType> = persistentSetOf(),
-    val immunity: ImmutableSet<MonsterStatType> = persistentSetOf(),
+    val effects: Map<MonsterStatType, Boolean> = mapOf(),
+    val immunity: Set<MonsterStatType> = setOf(),
     val level: Int,
     val isNew: Boolean = true,
     val lifeMultiple: Boolean,
@@ -57,7 +53,7 @@ data class MonsterUnit(
             isElite: Boolean,
             currentLife: Int? = null,
             gamersCount: Int,
-            effects: ImmutableSet<MonsterStatType> = persistentSetOf(),
+            effects: Map<MonsterStatType, Boolean> = mapOf(),
             isNew: Boolean = true,
         ): MonsterUnit {
             val maxMonsterLife =
@@ -89,17 +85,23 @@ data class MonsterUnit(
 
         fun fixture(
             number: Int = 1,
-            isSpecial: Boolean = false,
+            isElite: Boolean = false,
+            maxLife: Int = 5,
+            currentLife: Int = 5,
+            lifeMultiple: Boolean = false,
+            effects: Map<MonsterStatType, Boolean> =
+                (MonsterStatType.mainEffectsPack + MonsterStatType.fcEffectsPack)
+                    .associateWith { false },
         ) = MonsterUnit(
             number = number,
-            isSpecial = isSpecial,
-            currentLife = 10,
-            maxLife = 10,
+            isSpecial = isElite,
+            currentLife = currentLife,
+            maxLife = maxLife,
             level = 1,
-            lifeMultiple = false,
-            immunity = persistentSetOf(MonsterStatType.POISON),
+            lifeMultiple = lifeMultiple,
+            immunity = setOf(MonsterStatType.POISON),
             stats =
-                persistentListOf(
+                listOf(
                     MonsterAction.Action(
                         statType = MonsterStatType.MOVE,
                         modifier = "3",
@@ -117,6 +119,7 @@ data class MonsterUnit(
                         modifier = "",
                     ),
                 ),
+            effects = effects,
         )
     }
 }

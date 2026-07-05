@@ -3,8 +3,8 @@ package com.rumpilstilstkin.gloomhavenhelper.domain.entity.scenario.builders
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.ScenarioGameStateMonsterItem
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.Monster
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterCard
+import com.rumpilstilstkin.gloomhavenhelper.domain.entity.monster.MonsterStatType
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.scenario.MonsterItem
-import kotlinx.collections.immutable.toImmutableList
 
 class ActiveMonstersBuilder {
     private var scenarioMonsters: Map<String, Monster> = emptyMap()
@@ -21,29 +21,31 @@ class ActiveMonstersBuilder {
     fun levels(levels: Pair<Int, Int>) = apply { this.levels = levels }
 
     suspend fun build(
+        availableEffects: Set<MonsterStatType>,
         gamersCount: Int,
         getMonster: suspend (level: Int, slug: String) -> Monster?,
-    ): List<MonsterItem> =
-        activeMonsters.map { item ->
-            val monster = scenarioMonsters.getValue(item.slug)
-            MonsterItem(
-                slug = item.slug,
-                name = monster.name,
-                currentCard =
-                    item.currentCard?.let { currentCard ->
-                        cards[currentCard.deck to currentCard.cardId]
-                    },
-                isFly = monster.isFly,
-                isBoss = monster.isBoss,
-                units =
-                    item.units
-                        .map { stateUnit ->
-                            MonsterUnitBuilder(stateUnit, monster)
-                                .levels(levels)
-                                .gamersCount(gamersCount)
-                                .build(getMonster)
-                        }.toImmutableList(),
-                deck = monster.deckName,
-            )
-        }
+    ): Map<String, MonsterItem> =
+        activeMonsters
+            .map { item ->
+                val monster = scenarioMonsters.getValue(item.slug)
+                MonsterItem(
+                    slug = item.slug,
+                    name = monster.name,
+                    currentCard =
+                        item.currentCard?.let { currentCard ->
+                            cards[currentCard.deck to currentCard.cardId]
+                        },
+                    isFly = monster.isFly,
+                    isBoss = monster.isBoss,
+                    units =
+                        item.units
+                            .map { stateUnit ->
+                                MonsterUnitBuilder(stateUnit, monster)
+                                    .levels(levels)
+                                    .gamersCount(gamersCount)
+                                    .build(availableEffects, getMonster)
+                            }.associateBy { it.number },
+                    deck = monster.deckName,
+                )
+            }.associateBy { it.slug }
 }

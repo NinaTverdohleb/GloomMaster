@@ -8,8 +8,7 @@ class RemoveMonsterUseCase @Inject constructor() {
         state: ScenarioBattleState,
         slug: String,
     ): ScenarioBattleState {
-        val filtered = state.activeMonsters.filter { it.slug != slug }
-        if (filtered.size == state.activeMonsters.size) return state
+        val filtered = state.activeMonsters - slug
         return state.copy(activeMonsters = filtered)
     }
 }

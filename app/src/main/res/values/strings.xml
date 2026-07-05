@@ -150,7 +150,7 @@
     <string name="empty_team_achievements_description">Add Achievements for team</string>
     <string name="delete_achivment_dialog_description">Do you want to delete %1$s achievement</string>
     <string name="add_personal_quest">Add quest</string>
-    <string name="add_new_enemies">Add new enemies</string>
+    <string name="add_new_enemies">Add new monsters</string>
     <string name="search_monster_hint">monster name</string>
     <string name="unit_label">Unit</string>
     <string name="unit_new">New</string>
@@ -176,4 +176,5 @@
     <string name="onboarding_body_4">Experience, gold, personal items and character perks — all on one page!</string>
     <string name="onboarding_title_5">Have a Great Game</string>
     <string name="onboarding_body_5">Time to start your adventure!</string>
+    <string name="add_scenario_enemies">Add scenario monsters</string>
 </resources>
