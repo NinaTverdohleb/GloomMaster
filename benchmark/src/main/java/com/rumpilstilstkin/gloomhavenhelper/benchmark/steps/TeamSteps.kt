@@ -31,6 +31,9 @@ fun MacrobenchmarkScope.createTeamIfNeed() {
 }
 
 fun MacrobenchmarkScope.exerciseTeamTab(count: Int) {
+    while (!existTag(TeamReputationTestTags.COUNTER)) {
+        waitForTag(TeamTabScreenTestTags.ROOT_COLUMN).scroll(Direction.UP, 0.8f)
+    }
     clickTagRepeated(TeamReputationTestTags.COUNTER, CounterTestTags.TEST_TAG_PLUS, times = count)
     clickTagRepeated(TeamReputationTestTags.COUNTER, CounterTestTags.TEST_TAG_MINUS, times = count)
 

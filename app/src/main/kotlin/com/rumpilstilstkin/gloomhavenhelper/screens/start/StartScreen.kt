@@ -9,6 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.saveable.rememberSaveableStateHolder
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
@@ -33,6 +34,7 @@ internal fun StartScreen(
     addTeam: () -> Unit,
 ) {
     var selectedTab by rememberSaveable { mutableStateOf(StartScreenTab.TEAM) }
+    val tabStateHolder = rememberSaveableStateHolder()
 
     Scaffold(
         topBar = {
@@ -73,7 +75,9 @@ internal fun StartScreen(
                 }
 
                 is StartScreenState.Team -> {
-                    selectTab(selectedTab)
+                    tabStateHolder.SaveableStateProvider(key = selectedTab) {
+                        selectTab(selectedTab)
+                    }
                 }
             }
         }

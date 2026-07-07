@@ -30,13 +30,13 @@ fun ExperienceRow(
     experience: Int,
     nextLevelExperience: Int,
     modifier: Modifier = Modifier,
-    isCanLevelUp: Boolean = experience > nextLevelExperience,
     levelRange: IntRange = 0..500,
     onLevelUp: () -> Unit,
     onExperienceChanged: (Int) -> Unit,
 ) = GloomCard(
     modifier = modifier,
 ) {
+    val isCanLevelUp: Boolean = experience >= nextLevelExperience
     Column(
         modifier =
             Modifier

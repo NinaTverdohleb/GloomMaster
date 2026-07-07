@@ -62,13 +62,11 @@ class ShopTabViewModel @Inject constructor(
         viewModelScope.launch {
             when (action) {
                 is ShopTabAction.AddGood -> {
-                    viewModelScope.launch {
-                        _screenEvents.send(ScreenEffect.Navigation(Screen(GlHelperScreen.AddGoodsForTeam)))
-                    }
+                    _screenEvents.send(ScreenEffect.Navigation(Screen(GlHelperScreen.AddGoodsForTeam)))
                 }
 
                 is ShopTabAction.RemoveGood -> {
-                    viewModelScope.launch { removeGoodFromTeamUseCase(action.id) }
+                    removeGoodFromTeamUseCase(action.id)
                 }
 
                 is ShopTabAction.SearchTextChange -> {
