@@ -1,5 +1,6 @@
 package com.rumpilstilstkin.gloomhavenhelper.domain.usecase.characters
 
+import android.util.Log
 import com.rumpilstilstkin.gloomhavenhelper.data.CharacterRepository
 import com.rumpilstilstkin.gloomhavenhelper.data.LocaleRepository
 import com.rumpilstilstkin.gloomhavenhelper.data.QuestsRepository

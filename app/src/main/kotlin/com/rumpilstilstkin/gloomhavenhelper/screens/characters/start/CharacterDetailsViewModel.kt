@@ -1,5 +1,6 @@
 package com.rumpilstilstkin.gloomhavenhelper.screens.characters.start
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.rumpilstilstkin.gloomhavenhelper.domain.usecase.characters.GetCharacterGeneralInfoFlowUseCase
@@ -7,6 +8,7 @@ import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEvent
 import com.rumpilstilstkin.gloomhavenhelper.screens.characters.dialogs.character.CharacterEditNameDialogContract
 import com.rumpilstilstkin.gloomhavenhelper.screens.core.ScreenEffect
 import com.rumpilstilstkin.gloomhavenhelper.screens.core.createOverlaySession
+import com.rumpilstilstkin.gloomhavenhelper.screens.models.CharacterUI
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.toUi
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
@@ -33,14 +35,12 @@ class CharacterDetailsViewModel @AssistedInject constructor(
         getCharacterUseCase(id)
             .filterNotNull()
             .map { character ->
-                CharacterDetailsStateUi(
+                CharacterDetailsStateUi.Data(
                     character = character.toUi(),
-                    teamName = character.team?.name ?: "",
-                    isActive = character.isAlive,
                 )
             }.stateIn(
                 scope = viewModelScope,
-                initialValue = CharacterDetailsStateUi(),
+                initialValue = CharacterDetailsStateUi.Loading,
                 started = SharingStarted.WhileSubscribed(5000),
             )
 

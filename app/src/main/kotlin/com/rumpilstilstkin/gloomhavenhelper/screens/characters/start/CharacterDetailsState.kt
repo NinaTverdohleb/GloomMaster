@@ -10,8 +10,7 @@ sealed interface CharacterDetailsAction {
 }
 
 @Immutable
-data class CharacterDetailsStateUi(
-    val character: CharacterUI = CharacterUI.fixture(),
-    val teamName: String = "",
-    val isActive: Boolean = false,
-)
+sealed interface CharacterDetailsStateUi {
+    data class Data(val character: CharacterUI): CharacterDetailsStateUi
+    data object Loading: CharacterDetailsStateUi
+}

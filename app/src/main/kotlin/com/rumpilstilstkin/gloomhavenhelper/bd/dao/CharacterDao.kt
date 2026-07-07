@@ -39,4 +39,8 @@ interface CharacterDao {
     @Transaction
     @Query("DELETE FROM CharacterBd WHERE characterId = :characterId")
     suspend fun deleteById(characterId: Int)
+
+    @Transaction
+    @Query("DELETE FROM CharacterBd WHERE teamId = :teamId")
+    suspend fun deleteByTeamId(teamId: Int)
 }

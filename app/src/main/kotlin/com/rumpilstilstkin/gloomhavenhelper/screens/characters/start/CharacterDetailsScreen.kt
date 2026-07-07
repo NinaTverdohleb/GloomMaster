@@ -1,5 +1,6 @@
 package com.rumpilstilstkin.gloomhavenhelper.screens.characters.start
 
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -32,7 +33,7 @@ import kotlinx.coroutines.launch
 
 @Composable
 internal fun CharacterDetailsScreen(
-    state: CharacterDetailsStateUi,
+    state: CharacterDetailsStateUi.Data,
     back: () -> Unit,
     showNameDialog: (CharacterUI) -> Unit,
     navController: NavHostController,
@@ -85,6 +86,7 @@ internal fun CharactersTabs(
     navController: NavHostController,
     modifier: Modifier = Modifier,
 ) {
+
     val tabs = CharacterDetailsTab.entries
     val pagerState = rememberPagerState(pageCount = { tabs.size })
     val selectedTab = tabs[pagerState.currentPage]
@@ -125,9 +127,8 @@ private fun CharacterDetailsScreenPreview() {
     GloomhavenMasterTheme {
         CharacterDetailsScreen(
             state =
-                CharacterDetailsStateUi(
+                CharacterDetailsStateUi.Data(
                     character = CharacterUI.fixture(),
-                    teamName = "Team",
                 ),
             back = {},
             showNameDialog = {},

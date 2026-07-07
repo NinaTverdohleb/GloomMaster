@@ -18,13 +18,14 @@ fun CharacterDetailsRoute(
         }
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     val screenEffect by viewModel.screenEvents.collectAsStateWithLifecycle(initialValue = null)
-
-    CharacterDetailsScreen(
-        state = uiState,
-        back = { viewModel.onAction(CharacterDetailsAction.Back) },
-        showNameDialog = { viewModel.onAction(CharacterDetailsAction.OpenNameDialog) },
-        navController = navController,
-    )
+    if (uiState is CharacterDetailsStateUi.Data) {
+        CharacterDetailsScreen(
+            state = uiState as CharacterDetailsStateUi.Data,
+            back = { viewModel.onAction(CharacterDetailsAction.Back) },
+            showNameDialog = { viewModel.onAction(CharacterDetailsAction.OpenNameDialog) },
+            navController = navController,
+        )
+    }
 
     LaunchedScreenEffect(
         effect = screenEffect,
