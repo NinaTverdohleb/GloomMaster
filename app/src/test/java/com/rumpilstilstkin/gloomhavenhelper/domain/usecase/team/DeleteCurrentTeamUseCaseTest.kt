@@ -21,14 +21,14 @@ class DeleteCurrentTeamUseCaseTest {
         // Given
         val team = ShortTeamInfo.fixture(teamId = 7)
         every { teamRepository.currentTeam } returns flowOf(team)
-        coJustRun { teamRepository.deleteCurrentTeam(team) }
+        coJustRun { teamRepository.deleteTeam(team.teamId) }
         val sut = DeleteCurrentTeamUseCase(teamRepository)
 
         // When
         sut()
 
         // Then
-        coVerify(exactly = 1) { teamRepository.deleteCurrentTeam(team) }
+        coVerify(exactly = 1) { teamRepository.deleteTeam(team.teamId) }
     }
 
     @Test
@@ -41,6 +41,6 @@ class DeleteCurrentTeamUseCaseTest {
         sut()
 
         // Then
-        coVerify(exactly = 0) { teamRepository.deleteCurrentTeam(any()) }
+        coVerify(exactly = 0) { teamRepository.deleteTeam(any()) }
     }
 }

@@ -1,7 +1,9 @@
 package com.rumpilstilstkin.gloomhavenhelper.screens.models
 
+import androidx.compose.runtime.Immutable
 import com.rumpilstilstkin.gloomhavenhelper.domain.entity.Perk
 
+@Immutable
 data class PerkUI(
     val id: Int,
     val text: String,

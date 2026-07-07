@@ -342,48 +342,52 @@ class TeamRepositoryTest {
     }
 
     @Test
-    fun `given another team exists as a fallback when deleteTeam then prefs switch to the fallback and the original team row is removed`() = runTest(UnconfinedTestDispatcher()) {
-        // Given
+    fun `given the deleted team is the current one and another team exists as a fallback when deleteTeam then prefs switch to the fallback and the original team row is removed`() = runTest(UnconfinedTestDispatcher()) {
+        // Given prefs point at team 7, so team 7 is the current team
         val storedTeamId = slot<Int>()
         every { currentTeamDatasource.currentTeam } answers {
-            if (storedTeamId.isCaptured) storedTeamId.captured else CurrentTeamDatasource.EMPTY_TEAM
+            if (storedTeamId.isCaptured) storedTeamId.captured else 7
         }
         every { currentTeamDatasource.currentTeam = capture(storedTeamId) } just Runs
         coEvery { teamDao.findById(any()) } returns null
-        val target = ShortTeamInfo.fixture(teamId = 7)
         coEvery { teamDao.getAll() } returns listOf(
             teamBdFixture(teamId = 7),
             teamBdFixture(teamId = 8),
         )
         val sut = newSut(TestScope(UnconfinedTestDispatcher(testScheduler)))
+        advanceUntilIdle()
 
         // When
-        sut.deleteCurrentTeam(target)
+        sut.deleteTeam(7)
+        advanceUntilIdle()
 
         // Then — observable state, not call order
         expectThat(storedTeamId.captured).isEqualTo(8)
+        coVerify(exactly = 1) { characterDao.deleteByTeamId(7) }
         coVerify(exactly = 1) { teamDao.delete(7) }
         coVerify(exactly = 1) { scenarioGameStateRepository.delete() }
     }
 
     @Test
-    fun `given the deleted team is the only team when deleteTeam then prefs reset to EMPTY_TEAM and the team row is removed`() = runTest(UnconfinedTestDispatcher()) {
-        // Given
+    fun `given the deleted team is the current and only team when deleteTeam then prefs reset to EMPTY_TEAM and the team row is removed`() = runTest(UnconfinedTestDispatcher()) {
+        // Given prefs point at team 7, so team 7 is the current team
         val storedTeamId = slot<Int>()
         every { currentTeamDatasource.currentTeam } answers {
-            if (storedTeamId.isCaptured) storedTeamId.captured else CurrentTeamDatasource.EMPTY_TEAM
+            if (storedTeamId.isCaptured) storedTeamId.captured else 7
         }
         every { currentTeamDatasource.currentTeam = capture(storedTeamId) } just Runs
         coEvery { teamDao.findById(any()) } returns null
-        val target = ShortTeamInfo.fixture(teamId = 7)
         coEvery { teamDao.getAll() } returns listOf(teamBdFixture(teamId = 7))
         val sut = newSut(TestScope(UnconfinedTestDispatcher(testScheduler)))
+        advanceUntilIdle()
 
         // When
-        sut.deleteCurrentTeam(target)
+        sut.deleteTeam(7)
+        advanceUntilIdle()
 
         // Then — observable state, not call order
         expectThat(storedTeamId.captured).isEqualTo(CurrentTeamDatasource.EMPTY_TEAM)
+        coVerify(exactly = 1) { characterDao.deleteByTeamId(7) }
         coVerify(exactly = 1) { teamDao.delete(7) }
         coVerify(exactly = 1) { scenarioGameStateRepository.delete() }
     }
