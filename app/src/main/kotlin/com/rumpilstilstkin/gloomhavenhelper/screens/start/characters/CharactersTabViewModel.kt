@@ -22,13 +22,13 @@ import com.rumpilstilstkin.gloomhavenhelper.screens.models.CharacterUI
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.toUi
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.collections.immutable.toImmutableList
-import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
@@ -41,8 +41,8 @@ class CharactersTabViewModel @Inject constructor(
     private val removeCharacterClassForTeamUseCase: RemoveCharacterClassForTeamUseCase,
     private val addCharacterClassForTeamUseCase: AddCharacterClassForTeamUseCase,
 ) : ViewModel() {
-    private val _screenEvents = MutableSharedFlow<ScreenEffect>()
-    val screenEvents = _screenEvents.asSharedFlow()
+    private val _screenEvents = Channel<ScreenEffect>(Channel.BUFFERED)
+    val screenEvents = _screenEvents.receiveAsFlow()
 
     private val charactersList: StateFlow<List<CharacterInfo>> =
         getCharactersForCurrentTeamUseCase()
@@ -101,7 +101,7 @@ class CharactersTabViewModel @Inject constructor(
                             input = Unit,
                             onResult = {},
                         )
-                    _screenEvents.emit(ScreenEffect.OpenDialog(session))
+                    _screenEvents.send(ScreenEffect.OpenDialog(session))
                 }
 
                 is CharactersTabAction.SwitchClassAvailability -> {
@@ -121,7 +121,7 @@ class CharactersTabViewModel @Inject constructor(
                                 when (result) {
                                     is MenuCharacterResult.OpenCharacterDetails -> {
                                         viewModelScope.launch {
-                                            _screenEvents.emit(
+                                            _screenEvents.send(
                                                 ScreenEffect.Navigation(
                                                     Screen(CharacterDetails(characterId = result.character.id)),
                                                 ),
@@ -137,7 +137,7 @@ class CharactersTabViewModel @Inject constructor(
                                 }
                             },
                         )
-                    _screenEvents.emit(ScreenEffect.OpenBottomSheet(session))
+                    _screenEvents.send(ScreenEffect.OpenBottomSheet(session))
                 }
             }
         }
@@ -152,12 +152,12 @@ class CharactersTabViewModel @Inject constructor(
                     onResult = { result ->
                         result?.let {
                             viewModelScope.launch {
-                                _screenEvents.emit(ScreenEffect.Message(R.string.character_deleted_toast))
+                                _screenEvents.send(ScreenEffect.Message(R.string.character_deleted_toast))
                             }
                         }
                     },
                 )
-            _screenEvents.emit(ScreenEffect.OpenDialog(session))
+            _screenEvents.send(ScreenEffect.OpenDialog(session))
         }
     }
 }

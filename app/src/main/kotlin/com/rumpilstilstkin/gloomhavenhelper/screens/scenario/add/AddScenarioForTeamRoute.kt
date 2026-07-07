@@ -13,7 +13,6 @@ fun AddScenarioForTeamRoute(
     viewModel: AddScenarioForTeamViewModel = hiltViewModel(),
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
-    val screenEffect by viewModel.screenEvents.collectAsStateWithLifecycle(initialValue = null)
 
     AddScenarioForTeamScreen(
         uiState = uiState,
@@ -23,7 +22,7 @@ fun AddScenarioForTeamRoute(
     )
 
     LaunchedScreenEffect(
-        effect = screenEffect,
+        effects = viewModel.screenEvents,
         navController = navController,
     )
 }

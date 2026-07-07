@@ -86,7 +86,6 @@ internal fun CharactersTabs(
     navController: NavHostController,
     modifier: Modifier = Modifier,
 ) {
-
     val tabs = CharacterDetailsTab.entries
     val pagerState = rememberPagerState(pageCount = { tabs.size })
     val selectedTab = tabs[pagerState.currentPage]
@@ -111,6 +110,7 @@ internal fun CharactersTabs(
             state = pagerState,
             modifier = Modifier.fillMaxSize(),
             beyondViewportPageCount = tabs.size,
+            key = { page -> tabs[page].icon },
         ) { page ->
             when (tabs[page]) {
                 CharacterDetailsTab.GENERAL -> CharacterGeneralTabRoute(characterId, navController)

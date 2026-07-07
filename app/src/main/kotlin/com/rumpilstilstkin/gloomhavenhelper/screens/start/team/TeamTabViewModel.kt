@@ -23,12 +23,12 @@ import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.dialog.menu.MenuSce
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.dialog.menu.MenuScenarioResult
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.collections.immutable.toImmutableList
-import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -42,8 +42,8 @@ class TeamTabViewModel @Inject constructor(
     private val donateUseCase: DonateUseCase,
     private val getNextChurchValueUseCase: GetNextChurchValueUseCase,
 ) : ViewModel() {
-    private val _screenEvents = MutableSharedFlow<ScreenEffect>()
-    val screenEvents = _screenEvents.asSharedFlow()
+    private val _screenEvents = Channel<ScreenEffect>(Channel.BUFFERED)
+    val screenEvents = _screenEvents.receiveAsFlow()
 
     val uiState: StateFlow<TeamTabUiState> =
         getCurrentTeamUseCase()
@@ -96,15 +96,15 @@ class TeamTabViewModel @Inject constructor(
                 }
 
                 TeamTabAction.OpenGlobalAchievements -> {
-                    _screenEvents.emit(ScreenEffect.Navigation(Screen(GlHelperScreen.GlobalAchievements)))
+                    _screenEvents.send(ScreenEffect.Navigation(Screen(GlHelperScreen.GlobalAchievements)))
                 }
 
                 TeamTabAction.OpenTeamAchievements -> {
-                    _screenEvents.emit(ScreenEffect.Navigation(Screen(GlHelperScreen.TeamAchievements)))
+                    _screenEvents.send(ScreenEffect.Navigation(Screen(GlHelperScreen.TeamAchievements)))
                 }
 
                 TeamTabAction.RestoreLastScenario -> {
-                    _screenEvents.emit(ScreenEffect.Navigation(Screen(Scenario)))
+                    _screenEvents.send(ScreenEffect.Navigation(Screen(Scenario)))
                 }
 
                 TeamTabAction.Donate -> {
@@ -128,7 +128,7 @@ class TeamTabViewModel @Inject constructor(
                                         viewModelScope.launch {
                                             createActiveScenarioUseCase(action.scenario.scenarioNumber)
                                                 .onSuccess {
-                                                    _screenEvents.emit(
+                                                    _screenEvents.send(
                                                         ScreenEffect.Navigation(
                                                             (Screen(Scenario)),
                                                         ),
@@ -141,7 +141,7 @@ class TeamTabViewModel @Inject constructor(
                                 }
                             },
                         )
-                    _screenEvents.emit(ScreenEffect.OpenBottomSheet(session))
+                    _screenEvents.send(ScreenEffect.OpenBottomSheet(session))
                 }
             }
         }
@@ -155,7 +155,7 @@ class TeamTabViewModel @Inject constructor(
                     input = scenario,
                     onResult = { },
                 )
-            _screenEvents.emit(ScreenEffect.OpenDialog(session))
+            _screenEvents.send(ScreenEffect.OpenDialog(session))
         }
     }
 

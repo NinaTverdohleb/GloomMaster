@@ -13,7 +13,6 @@ fun TeamTabRoute(
     viewModel: TeamTabViewModel = hiltViewModel(),
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
-    val screenEffect by viewModel.screenEvents.collectAsStateWithLifecycle(initialValue = null)
 
     TeamTabScreen(
         state = uiState,
@@ -27,7 +26,7 @@ fun TeamTabRoute(
     )
 
     LaunchedScreenEffect(
-        effect = screenEffect,
+        effects = viewModel.screenEvents,
         navController = navController,
     )
 }

@@ -24,11 +24,11 @@ import com.rumpilstilstkin.gloomhavenhelper.screens.teem.menu.TeamMenuResult
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.collections.immutable.toImmutableList
-import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import java.io.File
@@ -42,8 +42,8 @@ class SettingsViewModel @Inject constructor(
     private val getShareFileUseCase: GetShareFileUseCase,
     languagesListUseCase: LanguagesListUseCase,
 ) : ViewModel() {
-    private val _screenEvents = MutableSharedFlow<ScreenEffect>()
-    val screenEvents = _screenEvents.asSharedFlow()
+    private val _screenEvents = Channel<ScreenEffect>(Channel.BUFFERED)
+    val screenEvents = _screenEvents.receiveAsFlow()
 
     val uiState: StateFlow<SettingsStateUi> =
         combine(
@@ -82,7 +82,7 @@ class SettingsViewModel @Inject constructor(
         viewModelScope.launch {
             when (action) {
                 is SettingsAction.Back -> {
-                    _screenEvents.emit(ScreenEffect.Navigation(Back))
+                    _screenEvents.send(ScreenEffect.Navigation(Back))
                 }
 
                 SettingsAction.ChangeLanguage -> {
@@ -92,7 +92,7 @@ class SettingsViewModel @Inject constructor(
                             input = Unit,
                             onResult = { },
                         )
-                    _screenEvents.emit(ScreenEffect.OpenBottomSheet(session))
+                    _screenEvents.send(ScreenEffect.OpenBottomSheet(session))
                 }
 
                 SettingsAction.ShowAllTeam -> {
@@ -104,7 +104,7 @@ class SettingsViewModel @Inject constructor(
                                 team?.also { onAction(SettingsAction.SelectTeam(it)) }
                             },
                         )
-                    _screenEvents.emit(ScreenEffect.OpenBottomSheet(session))
+                    _screenEvents.send(ScreenEffect.OpenBottomSheet(session))
                 }
 
                 is SettingsAction.SelectTeam -> {
@@ -122,11 +122,11 @@ class SettingsViewModel @Inject constructor(
                                 }
                             },
                         )
-                    _screenEvents.emit(ScreenEffect.OpenBottomSheet(session))
+                    _screenEvents.send(ScreenEffect.OpenBottomSheet(session))
                 }
 
                 SettingsAction.TeamSetting -> {
-                    _screenEvents.emit(ScreenEffect.Navigation(Screen(GlHelperScreen.EditCurrentTeam)))
+                    _screenEvents.send(ScreenEffect.Navigation(Screen(GlHelperScreen.EditCurrentTeam)))
                 }
 
                 SettingsAction.AddTeam -> {
@@ -159,7 +159,7 @@ class SettingsViewModel @Inject constructor(
                                 context.startActivity(chooser)
                             },
                             onFailure = { _ ->
-                                _screenEvents.emit(ScreenEffect.Message(R.string.error_toast))
+                                _screenEvents.send(ScreenEffect.Message(R.string.error_toast))
                             },
                         )
                 }
@@ -171,7 +171,7 @@ class SettingsViewModel @Inject constructor(
                 }
 
                 SettingsAction.CloseBottomSheet -> {
-                    _screenEvents.emit(ScreenEffect.CloseBottomSheet)
+                    _screenEvents.send(ScreenEffect.CloseBottomSheet)
                 }
             }
         }
@@ -186,12 +186,12 @@ class SettingsViewModel @Inject constructor(
                     onResult = { result ->
                         result?.let {
                             viewModelScope.launch {
-                                _screenEvents.emit(ScreenEffect.Message(R.string.team_deleted_toast))
+                                _screenEvents.send(ScreenEffect.Message(R.string.team_deleted_toast))
                             }
                         }
                     },
                 )
-            _screenEvents.emit(ScreenEffect.OpenDialog(session))
+            _screenEvents.send(ScreenEffect.OpenDialog(session))
         }
     }
 
@@ -210,12 +210,12 @@ class SettingsViewModel @Inject constructor(
                                     } else {
                                         R.string.error_toast
                                     }
-                                _screenEvents.emit(ScreenEffect.Message(message))
+                                _screenEvents.send(ScreenEffect.Message(message))
                             }
                         }
                     },
                 )
-            _screenEvents.emit(ScreenEffect.OpenDialog(session))
+            _screenEvents.send(ScreenEffect.OpenDialog(session))
         }
     }
 }

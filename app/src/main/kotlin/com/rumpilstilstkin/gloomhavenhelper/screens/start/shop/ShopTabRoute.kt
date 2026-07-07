@@ -13,7 +13,6 @@ fun ShopTabRoute(
     viewModel: ShopTabViewModel = hiltViewModel(),
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
-    val screenEffect by viewModel.screenEvents.collectAsStateWithLifecycle(initialValue = null)
 
     ShopTabScreen(
         state = uiState,
@@ -25,7 +24,7 @@ fun ShopTabRoute(
     )
 
     LaunchedScreenEffect(
-        effect = screenEffect,
+        effects = viewModel.screenEvents,
         navController = navController,
     )
 }

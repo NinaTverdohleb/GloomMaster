@@ -17,11 +17,11 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.toImmutableList
-import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -32,8 +32,8 @@ class GlobalAchievementsViewModel @Inject constructor(
     getAvailableAchievementsUseCase: GetAvailableGlobalAchievementsUseCase,
     private val addOrUpdateAchievementUseCase: AddOrUpdateAchievementUseCase,
 ) : ViewModel() {
-    private val _screenEvents = MutableSharedFlow<ScreenEffect>()
-    val screenEvents = _screenEvents.asSharedFlow()
+    private val _screenEvents = Channel<ScreenEffect>(Channel.BUFFERED)
+    val screenEvents = _screenEvents.receiveAsFlow()
 
     val uiState: StateFlow<AchievementsStateUi> =
         combine(
@@ -66,7 +66,7 @@ class GlobalAchievementsViewModel @Inject constructor(
                 }
 
                 is AchievementsAction.Back -> {
-                    _screenEvents.emit(ScreenEffect.Navigation(GlHelperEvent.Back))
+                    _screenEvents.send(ScreenEffect.Navigation(GlHelperEvent.Back))
                 }
 
                 is AchievementsAction.UpdateAchievement -> {
@@ -86,7 +86,7 @@ class GlobalAchievementsViewModel @Inject constructor(
                     input = available,
                     onResult = { },
                 )
-            _screenEvents.emit(ScreenEffect.OpenBottomSheet(session))
+            _screenEvents.send(ScreenEffect.OpenBottomSheet(session))
         }
     }
 
@@ -98,7 +98,7 @@ class GlobalAchievementsViewModel @Inject constructor(
                     input = achievement,
                     onResult = { },
                 )
-            _screenEvents.emit(ScreenEffect.OpenDialog(session))
+            _screenEvents.send(ScreenEffect.OpenDialog(session))
         }
     }
 }

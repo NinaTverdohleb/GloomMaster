@@ -17,7 +17,6 @@ fun AddGoodsForCharacterScreenRoute(
             factory.create(characterId)
         }
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
-    val screenEffect by viewModel.screenEvents.collectAsStateWithLifecycle(initialValue = null)
 
     AddGoodsScreen(
         uiState = uiState,
@@ -32,7 +31,7 @@ fun AddGoodsForCharacterScreenRoute(
     )
 
     LaunchedScreenEffect(
-        effect = screenEffect,
+        effects = viewModel.screenEvents,
         navController = navController,
     )
 }

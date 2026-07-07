@@ -14,12 +14,12 @@ import com.rumpilstilstkin.gloomhavenhelper.ui.goods.AddGoodsViewState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.async
-import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
@@ -30,8 +30,8 @@ class AddGoodsForTeamViewModel @Inject constructor(
     getGoodsUseCase: GetAvaliableGoodsForTeamUseCase,
     private val addGoodToTeamUseCase: AddGoodToTeamUseCase,
 ) : ViewModel() {
-    private val _screenEvents = MutableSharedFlow<ScreenEffect>()
-    val screenEvents = _screenEvents.asSharedFlow()
+    private val _screenEvents = Channel<ScreenEffect>(Channel.BUFFERED)
+    val screenEvents = _screenEvents.receiveAsFlow()
 
     private val logicState = MutableStateFlow(AddGoodsForTeamLogicState())
 
@@ -85,7 +85,7 @@ class AddGoodsForTeamViewModel @Inject constructor(
                         val goodIds = logicState.value.selectedGoods.map { it.goodId }
                         addGoodToTeamUseCase(goodIds)
                     }.await()
-                    _screenEvents.emit(ScreenEffect.Navigation(GlHelperEvent.Back))
+                    _screenEvents.send(ScreenEffect.Navigation(GlHelperEvent.Back))
                 }
 
                 is AddGoodsForTeamAction.SelectFilter -> {
@@ -99,7 +99,7 @@ class AddGoodsForTeamViewModel @Inject constructor(
                 }
 
                 AddGoodsForTeamAction.Back -> {
-                    _screenEvents.emit(ScreenEffect.Navigation(GlHelperEvent.Back))
+                    _screenEvents.send(ScreenEffect.Navigation(GlHelperEvent.Back))
                 }
 
                 is AddGoodsForTeamAction.OpenGood -> {
@@ -109,7 +109,7 @@ class AddGoodsForTeamViewModel @Inject constructor(
                             input = action.good,
                             onResult = { },
                         )
-                    _screenEvents.emit(ScreenEffect.OpenDialog(session))
+                    _screenEvents.send(ScreenEffect.OpenDialog(session))
                 }
             }
         }

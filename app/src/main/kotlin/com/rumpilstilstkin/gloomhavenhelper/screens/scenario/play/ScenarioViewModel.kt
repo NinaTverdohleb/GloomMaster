@@ -45,17 +45,17 @@ import jakarta.inject.Inject
 import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.FlowPreview
+import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
@@ -77,8 +77,8 @@ class ScenarioViewModel @Inject constructor(
     private val updateUnitLifeUseCase: UpdateUnitLifeUseCase,
 ) : ViewModel(),
     DefaultLifecycleObserver {
-    private val _screenEvents = MutableSharedFlow<ScreenEffect>()
-    val screenEvents = _screenEvents.asSharedFlow()
+    private val _screenEvents = Channel<ScreenEffect>(Channel.BUFFERED)
+    val screenEvents = _screenEvents.receiveAsFlow()
 
     private val logicState = MutableStateFlow<ScenarioBattleState?>(null)
     val uiState: StateFlow<ScenarioStateUi> =
@@ -245,7 +245,7 @@ class ScenarioViewModel @Inject constructor(
                     }
                 },
             )
-        _screenEvents.emit(ScreenEffect.OpenDialog(session))
+        _screenEvents.send(ScreenEffect.OpenDialog(session))
     }
 
     private suspend fun openAddMonsterForScenarioDialog() {
@@ -264,7 +264,7 @@ class ScenarioViewModel @Inject constructor(
                     }
                 },
             )
-        _screenEvents.emit(ScreenEffect.OpenDialog(session))
+        _screenEvents.send(ScreenEffect.OpenDialog(session))
     }
 
     private suspend fun openCompleteDialog() {
@@ -280,12 +280,12 @@ class ScenarioViewModel @Inject constructor(
                 onResult = { result ->
                     result?.let {
                         viewModelScope.launch {
-                            _screenEvents.emit(ScreenEffect.Navigation(GlHelperEvent.Back))
+                            _screenEvents.send(ScreenEffect.Navigation(GlHelperEvent.Back))
                         }
                     }
                 },
             )
-        _screenEvents.emit(ScreenEffect.OpenDialog(session))
+        _screenEvents.send(ScreenEffect.OpenDialog(session))
     }
 
     private suspend fun openStatsDialog() {
@@ -305,7 +305,7 @@ class ScenarioViewModel @Inject constructor(
                     ),
                 onResult = { },
             )
-        _screenEvents.emit(ScreenEffect.OpenDialog(session))
+        _screenEvents.send(ScreenEffect.OpenDialog(session))
     }
 
     private suspend fun openAddMonsterDialog(monsters: List<MonsterName>) {
@@ -323,7 +323,7 @@ class ScenarioViewModel @Inject constructor(
                     }
                 },
             )
-        _screenEvents.emit(ScreenEffect.OpenBottomSheet(session))
+        _screenEvents.send(ScreenEffect.OpenBottomSheet(session))
     }
 
     private fun ScenarioBattleState.getUnit(
@@ -355,7 +355,7 @@ class ScenarioViewModel @Inject constructor(
                     }
                 },
             )
-        _screenEvents.emit(ScreenEffect.OpenDialog(session))
+        _screenEvents.send(ScreenEffect.OpenDialog(session))
     }
 
     private suspend fun openDeleteUnitDialog(
@@ -390,7 +390,7 @@ class ScenarioViewModel @Inject constructor(
                     }
                 },
             )
-        _screenEvents.emit(ScreenEffect.OpenDialog(session))
+        _screenEvents.send(ScreenEffect.OpenDialog(session))
     }
 
     private suspend fun updateState(update: suspend (ScenarioBattleState) -> ScenarioBattleState) {
@@ -430,6 +430,6 @@ class ScenarioViewModel @Inject constructor(
                     }
                 },
             )
-        _screenEvents.emit(ScreenEffect.OpenDialog(session))
+        _screenEvents.send(ScreenEffect.OpenDialog(session))
     }
 }

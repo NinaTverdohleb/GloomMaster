@@ -17,7 +17,6 @@ fun TeamAchievementsRoute(
     viewModel: TeamAchievementsViewModel = hiltViewModel(),
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
-    val screenEffect by viewModel.screenEvents.collectAsStateWithLifecycle(initialValue = null)
 
     AchievementsScreen(
         title = stringResource(R.string.team_achievements),
@@ -31,7 +30,7 @@ fun TeamAchievementsRoute(
     )
 
     LaunchedScreenEffect(
-        effect = screenEffect,
+        effects = viewModel.screenEvents,
         navController = navController,
     )
 }

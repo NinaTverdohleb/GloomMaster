@@ -17,7 +17,6 @@ fun CharacterDetailsRoute(
             factory.create(characterId)
         }
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
-    val screenEffect by viewModel.screenEvents.collectAsStateWithLifecycle(initialValue = null)
     if (uiState is CharacterDetailsStateUi.Data) {
         CharacterDetailsScreen(
             state = uiState as CharacterDetailsStateUi.Data,
@@ -28,7 +27,7 @@ fun CharacterDetailsRoute(
     }
 
     LaunchedScreenEffect(
-        effect = screenEffect,
+        effects = viewModel.screenEvents,
         navController = navController,
     )
 }

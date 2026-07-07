@@ -21,8 +21,6 @@ fun CharacterGeneralTabRoute(
         }
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
-    val screenEffect by viewModel.screenEvents.collectAsStateWithLifecycle(initialValue = null)
-
     CharacterGeneralTab(
         state = uiState,
         modifier = modifier,
@@ -45,7 +43,7 @@ fun CharacterGeneralTabRoute(
     )
 
     LaunchedScreenEffect(
-        effect = screenEffect,
+        effects = viewModel.screenEvents,
         navController = navController,
     )
 }

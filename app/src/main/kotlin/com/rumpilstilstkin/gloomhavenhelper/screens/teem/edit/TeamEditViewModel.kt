@@ -11,11 +11,11 @@ import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEvent
 import com.rumpilstilstkin.gloomhavenhelper.screens.core.ScreenEffect
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.collections.immutable.toImmutableList
-import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -27,8 +27,8 @@ class TeamEditViewModel @Inject constructor(
     private val updateNameForCurrentTeamUseCase: UpdateNameForCurrentTeamUseCase,
     private val updateDifficultyLevelUseCase: UpdateDifficultyLevelUseCase,
 ) : ViewModel() {
-    private val _screenEvents = MutableSharedFlow<ScreenEffect>()
-    val screenEvents = _screenEvents.asSharedFlow()
+    private val _screenEvents = Channel<ScreenEffect>(Channel.BUFFERED)
+    val screenEvents = _screenEvents.receiveAsFlow()
 
     val uiState: StateFlow<TeamEditStateUi> =
         getCurrentTeamWithTeamsCountUseCase()
@@ -69,7 +69,7 @@ class TeamEditViewModel @Inject constructor(
                 }
 
                 is TeamEditAction.Back -> {
-                    _screenEvents.emit(ScreenEffect.Navigation(GlHelperEvent.Back))
+                    _screenEvents.send(ScreenEffect.Navigation(GlHelperEvent.Back))
                 }
 
                 is TeamEditAction.ChangeDifficultyLevel -> {

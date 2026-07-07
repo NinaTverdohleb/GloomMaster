@@ -21,12 +21,12 @@ import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.collections.immutable.toImmutableList
-import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
@@ -41,8 +41,8 @@ class AddGoodsForCharacterScreenViewModel @AssistedInject constructor(
     private val getDiscountByReputationUseCase: GetDiscountByReputationUseCase,
     private val getTeamUseCase: GetTeamInfoUseCase,
 ) : ViewModel() {
-    private val _screenEvents = MutableSharedFlow<ScreenEffect>()
-    val screenEvents = _screenEvents.asSharedFlow()
+    private val _screenEvents = Channel<ScreenEffect>(Channel.BUFFERED)
+    val screenEvents = _screenEvents.receiveAsFlow()
 
     private val logicState = MutableStateFlow(AddGoodsForCharacterScreenLogicState())
 
@@ -112,7 +112,7 @@ class AddGoodsForCharacterScreenViewModel @AssistedInject constructor(
                         goodIds = logicState.value.selectedGoods.map { it.goodId },
                         characterId = id,
                     )
-                    _screenEvents.emit(Navigation(GlHelperEvent.Back))
+                    _screenEvents.send(Navigation(GlHelperEvent.Back))
                 }
 
                 is AddGoodsForCharacterScreenActions.BuySelectedGoods -> {
@@ -122,12 +122,12 @@ class AddGoodsForCharacterScreenViewModel @AssistedInject constructor(
                         cost = cost,
                         characterId = id,
                     ).onSuccess {
-                        _screenEvents.emit(Navigation(GlHelperEvent.Back))
+                        _screenEvents.send(Navigation(GlHelperEvent.Back))
                     }
                 }
 
                 is AddGoodsForCharacterScreenActions.Close -> {
-                    _screenEvents.emit(Navigation(GlHelperEvent.Back))
+                    _screenEvents.send(Navigation(GlHelperEvent.Back))
                 }
 
                 is AddGoodsForCharacterScreenActions.SelectFilter -> {
@@ -147,7 +147,7 @@ class AddGoodsForCharacterScreenViewModel @AssistedInject constructor(
                             input = action.good,
                             onResult = { },
                         )
-                    _screenEvents.emit(ScreenEffect.OpenDialog(session))
+                    _screenEvents.send(ScreenEffect.OpenDialog(session))
                 }
             }
         }

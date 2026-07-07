@@ -12,12 +12,12 @@ import com.rumpilstilstkin.gloomhavenhelper.screens.models.toUi
 import com.rumpilstilstkin.gloomhavenhelper.screens.scenario.dialog.add.AddScenarioDialogContract
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.collections.immutable.toImmutableList
-import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
@@ -27,8 +27,8 @@ import javax.inject.Inject
 class AddScenarioForTeamViewModel @Inject constructor(
     getAvailableScenariosUseCase: GetAvailableScenariosForTeamUseCase,
 ) : ViewModel() {
-    private val _screenEvents = MutableSharedFlow<ScreenEffect>()
-    val screenEvents = _screenEvents.asSharedFlow()
+    private val _screenEvents = Channel<ScreenEffect>(Channel.BUFFERED)
+    val screenEvents = _screenEvents.receiveAsFlow()
 
     private val logicState = MutableStateFlow(AddScenarioForTeamLogicState())
 
@@ -75,11 +75,11 @@ class AddScenarioForTeamViewModel @Inject constructor(
                                 ScreenEffect.Message(R.string.scenario_added)
                             },
                         )
-                    _screenEvents.emit(ScreenEffect.OpenBottomSheet(session))
+                    _screenEvents.send(ScreenEffect.OpenBottomSheet(session))
                 }
 
                 is AddScenarioForTeamAction.Back -> {
-                    _screenEvents.emit(ScreenEffect.Navigation(Back))
+                    _screenEvents.send(ScreenEffect.Navigation(Back))
                 }
             }
         }

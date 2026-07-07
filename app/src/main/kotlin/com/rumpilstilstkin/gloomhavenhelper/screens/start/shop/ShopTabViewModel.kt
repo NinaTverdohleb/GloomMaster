@@ -12,12 +12,12 @@ import com.rumpilstilstkin.gloomhavenhelper.screens.goods.GoodDetailsDialogContr
 import com.rumpilstilstkin.gloomhavenhelper.screens.models.toUi
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.collections.immutable.toImmutableList
-import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
@@ -28,8 +28,8 @@ class ShopTabViewModel @Inject constructor(
     getGoodsForCurrentTeamUseCase: GetGoodsForCurrentTeamUseCase,
     private val removeGoodFromTeamUseCase: RemoveGoodFromCurrentTeamUseCase,
 ) : ViewModel() {
-    private val _screenEvents = MutableSharedFlow<ScreenEffect>()
-    val screenEvents = _screenEvents.asSharedFlow()
+    private val _screenEvents = Channel<ScreenEffect>(Channel.BUFFERED)
+    val screenEvents = _screenEvents.receiveAsFlow()
 
     private val logicState = MutableStateFlow(ShopTabStateLogic())
     val uiState: StateFlow<ShopTabStateUi> =
@@ -63,7 +63,7 @@ class ShopTabViewModel @Inject constructor(
             when (action) {
                 is ShopTabAction.AddGood -> {
                     viewModelScope.launch {
-                        _screenEvents.emit(ScreenEffect.Navigation(Screen(GlHelperScreen.AddGoodsForTeam)))
+                        _screenEvents.send(ScreenEffect.Navigation(Screen(GlHelperScreen.AddGoodsForTeam)))
                     }
                 }
 
@@ -94,7 +94,7 @@ class ShopTabViewModel @Inject constructor(
                             input = action.good,
                             onResult = { },
                         )
-                    _screenEvents.emit(ScreenEffect.OpenDialog(session))
+                    _screenEvents.send(ScreenEffect.OpenDialog(session))
                 }
             }
         }

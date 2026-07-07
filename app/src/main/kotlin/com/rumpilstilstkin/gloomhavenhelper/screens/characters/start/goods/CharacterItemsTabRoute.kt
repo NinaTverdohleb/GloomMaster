@@ -17,7 +17,6 @@ fun CharacterItemsTabRoute(
             factory.create(characterId)
         }
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
-    val screenEffect by viewModel.screenEvents.collectAsStateWithLifecycle(initialValue = null)
 
     CharacterItemsTabScreen(
         goods = uiState,
@@ -36,7 +35,7 @@ fun CharacterItemsTabRoute(
     )
 
     LaunchedScreenEffect(
-        effect = screenEffect,
+        effects = viewModel.screenEvents,
         navController = navController,
     )
 }

@@ -21,11 +21,11 @@ import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
@@ -39,8 +39,8 @@ class CharacterGeneralTabViewModel @AssistedInject constructor(
     private val checkedChangeUseCase: MarksCheckedChangeUseCase,
     private val questTaskUpdateUseCase: QuestTaskUpdateUseCase,
 ) : ViewModel() {
-    private val _screenEvents = MutableSharedFlow<ScreenEffect>()
-    val screenEvents = _screenEvents.asSharedFlow()
+    private val _screenEvents = Channel<ScreenEffect>(Channel.BUFFERED)
+    val screenEvents = _screenEvents.receiveAsFlow()
 
     val uiState: StateFlow<CharacterGeneralTabState> =
         getCharacterUseCase(id)
@@ -85,7 +85,7 @@ class CharacterGeneralTabViewModel @AssistedInject constructor(
                 }
 
                 GeneralTabActions.ChoosePersonalQuest -> {
-                    _screenEvents.emit(
+                    _screenEvents.send(
                         ScreenEffect.Navigation(
                             (Screen(SearchPersonalQuest(id))),
                         ),
@@ -140,7 +140,7 @@ class CharacterGeneralTabViewModel @AssistedInject constructor(
                     input = characterId,
                     onResult = { },
                 )
-            _screenEvents.emit(ScreenEffect.OpenBottomSheet(session))
+            _screenEvents.send(ScreenEffect.OpenBottomSheet(session))
         }
     }
 
@@ -162,7 +162,7 @@ class CharacterGeneralTabViewModel @AssistedInject constructor(
                         onAction(GeneralTabActions.ChoosePersonalQuest)
                     },
                 )
-            _screenEvents.emit(ScreenEffect.OpenDialog(session))
+            _screenEvents.send(ScreenEffect.OpenDialog(session))
         }
     }
 }

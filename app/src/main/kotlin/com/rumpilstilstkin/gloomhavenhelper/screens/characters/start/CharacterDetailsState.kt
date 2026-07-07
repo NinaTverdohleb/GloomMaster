@@ -11,6 +11,9 @@ sealed interface CharacterDetailsAction {
 
 @Immutable
 sealed interface CharacterDetailsStateUi {
-    data class Data(val character: CharacterUI): CharacterDetailsStateUi
-    data object Loading: CharacterDetailsStateUi
+    data class Data(
+        val character: CharacterUI,
+    ) : CharacterDetailsStateUi
+
+    data object Loading : CharacterDetailsStateUi
 }

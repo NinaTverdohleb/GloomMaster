@@ -13,7 +13,6 @@ fun ScenariosTabRoute(
     viewModel: ScenariosTabViewModel = hiltViewModel(),
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
-    val screenEffect by viewModel.screenEvents.collectAsStateWithLifecycle(initialValue = null)
 
     ScenariosTabScreen(
         state = uiState,
@@ -23,7 +22,7 @@ fun ScenariosTabRoute(
     )
 
     LaunchedScreenEffect(
-        effect = screenEffect,
+        effects = viewModel.screenEvents,
         navController = navController,
     )
 }

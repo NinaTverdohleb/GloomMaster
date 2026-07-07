@@ -19,7 +19,6 @@ fun ScenarioRoute(
     widthSizeClass: WindowWidthSizeClass,
     viewModel: ScenarioViewModel = hiltViewModel(),
 ) {
-    val screenEffect by viewModel.screenEvents.collectAsStateWithLifecycle(initialValue = null)
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
     val lifecycleOwner = LocalLifecycleOwner.current
@@ -100,7 +99,7 @@ fun ScenarioRoute(
     )
 
     LaunchedScreenEffect(
-        effect = screenEffect,
+        effects = viewModel.screenEvents,
         navController = navController,
     )
 }

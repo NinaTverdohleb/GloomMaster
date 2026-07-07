@@ -13,7 +13,6 @@ fun TeamEditRoute(
     viewModel: TeamEditViewModel = hiltViewModel(),
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
-    val screenEffect by viewModel.screenEvents.collectAsStateWithLifecycle(initialValue = null)
 
     TeamEditScreen(
         uiState = uiState,
@@ -24,7 +23,7 @@ fun TeamEditRoute(
     )
 
     LaunchedScreenEffect(
-        effect = screenEffect,
+        effects = viewModel.screenEvents,
         navController = navController,
     )
 }

@@ -14,12 +14,12 @@ import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
@@ -28,8 +28,8 @@ class CharacterDetailsViewModel @AssistedInject constructor(
     @Assisted val id: Int,
     getCharacterUseCase: GetCharacterGeneralInfoFlowUseCase,
 ) : ViewModel() {
-    private val _screenEvents = MutableSharedFlow<ScreenEffect>()
-    val screenEvents = _screenEvents.asSharedFlow()
+    private val _screenEvents = Channel<ScreenEffect>(Channel.BUFFERED)
+    val screenEvents = _screenEvents.receiveAsFlow()
 
     val uiState: StateFlow<CharacterDetailsStateUi> =
         getCharacterUseCase(id)
@@ -53,7 +53,7 @@ class CharacterDetailsViewModel @AssistedInject constructor(
         viewModelScope.launch {
             when (action) {
                 is CharacterDetailsAction.Back -> {
-                    _screenEvents.emit(ScreenEffect.Navigation((GlHelperEvent.Back)))
+                    _screenEvents.send(ScreenEffect.Navigation((GlHelperEvent.Back)))
                 }
 
                 is CharacterDetailsAction.OpenNameDialog -> {
@@ -71,7 +71,7 @@ class CharacterDetailsViewModel @AssistedInject constructor(
                     input = id,
                     onResult = {},
                 )
-            _screenEvents.emit(ScreenEffect.OpenDialog(session))
+            _screenEvents.send(ScreenEffect.OpenDialog(session))
         }
     }
 }

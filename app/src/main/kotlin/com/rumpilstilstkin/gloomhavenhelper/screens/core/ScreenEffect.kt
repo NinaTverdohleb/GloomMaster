@@ -13,9 +13,12 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.HasDefaultViewModelProviderFactory
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelStore
 import androidx.lifecycle.ViewModelStoreOwner
+import androidx.lifecycle.compose.LocalLifecycleOwner
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.lifecycle.viewmodel.CreationExtras
 import androidx.lifecycle.viewmodel.compose.LocalViewModelStoreOwner
 import androidx.navigation.NavHostController
@@ -23,6 +26,7 @@ import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.dialogs.Gloo
 import com.rumpilstilstkin.gloomhavenhelper.designsystem.components.dialogs.GloomBasicModalBottomSheet
 import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEvent
 import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEventHelper
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 
 sealed interface ScreenEffect {
@@ -82,7 +86,7 @@ fun <Input, Output> createOverlaySession(
 @Composable
 fun LaunchedScreenEffect(
     navController: NavHostController,
-    effect: ScreenEffect?,
+    effects: Flow<ScreenEffect>,
 ) {
     var currentBottomSheetSession by remember { mutableStateOf<OverlaySession?>(null) }
     var currentDialogSession by remember { mutableStateOf<OverlaySession?>(null) }
@@ -90,37 +94,40 @@ fun LaunchedScreenEffect(
         rememberModalBottomSheetState(
             skipPartiallyExpanded = true,
         )
+    val lifecycleOwner = LocalLifecycleOwner.current
 
-    LaunchedEffect(effect) {
-        effect?.let {
-            when (it) {
-                is ScreenEffect.OpenBottomSheet -> {
-                    currentBottomSheetSession = it.session
-                }
-
-                ScreenEffect.CloseBottomSheet -> {
-                    launch { sheetState.hide() }.invokeOnCompletion {
-                        currentBottomSheetSession = null
+    LaunchedEffect(effects, lifecycleOwner) {
+        lifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+            effects.collect { effect ->
+                when (effect) {
+                    is ScreenEffect.OpenBottomSheet -> {
+                        currentBottomSheetSession = effect.session
                     }
-                }
 
-                is ScreenEffect.Navigation -> {
-                    GlHelperEventHelper.event(
-                        event = it.event,
-                        navController = navController,
-                    )
-                }
+                    ScreenEffect.CloseBottomSheet -> {
+                        launch { sheetState.hide() }.invokeOnCompletion {
+                            currentBottomSheetSession = null
+                        }
+                    }
 
-                is ScreenEffect.Message -> {
-                    Toast.makeText(navController.context, it.resId, Toast.LENGTH_SHORT).show()
-                }
+                    is ScreenEffect.Navigation -> {
+                        GlHelperEventHelper.event(
+                            event = effect.event,
+                            navController = navController,
+                        )
+                    }
 
-                ScreenEffect.CloseDialog -> {
-                    currentDialogSession = null
-                }
+                    is ScreenEffect.Message -> {
+                        Toast.makeText(navController.context, effect.resId, Toast.LENGTH_SHORT).show()
+                    }
 
-                is ScreenEffect.OpenDialog -> {
-                    currentDialogSession = it.session
+                    ScreenEffect.CloseDialog -> {
+                        currentDialogSession = null
+                    }
+
+                    is ScreenEffect.OpenDialog -> {
+                        currentDialogSession = effect.session
+                    }
                 }
             }
         }

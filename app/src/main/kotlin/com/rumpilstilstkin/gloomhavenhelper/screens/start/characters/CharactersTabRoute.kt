@@ -13,7 +13,6 @@ fun CharactersTabRoute(
     viewModel: CharactersTabViewModel = hiltViewModel(),
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
-    val screenEffect by viewModel.screenEvents.collectAsStateWithLifecycle(initialValue = null)
 
     CharactersTabScreen(
         state = uiState,
@@ -24,7 +23,7 @@ fun CharactersTabRoute(
     )
 
     LaunchedScreenEffect(
-        effect = screenEffect,
+        effects = viewModel.screenEvents,
         navController = navController,
     )
 }

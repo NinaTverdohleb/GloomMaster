@@ -10,11 +10,11 @@ import com.rumpilstilstkin.gloomhavenhelper.screens.core.ScreenEffect
 import com.rumpilstilstkin.gloomhavenhelper.screens.core.createOverlaySession
 import com.rumpilstilstkin.gloomhavenhelper.screens.teem.create.AddTeamDialogContract
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -23,8 +23,8 @@ import javax.inject.Inject
 class StartScreenViewModel @Inject constructor(
     getCurrentTeamUseCase: GetCurrentTeamUseCase,
 ) : ViewModel() {
-    private val _screenEvents = MutableSharedFlow<ScreenEffect>()
-    val screenEvents = _screenEvents.asSharedFlow()
+    private val _screenEvents = Channel<ScreenEffect>(Channel.BUFFERED)
+    val screenEvents = _screenEvents.receiveAsFlow()
 
     val uiState: StateFlow<StartScreenState> =
         getCurrentTeamUseCase()
@@ -51,7 +51,7 @@ class StartScreenViewModel @Inject constructor(
                 }
 
                 StartScreenAction.Settings -> {
-                    _screenEvents.emit(
+                    _screenEvents.send(
                         ScreenEffect.Navigation(
                             Screen(
                                 GlHelperScreen.Settings,
@@ -78,12 +78,12 @@ class StartScreenViewModel @Inject constructor(
                                     } else {
                                         R.string.error_toast
                                     }
-                                _screenEvents.emit(ScreenEffect.Message(message))
+                                _screenEvents.send(ScreenEffect.Message(message))
                             }
                         }
                     },
                 )
-            _screenEvents.emit(ScreenEffect.OpenDialog(session))
+            _screenEvents.send(ScreenEffect.OpenDialog(session))
         }
     }
 }

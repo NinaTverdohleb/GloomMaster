@@ -17,7 +17,6 @@ fun CharacterPerksTabRoute(
             factory.create(characterId)
         }
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
-    val screenEffect by viewModel.screenEvents.collectAsStateWithLifecycle(initialValue = null)
 
     CharacterPerkTabScreen(
         uiState = uiState,
@@ -30,7 +29,7 @@ fun CharacterPerksTabRoute(
     )
 
     LaunchedScreenEffect(
-        effect = screenEffect,
+        effects = viewModel.screenEvents,
         navController = navController,
     )
 }

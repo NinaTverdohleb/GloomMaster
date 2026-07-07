@@ -7,8 +7,8 @@ import com.rumpilstilstkin.gloomhavenhelper.navigation.GlHelperScreen
 import com.rumpilstilstkin.gloomhavenhelper.navigation.events.GlHelperEvent.Replace
 import com.rumpilstilstkin.gloomhavenhelper.screens.core.ScreenEffect
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.asSharedFlow
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -16,8 +16,8 @@ import javax.inject.Inject
 class OnboardingViewModel @Inject constructor(
     private val onboardingRepository: OnboardingRepository,
 ) : ViewModel() {
-    private val _screenEvents = MutableSharedFlow<ScreenEffect>()
-    val screenEvents = _screenEvents.asSharedFlow()
+    private val _screenEvents = Channel<ScreenEffect>(Channel.BUFFERED)
+    val screenEvents = _screenEvents.receiveAsFlow()
 
     fun onAction(action: OnboardingAction) {
         when (action) {
@@ -28,7 +28,7 @@ class OnboardingViewModel @Inject constructor(
     private fun finish() {
         onboardingRepository.markOnboardingShown()
         viewModelScope.launch {
-            _screenEvents.emit(
+            _screenEvents.send(
                 ScreenEffect.Navigation(
                     Replace(
                         screen = GlHelperScreen.Start,

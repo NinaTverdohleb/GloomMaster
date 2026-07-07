@@ -17,6 +17,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
@@ -96,33 +97,32 @@ fun SpinningCoin(
         onFinished()
     }
 
-    val a = angle.value
-    val last = numbers.lastIndex
-
     fun idxFor(
         base: Float,
         faceParity: Int,
     ): Int {
         val turns = floor((base + 90f) / 360f).toInt()
-        return (turns * 2 + faceParity).coerceIn(0, last)
+        return (turns * 2 + faceParity).coerceIn(0, numbers.lastIndex)
     }
 
-    val numberA = numbers[idxFor(a, 0)]
-    val numberB = numbers[idxFor(a + 180f, 1)]
+    // derivedStateOf + лямбда rotation: композиция обновляется только при смене цифры
+    // на грани, само вращение идёт в фазе draw через graphicsLayer.
+    val numberA by remember { derivedStateOf { numbers[idxFor(angle.value, 0)] } }
+    val numberB by remember { derivedStateOf { numbers[idxFor(angle.value + 180f, 1)] } }
 
     Box(
         modifier = Modifier.size(size),
         contentAlignment = Alignment.Center,
     ) {
-        DieFace(number = numberA, rotation = a, size = size)
-        DieFace(number = numberB, rotation = a, size = size)
+        DieFace(number = numberA, rotation = { angle.value }, size = size)
+        DieFace(number = numberB, rotation = { angle.value }, size = size)
     }
 }
 
 @Composable
 private fun DieFace(
     number: Int,
-    rotation: Float,
+    rotation: () -> Float,
     size: Dp,
 ) {
     val density = LocalDensity.current
@@ -131,7 +131,7 @@ private fun DieFace(
             Modifier
                 .size(size)
                 .graphicsLayer {
-                    this.rotationY = rotation
+                    rotationY = rotation()
                     cameraDistance = 14f * density.density
                 }.background(
                     color = MaterialTheme.colorScheme.surfaceBright,

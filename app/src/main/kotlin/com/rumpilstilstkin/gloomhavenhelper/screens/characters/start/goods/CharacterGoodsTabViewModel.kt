@@ -21,11 +21,11 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.toImmutableList
-import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
@@ -34,8 +34,8 @@ class CharacterGoodsTabViewModel @AssistedInject constructor(
     @Assisted val id: Int,
     getCharacterGoodsUseCase: GetCharacterGoodsUseCase,
 ) : ViewModel() {
-    private val _screenEvents = MutableSharedFlow<ScreenEffect>()
-    val screenEvents = _screenEvents.asSharedFlow()
+    private val _screenEvents = Channel<ScreenEffect>(Channel.BUFFERED)
+    val screenEvents = _screenEvents.receiveAsFlow()
 
     val uiState: StateFlow<ImmutableList<GoodUi>> =
         getCharacterGoodsUseCase(id)
@@ -65,7 +65,7 @@ class CharacterGoodsTabViewModel @AssistedInject constructor(
                                 ),
                             onResult = { },
                         )
-                    _screenEvents.emit(ScreenEffect.OpenDialog(session))
+                    _screenEvents.send(ScreenEffect.OpenDialog(session))
                 }
 
                 is CharacterItemsTabActions.SellGood -> {
@@ -81,7 +81,7 @@ class CharacterGoodsTabViewModel @AssistedInject constructor(
                                 ),
                             onResult = { },
                         )
-                    _screenEvents.emit(ScreenEffect.OpenDialog(session))
+                    _screenEvents.send(ScreenEffect.OpenDialog(session))
                 }
 
                 is CharacterItemsTabActions.GoodDetails -> {
@@ -91,11 +91,11 @@ class CharacterGoodsTabViewModel @AssistedInject constructor(
                             input = action.good,
                             onResult = { },
                         )
-                    _screenEvents.emit(ScreenEffect.OpenDialog(session))
+                    _screenEvents.send(ScreenEffect.OpenDialog(session))
                 }
 
                 CharacterItemsTabActions.AddGood -> {
-                    _screenEvents.emit(
+                    _screenEvents.send(
                         ScreenEffect.Navigation(
                             GlHelperEvent.Screen(
                                 GlHelperScreen.AddGoodsForCharacter(

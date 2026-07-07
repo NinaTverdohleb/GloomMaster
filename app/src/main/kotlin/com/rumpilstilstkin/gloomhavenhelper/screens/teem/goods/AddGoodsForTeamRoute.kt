@@ -13,7 +13,6 @@ fun AddGoodsForTeamScreenRoute(
     viewModel: AddGoodsForTeamViewModel = hiltViewModel(),
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
-    val screenEffect by viewModel.screenEvents.collectAsStateWithLifecycle(initialValue = null)
 
     AddGoodsForTeamScreen(
         uiState = uiState,
@@ -29,7 +28,7 @@ fun AddGoodsForTeamScreenRoute(
     )
 
     LaunchedScreenEffect(
-        effect = screenEffect,
+        effects = viewModel.screenEvents,
         navController = navController,
     )
 }

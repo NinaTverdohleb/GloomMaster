@@ -18,7 +18,6 @@ fun StartScreenRoute(
     viewModel: StartScreenViewModel = hiltViewModel(),
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
-    val screenEffect by viewModel.screenEvents.collectAsStateWithLifecycle(initialValue = null)
 
     ReportDrawnWhen { uiState !is StartScreenState.Loading }
 
@@ -37,7 +36,7 @@ fun StartScreenRoute(
     )
 
     LaunchedScreenEffect(
-        effect = screenEffect,
+        effects = viewModel.screenEvents,
         navController = navController,
     )
 }

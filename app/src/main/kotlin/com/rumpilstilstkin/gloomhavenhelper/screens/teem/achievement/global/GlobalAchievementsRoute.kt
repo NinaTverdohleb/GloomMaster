@@ -17,7 +17,6 @@ fun GlobalAchievementsRoute(
     viewModel: GlobalAchievementsViewModel = hiltViewModel(),
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
-    val screenEffect by viewModel.screenEvents.collectAsStateWithLifecycle(initialValue = null)
 
     AchievementsScreen(
         title = stringResource(R.string.global_achievements),
@@ -31,7 +30,7 @@ fun GlobalAchievementsRoute(
     )
 
     LaunchedScreenEffect(
-        effect = screenEffect,
+        effects = viewModel.screenEvents,
         navController = navController,
     )
 }

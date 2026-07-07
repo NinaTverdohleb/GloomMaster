@@ -199,7 +199,7 @@ fun ScenarioScreenContent(
     if (monsters.isEmpty()) {
         EmptyView(
             modifier =
-                modifier
+                Modifier
                     .fillMaxWidth()
                     .padding(horizontal = 16.dp),
             icon = EmptyIcon.Enemy,
@@ -222,6 +222,7 @@ fun ScenarioScreenContent(
             state = pagerState,
             contentPadding = PaddingValues(horizontal = 16.dp),
             pageSpacing = 16.dp,
+            key = { page -> monsters[page].slug },
         ) { page ->
             val scrollState = rememberScrollState()
             LaunchedEffect(round) {
