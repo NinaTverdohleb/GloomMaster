@@ -18,10 +18,6 @@ data class OnboardingPage(
     @param:StringRes val bodyRes: Int,
 )
 
-/**
- * Default onboarding content — six placeholder slides. Images and copy are meant
- * to be replaced later; this keeps the flow buildable and runnable in the meantime.
- */
 val defaultOnboardingPages: ImmutableList<OnboardingPage> =
     persistentListOf(
         OnboardingPage(
