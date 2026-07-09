@@ -1,0 +1,42 @@
+package com.rumpilstilstkin.gloommaster.screens.start
+
+import androidx.activity.compose.ReportDrawnWhen
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.navigation.NavHostController
+import com.rumpilstilstkin.gloommaster.screens.core.LaunchedScreenEffect
+import com.rumpilstilstkin.gloommaster.screens.start.characters.CharactersTabRoute
+import com.rumpilstilstkin.gloommaster.screens.start.scenarios.ScenariosTabRoute
+import com.rumpilstilstkin.gloommaster.screens.start.shop.ShopTabRoute
+import com.rumpilstilstkin.gloommaster.screens.start.team.TeamTabRoute
+
+@Composable
+fun StartScreenRoute(
+    navController: NavHostController,
+    viewModel: StartScreenViewModel = hiltViewModel(),
+) {
+    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+
+    ReportDrawnWhen { uiState !is StartScreenState.Loading }
+
+    StartScreen(
+        state = uiState,
+        settings = { viewModel.onAction(StartScreenAction.Settings) },
+        selectTab = { selectedTab ->
+            when (selectedTab) {
+                StartScreenTab.TEAM -> TeamTabRoute(navController)
+                StartScreenTab.CHARACTERS -> CharactersTabRoute(navController)
+                StartScreenTab.SCENARIOS -> ScenariosTabRoute(navController)
+                StartScreenTab.SHOP -> ShopTabRoute(navController)
+            }
+        },
+        addTeam = { viewModel.onAction(StartScreenAction.AddTeam) },
+    )
+
+    LaunchedScreenEffect(
+        effects = viewModel.screenEvents,
+        navController = navController,
+    )
+}

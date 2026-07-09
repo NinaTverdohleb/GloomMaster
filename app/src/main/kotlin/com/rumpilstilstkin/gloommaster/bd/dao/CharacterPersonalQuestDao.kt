@@ -1,0 +1,26 @@
+package com.rumpilstilstkin.gloommaster.bd.dao
+
+import androidx.room.Dao
+import androidx.room.Insert
+import androidx.room.Query
+import androidx.room.Transaction
+import com.rumpilstilstkin.gloommaster.bd.entity.CharacterPersonalQuestBd
+import com.rumpilstilstkin.gloommaster.bd.entity.CharacterPersonalQuestDetailsBd
+import kotlinx.coroutines.flow.Flow
+
+@Dao
+interface CharacterPersonalQuestDao {
+    @Transaction
+    @Query("SELECT * FROM CharacterPersonalQuestBd WHERE characterId = :characterId LIMIT 1")
+    fun getCharacterPersonalQuestFlow(characterId: Int): Flow<CharacterPersonalQuestDetailsBd?>
+
+    @Insert
+    suspend fun insert(characterPerk: CharacterPersonalQuestBd)
+
+    @Query("DELETE FROM CharacterPersonalQuestBd WHERE characterId = :characterId")
+    suspend fun deleteByCharacterId(characterId: Int)
+
+    @Transaction
+    @Query("SELECT * FROM CharacterPersonalQuestBd WHERE characterId = :characterId LIMIT 1")
+    suspend fun getCharacterQuestById(characterId: Int): CharacterPersonalQuestDetailsBd?
+}

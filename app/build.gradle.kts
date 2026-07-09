@@ -11,7 +11,7 @@ plugins {
 
 android {
     enableKotlin = true
-    namespace = "com.rumpilstilstkin.gloomhavenhelper"
+    namespace = "com.rumpilstilstkin.gloommaster"
     compileSdk = 37
 
     defaultConfig {

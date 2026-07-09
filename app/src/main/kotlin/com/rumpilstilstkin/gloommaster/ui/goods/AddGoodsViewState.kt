@@ -1,0 +1,41 @@
+package com.rumpilstilstkin.gloommaster.ui.goods
+
+import androidx.compose.runtime.Immutable
+import com.rumpilstilstkin.gloommaster.domain.entity.GoodType
+import com.rumpilstilstkin.gloommaster.screens.models.GoodUi
+import kotlinx.collections.immutable.ImmutableList
+import kotlinx.collections.immutable.persistentListOf
+
+@Immutable
+data class AddGoodsViewState(
+    val selectedGoods: ImmutableList<GoodUi> = persistentListOf(),
+    val availableGoods: ImmutableList<GoodUi> = persistentListOf(),
+    val selectedFilter: GoodType? = null,
+    val searchText: String = "",
+) {
+    companion object {
+        fun fixture() =
+            AddGoodsViewState(
+                searchText = "",
+                availableGoods =
+                    persistentListOf(
+                        GoodUi.fixture(
+                            id = 2,
+                        ),
+                        GoodUi.fixture(
+                            id = 5,
+                        ),
+                    ),
+                selectedGoods =
+                    persistentListOf(
+                        GoodUi.fixture(
+                            id = 3,
+                        ),
+                        GoodUi.fixture(
+                            id = 1,
+                        ),
+                    ),
+                selectedFilter = GoodType.Arm,
+            )
+    }
+}

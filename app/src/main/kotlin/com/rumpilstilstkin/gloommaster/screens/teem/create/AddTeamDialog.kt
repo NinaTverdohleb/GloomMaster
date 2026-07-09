@@ -1,0 +1,81 @@
+package com.rumpilstilstkin.gloommaster.screens.teem.create
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import com.rumpilstilstkin.gloommaster.R
+import com.rumpilstilstkin.gloommaster.designsystem.components.buttons.GloomOutlineButton
+import com.rumpilstilstkin.gloommaster.designsystem.components.text.GloomOutlinedTextField
+import com.rumpilstilstkin.gloommaster.designsystem.icons.AppIcon
+import com.rumpilstilstkin.gloommaster.designsystem.theme.GloomhavenMasterTheme
+import com.rumpilstilstkin.gloommaster.testtags.screens.teem.create.AddTeamDialogTestTags
+
+@Composable
+internal fun AddTeamDialog(
+    onAdd: (String) -> Unit,
+    openFile: () -> Unit,
+) {
+    var teamName by rememberSaveable { mutableStateOf("") }
+
+    Column(
+        verticalArrangement = Arrangement.spacedBy(24.dp),
+    ) {
+        Text(
+            text = stringResource(R.string.new_team_title),
+            color = MaterialTheme.colorScheme.onSurface,
+            style = MaterialTheme.typography.titleLarge,
+        )
+
+        GloomOutlinedTextField(
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .testTag(AddTeamDialogTestTags.NAME_FIELD),
+            value = teamName,
+            onValueChange = { teamName = it },
+            label = stringResource(R.string.team_name_label),
+        )
+
+        GloomOutlineButton(
+            text = stringResource(R.string.import_button),
+            onClick = openFile,
+            modifier = Modifier.fillMaxWidth(),
+            isError = false,
+            icon = AppIcon.Restore,
+        )
+
+        GloomOutlineButton(
+            text = stringResource(R.string.add),
+            onClick = { onAdd(teamName.trim()) },
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .testTag(AddTeamDialogTestTags.ADD_BUTTON),
+            isError = false,
+            enabled = teamName.isNotBlank(),
+            icon = AppIcon.Plus,
+        )
+    }
+}
+
+@Preview
+@Composable
+private fun AddTeamDialogPreview() {
+    GloomhavenMasterTheme {
+        AddTeamDialog(
+            onAdd = {},
+            openFile = {},
+        )
+    }
+}

@@ -1,0 +1,187 @@
+package com.rumpilstilstkin.gloommaster.data
+
+import com.rumpilstilstkin.gloommaster.data.mappers.toBd
+import com.rumpilstilstkin.gloommaster.data.mappers.toDomain
+import com.rumpilstilstkin.gloommaster.data.mappers.toShortDomain
+import com.rumpilstilstkin.gloommaster.domain.entity.CharacterForSave
+import com.rumpilstilstkin.gloommaster.domain.entity.CharacterInfo
+import com.rumpilstilstkin.gloommaster.domain.entity.CharacterShortInfo
+import com.rumpilstilstkin.gloommaster.domain.entity.DifficultyLevel
+import com.rumpilstilstkin.gloommaster.domain.entity.PackType
+import com.rumpilstilstkin.gloommaster.domain.entity.Team
+import com.rumpilstilstkin.gloommaster.bd.dao.CharacterDao
+import com.rumpilstilstkin.gloommaster.bd.dao.CharacterPerksDao
+import com.rumpilstilstkin.gloommaster.bd.dao.TeamDao
+import com.rumpilstilstkin.gloommaster.bd.entity.CharacterPerkBd
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
+import javax.inject.Inject
+import javax.inject.Singleton
+
+@Singleton
+class CharacterRepository @Inject constructor(
+    private val characterDao: CharacterDao,
+    private val teamDao: TeamDao,
+    private val characterPerksDao: CharacterPerksDao,
+) {
+    suspend fun addCharacterPerk(
+        characterId: Int,
+        perkId: Int,
+    ) {
+        characterPerksDao.insert(CharacterPerkBd(characterId = characterId, perkId = perkId))
+    }
+
+    suspend fun deleteCharacterPerk(
+        characterId: Int,
+        perkId: Int,
+    ) {
+        characterPerksDao.deleteById(characterId = characterId, perkId = perkId)
+    }
+
+    fun getCharacterPerksFlow(
+        characterId: Int,
+        locale: String,
+    ) = characterPerksDao
+        .getCharacterPerksFlow(
+            characterId = characterId,
+            targetLocale = locale,
+            defaultLocale = LocaleRepository.DEFAULT_LOCALE,
+        ).map { perks ->
+            perks.map { it.toDomain() }
+        }
+
+    suspend fun getCharacterPerks(characterId: Int): List<Int> =
+        characterPerksDao
+            .getCharacterPerks(
+                characterId = characterId,
+            ).map { it.perkId }
+
+    fun getCharacterByTeamId(teamId: Int): Flow<List<CharacterInfo>> =
+        characterDao.findByTeamIdFlow(teamId).map { list ->
+            list.map { characterBd ->
+                val team =
+                    teamDao.findById(teamId)?.let { teamBd ->
+                        Team(
+                            teamId = teamBd.teamId,
+                            name = teamBd.name,
+                            packs = teamBd.packs.map { PackType.valueOf(it) },
+                            difficultyLevel = DifficultyLevel.fromValue(teamBd.difficultyLevel),
+                        )
+                    }
+
+                characterBd.toDomain(team)
+            }
+        }
+
+    suspend fun getCharacterByTeamIdSync(teamId: Int): List<CharacterInfo> = characterDao.findByTeamId(teamId).map { it.toDomain(null) }
+
+    fun getCharacterByIdFlow(id: Int): Flow<CharacterInfo?> =
+        characterDao.getCharacterByIdFlow(id).map { character ->
+            val team =
+                character?.teamId?.let { teamId ->
+                    teamDao.findById(teamId)?.let { teamBd ->
+                        Team(
+                            teamId = teamBd.teamId,
+                            name = teamBd.name,
+                            packs = teamBd.packs.map { PackType.valueOf(it) },
+                            difficultyLevel = DifficultyLevel.fromValue(teamBd.difficultyLevel),
+                        )
+                    }
+                }
+            character?.toDomain(team)
+        }
+
+    suspend fun getCharacterById(id: Int): CharacterShortInfo? = characterDao.getCharacterById(id)?.toShortDomain()
+
+    suspend fun addCharacter(character: CharacterForSave): Int = characterDao.insert(character.toBd()).toInt()
+
+    suspend fun deleteCharacter(id: Int) {
+        characterDao.deleteById(id)
+    }
+
+    suspend fun updateLevel(
+        id: Int,
+        level: Int,
+    ) {
+        characterDao.getCharacterById(id)?.let {
+            characterDao.update(it.copy(level = level))
+        }
+    }
+
+    suspend fun setLevel(
+        id: Int,
+        level: Int,
+        experience: Int,
+    ) {
+        characterDao.getCharacterById(id)?.let {
+            characterDao.update(it.copy(level = level, experience = experience))
+        }
+    }
+
+    suspend fun updateNotes(
+        id: Int,
+        notes: String,
+    ) {
+        characterDao.getCharacterById(id)?.let {
+            if (it.notes == notes) return
+            characterDao.update(it.copy(notes = notes))
+        }
+    }
+
+    suspend fun updateCheckMarks(
+        id: Int,
+        checkMarkCount: Int,
+    ) {
+        characterDao.getCharacterById(id)?.let {
+            characterDao.update(it.copy(checkMarkCount = checkMarkCount))
+        }
+    }
+
+    suspend fun updateExperience(
+        id: Int,
+        experience: Int,
+    ) {
+        characterDao.getCharacterById(id)?.let {
+            characterDao.update(it.copy(experience = experience))
+        }
+    }
+
+    suspend fun updateGold(
+        id: Int,
+        goldCount: Int,
+    ) {
+        characterDao.getCharacterById(id)?.let {
+            characterDao.update(it.copy(goldCount = goldCount))
+        }
+    }
+
+    suspend fun leaveCharacter(id: Int) {
+        characterDao.getCharacterById(id)?.let {
+            characterDao.update(it.copy(isAlive = false))
+        }
+    }
+
+    suspend fun makeAlive(id: Int) {
+        characterDao.getCharacterById(id)?.let {
+            characterDao.update(it.copy(isAlive = true))
+        }
+    }
+
+    suspend fun setTeam(
+        characterId: Int,
+        teamId: Int,
+    ) {
+        characterDao.getCharacterById(characterId)?.let {
+            characterDao.update(it.copy(teamId = teamId))
+        }
+    }
+
+    suspend fun updateName(
+        id: Int,
+        name: String,
+    ) {
+        characterDao.getCharacterById(id)?.let {
+            characterDao.update(it.copy(name = name))
+        }
+    }
+}

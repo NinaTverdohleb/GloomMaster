@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.rumpilstilstkin.gloomhavenhelper.designsystem"
+    namespace = "com.rumpilstilstkin.gloommaster.designsystem"
     testOptions.unitTests.isIncludeAndroidResources = true
 }
 

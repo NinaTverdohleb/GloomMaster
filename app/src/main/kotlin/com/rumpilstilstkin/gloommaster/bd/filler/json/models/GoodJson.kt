@@ -1,0 +1,39 @@
+package com.rumpilstilstkin.gloommaster.bd.filler.json.models
+
+import com.rumpilstilstkin.gloommaster.bd.entity.GoodBd
+import com.rumpilstilstkin.gloommaster.bd.entity.GoodTranslationsBd
+import kotlinx.serialization.Serializable
+
+@Serializable
+data class GoodJson(
+    val number: Int,
+    val type: String,
+    val image: String,
+    val cost: Int,
+    val pack: String,
+    val count: Int = 1,
+    val isDrawing: Boolean = false,
+) {
+    fun toEntity() =
+        GoodBd(
+            displayNumber = number,
+            type = type,
+            cost = cost,
+            image = image,
+            pack = pack,
+            isDrawing = isDrawing,
+        )
+}
+
+@Serializable
+data class GoodTranslationJson(
+    val goodNumber: Int,
+    val name: String,
+) {
+    fun toEntity(locale: String) =
+        GoodTranslationsBd(
+            displayNumber = goodNumber,
+            locale = locale,
+            name = name,
+        )
+}

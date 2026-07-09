@@ -1,0 +1,22 @@
+package com.rumpilstilstkin.gloommaster.data
+
+import com.rumpilstilstkin.gloommaster.bd.dao.PerksDao
+import com.rumpilstilstkin.gloommaster.data.mappers.toDomain
+import com.rumpilstilstkin.gloommaster.domain.entity.CharacterClassType
+import javax.inject.Inject
+import javax.inject.Singleton
+
+@Singleton
+class PerksRepository @Inject constructor(
+    private val perksDao: PerksDao,
+) {
+    suspend fun getPerksForCharacterClass(
+        characterType: CharacterClassType,
+        locale: String,
+    ) = perksDao
+        .getPerksByCharacterClass(
+            characterType = characterType.name,
+            targetLocale = locale,
+            defaultLocale = LocaleRepository.DEFAULT_LOCALE,
+        ).map { it.toDomain() }
+}

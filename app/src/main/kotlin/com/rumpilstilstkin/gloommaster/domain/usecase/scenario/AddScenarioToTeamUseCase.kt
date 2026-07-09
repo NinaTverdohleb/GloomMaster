@@ -1,0 +1,16 @@
+package com.rumpilstilstkin.gloommaster.domain.usecase.scenario
+
+import com.rumpilstilstkin.gloommaster.data.ScenarioRepository
+import com.rumpilstilstkin.gloommaster.data.TeamRepository
+import kotlinx.coroutines.flow.first
+import javax.inject.Inject
+
+class AddScenarioToTeamUseCase @Inject constructor(
+    private val teamRepository: TeamRepository,
+    private val scenarioRepository: ScenarioRepository,
+) {
+    suspend operator fun invoke(scenarioNumber: Int) {
+        val team = teamRepository.currentTeam.first() ?: return
+        scenarioRepository.saveTeamScenario(scenarioNumber, team.teamId)
+    }
+}

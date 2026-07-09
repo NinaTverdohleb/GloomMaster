@@ -1,0 +1,71 @@
+package com.rumpilstilstkin.gloommaster.domain.usecase.scenario
+
+import com.rumpilstilstkin.gloommaster.data.MonsterRepository
+import com.rumpilstilstkin.gloommaster.data.ScenarioGameStateRepository
+import com.rumpilstilstkin.gloommaster.domain.entity.Magic
+import com.rumpilstilstkin.gloommaster.domain.entity.ScenarioGameState
+import com.rumpilstilstkin.gloommaster.domain.entity.ScenarioGameStateMagic
+import com.rumpilstilstkin.gloommaster.domain.usecase.team.GetCurrentTeamUseCase
+import com.rumpilstilstkin.gloommaster.utils.toResult
+import kotlinx.coroutines.flow.first
+import javax.inject.Inject
+
+class CreateActiveScenarioUseCase @Inject constructor(
+    private val getCurrentTeamUseCase: GetCurrentTeamUseCase,
+    private val monsterRepository: MonsterRepository,
+    private val scenarioGameStateRepository: ScenarioGameStateRepository,
+    private val clearCurrentActiveScenarioUseCase: ClearCurrentActiveScenarioUseCase,
+) {
+    suspend operator fun invoke(scenarioNumber: Int?): Result<Unit> {
+        getCurrentTeamUseCase().first().let { team ->
+            if (team != null) {
+                clearCurrentActiveScenarioUseCase()
+                val monsters =
+                    scenarioNumber?.let { _ ->
+                        monsterRepository.getMonsterSlugsForScenario(scenarioNumber)
+                    } ?: emptyList()
+                val monstersCard = monsterRepository.getMonsterCards(monsters)
+                val state =
+                    ScenarioGameState(
+                        scenarioNumber = scenarioNumber,
+                        monsterSlugs = monsters,
+                        round = 0,
+                        availableCards = monstersCard.distinct(),
+                        activeMonsters = emptyList(),
+                        level = team.level,
+                        magicCharges =
+                            listOf(
+                                ScenarioGameStateMagic(
+                                    name = Magic.FIRE.name,
+                                    value = 0,
+                                ),
+                                ScenarioGameStateMagic(
+                                    name = Magic.FROST.name,
+                                    value = 0,
+                                ),
+                                ScenarioGameStateMagic(
+                                    name = Magic.AIR.name,
+                                    value = 0,
+                                ),
+                                ScenarioGameStateMagic(
+                                    name = Magic.EARTH.name,
+                                    value = 0,
+                                ),
+                                ScenarioGameStateMagic(
+                                    name = Magic.SUN.name,
+                                    value = 0,
+                                ),
+                                ScenarioGameStateMagic(
+                                    name = Magic.MOON.name,
+                                    value = 0,
+                                ),
+                            ),
+                    )
+                scenarioGameStateRepository.save(state)
+                return Unit.toResult()
+            } else {
+                return Result.failure(IllegalStateException("Team is null"))
+            }
+        }
+    }
+}

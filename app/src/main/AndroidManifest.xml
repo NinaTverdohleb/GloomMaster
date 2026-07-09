@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
     <application
-        android:name=".GlHelperApp"
+        android:name=".GloomApp"
         android:allowBackup="false"
         android:fullBackupContent="@null"
         android:dataExtractionRules="@null"

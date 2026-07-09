@@ -1,0 +1,34 @@
+package com.rumpilstilstkin.gloommaster.domain.entity.export
+
+import com.rumpilstilstkin.gloommaster.domain.entity.CharacterInfo
+import com.rumpilstilstkin.gloommaster.domain.entity.ShortTeamInfo
+import com.rumpilstilstkin.gloommaster.domain.entity.quest.CharacterPersonalQuestShort
+import kotlinx.serialization.Serializable
+
+@Serializable
+data class TeamExportDto(
+    val version: Int = CURRENT_VERSION,
+    val team: ShortTeamInfo,
+    val teamGoods: List<Int>,
+    val unlockedClasses: List<String>,
+    val teamScenarios: List<TeamScenarioDataDto>,
+    val characters: List<CharacterDataDto>,
+) {
+    companion object {
+        const val CURRENT_VERSION = 1
+    }
+}
+
+@Serializable
+data class CharacterDataDto(
+    val generalInfo: CharacterInfo,
+    val personalQuest: CharacterPersonalQuestShort?,
+    val goodDisplayNumbers: List<Int>,
+    val perks: List<Int>,
+)
+
+@Serializable
+data class TeamScenarioDataDto(
+    val scenarioNumber: Int,
+    val completed: Boolean,
+)

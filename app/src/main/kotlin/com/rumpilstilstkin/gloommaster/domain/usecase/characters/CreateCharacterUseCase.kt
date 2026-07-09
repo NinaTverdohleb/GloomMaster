@@ -1,0 +1,34 @@
+package com.rumpilstilstkin.gloommaster.domain.usecase.characters
+
+import com.rumpilstilstkin.gloommaster.data.CharacterRepository
+import com.rumpilstilstkin.gloommaster.data.TeamRepository
+import com.rumpilstilstkin.gloommaster.domain.entity.CharacterClassType
+import com.rumpilstilstkin.gloommaster.domain.entity.CharacterForSave
+import com.rumpilstilstkin.gloommaster.domain.getExpForLevel
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.first
+import javax.inject.Inject
+
+class CreateCharacterUseCase @Inject constructor(
+    private val characterRepository: CharacterRepository,
+    private val teamRepository: TeamRepository,
+) {
+    @OptIn(ExperimentalCoroutinesApi::class)
+    suspend operator fun invoke(
+        name: String,
+        level: Int,
+        characterType: CharacterClassType,
+    ) {
+        val team = teamRepository.currentTeam.first() ?: return
+        val character =
+            CharacterForSave(
+                name = name,
+                level = level,
+                characterType = characterType,
+                teamId = team.teamId,
+                experience = getExpForLevel(level),
+                additionalContOfPerks = team.countRetiredCharacters,
+            )
+        characterRepository.addCharacter(character)
+    }
+}

@@ -1,0 +1,59 @@
+package com.rumpilstilstkin.gloommaster.data
+
+import com.rumpilstilstkin.gloommaster.bd.dao.TeamCharacterClassDao
+import com.rumpilstilstkin.gloommaster.bd.entity.TeamCharacterClassBd
+import com.rumpilstilstkin.gloommaster.domain.entity.CharacterClassType
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
+import javax.inject.Inject
+import javax.inject.Singleton
+import kotlin.collections.map
+
+@Singleton
+class CharacterClassRepository @Inject constructor(
+    private val teamCharacterClassDao: TeamCharacterClassDao,
+) {
+    fun getAvailableClassesForTeam(teamId: Int): Flow<List<CharacterClassType>> =
+        teamCharacterClassDao
+            .getClassTypesForTeam(teamId)
+            .map { list -> list.map { CharacterClassType.valueOf(it) } }
+
+    suspend fun getAvailableClassesForTeamSync(teamId: Int): List<String> =
+        teamCharacterClassDao
+            .getClassesForTeamSync(teamId)
+            .map { it.characterType }
+
+    suspend fun addAvailableClass(
+        teamId: Int,
+        type: CharacterClassType,
+    ) {
+        teamCharacterClassDao.insert(
+            TeamCharacterClassBd(
+                teamId = teamId,
+                characterType = type.name,
+            ),
+        )
+    }
+
+    suspend fun removeAvailableClass(
+        teamId: Int,
+        type: CharacterClassType,
+    ) {
+        teamCharacterClassDao.delete(teamId, type.name)
+    }
+
+    suspend fun addAvailableClasses(
+        teamId: Int,
+        types: List<CharacterClassType>,
+    ) {
+        val entities =
+            types
+                .map {
+                    TeamCharacterClassBd(
+                        teamId = teamId,
+                        characterType = it.name,
+                    )
+                }.toTypedArray()
+        teamCharacterClassDao.insertAll(*entities)
+    }
+}

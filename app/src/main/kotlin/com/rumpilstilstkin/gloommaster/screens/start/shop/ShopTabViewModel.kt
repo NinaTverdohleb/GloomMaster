@@ -1,0 +1,100 @@
+package com.rumpilstilstkin.gloommaster.screens.start.shop
+
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.rumpilstilstkin.gloommaster.domain.usecase.goods.GetGoodsForCurrentTeamUseCase
+import com.rumpilstilstkin.gloommaster.domain.usecase.goods.RemoveGoodFromCurrentTeamUseCase
+import com.rumpilstilstkin.gloommaster.navigation.GlHelperScreen
+import com.rumpilstilstkin.gloommaster.navigation.events.GlHelperEvent
+import com.rumpilstilstkin.gloommaster.screens.core.ScreenEffect
+import com.rumpilstilstkin.gloommaster.screens.core.createOverlaySession
+import com.rumpilstilstkin.gloommaster.screens.goods.GoodDetailsDialogContract
+import com.rumpilstilstkin.gloommaster.screens.models.toUi
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.collections.immutable.toImmutableList
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.receiveAsFlow
+import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
+import javax.inject.Inject
+
+@HiltViewModel
+class ShopTabViewModel @Inject constructor(
+    getGoodsForCurrentTeamUseCase: GetGoodsForCurrentTeamUseCase,
+    private val removeGoodFromTeamUseCase: RemoveGoodFromCurrentTeamUseCase,
+) : ViewModel() {
+    private val _screenEvents = Channel<ScreenEffect>(Channel.BUFFERED)
+    val screenEvents = _screenEvents.receiveAsFlow()
+
+    private val logicState = MutableStateFlow(ShopTabStateLogic())
+    val uiState: StateFlow<ShopTabStateUi> =
+        combine(
+            getGoodsForCurrentTeamUseCase(),
+            logicState,
+        ) { goods, logicState ->
+            ShopTabStateUi(
+                avaliableGoods =
+                    goods
+                        .filter {
+                            it.filterResult(
+                                goodType = logicState.selectedFilter,
+                                search = logicState.searchText,
+                            )
+                        }.sortedBy { it.displayNumber }
+                        .map { it.toUi() }
+                        .toImmutableList(),
+                selectedFilter = logicState.selectedFilter,
+                searchText = logicState.searchText,
+                canAdd = logicState.canAdd,
+            )
+        }.stateIn(
+            scope = viewModelScope,
+            initialValue = ShopTabStateUi(),
+            started = SharingStarted.WhileSubscribed(5000),
+        )
+
+    fun onAction(action: ShopTabAction) {
+        viewModelScope.launch {
+            when (action) {
+                is ShopTabAction.AddGood -> {
+                    _screenEvents.send(ScreenEffect.Navigation(GlHelperEvent.Screen(GlHelperScreen.AddGoodsForTeam)))
+                }
+
+                is ShopTabAction.RemoveGood -> {
+                    removeGoodFromTeamUseCase(action.id)
+                }
+
+                is ShopTabAction.SearchTextChange -> {
+                    logicState.update { it.copy(searchText = action.text) }
+                }
+
+                is ShopTabAction.SelectFilter -> {
+                    logicState.update {
+                        val newFilter =
+                            if (it.selectedFilter == action.type) {
+                                null
+                            } else {
+                                action.type
+                            }
+                        it.copy(selectedFilter = newFilter)
+                    }
+                }
+
+                is ShopTabAction.OpenGood -> {
+                    val session =
+                        createOverlaySession(
+                            contract = GoodDetailsDialogContract,
+                            input = action.good,
+                            onResult = { },
+                        )
+                    _screenEvents.send(ScreenEffect.OpenDialog(session))
+                }
+            }
+        }
+    }
+}
