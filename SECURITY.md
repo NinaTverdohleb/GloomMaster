@@ -6,8 +6,8 @@ The application is currently distributed exclusively via GitHub releases. Only t
 
 | Version | Supported |
 | ------- | --------- |
-| 2.0.0 | :white_check_mark: |
-| 1.0.0 | :x: |
+| 2.0.x | :white_check_mark: |
+| 1.x.x | :x: |
 
 ## Reporting a Vulnerability
 
