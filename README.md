@@ -24,8 +24,8 @@
 </p>
 
 <div align="center">
-  <a href="https://youtube.com/shorts/XuFy1FjCqfU">
-    <img src="https://markdown-videos-api.jorgenkh.no/url?url=https%3A%2F%2Fyoutube.com%2Fshorts%2FXuFy1FjCqfU" alt="GloomMaster" title="GloomMaster" width="480" height="320"/>
+  <a href="https://youtube.com/shorts/5JI-8shfcWY">
+    <img src="https://markdown-videos-api.jorgenkh.no/url?url=https%3A%2F%2Fyoutube.com%2Fshorts%2F5JI-8shfcWY" alt="GloomMaster" title="GloomMaster" width="480" height="320"/>
   </a>
 </div>
 
