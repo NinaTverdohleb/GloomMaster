@@ -12,4 +12,4 @@ Since the Application does not collect any data, no user information is ever sha
 This Privacy Policy may be updated from time to time for any reason. We will notify you of any changes by updating the text on this page.
 
 4. Contact Us
-If you have any questions regarding privacy while using the Application, please contact us via email at: [Ваш контактный email].
+If you have any questions regarding privacy while using the Application, please contact us via email at: nintv00@gmail.com.
