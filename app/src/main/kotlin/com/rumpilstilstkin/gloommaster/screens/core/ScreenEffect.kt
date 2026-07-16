@@ -186,7 +186,7 @@ private class OverlayStoreOwner(
     override val defaultViewModelProviderFactory: ViewModelProvider.Factory
         get() =
             (parent as? HasDefaultViewModelProviderFactory)?.defaultViewModelProviderFactory
-                ?: ViewModelProvider.NewInstanceFactory.instance
+                ?: ViewModelProvider.NewInstanceFactory()
 
     override val defaultViewModelCreationExtras: CreationExtras
         get() =

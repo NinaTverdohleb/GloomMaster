@@ -40,6 +40,7 @@ android {
                 "proguard-rules.pro"
             )
             buildConfigField("boolean", "ONBOARDING_ENABLED", "true")
+            ndk.debugSymbolLevel = "FULL"
         }
         debug {
             applicationIdSuffix = ".debug"

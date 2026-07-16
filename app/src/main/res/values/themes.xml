@@ -2,6 +2,13 @@
 <resources>
 
     <style name="Theme.GloomhavenHalper" parent="Theme.Material3.DayNight.NoActionBar" >
-        <item name="android:windowSplashScreenBackground">@color/splash_background</item>
+        <!--
+            The native android:windowSplashScreenBackground attribute is API 31+.
+            Declaring it here (values/) would be applied on all API levels and crashes
+            theme inflation on API < 31 (Android 10/11) at app start. It lives in
+            values-v31/themes.xml instead. On API < 31 the splash background comes from
+            core-splashscreen's backported windowSplashScreenBackground below.
+        -->
+        <item name="windowSplashScreenBackground">@color/splash_background</item>
     </style>
 </resources>

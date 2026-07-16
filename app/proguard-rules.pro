@@ -13,6 +13,10 @@
 -keepattributes Signature,Exceptions,InnerClasses
 -keepattributes *Annotation*
 
+# Keep line numbers and source file attribute so Crashlytics can
+# deobfuscate stack traces with line numbers on minified release builds.
+-keepattributes SourceFile,LineNumberTable
+
 # --- Library-specific rules ---
 
 # Kotlin Coroutines

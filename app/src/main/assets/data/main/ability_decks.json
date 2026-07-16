@@ -215,7 +215,7 @@
       { "id": 3, "needsShuffle": false, "initiative": 53 },
       { "id": 4, "needsShuffle": false, "initiative": 54 },
       { "id": 5, "needsShuffle": false, "initiative": 69 },
-      { "id": 6, "needsShuffle": true, "initiative": 1192 },
+      { "id": 6, "needsShuffle": true, "initiative": 92 },
       { "id": 7, "needsShuffle": false, "initiative": 79 },
       { "id": 8, "needsShuffle": true, "initiative": 35 }
     ]

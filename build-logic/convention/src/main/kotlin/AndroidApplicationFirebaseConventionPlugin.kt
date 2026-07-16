@@ -25,7 +25,7 @@ class AndroidApplicationFirebaseConventionPlugin : Plugin<Project> {
             extensions.configure<ApplicationExtension> {
                 buildTypes.configureEach {
                     configure<CrashlyticsExtension> {
-                        mappingFileUploadEnabled = false
+                        mappingFileUploadEnabled = isMinifyEnabled
                     }
                 }
             }

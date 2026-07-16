@@ -147,7 +147,7 @@ fun GloomToolbar(
                         onClick = back,
                     ) {
                         Icon(
-                            painter = painterResource(R.drawable.ic_close),
+                            painter = painterResource(R.drawable.design_system_ic_close),
                             contentDescription = stringResource(R.string.design_system_back),
                         )
                     }

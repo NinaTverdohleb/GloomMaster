@@ -18,6 +18,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -57,11 +58,13 @@ fun GloomTopNavigationBar(
                     Text(
                         text = title,
                         style = MaterialTheme.typography.labelMedium,
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis
                     )
                 },
                 icon = {
                     Icon(
-                        modifier = Modifier.size(24.dp),
+                        modifier = Modifier.size(20.dp),
                         painter = item.icon.painter(),
                         contentDescription = title,
                     )
@@ -150,7 +153,8 @@ private enum class SampleScreenTab(
     override val icon: NavigationIcon,
 ) : NavItem {
     INFO("Tab 1", NavigationIcon.Team),
-    PROSPERITY("Tab 1", NavigationIcon.Team),
+    PROSPERITY("Tab 2asdasdasd", NavigationIcon.Team),
+    SHOP("Tab 3", NavigationIcon.Team),
     ;
 
     @Composable
