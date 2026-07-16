@@ -201,6 +201,10 @@
   flows.
 - **Screenshot tests** (Roborazzi) for `:design-system`.
 
+## Resources
+— All design assets and icons were created by humans. The code was generated using AI tools under human architecture and review.
+— Product images, description texts, and item names are used under the Creative Commons BY-NC-SA 4.0 license.
+
 ## Tech Stack
 
 | Category | Technology |
