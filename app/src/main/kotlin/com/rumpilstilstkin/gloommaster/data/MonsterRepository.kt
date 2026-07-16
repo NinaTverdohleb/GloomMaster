@@ -12,8 +12,6 @@ import com.rumpilstilstkin.gloommaster.domain.entity.monster.MonsterName
 import com.rumpilstilstkin.gloommaster.domain.entity.monster.MonsterStats
 import javax.inject.Inject
 import javax.inject.Singleton
-import kotlin.collections.get
-import kotlin.text.get
 
 @Singleton
 class MonsterRepository @Inject constructor(

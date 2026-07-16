@@ -35,10 +35,6 @@ import kotlinx.coroutines.launch
 class MainActivity : AppCompatActivity() {
     val viewModel: MainActivityViewModel by viewModels()
 
-    override fun onStart() {
-        super.onStart()
-    }
-
     @OptIn(
         ExperimentalMaterial3WindowSizeClassApi::class,
         ExperimentalComposeUiApi::class,

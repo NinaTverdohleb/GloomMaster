@@ -123,7 +123,7 @@ private fun StartScreenPreview() {
             addTeam = {},
             selectTab = {
                 ScenariosTabScreen(
-                    state = ScenariosTabStateUi.Companion.fixture(),
+                    state = ScenariosTabStateUi.fixture(),
                     toggleSection = {},
                     addScenario = {},
                     selectScenario = {},

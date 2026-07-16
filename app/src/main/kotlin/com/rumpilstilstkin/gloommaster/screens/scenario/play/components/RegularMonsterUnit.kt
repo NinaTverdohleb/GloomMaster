@@ -296,7 +296,7 @@ private fun RegularMonsterUnitPreview() {
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             RegularMonsterUnit(
-                unit = MonsterUnitUi.Companion.fixture(1),
+                unit = MonsterUnitUi.fixture(1),
                 changeLife = { },
                 switchEffect = { },
                 deleteUnit = {},
