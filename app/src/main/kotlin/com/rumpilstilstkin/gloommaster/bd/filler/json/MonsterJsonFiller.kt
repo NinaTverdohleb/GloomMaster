@@ -22,15 +22,8 @@ class MonsterJsonFiller @Inject constructor(
         fillStats(pack)
     }
 
-    suspend fun fillDecksShort(pack: String) {
-        val decks = jsonDataLoader.loadDictionaryList<DeckJson>("ability_decks.json", pack)
-        decks.forEach { deck ->
-            val entities = deck.toEntity()
-            monsterDao.insertCards(*entities.toTypedArray())
-        }
-    }
 
-    private suspend fun fillDecks(pack: String) {
+    suspend fun fillDecks(pack: String) {
         val decks = jsonDataLoader.loadDictionaryList<DeckJson>("ability_decks.json", pack)
         decks.forEach { deck ->
             val entities = deck.toEntity()

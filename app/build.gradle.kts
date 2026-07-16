@@ -14,11 +14,13 @@ android {
     namespace = "com.rumpilstilstkin.gloommaster"
     compileSdk = 37
 
+    testBuildType = "benchmark"
+
     defaultConfig {
         applicationId = "com.rumpilstilstkin.gloommaster"
         minSdk = 29
-        versionCode = 11
-        versionName = "2.0.1"
+        versionCode = 13
+        versionName = "2.0.3"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -26,14 +28,18 @@ android {
         }
 
         buildConfigField("boolean", "ONBOARDING_ENABLED", "true")
+        manifestPlaceholders["firebase_crashlytics_enabled"] = "true"
+        manifestPlaceholders["firebase_analytics_enabled"] = "true"
     }
     buildFeatures {
         buildConfig = true
+        resValues = true
     }
     buildTypes {
         release {
             isMinifyEnabled = true
             isShrinkResources = true
+            isDebuggable = false
             signingConfig = signingConfigs.getByName("debug")
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
@@ -51,9 +57,12 @@ android {
             initWith(buildTypes.getByName("release"))
             signingConfig = signingConfigs.getByName("debug")
             matchingFallbacks += listOf("release")
-            applicationIdSuffix = ".benchmark"
-            isDebuggable = false
             buildConfigField("boolean", "ONBOARDING_ENABLED", "false")
+            configure<com.google.firebase.crashlytics.buildtools.gradle.CrashlyticsExtension> {
+                mappingFileUploadEnabled = false
+            }
+            manifestPlaceholders["firebase_crashlytics_enabled"] = "false"
+            manifestPlaceholders["firebase_analytics_enabled"] = "false"
         }
     }
 

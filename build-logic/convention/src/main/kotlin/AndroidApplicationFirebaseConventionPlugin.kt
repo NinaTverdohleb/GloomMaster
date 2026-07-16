@@ -21,14 +21,6 @@ class AndroidApplicationFirebaseConventionPlugin : Plugin<Project> {
                 "implementation"(libs.findLibrary("firebase.performance").get())
                 "implementation"(libs.findLibrary("firebase.crashlytics").get())
             }
-
-            extensions.configure<ApplicationExtension> {
-                buildTypes.configureEach {
-                    configure<CrashlyticsExtension> {
-                        mappingFileUploadEnabled = isMinifyEnabled
-                    }
-                }
-            }
         }
     }
 }

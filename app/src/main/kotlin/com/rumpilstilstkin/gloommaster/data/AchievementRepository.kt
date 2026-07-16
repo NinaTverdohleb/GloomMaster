@@ -34,10 +34,8 @@ class AchievementRepository @Inject constructor(
                 initialValue = null,
             )
 
-    /** Reactive dictionary that only emits real (loaded) snapshots, never the initial null. */
     val dictionary: Flow<Map<String, String>> = dictionaryState.filterNotNull()
 
-    /** Suspend read that waits for the first loaded snapshot; won't hang on a valid empty map. */
     suspend fun currentDictionary(): Map<String, String> = dictionary.first()
 
     suspend fun getGlobalAchievementsByPacks(packs: List<String>): List<Achievement> =

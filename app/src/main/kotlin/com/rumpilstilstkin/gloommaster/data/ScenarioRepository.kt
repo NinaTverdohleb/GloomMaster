@@ -71,10 +71,7 @@ class ScenarioRepository @Inject constructor(
                 dictionary = achievementRepository.currentDictionary(),
             )
 
-    /**
-     * Batch-loads the named scenarios for [scenarios] in one query, resolving the achievement
-     * dictionary once. The completed flag is carried over from each [ScenarioShortInfo].
-     */
+
     suspend fun getScenariosWithName(
         scenarios: List<ScenarioShortInfo>,
         locale: String,

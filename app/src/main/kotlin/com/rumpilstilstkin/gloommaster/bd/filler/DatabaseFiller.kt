@@ -38,13 +38,13 @@ class DatabaseFiller @Inject constructor(
                 fillMain()
                 fillForgottenCircles()
             }
-            5 -> {
-                monsterJsonFiller.fillDecksShort("main")
+            6 -> {
+                monsterJsonFiller.fillDecks("main")
             }
 
             // Example for a future language: when "de" assets are added, bump VERSION and seed
             // only its translations for the packs that have them — base data is left untouched.
-            // 6 -> fillLocale(locale = "de", packs = listOf("main", "forgottenCircles"))
+            // 7 -> fillLocale(locale = "de", packs = listOf("main", "forgottenCircles"))
             else -> {
             }
         }
@@ -87,7 +87,7 @@ class DatabaseFiller @Inject constructor(
     }
 
     companion object {
-        private const val VERSION = 6
+        private const val VERSION = 7
         private const val PREFS_VERSION = "filler_version"
     }
 }

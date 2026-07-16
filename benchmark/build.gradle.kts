@@ -6,7 +6,7 @@ plugins {
 android {
     namespace = "com.rumpilstilstkin.gloommaster.benchmark"
     compileSdk {
-        version = release(36) {
+        version = release(37) {
             minorApiLevel = 1
         }
     }
@@ -14,25 +14,21 @@ android {
     defaultConfig {
         minSdk = 33
         targetSdk = 36
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildFeatures {
+        buildConfig = true
     }
 
     buildTypes {
         create("benchmark") {
-            isDebuggable = true
+            isDebuggable = false
             signingConfig = getByName("debug").signingConfig
-            matchingFallbacks += listOf("release")
         }
     }
 
     targetProjectPath = ":app"
-}
-
-tasks.configureEach {
-    if (name == "connectedBenchmarkBenchmarkAndroidTest") {
-        dependsOn(":app:installBenchmark")
-    }
 }
 
 dependencies {
