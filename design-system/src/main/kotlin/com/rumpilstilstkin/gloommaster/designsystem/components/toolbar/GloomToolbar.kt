@@ -3,6 +3,7 @@ package com.rumpilstilstkin.gloommaster.designsystem.components.toolbar
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -70,6 +71,47 @@ fun GloomToolbarAction(
             )
         }
     },
+    colors =
+        TopAppBarDefaults.topAppBarColors(
+            containerColor = backgroundColor,
+            titleContentColor = MaterialTheme.colorScheme.onSurface,
+            navigationIconContentColor = MaterialTheme.colorScheme.onSurface,
+        ),
+)
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun GloomToolbarAction(
+    title: String,
+    modifier: Modifier = Modifier,
+    backgroundColor: Color = MaterialTheme.colorScheme.surface,
+    actions: @Composable RowScope.() -> Unit = {},
+    back: (() -> Unit)? = null,
+) = TopAppBar(
+    modifier = modifier,
+    title = {
+        Text(
+            text = title,
+            style = MaterialTheme.typography.titleLarge,
+        )
+    },
+    navigationIcon = {
+        Row {
+            Spacer(Modifier.width(16.dp))
+            if (back != null) {
+                IconButton(
+                    modifier = Modifier.testTag(ToolbarTestTags.BACK),
+                    onClick = back,
+                ) {
+                    Icon(
+                        painter = NavigationIcon.Close.painter(),
+                        contentDescription = stringResource(R.string.design_system_back),
+                    )
+                }
+            }
+        }
+    },
+    actions = actions,
     colors =
         TopAppBarDefaults.topAppBarColors(
             containerColor = backgroundColor,

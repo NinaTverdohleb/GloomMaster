@@ -23,7 +23,7 @@ object CompleteScenarioDialogContract : OverlayContract<CompleteScenarioDialogIn
 @Composable
 fun CompleteScenarioDialogRoute(
     input: CompleteScenarioDialogInput,
-    close: (Unit) -> Unit,
+    close: (Unit?) -> Unit,
     viewModel: CompleteScenarioDialogViewModel = hiltViewModel(),
 ) {
     val complete by viewModel.complete.collectAsStateWithLifecycle(initialValue = null)
@@ -37,6 +37,12 @@ fun CompleteScenarioDialogRoute(
     CompleteScenarioDialog(
         exp = input.exp,
         gold = input.gold,
+        scenarioNumber = input.scenarioNumber,
+        scenarioName = input.scenarioName,
+        location = input.location,
+        level = input.level,
+        trapDamage = input.trapDamage,
         complete = { viewModel.onAction(CompleteScenarioDialogAction.Complete) },
+        dismiss = { close(null) },
     )
 }

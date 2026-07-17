@@ -1,4 +1,4 @@
-package com.rumpilstilstkin.gloommaster.screens.scenario.play.components
+package com.rumpilstilstkin.gloommaster.designsystem.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -10,26 +10,17 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.pager.PagerState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.rumpilstilstkin.gloommaster.designsystem.theme.GloomhavenMasterTheme
-import com.rumpilstilstkin.gloommaster.screens.scenario.play.state.MonsterItemUi
-import kotlinx.collections.immutable.ImmutableList
-import kotlinx.collections.immutable.persistentListOf
 
 @Composable
-fun MonstersPageIndicator(
-    monsters: ImmutableList<MonsterItemUi>,
-    pageState: PagerState,
-    modifier: Modifier = Modifier,
-) {
+fun GloomPageIndicator(pageState: PagerState) {
     FlowRow(
-        modifier = modifier,
+        modifier = Modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.Center,
     ) {
         repeat(pageState.pageCount) { iteration ->
@@ -39,12 +30,6 @@ fun MonstersPageIndicator(
                 } else {
                     MaterialTheme.colorScheme.surfaceBright
                 }
-            val textColor =
-                if (pageState.currentPage == iteration) {
-                    MaterialTheme.colorScheme.surface
-                } else {
-                    MaterialTheme.colorScheme.onSurfaceVariant
-                }
             Box(
                 modifier =
                     Modifier
@@ -52,32 +37,17 @@ fun MonstersPageIndicator(
                         .clip(CircleShape)
                         .background(color)
                         .size(24.dp),
-                contentAlignment = Alignment.Center,
-            ) {
-                Text(
-                    style = MaterialTheme.typography.labelMedium,
-                    text = monsters[iteration].currentCard?.initiative?.toString() ?: "?",
-                    color = textColor,
-                )
-            }
+            ) {}
         }
     }
 }
 
 @Preview
 @Composable
-private fun MonstersPageIndicatorPreview() {
+private fun PageIndicatorPreview() {
     GloomhavenMasterTheme {
-        val monsters =
-            persistentListOf(
-                MonsterItemUi.fixture(),
-                MonsterItemUi.fixture(),
-                MonsterItemUi.fixture(),
-                MonsterItemUi.fixture(),
-            )
-        MonstersPageIndicator(
-            monsters = monsters,
-            pageState = PagerState(pageCount = { monsters.size }),
+        GloomPageIndicator(
+            pageState = PagerState(pageCount = { 4 }),
         )
     }
 }

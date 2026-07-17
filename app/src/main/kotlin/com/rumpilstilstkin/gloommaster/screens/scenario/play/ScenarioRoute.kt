@@ -32,7 +32,6 @@ fun ScenarioRoute(
     val addNewMonsters = { viewModel.onAction(ScenarioActions.AddNewMonsters) }
     val back: () -> Unit = { navController.popBackStack() }
     val complete = { viewModel.onAction(ScenarioActions.OpenComplete) }
-    val showStats = { viewModel.onAction(ScenarioActions.OpenStats) }
     val deleteMonster =
         { monsterSlug: String -> viewModel.onAction(ScenarioActions.RemoveMonster(monsterSlug)) }
     val deleteUnit = { unitNumber: Int, monsterSlug: String ->
@@ -87,7 +86,6 @@ fun ScenarioRoute(
         addNewMonsters = addNewMonsters,
         back = back,
         complete = complete,
-        showStats = showStats,
         deleteMonster = deleteMonster,
         deleteUnit = deleteUnit,
         updateUnitLife = updateUnitLife,

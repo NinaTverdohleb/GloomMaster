@@ -22,6 +22,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.rumpilstilstkin.gloommaster.designsystem.icons.MagicIcon
+import com.rumpilstilstkin.gloommaster.designsystem.theme.GloomhavenMasterTheme
 import com.rumpilstilstkin.gloommaster.domain.entity.scenario.ChargeLevel
 
 @Composable
@@ -142,14 +143,16 @@ data class RingGeometry(
 @Preview
 @Composable
 private fun ChargeIconPreview() {
-    val assets = rememberChargeIconAssets()
-    Column(
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.spacedBy(16.dp),
-        modifier = Modifier.padding(24.dp),
-    ) {
-        ChargeIcon(icon = MagicIcon.Sun, charge = ChargeLevel.Zero, assets = assets)
-        ChargeIcon(icon = MagicIcon.Sun, charge = ChargeLevel.One, assets = assets)
-        ChargeIcon(icon = MagicIcon.Sun, charge = ChargeLevel.Two, assets = assets)
+    GloomhavenMasterTheme {
+        val assets = rememberChargeIconAssets()
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.spacedBy(16.dp),
+            modifier = Modifier.padding(24.dp),
+        ) {
+            ChargeIcon(icon = MagicIcon.Sun, charge = ChargeLevel.Zero, assets = assets)
+            ChargeIcon(icon = MagicIcon.Sun, charge = ChargeLevel.One, assets = assets)
+            ChargeIcon(icon = MagicIcon.Sun, charge = ChargeLevel.Two, assets = assets)
+        }
     }
 }

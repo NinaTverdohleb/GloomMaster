@@ -37,11 +37,12 @@ import com.rumpilstilstkin.gloommaster.testtags.screens.scenario.play.components
 @Composable
 fun MonsterCard(
     card: MonsterCard?,
+    isBoss: Boolean,
     name: String,
     isFly: Boolean,
     modifier: Modifier = Modifier,
     delete: () -> Unit,
-    onAddUnit: (() -> Unit)? = null,
+    onAddUnit: (() -> Unit),
 ) = GloomCard {
     Column(
         modifier =
@@ -75,7 +76,7 @@ fun MonsterCard(
                 color = MaterialTheme.colorScheme.onSurface,
             )
             Spacer(Modifier.width(8.dp))
-            if (onAddUnit != null) {
+            if (!isBoss) {
                 IconButton(
                     onClick = onAddUnit,
                     modifier =
@@ -139,6 +140,7 @@ private fun MonsterCardPreview() {
                 delete = {},
                 name = "Bandit Guard",
                 isFly = true,
+                isBoss = false,
                 onAddUnit = {},
             )
             sampleDeck.forEach { card ->
@@ -147,6 +149,7 @@ private fun MonsterCardPreview() {
                     delete = {},
                     name = "Bandit Guard",
                     isFly = true,
+                    isBoss = false,
                     onAddUnit = {},
                 )
             }

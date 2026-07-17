@@ -38,6 +38,7 @@ class DatabaseFiller @Inject constructor(
                 fillMain()
                 fillForgottenCircles()
             }
+
             6 -> {
                 monsterJsonFiller.fillDecks("main")
             }

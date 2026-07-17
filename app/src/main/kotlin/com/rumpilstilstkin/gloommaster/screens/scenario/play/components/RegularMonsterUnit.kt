@@ -22,6 +22,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.rumpilstilstkin.gloommaster.R
 import com.rumpilstilstkin.gloommaster.designsystem.components.GloomCard
 import com.rumpilstilstkin.gloommaster.designsystem.components.counter.GloomCounterFull
 import com.rumpilstilstkin.gloommaster.designsystem.components.counter.GloomGloomCounterProgress
@@ -31,9 +32,8 @@ import com.rumpilstilstkin.gloommaster.designsystem.components.stiker.GloomStick
 import com.rumpilstilstkin.gloommaster.designsystem.theme.GloomhavenMasterTheme
 import com.rumpilstilstkin.gloommaster.domain.entity.monster.MonsterAction
 import com.rumpilstilstkin.gloommaster.domain.entity.monster.MonsterStatType
-import com.rumpilstilstkin.gloommaster.testtags.screens.scenario.play.components.RegularMonsterUnitTestTags
-import com.rumpilstilstkin.gloommaster.R
 import com.rumpilstilstkin.gloommaster.screens.scenario.play.state.MonsterUnitUi
+import com.rumpilstilstkin.gloommaster.testtags.screens.scenario.play.components.RegularMonsterUnitTestTags
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.ImmutableMap
 import kotlinx.collections.immutable.ImmutableSet

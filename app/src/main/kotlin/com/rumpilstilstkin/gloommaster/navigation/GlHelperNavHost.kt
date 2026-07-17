@@ -11,9 +11,9 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
-import com.rumpilstilstkin.gloommaster.screens.goods.add.AddGoodsForCharacterScreenRoute
 import com.rumpilstilstkin.gloommaster.screens.characters.quests.select.SearchQuestRoute
 import com.rumpilstilstkin.gloommaster.screens.characters.start.CharacterDetailsRoute
+import com.rumpilstilstkin.gloommaster.screens.goods.add.AddGoodsForCharacterScreenRoute
 import com.rumpilstilstkin.gloommaster.screens.onboarding.OnboardingRoute
 import com.rumpilstilstkin.gloommaster.screens.scenario.add.AddScenarioForTeamRoute
 import com.rumpilstilstkin.gloommaster.screens.scenario.play.ScenarioRoute

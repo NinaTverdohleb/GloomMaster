@@ -43,6 +43,7 @@ fun RegularMonsterCard(
             card = item.currentCard,
             name = item.name,
             isFly = item.isFly,
+            isBoss = item.isBoss,
             delete = { delete(item.slug) },
             onAddUnit = { addMonsterUnits(item.slug) },
         )
@@ -89,7 +90,7 @@ fun RegularMonsterCard(
                 UnitSelector(units = item.units.keys) { unit ->
                     selected = unit
                 }
-                Spacer(Modifier.height(48.dp))
+                Spacer(Modifier.height(12.dp))
             }
         }
     }
@@ -110,6 +111,12 @@ private fun RegularMonsterCardPreview() {
                     units =
                         persistentMapOf(
                             UnitCompact(1, false) to MonsterUnitUi.fixture(1),
+                            UnitCompact(2, false) to MonsterUnitUi.fixture(2),
+                            UnitCompact(3, false) to MonsterUnitUi.fixture(3),
+                            UnitCompact(4, false) to MonsterUnitUi.fixture(4),
+                            UnitCompact(5, false) to MonsterUnitUi.fixture(5),
+                            UnitCompact(6, false) to MonsterUnitUi.fixture(6),
+                            UnitCompact(7, false) to MonsterUnitUi.fixture(7),
                         ),
                 ),
             delete = {},

@@ -71,7 +71,6 @@ class ScenarioRepository @Inject constructor(
                 dictionary = achievementRepository.currentDictionary(),
             )
 
-
     suspend fun getScenariosWithName(
         scenarios: List<ScenarioShortInfo>,
         locale: String,

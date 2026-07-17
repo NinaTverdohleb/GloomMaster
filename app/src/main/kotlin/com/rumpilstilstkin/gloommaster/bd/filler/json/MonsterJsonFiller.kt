@@ -22,7 +22,6 @@ class MonsterJsonFiller @Inject constructor(
         fillStats(pack)
     }
 
-
     suspend fun fillDecks(pack: String) {
         val decks = jsonDataLoader.loadDictionaryList<DeckJson>("ability_decks.json", pack)
         decks.forEach { deck ->

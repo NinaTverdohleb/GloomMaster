@@ -18,6 +18,7 @@ import com.rumpilstilstkin.gloommaster.R
 import com.rumpilstilstkin.gloommaster.designsystem.components.buttons.GloomOutlineButton
 import com.rumpilstilstkin.gloommaster.designsystem.components.items.GloomListItem
 import com.rumpilstilstkin.gloommaster.designsystem.components.items.LeftItemIcon
+import com.rumpilstilstkin.gloommaster.designsystem.components.items.LeftItemNumber
 import com.rumpilstilstkin.gloommaster.designsystem.components.items.RightItemLabel
 import com.rumpilstilstkin.gloommaster.designsystem.icons.AppIcon
 import com.rumpilstilstkin.gloommaster.designsystem.icons.GameStatIcons
@@ -25,14 +26,49 @@ import com.rumpilstilstkin.gloommaster.designsystem.theme.GloomhavenMasterTheme
 
 @Composable
 internal fun CompleteScenarioDialog(
+    scenarioNumber: Int?,
+    scenarioName: String,
+    location: String?,
+    level: Int,
     exp: Int,
     gold: Int,
+    trapDamage: Int,
     complete: () -> Unit,
+    dismiss: () -> Unit,
 ) {
     Column(
         modifier = Modifier.fillMaxWidth(),
         verticalArrangement = Arrangement.spacedBy(8.dp),
     ) {
+        GloomListItem(
+            title = scenarioName.ifBlank { stringResource(R.string.custom_scenario) },
+            description = location,
+            leftComponent = {
+                scenarioNumber?.let {
+                    LeftItemNumber(
+                        number =
+                            stringResource(
+                                R.string.scenario_number_format,
+                                scenarioNumber.toString(),
+                            ),
+                    )
+                }
+            },
+        )
+
+        GloomListItem(
+            title = stringResource(R.string.stat_monster_level),
+            leftComponent = {
+                LeftItemIcon(
+                    icon = GameStatIcons.Level,
+                )
+            },
+            rightComponent = {
+                RightItemLabel(
+                    text = level.toString(),
+                )
+            },
+        )
         GloomListItem(
             title = stringResource(R.string.stat_exp_reward),
             leftComponent = {
@@ -61,13 +97,32 @@ internal fun CompleteScenarioDialog(
             },
         )
 
+        GloomListItem(
+            title = stringResource(R.string.stat_trap_damage),
+            leftComponent = {
+                LeftItemIcon(
+                    icon = GameStatIcons.Trap,
+                )
+            },
+            rightComponent = {
+                RightItemLabel(
+                    text = trapDamage.toString(),
+                )
+            },
+        )
+
         Spacer(Modifier.height(8.dp))
 
         GloomOutlineButton(
-            icon = AppIcon.Check,
             modifier = Modifier.fillMaxWidth(),
             text = stringResource(R.string.complete_scenario),
             onClick = complete,
+        )
+
+        GloomOutlineButton(
+            modifier = Modifier.fillMaxWidth(),
+            text = stringResource(R.string.close),
+            onClick = dismiss,
         )
     }
 }
@@ -85,7 +140,13 @@ private fun CompleteScenarioDialogPreview() {
             CompleteScenarioDialog(
                 exp = 100,
                 gold = 100,
+                scenarioNumber = 99,
+                scenarioName = "Name",
+                location = "Bad place",
+                level = 1,
+                trapDamage = 10,
                 complete = { },
+                dismiss = {},
             )
         }
     }

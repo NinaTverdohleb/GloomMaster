@@ -62,6 +62,25 @@ fun GloomOutlineButtonIcon(
 }
 
 @Composable
+fun GloomOutlineButtonIconVariant(
+    icon: GloomIcon,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier,
+    isError: Boolean = false,
+    enabled: Boolean = true,
+) {
+    GloomOutlineButtonBasic(
+        onClick = onClick,
+        modifier = modifier,
+        icon = icon,
+        isFilled = false,
+        isError = isError,
+        enabled = enabled,
+        strokeColor = MaterialTheme.colorScheme.outline,
+    )
+}
+
+@Composable
 fun GloomOutlineFilledButton(
     text: String,
     onClick: () -> Unit,
@@ -100,6 +119,25 @@ fun GloomOutlineFilledButtonIcon(
 }
 
 @Composable
+fun GloomOutlineFilledButtonIconVariant(
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier,
+    icon: GloomIcon,
+    isError: Boolean = false,
+    enabled: Boolean = true,
+) {
+    GloomOutlineButtonBasic(
+        onClick = onClick,
+        modifier = modifier,
+        icon = icon,
+        isFilled = true,
+        isError = isError,
+        enabled = enabled,
+        strokeColor = MaterialTheme.colorScheme.outline,
+    )
+}
+
+@Composable
 private fun GloomOutlineButtonBasic(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
@@ -108,6 +146,7 @@ private fun GloomOutlineButtonBasic(
     isFilled: Boolean = false,
     isError: Boolean = false,
     enabled: Boolean = true,
+    strokeColor: Color? = null,
 ) {
     val contentColor =
         if (isError) {
@@ -128,7 +167,7 @@ private fun GloomOutlineButtonBasic(
         modifier = modifier,
         enabled = enabled,
         shape = RoundedCornerShape(16.dp),
-        border = BorderStroke(width = 1.dp, color = contentColor),
+        border = BorderStroke(width = 1.dp, color = strokeColor ?: contentColor),
         colors =
             ButtonDefaults.outlinedButtonColors(
                 containerColor = containerColor,
@@ -185,6 +224,12 @@ private fun GloomOutlineButtonPreview() {
                 onClick = {},
             )
 
+            GloomOutlineButtonIconVariant(
+                icon = AppIcon.Check,
+                isError = false,
+                onClick = {},
+            )
+
             GloomOutlineFilledButton(
                 text = "Action",
                 icon = AppIcon.Delete,
@@ -200,6 +245,12 @@ private fun GloomOutlineButtonPreview() {
             )
 
             GloomOutlineFilledButtonIcon(
+                icon = AppIcon.Check,
+                isError = false,
+                onClick = {},
+            )
+
+            GloomOutlineFilledButtonIconVariant(
                 icon = AppIcon.Check,
                 isError = false,
                 onClick = {},

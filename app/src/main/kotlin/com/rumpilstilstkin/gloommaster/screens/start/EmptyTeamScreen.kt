@@ -14,12 +14,12 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.rumpilstilstkin.gloommaster.R
 import com.rumpilstilstkin.gloommaster.designsystem.components.buttons.GloomButton
 import com.rumpilstilstkin.gloommaster.designsystem.components.empty.EmptyIconView
 import com.rumpilstilstkin.gloommaster.designsystem.icons.EmptyIcon
 import com.rumpilstilstkin.gloommaster.designsystem.theme.GloomhavenMasterTheme
 import com.rumpilstilstkin.gloommaster.testtags.screens.start.EmptyTeamScreenTestTags
-import com.rumpilstilstkin.gloommaster.R
 
 @Composable
 internal fun EmptyTeamScreen(

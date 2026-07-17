@@ -38,8 +38,6 @@ import com.rumpilstilstkin.gloommaster.screens.scenario.play.monsters.unit.delet
 import com.rumpilstilstkin.gloommaster.screens.scenario.play.state.ScenarioActions
 import com.rumpilstilstkin.gloommaster.screens.scenario.play.state.ScenarioStateMapper
 import com.rumpilstilstkin.gloommaster.screens.scenario.play.state.ScenarioStateUi
-import com.rumpilstilstkin.gloommaster.screens.scenario.play.stats.ScenarioStatsDialogContract
-import com.rumpilstilstkin.gloommaster.screens.scenario.play.stats.ScenarioStatsDialogInput
 import dagger.hilt.android.lifecycle.HiltViewModel
 import jakarta.inject.Inject
 import kotlinx.collections.immutable.toImmutableList
@@ -207,10 +205,6 @@ class ScenarioViewModel @Inject constructor(
                 ScenarioActions.OpenComplete -> {
                     openCompleteDialog()
                 }
-
-                ScenarioActions.OpenStats -> {
-                    openStatsDialog()
-                }
             }
         }
     }
@@ -274,27 +268,6 @@ class ScenarioViewModel @Inject constructor(
                 contract = CompleteScenarioDialogContract,
                 input =
                     CompleteScenarioDialogInput(
-                        exp = state.exp,
-                        gold = state.gold,
-                    ),
-                onResult = { result ->
-                    result?.let {
-                        viewModelScope.launch {
-                            _screenEvents.send(ScreenEffect.Navigation(GlHelperEvent.Back))
-                        }
-                    }
-                },
-            )
-        _screenEvents.send(ScreenEffect.OpenDialog(session))
-    }
-
-    private suspend fun openStatsDialog() {
-        val state = uiState.value
-        val session =
-            createOverlaySession(
-                contract = ScenarioStatsDialogContract,
-                input =
-                    ScenarioStatsDialogInput(
                         level = state.level,
                         exp = state.exp,
                         gold = state.gold,
@@ -303,7 +276,13 @@ class ScenarioViewModel @Inject constructor(
                         location = state.scenarioLocation,
                         scenarioName = state.scenarioName,
                     ),
-                onResult = { },
+                onResult = { result ->
+                    result?.let {
+                        viewModelScope.launch {
+                            _screenEvents.send(ScreenEffect.Navigation(GlHelperEvent.Back))
+                        }
+                    }
+                },
             )
         _screenEvents.send(ScreenEffect.OpenDialog(session))
     }

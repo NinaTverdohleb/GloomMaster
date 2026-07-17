@@ -4,50 +4,51 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.FlowRow
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.rumpilstilstkin.gloommaster.designsystem.components.GloomCard
-import com.rumpilstilstkin.gloommaster.designsystem.icons.ActionIcon
+import com.rumpilstilstkin.gloommaster.R
+import com.rumpilstilstkin.gloommaster.designsystem.components.buttons.GloomOutlineFilledButton
+import com.rumpilstilstkin.gloommaster.designsystem.components.buttons.GloomOutlineFilledButtonIconVariant
+import com.rumpilstilstkin.gloommaster.designsystem.icons.AppIcon
 import com.rumpilstilstkin.gloommaster.designsystem.theme.GloomhavenMasterTheme
 import com.rumpilstilstkin.gloommaster.domain.entity.Magic
 import com.rumpilstilstkin.gloommaster.domain.entity.scenario.ChargeLevel
 import com.rumpilstilstkin.gloommaster.screens.scenario.play.state.toIcon
+import com.rumpilstilstkin.gloommaster.testtags.screens.scenario.play.PlayScenarioScreenTestTags
 import com.rumpilstilstkin.gloommaster.testtags.screens.scenario.play.components.ScenarioHeaderTestTags
 import kotlinx.collections.immutable.ImmutableMap
 import kotlinx.collections.immutable.persistentMapOf
 
 @Composable
 internal fun ScenarioHeader(
-    trapDamage: Int,
     magics: ImmutableMap<Magic, ChargeLevel>,
-    showStats: () -> Unit,
     modifier: Modifier = Modifier,
     clickMagic: (magic: Magic) -> Unit,
-) = Row(
+    nextRound: () -> Unit,
+) = Column(
     modifier =
         modifier
             .background(MaterialTheme.colorScheme.surfaceContainer)
             .padding(16.dp),
-    horizontalArrangement = Arrangement.spacedBy(16.dp),
+    verticalArrangement = Arrangement.spacedBy(16.dp),
+    horizontalAlignment = Alignment.CenterHorizontally,
 ) {
     val assets = rememberChargeIconAssets()
     FlowRow(
         modifier =
             Modifier
-                .fillMaxWidth()
-                .weight(1f),
+                .fillMaxWidth(),
         verticalArrangement = Arrangement.spacedBy(8.dp),
         horizontalArrangement = Arrangement.spacedBy(4.dp),
     ) {
@@ -67,27 +68,15 @@ internal fun ScenarioHeader(
             )
         }
     }
-    GloomCard(
-        modifier = Modifier.clickable { showStats() },
-    ) {
-        Row(
-            modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp),
-            horizontalArrangement = Arrangement.spacedBy(2.dp),
-        ) {
-            Text(
-                text = trapDamage.toString(),
-                style =
-                    MaterialTheme.typography.titleLarge.copy(),
-                color = MaterialTheme.colorScheme.onSurface,
-            )
-            Icon(
-                modifier = Modifier.size(28.dp),
-                painter = ActionIcon.Trap.painter(),
-                contentDescription = null,
-                tint = MaterialTheme.colorScheme.onSurface,
-            )
-        }
-    }
+    GloomOutlineFilledButton(
+        modifier =
+            Modifier
+                .fillMaxWidth()
+                .testTag(PlayScenarioScreenTestTags.ROUND_BUTTON),
+        icon = AppIcon.Play,
+        text = stringResource(R.string.round_label),
+        onClick = nextRound,
+    )
 }
 
 @Preview
@@ -96,7 +85,6 @@ private fun ScenarioHeaderPreview() {
     GloomhavenMasterTheme {
         ScenarioHeader(
             modifier = Modifier.fillMaxWidth(),
-            trapDamage = 3,
             magics =
                 persistentMapOf(
                     Magic.FIRE to ChargeLevel.Zero,
@@ -106,8 +94,8 @@ private fun ScenarioHeaderPreview() {
                     Magic.SUN to ChargeLevel.One,
                     Magic.MOON to ChargeLevel.Two,
                 ),
-            showStats = {},
             clickMagic = {},
+            nextRound = {},
         )
     }
 }

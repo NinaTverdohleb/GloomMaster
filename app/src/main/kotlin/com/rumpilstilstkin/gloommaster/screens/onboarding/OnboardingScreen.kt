@@ -29,9 +29,9 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.rumpilstilstkin.gloommaster.R
+import com.rumpilstilstkin.gloommaster.designsystem.components.GloomPageIndicator
 import com.rumpilstilstkin.gloommaster.designsystem.components.buttons.GloomButton
 import com.rumpilstilstkin.gloommaster.designsystem.theme.GloomhavenMasterTheme
-import com.rumpilstilstkin.gloommaster.screens.scenario.play.components.PageIndicator
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.coroutines.launch
 
@@ -90,7 +90,7 @@ fun OnboardingScreen(
             }
 
             Spacer(modifier = Modifier.height(24.dp))
-            PageIndicator(pageState = pagerState)
+            GloomPageIndicator(pageState = pagerState)
             Spacer(modifier = Modifier.height(24.dp))
 
             val scroll = {

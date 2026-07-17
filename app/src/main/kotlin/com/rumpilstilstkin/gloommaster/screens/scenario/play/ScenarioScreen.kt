@@ -4,6 +4,8 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -12,6 +14,8 @@ import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.material3.FabPosition
 import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
@@ -27,10 +31,17 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.rumpilstilstkin.gloommaster.R
 import com.rumpilstilstkin.gloommaster.designsystem.components.buttons.FabContextMenuItem
 import com.rumpilstilstkin.gloommaster.designsystem.components.buttons.GloomButton
+import com.rumpilstilstkin.gloommaster.designsystem.components.buttons.GloomFab
 import com.rumpilstilstkin.gloommaster.designsystem.components.buttons.GloomFabWithContextMenu
+import com.rumpilstilstkin.gloommaster.designsystem.components.buttons.GloomOutlineButtonIcon
+import com.rumpilstilstkin.gloommaster.designsystem.components.buttons.GloomOutlineButtonIconVariant
+import com.rumpilstilstkin.gloommaster.designsystem.components.buttons.GloomOutlineFilledButtonIcon
+import com.rumpilstilstkin.gloommaster.designsystem.components.buttons.GloomOutlineFilledButtonIconVariant
 import com.rumpilstilstkin.gloommaster.designsystem.components.empty.EmptyView
+import com.rumpilstilstkin.gloommaster.designsystem.components.empty.EmptyViewWithAction
 import com.rumpilstilstkin.gloommaster.designsystem.components.toolbar.GloomToolbarAction
 import com.rumpilstilstkin.gloommaster.designsystem.icons.AppIcon
 import com.rumpilstilstkin.gloommaster.designsystem.icons.EmptyIcon
@@ -38,14 +49,13 @@ import com.rumpilstilstkin.gloommaster.designsystem.theme.GloomhavenMasterTheme
 import com.rumpilstilstkin.gloommaster.domain.entity.Magic
 import com.rumpilstilstkin.gloommaster.domain.entity.monster.MonsterStatType
 import com.rumpilstilstkin.gloommaster.domain.entity.scenario.ChargeLevel
+import com.rumpilstilstkin.gloommaster.screens.scenario.play.components.MonstersPageIndicator
 import com.rumpilstilstkin.gloommaster.screens.scenario.play.components.RegularMonsterCard
+import com.rumpilstilstkin.gloommaster.screens.scenario.play.components.ScenarioHeader
+import com.rumpilstilstkin.gloommaster.screens.scenario.play.components.SpinningNumberOverlay
 import com.rumpilstilstkin.gloommaster.screens.scenario.play.state.MonsterItemUi
 import com.rumpilstilstkin.gloommaster.screens.scenario.play.state.ScenarioStateUi
 import com.rumpilstilstkin.gloommaster.testtags.screens.scenario.play.PlayScenarioScreenTestTags
-import com.rumpilstilstkin.gloommaster.R
-import com.rumpilstilstkin.gloommaster.screens.scenario.play.components.PageIndicator
-import com.rumpilstilstkin.gloommaster.screens.scenario.play.components.ScenarioHeader
-import com.rumpilstilstkin.gloommaster.screens.scenario.play.components.SpinningNumberOverlay
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.persistentMapOf
@@ -54,7 +64,6 @@ import kotlinx.collections.immutable.persistentMapOf
 internal fun ScenarioScreen(
     state: ScenarioStateUi,
     complete: () -> Unit,
-    showStats: () -> Unit,
     back: () -> Unit,
     addScenarioMonsters: () -> Unit,
     addNewMonsters: () -> Unit,
@@ -72,17 +81,20 @@ internal fun ScenarioScreen(
             title = stringResource(R.string.round_status, state.round),
             back = back,
             backgroundColor = MaterialTheme.colorScheme.surfaceContainer,
-            actionClick = complete,
-            actionIcon = AppIcon.Check,
+            actions = {
+                IconButton(onClick = complete) {
+                    Icon(
+                        AppIcon.Settings.painter(),
+                        contentDescription = null,
+                        tint = MaterialTheme.colorScheme.onSurface,
+                    )
+                }
+            },
         )
     },
     floatingActionButtonPosition = FabPosition.End,
     floatingActionButton = {
         Column(
-            modifier =
-                Modifier
-                    .fillMaxWidth()
-                    .padding(start = 32.dp),
             verticalArrangement = Arrangement.spacedBy(12.dp),
             horizontalAlignment = Alignment.End,
         ) {
@@ -118,14 +130,6 @@ internal fun ScenarioScreen(
                     },
                 )
             }
-            GloomButton(
-                text = stringResource(R.string.round_label),
-                modifier =
-                    Modifier
-                        .fillMaxWidth()
-                        .testTag(PlayScenarioScreenTestTags.ROUND_BUTTON),
-                onClick = nextRound,
-            )
         }
     },
 ) { paddingValues ->
@@ -134,7 +138,6 @@ internal fun ScenarioScreen(
             Modifier
                 .fillMaxSize()
                 .padding(paddingValues)
-                .padding(bottom = 80.dp)
                 .clipToBounds(),
     ) {
         var roundAnimationVisible by remember { mutableStateOf(false) }
@@ -148,8 +151,7 @@ internal fun ScenarioScreen(
             ScenarioHeader(
                 magics = state.magicChargeList,
                 clickMagic = clickMagic,
-                trapDamage = state.trapDamage,
-                showStats = showStats,
+                nextRound = nextRound,
             )
             HorizontalDivider(
                 modifier = Modifier.fillMaxWidth(),
@@ -166,6 +168,7 @@ internal fun ScenarioScreen(
                 addMonsterUnits = addMonsterUnits,
                 onLevel = onLevel,
                 round = state.round,
+                nextRound = nextRound,
             )
         }
 
@@ -183,6 +186,7 @@ fun ScenarioScreenContent(
     round: Int,
     monsters: ImmutableList<MonsterItemUi>,
     modifier: Modifier = Modifier,
+    nextRound: () -> Unit,
     delete: (monsterSlug: String) -> Unit,
     deleteUnit: (unitNumber: Int, monsterSlug: String) -> Unit,
     updateUnitLife: (unitNumber: Int, monsterSlug: String, life: Int) -> Unit,
@@ -194,10 +198,10 @@ fun ScenarioScreenContent(
         modifier
             .fillMaxWidth()
             .padding(top = 16.dp),
-    verticalArrangement = Arrangement.spacedBy(16.dp),
+    verticalArrangement = Arrangement.spacedBy(12.dp),
 ) {
     if (monsters.isEmpty()) {
-        EmptyView(
+        EmptyViewWithAction(
             modifier =
                 Modifier
                     .fillMaxWidth()
@@ -216,7 +220,12 @@ fun ScenarioScreenContent(
             }
         }
 
-        PageIndicator(pagerState)
+        MonstersPageIndicator(
+            modifier = Modifier.fillMaxWidth(),
+            monsters = monsters,
+            pageState = pagerState,
+        )
+
         HorizontalPager(
             modifier = Modifier.testTag(PlayScenarioScreenTestTags.MONSTER_PAGER),
             state = pagerState,
@@ -257,6 +266,7 @@ private fun ScenarioScreenPreview() {
                     monsters =
                         persistentListOf(
                             MonsterItemUi.fixture(),
+                            MonsterItemUi.fixture(),
                         ),
                     magicChargeList =
                         persistentMapOf(
@@ -272,7 +282,6 @@ private fun ScenarioScreenPreview() {
             addNewMonsters = {},
             back = {},
             complete = {},
-            showStats = {},
             deleteMonster = { _ -> },
             deleteUnit = { _, _ -> },
             updateUnitLife = { _, _, _ -> },
@@ -298,7 +307,6 @@ private fun ScenarioScreenEmptyPreview() {
             addNewMonsters = {},
             back = {},
             complete = {},
-            showStats = {},
             deleteMonster = { _ -> },
             deleteUnit = { _, _ -> },
             updateUnitLife = { _, _, _ -> },

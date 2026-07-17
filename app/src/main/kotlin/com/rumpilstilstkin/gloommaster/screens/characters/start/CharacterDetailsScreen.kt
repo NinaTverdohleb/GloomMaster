@@ -16,17 +16,17 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import com.rumpilstilstkin.gloommaster.R
 import com.rumpilstilstkin.gloommaster.designsystem.components.tabs.GloomTopNavigationBar
 import com.rumpilstilstkin.gloommaster.designsystem.components.tabs.NavItem
 import com.rumpilstilstkin.gloommaster.designsystem.components.toolbar.GloomToolbar
 import com.rumpilstilstkin.gloommaster.designsystem.icons.NavigationIcon
 import com.rumpilstilstkin.gloommaster.designsystem.theme.GloomhavenMasterTheme
+import com.rumpilstilstkin.gloommaster.screens.characters.start.general.CharacterGeneralTabRoute
 import com.rumpilstilstkin.gloommaster.screens.characters.start.goods.CharacterItemsTabRoute
+import com.rumpilstilstkin.gloommaster.screens.characters.start.perks.CharacterPerksTabRoute
 import com.rumpilstilstkin.gloommaster.screens.models.CharacterUI
 import com.rumpilstilstkin.gloommaster.testtags.screens.characters.start.CharacterDetailsTestTags
-import com.rumpilstilstkin.gloommaster.R
-import com.rumpilstilstkin.gloommaster.screens.characters.start.general.CharacterGeneralTabRoute
-import com.rumpilstilstkin.gloommaster.screens.characters.start.perks.CharacterPerksTabRoute
 import com.rumpilstilstkin.gloommaster.ui.characters.CharacterHeaderItem
 import kotlinx.coroutines.launch
 

@@ -40,7 +40,7 @@ fun RightItemLabel(text: String) =
     Text(
         text = text,
         style = MaterialTheme.typography.headlineMedium,
-        color = MaterialTheme.colorScheme.surfaceTint,
+        color = MaterialTheme.colorScheme.onSurfaceVariant,
     )
 
 @Composable

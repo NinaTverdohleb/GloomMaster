@@ -49,6 +49,4 @@ sealed interface ScenarioActions {
     data object OpenAddMonster : ScenarioActions
 
     data object OpenComplete : ScenarioActions
-
-    data object OpenStats : ScenarioActions
 }

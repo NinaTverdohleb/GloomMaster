@@ -1,8 +1,8 @@
 package com.rumpilstilstkin.gloommaster.data
 
+import com.rumpilstilstkin.gloommaster.bd.dao.AchievementDao
 import com.rumpilstilstkin.gloommaster.di.ApplicationScope
 import com.rumpilstilstkin.gloommaster.domain.entity.Achievement
-import com.rumpilstilstkin.gloommaster.bd.dao.AchievementDao
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.SharingStarted

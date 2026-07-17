@@ -16,15 +16,15 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.rumpilstilstkin.gloommaster.R
 import com.rumpilstilstkin.gloommaster.designsystem.components.tabs.GloomBottomNavigationBar
 import com.rumpilstilstkin.gloommaster.designsystem.components.tabs.NavItem
 import com.rumpilstilstkin.gloommaster.designsystem.components.toolbar.GloomToolbarNoBackAction
 import com.rumpilstilstkin.gloommaster.designsystem.icons.NavigationIcon
 import com.rumpilstilstkin.gloommaster.designsystem.theme.GloomhavenMasterTheme
-import com.rumpilstilstkin.gloommaster.testtags.screens.start.StartScreenTestTags
-import com.rumpilstilstkin.gloommaster.R
 import com.rumpilstilstkin.gloommaster.screens.start.scenarios.ScenariosTabScreen
 import com.rumpilstilstkin.gloommaster.screens.start.scenarios.ScenariosTabStateUi
+import com.rumpilstilstkin.gloommaster.testtags.screens.start.StartScreenTestTags
 
 @Composable
 internal fun StartScreen(
@@ -61,10 +61,12 @@ internal fun StartScreen(
                     .testTag(StartScreenTestTags.ROOT)
                     .fillMaxSize()
                     .padding(paddingValues)
-                    .padding(16.dp),
+                    .padding(start = 16.dp, end = 16.dp, top = 16.dp),
         ) {
             when (state) {
-                StartScreenState.Loading -> Unit
+                StartScreenState.Loading -> {
+                    Unit
+                }
 
                 StartScreenState.Empty -> {
                     EmptyTeamScreen(
