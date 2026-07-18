@@ -64,9 +64,7 @@ internal fun StartScreen(
                     .padding(start = 16.dp, end = 16.dp, top = 16.dp),
         ) {
             when (state) {
-                StartScreenState.Loading -> {
-                    Unit
-                }
+                StartScreenState.Loading -> { }
 
                 StartScreenState.Empty -> {
                     EmptyTeamScreen(

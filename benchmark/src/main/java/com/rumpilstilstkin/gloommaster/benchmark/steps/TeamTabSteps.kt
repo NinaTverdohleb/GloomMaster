@@ -12,7 +12,7 @@ import com.rumpilstilstkin.gloommaster.benchmark.waitForTag
 
 fun MacrobenchmarkScope.openAndPlayScenario() {
     if (!existTag(ScenarioBlockTestTags.scenarioCard(0))) {
-        waitForTag(TeamTabScreenTestTags.ROOT_COLUMN).scroll(Direction.DOWN, 0.8f)
+        waitForTag(TeamTabScreenTestTags.ROOT_COLUMN).scroll(Direction.DOWN, 0.5f)
     }
     clickTag(ScenarioBlockTestTags.scenarioCard(0))
     clickTag(MenuScenarioDialogTestTags.PLAY_SCENARIO_BUTTON)

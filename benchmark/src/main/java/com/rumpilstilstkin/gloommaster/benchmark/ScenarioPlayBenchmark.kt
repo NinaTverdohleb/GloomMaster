@@ -22,6 +22,7 @@ import com.rumpilstilstkin.gloommaster.benchmark.steps.createTeamIfNeed
 import com.rumpilstilstkin.gloommaster.benchmark.steps.nextRound
 import com.rumpilstilstkin.gloommaster.benchmark.steps.openAndPlayScenario
 import com.rumpilstilstkin.gloommaster.benchmark.steps.toggleUnitEffect
+import com.rumpilstilstkin.gloommaster.testtags.screens.start.team.TeamTabScreenTestTags
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -57,9 +58,10 @@ class ScenarioPlayBenchmark {
             setupBlock = {
                 pressHome()
                 startActivityAndWait()
+                createTeamIfNeed()
+                waitForTag(TeamTabScreenTestTags.ROOT_COLUMN).scroll(Direction.DOWN, 0.5f)
             },
         ) {
-            createTeamIfNeed()
 
             openAndPlayScenario()
 

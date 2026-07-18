@@ -79,6 +79,7 @@ fun ScenarioRoute(
             ),
         )
     }
+    val openRandom = { viewModel.onAction(ScenarioActions.OpenRandom) }
 
     ScenarioScreen(
         state = uiState,
@@ -94,6 +95,7 @@ fun ScenarioRoute(
         nextRound = nextRound,
         clickMagic = clickMagic,
         onLevel = changeUnitLevel,
+        openRandom = openRandom,
     )
 
     LaunchedScreenEffect(

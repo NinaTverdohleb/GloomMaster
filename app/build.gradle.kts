@@ -19,8 +19,8 @@ android {
     defaultConfig {
         applicationId = "com.rumpilstilstkin.gloommaster"
         minSdk = 29
-        versionCode = 13
-        versionName = "2.0.3"
+        versionCode = 14
+        versionName = "2.0.4"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -49,9 +49,11 @@ android {
             ndk.debugSymbolLevel = "FULL"
         }
         debug {
+            manifestPlaceholders += mapOf()
             applicationIdSuffix = ".debug"
             manifestPlaceholders["appLabelSuffix"] = "(Debug)"
             buildConfigField("boolean", "ONBOARDING_ENABLED", "true")
+            signingConfig = signingConfigs.getByName("debug")
         }
         create("benchmark") {
             initWith(buildTypes.getByName("release"))

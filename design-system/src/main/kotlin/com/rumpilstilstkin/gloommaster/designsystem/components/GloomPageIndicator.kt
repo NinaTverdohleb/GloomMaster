@@ -33,10 +33,10 @@ fun GloomPageIndicator(pageState: PagerState) {
             Box(
                 modifier =
                     Modifier
-                        .padding(4.dp)
+                        .padding(2.dp)
                         .clip(CircleShape)
                         .background(color)
-                        .size(24.dp),
+                        .size(8.dp),
             ) {}
         }
     }

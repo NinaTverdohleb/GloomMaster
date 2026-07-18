@@ -19,4 +19,5 @@ enum class AppIcon(
     Buy(R.drawable.design_system_ic_buy),
     Get(R.drawable.design_system_ic_get),
     Up(R.drawable.design_system_ic_up),
+    Random(R.drawable.design_system_ic_random),
 }

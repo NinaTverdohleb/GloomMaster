@@ -43,6 +43,9 @@ fun SpinningNumberOverlay(
     targetNumber: Int,
     spinId: Int,
     modifier: Modifier = Modifier,
+    size: Dp = 140.dp,
+    maxValue: Int = 99,
+    background: Color = Color.Black.copy(alpha = 0.6f),
     onFinished: () -> Unit = {},
 ) {
     AnimatedVisibility(
@@ -55,13 +58,15 @@ fun SpinningNumberOverlay(
             modifier =
                 Modifier
                     .fillMaxSize()
-                    .background(Color.Black.copy(alpha = 0.6f)),
+                    .background(background),
             contentAlignment = Alignment.Center,
         ) {
             SpinningCoin(
                 targetNumber = targetNumber,
                 spinId = spinId,
                 onFinished = onFinished,
+                maxValue = maxValue,
+                size = size,
             )
         }
     }
@@ -74,6 +79,7 @@ fun SpinningCoin(
     size: Dp = 140.dp,
     fullTurns: Int = 5,
     durationMillis: Int = 2200,
+    maxValue: Int = 99,
     onFinished: () -> Unit = {},
 ) {
     val angle = remember { Animatable(0f) }
@@ -83,7 +89,7 @@ fun SpinningCoin(
         val halfTurns = fullTurns * 2
         numbers =
             IntArray(halfTurns + 1) { i ->
-                if (i == halfTurns) targetNumber else Random.nextInt(0, 10)
+                if (i == halfTurns) targetNumber else Random.nextInt(1, maxValue)
             }
         angle.snapTo(0f)
         angle.animateTo(

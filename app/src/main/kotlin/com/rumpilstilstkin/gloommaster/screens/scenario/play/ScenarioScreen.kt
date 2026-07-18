@@ -75,6 +75,7 @@ internal fun ScenarioScreen(
     addMonsterUnits: (monsterSlug: String) -> Unit,
     clickMagic: (magic: Magic) -> Unit,
     onLevel: (unitNumber: Int, monsterSlug: String) -> Unit,
+    openRandom: () -> Unit,
 ) = Scaffold(
     topBar = {
         GloomToolbarAction(
@@ -152,6 +153,7 @@ internal fun ScenarioScreen(
                 magics = state.magicChargeList,
                 clickMagic = clickMagic,
                 nextRound = nextRound,
+                openRandom = openRandom,
             )
             HorizontalDivider(
                 modifier = Modifier.fillMaxWidth(),
@@ -290,6 +292,7 @@ private fun ScenarioScreenPreview() {
             addMonsterUnits = { },
             clickMagic = {},
             onLevel = { _, _ -> },
+            openRandom = {},
         )
     }
 }
@@ -315,6 +318,7 @@ private fun ScenarioScreenEmptyPreview() {
             addMonsterUnits = { },
             clickMagic = {},
             onLevel = { _, _ -> },
+            openRandom = {},
         )
     }
 }

@@ -178,4 +178,24 @@
     <string name="onboarding_title_5">Хорошей игры</string>
     <string name="onboarding_body_5">Пора начинать приключение!</string>
     <string name="add_scenario_enemies">Монстры из сценария</string>
+    <string name="weird_1">Фортуна улыбается вам.</string>
+    <string name="weird_2">Духи леса на твоей стороне, будь смелым!</string>
+    <string name="weird_3">Цели твои не под стать тебе, сделай шаг назад, уступи дорогу другому.</string>
+    <string name="weird_4">Множество вероятностей открылось мне, но здесь и сейчас отступи — так баланс будет сохранен.</string>
+    <string name="weird_5">Великие свершения требуют смелости. Отбрось сомнения, твой час настал.</string>
+    <string name="weird_6">Призраки прошлого шепчут мне о твоем успехе.</string>
+    <string name="weird_7">Бушующее пламя явилось мне в видении, духи велят тебе отступить.</string>
+    <string name="weird_8">Птицы несут предупреждение: не твой это выбор.</string>
+    <string name="weird_9">Брошенные кости смотрят на восток — это к удаче.</string>
+    <string name="weird_10">Многие трудности ждут тебя, но сегодня даже демоны не выдержат твоего напора. Прими свою судьбу смело.</string>
+    <string name="weird_11">На карте неба твоя звезда сияет ярко, успех ждет тебя.</string>
+    <string name="weird_12">Веет опасностью, я чую это в воде, слышу это в земле. Отступи, это не твоя дорога.</string>
+    <string name="weird_13">Удача на твоей стороне, верь себе.</string>
+    <string name="weird_14">Умный вермлинг идет осторожно и знает, где нужно отступить. Не ступай на путь, что сулит беды.</string>
+    <string name="weird_15">Великий дуб предрек тебе победу.</string>
+    <string name="weird_16">Духи стихий предупреждают тебя: не твой это выбор, отступи.</string>
+    <string name="empty_weird">Развей туман судьбы</string>
+    <string name="random_title">Узнай свою судьбу</string>
+    <string name="random_action_coin">Монета судьбы</string>
+    <string name="random_action_weird">Предсказание оракула</string>
 </resources>

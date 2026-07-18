@@ -35,6 +35,7 @@ import com.rumpilstilstkin.gloommaster.screens.scenario.play.monsters.unit.add.A
 import com.rumpilstilstkin.gloommaster.screens.scenario.play.monsters.unit.add.AddMonsterUnitDialogInput
 import com.rumpilstilstkin.gloommaster.screens.scenario.play.monsters.unit.delete.DeleteUnitDialogContract
 import com.rumpilstilstkin.gloommaster.screens.scenario.play.monsters.unit.delete.DeleteUnitDialogInput
+import com.rumpilstilstkin.gloommaster.screens.scenario.play.random.RandomDialogContract
 import com.rumpilstilstkin.gloommaster.screens.scenario.play.state.ScenarioActions
 import com.rumpilstilstkin.gloommaster.screens.scenario.play.state.ScenarioStateMapper
 import com.rumpilstilstkin.gloommaster.screens.scenario.play.state.ScenarioStateUi
@@ -131,7 +132,8 @@ class ScenarioViewModel @Inject constructor(
                 }
 
                 is ScenarioActions.AddUnits -> {
-                    val monster = logicState.value?.activeMonsters[action.monsterSlug] ?: return@launch
+                    val monster =
+                        logicState.value?.activeMonsters[action.monsterSlug] ?: return@launch
                     val existingNumbers = monster.units.keys
                     val avaliableNumber = (1..15).toList().filter { it !in existingNumbers }
                     openAddUnitsDialog(
@@ -184,7 +186,9 @@ class ScenarioViewModel @Inject constructor(
                 }
 
                 is ScenarioActions.UpdateUnitLevel -> {
-                    val monsterUnit = logicState.value?.getUnit(action.monsterSlug, action.unitNumber) ?: return@launch
+                    val monsterUnit =
+                        logicState.value?.getUnit(action.monsterSlug, action.unitNumber)
+                            ?: return@launch
                     openUnitLevelDialog(
                         unit = monsterUnit,
                         monsterSlug = action.monsterSlug,
@@ -205,8 +209,22 @@ class ScenarioViewModel @Inject constructor(
                 ScenarioActions.OpenComplete -> {
                     openCompleteDialog()
                 }
+
+                ScenarioActions.OpenRandom -> {
+                    openRandomDialog()
+                }
             }
         }
+    }
+
+    private suspend fun openRandomDialog() {
+        val session =
+            createOverlaySession(
+                contract = RandomDialogContract,
+                input = Unit,
+                onResult = {},
+            )
+        _screenEvents.send(ScreenEffect.OpenDialog(session))
     }
 
     private suspend fun openUnitLevelDialog(
@@ -298,7 +316,7 @@ class ScenarioViewModel @Inject constructor(
                             onAction(ScenarioActions.AddMonster(result.slugs))
                         }
 
-                        null -> { }
+                        null -> {}
                     }
                 },
             )

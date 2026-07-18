@@ -6,6 +6,7 @@ import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.FlowRow
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
@@ -19,6 +20,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.rumpilstilstkin.gloommaster.R
 import com.rumpilstilstkin.gloommaster.designsystem.components.buttons.GloomOutlineFilledButton
+import com.rumpilstilstkin.gloommaster.designsystem.components.buttons.GloomOutlineFilledButtonIcon
 import com.rumpilstilstkin.gloommaster.designsystem.components.buttons.GloomOutlineFilledButtonIconVariant
 import com.rumpilstilstkin.gloommaster.designsystem.icons.AppIcon
 import com.rumpilstilstkin.gloommaster.designsystem.theme.GloomhavenMasterTheme
@@ -36,6 +38,7 @@ internal fun ScenarioHeader(
     modifier: Modifier = Modifier,
     clickMagic: (magic: Magic) -> Unit,
     nextRound: () -> Unit,
+    openRandom: () -> Unit,
 ) = Column(
     modifier =
         modifier
@@ -68,15 +71,26 @@ internal fun ScenarioHeader(
             )
         }
     }
-    GloomOutlineFilledButton(
+    Row(
         modifier =
             Modifier
-                .fillMaxWidth()
-                .testTag(PlayScenarioScreenTestTags.ROUND_BUTTON),
-        icon = AppIcon.Play,
-        text = stringResource(R.string.round_label),
-        onClick = nextRound,
-    )
+                .fillMaxWidth(),
+        horizontalArrangement = Arrangement.spacedBy(16.dp),
+    ) {
+        GloomOutlineFilledButtonIcon(
+            icon = AppIcon.Random,
+            onClick = openRandom,
+        )
+        GloomOutlineFilledButton(
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .testTag(PlayScenarioScreenTestTags.ROUND_BUTTON),
+            icon = AppIcon.Play,
+            text = stringResource(R.string.round_label),
+            onClick = nextRound,
+        )
+    }
 }
 
 @Preview
@@ -96,6 +110,7 @@ private fun ScenarioHeaderPreview() {
                 ),
             clickMagic = {},
             nextRound = {},
+            openRandom = {},
         )
     }
 }
