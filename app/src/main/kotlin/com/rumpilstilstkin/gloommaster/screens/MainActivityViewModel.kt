@@ -45,7 +45,9 @@ class MainActivityViewModel @Inject constructor(
                     } else {
                         LocaleListCompat.forLanguageTags(locale)
                     }
-                AppCompatDelegate.setApplicationLocales(appLocales)
+                if (AppCompatDelegate.getApplicationLocales() != appLocales) {
+                    AppCompatDelegate.setApplicationLocales(appLocales)
+                }
             }
         }
     }
