@@ -1,7 +1,5 @@
 package com.rumpilstilstkin.gloommaster.data
 
-import androidx.appcompat.app.AppCompatDelegate
-import androidx.core.os.LocaleListCompat
 import com.rumpilstilstkin.gloommaster.data.datasource.LocaleDatasource
 import com.rumpilstilstkin.gloommaster.data.datasource.SystemLocaleDatasource
 import com.rumpilstilstkin.gloommaster.di.ApplicationScope
@@ -10,7 +8,6 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.distinctUntilChanged
-import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.shareIn
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -21,17 +18,11 @@ class LocaleRepository @Inject constructor(
     private val appLocaleDataSource: LocaleDatasource,
     @ApplicationScope externalScope: CoroutineScope,
 ) {
+    val observeAppLocale: Flow<String?> = appLocaleDataSource.observeAppLocale()
+
     val observeLocale: Flow<String> =
-        appLocaleDataSource
-            .observeAppLocale()
-            .onEach { locale ->
-                if (locale == null) {
-                    AppCompatDelegate.setApplicationLocales(LocaleListCompat.getEmptyLocaleList())
-                } else {
-                    val appLocale = LocaleListCompat.forLanguageTags(locale)
-                    AppCompatDelegate.setApplicationLocales(appLocale)
-                }
-            }.combine(systemLocaleDataSource.observeSystemLocale()) { appLocale, systemLocale ->
+        observeAppLocale
+            .combine(systemLocaleDataSource.observeSystemLocale()) { appLocale, systemLocale ->
                 appLocale ?: systemLocale
             }.distinctUntilChanged()
             .shareIn(

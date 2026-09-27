@@ -1,48 +1,29 @@
 package com.rumpilstilstkin.gloommaster.data
 
-import androidx.appcompat.app.AppCompatDelegate
-import androidx.core.os.LocaleListCompat
 import app.cash.turbine.test
-import com.rumpilstilstkin.gloommaster.data.LocaleRepository
 import com.rumpilstilstkin.gloommaster.data.datasource.LocaleDatasource
 import com.rumpilstilstkin.gloommaster.data.datasource.SystemLocaleDatasource
 import io.mockk.every
 import io.mockk.justRun
 import io.mockk.mockk
-import io.mockk.mockkStatic
-import io.mockk.unmockkStatic
 import io.mockk.verify
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.test.TestScope
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.runTest
-import org.junit.After
-import org.junit.Before
 import org.junit.Test
 import strikt.api.expectThat
 import strikt.assertions.containsExactly
 import strikt.assertions.isEqualTo
 import strikt.assertions.isFalse
+import strikt.assertions.isNull
 import strikt.assertions.isTrue
 
 @OptIn(ExperimentalCoroutinesApi::class)
 class LocaleRepositoryTest {
     private val systemDs: SystemLocaleDatasource = mockk()
     private val appDs: LocaleDatasource = mockk(relaxUnitFun = true)
-
-    @Before
-    fun setUp() {
-        // observeLocale's onEach calls AppCompatDelegate.setApplicationLocales(...), which
-        // requires the Android runtime. Stub the static so flow collection doesn't blow up.
-        mockkStatic(AppCompatDelegate::class)
-        justRun { AppCompatDelegate.setApplicationLocales(any()) }
-    }
-
-    @After
-    fun tearDown() {
-        unmockkStatic(AppCompatDelegate::class)
-    }
 
     private fun TestScope.newSut(): LocaleRepository =
         LocaleRepository(
@@ -114,38 +95,50 @@ class LocaleRepositoryTest {
     }
 
     @Test
-    fun `given appLocale is not null when observed then AppCompatDelegate gets the tag applied as the application locale`() = runTest(UnconfinedTestDispatcher()) {
+    fun `given appLocale is set when observeAppLocale is collected then the selected tag is emitted`() = runTest(UnconfinedTestDispatcher()) {
         // Given
-        val matchingLocales = LocaleListCompat.forLanguageTags("ru")
         every { systemDs.observeSystemLocale() } returns MutableStateFlow("en")
         every { appDs.observeAppLocale() } returns MutableStateFlow<String?>("ru")
         val sut = newSut()
 
-        // When
-        sut.observeLocale.test {
-            awaitItem()
+        // When / Then
+        sut.observeAppLocale.test {
+            expectThat(awaitItem()).isEqualTo("ru")
             cancelAndIgnoreRemainingEvents()
         }
-
-        // Then
-        verify { AppCompatDelegate.setApplicationLocales(match { it == matchingLocales }) }
     }
 
     @Test
-    fun `given appLocale is null when observed then AppCompatDelegate is reset to an empty locale list`() = runTest(UnconfinedTestDispatcher()) {
+    fun `given appLocale is null when observeAppLocale is collected then system language selection is preserved`() = runTest(UnconfinedTestDispatcher()) {
         // Given
         every { systemDs.observeSystemLocale() } returns MutableStateFlow("en")
         every { appDs.observeAppLocale() } returns MutableStateFlow<String?>(null)
         val sut = newSut()
 
-        // When
-        sut.observeLocale.test {
-            awaitItem()
+        // When / Then
+        sut.observeAppLocale.test {
+            expectThat(awaitItem()).isNull()
             cancelAndIgnoreRemainingEvents()
         }
+    }
 
-        // Then
-        verify { AppCompatDelegate.setApplicationLocales(match { it.isEmpty }) }
+    @Test
+    fun `given selected and system languages match when selection changes then observeAppLocale emits each selection`() = runTest(UnconfinedTestDispatcher()) {
+        // Given
+        val appFlow = MutableStateFlow<String?>(null)
+        every { systemDs.observeSystemLocale() } returns MutableStateFlow("ru")
+        every { appDs.observeAppLocale() } returns appFlow
+        val sut = newSut()
+
+        // When / Then
+        sut.observeAppLocale.test {
+            expectThat(awaitItem()).isNull()
+            appFlow.value = "ru"
+            expectThat(awaitItem()).isEqualTo("ru")
+            appFlow.value = null
+            expectThat(awaitItem()).isNull()
+            cancelAndIgnoreRemainingEvents()
+        }
     }
 
     @Test
